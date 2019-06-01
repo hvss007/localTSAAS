@@ -1,0 +1,39 @@
+.ProgressBar
+{
+    margin:20px auto;
+    width:80%;
+    /* box-shadow:0 2px 3px rgb(128, 124, 124); */
+    box-sizing: border-box;
+
+}
+@media (min-width:600px){
+    .ProgressBar{
+        width:500px;
+    }
+
+}
+.ProgressBarText{
+    font-weight: 300;
+    color:#ccc;
+}
+.ProgressBarInner{
+    box-sizing: border-box;
+    width:100%;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    
+    overflow:hidden;
+}
+.ProgressBarInnerInner{
+    margin:0px;
+    z-index:-1;
+    width:30px;
+    height:30px;
+    border-radius:100%;
+    transform: translateX(-20px);
+    background-color:rgb(51, 177, 47);
+    transition:transform ease-out .3s;
+}
+.ProgressBarInnerInner:hover{
+transform: scale(32.2);
+}
