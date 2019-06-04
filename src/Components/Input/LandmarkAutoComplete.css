@@ -1,0 +1,23 @@
+.AutoComplete{
+    position: relative;
+}
+.LandmarkAutoComplete{
+    width: 200px;
+    max-height:70px;
+    height:auto;
+
+    font-size: 10px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    /* overflow: hidden; */
+    border: 1px solid #ccc;
+    transition: height ease-in-out 0.5s;
+    box-sizing:border-box;
+    position:absolute;
+    z-index:100;
+}
+
+.LandmarkAutoComplete>li{
+    cursor: pointer;
+    
+}

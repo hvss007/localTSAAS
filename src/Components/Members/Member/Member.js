@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 import Input from '../../Input/Input';
 import classes from './Member.css';
+import Axios from 'axios';
+import MemberSubmitButton from './MemberSubmitButton';
+import Autocomplete from '../../Input/Autocomplete';
 class Member extends Component{
     state={
         member:{
@@ -209,8 +212,8 @@ class Member extends Component{
                 valid:false,
                 touched:false
             },
-            nameOfVillage:{
-                label:'Name of village',
+            landmark:{
+                label:'Landmark',
                 elementType:'input',
                 elementConfig:{
                    type:'text',
@@ -224,21 +227,21 @@ class Member extends Component{
                 valid:false,
                 touched:false
             },
-            wardNo:{
-                label:'Ward Number',
-                elementType:'input',
-                elementConfig:{
-                   type:'number',
-                   placeholder:'' 
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false
-            },
+            // wardNo:{
+            //     label:'Ward Number',
+            //     elementType:'input',
+            //     elementConfig:{
+            //        type:'number',
+            //        placeholder:'' 
+            //     },
+            //     value:'',
+            //     show:true,
+            //     validation:{
+            //         required:true
+            //     },
+            //     valid:false,
+            //     touched:false
+            // },
             pinCode:{
                 label:'PIN Code',
                 elementType:'input',
@@ -279,16 +282,43 @@ class Member extends Component{
             }
         },
         totalQuestions:13,
-        qAnswered:0
+        qAnswered:0,
+        autoCompleteShow:false
     }
     inputChangeHandler=(event,inputIdentifier)=>{
         const memberUpdated={...this.state.member};
         const updatedInputElement={...memberUpdated[inputIdentifier]} ;
         updatedInputElement.value=event.target.value;
-            updatedInputElement.valid=this.validityHandler(updatedInputElement.value,updatedInputElement.validation);
-            updatedInputElement.touched=true;
+        updatedInputElement.valid=this.validityHandler(updatedInputElement.value,updatedInputElement.validation);
+        updatedInputElement.touched=true;
         memberUpdated[inputIdentifier]=updatedInputElement; 
-        this.setState({member:memberUpdated},()=>this.progressHandler());
+        this.setState({member:memberUpdated},()=>{
+            this.progressHandler()
+            if(inputIdentifier=="landmark"&&updatedInputElement.valid){
+                this.landmarkValueHandler();
+            }
+        });
+    }
+    onFocusHandler=()=>{
+        this.setState({autoCompleteShow:true})
+    }
+    onBlurHandler=()=>{
+        this.setState({autoCompleteShow:false})
+    }
+    itemClickedHandler=(event,id,truth)=>{
+        //let hed=this.state.member.landmark.value;
+       // this.setState({hed:""},()=>{console.log(this.state.member.landmark.value)});
+        const memberUpdated={...this.state.member};
+        const updatedInputElement={...memberUpdated["landmark"]} ;
+        updatedInputElement.value=""+document.getElementById(id).innerHTML;
+        memberUpdated["landmark"]=updatedInputElement; 
+        this.setState({member:memberUpdated},()=>{this.landmarkValueHandler()}
+        )
+        this.props.setMarkerQuery(""+updatedInputElement.value);
+    }
+    landmarkValueHandler=()=>{
+        this.props.landmarkTransfer(this.state.member.landmark.value);
+        //console.log(this.state.member.landmark.value);
     }
     progressHandler=()=>{
         var arr=Object.keys(this.state.member);
@@ -314,7 +344,43 @@ class Member extends Component{
         console.log(isValid);
         return isValid;
     }
+    submitButtonHandler=(event)=>{
+        console.log(this.state.qAnswered);
+        event.preventDefault();
+        if(this.state.qAnswered===11){
+            const member=this.state.member;
+            const post={
+                memberId:member.memberId.value,
+                gender:member.gender.value,
+                age:member.age.value,
+                educationalQualification:member.educationalQualification.value,
+                monthlyIncome:member.monthlyIncome.value,
+                maritialStatus:member.maritialStatus.value,
+                differentlyAbled:member.differentlyAbled.value,
+                homeState:member.homeState.value,
+                nameOfDistrict:member.nameOfDistrict.value,
+                landmark:member.landmark.value,
+                pincode:member.pinCode.value,
+                principalSourceofIncome:member.principalSourceofIncome.value
+            }
+
+            Axios.post("http://18.220.237.87/api/transdb/",post)
+                .then((Response)=>{
+                    console.log(Response);
+                })
+        }
+        else{
+            alert("Please fill all the fields")
+        }
+    }
     render(){
+        const arrNew=[];
+        const arr=[...this.props.autoCompleteArr];  
+        for(let i=0;i<arr.length;i++){
+            arrNew.push({backArr:arr[i],clicked:false});
+        }
+        console.log(arrNew);
+        
     let memberformArray=[];
     for (let key in this.state.member){
         memberformArray.push(
@@ -325,10 +391,12 @@ class Member extends Component{
     }
     return(
         <div className={classes.MemberData} >
-        <form>
+        <form >
         {memberformArray.map((memFormElement)=>{return(
             memFormElement.config.show?
             <Input 
+                autoCompleteShow={this.state.autoCompleteShow}
+                autoCompleteArr={arrNew}
                 key={memFormElement.id}
                 label={memFormElement.config.label}
                 elementType={memFormElement.config.elementType}
@@ -337,10 +405,14 @@ class Member extends Component{
                 invalid={!memFormElement.config.valid}
                 touched={memFormElement.config.touched}
                 changed={(event)=>this.inputChangeHandler(event,memFormElement.id)}
+                onFocusHandler={this.onFocusHandler}
+                blurred={this.onBlurHandler}
+                itemClicked={this.itemClickedHandler}
               //  outFocus={()=>this.onBlurHandler(memFormElement.id)}
             >    
             </Input>:null
         )})}
+        <MemberSubmitButton clicked={this.submitButtonHandler} ></MemberSubmitButton>
         </form>
         </div>
     )}

@@ -30,6 +30,9 @@ onChange(evt) {
           zoom="12"
           theme={ this.state.theme}
           inputChange={(event)=>this.inputHandler(event)}
+          searchArea={this.props.searchText}
+          autocompleteArrayHandler={this.props.autocompleteArrayHandler}
+          markerQuery={this.props.markerQuery}
         ></HereMaps>
         {/* <ThemeSelector changeTheme={ this.onChange } /> */}
       </div>

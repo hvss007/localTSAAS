@@ -1,0 +1,12 @@
+.MemberSubmitButtonWrapper{
+    width:100%;
+    display:flex;
+}
+.MemberSubmitButton{
+ outline:none;
+ border:1px solid #ccc;
+ padding: 10px 15px;
+ margin:2px auto;
+ background: transparent;   
+ cursor:pointer;
+}
