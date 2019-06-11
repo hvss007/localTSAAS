@@ -1,0 +1,17 @@
+.ImageWrapper{
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding:6px;
+}
+.ImageWrapper>img{
+    width:50px;
+    height:auto;
+    margin:auto
+}
+.ImageWrapper>label{
+    margin:auto
+}
+.ImageWrapper>label:hover,.ImageWrapper>img:hover{
+    cursor:pointer
+}

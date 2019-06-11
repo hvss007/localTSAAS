@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Members from '../../Components/Members/Members';
+import Trips from '../Trips/Trips';
 class Survey extends Component{
     state={
        
@@ -9,11 +10,14 @@ class Survey extends Component{
     render(){
         return(
         <div>  
-        <Members 
+        {/* <Members 
         // changedMems={this.inputChangeHandler} 
         // membInfo={this.state.member}
         >
-        </Members>
+        </Members> */}
+        <Trips>
+
+        </Trips>
         </div>
         )
     }
