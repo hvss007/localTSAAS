@@ -19,7 +19,6 @@ class  HereMaps extends Component {
             lng:props.lng,
             zoom: props.zoom,
             theme:props.theme,
-            style: props.style,
             arr:[],
             count:0,
             displayText:[],
@@ -39,7 +38,7 @@ class  HereMaps extends Component {
             center: this.state.center,
             zoom: this.state.zoom,
           })
-         this.group = new window.H.map.Group();
+          this.group = new window.H.map.Group();  
         var events = new window.H.mapevents.MapEvents(this.map);
         // eslint-disable-next-line
         this. behavior = new window.H.mapevents.Behavior(events);

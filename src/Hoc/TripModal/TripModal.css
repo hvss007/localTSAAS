@@ -1,0 +1,78 @@
+.TripModal{
+    opacity: 0;
+    top:-100vh;
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    transition: top ease-in .5s .1s;
+    flex-direction: column;
+    z-index:22;
+}
+
+.Dialogbox .Body {
+    position: absolute;
+    /* max-width: 300px; */
+    height: auto;
+    margin: 20px 10px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 5px solid #ccc;
+    left:0px;
+    
+  }
+  .Display{
+    top:-25vh;
+    width:350px;
+    height:275px;
+    opacity: 1;
+    display: block
+  }
+  .Body .Message {
+    min-height: 30px;
+    border-radius: 3px;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1.5;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .Dialogbox{
+    display: block;    
+    position: relative;
+    left:0px;
+    width:100%;
+    height:100%;
+    margin: auto;
+    transition: visibility ease 0.2s 0.2s;
+    background:white;
+    z-index: 22;
+  }
+  .Dialogbox1{
+    opacity:0;
+    position: relative;
+    left:0px;
+    width:100%;
+    height:100%;
+    top:-40%;
+    transition:opacity ease 0.4s 0.2s,top ease-out 0.4s 0.1s;
+    background:white;
+    z-index:15;
+
+  }
+  .Dialogbox1 .Body {
+    position: absolute;
+    max-width: 300px;
+    height: auto;
+    margin: 20px 10px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 5px solid #ccc;
+    left:0px;
+    
+  }
+  .Dialogbox1Display{
+    opacity:1;
+    top:0%;
+    z-index:20
+  }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom';
 import Members from '../../Components/Members/Members';
+import Trips from '../Trips/Trips';
 class Survey extends Component{
     state={
        
@@ -9,11 +11,16 @@ class Survey extends Component{
     render(){
         return(
         <div>  
-        <Members 
+        {/* <Members 
         // changedMems={this.inputChangeHandler} 
         // membInfo={this.state.member}
         >
-        </Members>
+        </Members> */}
+        {/* <Trips>
+
+        </Trips> */}
+        <Route path="/" exact component={Members}/>
+        <Route path="/trip-info" component={Trips}/>
         </div>
         )
     }
