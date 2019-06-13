@@ -37,20 +37,22 @@
     border-bottom-color: transparent;  
   }
   .Dialogbox{
-    visibility: hidden;
     display: block;  
     z-index:-1;  
     position: absolute;
-    left:0px;
-    width:300px;
-    height:200px;
-    opacity: 50%;
-    transition:left ease-in-out 0.8s, visibility ease 0.2s 0.2s;
+    /* left:0px; */
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    opacity: 0;
+    transition:left ease-in-out 0.8s,right ease-in-out 0.8s,opacity ease 0.2s ;
   }
   .DisplayDialogBox{
     z-index:100;
-    opacity:100%;
-    visibility: visible;
+    opacity:1;
+    width:300px;
+    height:375px;
+    background: white;
     }
   .Dialogbox .Body {
     position: absolute;

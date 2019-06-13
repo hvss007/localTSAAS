@@ -159,10 +159,21 @@ class TripOriginMap extends Component{
     render(){
       const frontDropClasses=[classes.OriginMapFrontDrop];
       const originMapWrapperClasses=[classes.OriginMapWrapper];
-      if(this.state.showFrontDrop){
-        frontDropClasses.push(classes.FrontDropVanish);
-        originMapWrapperClasses.push(classes.OriginMapWrapperMove);
+      if(this.props.originOrDestination==="Origin"){
+        originMapWrapperClasses.push(classes.Origin)
+        if(this.state.showFrontDrop){
+          frontDropClasses.push(classes.FrontDropVanish);
+          originMapWrapperClasses.push(classes.OriginMapWrapperMoveLeft);
+        }
+      }else if(this.props.originOrDestination==="Destination"){
+        originMapWrapperClasses.push(classes.Destination)
+        if(this.state.showFrontDrop){
+          frontDropClasses.push(classes.FrontDropVanish);
+          originMapWrapperClasses.push(classes.OriginMapWrapperMoveRight);
+        }
       }
+
+
       // let x=window.innerWidth/2-50;
       
       // const originMapStyle={

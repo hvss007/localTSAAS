@@ -70,25 +70,37 @@ class TripOrigin extends Component{
                 return <CommentModalInput changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} source={item.src}>
                     </CommentModalInput>
             })
-            
+            const TripOriginWrapperClasses=[classes.TripOriginWrapper];
+            if(this.props.originOrDestination==="Origin"){
+                TripOriginWrapperClasses.push(classes.TripOriginWrapperLeft)
+            }
+            else if(this.props.originOrDestination==="Destination"){
+                TripOriginWrapperClasses.push(classes.TripOriginWrapperRight)
+            }
             return(
             <Aux>
-                <div className={classes.TripOriginWrapper}>
+                <div className={TripOriginWrapperClasses.join(" ")}>
                 <div
                    style={this.state.backdropShow?{
                    width:"100vw",
                    position:"absolute",
                    height:'500px',
                    transition:'all ease-in 0.5s'
-               }:null}> 
-                <TripOriginMap ifj={this.props.ifj} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
+               }:{
+                   width:'100px',
+                   height:"100px",
+                   position:'relative'
+               }}> 
+                <TripOriginMap ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
                 </div>
-                <CommentModal key={this.props.ifj} show={this.state.modalShow} >
+                <CommentModal key={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
                     {inputElement}
                 </CommentModal>   
                 {/* <div className={classes.OriginModal}></div> */}
+                <div style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
                 <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} src={this.state.src?this.state.src:OriginIcon}></img>
                 <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.state.title?this.state.title:this.props.originOrDestination}</a>
+                </div>
                 </div>
             </Aux>
         )}

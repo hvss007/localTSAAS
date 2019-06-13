@@ -46,17 +46,27 @@ const CommentModal =props=>{
     //     this.setState({originInfo:originInfoCopy});
     // }
     
-    const tipClasses=[classes.Tip,classes.TipLeft];
+    const tipClasses=[classes.Tip];
     const dialogboxClasses=[classes.Dialogbox];
-
-    
+    let style={};
+    if(props.originOrDestination==="Origin"){
+      tipClasses.push(classes.TipLeft); 
+      style={ 
+         left:props.show?'100%':'-100%'}
+    }
+    else if(props.originOrDestination==="Destination"){
+      tipClasses.push(classes.TipRight); 
+      style={ right:props.show?'100%':'-100%'}
+    }
     if(props.show){
-        dialogboxClasses.push(classes.DisplayDialogBox);
+      // if(props.originOrDestination==="Origin"){
+      //   const style={left:'100'}
+      // }      
+      dialogboxClasses.push(classes.DisplayDialogBox);
     }
     return(
         <div className={dialogboxClasses.join(' ') }
-            style={{ left:props.show?'100%':'-100%',
-        }}>
+            style={style}>
         <div className={classes.Body}>
           <span className={tipClasses.join(' ')}></span>
           <div className={classes.Message}>

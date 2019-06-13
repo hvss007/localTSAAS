@@ -6,6 +6,7 @@
     box-sizing:border-box;
     padding:20px;
     display:flex;
+    letter-spacing: 2px;
     border-bottom: 1px solid black;
 }
 .TripInformation>h1{

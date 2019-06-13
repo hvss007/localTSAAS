@@ -5,6 +5,7 @@ import FinalBackdrop from '../FinalBackdrop/FinalBackdrop';
 //import tripAccessIn from '../../Containers/Trips/Trip/Individual Trip/TripAcessAndMode/TripAcess/TripAccessIn/TripAccessIn';
 const TripModal=(props)=>{
     const tripModalClasses=[classes.TripModal];
+    
     const dialogBoxStyleClasses=[classes.Dialogbox1];
     if(props.clicked===true){
         tripModalClasses.push(classes.Display);
@@ -16,6 +17,7 @@ const TripModal=(props)=>{
 
     return (
         <Aux>
+        <FinalBackdrop backdropHide={props.backdropHide} backdropShow={props.backdropShow}></FinalBackdrop>
         <div className={tripModalClasses.join(" ")}>
             <div className={classes.Dialogbox}>
                 <div className={classes.Body}>
@@ -29,14 +31,14 @@ const TripModal=(props)=>{
                 <div className={dialogBoxStyleClasses.join(' ')}>
                 <div className={classes.Body}>
                 {/* <span className={tipClasses.join(' ')}></span> */}
-                    <div className={classes.Message}>
+                    <div style={{justifyContent:"space-between"}} className={classes.Message}>
                         {props.inputElementIn}  
                         {/* <span>I just made a comment about this comment box which is purely made from CSS.</span> */}
                     </div>   
                 </div>
                 </div>    
         </div>
-        <FinalBackdrop backdropHide={props.backdropHide} backdropShow={props.backdropShow}></FinalBackdrop>
+        
         </Aux>
     );
 }

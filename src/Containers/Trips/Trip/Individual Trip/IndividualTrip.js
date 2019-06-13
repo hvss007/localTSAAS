@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './IndividualTrip.css';
 import TripOrigin from './TripOrigin/TripOrigin';
+import Axios from 'axios';
 import TripOriginMap from './TripOrigin/TripOriginMap/TripOriginMap';
 import Backdrop from '../../../../Hoc/Backdrop/Backdrop';
 import Backdrop1 from '../../../../Hoc/Backdrop/Backdrop1';
@@ -45,7 +46,11 @@ class Trip extends Component{
     onSubmitHandler=()=>{
          this.setState({sendData:true},
         ()=>{
-            console.log(this.state.tripInformation)}
+
+            Axios.post("http://18.220.237.87/api/transdb/",this.state.tripInformation)
+                .then((Response)=>{
+                    console.log(Response);
+                })}
         //     this.props.addTrip(this.props.idf);}
          )
     }
@@ -103,14 +108,17 @@ class Trip extends Component{
     render(){
         return(
             <div className={classes.Trip} >
+                <div style={{display:"flex",justifyContent:"space-between"}}>
+                <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
+                <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>
+                </div>
                 
-                <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>
                 
                 <TripAcessAndMode sendData={this.state.sendData} 
                 tripAccessDataHandler={this.tripAccessDataHandler}
                 >
                 </TripAcessAndMode>
-                <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>
+                
                 {/* <div
                    style={this.state.backdropShow?{
                    width:'100%',
@@ -124,8 +132,8 @@ class Trip extends Component{
                     hideBackdrop={this.hidebackdropHandler}></Backdrop>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShow}></Backdrop1>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShowDestination}></Backdrop1> */}
-                <button onClick={()=>{this.onSubmitHandler
-                     this.props.addTrip(this.props.idf)}} type="submit">Add Trip</button>
+                {this.props.showAdd?<button onClick={()=>{this.onSubmitHandler
+                     this.props.addTrip(this.props.idf)}} type="submit">Add Trip</button>:null}
             </div>
         )
     }  

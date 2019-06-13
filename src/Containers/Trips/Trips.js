@@ -18,19 +18,17 @@ class Trips extends Component{
     }
     render(){
         const tripElements=this.state.trips.map((item,index)=>{
-            return <Trip idf={item.idf} key={item.idf} addTrip={this.addTrip}></Trip>
+            return <Trip idf={item.idf} showAdd={item.showAdd} key={item.idf} addTrip={this.addTrip}></Trip>
         })
         return(
             <Aux> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
                 {tripElements}
             </Aux>
-
         )
     }
 }
 export default Trips;
-
 // const tripAccess=this.state.access.map((acc,index)=>{
 //     return <TripAccess accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={acc.idi} add={this.addHandler} accessName={"Access"}  idi={acc.idi} showAdd={acc.showAdd}>
 //     </TripAccess>
