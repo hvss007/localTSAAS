@@ -10,9 +10,9 @@ import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
 class Trip extends Component{
     state={
         tripInformation:{
-                originData:{lat:"",lng:"",place:""},
-                destinationData:{lat:"",lng:"",place:""},
-                 accessModeData:{}
+                originData:{originLat:"",originLng:"",originPlace:""},
+                destinationData:{destinationLat:"",destinationLng:"",destinationPlace:""},
+                accessModeData:{}
             },
         sendData:false
         // backdropShow:false,
@@ -44,13 +44,10 @@ class Trip extends Component{
     //     this.setState({commentModalShowDestination:truth})
     // }
     onSubmitHandler=()=>{
+        
          this.setState({sendData:true},
-        ()=>{
-
-            Axios.post("http://18.220.237.87/api/transdb/",this.state.tripInformation)
-                .then((Response)=>{
-                    console.log(Response);
-                })}
+        
+        
         //     this.props.addTrip(this.props.idf);}
          )
     }
@@ -64,22 +61,37 @@ class Trip extends Component{
         console.log(accessModeDataCopy);
         tripInformationCopy.accessModeData={...accessModeDataCopy};
         console.log(tripInformationCopy,"fvssbs")
-        this.setState({tripInformation:tripInformationCopy},()=>console.log(this.state.tripInformation))
+        this.setState({tripInformation:tripInformationCopy},()=>{console.log(this.state.tripInformation)
+            
+            console.log("heli",this.state.tripInformation)
+            const dataCopy={...this.state.tripInformation};
+            console.log(dataCopy,"uyyy")
+            const originDestinationArray=[{...dataCopy.originData,...dataCopy.destinationData}];
+            console.log(originDestinationArray);
+            const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
+            console.log(updatedData,"huigy")
+            
+            Axios.post("http://18.220.237.87/api/transdb/",updatedData)
+                .then((Response)=>{
+                    console.log(Response);
+                })
+            }
+            )
     }
     latLongHandler1=(lat,lng,originOrDestination)=>{
         const tripInformationCopy={...this.state.tripInformation};
         if(originOrDestination==="Origin")
         {
             const originDataCopy={...tripInformationCopy.originData}
-            originDataCopy.lat=lat;
-            originDataCopy.lng=lng;
+            originDataCopy.originLat=lat;
+            originDataCopy.originLng=lng;
             tripInformationCopy.originData=originDataCopy;
             this.setState({tripInformation:tripInformationCopy})
         }
         if(originOrDestination==="Destination"){
             const destinationDataCopy={...tripInformationCopy.destinationData}
-            destinationDataCopy.lat=lat;
-            destinationDataCopy.lng=lng;
+            destinationDataCopy.destinationLat=lat;
+            destinationDataCopy.destinationLng=lng;
             tripInformationCopy.destinationData=destinationDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
                 // console.log(this.state.tripInformation);
@@ -90,7 +102,7 @@ class Trip extends Component{
         const tripInformationCopy={...this.state.tripInformation};
         if(originOrDestination==="Origin"){
             const originDataCopy={...tripInformationCopy.originData}
-            originDataCopy.place=place;
+            originDataCopy.originPlace=place;
             tripInformationCopy.originData=originDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
                 // console.log(this.state.tripInformation);
@@ -98,7 +110,7 @@ class Trip extends Component{
         }
         if(originOrDestination==="Destination"){
             const destinationDataCopy={...tripInformationCopy.destinationData}
-            destinationDataCopy.place=place;
+            destinationDataCopy.destinationPlace=place;
             tripInformationCopy.destinationData=destinationDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
                 // console.log(this.state.tripInformation);
@@ -132,8 +144,10 @@ class Trip extends Component{
                     hideBackdrop={this.hidebackdropHandler}></Backdrop>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShow}></Backdrop1>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShowDestination}></Backdrop1> */}
-                {this.props.showAdd?<button onClick={()=>{this.onSubmitHandler
-                     this.props.addTrip(this.props.idf)}} type="submit">Add Trip</button>:null}
+                {<button onClick={
+                    this.onSubmitHandler
+                    //  this.props.addTrip(this.props.idf)
+                     } type="submit">Add Trip</button>}
             </div>
         )
     }  

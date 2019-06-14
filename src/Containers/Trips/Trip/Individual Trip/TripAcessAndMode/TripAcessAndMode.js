@@ -6,9 +6,9 @@ import TripModal from '../../../../../Hoc/TripModal/TripModal';
 
 class TripAcessAndMode extends Component{
     state={
-        access:[{idi:1,showAdd:true,value:'',inValue:{travelTime:'',travelDistance:'',fare:'',cost:''}}],
-        egress:[{idi:1,showAdd:true,value:'',inValue:{travelTime:'',travelDistance:'',fare:'',cost:''}}],
-        mainMode:[{value:'',inValue:{}}]
+        access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''}}],
+        egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''}}],
+        mainMode:[{value:'',inValue:{},modeType:"mainMode"}]
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.sendData!==this.props.sendData){
@@ -18,15 +18,17 @@ class TripAcessAndMode extends Component{
                 const accessCopy=[...mode];
                 const newAccessArray=[];
                 const accessObj=accessCopy.forEach((item)=>{
-                let newAccessObjectIn={accessMode:item.value,otherInformation:item.inValue};
+                let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType};
                 newAccessArray.push(newAccessObjectIn);
             })
                 modeArr.push(newAccessArray);
             })
           const finalAccessObject={
-              access:modeArr[0],
-              egress:modeArr[1],
-              mainMode:modeArr[2]
+             mode:[ ...modeArr[0],...modeArr[1],...modeArr[2]]
+            //   access:modeArr[0],
+            //   egress:modeArr[1],
+            //   mainMode:modeArr[2]
+
           }  
           this.props.tripAccessDataHandler(finalAccessObject);
           return true
@@ -48,7 +50,7 @@ class TripAcessAndMode extends Component{
             this.setState({egress:accessCopy})
         }
         else if(name==="MainMode"){
-            const accessCopy=[...this.state.egress];
+            const accessCopy=[...this.state.mainMode];
             const accessCopyElementOld={...accessCopy[0]};
             accessCopyElementOld.value=value;
             accessCopy[0]=accessCopyElementOld;
@@ -120,7 +122,7 @@ class TripAcessAndMode extends Component{
     addHandler=(idi,name)=>{
         if(name==="Access"){
             
-            const accessElementNew={idi:idi+1,showAdd:true};
+            const accessElementNew={idi:idi+1,showAdd:true,modeType:'access'};
             const accessCopy=[...this.state.access];
             const accessCopyElementOld={...accessCopy[idi-1]};
             accessCopyElementOld.showAdd=false;
@@ -130,7 +132,7 @@ class TripAcessAndMode extends Component{
         }
         else if(name="Egress"){
             
-             const accessElementNew={idi:idi+1,showAdd:true};
+             const accessElementNew={idi:idi+1,showAdd:true,modeType:'egress'};
              const accessCopy=[...this.state.egress];
              const accessCopyElementOld={...accessCopy[idi-1]};
              accessCopyElementOld.showAdd=false;
