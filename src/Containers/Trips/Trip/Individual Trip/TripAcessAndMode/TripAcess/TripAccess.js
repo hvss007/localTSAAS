@@ -31,10 +31,10 @@ class TripAccess extends Component{
             {id:9,src:Others,title:'Others',value:''},   
         ],
         accessInfoIn:[
-            {id:1,title:"Travel Time",value:''},
-            {id:2,title:"Travel Distance",value:''},
-            {id:3,title:"Fare",value:''},
-            {id:4,title:"Cost",value:''}
+            {id:1,title:"Travel Time",value:'',valid:false,touched:false},
+            {id:2,title:"Travel Distance",value:'',valid:false,touched:false},
+            {id:3,title:"Fare",value:'',valid:false,touched:false},
+            {id:4,title:"Cost",value:'',valid:false,touched:false}
         ],
         src:null,
         title:null,
@@ -104,6 +104,8 @@ class TripAccess extends Component{
         const selectedArrItems={...selctedArr[0]};
         const value=event.target.value;
         selectedArrItems.value=event.target.value;
+        selectedArrItems.touched=true;
+        selectedArrItems.valid=this.validityHandler(value);
         accessInfoCopyIn[id-1]=selectedArrItems;
         //this.itemClicked(title,selectedArrItems.src);
         this.setState({accessInfoIn:accessInfoCopyIn},
@@ -111,13 +113,21 @@ class TripAccess extends Component{
             );
         
     }
+    validityHandler=(value)=>{
+        let isValid=true;
+        if(isValid){
+            isValid=value.trim() !=='';
+        }
+        console.log(isValid);
+        return isValid;
+    }
     render(){
         const inputElement=this.state.accessInfo.map((item,index)=>{
             return <CommentModalInput changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title} id={item.id} title={item.title} source={item.src}>
                 </CommentModalInput>
         })
        const inputElementIn=this.state.accessInfoIn.map((item)=>{
-           return <TripAccessIn changed={this.onChangeHandler1} key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
+           return <TripAccessIn touched={item.touched} invalid={!item.valid} changed={this.onChangeHandler1} key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
        })   
         return(<Aux>
             <div className={classes.TripAccessWrapper}>

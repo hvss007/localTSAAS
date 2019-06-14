@@ -366,7 +366,7 @@ class Member extends Component{
 
             Axios.post("http://18.220.237.87/api/transdb/",post)
                 .then((Response)=>{
-                    console.log(Response);
+                    console.log("Response");
                 })
         }
         else{

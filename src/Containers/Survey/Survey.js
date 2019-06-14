@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {Route} from 'react-router-dom';
+import {Route,Switch} from 'react-router-dom';
 import Members from '../../Components/Members/Members';
 import Trips from '../Trips/Trips';
+import StartSurvey from '../../Components/StartSuvey/StartSurvey';
 class Survey extends Component{
     state={
-       
+        
     }
 
 
@@ -19,8 +20,11 @@ class Survey extends Component{
         {/* <Trips>
 
         </Trips> */}
-        <Route path="/" exact component={Members}/>
+        <Switch>
+        <Route path='/'exact component={StartSurvey}/>
+        <Route path="/member" exact component={Members}/>
         <Route path="/trip-info" component={Trips}/>
+        </Switch>
         </div>
         )
     }

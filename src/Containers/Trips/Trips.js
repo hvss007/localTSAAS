@@ -3,6 +3,7 @@ import classes from './Trips.css'
 import Trip from './Trip/Individual Trip/IndividualTrip'; 
 import Aux from '../../Hoc/Aux';
 import Backdrop from '../../Hoc/Backdrop/Backdrop';
+import {Link} from 'react-router-dom';
 class Trips extends Component{
     state={
         trips:[{idf:1,showAdd:true}]
@@ -24,6 +25,7 @@ class Trips extends Component{
             <Aux> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
                 {tripElements}
+                <Link to="/">Next Member</Link>
             </Aux>
         )
     }

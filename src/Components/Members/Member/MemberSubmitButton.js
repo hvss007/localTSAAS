@@ -1,10 +1,17 @@
 import React from 'react';
 import classes from './MemberSubmitButton.css';
+import { Link } from "react-router-dom";
+import Aux from '../../../Hoc/Aux'
+import Trips from '../../../Containers/Trips/Trips';
 const memberSubmitButton=function(props){
     return(
-        <button type="submit" onClick={(event)=>props.clicked(event)} className={classes.MemberSubmitButton}>
+        <Aux>
+        <Link to="/trip-info"  
+            onClick={(event)=>props.clicked(event)} 
+        className={classes.MemberSubmitButton}>
             Submit
-        </button>
+        </Link>
+        </Aux>
         
     )
 }

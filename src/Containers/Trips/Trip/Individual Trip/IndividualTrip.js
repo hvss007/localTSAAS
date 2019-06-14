@@ -10,7 +10,7 @@ import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
 class Trip extends Component{
     state={
         tripInformation:{
-                originData:{originLat:"",originLng:"",originPlace:""},
+                originData:{originLat:null,originLng:null,originPlace:null},
                 destinationData:{destinationLat:"",destinationLng:"",destinationPlace:""},
                 accessModeData:{}
             },
@@ -118,6 +118,14 @@ class Trip extends Component{
         }
     }
     render(){
+        const originData=this.state.tripInformation.originData;
+        let tripAcessAndModeData=null;
+        if(originData.originLat&&originData.originLng&&originData.originPlace)
+        {
+             tripAcessAndModeData=<TripAcessAndMode sendData={this.state.sendData} 
+            tripAccessDataHandler={this.tripAccessDataHandler}
+            ></TripAcessAndMode>
+        }
         return(
             <div className={classes.Trip} >
                 <div style={{display:"flex",justifyContent:"space-between"}}>
@@ -125,12 +133,11 @@ class Trip extends Component{
                 <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>
                 </div>
                 
-                
-                <TripAcessAndMode sendData={this.state.sendData} 
+                {/* <TripAcessAndMode sendData={this.state.sendData} 
                 tripAccessDataHandler={this.tripAccessDataHandler}
                 >
-                </TripAcessAndMode>
-                
+                </TripAcessAndMode> */}
+                {tripAcessAndModeData}
                 {/* <div
                    style={this.state.backdropShow?{
                    width:'100%',

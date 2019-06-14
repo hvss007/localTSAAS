@@ -11,6 +11,7 @@ const TripModal=(props)=>{
         tripModalClasses.push(classes.Display);
     }
     if(props.clickedIn){
+        tripModalClasses.push(classes.DisplayIn);
         dialogBoxStyleClasses.push(classes.Dialogbox1Display);
     }
     
