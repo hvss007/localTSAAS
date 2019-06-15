@@ -1,0 +1,80 @@
+.Tip {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    background: transparent;
+    border: 10px solid #ccc;
+  }
+  .TipUp {
+    top: -25px; 
+    /* Same as body margin top + border */
+    left: 10px;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
+  }
+  
+  .TipDown {
+    bottom: -25px;
+    left: 10px;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;  
+  }
+  
+  .TipLeft {
+    top: 10px;
+    left: -20px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;  
+  }
+  .TipRight {
+    top: 10px;
+    right: -20px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;  
+  }
+  .Dialogbox{
+    display: block;  
+    z-index:-1;  
+    position: absolute;
+    /* left:0px; */
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    opacity: 0;
+    transition:left ease-in-out 0.8s,right ease-in-out 0.8s,opacity ease 0.2s ;
+  }
+  .DisplayDialogBox{
+    z-index:100;
+    opacity:1;
+    width:300px;
+    height:315px;
+    border-radius: 2px;
+    background: rgb(245, 238, 224);
+    box-shadow: 0 8px 6px -6px rgba(0,0,0,.5);
+    }
+  .Dialogbox .Body {
+    position: absolute;
+    max-width: 300px;
+    height: auto;
+    margin: 20px 10px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    left:0px;
+    
+  }
+  
+  .Body .Message {
+    min-height: 30px;
+    border-radius: 3px;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1.5;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }

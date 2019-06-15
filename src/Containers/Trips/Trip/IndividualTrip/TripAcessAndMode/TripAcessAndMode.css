@@ -1,0 +1,10 @@
+.TripAcessAndMode{
+    display:flex;
+    width:100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+    padding:5px 20px; 
+    position: relative;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}

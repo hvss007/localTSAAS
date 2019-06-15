@@ -4,8 +4,10 @@ import classes from './Member.css';
 import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import Autocomplete from '../../Input/Autocomplete';
+import {withRouter} from 'react-router-dom';
 class Member extends Component{
     state={
+        familyId:null,
         member:{
             memberId:{
                 title:'member_id',
@@ -297,6 +299,9 @@ class Member extends Component{
         qAnswered:0,
         autoCompleteShow:false
     }
+    componentDidMount(){
+        this.setState({familyId:this.props.familyId})
+    }
     inputChangeHandler=(event,inputIdentifier)=>{
         const memberUpdated={...this.state.member};
         const updatedInputElement={...memberUpdated[inputIdentifier]} ;
@@ -362,6 +367,8 @@ class Member extends Component{
         if(this.state.qAnswered<=11){
             const member=this.state.member;
             const post={
+                familyID:this.state.familyId,
+                // memberId:member.memberId.value,
                 gender:member.gender.value,
                 age:member.age.value,
                 educationalQualification:member.educationalQualification.value,
@@ -373,11 +380,14 @@ class Member extends Component{
                 landmark:member.landmark.value,
                 pincode:member.pinCode.value,
                 principalSourceofIncome:member.principalSourceofIncome.value
-            };
-            console.log(post);
-            axios.post("http://127.0.0.1:8000/api/transdb/",post)
+
+            }
+
+            Axios.post("http://127.0.0.1:8000/api/members/",post)
                 .then((Response)=>{
+                    
                     console.log(Response);
+                    this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
                 })
                 .catch(err => console.error(err));
         }
@@ -430,4 +440,4 @@ class Member extends Component{
         </div>
     )}
 }
-export default Member;
+export default withRouter(Member);

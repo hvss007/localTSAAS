@@ -1,0 +1,17 @@
+.TripInformation{
+    width:80%;
+    margin:0 auto;
+    height:100px;
+    text-align: center;
+    box-sizing:border-box;
+    padding:20px;
+    display:flex;
+    letter-spacing: 2px;
+    border-bottom: 1px solid black;
+}
+.TripInformation>h1{
+    margin:auto;
+    font-size:28px;
+    color:black;
+    font-weight: 300;
+}

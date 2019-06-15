@@ -1,0 +1,20 @@
+.TripAccessIn{
+    width:100%;
+    display:flex;
+    justify-content:space-between ;
+    align-items: center
+}
+.AccessInput{
+    outline:none;
+    border:1px solid #ccc;
+    background-color: white;
+    font: inherit;
+    padding:2px 4px;
+    box-sizing: border-box;
+    width:200px;
+
+}
+.Invalid{
+    border:1px solid red;
+    background-color: #FDA49A
+}

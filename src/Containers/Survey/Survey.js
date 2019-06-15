@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
+import {Route,Switch} from 'react-router-dom';
 import Members from '../../Components/Members/Members';
+import Trips from '../Trips/Trips';
+import StartSurvey from '../../Components/StartSuvey/StartSurvey';
 class Survey extends Component{
     state={
-       
+        
     }
 
 
     render(){
         return(
         <div>  
-        <Members 
+        {/* <Members 
         // changedMems={this.inputChangeHandler} 
         // membInfo={this.state.member}
         >
-        </Members>
+        </Members> */}
+        {/* <Trips>\
+        </Trips> */}
+        <Switch>
+        <Route path='/family'exact component={StartSurvey}/>
+        <Route path="/family:id/member" exact component={Members}/>
+        <Route path="/family:id/member:id1/trip-info" exact component={Trips}/>
+        </Switch>
         </div>
         )
     }

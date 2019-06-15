@@ -1,0 +1,50 @@
+
+.TripOriginWrapper{
+    width:fit-content;
+    display:flex;
+    padding: 4px 6px;
+    position: relative;
+}
+.TripOriginWrapperLeft{
+    margin-left:70px;
+    flex-direction: row;
+}
+.TripOriginWrapperRight{
+    margin-right:70px;
+    flex-direction: row-reverse
+}
+.TripOriginIcon{
+    /* width:140px; */
+    width:100px;
+    height:auto;
+    background:radial-gradient(rgba(37, 136, 218,.4),rgba(37, 136, 218,.4),white,white);
+    transition: background-color ease-out .8s,cursor ease-in .4s;
+}
+.TripOriginIcon:hover{
+    cursor:pointer;
+    background:radial-gradient(rgba(37, 136, 218,.4),rgba(37, 136, 218,.5),white,white)
+}
+.OriginModal{
+    z-index: -1;
+    background:black;
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:50%;
+}
+.TripOriginAnchor{
+    text-align: center;
+    margin:auto;
+    width:90px;
+    border-radius: 5px;
+    border:1px solid black;
+    display:block;
+    transition: cursor ease-out 0.4s; 
+    letter-spacing: 1px;
+    padding: 2px 5px;
+    transition:cursor  ease-in .3s,letter-spacing ease-in .2s;
+}
+.TripOriginAnchor:hover{
+    cursor:pointer;
+    letter-spacing: 2px;
+}
