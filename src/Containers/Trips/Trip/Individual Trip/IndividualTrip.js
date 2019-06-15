@@ -6,7 +6,7 @@ import TripOriginMap from './TripOrigin/TripOriginMap/TripOriginMap';
 import Backdrop from '../../../../Hoc/Backdrop/Backdrop';
 import Backdrop1 from '../../../../Hoc/Backdrop/Backdrop1';
 import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
-
+import {withRouter} from 'react-router-dom';
 class Trip extends Component{
     state={
         tripInformation:{
@@ -62,7 +62,6 @@ class Trip extends Component{
         tripInformationCopy.accessModeData={...accessModeDataCopy};
         console.log(tripInformationCopy,"fvssbs")
         this.setState({tripInformation:tripInformationCopy},()=>{console.log(this.state.tripInformation)
-            
             console.log("heli",this.state.tripInformation)
             const dataCopy={...this.state.tripInformation};
             console.log(dataCopy,"uyyy")
@@ -71,10 +70,27 @@ class Trip extends Component{
             const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
             console.log(updatedData,"huigy")
             
-            Axios.post("http://18.220.237.87/api/transdb/",updatedData)
-                .then((Response)=>{
-                    console.log(Response);
+            const data={memberID:this.props.match.params.id1};
+            Axios.post("http://127.0.0.1:8000/api/trips/",data)
+            .then(response=>{
+                Axios.get("http://127.0.0.1:8000/api/trips/")
+                .then(response=>{
+                        console.log(response.data);
+                     Axios.post("http://127.0.0.1:8000/api/od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                     //{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                     ).then(response=>{})
+                    
+                    // response.data.tripID
+              
                 })
+            } )
+            
+            // Axios.get("http://127.0.0.1:8000/api/trips/")
+            //     .then((Response)=>{
+                    
+            //         console.log(Response);
+            //         //this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
+            //     })
             }
             )
     }
@@ -151,12 +167,14 @@ class Trip extends Component{
                     hideBackdrop={this.hidebackdropHandler}></Backdrop>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShow}></Backdrop1>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShowDestination}></Backdrop1> */}
-                {<button onClick={
-                    this.onSubmitHandler
-                    //  this.props.addTrip(this.props.idf)
-                     } type="submit">Add Trip</button>}
+                {this.props.showAdd?<button onClick={
+                     ()=>
+                    {this.onSubmitHandler()
+                      this.props.addTrip(this.props.idf)
+                    } 
+                     } type="submit">Add Trip</button>:null}
             </div>
         )
     }  
 }
-export default Trip;
+export default withRouter(Trip);

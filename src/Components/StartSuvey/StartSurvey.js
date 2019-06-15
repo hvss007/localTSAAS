@@ -5,11 +5,13 @@ class StartSurvey extends Component{
     
     onClickHandler=()=>{
         const data={};
-        Axios.post("https://jsonplaceholder.typicode.com/posts",data)
+        Axios.post("http://127.0.0.1:8000/api/family/",data)
         .then(response=>{
-            Axios.get("https://jsonplaceholder.typicode.com/posts")
+            Axios.get("http://127.0.0.1:8000/api/family/")
             .then(response=>{
-                console.log(response)
+                
+                console.log(response.data);
+               this.props.history.push({pathname:this.props.match.url+response.data.familyID+'/member'})
             })
         } )
     }
@@ -17,7 +19,11 @@ class StartSurvey extends Component{
     render(){
     return(
         <div  style={{width:'100%',height:'100vh', display:'flex'}}>
-            <Link to="/member" style={{margin:'auto'}} onClick={this.onClickHandler}> Start Survey</Link>
+            <button 
+            //to={{
+             //   pathname:this.props.match.url+'/member'
+            //}}
+             style={{margin:'auto'}} onClick={this.onClickHandler}> Start Survey</button>
         </div>
     )}
 }

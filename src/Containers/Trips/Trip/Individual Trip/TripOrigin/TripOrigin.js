@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import OriginIcon from '../../../../../assets/icons/OriginIcon.png';
+import OriginIcon from '../../../../../assets/icons/OriginIcon.svg';
 import classes from './TripOrigin.css';
 import CommentModal from '../../../../../Hoc/CommentModal/CommentModal';
 import Aux from '../../../../../Hoc/Aux';
-import Home from '../../../../../assets/icons/destinationIcons/Home.png';
-import Office from '../../../../../assets/icons/destinationIcons/Office.png';
-import Leisure from '../../../../../assets/icons/destinationIcons/Leisure.png';
-import Ground from '../../../../../assets/icons/destinationIcons/Ground.png';
-import College from '../../../../../assets/icons/destinationIcons/College.png';
-import Shopping from '../../../../../assets/icons/destinationIcons/Shopping.png';
-import School from '../../../../../assets/icons/destinationIcons/School.png';
+import Home from '../../../../../assets/icons/destinationIcons/Home.svg';
+import Office from '../../../../../assets/icons/destinationIcons/Office.svg';
+import Leisure from '../../../../../assets/icons/destinationIcons/Leisure.svg';
+import Ground from '../../../../../assets/icons/destinationIcons/Ground.svg';
+import College from '../../../../../assets/icons/destinationIcons/College.svg';
+import Shopping from '../../../../../assets/icons/destinationIcons/Shopping.svg';
+import School from '../../../../../assets/icons/destinationIcons/School.svg';
 import Other from '../../../../../assets/icons/destinationIcons/Other.png';
 import CommentModalInput from '../../../../../Hoc/CommentModal/CommentModalInput/CommentModalInput';
 import TripOriginMap from '../TripOrigin/TripOriginMap/TripOriginMap';
@@ -23,7 +23,7 @@ class TripOrigin extends Component{
             {id:3,src:Leisure,title:'Leisure',value:''},
             {id:4,src:Ground,title:'Ground',value:''},
             {id:5,src:College,title:'College',value:''},
-            {id:6,src:Shopping,title:'Shopping',value:''},
+            {id:6,src:Shopping,title:'Market',value:''},
             {id:7,src:School,title:'School',value:''},
             {id:8,src:Other,title:'Other',value:''},   
         ],
@@ -43,8 +43,11 @@ class TripOrigin extends Component{
         selectedArrItems.value=title;
         originInfoCopy[id-1]=selectedArrItems;
         this.originItemSelectedHandler(title,selectedArrItems.src);
-        this.setState({originInfo:originInfoCopy},()=>{this.setState({modalShow:false})});
+        this.setState({originInfo:originInfoCopy},()=>{this.setState({modalShow:false,backdropShow:false})});
         console.log(selctedArr);
+    }
+    backdropClickedHandler=()=>{
+        this.setState({modalShow:false,backdropShow:false});
     }
     onChangeHandler=(event)=>{
         const originInfoCopy=[...this.state.originInfo];
@@ -60,7 +63,7 @@ class TripOrigin extends Component{
         
     }
      originClicked=()=>{
-        this.setState({modalShow:true})
+        this.setState({modalShow:true,backdropShow:true})
     }
     latLongHandler=(lat,lng)=>{
         this.props.latLongHandler1(lat,lng,this.props.originOrDestination);
@@ -79,20 +82,16 @@ class TripOrigin extends Component{
             }
             return(
             <Aux>
+                <div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>
                 <div className={TripOriginWrapperClasses.join(" ")}>
                 <div
-                   style={this.state.backdropShow?{
-                   width:"100vw",
-                   position:"absolute",
-                   height:'500px',
-                   transition:'all ease-in 0.5s'
-               }:{
+                   style={{
                    width:'100px',
                    height:"100px",
                    position:'relative'
-               }}> 
+               }}></div> 
                 <TripOriginMap ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
-                </div>
+                
                 <CommentModal key={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
                     {inputElement}
                 </CommentModal>   

@@ -40,7 +40,8 @@ class TripAccess extends Component{
         title:null,
         inValue:null,
         backdropShow:false,
-        mainmode:false
+        mainmode:false,
+        activateAdd:false
     }
     componentDidMount(){
         this.mainModeHandler()
@@ -108,10 +109,27 @@ class TripAccess extends Component{
         selectedArrItems.valid=this.validityHandler(value);
         accessInfoCopyIn[id-1]=selectedArrItems;
         //this.itemClicked(title,selectedArrItems.src);
+        
         this.setState({accessInfoIn:accessInfoCopyIn},
-            ()=>{this.props.accessDataIn(this.props.accessName,title,value,this.props.idi)}
+            ()=>{this.addShower();
+                this.props.accessDataIn(this.props.accessName,title,value,this.props.idi)}
             );
         
+    }
+    addShower=()=>{
+       const validArr=[];
+      this.state.accessInfoIn.forEach(item=>{
+          validArr.push(item.valid)
+      })
+      const inValidArr=validArr.filter((item)=>{
+          return !item
+      })
+      console.log(inValidArr)
+      if(inValidArr.length===0){
+          this.setState({activateAdd:true&&this.props.showAdd}) 
+      }else {
+        this.setState({activateAdd:false})
+      }
     }
     validityHandler=(value)=>{
         let isValid=true;
@@ -135,7 +153,7 @@ class TripAccess extends Component{
             <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex'}}>
             <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:this.props.accessName}</a>
-            {this.props.showAdd?<button onClick={this.addButtonHandler}>+</button>:null}
+            {this.state.activateAdd?<button onClick={this.addButtonHandler}>+</button>:null}
             </div>
             </div>
             <TripModal 

@@ -17,13 +17,12 @@ class Survey extends Component{
         // membInfo={this.state.member}
         >
         </Members> */}
-        {/* <Trips>
-
+        {/* <Trips>\
         </Trips> */}
         <Switch>
-        <Route path='/'exact component={StartSurvey}/>
-        <Route path="/member" exact component={Members}/>
-        <Route path="/trip-info" component={Trips}/>
+        <Route path='/family'exact component={StartSurvey}/>
+        <Route path="/family:id/member" exact component={Members}/>
+        <Route path="/family:id/member:id1/trip-info" exact component={Trips}/>
         </Switch>
         </div>
         )

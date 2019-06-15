@@ -6,11 +6,10 @@ import Trips from '../../../Containers/Trips/Trips';
 const memberSubmitButton=function(props){
     return(
         <Aux>
-        <Link to="/trip-info"  
-            onClick={(event)=>props.clicked(event)} 
+        <button onClick={(event)=>props.clicked(event)} 
         className={classes.MemberSubmitButton}>
             Submit
-        </Link>
+        </button>
         </Aux>
         
     )

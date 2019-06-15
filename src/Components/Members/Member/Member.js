@@ -4,8 +4,10 @@ import classes from './Member.css';
 import Axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import Autocomplete from '../../Input/Autocomplete';
+import {withRouter} from 'react-router-dom';
 class Member extends Component{
     state={
+        familyId:null,
         member:{
             memberId:{
                 label:'Member ID',
@@ -285,6 +287,9 @@ class Member extends Component{
         qAnswered:0,
         autoCompleteShow:false
     }
+    componentDidMount(){
+        this.setState({familyId:this.props.familyId})
+    }
     inputChangeHandler=(event,inputIdentifier)=>{
         const memberUpdated={...this.state.member};
         const updatedInputElement={...memberUpdated[inputIdentifier]} ;
@@ -350,7 +355,8 @@ class Member extends Component{
         if(this.state.qAnswered===11){
             const member=this.state.member;
             const post={
-                memberId:member.memberId.value,
+                familyID:this.state.familyId,
+                // memberId:member.memberId.value,
                 gender:member.gender.value,
                 age:member.age.value,
                 educationalQualification:member.educationalQualification.value,
@@ -364,9 +370,11 @@ class Member extends Component{
                 principalSourceofIncome:member.principalSourceofIncome.value
             }
 
-            Axios.post("http://18.220.237.87/api/transdb/",post)
+            Axios.post("http://127.0.0.1:8000/api/members/",post)
                 .then((Response)=>{
-                    console.log("Response");
+                    
+                    console.log(Response);
+                    this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
                 })
         }
         else{
@@ -417,4 +425,4 @@ class Member extends Component{
         </div>
     )}
 }
-export default Member;
+export default withRouter(Member);

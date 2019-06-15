@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './TripOriginMap.css';
 import FinalBackdrop from '../../../../../../Hoc/FinalBackdrop/FinalBackdrop';
 import Aux from '../../../../../../Hoc/Aux';
+import Map from '../../../../../../assets/icons/Map.svg';
 class TripOriginMap extends Component{
     constructor(props) {
         super(props);
@@ -159,15 +160,20 @@ class TripOriginMap extends Component{
     render(){
       const frontDropClasses=[classes.OriginMapFrontDrop];
       const originMapWrapperClasses=[classes.OriginMapWrapper];
+      const originMapClasses =[classes.OriginMap];
       if(this.props.originOrDestination==="Origin"){
         originMapWrapperClasses.push(classes.Origin)
         if(this.state.showFrontDrop){
+          originMapClasses.push(classes.OriginMapShow)
           frontDropClasses.push(classes.FrontDropVanish);
           originMapWrapperClasses.push(classes.OriginMapWrapperMoveLeft);
         }
-      }else if(this.props.originOrDestination==="Destination"){
-        originMapWrapperClasses.push(classes.Destination)
+        }else if(this.props.originOrDestination==="Destination"){
+          
+          originMapWrapperClasses.push(classes.Destination)
+
         if(this.state.showFrontDrop){
+          originMapClasses.push(classes.OriginMapShow)
           frontDropClasses.push(classes.FrontDropVanish);
           originMapWrapperClasses.push(classes.OriginMapWrapperMoveRight);
         }
@@ -185,8 +191,8 @@ class TripOriginMap extends Component{
     return(
       <Aux>
       <div  className={originMapWrapperClasses.join(" ")} >
-        <div onClick={this.onClickHandler} className={frontDropClasses.join(" ")}></div>
-        <div id={"originmap"+this.props.ifj} className={classes.OriginMap}
+        <div onClick={this.onClickHandler} style={{backgroundImage:'url('+Map+')'}} className={frontDropClasses.join(" ")}></div>
+        <div id={"originmap"+this.props.ifj} className={originMapClasses.join(' ')}
         //style={this.state.showFrontDrop?originMapStyle:null}
         >
 

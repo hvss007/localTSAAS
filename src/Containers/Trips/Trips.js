@@ -8,6 +8,24 @@ class Trips extends Component{
     state={
         trips:[{idf:1,showAdd:true}]
     }
+    componentDidMount(){
+        //console.log(this.props.match.params.id1);
+        // console.log(this.props.match.url);
+        // var a=this.props.match.url;
+        // var b=(this.props.match.params.id1+'/trip-info');
+        // var start = a.indexOf(b);
+        // console.log(start);
+        // var s = a.replace(b, '')
+        // console.log(s)
+        // var end = start + b.length;
+        // var result= a.substring(0, start - 1) + a.substring(end);
+        // //console.log(this.props.match.params.id1+'/trip-info')
+        // //console.log(this.props.match.url-(this.props.match.params.id1+"/trip-info"))
+        // console.log(result);
+    }
+    stringSubtract=(a,b)=>{
+        return a.replace(b, '')
+    }
     addTrip=(idf)=>{
         const tripNew={idf:idf+1,showAdd:true};
         const tripsCopy=[...this.state.trips];
@@ -25,7 +43,7 @@ class Trips extends Component{
             <Aux> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
                 {tripElements}
-                <Link to="/">Next Member</Link>
+                <Link to={this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))}>Next Member</Link>
             </Aux>
         )
     }

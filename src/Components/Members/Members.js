@@ -10,6 +10,9 @@ class Members extends Component{
         autoCompleteArr:[],
         query:""
     }
+    // componentDidMount(){
+    //     console.log(this.props.match.params.id)
+    // }
     percentageHandler=(value)=>{
         console.log(value);
         this.setState({percent:value});
@@ -51,6 +54,7 @@ class Members extends Component{
         <ProgressBar transformValue={this.state.percent}>
         </ProgressBar>
         <Member
+            familyId={this.props.match.params.id}
             setMarkerQuery={this.setMarkerQuery}
             autoCompleteArr={this.state.autoCompleteArr} 
             percentFind={this.percentageHandler}
