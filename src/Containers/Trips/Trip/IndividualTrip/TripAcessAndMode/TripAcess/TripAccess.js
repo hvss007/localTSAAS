@@ -111,8 +111,9 @@ class TripAccess extends Component{
         //this.itemClicked(title,selectedArrItems.src);
         
         this.setState({accessInfoIn:accessInfoCopyIn},
-            ()=>{this.addShower();
-                this.props.accessDataIn(this.props.accessName,title,value,this.props.idi)}
+            ()=>{let valid=this.addShower();
+                console.log(valid)
+                this.props.accessDataIn(this.props.accessName,title,value,this.props.idi,valid)}
             );
         
     }
@@ -126,9 +127,11 @@ class TripAccess extends Component{
       })
       console.log(inValidArr)
       if(inValidArr.length===0){
-          this.setState({activateAdd:true&&this.props.showAdd}) 
+          this.setState({activateAdd:true})
+          return true 
       }else {
         this.setState({activateAdd:false})
+        return false
       }
     }
     validityHandler=(value)=>{
@@ -153,7 +156,7 @@ class TripAccess extends Component{
             <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex'}}>
             <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:this.props.accessName}</a>
-            {this.state.activateAdd?<button onClick={this.addButtonHandler}>+</button>:null}
+            {this.props.showAdd&&this.state.activateAdd?<button onClick={this.addButtonHandler}>+</button>:null}
             </div>
             </div>
             <TripModal 

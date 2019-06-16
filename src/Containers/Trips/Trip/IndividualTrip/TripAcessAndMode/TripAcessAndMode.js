@@ -6,9 +6,9 @@ import TripModal from '../../../../../Hoc/TripModal/TripModal';
 
 class TripAcessAndMode extends Component{
     state={
-        access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''}}],
-        egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''}}],
-        mainMode:[{value:'',inValue:{},modeType:"mainMode"}]
+        access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false}],
+        egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false}],
+        mainMode:[{value:'',inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false,modeType:"mainMode"}]
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.sendData!==this.props.sendData){
@@ -57,11 +57,12 @@ class TripAcessAndMode extends Component{
             this.setState({mainMode:accessCopy})
         }
     }
-    accessDataInHandler=(name,valueType,value,idi)=>{
+    accessDataInHandler=(name,valueType,value,idi,valid)=>{
         if(name==="Access"){
             const accessCopy=[...this.state.access];
             const accessCopyElementOld={...accessCopy[idi-1]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
+            accessInvalueCopy.isValid=valid;
             if(valueType==="Travel Time"){
                 accessInvalueCopy.travelTime=value;
             }
