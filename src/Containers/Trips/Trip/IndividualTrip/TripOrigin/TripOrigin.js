@@ -12,7 +12,7 @@ import Shopping from '../../../../../assets/icons/destinationIcons/Shopping.svg'
 import School from '../../../../../assets/icons/destinationIcons/School.svg';
 import Other from '../../../../../assets/icons/destinationIcons/Other.png';
 import CommentModalInput from '../../../../../Hoc/CommentModal/CommentModalInput/CommentModalInput';
-import TripOriginMap from '../TripOrigin/TripOriginMap/TripOriginMap';
+import TripOriginMap from './TripOriginMap/TripOriginMap';
 class TripOrigin extends Component{
     state={
         src:null,
