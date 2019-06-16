@@ -73,17 +73,20 @@ class Trip extends Component{
             const data={memberID:this.props.match.params.id1};
             Axios.post("http://127.0.0.1:8000/api/trips/",data)
             .then(response=>{
-                Axios.get("http://127.0.0.1:8000/api/trips/")
-                .then(response=>{
-                        console.log(response.data);
+                    console.log(response.data)            
                      Axios.post("http://127.0.0.1:8000/api/od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                      //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                      ).then(response=>{})
-                    
+                     updatedData.accessModeData.mode.forEach(element => {
+                        Axios.post("http://127.0.0.1:8000/api/mode/",{tripID:response.data.tripID,...element}
+                        //{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                        ).then(response=>{})    
+                     });
+                     
                     // response.data.tripID
               
                 })
-            } )
+            
             
             // Axios.get("http://127.0.0.1:8000/api/trips/")
             //     .then((Response)=>{

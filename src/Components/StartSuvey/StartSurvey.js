@@ -4,16 +4,14 @@ import Axios from 'axios';
 class StartSurvey extends Component{
     
     onClickHandler=()=>{
-        const data={};
-        Axios.post("http://127.0.0.1:8000/api/family/",data)
-        .then(response=>{
+       
             Axios.get("http://127.0.0.1:8000/api/family/")
             .then(response=>{
                 
                 console.log(response.data);
                this.props.history.push({pathname:this.props.match.url+response.data.familyID+'/member'})
             })
-        } )
+       
     }
 
     render(){
