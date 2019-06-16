@@ -54,3 +54,16 @@
 .FrontDropVanish{
     display:none;
 }
+@media (max-width:400px){
+    .OriginMapWrapper{
+        position: relative;
+        width:100%;
+        height:400px;
+    }
+    .OriginMapFrontDrop{
+        display: none;
+    }
+    .OriginMap{
+        opacity:1;
+    }
+}

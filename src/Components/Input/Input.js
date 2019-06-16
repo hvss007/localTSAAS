@@ -14,10 +14,9 @@ class Input extends Component {
     }
     render(){
     let Autocompleteitems;
-    //let show=this.props.autoCompleteShow;        
+    let show=this.props.autoCompleteShow;        
     let inputElement=null;
     const inputClasses=[classes.InputElement];
-    
     if(this.props.invalid&&this.props.touched){
         inputClasses.push(classes.Invalid)
     }
@@ -30,12 +29,13 @@ class Input extends Component {
                      </input>
         }else{      
             console.log(this.state.backArr1);
-        Autocompleteitems=this.state.backArr1.length>0? this.state.backArr1.map((items,index)=>{
+        Autocompleteitems=this.state.backArr1.length>0&&show? this.state.backArr1.map((items,index)=>{
             return <li 
             onClick={(event)=>
                 {
                 let tempArr=[...this.state.backArr1];
                 let tempArrElement=[...tempArr[index]];
+                console.log(tempArrElement)
                 tempArrElement.clicked=true;
                 tempArr[index]=tempArrElement;
                 this.setState({backArr1:tempArr});                

@@ -18,7 +18,7 @@ class TripAcessAndMode extends Component{
                 const accessCopy=[...mode];
                 const newAccessArray=[];
                 const accessObj=accessCopy.forEach((item)=>{
-                let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType};
+                let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType,isValid:item.isValid};
                 newAccessArray.push(newAccessObjectIn);
             })
                 modeArr.push(newAccessArray);
@@ -62,7 +62,7 @@ class TripAcessAndMode extends Component{
             const accessCopy=[...this.state.access];
             const accessCopyElementOld={...accessCopy[idi-1]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
-            accessInvalueCopy.isValid=valid;
+            accessCopyElementOld.isValid=valid;
             if(valueType==="Travel Time"){
                 accessInvalueCopy.travelTime=value;
             }
@@ -83,6 +83,7 @@ class TripAcessAndMode extends Component{
             const accessCopy=[...this.state.egress];
             const accessCopyElementOld={...accessCopy[idi-1]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
+            accessCopyElementOld.isValid=valid;
             if(valueType==="Travel Time"){
                 accessInvalueCopy.travelTime=value;
             }
@@ -103,6 +104,7 @@ class TripAcessAndMode extends Component{
             const accessCopy=[...this.state.mainMode];
             const accessCopyElementOld={...accessCopy[0]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
+            accessCopyElementOld.isValid=valid;
             if(valueType==="Travel Time"){
                 accessInvalueCopy.travelTime=value;
             }
