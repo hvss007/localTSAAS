@@ -85,6 +85,7 @@ class  HereMaps extends Component {
         //map.removeObject(this.group);        
         this.group.addObject(placeMarker);
         this.dragEventHandler(map,behavior);
+       
     }
 
     dragEventHandler=(map,behavior)=>{
@@ -113,7 +114,7 @@ class  HereMaps extends Component {
           let x=loc.lat;
           let y=loc.lng;
           this.setState({lat:x,lng:y},
-          ()=>  console.log(this.props.searchArea));
+          ()=> this.props.dragLatHandler(x,y));
         }
       }, false);
     }
@@ -232,9 +233,10 @@ class  HereMaps extends Component {
            // if(marker){
  
            // }
-           console.log(position);
+          //  console.log(position);
            //this.map.removeObjects();
            this.addMarkersToMap(position,behavior);
+           this.props.dragLatHandler(position.lat,position.lng)
            // this.map.addObject(marker);
            let lat=position.lat;
            let lng=position.lng;

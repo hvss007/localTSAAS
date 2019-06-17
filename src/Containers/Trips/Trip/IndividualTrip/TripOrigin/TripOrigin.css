@@ -2,6 +2,7 @@
 .TripOriginWrapper{
     width:fit-content;
     display:flex;
+    box-sizing: border-box;
     padding: 4px 6px;
     position: relative;
 }
@@ -47,4 +48,30 @@
 .TripOriginAnchor:hover{
     cursor:pointer;
     letter-spacing: 2px;
+}
+.Hidden{
+    
+        width:100px;
+        height:100px;
+        position:relative;
+    
+}
+@media (max-width:400px){
+    .Hidden{
+       display: none
+    }
+    .TripOriginWrapper{
+        flex-direction: column-reverse;
+        width:100%;
+    }
+    .TripOriginWrapperLeft,.TripOriginWrapperRight{
+        margin:0px
+    }
+    .TripOriginAnchor{
+        margin:0px;
+    }
+    .AnchorImagerapper{
+        margin:auto;
+        
+    }
 }

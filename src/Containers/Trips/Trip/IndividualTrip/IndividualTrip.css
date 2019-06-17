@@ -5,3 +5,16 @@
     padding:20px;
     text-align: right;
 }
+.OriginDestinationWrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+@media (max-width:400px){
+    .OriginDestinationWrapper{
+        flex-direction: column
+    }
+    .Trip{
+        padding: 0px
+    }
+}

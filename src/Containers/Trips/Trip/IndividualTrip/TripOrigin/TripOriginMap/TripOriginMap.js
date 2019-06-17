@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './TripOriginMap.css';
 import FinalBackdrop from '../../../../../../Hoc/FinalBackdrop/FinalBackdrop';
 import Aux from '../../../../../../Hoc/Aux';
-import Map from '../../../../../../assets/icons/Map.svg';
+//import Map from '../../../../../../assets/icons/Map.svg';
 class TripOriginMap extends Component{
     constructor(props) {
         super(props);

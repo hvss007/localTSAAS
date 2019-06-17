@@ -3,7 +3,6 @@ import Input from '../../Input/Input';
 import classes from './Member.css';
 import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
-import Autocomplete from '../../Input/Autocomplete';
 import {withRouter} from 'react-router-dom';
 class Member extends Component{
     state={
@@ -297,7 +296,7 @@ class Member extends Component{
         },
         totalQuestions:13,
         qAnswered:0,
-        autoCompleteShow:false
+        autoCompleteShow:true
     }
     componentDidMount(){
         this.setState({familyId:this.props.familyId})
@@ -312,7 +311,9 @@ class Member extends Component{
         this.setState({member:memberUpdated},()=>{
             this.progressHandler()
             if(inputIdentifier=="landmark"&&updatedInputElement.valid){
+                this.setState({autoCompleteShow:true})
                 this.landmarkValueHandler();
+                this.props.setMarkerQuery(null)
             }
         });
     }
@@ -329,7 +330,7 @@ class Member extends Component{
         const updatedInputElement={...memberUpdated["landmark"]} ;
         updatedInputElement.value=""+document.getElementById(id).innerHTML;
         memberUpdated["landmark"]=updatedInputElement; 
-        this.setState({member:memberUpdated},()=>{this.landmarkValueHandler()}
+        this.setState({member:memberUpdated,autoCompleteShow:false},()=>{this.landmarkValueHandler()}
         )
         this.props.setMarkerQuery(""+updatedInputElement.value);
     }
@@ -379,8 +380,9 @@ class Member extends Component{
                 nameOfDistrict:member.nameOfDistrict.value,
                 landmark:member.landmark.value,
                 pincode:member.pinCode.value,
-                principalSourceofIncome:member.principalSourceofIncome.value
-
+                principalSourceofIncome:member.principalSourceofIncome.value,
+                lat:this.props.lat,
+                lng:this.props.lng
             }
 
             axios.post("http://127.0.0.1:8000/api/members/",post)

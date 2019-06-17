@@ -78,3 +78,25 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
+
+  @media (max-width:400px){
+    .Dialogbox{
+      width: 100%;
+      height:auto;
+      position:relative;
+      opacity:1;
+      z-index: 1;
+      left:0%;
+      right:0%;
+      /* background: rgb(245, 238, 224); */
+    }
+    .Dialogbox .Body {
+      position: relative;
+      max-width: none;
+      background: rgb(245, 238, 224);
+
+    }
+    .Tip{
+      display: none
+    }
+}

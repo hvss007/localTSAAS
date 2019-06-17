@@ -49,14 +49,23 @@ const CommentModal =props=>{
     const tipClasses=[classes.Tip];
     const dialogboxClasses=[classes.Dialogbox];
     let style={};
+    console.log(window.innerWidth)
     if(props.originOrDestination==="Origin"){
-      tipClasses.push(classes.TipLeft); 
-      style={ 
-         left:props.show?'100%':'-100%'}
+      tipClasses.push(classes.TipLeft);
+      if(window.innerWidth>=400){
+        style={ 
+          left:props.show?'100%':'-100%'}
+      }
+      else{
+        style={left:'0%'}
+      }
+      
     }
     else if(props.originOrDestination==="Destination"){
       tipClasses.push(classes.TipRight); 
-      style={ right:props.show?'100%':'-100%'}
+      if(window.innerWidth>=400){
+        style={ right:props.show?'100%':'-100%'}
+      } 
     }
     if(props.show){
       // if(props.originOrDestination==="Origin"){

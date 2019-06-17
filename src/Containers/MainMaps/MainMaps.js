@@ -22,6 +22,7 @@ onChange(evt) {
   render() {
     return (
       <div className="MainMap">
+        <div style={{fontSize:'12px',textAlign:'center'}} ><p>*You can drag the marker to your approximate new location</p></div>
         <HereMaps
           app_id='wvzQzqmPlU1T9tjf0YLU'
           app_code='b_is4SmSRfh8e0-Mr2-low'
@@ -30,6 +31,7 @@ onChange(evt) {
           zoom="12"
           theme={ this.state.theme}
           inputChange={(event)=>this.inputHandler(event)}
+          dragLatHandler={this.props.dragLatHandler}
           searchArea={this.props.searchText}
           autocompleteArrayHandler={this.props.autocompleteArrayHandler}
           markerQuery={this.props.markerQuery}

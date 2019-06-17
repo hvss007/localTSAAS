@@ -10,11 +10,13 @@ import {withRouter} from 'react-router-dom';
 class Trip extends Component{
     state={
         tripInformation:{
-                originData:{originLat:null,originLng:null,originPlace:null},
-                destinationData:{destinationLat:"",destinationLng:"",destinationPlace:""},
+                originData:{originLat:null,originLng:null,originPlace:null,isValid:false},
+                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false},
                 accessModeData:{}
             },
-        sendData:false
+        sendData:false,
+        disableAdd:true,
+        sendData1:false
         // backdropShow:false,
         // commentModalShow:false,
         // commentModalShowDestination:false
@@ -68,25 +70,43 @@ class Trip extends Component{
             const originDestinationArray=[{...dataCopy.originData,...dataCopy.destinationData}];
             console.log(originDestinationArray);
             const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
+            const validArr=updatedData.accessModeData.mode.filter(item=>{
+            
+                return !item.isValid 
+            })
+            
             console.log(updatedData,"huigy")
+            if(validArr.length===0){
+                //this.setState({sendData1:true})
+                this.props.addTrip(this.props.idf)
+                const data={memberID:this.props.match.params.id1};
+                Axios.post("http://127.0.0.1:8000/api/trips/",data)
+                .then(response=>{
+                        
+                        console.log(response.data)            
+                         Axios.post("http://127.0.0.1:8000/api/od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                         //{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                         ).then(response=>{})
+                         updatedData.accessModeData.mode.forEach(element => {
+                            console.log();
+                            delete element.isValid;
+                            Axios.post("http://127.0.0.1:8000/api/mode/",{tripID:response.data.tripID,...element}
+                            //{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                            ).then(response=>{})    
+                         });
+                         
+                        // response.data.tripID
+                  
+                    })
+                
+                
+            }
+            else{
+                alert("Please fill all the fields before adding next trip")
+                 this.setState({sendData:false})
+            }
             
-            const data={memberID:this.props.match.params.id1};
-            Axios.post("http://127.0.0.1:8000/api/trips/",data)
-            .then(response=>{
-                    console.log(response.data)            
-                     Axios.post("http://127.0.0.1:8000/api/od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                     //{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                     ).then(response=>{})
-                     updatedData.accessModeData.mode.forEach(element => {
-                        Axios.post("http://127.0.0.1:8000/api/mode/",{tripID:response.data.tripID,...element}
-                        //{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                        ).then(response=>{})    
-                     });
-                     
-                    // response.data.tripID
-              
-                })
-            
+
             
             // Axios.get("http://127.0.0.1:8000/api/trips/")
             //     .then((Response)=>{
@@ -138,16 +158,22 @@ class Trip extends Component{
     }
     render(){
         const originData=this.state.tripInformation.originData;
+        const destinationData=this.state.tripInformation.destinationData;
         let tripAcessAndModeData=null;
+        let orValue=false;
+        let drValue=false;
         if(originData.originLat&&originData.originLng&&originData.originPlace)
-        {
+        {   orValue=true
              tripAcessAndModeData=<TripAcessAndMode sendData={this.state.sendData} 
             tripAccessDataHandler={this.tripAccessDataHandler}
             ></TripAcessAndMode>
         }
+        if(destinationData.destinationLat&&destinationData.destinationLng&&destinationData.destinationPlace)
+        {   drValue=true
+        }
         return(
             <div className={classes.Trip} >
-                <div style={{display:"flex",justifyContent:"space-between"}}>
+                <div className={classes.OriginDestinationWrapper} >
                 <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
                 <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>
                 </div>
@@ -172,8 +198,8 @@ class Trip extends Component{
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShowDestination}></Backdrop1> */}
                 {this.props.showAdd?<button onClick={
                      ()=>
-                    {this.onSubmitHandler()
-                      this.props.addTrip(this.props.idf)
+                    {   orValue&&drValue?this.onSubmitHandler():alert('Please fill origin and destination values before proceeding')
+                        
                     } 
                      } type="submit">Add Trip</button>:null}
             </div>

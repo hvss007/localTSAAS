@@ -45,7 +45,7 @@
     height: 100% ;
     background: grey;
     position:absolute;
-    opacity:0;
+    opacity:1;
     transition: opacity ease-in .3s;
 }
 .OriginMapShow{
@@ -53,4 +53,17 @@
 }
 .FrontDropVanish{
     display:none;
+}
+@media (max-width:400px){
+    .OriginMapWrapper{
+        position: relative;
+        width:100%;
+        height:400px;
+    }
+    .OriginMapFrontDrop{
+        display: none;
+    }
+    .OriginMap{
+        opacity:1;
+    }
 }
