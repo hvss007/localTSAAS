@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Aux from '../../../../../../Hoc/Aux'
+// import Aux from '../../../../../../Hoc/Aux'
+import Aux from '../../../../../../Hoc/Aux';
 import AcessIcon from '../../../../../../assets/icons/OriginIcon.png'; 
 import classes from './TripAcess.css';
 import TripModal from '../../../../../../Hoc/TripModal/TripModal';
