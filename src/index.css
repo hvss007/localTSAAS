@@ -1,5 +1,11 @@
+:root {
+  --primary: #E39774; 
+  --main-bg-color: #EEEEEE
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: var(--main-bg-color)
 }

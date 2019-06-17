@@ -383,7 +383,7 @@ class Member extends Component{
 
             }
 
-            Axios.post("http://127.0.0.1:8000/api/members/",post)
+            axios.post("http://127.0.0.1:8000/api/members/",post)
                 .then((Response)=>{
                     
                     console.log(Response);
