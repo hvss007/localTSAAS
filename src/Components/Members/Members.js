@@ -55,7 +55,15 @@ class Members extends Component{
     }
     render(){
     return(
-        <Aux>
+        <div className="container-fluid my-5 mx-auto px-5">
+        <div className="row flex-column-reverse flex-md-row" style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 27px 51.33px 7.67px', borderRadius: '10px'}}>
+        
+        <div className="col-md-8 mr-0 pr-0">
+        <MainMaps dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
+        </div>
+        
+        <div className="col-md-4 ml-0 pl-0">
+        <div className='px-3'>
         <ProgressBar transformValue={this.state.percent}>
         </ProgressBar>
         <Member
@@ -69,8 +77,10 @@ class Members extends Component{
         // membInfo={props.membInfo} changedMem={props.changedMems}
         >
         </Member>
-        <MainMaps dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
-        </Aux>
+        </div>
+        </div>
+        </div>
+        </div>
     )
     }
 }

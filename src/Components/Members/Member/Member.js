@@ -415,7 +415,7 @@ class Member extends Component{
     }
     return(
         <div className={classes.MemberData} >
-        <form  >
+        <form className={classes.CustomForm} >
         {memberformArray.map((memFormElement)=>{return(
             memFormElement.config.show?
             <Input 

@@ -256,8 +256,8 @@ class  HereMaps extends Component {
       }
 
         return (
-            <div>
-            <div id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height: '400px', background: 'grey' }} />
+            <div style={{height:'100%'}}>
+            <div id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height:'100%', background: 'grey' }} />
             </div>
         );
     }
