@@ -368,7 +368,9 @@ class Member extends Component{
                 nameOfDistrict:member.nameOfDistrict.value,
                 landmark:member.landmark.value,
                 pincode:member.pinCode.value,
-                principalSourceofIncome:member.principalSourceofIncome.value
+                principalSourceofIncome:member.principalSourceofIncome.value,
+                lat:this.props.lat,
+                lng:this.props.lng
             }
 
             Axios.post("http://127.0.0.1:8000/api/members/",post)

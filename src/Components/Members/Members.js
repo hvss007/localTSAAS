@@ -8,7 +8,9 @@ class Members extends Component{
         percent:null,
         landmarkString:"",
         autoCompleteArr:[],
-        query:""
+        query:"",
+        lat:null,
+        lng:null
     }
     // componentDidMount(){
     //     console.log(this.props.match.params.id)
@@ -22,6 +24,9 @@ class Members extends Component{
     }
     setMarkerQuery=(query)=>{
         this.setState({query:query})
+    }
+    dragLatHandler=(lat,lng)=>{
+        this.setState({lat:lat,lng:lng})
     }
     autocompleteArrayHandler=(array)=>{
         this.setState({autoCompleteArr:[]})
@@ -54,6 +59,8 @@ class Members extends Component{
         <ProgressBar transformValue={this.state.percent}>
         </ProgressBar>
         <Member
+            lat={this.state.lat}
+            lng={this.state.lng}
             familyId={this.props.match.params.id}
             setMarkerQuery={this.setMarkerQuery}
             autoCompleteArr={this.state.autoCompleteArr} 
@@ -62,7 +69,7 @@ class Members extends Component{
         // membInfo={props.membInfo} changedMem={props.changedMems}
         >
         </Member>
-        <MainMaps markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
+        <MainMaps dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
         </Aux>
     )
     }
