@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import Input from '../../Input/Input';
 import classes from './Member.css';
-import Axios from 'axios';
+import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
 class Member extends Component{
@@ -9,6 +9,7 @@ class Member extends Component{
         familyId:null,
         member:{
             // memberId:{
+            //     title:'member_id',
             //     label:'Member ID',
             //     elementType:'input',
             //     elementConfig:{
@@ -24,6 +25,7 @@ class Member extends Component{
             //     touched:false
             // },
             gender:{
+                name:'gender',
                 label:'Gender',
                 elementType:'select',
                 elementConfig:{
@@ -44,6 +46,7 @@ class Member extends Component{
                 touched:false
             },
             age:{
+                name:'age',
                 label:'Age',
                 elementType:'select',
                 elementConfig:{
@@ -66,6 +69,7 @@ class Member extends Component{
                 touched:false
             },
             educationalQualification:{
+                name:'educationalQualification',
                 label:'Educational Qualification',
                 elementType:'select',
                 elementConfig:{
@@ -86,6 +90,7 @@ class Member extends Component{
                 touched:false
             },
             monthlyIncome:{
+                name:'monImonthlyIncomenc',
                 label:'Monthly Income',
                 elementType:'select',
                 elementConfig:{
@@ -106,6 +111,7 @@ class Member extends Component{
                 touched:false
             },
             maritialStatus:{
+                name:'mamaritialStatusrt',
                 label:'Maritial Status',
                 elementType:'select',
                 elementConfig:{
@@ -128,6 +134,7 @@ class Member extends Component{
                 touched:false
             },
             differentlyAbled:{
+                name:'differentlyAbled',
                 label:'Differently Abled',
                 elementType:'select',
                 elementConfig:{
@@ -147,6 +154,7 @@ class Member extends Component{
                 touched:false
             },
             homeState:{
+                name:'homeState',
                 label:'Home State',
                 elementType:'select',
                 elementConfig:{
@@ -199,6 +207,7 @@ class Member extends Component{
                 touched:false
             },
             nameOfDistrict:{
+                name:'nameOfDistrict',
                 label:'Name of district',
                 elementType:'input',
                 elementConfig:{
@@ -214,6 +223,7 @@ class Member extends Component{
                 touched:false
             },
             landmark:{
+                name:'landmark',
                 label:'Landmark',
                 elementType:'input',
                 elementConfig:{
@@ -244,6 +254,7 @@ class Member extends Component{
             //     touched:false
             // },
             pinCode:{
+                name:'pinCode',
                 label:'PIN Code',
                 elementType:'input',
                 elementConfig:{
@@ -260,6 +271,7 @@ class Member extends Component{
                 touched:false
             },
             principalSourceofIncome:{
+                name:'principalSourceofIncome',
                 label:'Principal Source Of Income',
                 elementType:'select',
                 elementConfig:{
@@ -353,7 +365,7 @@ class Member extends Component{
     submitButtonHandler=(event)=>{
         console.log(this.state.qAnswered);
         event.preventDefault();
-        if(this.state.qAnswered===11){
+        if(this.state.qAnswered<=11){
             const member=this.state.member;
             const post={
                 familyID:this.state.familyId,
@@ -373,12 +385,13 @@ class Member extends Component{
                 lng:this.props.lng
             }
 
-            Axios.post("http://127.0.0.1:8000/api/members/",post)
+            axios.post("http://127.0.0.1:8000/api/members/",post)
                 .then((Response)=>{
                     
                     console.log(Response);
                     this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
                 })
+                .catch(err => console.error(err));
         }
         else{
             alert("Please fill all the fields")
@@ -402,7 +415,7 @@ class Member extends Component{
     }
     return(
         <div className={classes.MemberData} >
-        <form >
+        <form className={classes.CustomForm} >
         {memberformArray.map((memFormElement)=>{return(
             memFormElement.config.show?
             <Input 
@@ -410,6 +423,7 @@ class Member extends Component{
                 autoCompleteArr={arrNew}
                 key={memFormElement.id}
                 label={memFormElement.config.label}
+                name={memFormElement.config.name}
                 elementType={memFormElement.config.elementType}
                 elementconfig={memFormElement.config.elementConfig}
                 value={memFormElement.config.value}

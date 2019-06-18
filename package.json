@@ -99,5 +99,18 @@
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-preset-stage-3": "^6.24.1"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hvss007/localTSAAS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hvss007/localTSAAS/issues"
+  },
+  "homepage": "https://github.com/hvss007/localTSAAS#readme",
+  "keywords": []
 }

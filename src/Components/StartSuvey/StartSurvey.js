@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
+import classes from './StartSurvey.css';
 import Axios from 'axios';
 class StartSurvey extends Component{
     
@@ -15,9 +16,10 @@ class StartSurvey extends Component{
     }
 
     render(){
+        const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
     return(
-        <div  style={{width:'100%',height:'100vh', display:'flex'}}>
-            <button 
+        <div  className={classes.StartSurvey}>
+            <button className={buttonClasses.join(' ')}
             //to={{
              //   pathname:this.props.match.url+'/member'
             //}}

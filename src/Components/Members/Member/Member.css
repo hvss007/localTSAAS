@@ -1,8 +1,6 @@
 .MemberData{
-    margin:20px auto;
     width:80%;
     text-align:center;
-    padding:10px;
     box-sizing: border-box;
     /* background-color:rgb(128, 190, 226); */
 }
@@ -14,4 +12,10 @@
 }
 .Input{
     display:block
+}
+
+.CustomForm{
+    padding: 10px;
+    background-color: #ffffff;
+
 }

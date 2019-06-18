@@ -3,18 +3,25 @@
     padding:30px;
     box-sizing:border-box;
     display: flex;
+    
     flex-direction: column;
-    align-items: center;
-    align-content: center;
+    /* align-items: center;
+    align-content: center; */
     justify-content: space-between;
     box-shadow:0 2px 3px rgb(128, 124, 124);;
 }
 .Label{
+    text-align: left;
     margin-bottom: 8px;
+    color: #999999;
 }
 .Autocomplete{
     position: relative;
     display: inline-block;
+    text-align: left;
+}
+.Autocomplete>.InputElement{
+    width: 100%
 }
 .Autocomplete-items {
     position: absolute;
@@ -43,13 +50,17 @@
   }
 .InputElement{
     outline:none;
-    border:1px solid #ccc;
+    border:none;
+    /* border:1px solid #ccc; */
     background-color: white;
     font: inherit;
-    padding:6px 10px;
+    appearance: none;
+    /* padding:6px 10px; */
     box-sizing: border-box;
-    width:200px;
-    color: rgb(40, 40, 40);
+    /* width:200px; */
+    color: #555555;
+    /* box-shadow: 0 8px 6px -6px rgba(0,0,0,.5); */
+    border-bottom: 2px solid #dbdbdb;
 }
 
 .Invalid{
@@ -62,7 +73,7 @@
 }
 @media (min-width:600px){
     .Input{
-        flex-direction: row;
+        flex-direction: column;
         padding:10px; 
         box-shadow: none;
     }
