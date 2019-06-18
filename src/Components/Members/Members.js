@@ -3,6 +3,7 @@ import Member from './Member/Member';
 import Aux from '../../Hoc/Aux';
 import ProgressBar from '../ProgressBar/ProgressBar'; 
 import MainMaps from '../../Containers/MainMaps/MainMaps'; 
+import classes from './Members.css';
 class Members extends Component{
     state={
         percent:null,
@@ -55,7 +56,8 @@ class Members extends Component{
     }
     render(){
     return(
-        <Aux>
+        <div className={classes.Members}>
+        <div className={classes.MemberWrapper}>
         <ProgressBar transformValue={this.state.percent}>
         </ProgressBar>
         <Member
@@ -69,8 +71,9 @@ class Members extends Component{
         // membInfo={props.membInfo} changedMem={props.changedMems}
         >
         </Member>
+        </div>
         <MainMaps dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
-        </Aux>
+        </div>
     )
     }
 }

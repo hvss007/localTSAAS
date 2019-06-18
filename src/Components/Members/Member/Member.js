@@ -8,21 +8,21 @@ class Member extends Component{
     state={
         familyId:null,
         member:{
-            memberId:{
-                label:'Member ID',
-                elementType:'input',
-                elementConfig:{
-                   type:'text',
-                   placeholder:1 
-                },
-                value:1,
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:true,
-                touched:false
-            },
+            // memberId:{
+            //     label:'Member ID',
+            //     elementType:'input',
+            //     elementConfig:{
+            //        type:'text',
+            //        placeholder:1 
+            //     },
+            //     value:1,
+            //     show:true,
+            //     validation:{
+            //         required:true
+            //     },
+            //     valid:true,
+            //     touched:false
+            // },
             gender:{
                 label:'Gender',
                 elementType:'select',

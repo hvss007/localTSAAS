@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HereMaps from './HereMaps';
+import classes from './MainMaps.css'
 class MainMap extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,7 @@ onChange(evt) {
 }
   render() {
     return (
-      <div className="MainMap">
+      <div className={classes.MainMap}>
         <div style={{fontSize:'12px',textAlign:'center'}} ><p>*You can drag the marker to your approximate new location</p></div>
         <HereMaps
           app_id='wvzQzqmPlU1T9tjf0YLU'

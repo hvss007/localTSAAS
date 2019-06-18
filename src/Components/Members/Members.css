@@ -1,0 +1,7 @@
+.MemberWrapper{
+
+}
+.Members{
+    display:flex;
+    flex-direction: row-reverse;
+}
