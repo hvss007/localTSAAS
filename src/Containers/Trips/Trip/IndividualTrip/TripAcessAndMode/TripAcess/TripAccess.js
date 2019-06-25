@@ -127,7 +127,7 @@ class TripAccess extends Component{
           return !item
       })
       console.log(inValidArr)
-      if(inValidArr.length===0){
+      if(inValidArr.length>=0){
           this.setState({activateAdd:true})
           return true 
       }else {
@@ -154,9 +154,13 @@ class TripAccess extends Component{
         return(<Aux>
             <div className={classes.TripAccessWrapper}>
             {/* <CommentModal itemClicked={this.originItemSelectedHandler} sideClicked={this.props.sideClicked} show={this.state.commentModalShow} ></CommentModal>    */}
+            <div style={{display:'flex'}}>
+                <p style={{margin:'auto'}}>{this.props.accessName}</p>
+            </div>
             <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex'}}>
-            <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:this.props.accessName}</a>
+            <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a>
+            {/* this.props.accessName */}
             {this.props.showAdd&&this.state.activateAdd?<button onClick={this.addButtonHandler}>+</button>:null}
             </div>
             </div>

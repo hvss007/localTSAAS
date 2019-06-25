@@ -6,13 +6,13 @@ class StartSurvey extends Component{
     
     onClickHandler=()=>{
        
-            Axios.get("http://127.0.0.1:8000/api/family/")
-            .then(response=>{
+            // Axios.get("http://127.0.0.1:8000/api/family/")
+            // .then(response=>{
                 
-                console.log(response.data);
-               this.props.history.push({pathname:this.props.match.url+response.data.familyID+'/member'})
-            })
-       
+            //     console.log(response.data);
+            //    this.props.history.push({pathname:this.props.match.url+response.data.familyID+'/member'})
+            // })
+            this.props.history.push({pathname:this.props.match.url+"family"})
     }
 
     render(){

@@ -18,12 +18,12 @@
     /* width:140px; */
     width:100px;
     height:auto;
-    background:radial-gradient(rgba(37, 136, 218,.4),rgba(37, 136, 218,.4),white,white);
+    /* background:radial-gradient(rgba(37, 136, 218,.4),rgba(37, 136, 218,.4),rgb(238, 238, 238)); */
     transition: background-color ease-out .8s,cursor ease-in .4s;
 }
 .TripOriginIcon:hover{
     cursor:pointer;
-    background:radial-gradient(rgba(37, 136, 218,.4),rgba(37, 136, 218,.5),white,white)
+    /* background:radial-gradient(rgba(37, 136, 218,.4),rgba(37, 136, 218,.5),white,white) */
 }
 .OriginModal{
     z-index: -1;

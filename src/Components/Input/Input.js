@@ -1,7 +1,6 @@
 import React , { Component }  from 'react';
 import classes from './Input.css';
 import LandmarkAutoComplete from './LandmarkAutoComplete';
-import Axios from 'axios';
 class Input extends Component {
     state={
     backArr1:[]    

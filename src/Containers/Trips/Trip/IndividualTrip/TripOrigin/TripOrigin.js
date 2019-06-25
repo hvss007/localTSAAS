@@ -93,8 +93,9 @@ class TripOrigin extends Component{
                 </CommentModal>   
                 {/* <div className={classes.OriginModal}></div> */}
                 <div className={classes.AnchorImagerapper} style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
+                <p style={{margin:'auto'}}>{this.props.originOrDestination}</p>
                 <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} src={this.state.src?this.state.src:OriginIcon}></img>
-                <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.state.title?this.state.title:this.props.originOrDestination}</a>
+                <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.state.title?this.state.title:"Choose Here"}</a>
                 </div>
                 </div>
             </Aux>

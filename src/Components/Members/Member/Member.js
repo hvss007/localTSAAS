@@ -24,6 +24,18 @@ class Member extends Component{
             //     valid:true,
             //     touched:false
             // },
+            householdHead:{
+                name:'householdHead',
+                label:'Are you head of your family',
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                       {value:'yes',displayValue:'Yes'},
+                       {value:'no',displayValue:'No'},    
+                    ]
+                }
+            },
             gender:{
                 name:'gender',
                 label:'Gender',
@@ -90,7 +102,7 @@ class Member extends Component{
                 touched:false
             },
             monthlyIncome:{
-                name:'monImonthlyIncomenc',
+                name:'monthlyIncomenc',
                 label:'Monthly Income',
                 elementType:'select',
                 elementConfig:{
@@ -292,6 +304,25 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false
+            },
+            stayAtHome:{
+                name:'stayAtHome',
+                label:'Do you stay at home for the whole day',
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'no',displayValue:'No'},
+                        {value:'yes',displayValue:'Yes'},
+                    ]
+                },
+                validation:{
+                    required:true
+                },
+                value:'',
+                show:true,
+                valid:false,
+                touched:false
             }
         },
         totalQuestions:13,
@@ -342,7 +373,7 @@ class Member extends Component{
         var arr=Object.keys(this.state.member);
         var noOfTrue=0;
         var objLen=arr.length;
-        for(let i=1;i<objLen;i++){
+        for(let i=0;i<objLen;i++){
          if(this.state.member[arr[i]].valid){
              noOfTrue++;
          }
@@ -365,33 +396,67 @@ class Member extends Component{
     submitButtonHandler=(event)=>{
         console.log(this.state.qAnswered);
         event.preventDefault();
+        
         if(this.state.qAnswered<=11){
             const member=this.state.member;
-            const post={
-                familyID:this.state.familyId,
-                // memberId:member.memberId.value,
-                gender:member.gender.value,
-                age:member.age.value,
-                educationalQualification:member.educationalQualification.value,
-                monthlyIncome:member.monthlyIncome.value,
-                maritialStatus:member.maritialStatus.value,
-                differentlyAbled:member.differentlyAbled.value,
-                homeState:member.homeState.value,
-                nameOfDistrict:member.nameOfDistrict.value,
-                landmark:member.landmark.value,
-                pincode:member.pinCode.value,
-                principalSourceofIncome:member.principalSourceofIncome.value,
-                lat:this.props.lat,
-                lng:this.props.lng
+            if(member.stayAtHome.value==="yes"){
+                const post={
+                    familyID:this.state.familyId,
+                    // memberId:member.memberId.value,
+                    gender:member.gender.value,
+                    age:member.age.value,
+                    educationalQualification:member.educationalQualification.value,
+                    monthlyIncome:member.monthlyIncome.value,
+                    maritialStatus:member.maritialStatus.value,
+                    differentlyAbled:member.differentlyAbled.value,
+                    homeState:member.homeState.value,
+                    nameOfDistrict:member.nameOfDistrict.value,
+                    landmark:member.landmark.value,
+                    pincode:member.pinCode.value,
+                    principalSourceofIncome:member.principalSourceofIncome.value,
+                    lat:this.props.lat,
+                    lng:this.props.lng,
+                    tripsMade:member.stayAtHome.value
+                }
+                axios.post("http://127.0.0.1:8000/api/members/",post)
+                    .then((Response)=>{
+                        // console.log(Response);
+                      window.location.reload();  
+                        // const current = this.props;
+                        // console.log(current);
+                        //  this.props.history.push({pathname:this.props.match.url});
+                    })
+                    .catch(err => console.error(err));
             }
-
-            axios.post("http://127.0.0.1:8000/api/members/",post)
-                .then((Response)=>{
-                    
-                    console.log(Response);
-                    this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
-                })
-                .catch(err => console.error(err));
+            else{
+                const post={
+                    familyID:this.state.familyId,
+                    // memberId:member.memberId.value,
+                    gender:member.gender.value,
+                    age:member.age.value,
+                    educationalQualification:member.educationalQualification.value,
+                    monthlyIncome:member.monthlyIncome.value,
+                    maritialStatus:member.maritialStatus.value,
+                    differentlyAbled:member.differentlyAbled.value,
+                    homeState:member.homeState.value,
+                    nameOfDistrict:member.nameOfDistrict.value,
+                    landmark:member.landmark.value,
+                    pincode:member.pinCode.value,
+                    principalSourceofIncome:member.principalSourceofIncome.value,
+                    lat:this.props.lat,
+                    lng:this.props.lng,
+                    tripsMade:member.stayAtHome.value
+                }
+    
+                axios.post("http://127.0.0.1:8000/api/members/",post)
+                    .then((Response)=>{
+                        
+                        console.log(Response);
+                        this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
+                    })
+                    .catch(err => console.error(err));
+            }
+         
         }
         else{
             alert("Please fill all the fields")
