@@ -135,7 +135,7 @@ class Member extends Component{
                 touched:false
             },
             monthlyIncome:{
-                name:'monthlyIncomenc',
+                name:'monthlyIncome',
                 label:'Monthly Income',
                 elementType:'select',
                 elementConfig:{
@@ -366,6 +366,10 @@ class Member extends Component{
                 newUpdatedInputElement.elementConfig=newInputConfig;
                 newMemberUpdated["nameOfDistrict"]=newUpdatedInputElement;
                 this.setState({member:newMemberUpdated});
+            }
+            if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
+                    this.props.mapShow(updatedInputElement.value+" "+this.state.member.homeState.value);
+                    console.log(updatedInputElement.value,this.state.member.homeState.value)
             }
             if(inputIdentifier==="landmark"&&updatedInputElement.valid){
                 this.setState({autoCompleteShow:true})

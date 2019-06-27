@@ -2,68 +2,116 @@ import React, { Component } from 'react';
 class  HereMaps extends Component {
     constructor(props) {
         super(props);
-
-        this.platform = null;
-        this.map = null;
-
-        this.state = {
-            app_id: props.app_id,
-            app_code: props.app_code,
-            center: {
-                lat: props.lat,
-                lng: props.lng,
-            },
-            lat:props.lat,
-            lng:props.lng,
-            zoom: props.zoom,
-            theme:props.theme,
-            arr:[],
-            count:0,
-            displayText:[],
-            finalPassArrat:[],
-            searchText:props.searchArea
+        this.imp={
+          app_id: props.app_id,
+         app_code:props.app_code,
         }
+        this.state = {
+          dataLoaded:false,count:0,mapCentreText:this.props.mapLocation
+        // center: {
+        //     lat: this.props.lat,
+        //     lng: this.props.lng,
+        // },
+        // lat:this.props.lat,
+        // lng:this.props.lng,
+        // zoom: props.zoom,
+        // theme:props.theme,
+        // arr:[],
+        // count:0,
+        // displayText:[],
+        // finalPassArrat:[],
+        // searchText:props.searchArea
+    }        
+        
+        this.platform = new window.H.service.Platform(this.imp);
+        this.map = null;
+        this.mapCentreText=this.props.mapLocation;
+        var geocoder = this.platform.getGeocodingService();
+        let geocodingParams = {
+          searchText:this.state.mapCentreText+ " India"
+        };
+        geocoder.geocode(geocodingParams,(result)=>{ 
+          console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
+           var location=result.Response.View[0].Result[0].Location.DisplayPosition;
+           console.log(location);
+           let obj={
+             center: {
+              lat: location.Latitude,
+              lng: location.Longitude,
+             },
+              lat:location.Latitude,
+              lng:location.Longitude,
+              zoom: this.props.zoom,
+              theme:this.props.theme,
+              arr:[],
+              count:0,
+              displayText:[],
+              finalPassArrat:[],
+              searchText:props.searchArea}   
+           this.setState({dataLoaded:true,...obj});           
+         }, function(e) {
+          alert(e);
+
+        });
+        console.log(this.location)
+
     }
-
+    componentWillReceiveProps(nextProps,nextState){
+      if(this.props.mapLocation!==nextProps.mapLocation){
+        this.setState({mapCentreText:nextProps.mapLocation})
+        return true;
+      }
+    }
     // TODO: Add theme selection discussed later HERE
+    componentWillMount(){
+      
+    }
+    componentDidMount(){
 
-    componentDidMount() {
-        this.platform = new window.H.service.Platform(this.state);
-
-        this.layer = this.platform.createDefaultLayers();
-        this.container = document.getElementById('here-map');
-        this.map = new window.H.Map(this.container, this.layer.normal.map, {
-            center: this.state.center,
-            zoom: this.state.zoom,
-          })
-          this.group = new window.H.map.Group();  
-        var events = new window.H.mapevents.MapEvents(this.map);
-        // eslint-disable-next-line
-        this. behavior = new window.H.mapevents.Behavior(events);
-        // eslint-disable-next-line
-        var ui = new window.H.ui.UI.createDefault(this.map,this. layer)
+    }
+    componentDidUpdate() {
+      if(this.state.dataLoaded&&this.state.count===0){
+      this.layer = this.platform.createDefaultLayers();
+      this.container = document.getElementById('here-map');
+      this.map = new window.H.Map(this.container, this.layer.normal.map, {
+        center: this.state.center,
+        zoom: this.state.zoom,
+      })
+      this.group = new window.H.map.Group();  
+    var events = new window.H.mapevents.MapEvents(this.map);
+    // eslint-disable-next-line
+    this.behavior = new window.H.mapevents.Behavior(events);
+    // eslint-disable-next-line
+    var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
         //this.addMarkersToMap(this.map,behavior);
         //this.req(this.behavior);
+    }
     }
     componentWillUnmount(){
         
     }
     shouldComponentUpdate(nextProps, nextState) {
         //this.changeTheme(props.theme, props.style);
-        if(this.props.searchArea!==nextProps.searchArea){
+        if(this.state.dataLoaded!==nextState.dataLoaded){
+          this.setState({count:this.state.count+1})
+          return true
+        }else if(this.props.searchArea!==nextProps.searchArea){
           this.map.addObject(this.group);
           this.req(this.behavior);
           this.setState({count:this.state.count+1})
           this.setState({arr:[null]});
+          
           return true
+        }else{
+          return false;
         }
-        return false;
+        
     }
-    changeCoordinate=(event,map)=>{
-        var x= event.nativeEvent.offsetX;
-        var y= event.nativeEvent.offsetY
-        var coord=map.screenToGeo(x,y)
-    }
+    // changeCoordinate=(event,map)=>{
+    //     var x= event.nativeEvent.offsetX;
+    //     var y= event.nativeEvent.offsetY
+    //     var coord=map.screenToGeo(x,y)
+    // }
     // changeTheme(theme, style) {
     //     var tiles = this.platform.getMapTileService({'type': 'base'});
     //     var layer = tiles.createTileLayer(
@@ -83,7 +131,7 @@ class  HereMaps extends Component {
         //map.removeObject(this.group);        
         this.group.addObject(placeMarker);
         this.dragEventHandler(map,behavior);
-       
+       console.log("working but marker")
     }
 
     dragEventHandler=(map,behavior)=>{
@@ -147,7 +195,7 @@ class  HereMaps extends Component {
        req=(behavior)=>{
         var geocoder = this.platform.getGeocodingService();
         let geocodingParams = {
-          searchText:""+this.props.searchArea+" jaipur rajasthan india"
+          searchText:""+this.props.searchArea+this.mapCentreText
         };
         geocoder.geocode(geocodingParams,(result)=>{ this.onResult(result,behavior); }, function(e) {
           alert(e);
@@ -243,6 +291,7 @@ class  HereMaps extends Component {
          
        };
     render() {
+        
         if(this.props.markerQuery){
           var geocoder = this.platform.getGeocodingService();
           let geocodingParams = {
@@ -255,7 +304,9 @@ class  HereMaps extends Component {
 
         return (
             <div style={{height:'100%'}}>
-            <div id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height:'100%', background: 'grey' }} />
+            <div id="here-map" 
+            //onClick={(event)=>this.changeCoordinate(event,this.map)} 
+            style={{width: '100%', height:'100%', background: 'grey' }} />
             </div>
         );
     }

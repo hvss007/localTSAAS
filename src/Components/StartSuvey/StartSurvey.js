@@ -4,7 +4,8 @@ import classes from './StartSurvey.css';
 import Axios from 'axios';
 import Toolbar from './Navigation/Toolbar/Toolbar';
 import SideDrawer from './SideDrawer/SideDrawer';
-import Jaipur from '../../assets/icons/matsimjaipur.png';
+// import Jaipur from '../../assets/icons/matsimjaipur.png';
+import Matsim from '../../assets/icons/matsim.gif';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 class StartSurvey extends Component{
     state={
@@ -45,7 +46,7 @@ class StartSurvey extends Component{
              style={{margin:'auto'}} onClick={this.onClickHandler}> Take a Survey</button> </div>
                 </div>
                 <div className={classes.RightContainer}>
-                    <img src={Jaipur}>
+                    <img src={Matsim}>
 
                     </img>
                 </div>

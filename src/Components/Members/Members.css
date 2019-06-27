@@ -1,7 +1,20 @@
 .MemberWrapper{
-
+    margin:auto;
+    display: flex;
+    flex-flow: column;
 }
 .Members{
     display:flex;
     flex-direction: row-reverse;
+}
+@media (max-width:600px){
+    .MapMemberWrapper{
+        flex-flow: column-reverse;
+    }
+}
+.MapMemberWrapper{
+    width: 100%;
+    height:fit-content;
+    position:relative;
+    display: flex
 }

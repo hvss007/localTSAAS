@@ -1,6 +1,7 @@
 .ProgressBar
-{
-    width:80%;
+{   
+    margin: auto;
+    width:90%;
     /* box-shadow:0 2px 3px rgb(128, 124, 124); */
     box-sizing: border-box;
 
