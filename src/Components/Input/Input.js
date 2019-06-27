@@ -19,6 +19,14 @@ class Input extends Component {
     if(this.props.invalid&&this.props.touched){
         inputClasses.push(classes.Invalid)
     }
+    // if(this.props.elementType==='select'){
+    //     if(this.props.elementconfig.options[0].disabled)
+    //     {console.log(this.props.elementconfig.options[0].disabled)
+    //         inputClasses.push(classes.DisabledText);}
+    //     else{
+    //         inputClasses.push(classes.EnabledText);
+    //     }
+    // }
     switch(this.props.elementType){
         case('input'):
         if(this.props.label!=="Landmark"){

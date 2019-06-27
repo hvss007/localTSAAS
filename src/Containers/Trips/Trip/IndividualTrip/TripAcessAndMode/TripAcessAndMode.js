@@ -10,6 +10,13 @@ class TripAcessAndMode extends Component{
         egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false}],
         mainMode:[{value:'',inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false,modeType:"mainMode"}]
     }
+    componentDidMount(){
+        // this.adjustLine(
+        //     document.querySelectorAll("."+classes.TripAccessIcon), 
+        //     document.querySelectorAll("."+classes.TripAccessIcon),
+        //     document.getElementById('line')
+        //   );
+    }
     componentWillReceiveProps(nextProps){
         if(nextProps.sendData!==this.props.sendData){
             const arrId=[this.state.access,this.state.egress,this.state.mainMode];
@@ -31,6 +38,7 @@ class TripAcessAndMode extends Component{
 
           }  
           this.props.tripAccessDataHandler(finalAccessObject);
+          console.log(finalAccessObject,"kytddddddddddddd")
           return true
         }
     }
@@ -49,7 +57,7 @@ class TripAcessAndMode extends Component{
             accessCopy[idi-1]=accessCopyElementOld;
             this.setState({egress:accessCopy})
         }
-        else if(name==="MainMode"){
+        else if(name==="Main Mode"){
             const accessCopy=[...this.state.mainMode];
             const accessCopyElementOld={...accessCopy[0]};
             accessCopyElementOld.value=value;
@@ -57,6 +65,44 @@ class TripAcessAndMode extends Component{
             this.setState({mainMode:accessCopy})
         }
     }
+    // adjustLine=(from, to, line)=>{
+
+    //     var fT = from.offsetTop  + from.offsetHeight/2;
+    //     var tT = to.offsetTop    + to.offsetHeight/2;
+    //     var fL = from.offsetLeft + from.offsetWidth/2;
+    //     var tL = to.offsetLeft   + to.offsetWidth/2;
+        
+    //     var CA   = Math.abs(tT - fT);
+    //     var CO   = Math.abs(tL - fL);
+    //     var H    = Math.sqrt(CA*CA + CO*CO);
+    //     var ANG  = 180 / Math.PI * Math.acos( CA/H );
+      
+    //     if(tT > fT){
+    //         var top  = (tT-fT)/2 + fT;
+    //     }else{
+    //         var top  = (fT-tT)/2 + tT;
+    //     }
+    //     if(tL > fL){
+    //         var left = (tL-fL)/2 + fL;
+    //     }else{
+    //         var left = (fL-tL)/2 + tL;
+    //     }
+      
+    //     if(( fT < tT && fL < tL) || ( tT < fT && tL < fL) || (fT > tT && fL > tL) || (tT > fT && tL > fL)){
+    //       ANG *= -1;
+    //     }
+    //     top-= H/2;
+      
+    //     line.style["-webkit-transform"] = 'rotate('+ ANG +'deg)';
+    //     line.style["-moz-transform"] = 'rotate('+ ANG +'deg)';
+    //     line.style["-ms-transform"] = 'rotate('+ ANG +'deg)';
+    //     line.style["-o-transform"] = 'rotate('+ ANG +'deg)';
+    //     line.style["-transform"] = 'rotate('+ ANG +'deg)';
+    //     line.style.top    = top+'px';
+    //     line.style.left   = left+'px';
+    //     line.style.height = H + 'px';
+    //   }
+      
     accessDataInHandler=(name,valueType,value,idi,valid)=>{
         if(name==="Access"){
             const accessCopy=[...this.state.access];
@@ -100,7 +146,7 @@ class TripAcessAndMode extends Component{
             accessCopy[idi-1]=accessCopyElementOld;
             this.setState({egress:accessCopy})
         }
-        else if(name==="MainMode"){
+        else if(name==="Main Mode"){
             const accessCopy=[...this.state.mainMode];
             const accessCopyElementOld={...accessCopy[0]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
@@ -157,7 +203,8 @@ class TripAcessAndMode extends Component{
         return(
             <div className={classes.TripAcessAndMode}>  
                  {tripAccess}
-                <TripAccess mainMode={true} accessName={"MainMode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
+                <div id="line"></div>
+                <TripAccess mainMode={true} accessName={"Main Mode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
                 {tripEgress}
             </div>
         )

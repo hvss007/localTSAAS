@@ -86,7 +86,7 @@ class TripOrigin extends Component{
                 <div className={TripOriginWrapperClasses.join(" ")}>
                 <div className={classes.Hidden}
                ></div> 
-                <TripOriginMap ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
+                <TripOriginMap initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
                 
                 <CommentModal key={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
                     {inputElement}
@@ -94,8 +94,8 @@ class TripOrigin extends Component{
                 {/* <div className={classes.OriginModal}></div> */}
                 <div className={classes.AnchorImagerapper} style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
                 <p style={{margin:'auto'}}>{this.props.originOrDestination}</p>
-                <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} src={this.state.src?this.state.src:OriginIcon}></img>
-                <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.state.title?this.state.title:"Choose Here"}</a>
+                <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
+                <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
                 </div>
                 </div>
             </Aux>

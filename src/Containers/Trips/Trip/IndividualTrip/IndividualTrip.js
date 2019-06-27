@@ -60,7 +60,7 @@ class Trip extends Component{
         
         let accessModeDataCopy={...tripInformationCopy.accessModeData};
         accessModeDataCopy={...dataObj};
-        console.log(accessModeDataCopy);
+        //  
         tripInformationCopy.accessModeData={...accessModeDataCopy};
         console.log(tripInformationCopy,"fvssbs")
         this.setState({tripInformation:tripInformationCopy},()=>{console.log(this.state.tripInformation)
@@ -70,19 +70,18 @@ class Trip extends Component{
             const originDestinationArray=[{...dataCopy.originData,...dataCopy.destinationData}];
             console.log(originDestinationArray);
             const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
+            console.log(updatedData,'bivivdibbud')
             const validArr=updatedData.accessModeData.mode.filter(item=>{
-            
-                return !item.isValid 
+                return item.accessMode.length===0 
             })
             
-            console.log(updatedData,"huigy")
+            
             if(validArr.length===0){
                 //this.setState({sendData1:true})
-                this.props.addTrip(this.props.idf)
+                this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng)
                 const data={memberID:this.props.match.params.id1};
                 Axios.post("http://127.0.0.1:8000/api/trips/",data)
                 .then(response=>{
-                        
                         console.log(response.data)            
                          Axios.post("http://127.0.0.1:8000/api/od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          //{tripID:response.data.tripID,...updatedData.originDestination[0]}
@@ -92,7 +91,9 @@ class Trip extends Component{
                             delete element.isValid;
                             Axios.post("http://127.0.0.1:8000/api/mode/",{tripID:response.data.tripID,...element}
                             //{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                            ).then(response=>{})    
+                            ).then(response=>{
+
+                            })    
                          });
                          
                         // response.data.tripID
@@ -164,7 +165,7 @@ class Trip extends Component{
         let drValue=false;
         if(originData.originLat&&originData.originLng&&originData.originPlace)
         {   orValue=true
-             tripAcessAndModeData=<TripAcessAndMode sendData={this.state.sendData} 
+             tripAcessAndModeData=<TripAcessAndMode tripIdf={this.props.idf} sendData={this.state.sendData} 
             tripAccessDataHandler={this.tripAccessDataHandler}
             ></TripAcessAndMode>
         }
@@ -174,7 +175,7 @@ class Trip extends Component{
         return(
             <div className={classes.Trip} >
                 <div className={classes.OriginDestinationWrapper} >
-                <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
+                <TripOrigin initLat={this.props.initLat} initLng={this.props.initLng} initialOrigin={this.props.initialOrigin} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
                 <TripOrigin latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>
                 </div>
                 

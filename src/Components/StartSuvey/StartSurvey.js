@@ -2,10 +2,24 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import classes from './StartSurvey.css';
 import Axios from 'axios';
+import Toolbar from './Navigation/Toolbar/Toolbar';
+import SideDrawer from './SideDrawer/SideDrawer';
+import Jaipur from '../../assets/icons/matsimjaipur.png';
+import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 class StartSurvey extends Component{
-    
-    onClickHandler=()=>{
-       
+    state={
+        showSideDrawer:false
+    }
+  
+    SideDrawerClosedHandler=()=>{
+        this.setState({showSideDrawer:false})
+    }
+    SideDrawerToggleHandler=()=>{
+        this.setState((prevState)=>{
+            return{showSideDrawer:!prevState.showSideDrawer}
+        })
+    }
+    onClickHandler=()=>{  
             // Axios.get("http://127.0.0.1:8000/api/family/")
             // .then(response=>{
                 
@@ -14,16 +28,28 @@ class StartSurvey extends Component{
             // })
             this.props.history.push({pathname:this.props.match.url+"family"})
     }
-
     render(){
         const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
     return(
         <div  className={classes.StartSurvey}>
-            <button className={buttonClasses.join(' ')}
+        <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
+        <Toolbar drawerToggleClicked={this.SideDrawerToggleHandler} ></Toolbar>
+            <div className={classes.MainContainer}>
+                <div className={classes.LeftContainer}>
+                    <div><img src={TsaasLogo}></img> </div>
+                    <div><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> </div>
+                    <div><button className={buttonClasses.join(' ')}
             //to={{
              //   pathname:this.props.match.url+'/member'
             //}}
-             style={{margin:'auto'}} onClick={this.onClickHandler}> Start Survey</button>
+             style={{margin:'auto'}} onClick={this.onClickHandler}> Take a Survey</button> </div>
+                </div>
+                <div className={classes.RightContainer}>
+                    <img src={Jaipur}>
+
+                    </img>
+                </div>
+            </div>
         </div>
     )}
 }

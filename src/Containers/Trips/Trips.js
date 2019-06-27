@@ -6,7 +6,7 @@ import Backdrop from '../../Hoc/Backdrop/Backdrop';
 import {Link} from 'react-router-dom';
 class Trips extends Component{
     state={
-        trips:[{idf:1,showAdd:true}]
+        trips:[{idf:1,showAdd:true,origin:null,lat:null,lng:null}]
     }
     componentDidMount(){
         //console.log(this.props.match.params.id1);
@@ -26,8 +26,9 @@ class Trips extends Component{
     stringSubtract=(a,b)=>{
         return a.replace(b, '')
     }
-    addTrip=(idf)=>{
-        const tripNew={idf:idf+1,showAdd:true};
+    addTrip=(idf,origin,lat ,lng)=>{
+        //,destination:this.state.trips[idf-1].destination
+        const tripNew={idf:idf+1,showAdd:true,origin:origin,lat:lat,lng:lng};
         const tripsCopy=[...this.state.trips];
         const tripsCopyElementOld={...tripsCopy[idf-1]};
         tripsCopyElementOld.showAdd=false;
@@ -37,7 +38,7 @@ class Trips extends Component{
     }
     render(){
         const tripElements=this.state.trips.map((item,index)=>{
-            return <Trip idf={item.idf} showAdd={item.showAdd} key={item.idf} addTrip={this.addTrip}></Trip>
+            return <Trip idf={item.idf} showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
         return(
             <Aux> 

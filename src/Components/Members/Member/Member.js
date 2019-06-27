@@ -4,9 +4,42 @@ import classes from './Member.css';
 import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
+import fs from '../../../assets/jsonfile/stateAndDistricts.json'
+
 class Member extends Component{
-    state={
-        familyId:null,
+    
+    constructor(props){
+        super(props);
+        this.data=fs;
+        const states=Object.keys(this.data);
+        console.log(states);
+        this.stateDataArray=[];
+
+    //    let memberformArray=[];
+        for (let key in this.data){
+            this.stateDataArray.push(
+                {
+                id:key,
+                config:this.data[key]     
+            })
+        }
+        
+        
+        console.log(this.stateDataArray)
+        this.stateArray=[];
+        this.stateDataArray.forEach(item=>{
+            let dataObj={value:item.id,displayValue:item.id};
+            this.stateArray.push(dataObj);
+        })
+        
+        
+        // states.forEach(item=>{
+        //     let dataObj={value:item,displayValue:item};
+        //     this.stateDataArray.push(dataObj);
+        // })
+        // console.log(...this.stateDataArray)
+        this.state={
+            familyId:null,
         member:{
             // memberId:{
             //     title:'member_id',
@@ -173,41 +206,7 @@ class Member extends Component{
                    type:'text',
                    options:[
                    {value:'',displayValue:"Select State", selected:true, disabled:true},
-                   {value:'Andaman and Nicobar Islands',displayValue:'Andaman and Nicobar Islands'},
-                   {value:'Andhra Pradesh',displayValue:'Andhra Pradesh'},
-                   {value:'Arunachal Pradesh',displayValue:'Arunachal Pradesh'},
-                   {value:'Assam',displayValue:'Assam'},
-                   {value:'Bihar',displayValue:'Bihar'},
-                   {value:'Chandigarh',displayValue:'Chandigarh'},
-                   {value:'Chhattisgarh',displayValue:'Chhattisgarh'},
-                   {value:'Dadra and Nagar Haveli',displayValue:'Dadra and Nagar Haveli'},
-                   {value:'Daman and Diu',displayValue:'Daman and Diu'},
-                   {value:'Delhi',displayValue:'Delhi'},
-                   {value:'Goa',displayValue:'Goa'},
-                   {value:'Gujarat',displayValue:'Gujarat'},
-                   {value:'Haryana',displayValue:'Haryana'},
-                   {value:'Himachal Pradesh',displayValue:'Himachal Pradesh'},
-                   {value:'Jammu and Kashmir',displayValue:'Jammu and Kashmir'},
-                   {value:'Jharkhand',displayValue:'Jharkhand'},
-                   {value:'Karnataka',displayValue:'Karnataka'},
-                   {value:'Kerala',displayValue:'Kerala'},
-                   {value:'Lakshadweep',displayValue:'Lakshadweep'},
-                   {value:'Madhya Pradesh',displayValue:'Madhya Pradesh'},
-                   {value:'Maharashtra',displayValue:'Maharashtra'},
-                   {value:'Manipur',displayValue:'Manipur'},
-                   {value:'Meghalaya',displayValue:'Meghalaya'},
-                   {value:'Mizoram',displayValue:'Mizoram'},
-                   {value:'Nagaland',displayValue:'Nagaland'},
-                   {value:'Orissa',displayValue:'Orissa'},
-                   {value:'Pondicherry',displayValue:'Pondicherry'},
-                   {value:'Punjab',displayValue:'Punjab'},
-                   {value:'Rajasthan',displayValue:'Rajasthan'},
-                   {value:'Sikkim',displayValue:'Sikkim'},
-                   {value:'Tamil Nadu',displayValue:'Tamil Nadu'},
-                   {value:'Tripura',displayValue:'Tripura'},
-                   {value:'Uttaranchal',displayValue:'Uttaranchal'},
-                   {value:'Uttar Pradesh',displayValue:'Uttar Pradesh'},
-                   {value:'West Bengal',displayValue:'West Benga'},
+                   ...this.stateArray,
                 ] 
                 },
                 value:'',
@@ -221,11 +220,14 @@ class Member extends Component{
             nameOfDistrict:{
                 name:'nameOfDistrict',
                 label:'Name of district',
-                elementType:'input',
+                elementType:'select',
                 elementConfig:{
-                   type:'text',
-                   placeholder:'' 
-                },
+                    type:'text',
+                    options:[
+                    {value:'',displayValue:"Select District", selected:true, disabled:true},
+                    
+                 ] 
+                 },
                 value:'',
                 show:true,
                 validation:{
@@ -328,6 +330,11 @@ class Member extends Component{
         totalQuestions:13,
         qAnswered:0,
         autoCompleteShow:true
+        }
+        // {value:'Andaman and Nicobar Islands',displayValue:'Andaman and Nicobar Islands'},
+    }
+    state={
+        
     }
     componentDidMount(){
         this.setState({familyId:this.props.familyId})
@@ -341,7 +348,26 @@ class Member extends Component{
         memberUpdated[inputIdentifier]=updatedInputElement; 
         this.setState({member:memberUpdated},()=>{
             this.progressHandler()
-            if(inputIdentifier=="landmark"&&updatedInputElement.valid){
+            if(inputIdentifier==="homeState"&&updatedInputElement.valid){
+                const newMemberUpdated={...this.state.member};
+                const newUpdatedInputElement={...newMemberUpdated["nameOfDistrict"]} ;
+                const newInputConfig={...newUpdatedInputElement.elementConfig}
+                const newInputConfigOptions=[...newInputConfig.options];
+                newInputConfigOptions.splice(1)
+                let stateName=this.state.member.homeState.value;
+                this.data[stateName].forEach(item=>{
+                    const dataObj={value:item,displayValue:item}
+                    newInputConfigOptions.push(dataObj);
+                })
+
+                //districtList.forEach(item=>{newInputConfigOptions.push(item)})
+                console.log(newInputConfigOptions)
+                newInputConfig.options=newInputConfigOptions;
+                newUpdatedInputElement.elementConfig=newInputConfig;
+                newMemberUpdated["nameOfDistrict"]=newUpdatedInputElement;
+                this.setState({member:newMemberUpdated});
+            }
+            if(inputIdentifier==="landmark"&&updatedInputElement.valid){
                 this.setState({autoCompleteShow:true})
                 this.landmarkValueHandler();
                 this.props.setMarkerQuery(null)
@@ -397,7 +423,7 @@ class Member extends Component{
         console.log(this.state.qAnswered);
         event.preventDefault();
         
-        if(this.state.qAnswered<=11){
+        if(this.state.qAnswered>=0){
             const member=this.state.member;
             if(member.stayAtHome.value==="yes"){
                 const post={

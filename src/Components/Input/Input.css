@@ -13,7 +13,7 @@
 .Label{
     text-align: left;
     margin-bottom: 8px;
-    color: #999999;
+    /* color: #999999; */
 }
 .Autocomplete{
     position: relative;
@@ -58,11 +58,18 @@
     /* padding:6px 10px; */
     box-sizing: border-box;
     /* width:200px; */
-    color: #555555;
+    /* color: #555555; */
+    /* color:rgba(41, 128, 185,0.4);  */
     /* box-shadow: 0 8px 6px -6px rgba(0,0,0,.5); */
-    border-bottom: 2px solid #dbdbdb;
+    /* border-bottom: 2px solid #dbdbdb; */
+    border-bottom: 2px solid rgba(41, 128, 185,0.4);
 }
-
+.DisabledText{
+    color:rgba(41, 128, 185,0.4); 
+}
+.EnabledText{
+    color:red;
+}
 .Invalid{
     border:1px solid red;
     background-color: #FDA49A
