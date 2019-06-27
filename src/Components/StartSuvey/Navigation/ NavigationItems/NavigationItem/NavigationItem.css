@@ -2,7 +2,9 @@
     margin:10px 0;
     box-sizing:border-box;
     display:block;
-    width:100% 
+    width:100%; 
+    flex:1;
+    text-align: center;
 }
 .NavigationItem a{
     text-decoration: none;
@@ -10,7 +12,6 @@
     box-sizing: border-box;
     display: block;
     color: black;
-
 
 }
 .NavigationItem a:hover,
@@ -31,8 +32,8 @@
     .NavigationItem a{
         text-decoration: none;
         height:100%;
-        padding: 22px;
-        width: auto;
+        padding: 18px;
+        width: 100%;
         border-bottom: 4px solid transparent;
         font-size: 20px
     }

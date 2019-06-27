@@ -129,7 +129,7 @@ class Family extends Component{
                 axios.post("http://127.0.0.1:8000/api/family/",post)
                     .then((Response)=>{
                         console.log(Response);
-                        this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/member'})
+                        this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
                     })
                     .catch(err => console.error(err));
             }
@@ -149,8 +149,9 @@ class Family extends Component{
         })
     }
         return(
-        <div style={{display:'flex'}}>    
+        <div style={{display:'flex' ,width:'100%',height:'100vh'}}>    
         <div className={classes.Family}>
+            <div className={classes.Heading}><p>Family Information</p></div>
             <form className={classes.CustomForm} >
             {familyformArray.map((memFormElement)=>{return(
                 memFormElement.config.show?
