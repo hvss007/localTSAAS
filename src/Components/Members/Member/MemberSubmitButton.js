@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import Aux from '../../../Hoc/Aux'
 import Trips from '../../../Containers/Trips/Trips';
 const memberSubmitButton=function(props){
-    return(
+  const buttonClasses=[classes.MemberSubmitButton,classes.MemberSubmitButtonBorder];
+
+  return(
         <Aux>
         <button onClick={(event)=>props.clicked(event)} 
-        className={classes.MemberSubmitButton}>
+        className={buttonClasses.join(' ')}>
             Submit
         </button>
         </Aux>

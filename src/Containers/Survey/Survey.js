@@ -5,11 +5,6 @@ import Trips from '../Trips/Trips';
 import StartSurvey from '../../Components/StartSuvey/StartSurvey';
 import Family from '../../Components/Family/Family';
 class Survey extends Component{
-    state={
-        
-    }
-
-
     render(){
         return(
         <div>  
@@ -21,10 +16,10 @@ class Survey extends Component{
         {/* <Trips>\
         </Trips> */}
         <Switch>
-        <Route path='/'exact component={StartSurvey}/>
-        <Route path='/family'exact component={Family}></Route>
-        <Route path="/family:id/member" exact component={Members}/>
-        <Route path="/family:id/member:id1/trip-info" exact component={Trips}/>
+        <Route path='/:id' exact component={StartSurvey}/>
+        <Route path='/:id/family'exact component={Family}></Route>
+        <Route path="/:id/family:id/member" exact component={Members}/>
+        <Route path="/:id/family:id/member:id1/trip-info" exact component={Trips}/>
         </Switch>
         </div>
         )

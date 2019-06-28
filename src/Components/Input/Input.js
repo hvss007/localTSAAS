@@ -69,7 +69,7 @@ class Input extends Component {
         break;
         case("select"):
         inputElement=
-        (<select onChange={this.props.changed} className={inputClasses.join(' ')} 
+        (<select style={this.props.style} onChange={this.props.changed} className={inputClasses.join(' ')} 
             >
               {     
                   this.props.elementconfig.options.map((inOpt)=>
@@ -86,7 +86,7 @@ class Input extends Component {
     }
     return(
         <div className={classes.Input}> 
-            <label className={classes.Label}>{this.props.label} </label>
+            <label style={{textAlign:this.props.textAlign}} className={classes.Label}>{this.props.label} </label>
             {inputElement}
         </div>
     )

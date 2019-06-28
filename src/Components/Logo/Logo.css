@@ -2,6 +2,17 @@
     background-color: white;
     height:100%;
     flex:1;
+    display: flex;
+}
+.LogoText{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    font-size: 22px;
+    padding-left: 10px;
+}
+.LogoText>p{
+    margin:0px
 }
 .Logo>img{
     height:100%;

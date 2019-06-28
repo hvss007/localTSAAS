@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import Aux from '../../../../../../Hoc/Aux'
 import Aux from '../../../../../../Hoc/Aux';
-import AcessIcon from '../../../../../../assets/icons/OriginIcon.png'; 
+import AcessIcon from '../../../../../../assets/icons/destination.png'; 
 import classes from './TripAcess.css';
 import TripModal from '../../../../../../Hoc/TripModal/TripModal';
 import Walk from '../../../../../../assets/icons/modeIcons/Walk.png';
@@ -32,10 +32,10 @@ class TripAccess extends Component{
             {id:9,src:Others,title:'Others',value:''},   
         ],
         accessInfoIn:[
-            {id:1,title:"Travel Time",value:'',valid:false,touched:false},
+            {id:1,title:"Travel Time",value:'',valid:false,touched:false,type:'time'},
             {id:2,title:"Travel Distance",value:'',valid:false,touched:false},
             {id:3,title:"Fare",value:'',valid:false,touched:false},
-            {id:4,title:"Cost",value:'',valid:false,touched:false}
+            // {id:4,title:"Cost",value:'',valid:false,touched:false}
         ],
         src:null,
         title:null,
@@ -149,7 +149,7 @@ class TripAccess extends Component{
                 </CommentModalInput>
         })
        const inputElementIn=this.state.accessInfoIn.map((item)=>{
-           return <TripAccessIn touched={item.touched} invalid={!item.valid} changed={this.onChangeHandler1} key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
+           return <TripAccessIn touched={item.touched} type={item.type} invalid={!item.valid} changed={this.onChangeHandler1} key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
        })   
         return(<Aux>
             <div className={classes.TripAccessWrapper}>

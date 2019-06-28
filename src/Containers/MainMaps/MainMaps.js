@@ -28,7 +28,7 @@ onChange(evt) {
 }
   render() {
     return (
-      <div className="MainMap h-100">
+      <div className={classes.MainMaps} >
         <div style={{fontSize:'12px',textAlign:'center'}} ><p>*You can drag the marker to your approximate new location</p></div>
         <HereMaps
           mapLocation={this.props.mapLocation}

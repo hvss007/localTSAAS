@@ -10,11 +10,10 @@
     .ProgressBar{
         width:500px;
     }
-
 }
 .ProgressBarText{
     font-weight: 300;
-    color:#ccc;
+    color:#000;
 }
 .ProgressBarInner{
     box-sizing: border-box;

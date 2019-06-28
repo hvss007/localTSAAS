@@ -8,6 +8,14 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+@media(max-width:500px){
+.TripAcessAndMode{
+  padding:1px 20px; 
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+}
 /* #content{
   position:relative;
 }

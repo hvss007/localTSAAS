@@ -13,7 +13,7 @@ const sideDrawer=(props)=>{
         <Aux>
             <BackdropNew show={props.open} clicked={props.closed}></BackdropNew>
             <div className={attachedClasses.join(' ')}>
-                <Logo height="10%"/>
+                <Logo height="10%" fontSize='16px'/>
                 <nav style={{boxSizing:'border-box',paddingLeft:'28px'}}>
                     <NavigationItems/>
                 </nav>

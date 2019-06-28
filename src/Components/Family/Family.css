@@ -1,4 +1,5 @@
 .Heading{
+    color: rgb(41, 129, 185);
     font-size: 30px;
 }
 .Family{
@@ -8,6 +9,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
 }
 .Input{
     display:block

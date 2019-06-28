@@ -8,7 +8,7 @@ const tripAccessIn=(props)=>{
     return (
         <div className={classes.TripAccessIn}>
             <label name={props.title}>{props.title}</label>
-            <input className={tripAccessInputClasses.join(' ')} type="number" onChange={(event)=>props.changed(event,props.title,props.id)}></input>
+            <input type={props.type} className={tripAccessInputClasses.join(' ')} onChange={(event)=>props.changed(event,props.title,props.id)}></input>
         </div>
     )
 }

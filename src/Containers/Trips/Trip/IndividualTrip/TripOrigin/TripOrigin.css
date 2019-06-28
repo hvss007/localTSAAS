@@ -36,18 +36,19 @@
 .TripOriginAnchor{
     text-align: center;
     margin:auto;
-    width:90px;
+    /* width:90px; */
+    white-space: nowrap;
     border-radius: 5px;
     border:1px solid black;
     display:block;
     transition: cursor ease-out 0.4s; 
     letter-spacing: 1px;
     padding: 2px 5px;
-    transition:cursor  ease-in .3s,letter-spacing ease-in .2s;
+    transition:cursor  ease-in .3s;
 }
 .TripOriginAnchor:hover{
     cursor:pointer;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
 }
 .Hidden{
     

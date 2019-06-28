@@ -12,7 +12,7 @@
     padding:2px 4px;
     box-sizing: border-box;
     width:200px;
-
+    text-align: center;
 }
 .Invalid{
     border:1px solid red;

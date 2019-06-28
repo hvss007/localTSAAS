@@ -7,10 +7,18 @@
     display:flex;
     flex-direction: row-reverse;
 }
+.MembersInner{
+    height:fit-content;
+    box-sizing:border-box;
+    padding:25px
+}
+
+
 @media (max-width:600px){
     .MapMemberWrapper{
         flex-flow: column-reverse;
     }
+    .MembersInner{padding: 0px;}
 }
 .MapMemberWrapper{
     width: 100%;

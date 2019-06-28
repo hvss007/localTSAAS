@@ -1,0 +1,8 @@
+.MainMaps{
+    height:70vh;
+}
+@media(min-width:500px){
+    .MainMaps{
+        height: 100%;
+    }
+}

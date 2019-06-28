@@ -5,18 +5,22 @@
     background: #fff;
 }
 .MainContainer{
-  width:90%;
-  margin-top: 73px;
+  width:100%;
+  margin-top: 100px;
   margin-left:auto;
   margin-right: auto;
-  height: fit-content;
+  /* height: fit-content; */
+  height:80vh; 
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding:25px;
+  /* padding:25px; */
 }
-.LeftContainer,.RightContainer{
+/* .LeftContainer,.RightContainer{
   width: 40%
+} */
+.LeftContainer{
+  width:100%
 }
 .LeftContainer{
   box-sizing: border-box;
@@ -35,10 +39,34 @@
   width: auto
 }
 .LeftContainer>div{
-  width: 100%
+  width: 100%;
+  display: flex;
+  text-align: center;
+}
+.ImgTextWrapper{
+  display:flex;
+  justify-content:center;
+}
+.ImgTextWrapper>img{
+  height:100px;
+  width:auto;
+}
+.LogoText{
+  color: rgb(19, 18, 18);
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  font-size: 26px;
+  padding-left: 10px;
+}
+.LeftContainer p{
+  margin:0px;
+  color: rgb(19, 18, 18);
 }
 .StartSurveyButton{
   margin: auto;
+  font-size: 18px;
+  font-weight: 600;
   box-sizing: border-box;
   display: inline-block;
   position: relative;
@@ -86,7 +114,6 @@
     pointer-events: none !important;
     opacity: 0.8 !important;
   }
-
   .StartSurveyButton.StartSurveyButtonBorder {
     color: #3498db;
     background: none;
@@ -102,4 +129,31 @@
   .StartSurveyButton.StartSurveyButtonBorder:active, .StartSurveyButton.StartSurveyButtonBorder.StartSurveyButton-pressed {
     color: gray;
     background-color: #52a7e0;
+  }
+  @media(min-width:500px){
+    .LeftContainer{
+      width:40%;
+    }
+    .MainContainer{
+      width:90%;
+      padding: 25px;
+    }
+    .LogoText{font-size: 40px}
+    .ImgTextWrapper{
+      justify-content: flex-start
+    }
+    .ImgTextWrapper>img{
+      width:125px;
+      height: auto
+    }
+    .LeftContainer>div{
+      width: 100%;
+      display: block;
+      text-align: left;
+    }
+    .LeftContainer>div:nth-of-type(1){
+      width: 100%;
+      display: flex;
+      text-align: left;      
+    }
   }

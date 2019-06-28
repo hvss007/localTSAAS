@@ -1,6 +1,4 @@
 :root {
-  --primary: #E39774; 
-  --main-bg-color: #EEEEEE
 }
 
 body {
@@ -8,5 +6,5 @@ body {
   padding: 0;
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: 'Roboto', sans-serif;
-  background-color: var(--main-bg-color)
+
 }

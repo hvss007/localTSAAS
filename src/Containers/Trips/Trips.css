@@ -12,7 +12,7 @@
 .TripInformation>h1{
     margin:auto;
     font-size:28px;
-    color:black;
+    color:rgb(41, 129, 185);
     font-weight: 300;
 }
 @media (max-width:400px){

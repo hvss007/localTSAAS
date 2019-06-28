@@ -18,7 +18,7 @@ class ProgressBar extends Component{
                 Progress Bar
             </h4>
             <div className={classes.ProgressBarInner}>
-                <div  className={classes.ProgressBarInnerInner} style={{transform:'scale('+(this.width*(1+this.props.transformValue)/14)/15.527 +')'}}>
+                <div  className={classes.ProgressBarInnerInner} style={{transform:'scale('+(this.width*(1+this.props.transformValue)/this.props.total)/15.527 +')'}}>
                 </div>
             </div>
             </div>

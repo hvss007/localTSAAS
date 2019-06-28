@@ -10,11 +10,82 @@
     justify-content:space-between;
     align-items: center;
 }
-@media (max-width:400px){
+@media (max-width:500px){
     .OriginDestinationWrapper{
         flex-direction: column
     }
     .Trip{
         padding: 0px
     }
+    .AddTripButton{margin-right: 5px;margin:initial}
+
 }
+.AddTripButton{
+    margin: auto;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    background-color: var(--primary);
+    height: 40px;
+    line-height: 40px;
+    padding: 0 40px;
+    border-radius: 4px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .AddTripButton:hover, .AddTripButton:focus, .AddTripButton.AddTripButton-hover {
+      color: #fff;
+      background-color: #52a7e0;
+      text-decoration: none;
+      outline: none;
+    }
+    .AddTripButton:active, .AddTripButton.AddTripButton-pressed {
+      color: #124364;
+      background-color: #217dbb;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+      box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.4);
+      text-decoration: none;
+    }
+    .AddTripButton:disabled, .AddTripButton.AddTripButton-disabled {
+      background-color: #e6e6e6 !important;
+      border: 1px solid #ccc !important;
+      color: #ccc !important;
+      text-shadow: 0 1px 1px white !important;
+      cursor: not-allowed !important;
+      box-shadow: none !important;
+      pointer-events: none !important;
+      opacity: 0.8 !important;
+    }
+    .AddTripButton.AddTripButtonBorder {
+      color: #3498db;
+      background: none;
+      border-width: 2px;
+      border-style: solid;
+      border-color: #3498db;
+      line-height: 36px;
+      display: initial;
+    }
+    .AddTripButton.AddTripButtonBorder:hover, .AddTripButton.AddTripButtonBorder.AddTripButton-hover {
+      color: #fff;
+      background-color: #3498db;
+    }
+    .AddTripButton.AddTripButtonBorder:active, .AddTripButton.AddTripButtonBorder.AddTripButton-pressed {
+      color: gray;
+      background-color: #52a7e0;
+    }
