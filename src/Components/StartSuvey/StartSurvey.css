@@ -10,7 +10,7 @@
   margin-left:auto;
   margin-right: auto;
   /* height: fit-content; */
-  height:80vh; 
+  height:70vh; 
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
@@ -42,6 +42,11 @@
   width: 100%;
   display: flex;
   text-align: center;
+}
+.FirstImageWrapper{
+  height: 200px;
+  display:flex;
+  justify-content:center;
 }
 .ImgTextWrapper{
   display:flex;

@@ -22,11 +22,10 @@ class Members extends Component{
         this.setState({showMap:true,setMapSearchText:searchText})
     }
     percentageHandler=(value)=>{
-        console.log(value);
         this.setState({percent:value});
     }
     landmarkHandler=(value)=>{
-        this.setState({landmarkString:value},()=>{console.log(this.state.landmarkString)})
+        this.setState({landmarkString:value})
     }
     setMarkerQuery=(query)=>{
         this.setState({query:query})
@@ -69,11 +68,11 @@ class Members extends Component{
         <div className={classes.MapMemberWrapper}
         // className="row flex-column-reverse flex-md-row" 
         style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 27px 51.33px 7.67px', borderRadius: '10px'}}>
-        {this.state.showMap?<div style={{flex:'2'}} >
+        {/* {this.state.showMap?<div style={{flex:'2'}} >
         <MainMaps mapLocation={this.state.setMapSearchText} dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
-        </div>:null}
+        </div>:null} */}
         <div className={classes.MemberWrapper}>
-        <ProgressBar total={12} transformValue={this.state.percent}>
+        <ProgressBar total={6} transformValue={this.state.percent}>
         </ProgressBar>
         <Member
             lat={this.state.lat}

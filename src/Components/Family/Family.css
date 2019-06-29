@@ -4,7 +4,7 @@
 }
 .Family{
     margin: auto;
-    width:80%;
+    width:100%;
     text-align:center;
     box-sizing: border-box;
     display: flex;
@@ -17,11 +17,52 @@
 .CustomForm{
     padding: 10px;
     background-color: #ffffff;
+    width: 80%;
+    margin: auto;
+    margin-top:2px
+}
+.MapFamilyWrapper{
     width: 100%;
+    height:fit-content;
+    position:relative;
+    display: flex
 }
 @media (min-width:600px){
     .Family{
         width:500px;
         box-shadow:0 2px 3px rgb(128, 124, 124);
     }
+    .CustomForm{
+        width: 100%;
+    }
 }
+.FamilyInner{
+    height:fit-content;
+    box-sizing:border-box;
+    padding:25px
+}
+
+.FamilyWrapper{
+    margin:auto;
+    display: flex;
+    flex-flow: column;}
+
+@media (max-width:600px){
+    .MapFamilyWrapper{
+        flex-flow: column-reverse;
+    }
+    .FamilyInner{padding: 0px;}
+}
+/* .MemberWrapper{
+    margin:auto;
+    display: flex;
+    flex-flow: column;
+}
+.Members{
+    display:flex;
+    flex-direction: row-reverse;
+}
+
+
+
+ */

@@ -67,7 +67,17 @@ class Member extends Component{
                        {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
-                }
+                },
+                value:'',
+                show:true,
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false,
+                optional:false
+
+
             },
             gender:{
                 name:'gender',
@@ -88,7 +98,8 @@ class Member extends Component{
                     required:true
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                optional:false
             },
             age:{
                 name:'age',
@@ -111,7 +122,8 @@ class Member extends Component{
                     required:true
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                optional:false
             },
             educationalQualification:{
                 name:'educationalQualification',
@@ -132,7 +144,8 @@ class Member extends Component{
                     required:true
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                optional:false
             },
             monthlyIncome:{
                 name:'monthlyIncome',
@@ -153,7 +166,8 @@ class Member extends Component{
                 },
                 show:true,
                 valid:false,
-                touched:false
+                touched:false,
+                optional:true
             },
             maritialStatus:{
                 name:'mamaritialStatusrt',
@@ -176,7 +190,8 @@ class Member extends Component{
                     required:true
                 },
                 valid:false,
-                touched:false
+                touched:false,
+                optional:false
             },
             differentlyAbled:{
                 name:'differentlyAbled',
@@ -196,62 +211,63 @@ class Member extends Component{
                 },
                 show:true,
                 valid:false,
-                touched:false
+                touched:false,
+                optional:true
             },
-            homeState:{
-                name:'homeState',
-                label:'Home State',
-                elementType:'select',
-                elementConfig:{
-                   type:'text',
-                   options:[
-                   {value:'',displayValue:"Select State", selected:true, disabled:true},
-                   ...this.stateArray,
-                ] 
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false
-            },
-            nameOfDistrict:{
-                name:'nameOfDistrict',
-                label:'Name of district',
-                elementType:'select',
-                elementConfig:{
-                    type:'text',
-                    options:[
-                    {value:'',displayValue:"Select District", selected:true, disabled:true},
+            // homeState:{
+            //     name:'homeState',
+            //     label:'Home State',
+            //     elementType:'select',
+            //     elementConfig:{
+            //        type:'text',
+            //        options:[
+            //        {value:'',displayValue:"Select State", selected:true, disabled:true},
+            //        ...this.stateArray,
+            //     ] 
+            //     },
+            //     value:'',
+            //     show:true,
+            //     validation:{
+            //         required:true
+            //     },
+            //     valid:false,
+            //     touched:false
+            // },
+            // nameOfDistrict:{
+            //     name:'nameOfDistrict',
+            //     label:'Name of district',
+            //     elementType:'select',
+            //     elementConfig:{
+            //         type:'text',
+            //         options:[
+            //         {value:'',displayValue:"Select District", selected:true, disabled:true},
                     
-                 ] 
-                 },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false
-            },
-            landmark:{
-                name:'landmark',
-                label:'Landmark',
-                elementType:'input',
-                elementConfig:{
-                   type:'text',
-                   placeholder:'' 
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false
-            },
+            //      ] 
+            //      },
+            //     value:'',
+            //     show:true,
+            //     validation:{
+            //         required:true
+            //     },
+            //     valid:false,
+            //     touched:false
+            // },
+            // landmark:{
+            //     name:'landmark',
+            //     label:'Landmark',
+            //     elementType:'input',
+            //     elementConfig:{
+            //        type:'text',
+            //        placeholder:'' 
+            //     },
+            //     value:'',
+            //     show:true,
+            //     validation:{
+            //         required:true
+            //     },
+            //     valid:false,
+            //     touched:false
+            // },
             // wardNo:{
             //     label:'Ward Number',
             //     elementType:'input',
@@ -267,23 +283,23 @@ class Member extends Component{
             //     valid:false,
             //     touched:false
             // },
-            pinCode:{
-                name:'pinCode',
-                label:'PIN Code',
-                elementType:'input',
-                elementConfig:{
-                   type:'number',
-                   placeholder:'' 
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true,
-                    length:6,
-                },
-                valid:false,
-                touched:false
-            },
+            // pinCode:{
+            //     name:'pinCode',
+            //     label:'PIN Code',
+            //     elementType:'input',
+            //     elementConfig:{
+            //        type:'number',
+            //        placeholder:'' 
+            //     },
+            //     value:'',
+            //     show:true,
+            //     validation:{
+            //         required:true,
+            //         length:6,
+            //     },
+            //     valid:false,
+            //     touched:false
+            // },
             principalSourceofIncome:{
                 name:'principalSourceofIncome',
                 label:'Principal Source Of Income',
@@ -305,7 +321,8 @@ class Member extends Component{
                 value:'',
                 show:true,
                 valid:false,
-                touched:false
+                touched:false,
+                optional:true
             },
             stayAtHome:{
                 name:'stayAtHome',
@@ -324,7 +341,8 @@ class Member extends Component{
                 value:'',
                 show:true,
                 valid:false,
-                touched:false
+                touched:false,
+                optional:false
             }
         },
         totalQuestions:13,
@@ -404,7 +422,7 @@ class Member extends Component{
         var noOfTrue=0;
         var objLen=arr.length;
         for(let i=0;i<objLen;i++){
-         if(this.state.member[arr[i]].valid){
+         if(this.state.member[arr[i]].valid&&!this.state.member[arr[i]].optional){
              noOfTrue++;
          }
         }
@@ -433,19 +451,20 @@ class Member extends Component{
                 const post={
                     familyID:this.state.familyId,
                     // memberId:member.memberId.value,
+                    householdHead:member.householdHead.value,
                     gender:member.gender.value,
                     age:member.age.value,
                     educationalQualification:member.educationalQualification.value,
                     monthlyIncome:member.monthlyIncome.value,
                     maritialStatus:member.maritialStatus.value,
                     differentlyAbled:member.differentlyAbled.value,
-                    homeState:member.homeState.value,
-                    nameOfDistrict:member.nameOfDistrict.value,
-                    landmark:member.landmark.value,
-                    pincode:member.pinCode.value,
+                    // homeState:member.homeState.value,
+                    // nameOfDistrict:member.nameOfDistrict.value,
+                    // landmark:member.landmark.value,
+                    // pincode:member.pinCode.value,
                     principalSourceofIncome:member.principalSourceofIncome.value,
-                    lat:this.props.lat,
-                    lng:this.props.lng,
+                    // lat:this.props.lat,
+                    // lng:this.props.lng,
                     tripsMade:member.stayAtHome.value
                 }
                 axios.post("http://127.0.0.1:8000/api/members/",post)
@@ -468,13 +487,13 @@ class Member extends Component{
                     monthlyIncome:member.monthlyIncome.value,
                     maritialStatus:member.maritialStatus.value,
                     differentlyAbled:member.differentlyAbled.value,
-                    homeState:member.homeState.value,
-                    nameOfDistrict:member.nameOfDistrict.value,
-                    landmark:member.landmark.value,
-                    pincode:member.pinCode.value,
+                    // homeState:member.homeState.value,
+                    // nameOfDistrict:member.nameOfDistrict.value,
+                    // landmark:member.landmark.value,
+                    // pincode:member.pinCode.value,
                     principalSourceofIncome:member.principalSourceofIncome.value,
-                    lat:this.props.lat,
-                    lng:this.props.lng,
+                    // lat:this.props.lat,
+                    // lng:this.props.lng,
                     tripsMade:member.stayAtHome.value
                 }
     

@@ -14,10 +14,17 @@
     box-sizing:border-box;
     position:absolute;
     z-index:100;
-    background:white
+    background:white;
+    text-align: center;
 }
 
 .LandmarkAutoComplete>li{
     cursor: pointer;
     
+}
+.LandmarkAutoComplete>li:hover{
+      color: #fff;
+      background-color: #52a7e0;
+      text-decoration: none;
+      outline: none;
 }

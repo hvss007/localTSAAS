@@ -5,7 +5,6 @@ class Input extends Component {
     state={
     backArr1:[]    
     }
-
     componentWillReceiveProps(nextProps){
         if(nextProps.autoCompleteArr !== this.props.autoCompleteArr){
             this.setState({backArr1:[...nextProps.autoCompleteArr]});
@@ -37,7 +36,7 @@ class Input extends Component {
         }else{      
             console.log(this.state.backArr1);
         Autocompleteitems=this.state.backArr1.length>0&&show? this.state.backArr1.map((items,index)=>{
-            return <li 
+            return <li  
             onClick={(event)=>
                 {
                 let tempArr=[...this.state.backArr1];
@@ -59,6 +58,7 @@ class Input extends Component {
                                 {...this.props.elementconfig} 
                                 value={this.props.value}
                                 id="myInput" 
+                                style={this.props.style}
                                 >
                             </input>
                             {true?<LandmarkAutoComplete>
@@ -82,7 +82,7 @@ class Input extends Component {
         
         break;
         default:
-            inputElement=<input className={classes.InputElement} ></input>
+            inputElement=<input className={classes.InputElement}></input>
     }
     return(
         <div className={classes.Input}> 
@@ -92,6 +92,4 @@ class Input extends Component {
     )
     }
 }
-
-
 export default Input;

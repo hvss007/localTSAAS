@@ -11,10 +11,16 @@
   display: block;
   padding: 5px;
   margin: 0px 5px;
-  width: 80px;
+  width: 40px;
   border: 1px solid #40a4c8;
   cursor: pointer;
   outline: none;
+}
+@media(min-width:600px){
+  .BuildControl button{
+    margin: 0px 5px;
+    width: 80px;
+  }
 }
 .BuildControl button:disabled {
   background-color: #8bcae0;
@@ -65,7 +71,6 @@
   background-color: #3a7185;
   color: white;
 }
-
 .BuildControl .More:hover,
 .BuildControl .More:active {
   background-color: #3a7185;

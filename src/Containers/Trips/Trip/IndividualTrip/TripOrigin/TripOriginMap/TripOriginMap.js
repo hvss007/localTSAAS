@@ -43,7 +43,13 @@ class TripOriginMap extends Component{
         //this.addMarkersToMap(this.map,behavior);
         //this.req(this.behavior);
         this.map.addObject(this.group);
-        this.addMarkersToMap(this.state.center,this.behavior);  
+        if(this.props.initLat&&this.props.initLng){
+          let dataObj={lat:this.props.initLat,lng:this.props.initLng};
+          this.addMarkersToMap(dataObj,this.behavior);  
+        }else{
+          this.addMarkersToMap(this.state.center,this.behavior);  
+        }
+        
     }
     shouldComponentUpdate(nextProps,nextState){
       // console.log(nextState.showFrontDrop);  
@@ -117,7 +123,6 @@ class TripOriginMap extends Component{
         //   this.group.addObject(placeMarker);
         // }
         // else{
-          console.log(this.props.initLat,"dddddddddddddddddddddddddddddddddd")
         var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
         placeMarker.draggable=true;
         let map=this.map;

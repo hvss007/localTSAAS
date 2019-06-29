@@ -10,7 +10,7 @@ import {withRouter} from 'react-router-dom';
 class Trip extends Component{
     state={
         tripInformation:{
-                originData:{originLat:null,originLng:null,originPlace:null,isValid:false},
+                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false},
                 destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false},
                 accessModeData:{}
             },
@@ -101,12 +101,8 @@ class Trip extends Component{
 
                             })    
                          });
-                         
                         // response.data.tripID
-                  
-                    })
-                
-                
+                    })    
             }
             else{
                 alert("Please fill all the fields before adding next trip")
@@ -169,7 +165,8 @@ class Trip extends Component{
         let tripAcessAndModeData=null;
         let orValue=false;
         let drValue=false;
-        if(originData.originLat&&originData.originLng&&originData.originPlace)
+        
+        if((originData.originLat||this.props.initLat)&&(originData.originLng||this.props.initLng)&&(originData.originPlace||this.props.initialOrigin))
         {   orValue=true
              tripAcessAndModeData=<TripAcessAndMode tripIdf={this.props.idf} sendData={this.state.sendData} 
             tripAccessDataHandler={this.tripAccessDataHandler}
