@@ -1,0 +1,34 @@
+.ContactUs{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-flow: column
+}
+.ContactUs h1{
+    text-align: center;
+}
+.ContactMain{
+    display:flex;
+    padding: 25px;
+
+    justify-content: space-between
+}
+.ContactRightMain{
+    text-align: right;
+}
+.ContactRightMain>a{
+    display: block;
+}
+@media(max-width:500px){
+    .ContactMain{
+        flex-flow: column-reverse;
+        padding:0px
+    }
+    .ContactRightMain{
+        text-align: center
+    }
+    .ContactLeftMain{
+        text-align: center;
+    }
+}
+

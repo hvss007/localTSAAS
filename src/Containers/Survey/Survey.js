@@ -4,6 +4,9 @@ import Members from '../../Components/Members/Members';
 import Trips from '../Trips/Trips';
 import StartSurvey from '../../Components/StartSuvey/StartSurvey';
 import Family from '../../Components/Family/Family';
+import PrivacyPolicy from '../../Components/PrivacyPolicy/PrivacyPolicy';
+import ContactUs from '../../Components/ContactUs/ContactUs';
+
 class Survey extends Component{
     render(){
         return(
@@ -17,6 +20,10 @@ class Survey extends Component{
         </Trips> */}
         <Switch>
         <Route path='/:id' exact component={StartSurvey}/>
+        {/* <Route path='/:id/wiki' exact component={Wiki}/> */}
+        <Route path='/:id/privacypolicy' exact component={PrivacyPolicy}/> 
+        <Route path='/:id/contact' exact component={ContactUs}/> 
+        
         <Route path='/:id/family'exact component={Family}></Route>
         <Route path="/:id/family:id/member" exact component={Members}/>
         <Route path="/:id/family:id/member:id1/trip-info" exact component={Trips}/>

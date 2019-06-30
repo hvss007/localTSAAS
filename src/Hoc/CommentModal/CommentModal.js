@@ -48,35 +48,42 @@ const CommentModal =props=>{
     
     const tipClasses=[classes.Tip];
     const dialogboxClasses=[classes.Dialogbox];
+    const bodyClasses=[classes.Body];
     let style={};
     console.log(window.innerWidth)
     if(props.originOrDestination==="Origin"){
       tipClasses.push(classes.TipLeft);
-      if(window.innerWidth>=400){
+      if(window.innerWidth>=500){
         style={ 
           left:props.show?'100%':'-100%'}
       }
       else{
-        style={left:'0%'}
+        props.show?bodyClasses.push(classes.BodyDisplay):null
+        style={width:!props.show?'100%':'0%',height:!props.show?'100%':'0%',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
       }
       
     }
     else if(props.originOrDestination==="Destination"){
       tipClasses.push(classes.TipRight); 
-      if(window.innerWidth>=400){
+      if(window.innerWidth>=500){
         style={ right:props.show?'100%':'-100%'}
+      }
+      else{
+        props.show?bodyClasses.push(classes.BodyDisplay):null
+        style={width:!props.show?'100%':'0%',height:!props.show?'100%':'0%',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
       } 
     }
     if(props.show){
       // if(props.originOrDestination==="Origin"){
       //   const style={left:'100'}
       // }      
+
       dialogboxClasses.push(classes.DisplayDialogBox);
     }
     return(
         <div className={dialogboxClasses.join(' ') }
             style={style}>
-        <div className={classes.Body}>
+        <div  className={bodyClasses.join(' ')}>
           <span className={tipClasses.join(' ')}></span>
           <div className={classes.Message}>
           {props.children}  

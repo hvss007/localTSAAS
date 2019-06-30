@@ -5,6 +5,7 @@ import classes from './StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
 import HomePage from '../../assets/icons/home1.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
+
 const startSurveySub=(props)=>{
     const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
         const backgroundElement =window.innerWidth<=500? <div style={{background:'url('+MobileHomePage+')',marginBottom:'50px',backgroundRepeat:'no-repeat',backgroundSize:'cover'}} className={classes.FirstImageWrapper}></div>:null
@@ -14,6 +15,7 @@ const startSurveySub=(props)=>{
         <div style={background} className={classes.StartSurvey} >
         <SideDrawer open={props.showSideDrawer} closed={props.SideDrawerClosedHandler}></SideDrawer>
         <Toolbar drawerToggleClicked={props.SideDrawerToggleHandler} ></Toolbar>
+            
             <div  className={classes.MainContainer}>
                 <div className={classes.LeftContainer}>
                     {backgroundElement}
@@ -24,7 +26,10 @@ const startSurveySub=(props)=>{
                             <p>As A Service</p>
                         </div>    
                     </div>
-                    {window.innerWidth>=500? <div><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> </div> :null}
+                    {window.innerWidth>=500? <div>
+                        <p>
+                            {props.collegeName=="homepage"&&props.collegeName=="IIT Roorkee"?"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.":"Welcome students of "+props.collegeName}
+                        </p> </div> :null}
                     <div><button  className={buttonClasses.join(' ')}
             //to={{
              //   pathname:this.props.match.url+'/member'

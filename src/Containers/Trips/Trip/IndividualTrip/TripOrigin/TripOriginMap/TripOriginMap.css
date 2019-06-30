@@ -1,3 +1,6 @@
+.WarningText{
+    display:none
+}
 .OriginMapWrapper{
     width: 100px;
     height: 100px;
@@ -55,16 +58,31 @@
     display:none;
 }
 @media (max-width:500px){
+    .WarningText{display:initial;}
     .OriginMapWrapper{
-        
+        margin:auto;
         position: relative;
+        width:100px;
+        height:100px;
+        transition: left ease-out 0.6s,right ease-out 0.6s,width ease-in 0.6s .7s,height ease-out .6s 1.3s, z-index ease-in-out .8s .5s ;
+    }
+    .OriginMapWrapperMoveRight,.OriginMapWrapperMoveLeft{
+        transform: none;
+        left: 0;
+        right: 0;
         width:100%;
         height:400px;
     }
+
     .OriginMapFrontDrop{
-        /* display: none; */
+        background-size: cover;
+        transition: background ease-in 0.2s; 
+        /* background: rgba(204,204,204,.9) */
     }
     .OriginMap{
-        /* opacity:1; */
+        opacity:0;
+    } 
+    .OriginMapShow{
+        opacity:1;
     }
 }

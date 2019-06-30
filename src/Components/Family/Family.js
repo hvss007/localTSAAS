@@ -92,10 +92,14 @@ class Family extends Component{
                 elementConfig:{
                    options:[
                     {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                    {value:'<5000',displayValue:'<5000'},
-                    {value:'5000-10000',displayValue:'5000-10000'},
-                    {value:'10000-100000',displayValue:'10000-100000'},
-                    {value:'>100000',displayValue:'>100000'}
+                        {value:'Nil',displayValue:'Nil'},
+                        {value:'<5000',displayValue:'<5000'},
+                        {value:'5000-10000',displayValue:'5000-10000'},
+                        {value:'10000-50000',displayValue:'10000-50000'},
+                        {value:'50000-1lakh',displayValue:'50000-1lakh'},
+                        {value:'1lakh-2lakh',displayValue:'1lakh-2lakh'},
+                        {value:'2lakh-5lakh',displayValue:'2lakh-5lakh'},                        
+                        {value:'>5lakh',displayValue:'>5lakh'}
                    ]
                 },
                 validation:{
@@ -435,16 +439,17 @@ state={}
         <div className={classes.FamilyWrapper}>
         <div className={classes.Family}>
             <div className={classes.Heading}><span><img style={{width:'40px'}} src={Family1}></img></span><p>Family Information</p></div>
-            <ProgressBar total={Object.keys(this.state.family).length} transformValue={this.state.qAnswered}></ProgressBar>
+            <ProgressBar total={4} transformValue={this.state.qAnswered}></ProgressBar>
             <BuildControls valueAdded={this.addValueHandler}
                 valueRemoved={this.removeValueHandler}
                 family={this.state.family1}></BuildControls>
-            <form className={classes.CustomForm} >
+            <form  className={classes.CustomForm} >
             {familyformArray.map((memFormElement)=>{return(
                 memFormElement.config.show?
                 
                 <Input 
                     textAlign='center'
+                    labelFontWeight='600'
                     autoCompleteShow={this.state.autoCompleteShow}
                     autoCompleteArr={arrNew}
                     style={{textAlignLast:'center'}}

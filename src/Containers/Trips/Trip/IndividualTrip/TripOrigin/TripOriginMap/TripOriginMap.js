@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './TripOriginMap.css';
 import FinalBackdrop from '../../../../../../Hoc/FinalBackdrop/FinalBackdrop';
 import Aux from '../../../../../../Hoc/Aux';
-//import Map from '../../../../../../assets/icons/Map.svg';
+import Map from '../../../../../../assets/icons/map.png';
 class TripOriginMap extends Component{
     constructor(props) {
         super(props);
@@ -205,8 +205,12 @@ class TripOriginMap extends Component{
  //    const styleSmall={width: '100px', height: '100px', background: 'grey',position:"absolute",marginTop:"30px" };
     return(
       <Aux>
+     <div style={{display:'flex',flexDirection:'column'}}>
+     
+     <div className={classes.WarningText} ><p  style={{fontSize:'14px' , textAlign:'center'}}> {"*Drag the marker to your journey "+ this.props.originOrDestination}</p></div>  
+     
       <div  className={originMapWrapperClasses.join(" ")} >
-        <div onClick={this.onClickHandler} style={{backgroundImage:'url('+Map+')'}} className={frontDropClasses.join(" ")}></div>
+        <div onClick={this.onClickHandler} style={window.innerWidth<=500?{backgroundImage:'url('+Map+')'}:null} className={frontDropClasses.join(" ")}></div>
         <div id={"originmap"+this.props.ifj} className={originMapClasses.join(' ')}
         //style={this.state.showFrontDrop?originMapStyle:null}
         >
@@ -214,6 +218,10 @@ class TripOriginMap extends Component{
         </div>
         
         </div>
+
+
+     </div>
+    
         <FinalBackdrop backdropHide={this.backdropHideHandler} backdropShow={this.state.backdropShow} ></FinalBackdrop>
         </Aux>    
     )

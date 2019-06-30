@@ -12,9 +12,9 @@ import StartSurveySub from './StartSurveySub';
 class StartSurvey extends Component{
     state={
         showSideDrawer:false,
-        displayComponent:false
+        displayComponent:false,
+        displayText:''
     }
-
     componentWillMount(){
         Axios.get("http://127.0.0.1:8000/api/college/")
         .then(Response=>{
@@ -22,10 +22,9 @@ class StartSurvey extends Component{
             console.log(this.props.match.url)
                const collegeArr= Response.data.filter(item=>{
                return (("/"+item.collegeURL===this.props.match.url));
-               
            })
            if(collegeArr.length===1){
-               this.setState({displayComponent:true})
+               this.setState({displayComponent:true,displayText:collegeArr[0].collegeName})
            }
            console.log(collegeArr);
         })
@@ -49,7 +48,7 @@ class StartSurvey extends Component{
     
     render(){
         
-        const element=this.state.displayComponent?<StartSurveySub  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:null;
+        const element=this.state.displayComponent?<StartSurveySub collegeName={this.state.displayText}  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:null;
     return element
     }
 }

@@ -10,8 +10,8 @@
   box-sizing: border-box;
   display: block;
   padding: 5px;
-  margin: 0px 5px;
-  width: 40px;
+  margin: 0px 0px;
+  width: 55px;
   border: 1px solid #40a4c8;
   cursor: pointer;
   outline: none;

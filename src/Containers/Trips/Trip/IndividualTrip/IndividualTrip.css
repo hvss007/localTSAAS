@@ -5,7 +5,23 @@
     padding:20px;
     text-align: right;
 }
+.TripHeading{
+  width: 93%;
+  height:50px;
+  text-align: left;
+  margin: auto;
+}
+.TripHeading>p{
+  margin:0;
+  padding: 0 40px 10px 0px;
+  font-size: 24px;
+  width: fit-content;
+  color: rgb(41, 129, 185);
+  font-weight: 300;
+  border-bottom: 1px solid #0000000d;
+}
 .OriginDestinationWrapper{
+    margin-top: 20px;
     display:flex;
     justify-content:space-between;
     align-items: center;
@@ -15,10 +31,21 @@
         flex-direction: column
     }
     .Trip{
-        padding: 0px
-    }
+        padding: 0px;
+        padding-bottom: 20px;
+        text-align: center;
+        border-bottom: 1px solid #0000005e;
+      }
     .AddTripButton{margin-right: 5px;margin:initial}
+    .TripHeading{
+      width: 100%;
+      text-align: center;
+    }
 
+    .TripHeading>p{
+      margin:0 auto;
+      padding: 0 30px;
+    }
 }
 .AddTripButton{
     margin: auto;

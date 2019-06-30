@@ -44,7 +44,9 @@ class Trips extends Component{
             <Aux> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
                 {tripElements}
-                <Link to={this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))}>Next Member</Link>
+               {this.state.trips.length>1?<div className={classes.NextMemberWrapper}>
+                    <Link className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder} to={this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))}>Next Member</Link>
+                </div>:null}
             </Aux>
         )
     }

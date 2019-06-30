@@ -14,6 +14,7 @@ import Bus from '../../../../../../assets/icons/modeIcons/Bus.png';
 import Train from '../../../../../../assets/icons/modeIcons/Train.png';
 import Others from '../../../../../../assets/icons/modeIcons/Others.png';
 import CommentModalInput from '../../../../../../Hoc/CommentModal/CommentModalInput/CommentModalInput'
+import Rupee from '../../../../../../assets/icons/rupee.png'
 import TripAccessIn from './TripAccessIn/TripAccessIn';
 //import Others from '../../../../../../assets/icons/Others.png';
 class TripAccess extends Component{
@@ -32,9 +33,9 @@ class TripAccess extends Component{
             {id:9,src:Others,title:'Others',value:''},   
         ],
         accessInfoIn:[
-            {id:1,title:"Travel Time",value:'',valid:false,touched:false,type:'time'},
-            {id:2,title:"Travel Distance",value:'',valid:false,touched:false},
-            {id:3,title:"Fare",value:'',valid:false,touched:false},
+            {id:1,title:"Travel Time (hh,mm)",value:'',valid:false,touched:false,type:'time'},
+            {id:2,title:"Travel Distance (km)",value:'',valid:false,touched:false},
+            {id:3,title:"Fare ",value:'',valid:false,touched:false,src:Rupee},
             // {id:4,title:"Cost",value:'',valid:false,touched:false}
         ],
         src:null,
@@ -75,13 +76,27 @@ class TripAccess extends Component{
         this.dialogBoxShow();
         this.itemClicked(title,selectedArrItems.src);
         
-        this.setState({accessInfo:accessInfoCopy}
+        this.setState({accessInfo:accessInfoCopy},()=>{
+            if(this.state.title.length>=0){
+                this.setState({activateAdd:true})
+            }
+            else{
+                this.setState({activateAdd:false})
+            }
+        }
             );
     }
     itemClicked=(title,src)=>{
         //document.querySelector('.'+classes.TripAccessAnchor).innerHTML=title;
         //document.querySelector('.'+classes.TripAccessIcon).src=src;
-        this.setState({src:src,title:title},()=>this.props.accessData(this.props.accessName,title,this.props.idi))
+        this.setState({src:src,title:title},()=>{
+        //   if(this.state.accessInfo.value.length){
+        //     this.setState({activateAdd:true})
+        //   }
+        //   else{
+        //     this.setState({activateAdd:false})
+        //   }  
+            this.props.accessData(this.props.accessName,title,this.props.idi)})
     }
     dialogBoxShow=()=>{
         this.setState({accessClickedIn:true});
@@ -119,7 +134,7 @@ class TripAccess extends Component{
         
     }
     addShower=()=>{
-       const validArr=[];
+     const validArr=[];
       this.state.accessInfoIn.forEach(item=>{
           validArr.push(item.valid)
       })
@@ -128,10 +143,10 @@ class TripAccess extends Component{
       })
       console.log(inValidArr)
       if(inValidArr.length>=0){
-          this.setState({activateAdd:true})
+          
           return true 
       }else {
-        this.setState({activateAdd:false})
+        
         return false
       }
     }
@@ -149,7 +164,7 @@ class TripAccess extends Component{
                 </CommentModalInput>
         })
        const inputElementIn=this.state.accessInfoIn.map((item)=>{
-           return <TripAccessIn touched={item.touched} type={item.type} invalid={!item.valid} changed={this.onChangeHandler1} key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
+           return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} changed={this.onChangeHandler1} key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
        })   
         return(<Aux>
             <div className={classes.TripAccessWrapper}>
@@ -158,10 +173,10 @@ class TripAccess extends Component{
                 <p style={{margin:'auto'}}>{this.props.accessName}</p>
             </div>
             <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} src={this.state.src?this.state.src:AcessIcon}></img>
-            <div style={{display:'flex'}}>
+            <div style={{display:'flex',flexFlow:'column'}}>
             <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a>
             {/* this.props.accessName */}
-            {this.props.showAdd&&this.state.activateAdd?<button onClick={this.addButtonHandler}>+</button>:null}
+            {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null}
             </div>
             </div>
             <TripModal 

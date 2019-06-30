@@ -7,7 +7,7 @@ const tripAccessIn=(props)=>{
     }
     return (
         <div className={classes.TripAccessIn}>
-            <label name={props.title}>{props.title}</label>
+            <label name={props.title}>{props.title}{props.src?<span><img style={{width:'11px'}} src={props.src}></img></span>:null}</label>
             <input type={props.type} className={tripAccessInputClasses.join(' ')} onChange={(event)=>props.changed(event,props.title,props.id)}></input>
         </div>
     )

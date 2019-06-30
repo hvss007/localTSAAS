@@ -5,7 +5,8 @@
     position: relative;
 }
 .TripAccessIcon{
-    width:125px;
+    width:100px;
+    margin: auto;
     height:auto;
     /* background:radial-gradient(rgba(37, 136, 218,.4),rgba(37, 136, 218,.4),white,white); */
     transition: background-color ease-out .8s,cursor ease-in .4s;
@@ -38,6 +39,78 @@
     cursor:pointer;
     letter-spacing: 2px;
 }
+.AddModeButton{
+    margin: auto;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    background-color: var(--primary);
+    height: 40px;
+    line-height: 40px;
+    padding: 0 40px;
+    border-radius: 4px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .AddModeButton:hover, .AddModeButton:focus, .AddModeButton.AddModeButton-hover {
+      color: #fff;
+      background-color: #52a7e0;
+      text-decoration: none;
+      outline: none;
+    }
+    .AddModeButton:active, .AddModeButton.AddModeButton-pressed {
+      color: #124364;
+      background-color: #217dbb;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+      box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.4);
+      text-decoration: none;
+    }
+    .AddModeButton:disabled, .AddModeButton.AddModeButton-disabled {
+      background-color: #e6e6e6 !important;
+      border: 1px solid #ccc !important;
+      color: #ccc !important;
+      text-shadow: 0 1px 1px white !important;
+      cursor: not-allowed !important;
+      box-shadow: none !important;
+      pointer-events: none !important;
+      opacity: 0.8 !important;
+    }
+    .AddModeButton.AddModeButtonBorder {
+     -webkit-appearance: listbox;
+      color: #3498db;
+      background: none;
+      border-width: 2px;
+      border-style: solid;
+      border-color: #3498db;
+      line-height: 36px;
+      display: initial;
+    }
+    .AddModeButton.AddModeButtonBorder:hover, .AddModeButton.AddModeButtonBorder.AddModeButton-hover {
+      color: #fff;
+      background-color: #3498db;
+    }
+    .AddModeButton.AddModeButtonBorder:active, .AddModeButton.AddModeButtonBorder.AddModeButton-pressed {
+      color: gray;
+      background-color: #52a7e0;
+    }
+
 @media(max-width:500px){
     .TripAccessWrapper{
         width: 100%;
@@ -48,6 +121,7 @@
     border-bottom: 1px solid rgb(100,100,100);
     }
     .TripAccessIcon{
-        margin:auto
+        margin:auto;
+        width:75px;
     }
 }

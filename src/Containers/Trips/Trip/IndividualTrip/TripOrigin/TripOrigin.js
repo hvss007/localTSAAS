@@ -43,11 +43,24 @@ class TripOrigin extends Component{
         selectedArrItems.value=title;
         originInfoCopy[id-1]=selectedArrItems;
         this.originItemSelectedHandler(title,selectedArrItems.src);
-        this.setState({originInfo:originInfoCopy},()=>{this.setState({modalShow:false,backdropShow:false})});
+        this.setState({originInfo:originInfoCopy},()=>{
+            if(window.innerWidth<=500){
+                this.setState({modalShow:true,backdropShow:false})
+            }
+            else{
+                this.setState({modalShow:false,backdropShow:false})
+            }
+            });
         console.log(selctedArr);
     }
     backdropClickedHandler=()=>{
-        this.setState({modalShow:false,backdropShow:false});
+        if(window.innerWidth<=500){
+            this.setState({modalShow:true,backdropShow:false});
+        }
+        else{
+            this.setState({modalShow:false,backdropShow:false});
+        }
+        
     }
     onChangeHandler=(event)=>{
         const originInfoCopy=[...this.state.originInfo];
@@ -63,7 +76,13 @@ class TripOrigin extends Component{
         
     }
      originClicked=()=>{
-        this.setState({modalShow:true,backdropShow:true})
+        if(window.innerWidth<=500){
+            this.setState({modalShow:false,backdropShow:false})
+        }
+        else{
+            this.setState({modalShow:true,backdropShow:true})
+        }
+        
     }
     latLongHandler=(lat,lng)=>{
         this.props.latLongHandler1(lat,lng,this.props.originOrDestination);
@@ -82,7 +101,7 @@ class TripOrigin extends Component{
             }
             return(
             <Aux>
-                <div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>
+                {window.innerWidth<='500px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:null}
                 <div className={TripOriginWrapperClasses.join(" ")}>
                 <div className={classes.Hidden}
                ></div> 
@@ -92,11 +111,11 @@ class TripOrigin extends Component{
                     {inputElement}
                 </CommentModal>   
                 {/* <div className={classes.OriginModal}></div> */}
-                <div className={classes.AnchorImagerapper} style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
-                <p style={{margin:'auto',fontSize:'20px'}}>{this.props.originOrDestination}</p>
-                <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
-                <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
-                </div>
+                    <div className={classes.AnchorImagerapper} style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
+                        <p style={{margin:'auto',fontSize:'20px'}}>{this.props.originOrDestination}</p>
+                        <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
+                        <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
+                    </div>
                 </div>
             </Aux>
         )}

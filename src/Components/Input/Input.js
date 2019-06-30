@@ -1,6 +1,7 @@
 import React , { Component }  from 'react';
 import classes from './Input.css';
 import LandmarkAutoComplete from './LandmarkAutoComplete';
+import Coins from '../../assets/icons/coins.png'
 class Input extends Component {
     state={
     backArr1:[]    
@@ -85,10 +86,21 @@ class Input extends Component {
             inputElement=<input className={classes.InputElement}></input>
     }
     return(
+        this.props.label!=='Family Income'? 
         <div className={classes.Input}> 
-            <label style={{textAlign:this.props.textAlign}} className={classes.Label}>{this.props.label} </label>
-            {inputElement}
-        </div>
+        <label  style={{textAlign:this.props.textAlign,fontWeight:this.props.labelFontWeight}} className={classes.Label}>{this.props.label} </label>
+        {inputElement}
+    </div>:
+    <div>
+       
+    <div style={{marginBottom:'15px'}} className={classes.Input}> 
+        <img style={{margin:'auto',width:'50px'}} src={Coins}></img>
+        <label  style={{textAlign:this.props.textAlign,fontWeight:this.props.labelFontWeight}} className={classes.Label}>{this.props.label} </label>
+        {inputElement}
+    </div>
+    <p  style={{fontWeight:'600',marginBottom:'1px',fontSize:'20px',borderBottom:'solid 1px rgba(200,200,200)'}}> Permanent Address:</p>
+    </div>
+       
     )
     }
 }

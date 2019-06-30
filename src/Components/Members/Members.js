@@ -72,7 +72,7 @@ class Members extends Component{
         <MainMaps mapLocation={this.state.setMapSearchText} dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
         </div>:null} */}
         <div className={classes.MemberWrapper}>
-        <ProgressBar total={6} transformValue={this.state.percent}>
+        <ProgressBar total={10} transformValue={this.state.percent}>
         </ProgressBar>
         <Member
             lat={this.state.lat}

@@ -9,7 +9,6 @@
     z-index:22;
     box-shadow: 0 8px 6px -6px rgba(0,0,0,.5);
 }
-
 .Dialogbox .Body {
     position: absolute;
     /* max-width: 300px; */
@@ -20,13 +19,16 @@
     border: 1px solid #ccc;
     left:0px;
   }
-  .Display{
+.Display{
     top:-25vh;
     width:350px;
     height:275px;
     opacity: 1;
     display: block
-  }
+}
+.MessageDisplay{
+  display: flex !important;
+}
   .DisplayIn{
     transition:height ease 0.3s;
     height:420px}
@@ -36,7 +38,7 @@
     font-family: Arial;
     font-size: 14px;
     line-height: 1.5;
-    display:flex;
+    display:none;
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
@@ -72,8 +74,7 @@
     border-radius: 3px;
     border: 1px solid #ccc;
     left:0px;
-    top: 35%;
-    
+    top: 35%;   
     transform: translateY(-50%);
   }
   .Dialogbox1Display{

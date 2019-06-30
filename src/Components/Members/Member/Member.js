@@ -7,14 +7,12 @@ import {withRouter} from 'react-router-dom';
 import fs from '../../../assets/jsonfile/stateAndDistricts.json'
 
 class Member extends Component{
-    
     constructor(props){
         super(props);
         this.data=fs;
         const states=Object.keys(this.data);
         console.log(states);
         this.stateDataArray=[];
-
     //    let memberformArray=[];
         for (let key in this.data){
             this.stateDataArray.push(
@@ -59,7 +57,7 @@ class Member extends Component{
             // },
             householdHead:{
                 name:'householdHead',
-                label:'Are you head of your family',
+                label:'Are you head of your family?',
                 elementType:'select',
                 elementConfig:{
                     options:[
@@ -78,6 +76,26 @@ class Member extends Component{
                 optional:false
 
 
+            },
+            respondent:{
+                name:'respondent',
+                label:'Are you yourself respondent?',
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                       {value:'yes',displayValue:'Yes'},
+                       {value:'no',displayValue:'No'},    
+                    ]
+                },
+                value:'',
+                show:true,
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false,
+                optional:false
             },
             gender:{
                 name:'gender',
@@ -154,10 +172,14 @@ class Member extends Component{
                 elementConfig:{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'Nil',displayValue:'Nil'},
                         {value:'<5000',displayValue:'<5000'},
                         {value:'5000-10000',displayValue:'5000-10000'},
-                        {value:'10000-100000',displayValue:'10000-100000'},
-                        {value:'>100000',displayValue:'>100000'}
+                        {value:'10000-50000',displayValue:'10000-50000'},
+                        {value:'50000-1lakh',displayValue:'50000-1lakh'},
+                        {value:'1lakh-2lakh',displayValue:'1lakh-2lakh'},
+                        {value:'2lakh-5lakh',displayValue:'2lakh-5lakh'},                        
+                        {value:'>5lakh',displayValue:'>5lakh'}
                     ]
                 },
                 value:'',
@@ -168,6 +190,87 @@ class Member extends Component{
                 valid:false,
                 touched:false,
                 optional:true
+            },
+            twoWheelerLicense:{
+                name:'twoWheelerLicense',
+                label:'Do you own motorcycle license ?',
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'Yes',displayValue:'Yes'},
+                        {value:'No',displayValue:'No'},
+                        
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:false
+            },
+            fourWheelerLicense:{
+                name:'fourWheelerLicense',
+                label:'Do you own car license ?',
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'Yes',displayValue:'Yes'},
+                        {value:'No',displayValue:'No'},
+                        
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:false
+            },
+            simCards:{
+                name:'simCards',
+                label:'How many sim cards do you use ?',
+                elementType:'input',
+                elementConfig:{
+                    type:'number',
+                    placeholder:'' 
+                 },
+                value:0,
+                validation:{
+                    required:true,
+                    notLess:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:false
+            },
+            dataWhileDriving:{
+                name:'dataWhileDrivning',
+                label:'Do you call or use data while driving ?',
+                elementType:'select',
+                elementConfig:{
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'Yes',displayValue:'Yes'},
+                        {value:'No',displayValue:'No'},
+                        
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:false
             },
             maritialStatus:{
                 name:'mamaritialStatusrt',
@@ -191,7 +294,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             differentlyAbled:{
                 name:'differentlyAbled',
@@ -326,7 +429,7 @@ class Member extends Component{
             },
             stayAtHome:{
                 name:'stayAtHome',
-                label:'Do you stay at home for the whole day',
+                label:'Do you stay at home for the whole day?',
                 elementType:'select',
                 elementConfig:{
                     options:[
@@ -345,7 +448,6 @@ class Member extends Component{
                 optional:false
             }
         },
-        totalQuestions:13,
         qAnswered:0,
         autoCompleteShow:true
         }
@@ -435,9 +537,15 @@ class Member extends Component{
         if(rules.required&&isValid){
             isValid=value.trim() !=='';
         }
+
+        if(rules.notLess&&isValid){
+            console.log(value);
+            isValid=(eval(value)>=0);
+        }
         if(rules.length&&isValid){
             isValid=value.length===rules.length;
         }
+
         console.log(isValid);
         return isValid;
     }
@@ -445,13 +553,18 @@ class Member extends Component{
         console.log(this.state.qAnswered);
         event.preventDefault();
         
-        if(this.state.qAnswered>=0){
+        if(this.state.qAnswered>=10){
             const member=this.state.member;
             if(member.stayAtHome.value==="yes"){
                 const post={
                     familyID:this.state.familyId,
                     // memberId:member.memberId.value,
                     householdHead:member.householdHead.value,
+                    respondent:member.respondent.value,
+                    twoWheelerLicense:member.twoWheelerLicense.value,
+                    simCards:member.simCards.value,
+                    fourWheelerLicense:member.fourWheelerLicense,
+                    dataWhileDriving:member.dataWhileDriving.value,
                     gender:member.gender.value,
                     age:member.age.value,
                     educationalQualification:member.educationalQualification.value,

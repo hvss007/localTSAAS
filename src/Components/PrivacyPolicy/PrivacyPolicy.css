@@ -1,0 +1,14 @@
+.PrivacyPolicy{
+    margin:auto;
+    width: 90%;
+    height:100%;
+    display:flex;
+    text-align: center;
+    flex-direction: column
+    ;
+}
+@media(min-width:500px){
+    .PrivacyPolicy{
+        text-align: left;
+    }
+}

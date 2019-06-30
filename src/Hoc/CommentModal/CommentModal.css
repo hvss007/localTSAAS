@@ -36,6 +36,7 @@
     border-right-color: transparent;
     border-bottom-color: transparent;  
   }
+  
   .Dialogbox{
     display: block;  
     z-index:-1;  
@@ -46,10 +47,13 @@
     overflow: hidden;
     opacity: 0;
     transition:left ease-in-out 0.8s,right ease-in-out 0.8s,opacity ease 0.2s ;
+    /* display: none; */
   }
+
   .DisplayDialogBox{
     z-index:100;
     opacity:1;
+    display: flex;
     width:300px;
     height:388px;
     border-radius: 2px;
@@ -79,15 +83,17 @@
     justify-content: space-evenly;
   }
 
-  @media (max-width:400px){
+  @media (max-width:500px){
     .Dialogbox{
       width: 100%;
       height:auto;
-      position:relative;
+      position: relative;;
       opacity:1;
       z-index: 1;
+      z-index: 2;
       left:0%;
       right:0%;
+      transition:left ease-in-out 0.8s,right ease-in-out 0.8s,opacity ease 1s,width ease .3s .6s,height ease .3s .6s ;
       /* background: rgb(245, 238, 224); */
     }
     .Dialogbox .Body {
@@ -95,6 +101,10 @@
       max-width: none;
       background: rgb(245, 238, 224);
 
+    }
+    .BodyDisplay{
+      width:0px !important;
+      height:0px !important;
     }
     .Tip{
       display: none
