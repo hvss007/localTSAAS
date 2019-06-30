@@ -79,7 +79,7 @@ class Member extends Component{
             },
             respondent:{
                 name:'respondent',
-                label:'Are you yourself respondent?',
+                label:'Are you respondent?',
                 elementType:'select',
                 elementConfig:{
                     options:[
@@ -193,7 +193,7 @@ class Member extends Component{
             },
             twoWheelerLicense:{
                 name:'twoWheelerLicense',
-                label:'Do you own motorcycle license ?',
+                label:'Do you have motorcycle license ?',
                 elementType:'select',
                 elementConfig:{
                     options:[
@@ -214,7 +214,7 @@ class Member extends Component{
             },
             fourWheelerLicense:{
                 name:'fourWheelerLicense',
-                label:'Do you own car license ?',
+                label:'Do you have car license ?',
                 elementType:'select',
                 elementConfig:{
                     options:[
@@ -253,14 +253,13 @@ class Member extends Component{
             },
             dataWhileDriving:{
                 name:'dataWhileDrivning',
-                label:'Do you call or use data while driving ?',
+                label:'Do you call or use data while driving?',
                 elementType:'select',
                 elementConfig:{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
                         {value:'No',displayValue:'No'},
-                        
                     ]
                 },
                 value:'',
@@ -610,7 +609,7 @@ class Member extends Component{
                     tripsMade:member.stayAtHome.value
                 }
     
-                axios.post("http://127.0.0.1:8000/api/members/",post)
+                axios.post("http://0.0.0.0:8000/api/members/",post)
                     .then((Response)=>{
                         
                         console.log(Response);

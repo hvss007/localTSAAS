@@ -381,7 +381,7 @@ state={}
                     // noOfCycles:family.noOfCycles.value,
                     // noOfTwoWheelers:family.noOfTwoWheelers.value,
                     // familyIncome:family.familyIncome.value,
-                    college:this.props.match.params.id,
+                    collegeID:this.props.match.params.id,
                     noOfCars:family1.noOfCars,
                     noOfCycles:family1.noOfCycles,
                     noOfTwoWheelers:family1.noOfTwoWheelers,
@@ -394,7 +394,7 @@ state={}
                     lng:this.state.lng
 
                 }
-                axios.post("http://127.0.0.1:8000/api/family/",post)
+                axios.post("http://0.0.0.0:8000/api/family/",post)
                     .then((Response)=>{
                         console.log(Response);
                         this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})

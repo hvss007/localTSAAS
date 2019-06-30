@@ -52,10 +52,7 @@ class Trip extends Component{
     //     this.setState({commentModalShowDestination:truth})
     // }
     onSubmitHandler=()=>{
-        
-         this.setState({sendData:true},
-        
-        
+         this.setState({sendData:true},        
         //     this.props.addTrip(this.props.idf);}
          )
     }
@@ -63,7 +60,6 @@ class Trip extends Component{
         console.log(dataObj);
         const tripInformationCopy={...this.state.tripInformation};
         //tripInformationCopy["accessModeData"]=dataObj;
-        
         let accessModeDataCopy={...tripInformationCopy.accessModeData};
         accessModeDataCopy={...dataObj};
         //  
@@ -86,16 +82,16 @@ class Trip extends Component{
                 //this.setState({sendData1:true})
                 this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng)
                 const data={memberID:this.props.match.params.id1};
-                Axios.post("http://127.0.0.1:8000/api/trips/",data)
+                Axios.post("http://0.0.0.0:8000/api/trips/",data)
                 .then(response=>{
                         console.log(response.data)            
-                         Axios.post("http://127.0.0.1:8000/api/od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                         Axios.post("http://0.0.0.0:8000/api/od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          ).then(response=>{})
                          updatedData.accessModeData.mode.forEach(element => {
                             console.log();
                             delete element.isValid;
-                            Axios.post("http://127.0.0.1:8000/api/mode/",{tripID:response.data.tripID,...element}
+                            Axios.post("http://0.0.0.0:8000/api/mode/",{tripID:response.data.tripID,...element}
                             //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                             ).then(response=>{
 
@@ -111,7 +107,7 @@ class Trip extends Component{
             
 
             
-            // Axios.get("http://127.0.0.1:8000/api/trips/")
+            // Axios.get("http://0.0.0.0:8000/api/trips/")
             //     .then((Response)=>{
                     
             //         console.log(Response);

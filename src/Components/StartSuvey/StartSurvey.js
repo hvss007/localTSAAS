@@ -1,14 +1,10 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-
 // import Axios from 'axios';
-
 // import Jaipur from '../../assets/icons/matsimjaipur.png';
 //import Matsim from '../../assets/icons/matsim.gif';
-
 import Axios from 'axios';
 import StartSurveySub from './StartSurveySub';
-
 class StartSurvey extends Component{
     state={
         showSideDrawer:false,
@@ -16,7 +12,7 @@ class StartSurvey extends Component{
         displayText:''
     }
     componentWillMount(){
-        Axios.get("http://127.0.0.1:8000/api/college/")
+        Axios.get("http://0.0.0.0:8000/api/college/")
         .then(Response=>{
             console.log(Response);
             console.log(this.props.match.url)
@@ -46,8 +42,7 @@ class StartSurvey extends Component{
             this.props.history.push({pathname:this.props.match.url+"/family"})
     }
     
-    render(){
-        
+    render(){    
         const element=this.state.displayComponent?<StartSurveySub collegeName={this.state.displayText}  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:null;
     return element
     }

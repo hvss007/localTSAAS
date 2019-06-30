@@ -29,7 +29,7 @@ class TripAccess extends Component{
             {id:5,src:Taxi,title:'Taxi',value:''},
             {id:6,src:Auto,title:'Auto',value:''},
             {id:7,src:Bus,title:'Bus',value:''},
-            {id:8,src:Train,title:'Train',value:''},
+            {id:8,src:Train,title:'Metro',value:''},
             {id:9,src:Others,title:'Others',value:''},   
         ],
         accessInfoIn:[

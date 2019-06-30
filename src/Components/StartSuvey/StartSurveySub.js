@@ -28,9 +28,14 @@ const startSurveySub=(props)=>{
                     </div>
                     {window.innerWidth>=500? <div>
                         <p>
-                            {props.collegeName=="homepage"&&props.collegeName=="IIT Roorkee"?"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.":"Welcome students of "+props.collegeName}
-                        </p> </div> :null}
-                    <div><button  className={buttonClasses.join(' ')}
+                            {(props.collegeName==="homepage"||props.collegeName==="IIT Roorkee")?"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.":"Welcome students of "+props.collegeName}
+                        </p> </div> :
+                    <div>
+                    <p style={{margin:'auto'}}>
+                        {(props.collegeName==="homepage"||props.collegeName==="IIT Roorkee")?null:"Welcome students of "+props.collegeName}
+                    </p> </div>
+                    }
+                    <div style={{marginTop:'5px'}}><button  className={buttonClasses.join(' ')}
             //to={{
              //   pathname:this.props.match.url+'/member'
             //}}
