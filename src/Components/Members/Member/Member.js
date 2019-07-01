@@ -4,38 +4,11 @@ import classes from './Member.css';
 import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
-import fs from '../../../assets/jsonfile/stateAndDistricts.json'
 
 class Member extends Component{
     constructor(props){
         super(props);
-        this.data=fs;
-        const states=Object.keys(this.data);
-        console.log(states);
-        this.stateDataArray=[];
-    //    let memberformArray=[];
-        for (let key in this.data){
-            this.stateDataArray.push(
-                {
-                id:key,
-                config:this.data[key]     
-            })
-        }
         
-        
-        console.log(this.stateDataArray)
-        this.stateArray=[];
-        this.stateDataArray.forEach(item=>{
-            let dataObj={value:item.id,displayValue:item.id};
-            this.stateArray.push(dataObj);
-        })
-        
-        
-        // states.forEach(item=>{
-        //     let dataObj={value:item,displayValue:item};
-        //     this.stateDataArray.push(dataObj);
-        // })
-        // console.log(...this.stateDataArray)
         this.state={
             familyId:null,
         member:{
