@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import Axios from 'axios';
 import StartSurveySub from './StartSurveySub';
 import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
+import HostName from '../../assets/globalvaribles/GlobalVariables';
 class StartSurvey extends Component{
     state={
         showSideDrawer:false,
@@ -13,7 +14,7 @@ class StartSurvey extends Component{
         displayText:''
     }
     componentWillMount(){
-        Axios.get("http://0.0.0.0:8000/api/college/")
+        Axios.get(HostName+"college/")
         .then(Response=>{
             console.log(Response);
             console.log(this.props.match.url)

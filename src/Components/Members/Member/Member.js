@@ -5,7 +5,7 @@ import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
 import fs from '../../../assets/jsonfile/stateAndDistricts.json'
-
+import HostName from '../../../assets/globalvaribles/GlobalVariables'
 class Member extends Component{
     constructor(props){
         super(props);
@@ -579,7 +579,7 @@ class Member extends Component{
                     // lng:this.props.lng,
                     tripsMade:member.stayAtHome.value
                 }
-                axios.post("http://127.0.0.1:8000/api/members/",post)
+                axios.post(HostName+"members/",post)
                     .then((Response)=>{
                         // console.log(Response);
                       window.location.reload();  
@@ -609,7 +609,7 @@ class Member extends Component{
                     tripsMade:member.stayAtHome.value
                 }
     
-                axios.post("http://0.0.0.0:8000/api/members/",post)
+                axios.post(HostName+"members/",post)
                     .then((Response)=>{
                         
                         console.log(Response);

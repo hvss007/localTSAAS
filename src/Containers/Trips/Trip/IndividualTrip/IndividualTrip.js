@@ -7,6 +7,7 @@ import Backdrop from '../../../../Hoc/Backdrop/Backdrop';
 import Backdrop1 from '../../../../Hoc/Backdrop/Backdrop1';
 import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
 import {withRouter} from 'react-router-dom';
+import HostName from '../../../../assets/globalvaribles/GlobalVariables';
 class Trip extends Component{
     state={
         tripInformation:{
@@ -82,16 +83,16 @@ class Trip extends Component{
                 //this.setState({sendData1:true})
                 this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng)
                 const data={memberID:this.props.match.params.id1};
-                Axios.post("http://0.0.0.0:8000/api/trips/",data)
+                Axios.post(HostName+"trips/",data)
                 .then(response=>{
                         console.log(response.data)            
-                         Axios.post("http://0.0.0.0:8000/api/od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                         Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          ).then(response=>{})
                          updatedData.accessModeData.mode.forEach(element => {
                             console.log();
                             delete element.isValid;
-                            Axios.post("http://0.0.0.0:8000/api/mode/",{tripID:response.data.tripID,...element}
+                            Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
                             //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                             ).then(response=>{
 
@@ -107,7 +108,7 @@ class Trip extends Component{
             
 
             
-            // Axios.get("http://0.0.0.0:8000/api/trips/")
+            // Axios.get(HostName+"trips/")
             //     .then((Response)=>{
                     
             //         console.log(Response);

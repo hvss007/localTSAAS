@@ -10,6 +10,7 @@ import Family1 from '../../assets/icons/family.png';
 import MainMaps from '../../Containers/MainMaps/MainMaps'
 import fs from '../../assets/jsonfile/stateAndDistricts.json'
 import Aux from '../../Hoc/Aux';
+import HostName from '../../assets/globalvaribles/GlobalVariables';
 class Family extends Component{
     constructor(props){
         super(props);
@@ -294,7 +295,7 @@ state={}
         this.setState({family:familyUpdated},()=>{
             this.progressHandler()
             if(inputIdentifier==="country"&&updatedInputElement.value==="Others"){
-                if(window.confirm("sorry but this survey is confined to India for now.Press Ok for leaving the survey")){
+                if(window.confirm("Sorry. Currently this survey is confined to residents of India for now. Press Ok to finish the survey")){
                     const family=this.state.family;
                     const family1=this.state.family1;
                     const post1={
@@ -311,7 +312,7 @@ state={}
                         lng:this.state.lng
                     }
                     this.props.history.push({pathname:'/finishsurvey'})
-                    axios.post("http://0.0.0.0:8000/api/family/",post1)
+                    axios.post(HostName+"family/",post1)
                     .then((Response)=>{
                         console.log(Response);
                         
@@ -435,7 +436,7 @@ state={}
                     lng:this.state.lng
 
                 }
-                axios.post("http://0.0.0.0:8000/api/family/",post)
+                axios.post(HostName+"family/",post)
                     .then((Response)=>{
                         console.log(Response);
                         this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
