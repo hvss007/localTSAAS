@@ -4,12 +4,9 @@ import classes from './Member.css';
 import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
-<<<<<<< HEAD
 import fs from '../../../assets/jsonfile/stateAndDistricts.json'
 import HostName from '../../../assets/globalvaribles/GlobalVariables'
-=======
 
->>>>>>> e03f31dc3dcc876ce2f8c71ae604e9008c80e3ac
 class Member extends Component{
     constructor(props){
         super(props);
