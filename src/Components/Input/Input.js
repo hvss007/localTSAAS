@@ -65,7 +65,7 @@ class Input extends Component {
                             {true?<LandmarkAutoComplete>
                                 {Autocompleteitems}
                             </LandmarkAutoComplete>:null}          
-                            <p style={{textAlign:'center',fontSize:'10px'}}>Drag the marker to your approximate location</p>    
+                            <p style={{textAlign:'center',fontSize:'11px'}}>Drag the marker nearest to your permanent address.</p>    
                           </div>
         }
         break;

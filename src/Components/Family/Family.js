@@ -155,7 +155,7 @@ class Family extends Component{
             },
             nameOfDistrict:{
                 name:'nameOfDistrict',
-                label:'Name of district',
+                label:'District',
                 elementType:'select',
                 elementConfig:{
                     type:'text',
