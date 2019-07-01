@@ -16,23 +16,24 @@ class Family extends Component{
         super(props);
         this.data=fs;
         const states=Object.keys(this.data);
+        states.sort();
         console.log(states);
-        this.stateDataArray=[];
+        // this.stateDataArray=[];
 
     //    let memberformArray=[];
-        for (let key in this.data){
-            this.stateDataArray.push(
-                {
-                id:key,
-                config:this.data[key]     
-            })
-        }
+        // for (let key in this.data){
+        //     this.stateDataArray.push(
+        //         {
+        //         id:key,
+        //         config:this.data[key]     
+        //     })
+        // }
         
         
-        console.log(this.stateDataArray)
+        // console.log(this.stateDataArray)
         this.stateArray=[];
-        this.stateDataArray.forEach(item=>{
-            let dataObj={value:item.id,displayValue:item.id};
+        states.forEach(item=>{
+            let dataObj={value:item,displayValue:item};
             this.stateArray.push(dataObj);
         })
         
@@ -88,19 +89,19 @@ class Family extends Component{
             // },
             familyIncome:{
                 name:'familyIncome',
-                label:'Family Income',
+                label:'Monthly Income of Family',
                 elementType:'select',
                 elementConfig:{
                    options:[
                     {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Nil',displayValue:'Nil'},
-                        {value:'<5000',displayValue:'<5000'},
-                        {value:'5000-10000',displayValue:'5000-10000'},
-                        {value:'10000-50000',displayValue:'10000-50000'},
-                        {value:'50000-1lakh',displayValue:'50000-1lakh'},
-                        {value:'1lakh-2lakh',displayValue:'1lakh-2lakh'},
-                        {value:'2lakh-5lakh',displayValue:'2lakh-5lakh'},                        
-                        {value:'>5lakh',displayValue:'>5lakh'}
+                        {value:'<5000',displayValue:'Below 5,000'},
+                        {value:'5000-10000',displayValue:'5,000 - 10,000'},
+                        {value:'10000-50000',displayValue:'10,000 - 50,000'},
+                        {value:'50000-1lakh',displayValue:'50,000 - 1 lakh'},
+                        {value:'1lakh-2lakh',displayValue:'1 lakh - 2 lakh'},
+                        {value:'2lakh-5lakh',displayValue:'2 lakh - 5 lakh'},                        
+                        {value:'>5lakh',displayValue:'Above 5 lakh'}
                    ]
                 },
                 validation:{

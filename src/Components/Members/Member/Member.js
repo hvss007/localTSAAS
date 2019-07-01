@@ -4,38 +4,16 @@ import classes from './Member.css';
 import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
+<<<<<<< HEAD
 import fs from '../../../assets/jsonfile/stateAndDistricts.json'
 import HostName from '../../../assets/globalvaribles/GlobalVariables'
+=======
+
+>>>>>>> e03f31dc3dcc876ce2f8c71ae604e9008c80e3ac
 class Member extends Component{
     constructor(props){
         super(props);
-        this.data=fs;
-        const states=Object.keys(this.data);
-        console.log(states);
-        this.stateDataArray=[];
-    //    let memberformArray=[];
-        for (let key in this.data){
-            this.stateDataArray.push(
-                {
-                id:key,
-                config:this.data[key]     
-            })
-        }
         
-        
-        console.log(this.stateDataArray)
-        this.stateArray=[];
-        this.stateDataArray.forEach(item=>{
-            let dataObj={value:item.id,displayValue:item.id};
-            this.stateArray.push(dataObj);
-        })
-        
-        
-        // states.forEach(item=>{
-        //     let dataObj={value:item,displayValue:item};
-        //     this.stateDataArray.push(dataObj);
-        // })
-        // console.log(...this.stateDataArray)
         this.state={
             familyId:null,
         member:{
@@ -127,10 +105,10 @@ class Member extends Component{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'<4',displayValue:'Below 4'},
-                        {value:'4-18',displayValue:'4-18'},
-                        {value:'18-25',displayValue:'18-25'},
-                        {value:'25-40',displayValue:'25-40'},
-                        {value:'40-60',displayValue:'40-60'},
+                        {value:'4-18',displayValue:'4  - 18'},
+                        {value:'18-25',displayValue:'18 - 25'},
+                        {value:'25-40',displayValue:'25 - 40'},
+                        {value:'40-60',displayValue:'40 - 60'},
                         {value:'>60',displayValue:'Above 60'}
                     ]
                 },
@@ -173,13 +151,13 @@ class Member extends Component{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Nil',displayValue:'Nil'},
-                        {value:'<5000',displayValue:'<5000'},
-                        {value:'5000-10000',displayValue:'5000-10000'},
-                        {value:'10000-50000',displayValue:'10000-50000'},
-                        {value:'50000-1lakh',displayValue:'50000-1lakh'},
-                        {value:'1lakh-2lakh',displayValue:'1lakh-2lakh'},
-                        {value:'2lakh-5lakh',displayValue:'2lakh-5lakh'},                        
-                        {value:'>5lakh',displayValue:'>5lakh'}
+                        {value:'<5000',displayValue:'Below 5,000'},
+                        {value:'5000-10000',displayValue:'5,000 - 10,000'},
+                        {value:'10000-50000',displayValue:'10,000 - 50,000'},
+                        {value:'50000-1lakh',displayValue:'50,000 - 1 lakh'},
+                        {value:'1lakh-2lakh',displayValue:'1 lakh - 2 lakh'},
+                        {value:'2lakh-5lakh',displayValue:'2 lakh - 5 lakh'},                        
+                        {value:'>5lakh',displayValue:'Above 5 lakh'}
                     ]
                 },
                 value:'',
@@ -191,9 +169,34 @@ class Member extends Component{
                 touched:false,
                 optional:true
             },
+            principalSourceofIncome:{
+                name:'principalSourceofIncome',
+                label:'Principal Source of Income',
+                elementType:'select',
+                elementConfig:{
+                   options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'notApplicable',displayValue:'Not Applicable'},
+                        {value:'governmentServices',displayValue:'Government Services'},
+                        {value:'privateServices',displayValue:'Private Service'},
+                        {value:'agriculture',displayValue:'Agriculture'},
+                        {value:'organisedBusiness/Trade',displayValue:'Organised business / trade / shop'},
+                        {value:'pensionRent',displayValue:'Pension / Rent'},
+                        {value:'others',displayValue:'Others'}
+                   ]
+                },
+                validation:{
+                    required:true
+                },
+                value:'',
+                show:true,
+                valid:false,
+                touched:false,
+                optional:true
+            },
             twoWheelerLicense:{
                 name:'twoWheelerLicense',
-                label:'Do you have motorcycle license ?',
+                label:'Do you have a motorcycle license?',
                 elementType:'select',
                 elementConfig:{
                     options:[
@@ -214,7 +217,7 @@ class Member extends Component{
             },
             fourWheelerLicense:{
                 name:'fourWheelerLicense',
-                label:'Do you have car license ?',
+                label:'Do you have a car license?',
                 elementType:'select',
                 elementConfig:{
                     options:[
@@ -235,7 +238,7 @@ class Member extends Component{
             },
             simCards:{
                 name:'simCards',
-                label:'How many sim cards do you use ?',
+                label:'How many sim cards do you use?',
                 elementType:'input',
                 elementConfig:{
                     type:'number',
@@ -253,7 +256,7 @@ class Member extends Component{
             },
             dataWhileDriving:{
                 name:'dataWhileDrivning',
-                label:'Do you call or use data while driving?',
+                label:'Do you call or use mobile-data while driving?',
                 elementType:'select',
                 elementConfig:{
                     options:[
@@ -402,30 +405,6 @@ class Member extends Component{
             //     valid:false,
             //     touched:false
             // },
-            principalSourceofIncome:{
-                name:'principalSourceofIncome',
-                label:'Principal Source Of Income',
-                elementType:'select',
-                elementConfig:{
-                   options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'governmentServices',displayValue:'Government Services'},
-                        {value:'agriculture',displayValue:'Agriculture'},
-                        {value:'organisedBusiness/Trade',displayValue:'Organised business/trade'},
-                        {value:'shop',displayValue:'Shop'},
-                        {value:'workshop',displayValue:'Workshop'},
-                        {value:'others',displayValue:'Others'}
-                   ]
-                },
-                validation:{
-                    required:true
-                },
-                value:'',
-                show:true,
-                valid:false,
-                touched:false,
-                optional:true
-            },
             stayAtHome:{
                 name:'stayAtHome',
                 label:'Do you stay at home for the whole day?',
@@ -433,8 +412,8 @@ class Member extends Component{
                 elementConfig:{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'no',displayValue:'No'},
                         {value:'yes',displayValue:'Yes'},
+                        {value:'no',displayValue:'No'},
                     ]
                 },
                 validation:{
