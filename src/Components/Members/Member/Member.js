@@ -164,6 +164,31 @@ class Member extends Component{
                 touched:false,
                 optional:true
             },
+            principalSourceofIncome:{
+                name:'principalSourceofIncome',
+                label:'Principal Source of Income',
+                elementType:'select',
+                elementConfig:{
+                   options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'notApplicable',displayValue:'Not Applicable'},
+                        {value:'governmentServices',displayValue:'Government Services'},
+                        {value:'privateServices',displayValue:'Private Service'},
+                        {value:'agriculture',displayValue:'Agriculture'},
+                        {value:'organisedBusiness/Trade',displayValue:'Organised business / trade / shop'},
+                        {value:'pensionRent',displayValue:'Pension / Rent'},
+                        {value:'others',displayValue:'Others'}
+                   ]
+                },
+                validation:{
+                    required:true
+                },
+                value:'',
+                show:true,
+                valid:false,
+                touched:false,
+                optional:true
+            },
             twoWheelerLicense:{
                 name:'twoWheelerLicense',
                 label:'Do you have a motorcycle license?',
@@ -375,30 +400,6 @@ class Member extends Component{
             //     valid:false,
             //     touched:false
             // },
-            principalSourceofIncome:{
-                name:'principalSourceofIncome',
-                label:'Principal Source of Income',
-                elementType:'select',
-                elementConfig:{
-                   options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'governmentServices',displayValue:'Government Services'},
-                        {value:'agriculture',displayValue:'Agriculture'},
-                        {value:'organisedBusiness/Trade',displayValue:'Organised business/trade'},
-                        {value:'shop',displayValue:'Shop'},
-                        {value:'workshop',displayValue:'Workshop'},
-                        {value:'others',displayValue:'Others'}
-                   ]
-                },
-                validation:{
-                    required:true
-                },
-                value:'',
-                show:true,
-                valid:false,
-                touched:false,
-                optional:true
-            },
             stayAtHome:{
                 name:'stayAtHome',
                 label:'Do you stay at home for the whole day?',
@@ -406,8 +407,8 @@ class Member extends Component{
                 elementConfig:{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'no',displayValue:'No'},
                         {value:'yes',displayValue:'Yes'},
+                        {value:'no',displayValue:'No'},
                     ]
                 },
                 validation:{
