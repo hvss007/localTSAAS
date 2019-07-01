@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom';
 const navigationItems =(props)=>(
     <ul className={classes.NavigationItems}>
         {console.log(props)}
-        <NavigationItem anchor link="https://www.iitr.ac.in/"  >IIT Roorkee</NavigationItem>
+        <NavigationItem anchor link="https://www.iitr.ac.in/">IIT Roorkee</NavigationItem>
         <NavigationItem link={"/wiki"}>Wiki</NavigationItem>
         <NavigationItem link={"/privacypolicy"}>Privacy Policy</NavigationItem>
         <NavigationItem link={"/contact"}>Contact Us</NavigationItem>
