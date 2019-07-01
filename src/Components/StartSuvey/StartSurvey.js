@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 //import Matsim from '../../assets/icons/matsim.gif';
 import Axios from 'axios';
 import StartSurveySub from './StartSurveySub';
+import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
 class StartSurvey extends Component{
     state={
         showSideDrawer:false,
@@ -21,6 +22,9 @@ class StartSurvey extends Component{
            })
            if(collegeArr.length===1){
                this.setState({displayComponent:true,displayText:collegeArr[0].collegeName})
+           }
+           else{
+
            }
            console.log(collegeArr);
         })
@@ -39,11 +43,24 @@ class StartSurvey extends Component{
             //     console.log(response.data);
             //    this.props.history.push({pathname:this.props.match.url+response.data.familyID+'/member'})
             // })
-            this.props.history.push({pathname:this.props.match.url+"/family"})
+            if(this.props.match.url==="/"){
+                this.props.history.push({pathname:"/home/family"})
+            }
+            else{this.props.history.push({pathname:this.props.match.url+"/family"})}
     }
     
     render(){    
-        const element=this.state.displayComponent?<StartSurveySub collegeName={this.state.displayText}  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:null;
+        let showElement;
+        if(this.props.match.url==="/"){
+            showElement=<StartSurveySub collegeName="home" showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
+        }
+        else{
+                showElement=null
+        }
+       
+        // const navElement=this.props.match.params.id==="privacypolicy"?<PrivacyPolicy/>:null
+        // const testElement=this.props.match.url==="/"?<StartSurveySub collegeName="none"  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:null
+        const element=this.state.displayComponent?<StartSurveySub collegeName={this.state.displayText}  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:showElement;
     return element
     }
 }

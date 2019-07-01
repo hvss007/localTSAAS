@@ -23,6 +23,20 @@ class Trips extends Component{
         // //console.log(this.props.match.url-(this.props.match.params.id1+"/trip-info"))
         // console.log(result);
     }
+    nextMemberClickHandler=()=>{
+        if (window.confirm("Have you added all trips ?")) {
+           this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+          } else {
+           
+          }
+    }
+    finishClicked=()=>{
+        if (window.confirm("Have you added all members ?")) {
+            this.props.history.push({pathname:'/finishsurvey'})
+           } else {
+            
+           }
+    }
     stringSubtract=(a,b)=>{
         return a.replace(b, '')
     }
@@ -44,8 +58,12 @@ class Trips extends Component{
             <Aux> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
                 {tripElements}
-               {this.state.trips.length>1?<div className={classes.NextMemberWrapper}>
-                    <Link className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder} to={this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))}>Next Member</Link>
+               {this.state.trips.length>0?<div className={classes.NextMemberWrapper}>
+                    
+                    <button onClick={this.nextMemberClickHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Add Member</button>
+                    <button onClick={this.finishClicked} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}> Finish Survey</button>
+                    {/* <Link className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder} to={this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))}>Next Member</Link> */}
+                
                 </div>:null}
             </Aux>
         )

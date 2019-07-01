@@ -174,7 +174,7 @@ class Trip extends Component{
         const addTripClasses=[classes.AddTripButton,classes.AddTripButtonBorder]
         return(
             <div className={classes.Trip} >
-                <div className={classes.TripHeading}><p>{"Trip Index "+ this.props.idf}</p></div>
+                <div className={classes.TripHeading}><p>{"Trip "+ this.props.idf}</p></div>
                 <div className={classes.OriginDestinationWrapper} >
                 <TripOrigin initLat={this.props.initLat} initLng={this.props.initLng} initialOrigin={this.props.initialOrigin} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
                 {this.state.showMid?tripAcessAndModeData:null}

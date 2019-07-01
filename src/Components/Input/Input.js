@@ -29,7 +29,7 @@ class Input extends Component {
     // }
     switch(this.props.elementType){
         case('input'):
-        if(this.props.label!=="Landmark"){
+        if(this.props.label!=="Landmark/Address"){
         inputElement=<input onChange={this.props.changed} 
                         className={inputClasses.join(' ')}
                         {...this.props.elementconfig}>
@@ -64,7 +64,8 @@ class Input extends Component {
                             </input>
                             {true?<LandmarkAutoComplete>
                                 {Autocompleteitems}
-                            </LandmarkAutoComplete>:null}              
+                            </LandmarkAutoComplete>:null}          
+                            <p style={{textAlign:'center',fontSize:'10px'}}>Drag the marker to your approximate location</p>    
                           </div>
         }
         break;

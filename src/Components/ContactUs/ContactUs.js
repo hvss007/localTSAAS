@@ -61,7 +61,7 @@ class ContactUs extends Component{
     render(){
         return(
             <div className={classes.ContactUs}>
-                <div><h1>Contact Us</h1></div>
+                <div className={classes.Heading}><h1>Contact Us</h1></div>
                 <div className={classes.ContactMain}>
                 <div className={classes.ContactLeftMain}>
                     <h2>Office Location</h2>

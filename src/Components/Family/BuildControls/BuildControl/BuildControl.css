@@ -9,7 +9,8 @@
 .BuildControl button {
   box-sizing: border-box;
   display: block;
-  padding: 5px;
+  padding: 0px;
+  font-size: 20px;
   margin: 0px 0px;
   width: 55px;
   border: 1px solid #40a4c8;
@@ -19,6 +20,8 @@
 @media(min-width:600px){
   .BuildControl button{
     margin: 0px 5px;
+    padding: 5px;
+  font-size: 20px;
     width: 80px;
   }
 }

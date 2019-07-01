@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+var count=0;
 class  HereMaps extends Component {
     constructor(props) {
         super(props);
@@ -31,8 +32,15 @@ class  HereMaps extends Component {
           searchText:this.state.mapCentreText+ " India"
         };
         geocoder.geocode(geocodingParams,(result)=>{ 
+          console.log(result)
           console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
-           var location=result.Response.View[0].Result[0].Location.DisplayPosition;
+          if(result.Response.View.length>0) {
+            var location=result.Response.View[0].Result[0].Location.DisplayPosition;  
+          }
+          else{
+            console.log('failed')
+          }
+          var location=result.Response.View[0].Result[0].Location.DisplayPosition;
            console.log(location);
            let obj={
              center: {
@@ -45,6 +53,7 @@ class  HereMaps extends Component {
               theme:this.props.theme,
               arr:[],
               count:0,
+              placeMarker:null,
               displayText:[],
               finalPassArrat:[],
               searchText:props.searchArea}   
@@ -61,6 +70,11 @@ class  HereMaps extends Component {
         this.setState({mapCentreText:nextProps.mapLocation})
         return true;
       }
+      // if(this.props.searchArea!==nextProps.searchArea){
+      //   console.log(this.props.searchArea)
+      //   this.group.removeObject(this.state.placeMarker);
+      //   return true;
+      // }
     }
     // TODO: Add theme selection discussed later HERE
     componentWillMount(){
@@ -85,7 +99,8 @@ class  HereMaps extends Component {
     var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
         //this.addMarkersToMap(this.map,behavior);
         //this.req(this.behavior);
-    }
+        this.map.addObject(this.group);
+      }
     }
     componentWillUnmount(){
         
@@ -96,7 +111,7 @@ class  HereMaps extends Component {
           this.setState({count:this.state.count+1})
           return true
         }else if(this.props.searchArea!==nextProps.searchArea){
-          this.map.addObject(this.group);
+
           this.req(this.behavior);
           this.setState({count:this.state.count+1})
           this.setState({arr:[null]});
@@ -125,11 +140,15 @@ class  HereMaps extends Component {
     // }
     addMarkersToMap=(position,behavior)=>{
         var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
+        this.setState({placeMarker:placeMarker});
         placeMarker.draggable=true;
         let map=this.map;
+        console.log(placeMarker)
         //let behavior=this.behavior;
         //map.removeObject(this.group);        
+        console.log(this.group);
         this.group.addObject(placeMarker);
+        console.log(this.group);
         this.dragEventHandler(map,behavior);
        console.log("working but marker")
     }
@@ -291,11 +310,14 @@ class  HereMaps extends Component {
          
        };
     render() {
-        
         if(this.props.markerQuery){
           var geocoder = this.platform.getGeocodingService();
+          if(count>0){
+            this.group.removeObject(this.state.placeMarker)
+          }
+          count++;
           let geocodingParams = {
-            searchText:""+this.props.searchArea+" jaipur rajasthan india"
+            searchText:""+this.props.searchArea+" "+  this.props.mapLocation
           };
           geocoder.geocode(geocodingParams,(result)=>{ this.onResult1(result,this.behavior); console.log(geocodingParams)}, function(e) {
             alert(e); 

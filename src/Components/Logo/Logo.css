@@ -1,5 +1,4 @@
 .Logo{
-    background-color: white;
     height:100%;
     flex:1;
     display: flex;
@@ -18,5 +17,8 @@
     height:100%;
 }
 @media(max-Width:500px){
-    .Logo{height: 95%}
+    .Logo{
+        height: 95%;
+        background: white;
+    }
 }

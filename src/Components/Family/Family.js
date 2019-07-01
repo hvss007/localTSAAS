@@ -111,6 +111,28 @@ class Family extends Component{
                 touched:false,
                 optional:true
             },
+            country:{
+                name:'country',
+                label:'Country',
+                elementType:'select',
+                elementConfig:{
+                   type:'text',
+                   options:[
+                   {value:'India',displayValue:"India", selected:true},
+                   {value:'Others',displayValue:"Others"}
+                   
+                ] 
+                },
+                value:'',
+                show:true,
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false,
+                optional:false
+            },
+            
             homeState:{
                 name:'homeState',
                 label:'Home State',
@@ -153,7 +175,7 @@ class Family extends Component{
             },
             landmark:{
                 name:'landmark',
-                label:'Landmark',
+                label:'Landmark/Address',
                 elementType:'input',
                 elementConfig:{
                    type:'text',
@@ -183,24 +205,24 @@ class Family extends Component{
             //     valid:false,
             //     touched:false
             // },
-            pinCode:{
-                name:'pinCode',
-                label:'PIN Code',
-                elementType:'input',
-                elementConfig:{
-                   type:'number',
-                   placeholder:'' 
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true,
-                    length:6,
-                },
-                valid:false,
-                touched:false,
-                optional:false
-            },
+            // pinCode:{
+            //     name:'pinCode',
+            //     label:'PIN Code',
+            //     elementType:'input',
+            //     elementConfig:{
+            //        type:'number',
+            //        placeholder:'' 
+            //     },
+            //     value:'',
+            //     show:true,
+            //     validation:{
+            //         required:true,
+            //         length:6,
+            //     },
+            //     valid:false,
+            //     touched:false,
+            //     optional:false
+            // },
         },
         family1:{
             noOfCars:0,
@@ -260,15 +282,7 @@ state={}
         
     }
     //these functions imported from members
-    
-    
     //these functions imported from member
-    
-    
-    
-    
-    
-    
     //these functions imported from member
     inputChangeHandler=(event,inputIdentifier)=>{
         const familyUpdated={...this.state.family};
@@ -279,6 +293,10 @@ state={}
         familyUpdated[inputIdentifier]=updatedInputElement; 
         this.setState({family:familyUpdated},()=>{
             this.progressHandler()
+
+            if(inputIdentifier==="country"&&updatedInputElement.value){
+                
+            }
             if(inputIdentifier==="homeState"&&updatedInputElement.valid){
                 const newFamilyUpdated={...this.state.family};
                 const newUpdatedInputElement={...newFamilyUpdated["nameOfDistrict"]} ;
@@ -290,7 +308,6 @@ state={}
                     const dataObj={value:item,displayValue:item}
                     newInputConfigOptions.push(dataObj);
                 })
-
                 //districtList.forEach(item=>{newInputConfigOptions.push(item)})
                 console.log(newInputConfigOptions)
                 newInputConfig.options=newInputConfigOptions;
@@ -372,8 +389,7 @@ state={}
     submitButtonHandler=(event)=>{
         console.log(this.state.qAnswered);
         event.preventDefault();
-        
-        if(this.state.qAnswered===4||true){
+        if(this.state.qAnswered===3||true){
             const family=this.state.family;
             const family1=this.state.family1;
                 const post={
@@ -389,7 +405,7 @@ state={}
                     homeState:family.homeState.value,
                     nameOfDistrict:family.nameOfDistrict.value,
                     landmark:family.landmark.value,
-                    pincode:family.pinCode.value,
+                    // pincode:family.pinCode.value,
                     lat:this.state.lat,
                     lng:this.state.lng
 
@@ -439,7 +455,7 @@ state={}
         <div className={classes.FamilyWrapper}>
         <div className={classes.Family}>
             <div className={classes.Heading}><span><img style={{width:'40px'}} src={Family1}></img></span><p>Family Information</p></div>
-            <ProgressBar total={4} transformValue={this.state.qAnswered}></ProgressBar>
+            <ProgressBar total={3} transformValue={this.state.qAnswered}></ProgressBar>
             <BuildControls valueAdded={this.addValueHandler}
                 valueRemoved={this.removeValueHandler}
                 family={this.state.family1}></BuildControls>

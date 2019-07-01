@@ -6,9 +6,9 @@ const navigationItems =(props)=>(
     <ul className={classes.NavigationItems}>
         {console.log(props)}
         <NavigationItem anchor link="https://www.iitr.ac.in/"  >IIT Roorkee</NavigationItem>
-        <NavigationItem link={props.match.url+"/wiki"}>Wiki</NavigationItem>
-        <NavigationItem link={props.match.url+"/privacypolicy"}>Privacy Policy</NavigationItem>
-        <NavigationItem link={props.match.url+"/contact"}>Contact Us</NavigationItem>
+        <NavigationItem link={"/wiki"}>Wiki</NavigationItem>
+        <NavigationItem link={"/privacypolicy"}>Privacy Policy</NavigationItem>
+        <NavigationItem link={"/contact"}>Contact Us</NavigationItem>
     </ul>
 );
 
