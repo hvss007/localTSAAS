@@ -25,7 +25,7 @@ const startSurveySub=(props)=>{
                         <img src={TsaasLogo}></img>
                         <div className={classes.LogoText}>
                             <p>Traffic Survey</p>
-                            <p>As A Service</p>
+                            <p>as a Service</p>
                         </div>    
                     </div>
                     {window.innerWidth>=500? <div>

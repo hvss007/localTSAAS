@@ -57,7 +57,7 @@ class Member extends Component{
             // },
             householdHead:{
                 name:'householdHead',
-                label:'Are you head of your family?',
+                label:'Are you the head of your family?',
                 elementType:'select',
                 elementConfig:{
                     options:[

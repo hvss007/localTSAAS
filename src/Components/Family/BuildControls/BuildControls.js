@@ -6,9 +6,9 @@ import Cycle from '../../../assets/icons/modeIcons/Bicycle.png'
 import MotorCycle from '../../../assets/icons/modeIcons/Motorcycle.png'
 const buildControls=props=>{
     const controls=[
-        {label:'No of cars',type:'noOfCars',value:props.family.noOfCars,src:Car},
-        {label:'No of scooters/motorcycles',type:'noOfTwoWheelers',value:props.family.noOfTwoWheelers,src:MotorCycle},
-        {label:'No of cycles',type:'noOfCycles',value:props.family.noOfCycles,src:Cycle},
+        {label:'Number of cars',type:'noOfCars',value:props.family.noOfCars,src:Car},
+        {label:'Number of scooters/motorcycles',type:'noOfTwoWheelers',value:props.family.noOfTwoWheelers,src:MotorCycle},
+        {label:'Number of cycles',type:'noOfCycles',value:props.family.noOfCycles,src:Cycle},
         
     ]
         
