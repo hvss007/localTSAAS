@@ -15,23 +15,24 @@ class Family extends Component{
         super(props);
         this.data=fs;
         const states=Object.keys(this.data);
+        states.sort();
         console.log(states);
-        this.stateDataArray=[];
+        // this.stateDataArray=[];
 
     //    let memberformArray=[];
-        for (let key in this.data){
-            this.stateDataArray.push(
-                {
-                id:key,
-                config:this.data[key]     
-            })
-        }
+        // for (let key in this.data){
+        //     this.stateDataArray.push(
+        //         {
+        //         id:key,
+        //         config:this.data[key]     
+        //     })
+        // }
         
         
-        console.log(this.stateDataArray)
+        // console.log(this.stateDataArray)
         this.stateArray=[];
-        this.stateDataArray.forEach(item=>{
-            let dataObj={value:item.id,displayValue:item.id};
+        states.forEach(item=>{
+            let dataObj={value:item,displayValue:item};
             this.stateArray.push(dataObj);
         })
         
