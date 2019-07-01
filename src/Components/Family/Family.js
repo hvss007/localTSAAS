@@ -130,7 +130,7 @@ class Family extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             
             homeState:{
@@ -293,9 +293,34 @@ state={}
         familyUpdated[inputIdentifier]=updatedInputElement; 
         this.setState({family:familyUpdated},()=>{
             this.progressHandler()
+            if(inputIdentifier==="country"&&updatedInputElement.value==="Others"){
+                if(window.confirm("sorry but this survey is confined to India for now.Press Ok for leaving the survey")){
+                    const family=this.state.family;
+                    const family1=this.state.family1;
+                    const post1={
+                        collegeID:this.props.match.params.id,
+                        noOfCars:family1.noOfCars,
+                        noOfCycles:family1.noOfCycles,
+                        noOfTwoWheelers:family1.noOfTwoWheelers,
+                        familyIncome:family.familyIncome.value,
+                        homeState:family.homeState.value,
+                        nameOfDistrict:family.nameOfDistrict.value,
+                        landmark:family.landmark.value,
+                        // pincode:family.pinCode.value,
+                        lat:this.state.lat,
+                        lng:this.state.lng
+                    }
+                    this.props.history.push({pathname:'/finishsurvey'})
+                    axios.post("http://0.0.0.0:8000/api/family/",post1)
+                    .then((Response)=>{
+                        console.log(Response);
+                        
+                    })
+                    .catch(err => console.error(err));
+                }
+                else{
 
-            if(inputIdentifier==="country"&&updatedInputElement.value){
-                
+                }
             }
             if(inputIdentifier==="homeState"&&updatedInputElement.valid){
                 const newFamilyUpdated={...this.state.family};
