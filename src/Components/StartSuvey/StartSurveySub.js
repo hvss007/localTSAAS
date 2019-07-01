@@ -28,13 +28,21 @@ const startSurveySub=(props)=>{
                             <p>as a Service</p>
                         </div>    
                     </div>
-                    {window.innerWidth>=500? <div>
+                    {window.innerWidth>=500? 
+                        <div>
                         <p>
-                            {(props.collegeName==="home"||props.collegeName==="IIT Roorkee")?"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.":"Welcome students of "+props.collegeName}
+                        Welcome to TSaaS! Please take few minutes and complete the survey. Personal information and location are neither asked nor tracked. The survey data will be used to synthesize a city-model.
+                        </p>
+                        <p>
+                            {(props.collegeName==="home"||props.collegeName==="IIT Roorkee")? "" 
+                            :"This survey link is exclusive for students of "+props.collegeName+"."}
                         </p> </div> :
                     <div>
+                    <p>
+                    Welcome to TSaaS! Please take few minutes and complete the survey. Personal information and location are neither asked nor tracked. The survey data will be used to synthesize a city-model.
+                    </p>
                     <p style={{margin:'auto'}}>
-                        {(props.collegeName==="home"||props.collegeName==="IIT Roorkee")?null:"Welcome students of "+props.collegeName}
+                        {(props.collegeName==="home"||props.collegeName==="IIT Roorkee")?null:"Welcome to TSaaS! This survey link is exclusive for students of "+props.collegeName}
                     </p> </div>
                     }
                     <div style={{marginTop:'5px'}}><button  className={buttonClasses.join(' ')}
