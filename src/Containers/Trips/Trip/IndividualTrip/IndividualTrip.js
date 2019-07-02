@@ -11,8 +11,8 @@ import HostName from '../../../../assets/globalvaribles/GlobalVariables';
 class Trip extends Component{
     state={
         tripInformation:{
-                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false},
-                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false},
+                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,originTime:''},
+                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:''},
                 accessModeData:{}
             },
         sendData:false,
@@ -83,8 +83,13 @@ class Trip extends Component{
                 //this.setState({sendData1:true})
                 this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng)
                 const data={memberID:this.props.match.params.id1};
+                console.log(updatedData.originDestination)
+                delete updatedData.originDestination[0].isValid
+                console.log(updatedData.originDestination[0])
                 Axios.post(HostName+"trips/",data)
+                
                 .then(response=>{
+                    
                         console.log(response.data)            
                          Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          //{tripID:response.data.tripID,...updatedData.originDestination[0]}
@@ -137,11 +142,12 @@ class Trip extends Component{
             })
         }
     }
-    originDataHandler=(place,originOrDestination)=>{
+    originDataHandler=(place,originOrDestination,time)=>{
         const tripInformationCopy={...this.state.tripInformation};
         if(originOrDestination==="Origin"){
             const originDataCopy={...tripInformationCopy.originData}
             originDataCopy.originPlace=place;
+            originDataCopy.originTime=time;
             tripInformationCopy.originData=originDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
                 // console.log(this.state.tripInformation);
@@ -150,6 +156,7 @@ class Trip extends Component{
         if(originOrDestination==="Destination"){
             const destinationDataCopy={...tripInformationCopy.destinationData}
             destinationDataCopy.destinationPlace=place;
+            destinationDataCopy.destinationTime=time;
             tripInformationCopy.destinationData=destinationDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
                 // console.log(this.state.tripInformation);

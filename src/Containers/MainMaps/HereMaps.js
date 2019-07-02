@@ -134,7 +134,7 @@ class  HereMaps extends Component {
     }
     componentDidUpdate(prevProps,prevState) {
       console.log("when it works")
-        if(this.state.dataLoaded&&this.state.count>=0){
+        if(this.state.dataLoaded&&this.state.count===0){
           this.layer = this.platform.createDefaultLayers();
           this.container = document.getElementById('here-map');
           this.map = new window.H.Map(this.container, this.layer.normal.map, {
@@ -152,9 +152,6 @@ class  HereMaps extends Component {
             this.map.addObject(this.group);
             return true
           }  
-        
-      
-      
     }
     componentWillUnmount(){
         
@@ -245,7 +242,9 @@ class  HereMaps extends Component {
         var locations = result.Response.View[0].Result,
         position,
         marker;
+        console.log(result)
         // Add a marker for each location found
+          
         for (let i = 0;  i < locations.length; i++) {
           position = {
             lat: locations[i].Location.DisplayPosition.Latitude,
@@ -253,7 +252,6 @@ class  HereMaps extends Component {
           };
          // marker = new window.H.map.Marker(position);
           // if(marker){
-
           // }
           //this.map.removeObjects();
           //this.addMarkersToMap(position,behavior);
@@ -263,20 +261,17 @@ class  HereMaps extends Component {
           this.reverseGeocode(lat,lng)
         }} catch (err) {console.log(err)} 
        //}
-        
       };
        req=(behavior)=>{
         var geocoder = this.platform.getGeocodingService();
         let geocodingParams = {
           searchText:""+this.props.searchArea+this.mapCentreText
         };
+        console.log(this.state.mapCentreText,"uvkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
         geocoder.geocode(geocodingParams,(result)=>{ this.onResult(result,behavior); }, function(e) {
           alert(e);
-
         });
-
        }
-
        reverseGeocode=(lat,lng)=> {
         var geocoder = this.platform.getGeocodingService(),
           reverseGeocodingParameters = {
@@ -371,7 +366,7 @@ class  HereMaps extends Component {
           }
           count++;
           let geocodingParams = {
-            searchText:""+this.props.searchArea+" "+  this.props.mapLocation
+            searchText:""+this.props.searchArea+" "+  this.state.mapCentreText
           };
           geocoder.geocode(geocodingParams,(result)=>{ this.onResult1(result,this.behavior); console.log(geocodingParams)}, function(e) {
             alert(e); 

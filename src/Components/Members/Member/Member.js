@@ -10,7 +10,14 @@ import HostName from '../../../assets/globalvaribles/GlobalVariables'
 class Member extends Component{
     constructor(props){
         super(props);
-        
+        this.data=fs;
+        const states=Object.keys(this.data);
+        states.sort();
+        this.stateArray=[];
+        states.forEach(item=>{
+            let dataObj={value:item,displayValue:item};
+            this.stateArray.push(dataObj);
+        })
         this.state={
             familyId:null,
         member:{
@@ -296,6 +303,27 @@ class Member extends Component{
                 optional:true
             },
             differentlyAbled:{
+                name:'differentlyAbled',
+                label:'Differently Abled',
+                elementType:'select',
+                elementConfig:{
+                   type:'text',
+                   options:[
+                       {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                       {value:'yes',displayValue:'Yes'},
+                       {value:'no',displayValue:'No'}
+                    ] 
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:true
+            },
+            state:{
                 name:'differentlyAbled',
                 label:'Differently Abled',
                 elementType:'select',

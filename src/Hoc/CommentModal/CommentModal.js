@@ -47,11 +47,11 @@ const CommentModal =props=>{
             style={style}>
         <div  className={bodyClasses.join(' ')}>
           <span className={tipClasses.join(' ')}></span>
+          {props.time}
           <div className={classes.Message}>
           {props.children}
           </div>   
-          <div>
-          </div>
+          
         </div>
       </div>
     )

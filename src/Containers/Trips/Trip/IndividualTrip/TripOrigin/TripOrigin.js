@@ -31,6 +31,7 @@ class TripOrigin extends Component{
         backdropShow:false,
         lat:"26.9124",
         lng:"75.7873",
+        time:''
     }
     onClickHandler=(title,id)=>{
         const originInfoCopy=[...this.state.originInfo];
@@ -71,7 +72,7 @@ class TripOrigin extends Component{
     }
      originItemSelectedHandler=(value,src)=>{
         this.setState({src:src,title:value},()=>{
-        this.props.originDataHandler(this.state.title,this.props.originOrDestination);
+        this.props.originDataHandler(this.state.title,this.props.originOrDestination,this.state.time);
         });
         
     }
@@ -87,18 +88,31 @@ class TripOrigin extends Component{
     latLongHandler=(lat,lng)=>{
         this.props.latLongHandler1(lat,lng,this.props.originOrDestination);
     }
+
+    onChangeTime = event => this.setState({ time:event.target.value })
         render(){
             const inputElement=this.state.originInfo.map((item,index)=>{
                 return <CommentModalInput changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} source={item.src}>
                     </CommentModalInput>
             })
+            let timeLabel=""
             const TripOriginWrapperClasses=[classes.TripOriginWrapper];
             if(this.props.originOrDestination==="Origin"){
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperLeft)
+                timeLabel="Departure Time"
             }
             else if(this.props.originOrDestination==="Destination"){
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperRight)
+                timeLabel="Arrival Time"
             }
+
+            const time=<div>
+                <p style={{margin:'0px'}}>{timeLabel}</p>
+                <p style={{margin:'0px'}}>hh:mm</p>
+                <input style={{textAlign:'center',appearance:'none'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
+            </div>
+            
+
             return(
             <Aux>
                 {window.innerWidth<='500px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
@@ -107,7 +121,10 @@ class TripOrigin extends Component{
                ></div> 
                 <TripOriginMap initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
                 
-                <CommentModal key={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
+                <CommentModal time={time}
+                // time={<TimePicker value={this.state.time} 
+                // onChange={this.onChangeTime}></TimePicker>}
+                 key={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
                     {inputElement}
                 </CommentModal>   
                 {/* <div className={classes.OriginModal}></div> */}
