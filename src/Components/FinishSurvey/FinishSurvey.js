@@ -40,11 +40,21 @@ class FinishSurvey extends Component{
                         <div className={classes.LogoText}>
                             <p>Traffic Survey</p>
                             <p>as a Service</p>
+<<<<<<< HEAD
+=======
+
+                        </div>
+                    </div>
+>>>>>>> 470760c00df367a5202fa95af6acb5cf71e44a22
                         </div>              
                     </div>  */}
                     <div className={classes.Main}>
             				<h1>We thank you for taking time to complete the survey.</h1>
         				</div>        
+<<<<<<< HEAD
+=======
+
+>>>>>>> 470760c00df367a5202fa95af6acb5cf71e44a22
             </div>
         </div>
         </div>
