@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import classes from './FinishSurvey.css'
+// import classes from './FinishSurvey.css'
 
 import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
-// import classes from '../StartSuvey/StartSurvey.css';
+import classes from '../StartSuvey/StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
 import HomePage from '../../assets/icons/homepage.png';
 import Background from '../../assets/icons/homebackground.png';
@@ -41,16 +41,16 @@ class FinishSurvey extends Component{
             <div  className={classes.MainContainer}>
                 <div className={classes.LeftContainer}>
                     {backgroundElement}
-                    <div className={classes.ImgTextWrapper}>
+                    {/*<div className={classes.ImgTextWrapper}>
                         <img src={TsaasLogo}></img>
                         <div className={classes.LogoText}>
                             <p>Traffic Survey</p>
                             <p>as a Service</p>
-                        </div> 
-            			<div className={classes.Main}>
-            				<h1>Thanks for filling the survey</h1>
-        				</div>               
-                    </div>           
+                        </div>              
+                    </div>  */}
+                    <div className={classes.Main}>
+            				<h1>We thank you for taking time to complete the survey.</h1>
+        				</div>        
             </div>
         </div>
         </div>
