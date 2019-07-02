@@ -33,7 +33,7 @@ class TripAccess extends Component{
             {id:9,src:Others,title:'Others',value:''},   
         ],
         accessInfoIn:[
-            {id:1,title:"Travel Time (hh,mm)",value:'',valid:false,touched:false,type:'time'},
+            {id:1,title:"Travel Time (hh:mm)",value:'',valid:false,touched:false,type:'time'},
             {id:2,title:"Travel Distance (km)",value:'',valid:false,touched:false},
             {id:3,title:"Fare ",value:'',valid:false,touched:false,src:Rupee},
             // {id:4,title:"Cost",value:'',valid:false,touched:false}

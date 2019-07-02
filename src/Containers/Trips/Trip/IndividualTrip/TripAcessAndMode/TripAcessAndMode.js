@@ -6,8 +6,8 @@ import TripModal from '../../../../../Hoc/TripModal/TripModal';
 
 class TripAcessAndMode extends Component{
     state={
-        access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false}],
-        egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false}],
+        access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
+        egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
         mainMode:[{value:'',inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false,modeType:"mainMode"}]
     }
     componentDidMount(){
@@ -78,9 +78,9 @@ class TripAcessAndMode extends Component{
             else if(valueType==="Fare"){
                 accessInvalueCopy.fare=value;
             }
-            else if(valueType==="Cost"){
-                accessInvalueCopy.cost=value;
-            }
+            // else if(valueType==="Cost"){
+            //     accessInvalueCopy.cost=value;
+            // }
             accessCopyElementOld.inValue=accessInvalueCopy;
             accessCopy[idi-1]=accessCopyElementOld;
             this.setState({access:accessCopy})
@@ -99,9 +99,9 @@ class TripAcessAndMode extends Component{
             else if(valueType==="Fare"){
                 accessInvalueCopy.fare=value;
             }
-            else if(valueType==="Cost"){
-                accessInvalueCopy.cost=value;
-            }
+            // else if(valueType==="Cost"){
+            //     accessInvalueCopy.cost=value;
+            // }
             accessCopyElementOld.inValue=accessInvalueCopy;
             accessCopy[idi-1]=accessCopyElementOld;
             this.setState({egress:accessCopy})
@@ -120,9 +120,9 @@ class TripAcessAndMode extends Component{
             else if(valueType==="Fare"){
                 accessInvalueCopy.fare=value;
             }
-            else if(valueType==="Cost"){
-                accessInvalueCopy.cost=value;
-            }
+            // else if(valueType==="Cost"){
+            //     accessInvalueCopy.cost=value;
+            // }
             accessCopyElementOld.inValue=accessInvalueCopy;
             accessCopy[0]=accessCopyElementOld;
             this.setState({mainMode:accessCopy})
