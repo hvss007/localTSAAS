@@ -68,6 +68,55 @@ class  HereMaps extends Component {
     componentWillReceiveProps(nextProps,nextState){
       if(this.props.mapLocation!==nextProps.mapLocation){
         this.setState({mapCentreText:nextProps.mapLocation})
+        
+        
+         var geocoder = this.platform.getGeocodingService();
+        let geocodingParams = {
+          searchText:nextProps.mapLocation+ " India"
+        };
+        geocoder.geocode(geocodingParams,(result)=>{ 
+          console.log(result)
+          console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
+          if(result.Response.View.length>0) {
+            var location=result.Response.View[0].Result[0].Location.DisplayPosition;  
+            const center={
+              lat:location.Latitude,
+              lng:location.Longitude
+            }
+            this.setState({center:center},()=>{
+
+              // this.layer = this.platform.createDefaultLayers();
+          // this.container = document.getElementById('here-map');
+          // this.map = new window.H.Map(this.container, this.layer.normal.map, {
+          //   center: this.state.center,
+          //   zoom: this.state.zoom,
+          // })
+              console.log(this.map)
+             this.map.setCenter({lat:this.state.center.lat, lng:this.state.center.lng});
+              // this.map.l.center=this.state.center
+          // this.map.center=this.state.center
+        //   this.group = new window.H.map.Group();  
+        // var events = new window.H.mapevents.MapEvents(this.map);
+        // // eslint-disable-next-line
+        // this.behavior = new window.H.mapevents.Behavior(events);
+        // // eslint-disable-next-line
+        // var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
+        //     //this.addMarkersToMap(this.map,behavior);
+        //     //this.req(this.behavior);
+        //     this.map.addObject(this.group);
+            return true
+
+
+
+
+
+            })
+          }
+          else{
+            console.log('failed')
+          }},function(e){alert})
+        
+        console.log(this.state.mapLocation,nextState.mapLocation)
         return true;
       }
       // if(this.props.searchArea!==nextProps.searchArea){
@@ -83,24 +132,29 @@ class  HereMaps extends Component {
     componentDidMount(){
 
     }
-    componentDidUpdate() {
-      if(this.state.dataLoaded&&this.state.count===0){
-      this.layer = this.platform.createDefaultLayers();
-      this.container = document.getElementById('here-map');
-      this.map = new window.H.Map(this.container, this.layer.normal.map, {
-        center: this.state.center,
-        zoom: this.state.zoom,
-      })
-      this.group = new window.H.map.Group();  
-    var events = new window.H.mapevents.MapEvents(this.map);
-    // eslint-disable-next-line
-    this.behavior = new window.H.mapevents.Behavior(events);
-    // eslint-disable-next-line
-    var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
-        //this.addMarkersToMap(this.map,behavior);
-        //this.req(this.behavior);
-        this.map.addObject(this.group);
-      }
+    componentDidUpdate(prevProps,prevState) {
+      console.log("when it works")
+        if(this.state.dataLoaded&&this.state.count>=0){
+          this.layer = this.platform.createDefaultLayers();
+          this.container = document.getElementById('here-map');
+          this.map = new window.H.Map(this.container, this.layer.normal.map, {
+            center: this.state.center,
+            zoom: this.state.zoom,
+          })
+          this.group = new window.H.map.Group();  
+        var events = new window.H.mapevents.MapEvents(this.map);
+        // eslint-disable-next-line
+        this.behavior = new window.H.mapevents.Behavior(events);
+        // eslint-disable-next-line
+        var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
+            //this.addMarkersToMap(this.map,behavior);
+            //this.req(this.behavior);
+            this.map.addObject(this.group);
+            return true
+          }  
+        
+      
+      
     }
     componentWillUnmount(){
         

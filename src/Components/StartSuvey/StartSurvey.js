@@ -53,7 +53,7 @@ class StartSurvey extends Component{
     render(){    
         let showElement;
         if(this.props.match.url==="/"){
-            showElement=<StartSurveySub collegeName="home" showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
+            showElement=<StartSurveySub collegeName={"home"} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
         }
         else{
                 showElement=null
