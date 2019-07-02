@@ -49,7 +49,7 @@ const startSurveySub=(props)=>{
             //to={{
              //   pathname:this.props.match.url+'/member'
             //}}
-             style={{margin:'auto',fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take a Survey </button> </div>
+             style={{margin:'auto',fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take The Survey </button> </div>
                 </div>
                 <div className={classes.RightContainer}>
                     {/* <img src={Matsim}>
