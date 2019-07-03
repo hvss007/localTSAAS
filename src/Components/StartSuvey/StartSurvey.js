@@ -7,6 +7,7 @@ import Axios from 'axios';
 import StartSurveySub from './StartSurveySub';
 import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
 import HostName from '../../assets/globalvaribles/GlobalVariables';
+// require('dotenv').config();
 class StartSurvey extends Component{
     state={
         showSideDrawer:false,
