@@ -37,50 +37,6 @@ class Member extends Component{
             //     valid:true,
             //     touched:false
             // },
-            householdHead:{
-                name:'householdHead',
-                label:'Are you the head of your family?',
-                elementType:'input',
-                elementConfig:{
-                    type:'checkbox',
-                    options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes'},
-                       {value:'no',displayValue:'No'},    
-                    ]
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:true
-
-
-            },
-            respondent:{
-                name:'respondent',
-                label:'Are you respondent?',
-                elementType:'input',
-                elementConfig:{
-                    type:'checkbox',
-                    options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes'},
-                       {value:'no',displayValue:'No'},    
-                    ]
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:true
-            },
             gender:{
                 name:'gender',
                 label:'Gender',
@@ -149,6 +105,30 @@ class Member extends Component{
                 touched:false,
                 optional:true
             },
+            maritialStatus:{
+                name:'maritialStatus',
+                label:'Maritial Status',
+                elementType:'select',
+                elementConfig:{
+                   type:'text',
+                   options:[
+                    {value:'',displayValue:"Choose Here", selected:true, disabled:true},    
+                   {value:'married',displayValue:'Married'},
+                   {value:'single',displayValue:'Single'},
+                   {value:'engaged',displayValue:'Engaged'},
+                   {value:'widow/widower',displayValue:'Widow/Widower'},
+                   {value:'other',displayValue:"other"}
+                ]
+                },
+                value:'',
+                show:true,
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false,
+                optional:true
+            },
             monthlyIncome:{
                 name:'monthlyIncome',
                 label:'Monthly Income',
@@ -200,12 +180,95 @@ class Member extends Component{
                 touched:false,
                 optional:true
             },
+             simCards:{
+                name:'simCards',
+                label:'How many sim cards do you use?',
+                elementType:'input',
+                elementConfig:{
+                    type:'number',
+                    placeholder:'' 
+                 },
+                value:0,
+                validation:{
+                    required:true,
+                    notLess:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:true
+            }, 
+             dataWhileDriving:{
+                name:'dataWhileDrivning',
+                label:'Do you call or use mobile-data while driving?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'Yes',displayValue:'Yes'},
+                        {value:'No',displayValue:'No'},
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:true
+            },
+            householdHead:{
+                name:'householdHead',
+                label:'Are you the head of your family?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                       {value:'yes',displayValue:'Yes'},
+                       {value:'no',displayValue:'No'},    
+                    ]
+                },
+                value:'',
+                show:true,
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false,
+                optional:true
+
+
+            },
+            respondent:{
+                name:'respondent',
+                label:'Are you respondent?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                       {value:'yes',displayValue:'Yes'},
+                       {value:'no',displayValue:'No'},    
+                    ]
+                },
+                value:'',
+                show:true,
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false,
+                optional:true
+            },
             twoWheelerLicense:{
                 name:'twoWheelerLicense',
                 label:'Do you have a motorcycle license?',
                 elementType:'input',
                 elementConfig:{
-                    type:'checkbox',
+                    type:'radio',
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
@@ -227,7 +290,7 @@ class Member extends Component{
                 label:'Do you have a car license?',
                 elementType:'input',
                 elementConfig:{
-                    type:'checkbox',
+                    type:'radio',
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
@@ -243,76 +306,13 @@ class Member extends Component{
                 valid:false,
                 touched:false,
                 optional:true
-            },
-            simCards:{
-                name:'simCards',
-                label:'How many sim cards do you use?',
-                elementType:'input',
-                elementConfig:{
-                    type:'number',
-                    placeholder:'' 
-                 },
-                value:0,
-                validation:{
-                    required:true,
-                    notLess:true
-                },
-                show:true,
-                valid:false,
-                touched:false,
-                optional:true
-            },
-            dataWhileDriving:{
-                name:'dataWhileDrivning',
-                label:'Do you call or use mobile-data while driving?',
-                elementType:'input',
-                elementConfig:{
-                    type:'checkbox',
-                    options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'Yes',displayValue:'Yes'},
-                        {value:'No',displayValue:'No'},
-                    ]
-                },
-                value:'',
-                validation:{
-                    required:true
-                },
-                show:true,
-                valid:false,
-                touched:false,
-                optional:true
-            },
-            maritialStatus:{
-                name:'maritialStatus',
-                label:'Maritial Status',
-                elementType:'select',
-                elementConfig:{
-                   type:'text',
-                   options:[
-                    {value:'',displayValue:"Choose Here", selected:true, disabled:true},    
-                   {value:'married',displayValue:'Married'},
-                   {value:'single',displayValue:'Single'},
-                   {value:'engaged',displayValue:'Engaged'},
-                   {value:'widow/widower',displayValue:'Widow/Widower'},
-                   {value:'other',displayValue:"other"}
-                ]
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:true
-            },
+            },           
             differentlyAbled:{
                 name:'differentlyAbled',
                 label:'Differently Abled',
                 elementType:'input',
                 elementConfig:{
-                   type:'checkbox',
+                   type:'radio',
                    options:[
                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
@@ -438,8 +438,9 @@ class Member extends Component{
             stayAtHome:{
                 name:'stayAtHome',
                 label:'Do you stay at home for the whole day?',
-                elementType:'select',
+                elementType:'input',
                 elementConfig:{
+                    type:'radio',
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'yes',displayValue:'Yes'},
