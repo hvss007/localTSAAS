@@ -17,7 +17,7 @@ class Family extends Component{
         this.data=fs;
         const states=Object.keys(this.data);
         states.sort();
-        console.log(states);
+        // console.log(states);
         // this.stateDataArray=[];
 
     //    let memberformArray=[];

@@ -7,7 +7,7 @@ import classes from '../StartSuvey/StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
 import HomePage from '../../assets/icons/homepage.png';
 import Background from '../../assets/icons/homebackground.png';
-import TsaasLogo from '../../assets/icons/tsaaslogo.png';
+// import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 class FinishSurvey extends Component{
 	state={
         showSideDrawer:false,
@@ -23,7 +23,7 @@ class FinishSurvey extends Component{
         })
     }
     render(){
-    const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
+    // const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
         const backgroundElement =window.innerWidth<=500? <div style={{background:'url('+MobileHomePage+')',marginBottom:'50px',backgroundRepeat:'no-repeat',backgroundSize:'cover'}} className={classes.FirstImageWrapper}></div>:null
         console.log(window.innerWidth);
         const background =window.innerWidth>=500?{ 
