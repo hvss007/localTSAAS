@@ -30,13 +30,23 @@ class Input extends Component {
     switch(this.props.elementType){
         case('input'):
         if(this.props.label!=="Landmark/Address"){
-        inputElement=<input onChange={this.props.changed} 
+            if(this.props.elementconfig.type!=="radio"){
+                inputElement=<input onChange={this.props.changed} 
                         className={inputClasses.join(' ')}
                         {...this.props.elementconfig}>
                      </input>
-        }else{      
+            }
+            else{
+                // inputElement=<input onChange={this.props.changed} 
+                //         className={inputClasses.join(' ')}
+                //         {...this.props.elementconfig}>
+                //      </input>
+            }
+            
+    
+    }else{         
             console.log(this.state.backArr1);
-        Autocompleteitems=this.state.backArr1.length>0&&show? this.state.backArr1.map((items,index)=>{
+            Autocompleteitems=this.state.backArr1.length>0&&show? this.state.backArr1.map((items,index)=>{
             return <li  
             onClick={(event)=>
                 {
