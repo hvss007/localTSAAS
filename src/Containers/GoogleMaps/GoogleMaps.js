@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 
 // Import React Scrit Libraray to load Google object
 import Script from 'react-load-script';
-console.log(process.env.REACT_APP_PLACES_API_KEY)
+// Please dont print it. This is live.
+// console.log(process.env.REACT_APP_PLACES_API_KEY)
 class Map extends Component {
   // Define Constructor
   constructor(props) {
