@@ -4,7 +4,7 @@ import classes from './Family.css';
 import axios from 'axios';
 import MemberSubmitButton from '../Members/Member/MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
-import ProgressBar from '../ProgressBar/ProgressBar';
+// import ProgressBar from '../ProgressBar/ProgressBar';
 import BuildControls from './BuildControls/BuildControls';
 import Family1 from '../../assets/icons/family.png';
 import MainMaps from '../../Containers/MainMaps/MainMaps'
@@ -484,7 +484,7 @@ state={}
         <div className={classes.FamilyWrapper}>
         <div className={classes.Family}>
             <div className={classes.Heading}><span><img style={{width:'40px'}} src={Family1}></img></span><p>Family Information</p></div>
-            <ProgressBar total={3} transformValue={this.state.qAnswered}></ProgressBar>
+            {/*<ProgressBar total={3} transformValue={this.state.qAnswered}></ProgressBar>*/}
             <BuildControls valueAdded={this.addValueHandler}
                 valueRemoved={this.removeValueHandler}
                 family={this.state.family1}></BuildControls>

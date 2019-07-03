@@ -40,8 +40,9 @@ class Member extends Component{
             householdHead:{
                 name:'householdHead',
                 label:'Are you the head of your family?',
-                elementType:'select',
+                elementType:'input',
                 elementConfig:{
+                    type:'checkbox',
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
@@ -55,15 +56,16 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
 
 
             },
             respondent:{
                 name:'respondent',
                 label:'Are you respondent?',
-                elementType:'select',
+                elementType:'input',
                 elementConfig:{
+                    type:'checkbox',
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
@@ -77,7 +79,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             gender:{
                 name:'gender',
@@ -99,7 +101,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             age:{
                 name:'age',
@@ -123,7 +125,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             educationalQualification:{
                 name:'educationalQualification',
@@ -145,7 +147,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             monthlyIncome:{
                 name:'monthlyIncome',
@@ -201,8 +203,9 @@ class Member extends Component{
             twoWheelerLicense:{
                 name:'twoWheelerLicense',
                 label:'Do you have a motorcycle license?',
-                elementType:'select',
+                elementType:'input',
                 elementConfig:{
+                    type:'checkbox',
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
@@ -217,13 +220,14 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             fourWheelerLicense:{
                 name:'fourWheelerLicense',
                 label:'Do you have a car license?',
-                elementType:'select',
+                elementType:'input',
                 elementConfig:{
+                    type:'checkbox',
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
@@ -238,7 +242,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             simCards:{
                 name:'simCards',
@@ -256,13 +260,14 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             dataWhileDriving:{
                 name:'dataWhileDrivning',
                 label:'Do you call or use mobile-data while driving?',
-                elementType:'select',
+                elementType:'input',
                 elementConfig:{
+                    type:'checkbox',
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
@@ -276,10 +281,10 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             },
             maritialStatus:{
-                name:'mamaritialStatusrt',
+                name:'maritialStatus',
                 label:'Maritial Status',
                 elementType:'select',
                 elementConfig:{
@@ -305,11 +310,11 @@ class Member extends Component{
             differentlyAbled:{
                 name:'differentlyAbled',
                 label:'Differently Abled',
-                elementType:'select',
+                elementType:'input',
                 elementConfig:{
-                   type:'text',
+                   type:'checkbox',
                    options:[
-                       {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                       // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'}
                     ] 
@@ -448,7 +453,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:false
+                optional:true
             }
         },
         qAnswered:0,
