@@ -90,6 +90,9 @@ class Member extends Component{
                 elementConfig:{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'notApplicable',displayValue:'Not applicable'},
+                        {value:'prePrimary',displayValue:'Pre Primary'},
+                        {value:'primary',displayValue:'Primary'},
                         {value:'passX',displayValue:'10th Pass'},
                         {value:'passXII',displayValue:'12th Pass'},
                         {value:'undergraduate',displayValue:'Undergraduate'},
@@ -136,7 +139,7 @@ class Member extends Component{
                 elementConfig:{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'Nil',displayValue:'Nil'},
+                        {value:'nil',displayValue:'Nil'},
                         {value:'<5000',displayValue:'Below 5,000'},
                         {value:'5000-10000',displayValue:'5,000 - 10,000'},
                         {value:'10000-50000',displayValue:'10,000 - 50,000'},
@@ -219,50 +222,6 @@ class Member extends Component{
                 touched:false,
                 optional:true
             },
-            householdHead:{
-                name:'householdHead',
-                label:'Are you the head of your family?',
-                elementType:'input',
-                elementConfig:{
-                    type:'radio',
-                    options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes'},
-                       {value:'no',displayValue:'No'},    
-                    ]
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:true
-
-
-            },
-            respondent:{
-                name:'respondent',
-                label:'Are you respondent?',
-                elementType:'input',
-                elementConfig:{
-                    type:'radio',
-                    options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes'},
-                       {value:'no',displayValue:'No'},    
-                    ]
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:true
-            },
             twoWheelerLicense:{
                 name:'twoWheelerLicense',
                 label:'Do you have a motorcycle license?',
@@ -328,113 +287,50 @@ class Member extends Component{
                 touched:false,
                 optional:true
             },
-            // state:{
-            //     name:'differentlyAbled',
-            //     label:'Differently Abled',
-            //     elementType:'select',
-            //     elementConfig:{
-            //        type:'text',
-            //        options:[
-            //            {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-            //            {value:'yes',displayValue:'Yes'},
-            //            {value:'no',displayValue:'No'}
-            //         ] 
-            //     },
-            //     value:'',
-            //     validation:{
-            //         required:true
-            //     },
-            //     show:true,
-            //     valid:false,
-            //     touched:false,
-            //     optional:true
-            // },
-            // homeState:{
-            //     name:'homeState',
-            //     label:'Home State',
-            //     elementType:'select',
-            //     elementConfig:{
-            //        type:'text',
-            //        options:[
-            //        {value:'',displayValue:"Select State", selected:true, disabled:true},
-            //        ...this.stateArray,
-            //     ] 
-            //     },
-            //     value:'',
-            //     show:true,
-            //     validation:{
-            //         required:true
-            //     },
-            //     valid:false,
-            //     touched:false
-            // },
-            // nameOfDistrict:{
-            //     name:'nameOfDistrict',
-            //     label:'Name of district',
-            //     elementType:'select',
-            //     elementConfig:{
-            //         type:'text',
-            //         options:[
-            //         {value:'',displayValue:"Select District", selected:true, disabled:true},
-                    
-            //      ] 
-            //      },
-            //     value:'',
-            //     show:true,
-            //     validation:{
-            //         required:true
-            //     },
-            //     valid:false,
-            //     touched:false
-            // },
-            // landmark:{
-            //     name:'landmark',
-            //     label:'Landmark',
-            //     elementType:'input',
-            //     elementConfig:{
-            //        type:'text',
-            //        placeholder:'' 
-            //     },
-            //     value:'',
-            //     show:true,
-            //     validation:{
-            //         required:true
-            //     },
-            //     valid:false,
-            //     touched:false
-            // },
-            // wardNo:{
-            //     label:'Ward Number',
-            //     elementType:'input',
-            //     elementConfig:{
-            //        type:'number',
-            //        placeholder:'' 
-            //     },
-            //     value:'',
-            //     show:true,
-            //     validation:{
-            //         required:true
-            //     },
-            //     valid:false,
-            //     touched:false
-            // },
-            // pinCode:{
-            //     name:'pinCode',
-            //     label:'PIN Code',
-            //     elementType:'input',
-            //     elementConfig:{
-            //        type:'number',
-            //        placeholder:'' 
-            //     },
-            //     value:'',
-            //     show:true,
-            //     validation:{
-            //         required:true,
-            //         length:6,
-            //     },
-            //     valid:false,
-            //     touched:false
-            // },
+            householdHead:{
+                name:'householdHead',
+                label:'Are you the head of your family?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                       {value:'yes',displayValue:'Yes'},
+                       {value:'no',displayValue:'No'},    
+                    ]
+                },
+                value:'',
+                show:true,
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false,
+                optional:true
+
+
+            },
+            respondent:{
+                name:'respondent',
+                label:'Are you respondent?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                       {value:'yes',displayValue:'Yes'},
+                       {value:'no',displayValue:'No'},    
+                    ]
+                },
+                value:'',
+                show:true,
+                validation:{
+                    required:true
+                },
+                valid:false,
+                touched:false,
+                optional:true
+            },
             stayAtHome:{
                 name:'stayAtHome',
                 label:'Do you stay at home for the whole day?',
@@ -460,11 +356,9 @@ class Member extends Component{
         qAnswered:0,
         autoCompleteShow:true
         }
-        // {value:'Andaman and Nicobar Islands',displayValue:'Andaman and Nicobar Islands'},
     }
-    state={
-        
-    }
+
+
     componentDidMount(){
         this.setState({familyId:this.props.familyId})
     }
@@ -475,36 +369,77 @@ class Member extends Component{
         updatedInputElement.valid=this.validityHandler(updatedInputElement.value,updatedInputElement.validation);
         updatedInputElement.touched=true;
         memberUpdated[inputIdentifier]=updatedInputElement; 
-        this.setState({member:memberUpdated},()=>{
+        this.setState( {member:memberUpdated}, ()=>{
             this.progressHandler()
-            if(inputIdentifier==="homeState"&&updatedInputElement.valid){
-                const newMemberUpdated={...this.state.member};
-                const newUpdatedInputElement={...newMemberUpdated["nameOfDistrict"]} ;
-                const newInputConfig={...newUpdatedInputElement.elementConfig}
-                const newInputConfigOptions=[...newInputConfig.options];
-                newInputConfigOptions.splice(1)
-                let stateName=this.state.member.homeState.value;
-                this.data[stateName].forEach(item=>{
-                    const dataObj={value:item,displayValue:item}
-                    newInputConfigOptions.push(dataObj);
-                })
 
-                //districtList.forEach(item=>{newInputConfigOptions.push(item)})
-                console.log(newInputConfigOptions)
-                newInputConfig.options=newInputConfigOptions;
-                newUpdatedInputElement.elementConfig=newInputConfig;
-                newMemberUpdated["nameOfDistrict"]=newUpdatedInputElement;
-                this.setState({member:newMemberUpdated});
+            if(inputIdentifier==="age" && updatedInputElement.valid){
+
+                if (updatedInputElement.value === "<4") {
+                    const newMemberUpdated = {...this.state.member};
+                    //update education
+                    const update_educationalQualification={...newMemberUpdated["educationalQualification"]};
+                    update_educationalQualification.value="notApplicable";
+                    newMemberUpdated["educationalQualification"]=update_educationalQualification;
+
+                    //maritial status
+                    const update_maritalStatus={...newMemberUpdated["maritialStatus"]} ;
+                    update_maritalStatus.value="single";
+                    newMemberUpdated["maritialStatus"]=update_maritalStatus;
+                    
+                    //monthlyIncome
+                    const update_monthlyIncome={...newMemberUpdated["monthlyIncome"]} ;
+                    update_monthlyIncome.value="nil";
+                    newMemberUpdated["monthlyIncome"]=update_monthlyIncome;
+
+                    const update_householdHead={...newMemberUpdated["householdHead"]} ;
+                    update_householdHead.value="no";
+                    newMemberUpdated["householdHead"]=update_householdHead;
+
+                    // respondent
+                    const update_respondent={...newMemberUpdated["respondent"]} ;
+                    update_respondent.value="no";
+                    newMemberUpdated["respondent"]=update_respondent;
+
+                    // motorcycle license
+                    const update_twoWheelerLicense={...newMemberUpdated["twoWheelerLicense"]} ;
+                    update_twoWheelerLicense.value="no";
+                    newMemberUpdated["twoWheelerLicense"]=update_twoWheelerLicense;
+
+                    // car license
+                    const update_fourWheelerLicense={...newMemberUpdated["fourWheelerLicense"]} ;
+                    update_fourWheelerLicense.value="no";
+                    newMemberUpdated["fourWheelerLicense"]=update_fourWheelerLicense;
+
+                    this.setState({member:newMemberUpdated});
+                }
             }
-            if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
-                    this.props.mapShow(updatedInputElement.value+" "+this.state.member.homeState.value);
-                    console.log(updatedInputElement.value,this.state.member.homeState.value)
+
+            if(inputIdentifier==="monthlyIncome" && updatedInputElement.valid){
+
+                if (updatedInputElement.value === "nil") {
+                    const newMemberUpdated = {...this.state.member};
+                    //update principalSourceofIncome
+                    const update_principalSourceofIncome={...newMemberUpdated["principalSourceofIncome"]};
+                    update_principalSourceofIncome.value="notApplicable";
+                    newMemberUpdated["principalSourceofIncome"]=update_principalSourceofIncome;
+                    
+                    this.setState({member:newMemberUpdated});
+                }
             }
-            if(inputIdentifier==="landmark"&&updatedInputElement.valid){
-                this.setState({autoCompleteShow:true})
-                this.landmarkValueHandler();
-                this.props.setMarkerQuery(null)
+
+            if(inputIdentifier==="simCards" && updatedInputElement.valid){
+
+                if (updatedInputElement.value === 0) {
+                    const newMemberUpdated = {...this.state.member};
+                    //update principalSourceofIncome
+                    const update_dataWhileDriving={...newMemberUpdated["dataWhileDriving"]};
+                    update_dataWhileDriving.value="no";
+                    newMemberUpdated["dataWhileDriving"]=update_dataWhileDriving;
+                    
+                    this.setState({member:newMemberUpdated});
+                }
             }
+
         });
     }
     onFocusHandler=()=>{
@@ -513,34 +448,34 @@ class Member extends Component{
     onBlurHandler=()=>{
         this.setState({autoCompleteShow:false})
     }
-    itemClickedHandler=(event,id,truth)=>{
-        //let hed=this.state.member.landmark.value;
-       // this.setState({hed:""},()=>{console.log(this.state.member.landmark.value)});
-        const memberUpdated={...this.state.member};
-        const updatedInputElement={...memberUpdated["landmark"]} ;
-        updatedInputElement.value=""+document.getElementById(id).innerHTML;
-        memberUpdated["landmark"]=updatedInputElement; 
-        this.setState({member:memberUpdated,autoCompleteShow:false},()=>{this.landmarkValueHandler()}
-        )
-        this.props.setMarkerQuery(""+updatedInputElement.value);
-    }
-    landmarkValueHandler=()=>{
-        this.props.landmarkTransfer(this.state.member.landmark.value);
-        //console.log(this.state.member.landmark.value);
-    }
-    progressHandler=()=>{
-        var arr=Object.keys(this.state.member);
-        var noOfTrue=0;
-        var objLen=arr.length;
-        for(let i=0;i<objLen;i++){
-         if(this.state.member[arr[i]].valid&&!this.state.member[arr[i]].optional){
-             noOfTrue++;
-         }
-        }
-        this.props.percentFind(noOfTrue);
-        this.setState({qAnswered:noOfTrue});
-        console.log(noOfTrue);    
-    } 
+    // itemClickedHandler=(event,id,truth)=>{
+    //     //let hed=this.state.member.landmark.value;
+    //    // this.setState({hed:""},()=>{console.log(this.state.member.landmark.value)});
+    //     const memberUpdated={...this.state.member};
+    //     const updatedInputElement={...memberUpdated["landmark"]} ;
+    //     updatedInputElement.value=""+document.getElementById(id).innerHTML;
+    //     memberUpdated["landmark"]=updatedInputElement; 
+    //     this.setState({member:memberUpdated,autoCompleteShow:false},()=>{this.landmarkValueHandler()}
+    //     )
+    //     this.props.setMarkerQuery(""+updatedInputElement.value);
+    // }
+    // landmarkValueHandler=()=>{
+    //     this.props.landmarkTransfer(this.state.member.landmark.value);
+    //     //console.log(this.state.member.landmark.value);
+    // }
+    // progressHandler=()=>{
+    //     var arr=Object.keys(this.state.member);
+    //     var noOfTrue=0;
+    //     var objLen=arr.length;
+    //     for(let i=0;i<objLen;i++){
+    //      if(this.state.member[arr[i]].valid&&!this.state.member[arr[i]].optional){
+    //          noOfTrue++;
+    //      }
+    //     }
+    //     this.props.percentFind(noOfTrue);
+    //     this.setState({qAnswered:noOfTrue});
+    //     console.log(noOfTrue);    
+    // } 
     validityHandler=(value,rules)=>{
         let isValid=true;
         if(rules.required&&isValid){
