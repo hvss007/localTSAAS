@@ -323,27 +323,27 @@ class Member extends Component{
                 touched:false,
                 optional:true
             },
-            state:{
-                name:'differentlyAbled',
-                label:'Differently Abled',
-                elementType:'select',
-                elementConfig:{
-                   type:'text',
-                   options:[
-                       {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes'},
-                       {value:'no',displayValue:'No'}
-                    ] 
-                },
-                value:'',
-                validation:{
-                    required:true
-                },
-                show:true,
-                valid:false,
-                touched:false,
-                optional:true
-            },
+            // state:{
+            //     name:'differentlyAbled',
+            //     label:'Differently Abled',
+            //     elementType:'select',
+            //     elementConfig:{
+            //        type:'text',
+            //        options:[
+            //            {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+            //            {value:'yes',displayValue:'Yes'},
+            //            {value:'no',displayValue:'No'}
+            //         ] 
+            //     },
+            //     value:'',
+            //     validation:{
+            //         required:true
+            //     },
+            //     show:true,
+            //     valid:false,
+            //     touched:false,
+            //     optional:true
+            // },
             // homeState:{
             //     name:'homeState',
             //     label:'Home State',
