@@ -463,19 +463,19 @@ class Member extends Component{
     //     this.props.landmarkTransfer(this.state.member.landmark.value);
     //     //console.log(this.state.member.landmark.value);
     // }
-    // progressHandler=()=>{
-    //     var arr=Object.keys(this.state.member);
-    //     var noOfTrue=0;
-    //     var objLen=arr.length;
-    //     for(let i=0;i<objLen;i++){
-    //      if(this.state.member[arr[i]].valid&&!this.state.member[arr[i]].optional){
-    //          noOfTrue++;
-    //      }
-    //     }
-    //     this.props.percentFind(noOfTrue);
-    //     this.setState({qAnswered:noOfTrue});
-    //     console.log(noOfTrue);    
-    // } 
+    progressHandler=()=>{
+        var arr=Object.keys(this.state.member);
+        var noOfTrue=0;
+        var objLen=arr.length;
+        for(let i=0;i<objLen;i++){
+         if(this.state.member[arr[i]].valid&&!this.state.member[arr[i]].optional){
+             noOfTrue++;
+         }
+        }
+        this.props.percentFind(noOfTrue);
+        this.setState({qAnswered:noOfTrue});
+        console.log(noOfTrue);    
+    } 
     validityHandler=(value,rules)=>{
         let isValid=true;
         if(rules.required&&isValid){
