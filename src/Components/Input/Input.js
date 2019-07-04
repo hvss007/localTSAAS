@@ -29,7 +29,7 @@ class Input extends Component {
     // }
     switch(this.props.elementType){
         case('input'):
-        if(this.props.label!=="Landmark/Address"){
+        if(this.props.id!=="landmark"){
             if(this.props.elementconfig.type!=="radio"){
                 inputElement=<input onChange={this.props.changed} 
                         className={inputClasses.join(' ')}
@@ -111,7 +111,7 @@ class Input extends Component {
             inputElement=<input className={classes.InputElement}></input>
     }
     return(
-        this.props.label!=='Family Income'? 
+        this.props.id!=='familyIncome'? 
         <div className={classes.Input}> 
         <label  style={{textAlign:this.props.textAlign,fontWeight:this.props.labelFontWeight}} className={classes.Label}>{this.props.label} </label>
         {inputElement}
