@@ -3,7 +3,7 @@ import classes from './BuildControl.css';
 const buildControl =props=>(
     <div className={classes.BuildControl}>
         <div className={classes.LabelWrapper}>
-        <img src={props.src}></img>
+        <img alt={""} src={props.src}></img>
         <div className={classes.Label}> 
             {props.label}
         </div>

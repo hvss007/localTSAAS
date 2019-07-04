@@ -491,7 +491,7 @@ state={}
         </div>:null}
         <div className={classes.FamilyWrapper}>
         <div className={classes.Family}>
-            <div className={classes.Heading}><span><img style={{width:'40px'}} src={Family1}></img></span><p>Family Information</p></div>
+            <div className={classes.Heading}><span><img style={{width:'40px'}} alt={"family"} src={Family1}></img></span><p>Family Information</p></div>
             {/*<ProgressBar total={3} transformValue={this.state.qAnswered}></ProgressBar>*/}
             <BuildControls valueAdded={this.addValueHandler}
                 valueRemoved={this.removeValueHandler}

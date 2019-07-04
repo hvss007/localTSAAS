@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import classes from './ContactUs.css';
 class ContactUs extends Component{
-    constructor(props) {
-        super(props);
-        // this.platform = null;
-        // this.map = null;
-        // this.state = {
-        //     app_id: 'wvzQzqmPlU1T9tjf0YLU',
-        //     app_code: 'b_is4SmSRfh8e0-Mr2-low',
-        //     center: {
-        //         lat: "29.86291",
-        //         lng:"77.89879",
-        //     },
-        //     lat:"29.8543",
-        //     lng:"77.8880",
-        //     zoom: "16",
-        //     theme:"normal.day",
-        //     showFrontDrop:false,
-        //     backdropShow:false,
-        //     count:0
-        // }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     // this.platform = null;
+    //     // this.map = null;
+    //     // this.state = {
+    //     //     app_id: 'wvzQzqmPlU1T9tjf0YLU',
+    //     //     app_code: 'b_is4SmSRfh8e0-Mr2-low',
+    //     //     center: {
+    //     //         lat: "29.86291",
+    //     //         lng:"77.89879",
+    //     //     },
+    //     //     lat:"29.8543",
+    //     //     lng:"77.8880",
+    //     //     zoom: "16",
+    //     //     theme:"normal.day",
+    //     //     showFrontDrop:false,
+    //     //     backdropShow:false,
+    //     //     count:0
+    //     // }
+    // }
     // componentDidMount() {
     //     this.platform = new window.H.service.Platform(this.state);
     //     this.layer = this.platform.createDefaultLayers();
@@ -66,7 +66,7 @@ class ContactUs extends Component{
                 <div className={classes.ContactLeftMain}>
                     <h2>Office Location</h2>
                     <div className={classes.GoogleMapResponsive}>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3460.051595087141!2d77.89629045133779!3d29.86278583399619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390eb36f2388a651%3A0x7f4055c136ddbd53!2sDepartment+of+Civil+Engineering!5e0!3m2!1sen!2sin!4v1551327440327" width="600" height="450" frameborder="0" style={{border:"0"}} allowfullscreen></iframe>
+                    <iframe title="IITR" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3460.051595087141!2d77.89629045133779!3d29.86278583399619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390eb36f2388a651%3A0x7f4055c136ddbd53!2sDepartment+of+Civil+Engineering!5e0!3m2!1sen!2sin!4v1551327440327" width="600" height="450" frameborder="0" style={{border:"0"}} allowfullscreen></iframe>
                 </div>  
                 </div>
                 <div className={classes.ContactRightMain}>

@@ -21,7 +21,7 @@ const startSurveySub=(props)=>{
                 <div className={classes.LeftContainer}>
                     {backgroundElement}
                     <div className={classes.ImgTextWrapper}>
-                        <img src={TsaasLogo}></img>
+                        <img alt={"TSaaS"} src={TsaasLogo}></img>
                         <div className={classes.LogoText}>
                             <p>Traffic Survey</p>
                             <p>as a Service</p>
