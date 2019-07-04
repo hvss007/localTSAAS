@@ -9,8 +9,8 @@ class ContactUs extends Component{
             app_id: 'wvzQzqmPlU1T9tjf0YLU',
             app_code: 'b_is4SmSRfh8e0-Mr2-low',
             center: {
-                lat: "29.8543",
-                lng:"77.8880",
+                lat: "29.8628",
+                lng:"77.8985",
             },
             lat:"29.8543",
             lng:"77.8880",
@@ -68,8 +68,6 @@ class ContactUs extends Component{
                     <div style={window.width>500?{width:'400px', height:'400px'}:{width:'100%', height:'400px'}} id="civilmap"></div>
                 </div>
                 <div className={classes.ContactRightMain}>
-                    <p>Dr. Amit Agarwal</p>
-                    <p>Assistant Profesor</p>
                     <p>Transportation Engineering Group</p>
                     <p>Department of Civil Engineering</p>
                     <p>IIT Roorkee</p>

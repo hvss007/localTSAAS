@@ -91,7 +91,7 @@ class Member extends Component{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'notApplicable',displayValue:'Not applicable'},
-                        {value:'prePrimary',displayValue:'Pre Primary'},
+                        // {value:'prePrimary',displayValue:'Pre Primary'},
                         {value:'primary',displayValue:'Primary'},
                         {value:'passX',displayValue:'10th Pass'},
                         {value:'passXII',displayValue:'12th Pass'},
@@ -389,6 +389,12 @@ class Member extends Component{
                     update_monthlyIncome.value="nil";
                     newMemberUpdated["monthlyIncome"]=update_monthlyIncome;
 
+                    //update principalSourceofIncome
+                    const update_principalSourceofIncome={...newMemberUpdated["principalSourceofIncome"]};
+                    update_principalSourceofIncome.value="notApplicable";
+                    newMemberUpdated["principalSourceofIncome"]=update_principalSourceofIncome;
+
+                    //household head
                     const update_householdHead={...newMemberUpdated["householdHead"]} ;
                     update_householdHead.value="no";
                     newMemberUpdated["householdHead"]=update_householdHead;
