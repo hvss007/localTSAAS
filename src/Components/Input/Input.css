@@ -88,6 +88,11 @@
 }
 .RadioWrapper{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: baseline;
+    padding-right:20px;
+}
+.RadioWrapper>input{
+    margin-right:10px 
 }
