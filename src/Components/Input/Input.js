@@ -40,21 +40,11 @@ class Input extends Component {
                 
                 let inputElement1=this.props.elementconfig.options.map((option,index)=>{
                     return (
-<<<<<<< HEAD
-                        <div className={classes.RadioWrapper} key={index}>
-                            <label name={this.props.label} >{option.displayValue}</label>
-                            <input name={this.props.label} type={this.props.elementconfig.type} onChange={this.props.changed} value={option.value}  >
-          
-                        </input>
-=======
-                        <div  key={index}>
+                        <div className={classes.RadioWrapper}  key={index}>
                             <input name={this.props.label} type={this.props.elementconfig.type} onChange={this.props.changed} value={option.value} ></input>
                             <label name={this.props.label} > {option.displayValue}</label>
->>>>>>> eb4f1f8d85b3fbbf2581b581e009e32f3429ad85
                         </div>)
-
                         }
-                               
                 )
                 inputElement= <div style={{display:'flex',justifyContent:'space-around'}}>{inputElement1}</div>
                 // inputElement=<input onChange={this.props.changed} 
