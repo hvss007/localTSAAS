@@ -119,7 +119,7 @@ class Input extends Component {
     <div>
        
     <div style={{marginBottom:'15px'}} className={classes.Input}> 
-        <img style={{margin:'auto',width:'50px'}} src={Coins}></img>
+        <img style={{margin:'auto',width:'50px'}} alt={"income"} src={Coins}></img>
         <label  style={{textAlign:this.props.textAlign,fontWeight:this.props.labelFontWeight}} className={classes.Label}>{this.props.label} </label>
         {inputElement}
     </div>

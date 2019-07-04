@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
-import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
+// import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
+// import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from './Wiki.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 

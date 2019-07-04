@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
-import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
+// import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
+// import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from './PrivacyPolicy.css';
 class  PrivacyPolicy extends Component{
     state={
