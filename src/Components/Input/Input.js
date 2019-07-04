@@ -59,7 +59,7 @@ class Input extends Component {
             
     
     }else{         
-            console.log(this.state.backArr1);
+            // console.log(this.state.backArr1);
             Autocompleteitems=this.state.backArr1.length>0&&show? this.state.backArr1.map((items,index)=>{
             return <li  
             onClick={(event)=>

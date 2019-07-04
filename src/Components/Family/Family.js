@@ -267,13 +267,13 @@ state={}
         let len=displayArr.length; 
         for(let i=0;i<len;i++){
             for(let j=0;j<displayUniqueArr;j++){
-                if(displayArr[i]==displayUniqueArr[j])
+                if(displayArr[i]===displayUniqueArr[j])
                 {
                     found=true
                 }
             }
             count++;
-            if(count==1&&found==false){
+            if(count===1&&found===false){
                 displayUniqueArr.push(displayArr[i]);
             }
             count=0;
@@ -295,7 +295,8 @@ state={}
         familyUpdated[inputIdentifier]=updatedInputElement; 
         this.setState({family:familyUpdated},()=>{
             this.progressHandler()
-            if(inputIdentifier==="country"&&updatedInputElement.value==="Others"){
+            if(inputIdentifier==="country" && updatedInputElement.value==="Others"){
+
                 if(window.confirm("Sorry. Currently this survey is confined to residents of India. Press Ok to finish the survey")){
                     const family=this.state.family;
                     const family1=this.state.family1;
@@ -322,8 +323,15 @@ state={}
                     .catch(err => console.error(err));
                 }
                 else{
-
+                    
                 }
+                    // const newMemberUpdated = {...this.state.member};
+                    // //update country back to India
+                    // const update_country={...newMemberUpdated["country"]};
+                    // update_country.value="India";
+                    // newMemberUpdated["country"]=update_country;
+                    
+                    // this.setState({member:newMemberUpdated});
             }
             if(inputIdentifier==="homeState"&&updatedInputElement.valid){
                 const newFamilyUpdated={...this.state.family};
@@ -458,7 +466,7 @@ state={}
         for(let i=0;i<arr.length;i++){
             arrNew.push({backArr:arr[i],clicked:false});
         }
-        console.log(arrNew);
+        // console.log(arrNew);
         let familyformArray=[];
         for (let key in this.state.family){
         familyformArray.push(
