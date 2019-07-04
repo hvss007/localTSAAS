@@ -205,7 +205,7 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
                         {value:'No',displayValue:'No'},
                     ]
@@ -226,7 +226,7 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
@@ -249,7 +249,7 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
@@ -270,7 +270,7 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
                         {value:'No',displayValue:'No'},
                         
@@ -292,7 +292,7 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'Yes',displayValue:'Yes'},
                         {value:'No',displayValue:'No'},
                         
@@ -442,7 +442,7 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                     ]
@@ -477,6 +477,36 @@ class Member extends Component{
         memberUpdated[inputIdentifier]=updatedInputElement; 
         this.setState({member:memberUpdated},()=>{
             this.progressHandler()
+            
+            if(inputIdentifier==="age"&&updatedInputElement.valid){
+
+                if(updatedInputElement.value==="<4"){
+                    const newMemberUpdated={...this.state.member};
+                    const newUpdatedInputElement={...newMemberUpdated["maritialStatus"]} ;
+                    newUpdatedInputElement.value="single"
+                    newMemberUpdated["maritialStatus"]=newUpdatedInputElement;
+                    this.setState({member:newMemberUpdated});
+                    // const newInputConfig={...newUpdatedInputElement.elementConfig}
+                    // const newInputConfigOptions=[...newInputConfig.options];
+                    // newInputConfigOptions.splice(1)
+                    // let stateName=this.state.member.homeState.value;
+                    // this.data[stateName].forEach(item=>{
+                    //     const dataObj={value:item,displayValue:item}
+                    //     newInputConfigOptions.push(dataObj);
+                    // })
+    
+                    // //districtList.forEach(item=>{newInputConfigOptions.push(item)})
+                    // console.log(newInputConfigOptions)
+                    // newInputConfig.options=newInputConfigOptions;
+                    // newUpdatedInputElement.elementConfig=newInputConfig;
+                    // newMemberUpdated["nameOfDistrict"]=newUpdatedInputElement;
+                    // this.setState({member:newMemberUpdated});
+                }
+                
+                
+            
+            }
+            
             if(inputIdentifier==="homeState"&&updatedInputElement.valid){
                 const newMemberUpdated={...this.state.member};
                 const newUpdatedInputElement={...newMemberUpdated["nameOfDistrict"]} ;
