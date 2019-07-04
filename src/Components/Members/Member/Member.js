@@ -185,7 +185,7 @@ class Member extends Component{
             },
              simCards:{
                 name:'simCards',
-                label:'How many sim cards do you use?',
+                label:'How many sim cards do the member use?',
                 elementType:'input',
                 elementConfig:{
                     type:'number',
@@ -203,7 +203,7 @@ class Member extends Component{
             }, 
              dataWhileDriving:{
                 name:'dataWhileDrivning',
-                label:'Do you call or use mobile-data while driving?',
+                label:'Does the member call or use mobile-data while driving?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',
@@ -224,7 +224,7 @@ class Member extends Component{
             },
             twoWheelerLicense:{
                 name:'twoWheelerLicense',
-                label:'Do you have a motorcycle license?',
+                label:'Does the member have a motorcycle license?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',
@@ -245,7 +245,7 @@ class Member extends Component{
             },
             fourWheelerLicense:{
                 name:'fourWheelerLicense',
-                label:'Do you have a car license?',
+                label:'Does the member have a car license?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',
@@ -266,7 +266,7 @@ class Member extends Component{
             },           
             differentlyAbled:{
                 name:'differentlyAbled',
-                label:'Differently Abled',
+                label:'Is the member differently abled?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',
@@ -287,7 +287,7 @@ class Member extends Component{
             },
             householdHead:{
                 name:'householdHead',
-                label:'Are you the head of your family?',
+                label:'Is the member head of your family?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',
@@ -310,7 +310,7 @@ class Member extends Component{
             },
             respondent:{
                 name:'respondent',
-                label:'Are you respondent?',
+                label:'Is the member respondent?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',
@@ -331,7 +331,7 @@ class Member extends Component{
             },
             stayAtHome:{
                 name:'stayAtHome',
-                label:'Do you stay at home for the whole day?',
+                label:'Does the member stay at home for the whole day?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',
