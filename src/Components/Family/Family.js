@@ -296,7 +296,7 @@ state={}
         this.setState({family:familyUpdated},()=>{
             this.progressHandler()
             if(inputIdentifier==="country"&&updatedInputElement.value==="Others"){
-                if(window.confirm("Sorry. Currently this survey is confined to residents of India for now. Press Ok to finish the survey")){
+                if(window.confirm("Sorry. Currently this survey is confined to residents of India. Press Ok to finish the survey")){
                     const family=this.state.family;
                     const family1=this.state.family1;
                     const post1={
