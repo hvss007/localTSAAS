@@ -203,7 +203,7 @@ class Member extends Component{
             }, 
              dataWhileDriving:{
                 name:'dataWhileDrivning',
-                label:'Does the member call or use mobile-data while driving?',
+                label:'Does the member call or use mobile-data while driving/traveling?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',
@@ -578,7 +578,7 @@ class Member extends Component{
         for(let i=0;i<arr.length;i++){
             arrNew.push({backArr:arr[i],clicked:false});
         }
-        console.log(arrNew);
+        // console.log(arrNew);
         
     let memberformArray=[];
     for (let key in this.state.member){
