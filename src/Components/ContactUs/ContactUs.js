@@ -3,23 +3,23 @@ import classes from './ContactUs.css';
 class ContactUs extends Component{
     constructor(props) {
         super(props);
-        this.platform = null;
-        this.map = null;
-        this.state = {
-            app_id: 'wvzQzqmPlU1T9tjf0YLU',
-            app_code: 'b_is4SmSRfh8e0-Mr2-low',
-            center: {
-                lat: "29.8628",
-                lng:"77.8985",
-            },
-            lat:"29.8543",
-            lng:"77.8880",
-            zoom: "16",
-            theme:"normal.day",
-            showFrontDrop:false,
-            backdropShow:false,
-            count:0
-        }
+        // this.platform = null;
+        // this.map = null;
+        // this.state = {
+        //     app_id: 'wvzQzqmPlU1T9tjf0YLU',
+        //     app_code: 'b_is4SmSRfh8e0-Mr2-low',
+        //     center: {
+        //         lat: "29.86291",
+        //         lng:"77.89879",
+        //     },
+        //     lat:"29.8543",
+        //     lng:"77.8880",
+        //     zoom: "16",
+        //     theme:"normal.day",
+        //     showFrontDrop:false,
+        //     backdropShow:false,
+        //     count:0
+        // }
     }
     // componentDidMount() {
     //     this.platform = new window.H.service.Platform(this.state);
@@ -40,24 +40,24 @@ class ContactUs extends Component{
     //     this.map.addObject(this.group);
     //     this.addMarkersToMap(this.state.center,this.behavior);     
     // }
-    addMarkersToMap=(position,behavior)=>{
-        // if(this.props.initLat!==null&&this.props.initLng!==null)
-        // {
-        //   var placeMarker=new window.H.map.Marker({lat:this.props.initLat, lng:this.props.initLng})
-        //   this.group.addObject(placeMarker);
-        // }
-        // else{
-        var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
-        placeMarker.draggable=true;
-        let map=this.map;
-        //let behavior=this.behavior;
-        //map.removeObject(this.group);        
-        this.group.addObject(placeMarker);
+    // addMarkersToMap=(position,behavior)=>{
+    //     // if(this.props.initLat!==null&&this.props.initLng!==null)
+    //     // {
+    //     //   var placeMarker=new window.H.map.Marker({lat:this.props.initLat, lng:this.props.initLng})
+    //     //   this.group.addObject(placeMarker);
+    //     // }
+    //     // else{
+    //     var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
+    //     placeMarker.draggable=true;
+    //     let map=this.map;
+    //     //let behavior=this.behavior;
+    //     //map.removeObject(this.group);        
+    //     this.group.addObject(placeMarker);
         
-        // this.dragEventHandler(map,behavior);
-        // }
+    //     // this.dragEventHandler(map,behavior);
+    //     // }
         
-    }
+    // }
     render(){
         return(
             <div className={classes.ContactUs}>
