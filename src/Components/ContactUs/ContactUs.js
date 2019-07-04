@@ -68,8 +68,6 @@ class ContactUs extends Component{
                     <div style={window.width>500?{width:'400px', height:'400px'}:{width:'100%', height:'400px'}} id="civilmap"></div>
                 </div>
                 <div className={classes.ContactRightMain}>
-                    <p>Dr. Amit Agarwal</p>
-                    <p>Assistant Profesor</p>
                     <p>Transportation Engineering Group</p>
                     <p>Department of Civil Engineering</p>
                     <p>IIT Roorkee</p>
