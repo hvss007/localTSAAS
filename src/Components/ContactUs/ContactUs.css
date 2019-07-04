@@ -23,6 +23,10 @@
 }
 .ContactRightMain{
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 .ContactRightMain>a{
     display: block;

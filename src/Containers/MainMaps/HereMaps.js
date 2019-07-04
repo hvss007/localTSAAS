@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 var count=0;
 class  HereMaps extends Component {
     constructor(props) {
@@ -142,12 +143,13 @@ class  HereMaps extends Component {
             zoom: this.state.zoom,
           })
           this.group = new window.H.map.Group();  
-        var events = new window.H.mapevents.MapEvents(this.map);
+          var events = new window.H.mapevents.MapEvents(this.map);
         // eslint-disable-next-line
-        this.behavior = new window.H.mapevents.Behavior(events);
+          this.behavior = new window.H.mapevents.Behavior(events);
         // eslint-disable-next-line
-        var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
+          var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
             //this.addMarkersToMap(this.map,behavior);
+            Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+','+this.state.center.lng+'&q=indiagate&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+'b_is4SmSRfh8e0-Mr2-low').then(Response=>console.log(Response))
             //this.req(this.behavior);
             this.map.addObject(this.group);
             return true
@@ -156,6 +158,9 @@ class  HereMaps extends Component {
     componentWillUnmount(){
         
     }
+    
+
+
     shouldComponentUpdate(nextProps, nextState) {
         //this.changeTheme(props.theme, props.style);
         if(this.state.dataLoaded!==nextState.dataLoaded){
@@ -163,7 +168,7 @@ class  HereMaps extends Component {
           return true
         }else if(this.props.searchArea!==nextProps.searchArea){
 
-          this.req(this.behavior);
+          // this.req(this.behavior);
           this.setState({count:this.state.count+1})
           this.setState({arr:[null]});
           
@@ -236,142 +241,142 @@ class  HereMaps extends Component {
     }
 
 
-     onResult = (result,behavior)=> {
-       //if(result){
-         try{
-        var locations = result.Response.View[0].Result,
-        position,
-        marker;
-        console.log(result)
-        // Add a marker for each location found
+    //  onResult = (result,behavior)=> {
+    //    //if(result){
+    //      try{
+    //     var locations = result.Response.View[0].Result,
+    //     position,
+    //     marker;
+    //     console.log(result)
+    //     // Add a marker for each location found
           
-        for (let i = 0;  i < locations.length; i++) {
-          position = {
-            lat: locations[i].Location.DisplayPosition.Latitude,
-            lng: locations[i].Location.DisplayPosition.Longitude
-          };
-         // marker = new window.H.map.Marker(position);
-          // if(marker){
-          // }
-          //this.map.removeObjects();
-          //this.addMarkersToMap(position,behavior);
-          // this.map.addObject(marker);
-          let lat=position.lat;
-          let lng=position.lng;
-          this.reverseGeocode(lat,lng)
-        }} catch (err) {console.log(err)} 
-       //}
-      };
-       req=(behavior)=>{
-        var geocoder = this.platform.getGeocodingService();
-        let geocodingParams = {
-          searchText:""+this.props.searchArea+this.mapCentreText
-        };
-        console.log(this.state.mapCentreText,"uvkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
-        geocoder.geocode(geocodingParams,(result)=>{ this.onResult(result,behavior); }, function(e) {
-          alert(e);
-        });
-       }
-       reverseGeocode=(lat,lng)=> {
-        var geocoder = this.platform.getGeocodingService(),
-          reverseGeocodingParameters = {
-            prox: ""+lat+","+lng, // Berlin
-            mode: 'retrieveAddresses',
-            jsonattributes : 1
-          };
-        geocoder.reverseGeocode(
-          reverseGeocodingParameters,
-          this.onSuccess,
-          this.onError
-        );
-      }
+    //     for (let i = 0;  i < locations.length; i++) {
+    //       position = {
+    //         lat: locations[i].Location.DisplayPosition.Latitude,
+    //         lng: locations[i].Location.DisplayPosition.Longitude
+    //       };
+    //      // marker = new window.H.map.Marker(position);
+    //       // if(marker){
+    //       // }
+    //       //this.map.removeObjects();
+    //       //this.addMarkersToMap(position,behavior);
+    //       // this.map.addObject(marker);
+    //       let lat=position.lat;
+    //       let lng=position.lng;
+    //       this.reverseGeocode(lat,lng)
+    //     }} catch (err) {console.log(err)} 
+    //    //}
+    //   };
+    //    req=(behavior)=>{
+    //     var geocoder = this.platform.getGeocodingService();
+    //     let geocodingParams = {
+    //       searchText:""+this.props.searchArea+this.mapCentreText
+    //     };
+    //     console.log(this.state.mapCentreText,"uvkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
+    //     geocoder.geocode(geocodingParams,(result)=>{ this.onResult(result,behavior); }, function(e) {
+    //       alert(e);
+    //     });
+    //    }
+    //    reverseGeocode=(lat,lng)=> {
+    //     var geocoder = this.platform.getGeocodingService(),
+    //       reverseGeocodingParameters = {
+    //         prox: ""+lat+","+lng, // Berlin
+    //         mode: 'retrieveAddresses',
+    //         jsonattributes : 1
+    //       };
+    //     geocoder.reverseGeocode(
+    //       reverseGeocodingParameters,
+    //       this.onSuccess,
+    //       this.onError
+    //     );
+    //   }
       
-      onSuccess=(result)=> {
-        var locations = result.response.view[0].result;
-       /*
-        * The styling of the geocoding response on the map is entirely under the developer's control.
-        * A representitive styling can be found the full JS + HTML code of this example
-        * in the functions below:
-        */
-       const positionsArrayText=[];
-      //  for (let i = 0;  i < locations.length; i++) {
-      //   // let position = {
-      //   //   positionEntry: locations[i].location.address.label
-      //   // };
-      //   positionsArrayText.push(locations[i].location.address.label);
-      // }
-      positionsArrayText.push(locations[0].location.address.label)
-      let arr=[...this.state.arr];
-      arr.push(positionsArrayText);
-      this.setState({arr:arr},()=>{
-          this.arrayTextHandler();
-        });
-        //addLocationsToMap(locations);
-        //addLocationsToPanel(locations);
-        // ... etc.
-      }
-      // /**
-      //  * This function will be called if a communication error occurs during the JSON-P request
-      //  * @param  {Object} error  The error message received.
-      //  */
-       onError=(error)=> {
-        alert('Ooops!');
-      }
-      arrayTextHandler=()=>{
-        const displayArr=[...this.state.arr];
-        let len=displayArr.length;
-        const finalArr=[...this.state.finalPassArrat];
-        finalArr.splice(0,len);
-        for(let i=1;i<len;i++){
-          finalArr.push(displayArr[i][0]);
-        }
-        this.setState({finalPassArrat:finalArr},
-          ()=>{
-            this.props.autocompleteArrayHandler(this.state.finalPassArrat)
-          });
+    //   onSuccess=(result)=> {
+    //     var locations = result.response.view[0].result;
+    //    /*
+    //     * The styling of the geocoding response on the map is entirely under the developer's control.
+    //     * A representitive styling can be found the full JS + HTML code of this example
+    //     * in the functions below:
+    //     */
+    //    const positionsArrayText=[];
+    //   //  for (let i = 0;  i < locations.length; i++) {
+    //   //   // let position = {
+    //   //   //   positionEntry: locations[i].location.address.label
+    //   //   // };
+    //   //   positionsArrayText.push(locations[i].location.address.label);
+    //   // }
+    //   positionsArrayText.push(locations[0].location.address.label)
+    //   let arr=[...this.state.arr];
+    //   arr.push(positionsArrayText);
+    //   this.setState({arr:arr},()=>{
+    //       this.arrayTextHandler();
+    //     });
+    //     //addLocationsToMap(locations);
+    //     //addLocationsToPanel(locations);
+    //     // ... etc.
+    //   }
+    //   // /**
+    //   //  * This function will be called if a communication error occurs during the JSON-P request
+    //   //  * @param  {Object} error  The error message received.
+    //   //  */
+    //    onError=(error)=> {
+    //     alert('Ooops!');
+    //   }
+    //   arrayTextHandler=()=>{
+    //     const displayArr=[...this.state.arr];
+    //     let len=displayArr.length;
+    //     const finalArr=[...this.state.finalPassArrat];
+    //     finalArr.splice(0,len);
+    //     for(let i=1;i<len;i++){
+    //       finalArr.push(displayArr[i][0]);
+    //     }
+    //     this.setState({finalPassArrat:finalArr},
+    //       ()=>{
+    //         this.props.autocompleteArrayHandler(this.state.finalPassArrat)
+    //       });
         
-      }
-      onResult1 = (result,behavior)=> {
-        //if(result){
-          try{
-         var locations = result.Response.View[0].Result,
-         position,
-         marker;
-         // Add a marker for each location found
-           position = {
-             lat: locations[0].Location.DisplayPosition.Latitude,
-             lng: locations[0].Location.DisplayPosition.Longitude
-           };
+    //   }
+    //   onResult1 = (result,behavior)=> {
+    //     //if(result){
+    //       try{
+    //      var locations = result.Response.View[0].Result,
+    //      position,
+    //      marker;
+    //      // Add a marker for each location found
+    //        position = {
+    //          lat: locations[0].Location.DisplayPosition.Latitude,
+    //          lng: locations[0].Location.DisplayPosition.Longitude
+    //        };
 
-          // marker = new window.H.map.Marker(position);
-           // if(marker){
+    //       // marker = new window.H.map.Marker(position);
+    //        // if(marker){
  
-           // }
-          //  console.log(position);
-           //this.map.removeObjects();
-           this.addMarkersToMap(position,behavior);
-           this.props.dragLatHandler(position.lat,position.lng)
-           // this.map.addObject(marker);
-           let lat=position.lat;
-           let lng=position.lng;
-        } catch (err) {console.log(err)} 
-        //}
+    //        // }
+    //       //  console.log(position);
+    //        //this.map.removeObjects();
+    //        this.addMarkersToMap(position,behavior);
+    //        this.props.dragLatHandler(position.lat,position.lng)
+    //        // this.map.addObject(marker);
+    //        let lat=position.lat;
+    //        let lng=position.lng;
+    //     } catch (err) {console.log(err)} 
+    //     //}
          
-       };
+    //    };
     render() {
-        if(this.props.markerQuery){
-          var geocoder = this.platform.getGeocodingService();
-          if(count>0){
-            this.group.removeObject(this.state.placeMarker)
-          }
-          count++;
-          let geocodingParams = {
-            searchText:""+this.props.searchArea+" "+  this.state.mapCentreText
-          };
-          geocoder.geocode(geocodingParams,(result)=>{ this.onResult1(result,this.behavior); console.log(geocodingParams)}, function(e) {
-            alert(e); 
-        })
-      }
+      //   if(this.props.markerQuery){
+      //     var geocoder = this.platform.getGeocodingService();
+      //     if(count>0){
+      //       this.group.removeObject(this.state.placeMarker)
+      //     }
+      //     count++;
+      //     let geocodingParams = {
+      //       searchText:""+this.props.searchArea+" "+  this.state.mapCentreText
+      //     };
+      //     geocoder.geocode(geocodingParams,(result)=>{ this.onResult1(result,this.behavior); console.log(geocodingParams)}, function(e) {
+      //       alert(e); 
+      //   })
+      // }
 
         return (
             <div style={{height:'95%'}}>

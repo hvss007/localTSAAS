@@ -5,8 +5,7 @@ import { RESOURCE } from 'webpack/lib/ModuleFilenameHelpers';
 export default class Maps extends Component{
     state={}
 componentDidMount(){
-   
-    Axios.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Amoeba&types=establishment&location=37.76999,-122.44696&radius=500&key="+process.env.REACT_APP_PLACES_API_KEY)
+    Axios.get('http://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json?query=Berli&app_id={wvzQzqmPlU1T9tjf0YLU}&app_code={b_is4SmSRfh8e0-Mr2-low}')
     .then(Response=>{
         console.log(Response)
     })
