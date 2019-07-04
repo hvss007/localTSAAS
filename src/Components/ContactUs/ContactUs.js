@@ -9,8 +9,8 @@ class ContactUs extends Component{
             app_id: 'wvzQzqmPlU1T9tjf0YLU',
             app_code: 'b_is4SmSRfh8e0-Mr2-low',
             center: {
-                lat: "29.8543",
-                lng:"77.8880",
+                lat: "29.8628",
+                lng:"77.8985",
             },
             lat:"29.8543",
             lng:"77.8880",
