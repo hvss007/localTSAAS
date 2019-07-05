@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 // import Axios from 'axios';
 // import Jaipur from '../../assets/icons/matsimjaipur.png';
 //import Matsim from '../../assets/icons/matsim.gif';
 import Axios from 'axios';
 import StartSurveySub from './StartSurveySub';
-import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
+// import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
 import HostName from '../../assets/globalvaribles/GlobalVariables';
 // require('dotenv').config();
 class StartSurvey extends Component{

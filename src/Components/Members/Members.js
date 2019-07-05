@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import Member from './Member/Member';
 import Aux from '../../Hoc/Aux';
 // import ProgressBar from '../ProgressBar/ProgressBar'; 
-import MainMaps from '../../Containers/MainMaps/MainMaps'; 
+// import MainMaps from '../../Containers/MainMaps/MainMaps'; 
 import classes from './Members.css';
 class Members extends Component{
     state={
@@ -42,13 +42,13 @@ class Members extends Component{
         let len=displayArr.length; 
         for(let i=0;i<len;i++){
             for(let j=0;j<displayUniqueArr;j++){
-                if(displayArr[i]==displayUniqueArr[j])
+                if(displayArr[i]===displayUniqueArr[j])
                 {
                     found=true
                 }
             }
             count++;
-            if(count==1&&found==false){
+            if(count===1&&found===false){
                 displayUniqueArr.push(displayArr[i]);
             }
             count=0;

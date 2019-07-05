@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
-import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
+// import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
+// import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from './Wiki.css';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 class  Wiki extends Component{
     state={
@@ -43,10 +44,10 @@ class  Wiki extends Component{
                 </ul>
  				
                  <h4> Privacy Policy:</h4>
-                 <p>The details of our privacy policy is available <a href="http://tsaas.iitr.ac.in/privacypolicy" target="_blank">here</a>.</p>
+                 <p>The details of our privacy policy is available <Link to="/privacypolicy">here</Link>.</p>
 
                  <h4> Simulation Model:</h4>
-                 <p>The collected data will be used to synthesize a multi-agent transport simulation model (<a href="https://www.matsim.org/" target="_blank">MATSim</a>). This data will also be used to calibrate and validate the model. Afterwards, the model can be used to test various policies in a city. Some examples of the policies are: alteration/re-circulation in the existing network, need of a new transit line or new infrastructure, impacts of a new bus/metro line, optimal locations of smart parking systems, environmental impacts of the travel choices, sustainable transport modes, impact of land-use on trip profiles, etc. Please see the <a href="https://www.matsim.org/gallery/" target="_blank">Gallery</a> for various scenarios world-wide.</p>
+                 <p>The collected data will be used to synthesize a multi-agent transport simulation model (<a href="https://www.matsim.org/" target="_blank" rel="noopener noreferrer">MATSim</a>). This data will also be used to calibrate and validate the model. Afterwards, the model can be used to test various policies in a city. Some examples of the policies are: alteration/re-circulation in the existing network, need of a new transit line or new infrastructure, impacts of a new bus/metro line, optimal locations of smart parking systems, environmental impacts of the travel choices, sustainable transport modes, impact of land-use on trip profiles, etc. Please see the <a href="https://www.matsim.org/gallery/" target="_blank" rel="noopener noreferrer">Gallery</a> for various scenarios world-wide.</p>
 
                  <h4>Future Scope:</h4>
                  <p>TSAAS is looking forward to transform the current program into a more robust traffic data gathering platform by introducing other traffic surveys. Please contact us if you have any suggestions and/or would like to contribute.</p>

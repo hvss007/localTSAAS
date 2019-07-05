@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './TripAcessAndMode.css';
 import TripAccess from './TripAcess/TripAccess';
-import TripModal from '../../../../../Hoc/TripModal/TripModal';
+// import TripModal from '../../../../../Hoc/TripModal/TripModal';
 //import CommentModal from '../../../../../Hoc/CommentModal/CommentModal';
 
 class TripAcessAndMode extends Component{
@@ -22,12 +22,12 @@ class TripAcessAndMode extends Component{
             const arrId=[this.state.access,this.state.egress,this.state.mainMode];
             const modeArr=[];
             arrId.forEach((mode)=>{
-                const accessCopy=[...mode];
+                // const accessCopy=[...mode];
                 const newAccessArray=[];
-                const accessObj=accessCopy.forEach((item)=>{
-                let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType,isValid:item.isValid};
-                newAccessArray.push(newAccessObjectIn);
-            })
+            //     const accessObj=accessCopy.forEach((item)=>{
+            //     let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType,isValid:item.isValid};
+            //     newAccessArray.push(newAccessObjectIn);
+            // })
                 modeArr.push(newAccessArray);
             })
           const finalAccessObject={
@@ -139,7 +139,7 @@ class TripAcessAndMode extends Component{
             accessCopy.push(accessElementNew);
             this.setState({access:accessCopy})
         }
-        else if(name="Egress Mode"){
+        else if(name==="Egress Mode"){
             
              const accessElementNew={idi:idi+1,showAdd:true,modeType:'egress'};
              const accessCopy=[...this.state.egress];

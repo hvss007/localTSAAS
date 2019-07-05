@@ -172,7 +172,7 @@ class TripAccess extends Component{
             <div style={{display:'flex'}}>
                 <p style={{margin:'auto'}}>{this.props.accessName}</p>
             </div>
-            <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} src={this.state.src?this.state.src:AcessIcon}></img>
+            <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex',flexFlow:'column'}}>
             <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a>
             {/* this.props.accessName */}

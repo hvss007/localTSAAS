@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import classes from './CommentModal.css'
 // import Home from '../../assets/icons/destinationIcons/Home.png';
 // import Office from '../../assets/icons/destinationIcons/Office.png';
@@ -8,13 +8,13 @@ import classes from './CommentModal.css'
 // import Shopping from '../../assets/icons/destinationIcons/Shopping.png';
 // import School from '../../assets/icons/destinationIcons/School.png';
 // import Other from '../../assets/icons/destinationIcons/Other.png';
-import CommentModalInput from './CommentModalInput/CommentModalInput';
+// import CommentModalInput from './CommentModalInput/CommentModalInput';
 const CommentModal =props=>{  
   const tipClasses=[classes.Tip];
     const dialogboxClasses=[classes.Dialogbox];
     const bodyClasses=[classes.Body];
     let style={};
-    console.log(window.innerWidth)
+    // console.log(window.innerWidth)
     if(props.originOrDestination==="Origin"){
       tipClasses.push(classes.TipLeft);
       if(window.innerWidth>=500){

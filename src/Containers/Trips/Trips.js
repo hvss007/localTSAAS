@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import classes from './Trips.css'
 import Trip from './Trip/IndividualTrip/IndividualTrip'; 
 import Aux from '../../Hoc/Aux';
-import Backdrop from '../../Hoc/Backdrop/Backdrop';
-import {Link} from 'react-router-dom';
+// import Backdrop from '../../Hoc/Backdrop/Backdrop';
+// import {Link} from 'react-router-dom';
 class Trips extends Component{
     state={
         trips:[{idf:1,showAdd:true,origin:null,lat:null,lng:null}]

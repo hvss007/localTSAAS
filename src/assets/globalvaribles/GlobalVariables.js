@@ -1,3 +1,3 @@
-var hostName="http://0.0.0.0/api/";
+var hostName="http://tsaas.iitr.ac.in/api/";
 global.hostName=hostName
  export default global.hostName;

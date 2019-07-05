@@ -8,7 +8,6 @@ import PrivacyPolicy from '../../Components/PrivacyPolicy/PrivacyPolicy';
 import ContactUs from '../../Components/ContactUs/ContactUs';
 import FinishSurvey from '../../Components/FinishSurvey/FinishSurvey';
 import Wiki from '../../Components/Wiki/Wiki';
-import Maps from '../GoogleMaps/Maps'
 class Survey extends Component{
     render(){
         return(
@@ -22,7 +21,6 @@ class Survey extends Component{
         </Trips> */}
         <Switch>
         {/* <Route path='/' component={StartSurvey}/>     */}
-        <Route path='/Maps' exact component={Maps}/> 
         <Route path='/finishsurvey' exact component={FinishSurvey}/> 
         <Route path='/privacypolicy' exact component={PrivacyPolicy}/> 
         <Route path='/contact' exact component={ContactUs}/> 

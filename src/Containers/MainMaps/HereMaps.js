@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-var count=0;
+// var count=0;
 class  HereMaps extends Component {
     constructor(props) {
         super(props);
@@ -37,7 +37,7 @@ class  HereMaps extends Component {
           console.log(result)
           console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
           if(result.Response.View.length>0) {
-            var location=result.Response.View[0].Result[0].Location.DisplayPosition;  
+            // var loc=result.Response.View[0].Result[0].Location.DisplayPosition;  
           }
           else{
             console.log('failed')
@@ -64,7 +64,8 @@ class  HereMaps extends Component {
           alert(e);
 
         });
-        console.log(this.location)
+        // console.log(this.location)
+
     }
     componentWillReceiveProps(nextProps,nextState){
       
@@ -96,8 +97,8 @@ class  HereMaps extends Component {
           searchText:nextProps.mapLocation+ " India"
         };
         geocoder.geocode(geocodingParams,(result)=>{ 
-          console.log(result)
-          console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
+          // console.log(result)
+          // console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
           if(result.Response.View.length>0) {
             var location=result.Response.View[0].Result[0].Location.DisplayPosition;  
             const center={
@@ -112,7 +113,7 @@ class  HereMaps extends Component {
           //   center: this.state.center,
           //   zoom: this.state.zoom,
           // })
-              console.log(this.map)
+              // console.log(this.map)
              this.map.setCenter({lat:this.state.center.lat, lng:this.state.center.lng});
              this.props.mapCenter(this.state.center.lat,this.state.center.lng)
               // this.map.l.center=this.state.center
@@ -155,7 +156,7 @@ class  HereMaps extends Component {
 
     }
     componentDidUpdate(prevProps,prevState) {
-      console.log("when it works")
+      // console.log("when it works")
         if(this.state.dataLoaded&&this.state.count===0){
           this.layer = this.platform.createDefaultLayers();
           this.container = document.getElementById('here-map');
@@ -250,7 +251,7 @@ class  HereMaps extends Component {
         this.group.addObject(placeMarker);
         console.log(this.group);
         this.dragEventHandler(map,behavior);
-       console.log("working but marker")
+       // console.log("working but marker")
     }
 
     dragEventHandler=(map,behavior)=>{

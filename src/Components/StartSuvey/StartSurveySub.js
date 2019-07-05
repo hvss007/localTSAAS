@@ -10,7 +10,6 @@ import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 const startSurveySub=(props)=>{
     const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
         const backgroundElement =window.innerWidth<=500? <div style={{background:'url('+MobileHomePage+')',marginBottom:'50px',backgroundRepeat:'no-repeat',backgroundSize:'cover'}} className={classes.FirstImageWrapper}></div>:null
-        console.log(window.innerWidth);
         const background =window.innerWidth>=500?{ 
             backgroundImage:'url('+HomePage+')'+','+'url('+Background+')',backgroundRepeat:'no-repeat',backgroundSize:'cover,cover',backgroundPosition:'0% 40%,0% 40%'}:null
     return(
@@ -22,7 +21,7 @@ const startSurveySub=(props)=>{
                 <div className={classes.LeftContainer}>
                     {backgroundElement}
                     <div className={classes.ImgTextWrapper}>
-                        <img src={TsaasLogo}></img>
+                        <img alt={"TSaaS"} src={TsaasLogo}></img>
                         <div className={classes.LogoText}>
                             <p>Traffic Survey</p>
                             <p>as a Service</p>
