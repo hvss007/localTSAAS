@@ -12,7 +12,7 @@ class StartSurvey extends Component{
     state={
         showSideDrawer:false,
         displayComponent:false,
-        displayText:'',
+        collegeName:'',
         collegeID:''
     }
     componentWillMount(){
@@ -30,7 +30,7 @@ class StartSurvey extends Component{
             //    )
            })
            if(collegeArr.length===1){
-               this.setState({displayComponent:true,displayText:collegeArr[0].collegeName,displayText:collegeArr[0].collegeID})
+               this.setState({displayComponent:true,collegeName:collegeArr[0].collegeName,collegeID:collegeArr[0].collegeID})
            }
            else{
 
@@ -61,7 +61,7 @@ class StartSurvey extends Component{
     render(){    
         let showElement;
         if(this.props.match.url==="/"){
-            showElement=<StartSurveySub collegeName={"none"} collegeID={'s'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
+            showElement=<StartSurveySub collegeName={"home"} collegeID={'1'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
         }
         else{
                 showElement=null
@@ -69,7 +69,7 @@ class StartSurvey extends Component{
        
         // const navElement=this.props.match.params.id==="privacypolicy"?<PrivacyPolicy/>:null
         // const testElement=this.props.match.url==="/"?<StartSurveySub collegeName="none"  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:null
-        const element=this.state.displayComponent?<StartSurveySub collegeName={this.state.displayText}  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:showElement;
+        const element=this.state.displayComponent?<StartSurveySub collegeName={this.state.collegeName} collegeId={this.state.collegeId}  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:showElement;
     return element
     }
 }
