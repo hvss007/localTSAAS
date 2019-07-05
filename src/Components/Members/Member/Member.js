@@ -520,12 +520,11 @@ class Member extends Component{
             else if(member.stayAtHome.value==="yes"){
                 const post={
                     familyID:this.state.familyId,
-                    // memberId:member.memberId.value,
                     householdHead:member.householdHead.value,
                     respondent:member.respondent.value,
                     twoWheelerLicense:member.twoWheelerLicense.value,
                     simCards:member.simCards.value,
-                    fourWheelerLicense:member.fourWheelerLicense,
+                    fourWheelerLicense:member.fourWheelerLicense.value,
                     dataWhileDriving:member.dataWhileDriving.value,
                     gender:member.gender.value,
                     age:member.age.value,
@@ -533,34 +532,23 @@ class Member extends Component{
                     monthlyIncome:member.monthlyIncome.value,
                     maritialStatus:member.maritialStatus.value,
                     differentlyAbled:member.differentlyAbled.value,
-                    // homeState:member.homeState.value,
-                    // nameOfDistrict:member.nameOfDistrict.value,
-                    // landmark:member.landmark.value,
-                    // pincode:member.pinCode.value,
                     principalSourceofIncome:member.principalSourceofIncome.value,
-                    // lat:this.props.lat,
-                    // lng:this.props.lng,
                     stayAtHome:member.stayAtHome.value
                 }
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                        // console.log(Response);
                       window.location.reload();  
-                        // const current = this.props;
-                        // console.log(current);
-                        //  this.props.history.push({pathname:this.props.match.url});
                     })
                     .catch(err => console.error(err));
             }
             else{
                 const post={
                     familyID:this.state.familyId,
-                    // memberId:member.memberId.value,
                     householdHead:member.householdHead.value,
                     respondent:member.respondent.value,
                     twoWheelerLicense:member.twoWheelerLicense.value,
                     simCards:member.simCards.value,
-                    fourWheelerLicense:member.fourWheelerLicense,
+                    fourWheelerLicense:member.fourWheelerLicense.value,
                     dataWhileDriving:member.dataWhileDriving.value,
                     gender:member.gender.value,
                     age:member.age.value,
@@ -568,13 +556,7 @@ class Member extends Component{
                     monthlyIncome:member.monthlyIncome.value,
                     maritialStatus:member.maritialStatus.value,
                     differentlyAbled:member.differentlyAbled.value,
-                    // homeState:member.homeState.value,
-                    // nameOfDistrict:member.nameOfDistrict.value,
-                    // landmark:member.landmark.value,
-                    // pincode:member.pinCode.value,
                     principalSourceofIncome:member.principalSourceofIncome.value,
-                    // lat:this.props.lat,
-                    // lng:this.props.lng,
                     stayAtHome:member.stayAtHome.value
                 }
     

@@ -329,13 +329,12 @@ state={}
                         collegeID:this.state.collegeID,
                         noOfCars:family1.noOfCars,
                         noOfCycles:family1.noOfCycles,
-                        country:family.country.value,
                         noOfTwoWheelers:family1.noOfTwoWheelers,
+                        country:family.country.value,
                         familyIncome:family.familyIncome.value,
                         homeState:family.homeState.value,
                         nameOfDistrict:family.nameOfDistrict.value,
                         landmark:family.landmark.value,
-                        // pincode:family.pinCode.value,
                         lat:this.state.lat,
                         lng:this.state.lng
                     }
@@ -458,10 +457,6 @@ state={}
             const family=this.state.family;
             const family1=this.state.family1;
                 const post={
-                    // noOfCars:family.noOfCars.value,
-                    // noOfCycles:family.noOfCycles.value,
-                    // noOfTwoWheelers:family.noOfTwoWheelers.value,
-                    // familyIncome:family.familyIncome.value,
                     collegeID:this.state.collegeID,
                     noOfCars:family1.noOfCars,
                     country:family.country.value,
@@ -471,10 +466,8 @@ state={}
                     homeState:family.homeState.value,
                     nameOfDistrict:family.nameOfDistrict.value,
                     landmark:family.landmark.value,
-                    // pincode:family.pinCode.value,
                     lat:this.state.lat,
                     lng:this.state.lng
-
                 }
                 axios.post(HostName+"family/",post)
                     .then((Response)=>{
