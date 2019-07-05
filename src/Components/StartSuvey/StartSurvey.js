@@ -18,8 +18,6 @@ class StartSurvey extends Component{
     componentWillMount(){
         Axios.get(HostName+"college/")
         .then(Response=>{
-            console.log(Response);
-            console.log(this.props.match.url)
                const collegeArr= Response.data.filter(item=>{
                return (("/"+item.collegeURL===this.props.match.url));
             //    let element=Response.data.filter(
@@ -35,7 +33,6 @@ class StartSurvey extends Component{
            else{
 
            }
-           console.log(collegeArr);
         })
     }
     SideDrawerClosedHandler=()=>{

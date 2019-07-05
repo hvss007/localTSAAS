@@ -1,6 +1,6 @@
 import React , { Component }  from 'react';
 import classes from './Input.css';
-import LandmarkAutoComplete from './LandmarkAutoComplete';
+// import LandmarkAutoComplete from './LandmarkAutoComplete';
 import Coins from '../../assets/icons/coins.png'
 import Autocomplete from '../../Containers/AutoComplete/AutoComplete1'
 class Input extends Component {
@@ -14,8 +14,8 @@ class Input extends Component {
         }
     }
     render(){
-    let Autocompleteitems;
-    let show=this.props.autoCompleteShow;        
+    // let Autocompleteitems;
+    // let show=this.props.autoCompleteShow;        
     let inputElement=null;
     const inputClasses=[classes.InputElement];
     if(this.props.invalid&&this.props.touched){

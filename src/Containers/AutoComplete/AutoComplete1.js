@@ -34,7 +34,7 @@ export default class App extends React.Component {
      * @return {Nothing} The state is updated but no value is returned
      */
     retrieveDataAsynchronously(searchText){
-        let _this = this;
+        // let _this = this;
         console.log(process.env)
         Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.props.centerLat+','+this.props.centerLng+'&q='+this.state.value +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
         .then(Response=>{
