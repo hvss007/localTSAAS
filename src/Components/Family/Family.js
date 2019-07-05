@@ -290,11 +290,11 @@ state={}
     }
     componentDidMount(){
         console.log(this.props.match.url)
-        axios.get(HostName+"family/").then(
+        axios.get(HostName+"college/").then(
             Response=>{
 
                 const collegeArr= Response.data.filter(item=>{
-                    return (("/"+item.collegeURL===this.props.match.params.id));
+                    return ((item.collegeURL===this.props.match.params.id));
                 }
                 
                 
