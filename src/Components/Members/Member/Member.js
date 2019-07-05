@@ -209,7 +209,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'Yes',displayValue:'Yes'},
+                        {value:'Yes',displayValue:'Yes',checked:false},
                         {value:'No',displayValue:'No'},
                     ]
                 },
@@ -230,7 +230,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes'},
+                       {value:'yes',displayValue:'Yes',checked:false},
                        {value:'no',displayValue:'No'},    
                     ]
                 },
@@ -251,7 +251,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes'},
+                       {value:'yes',displayValue:'Yes',checked:false},
                        {value:'no',displayValue:'No'},    
                     ]
                 },
@@ -272,7 +272,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'yes',displayValue:'Yes'},
+                        {value:'yes',displayValue:'Yes',checked:false},
                         {value:'no',displayValue:'No'},
                     ]
                 },
@@ -293,7 +293,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'yes',displayValue:'Yes'},
+                        {value:'yes',displayValue:'Yes',checked:false},
                         {value:'no',displayValue:'No'},
                     ]
                 },
@@ -316,7 +316,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes'},
+                       {value:'yes',displayValue:'Yes',checked:false},
                        {value:'no',displayValue:'No'},    
                     ]
                 },
@@ -337,7 +337,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'yes',displayValue:'Yes'},
+                        {value:'yes',displayValue:'Yes',checked:false},
                         {value:'no',displayValue:'No'},
                     ]
                 },

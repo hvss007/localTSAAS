@@ -42,7 +42,7 @@ class Input extends Component {
                 let inputElement1=this.props.elementconfig.options.map((option,index)=>{
                     return (
                         <div className={classes.RadioWrapper}  key={index}>
-                            <input name={this.props.label} type={this.props.elementconfig.type} onChange={this.props.changed} value={option.value} ></input>
+                            <input name={this.props.label} type={this.props.elementconfig.type} checked={option.value=this.props.value?true:false} onChange={this.props.changed} value={option.value} ></input>
                             <label name={this.props.label} > {option.displayValue}</label>
                         </div>)
                         }
