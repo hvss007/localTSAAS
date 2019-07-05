@@ -2,7 +2,8 @@ import React , { Component }  from 'react';
 import classes from './Input.css';
 // import LandmarkAutoComplete from './LandmarkAutoComplete';
 import Coins from '../../assets/icons/coins.png'
-import Autocomplete from '../../Containers/AutoComplete/AutoComplete1'
+import Autocomplete from '../../Containers/AutoComplete/AutoComplete1';
+
 class Input extends Component {
     state={
     backArr1:[]    ,
@@ -13,7 +14,7 @@ class Input extends Component {
             this.setState({backArr1:[...nextProps.autoCompleteArr]});
         }
     }
-    render(){
+    render(){    
     // let Autocompleteitems;
     // let show=this.props.autoCompleteShow;        
     let inputElement=null;
@@ -39,10 +40,18 @@ class Input extends Component {
                      </input>
             }
             else{
+                let checkedObject=null
                 let inputElement1=this.props.elementconfig.options.map((option,index)=>{
+                    if(option.value!==undefined){
+                      let checked1=option.value===this.props.value?true:false
+                      checkedObject={checked:checked1}
+                    }
+                    else{
+                        checked:false
+                    }
                     return (
                         <div className={classes.RadioWrapper}  key={index}>
-                            <input name={this.props.label} type={this.props.elementconfig.type} checked={option.value=this.props.value?true:false} onChange={this.props.changed} value={option.value} ></input>
+                            <input name={this.props.label} type={this.props.elementconfig.type} {...checkedObject} onChange={this.props.changed} value={option.value} ></input>
                             <label name={this.props.label} > {option.displayValue}</label>
                         </div>)
                         }

@@ -244,7 +244,8 @@ class Family extends Component{
         responseArray:[],
         centerLat:'',
         centerLng:'',
-        markerLocationText:''
+        markerLocationText:'',
+        collegeID:''
         //copied from members
     }
 }
@@ -287,6 +288,26 @@ state={}
         this.setState({autoCompleteArr:displayUniqueArr},()=>{console.log(this.state.autoCompleteArr,"ugvytyryfrccyf")});
         
     }
+    componentDidMount(){
+        console.log(this.props.match.url)
+        axios.get(HostName+"family/").then(
+            Response=>{
+
+                const collegeArr= Response.data.filter(item=>{
+                    return (("/"+item.collegeURL===this.props.match.params.id));
+                }
+                
+                
+                )
+                if(collegeArr.length===1){
+                    this.setState({collegeID:collegeArr[0].collegeID})
+                }
+                else{
+     
+                }
+            }
+        )
+    }
     //these functions imported from members
     //these functions imported from member
     //these functions imported from member
@@ -305,7 +326,7 @@ state={}
                     const family=this.state.family;
                     const family1=this.state.family1;
                     const post1={
-                        collegeID:this.props.match.params.id,
+                        collegeID:this.state.collegeID,
                         noOfCars:family1.noOfCars,
                         noOfCycles:family1.noOfCycles,
                         country:family.country.value,
@@ -441,7 +462,7 @@ state={}
                     // noOfCycles:family.noOfCycles.value,
                     // noOfTwoWheelers:family.noOfTwoWheelers.value,
                     // familyIncome:family.familyIncome.value,
-                    collegeID:this.props.match.params.id,
+                    collegeID:this.state.collegeID,
                     noOfCars:family1.noOfCars,
                     country:family.country.value,
                     noOfCycles:family1.noOfCycles,
