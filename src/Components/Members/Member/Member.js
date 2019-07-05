@@ -189,7 +189,7 @@ class Member extends Component{
                 elementType:'input',
                 elementConfig:{
                     type:'number',
-                    placeholder:'' 
+                    placeholder:'Enter number of sim cards here.' 
                  },
                 value:0,
                 validation:{
@@ -209,8 +209,8 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'Yes',displayValue:'Yes',checked:false},
-                        {value:'No',displayValue:'No'},
+                        {value:'Yes',displayValue:'Yes'},
+                        {value:'no',displayValue:'No'},
                     ]
                 },
                 value:'',
@@ -230,7 +230,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes',checked:false},
+                       {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
                 },
@@ -251,7 +251,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes',checked:false},
+                       {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
                 },
@@ -272,7 +272,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'yes',displayValue:'Yes',checked:false},
+                        {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                     ]
                 },
@@ -293,7 +293,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'yes',displayValue:'Yes',checked:false},
+                        {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                     ]
                 },
@@ -316,7 +316,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'yes',displayValue:'Yes',checked:false},
+                       {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
                 },
@@ -337,7 +337,7 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'yes',displayValue:'Yes',checked:false},
+                        {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                     ]
                 },
@@ -348,7 +348,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:false
             }
         },
         qAnswered:0,
@@ -413,6 +413,16 @@ class Member extends Component{
                     const update_fourWheelerLicense={...newMemberUpdated["fourWheelerLicense"]} ;
                     update_fourWheelerLicense.value="no";
                     newMemberUpdated["fourWheelerLicense"]=update_fourWheelerLicense;
+
+                    //simCards
+                    const update_simCards={...newMemberUpdated["simCards"]} ;
+                    update_simCards.value=0;
+                    newMemberUpdated["simCards"]=update_simCards;
+
+                    //data
+                    const update_dataWhileDriving={...newMemberUpdated["dataWhileDriving"]};
+                    update_dataWhileDriving.value="no";
+                    newMemberUpdated["dataWhileDriving"]=update_dataWhileDriving;
 
                     this.setState({member:newMemberUpdated});
                 }
@@ -501,9 +511,13 @@ class Member extends Component{
         console.log(this.state.qAnswered);
         event.preventDefault();
         
-        if(this.state.qAnswered>=10){
+        // if(this.state.qAnswered>=10){
             const member=this.state.member;
-            if(member.stayAtHome.value==="yes"){
+                        
+            if(member.stayAtHome.value==="") {
+                alert("Please state whether the member is staying at home for the whole day.")
+            }
+            else if(member.stayAtHome.value==="yes"){
                 const post={
                     familyID:this.state.familyId,
                     // memberId:member.memberId.value,
@@ -526,7 +540,7 @@ class Member extends Component{
                     principalSourceofIncome:member.principalSourceofIncome.value,
                     // lat:this.props.lat,
                     // lng:this.props.lng,
-                    tripsMade:member.stayAtHome.value
+                    stayAtHome:member.stayAtHome.value
                 }
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
@@ -542,6 +556,12 @@ class Member extends Component{
                 const post={
                     familyID:this.state.familyId,
                     // memberId:member.memberId.value,
+                    householdHead:member.householdHead.value,
+                    respondent:member.respondent.value,
+                    twoWheelerLicense:member.twoWheelerLicense.value,
+                    simCards:member.simCards.value,
+                    fourWheelerLicense:member.fourWheelerLicense,
+                    dataWhileDriving:member.dataWhileDriving.value,
                     gender:member.gender.value,
                     age:member.age.value,
                     educationalQualification:member.educationalQualification.value,
@@ -555,7 +575,7 @@ class Member extends Component{
                     principalSourceofIncome:member.principalSourceofIncome.value,
                     // lat:this.props.lat,
                     // lng:this.props.lng,
-                    tripsMade:member.stayAtHome.value
+                    stayAtHome:member.stayAtHome.value
                 }
     
                 axios.post(HostName+"members/",post)
@@ -567,10 +587,10 @@ class Member extends Component{
                     .catch(err => console.error(err));
             }
          
-        }
-        else{
-            alert("Please fill all the fields")
-        }
+        // }
+        // else{
+        //     alert("Please fill all the fields")
+        // }
     }
     render(){
         const arrNew=[];
