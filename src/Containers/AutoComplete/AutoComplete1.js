@@ -35,8 +35,8 @@ export default class App extends React.Component {
      */
     retrieveDataAsynchronously(searchText){
         let _this = this;
-
-        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.props.centerLat+','+this.props.centerLng+'&q='+this.state.value +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+'b_is4SmSRfh8e0-Mr2-low')
+        console.log(process.env)
+        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.props.centerLat+','+this.props.centerLng+'&q='+this.state.value +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
         .then(Response=>{
           let ResponseArrayResponse=Response.data.results;
           let elementsArray=[];
