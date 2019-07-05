@@ -12,7 +12,8 @@ class StartSurvey extends Component{
     state={
         showSideDrawer:false,
         displayComponent:false,
-        displayText:''
+        displayText:'',
+        collegeID:''
     }
     componentWillMount(){
         Axios.get(HostName+"college/")
@@ -21,9 +22,15 @@ class StartSurvey extends Component{
             console.log(this.props.match.url)
                const collegeArr= Response.data.filter(item=>{
                return (("/"+item.collegeURL===this.props.match.url));
+            //    let element=Response.data.filter(
+            //        item=>{
+            //         return ((item.Name==='home'));
+            //        }
+                   
+            //    )
            })
            if(collegeArr.length===1){
-               this.setState({displayComponent:true,displayText:collegeArr[0].collegeName})
+               this.setState({displayComponent:true,displayText:collegeArr[0].collegeName,displayText:collegeArr[0].collegeID})
            }
            else{
 
@@ -54,7 +61,7 @@ class StartSurvey extends Component{
     render(){    
         let showElement;
         if(this.props.match.url==="/"){
-            showElement=<StartSurveySub collegeName={"home"} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
+            showElement=<StartSurveySub collegeName={"none"} collegeID={'s'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
         }
         else{
                 showElement=null

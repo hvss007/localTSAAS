@@ -2,9 +2,11 @@ import React , { Component }  from 'react';
 import classes from './Input.css';
 import LandmarkAutoComplete from './LandmarkAutoComplete';
 import Coins from '../../assets/icons/coins.png'
+import Autocomplete from '../../Containers/AutoComplete/AutoComplete1'
 class Input extends Component {
     state={
-    backArr1:[]    
+    backArr1:[]    ,
+    // responseArray:this.props.responseArray
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.autoCompleteArr !== this.props.autoCompleteArr){
@@ -37,7 +39,6 @@ class Input extends Component {
                      </input>
             }
             else{
-                
                 let inputElement1=this.props.elementconfig.options.map((option,index)=>{
                     return (
                         <div className={classes.RadioWrapper}  key={index}>
@@ -59,24 +60,26 @@ class Input extends Component {
             
     
     }else{         
-            console.log(this.state.backArr1);
-            Autocompleteitems=this.state.backArr1.length>0&&show? this.state.backArr1.map((items,index)=>{
-            return <li  
-            onClick={(event)=>
-                {
-                let tempArr=[...this.state.backArr1];
-                let tempArrElement=[...tempArr[index]];
-                console.log(tempArrElement)
-                tempArrElement.clicked=true;
-                tempArr[index]=tempArrElement;
-                this.setState({backArr1:tempArr});                
-                this.props.itemClicked(event,""+items.backArr+index,items.clicked)    
+            // console.log(this.state.backArr1);
+            
+        //     Autocompleteitems=this.state.backArr1.length>0&&show? this.state.backArr1.map((items,index)=>{
+        //     return <li  
+        //     onClick={(event)=>
+        //         {
+                    
+        //         let tempArr=[...this.state.backArr1];
+        //         let tempArrElement=[...tempArr[index]];
+        //         console.log(tempArrElement)
+        //         tempArrElement.clicked=true;
+        //         tempArr[index]=tempArrElement;
+        //         this.setState({backArr1:tempArr});                
+        //         this.props.itemClicked(event,""+items.backArr+index,items.clicked)    
           
-            }} id={""+items.backArr+index} key={items.backArr+index} style={{display:"block"}}>{items.backArr}</li>
-        }):null;
+        //     }} id={""+items.backArr+index} key={items.backArr+index} style={{display:"block"}}>{items.backArr}</li>
+        // }):null;
          inputElement= 
                           <div  className={classes.Autocomplete} >
-                            <input 
+                            {/* <input 
                                 // onBlur={this.props.blurred} onFocus={this.props.onFocusHandler}
                                 onChange={this.props.changed} 
                                 className={inputClasses.join(' ')}
@@ -85,10 +88,11 @@ class Input extends Component {
                                 id="myInput" 
                                 style={this.props.style}
                                 >
-                            </input>
-                            {true?<LandmarkAutoComplete>
+                            </input> */}
+                            <Autocomplete selectedOption={this.props.selectedOption} centerLat={this.props.centerLat} centerLng={this.props.centerLng}></Autocomplete>
+                            {/* {true?<LandmarkAutoComplete>
                                 {Autocompleteitems}
-                            </LandmarkAutoComplete>:null}          
+                            </LandmarkAutoComplete>:null}           */}
                             <p style={{textAlign:'center',fontSize:'11px'}}>Drag the marker nearest to your permanent address.</p>    
                           </div>
         }

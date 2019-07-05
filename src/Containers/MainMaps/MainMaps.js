@@ -31,18 +31,23 @@ onChange(evt) {
       <div className={classes.MainMaps} >
         <div style={{fontSize:'12px',textAlign:'center'}} ><p>*You can drag the marker to your approximate new location</p></div>
         <HereMaps
+          markerLocationText={this.props.markerLocationText}
           mapLocation={this.props.mapLocation}
           app_id='wvzQzqmPlU1T9tjf0YLU'
           app_code='b_is4SmSRfh8e0-Mr2-low'
           lat={this.state.lat}
           lng={this.state.lng}
+          markerLocationLat={this.props.lat}
+          markerLocationLng={this.props.lng}
           zoom="12"
           theme={ this.state.theme}
           inputChange={(event)=>this.inputHandler(event)}
           dragLatHandler={this.props.dragLatHandler}
+          dropdownArrayHandler={this.props.dropdownArrayHandler}
           searchArea={this.props.searchText}
           autocompleteArrayHandler={this.props.autocompleteArrayHandler}
           markerQuery={this.props.markerQuery}
+          mapCenter={this.props.mapCenter}
         ></HereMaps>
         {/* <ThemeSelector changeTheme={ this.onChange } /> */}
       </div>

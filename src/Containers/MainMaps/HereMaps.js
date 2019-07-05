@@ -8,8 +8,9 @@ class  HereMaps extends Component {
           app_id: props.app_id,
          app_code:props.app_code,
         }
+        this.count=0;
         this.state = {
-          dataLoaded:false,count:0,mapCentreText:this.props.mapLocation
+          dataLoaded:false,count:0,mapCentreText:this.props.mapLocation,mainResponseArray:[]
         // center: {
         //     lat: this.props.lat,
         //     lng: this.props.lng,
@@ -58,19 +59,38 @@ class  HereMaps extends Component {
               displayText:[],
               finalPassArrat:[],
               searchText:props.searchArea}   
-           this.setState({dataLoaded:true,...obj});           
+           this.setState({dataLoaded:true,...obj},()=>this.props.mapCenter(this.state.center.lat,this.state.center.lng));           
          }, function(e) {
           alert(e);
 
         });
         console.log(this.location)
-
     }
     componentWillReceiveProps(nextProps,nextState){
+      
+      // if(nextProps.searchArea!==this.props.searchArea){
+      //   if(this.count>=3){
+      //     Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+','+this.state.center.lng+'&q='+nextProps.searchArea +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+'b_is4SmSRfh8e0-Mr2-low')
+      //   .then(Response=>{
+      //     let ResponseArrayResponse=Response.data.results;
+      //     let elementsArray=[];
+      //     ResponseArrayResponse.forEach(element => {
+      //       elementsArray.push(""+element.title+" "+element.vicinity);
+      //     });
+      //     this.props.dropdownArrayHandler(elementsArray)
+      //     this.setState({ResponseArrayText:elementsArray},()=>{
+            
+      //     })
+      //     console.log(Response);
+      //     console.log(elementsArray)
+      //   })
+      //   }
+      //   this.count++;
+      //   return true
+      // }
       if(this.props.mapLocation!==nextProps.mapLocation){
+        
         this.setState({mapCentreText:nextProps.mapLocation})
-        
-        
          var geocoder = this.platform.getGeocodingService();
         let geocodingParams = {
           searchText:nextProps.mapLocation+ " India"
@@ -94,6 +114,7 @@ class  HereMaps extends Component {
           // })
               console.log(this.map)
              this.map.setCenter({lat:this.state.center.lat, lng:this.state.center.lng});
+             this.props.mapCenter(this.state.center.lat,this.state.center.lng)
               // this.map.l.center=this.state.center
           // this.map.center=this.state.center
         //   this.group = new window.H.map.Group();  
@@ -149,11 +170,20 @@ class  HereMaps extends Component {
         // eslint-disable-next-line
           var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
             //this.addMarkersToMap(this.map,behavior);
-            Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+','+this.state.center.lng+'&q=indiagate&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+'b_is4SmSRfh8e0-Mr2-low').then(Response=>console.log(Response))
+            
+            
             //this.req(this.behavior);
             this.map.addObject(this.group);
+               
             return true
-          }  
+          }
+          
+         
+        //  console.log(this.props.markerLocationLat)
+        //   if(this.props.markerLocationLat){
+          
+        //   return true
+        // }
     }
     componentWillUnmount(){
         
@@ -173,10 +203,23 @@ class  HereMaps extends Component {
           this.setState({arr:[null]});
           
           return true
-        }else{
+        }else if(this.props.markerLocationText!==nextProps.markerLocationText){
+          console.log(count)
+          if(count>0){
+            this.group.removeObject(this.state.placeMarker)
+           
+           }
+           count++     
+          let position={
+            lat:nextProps.markerLocationLat,
+            lng:nextProps.markerLocationLng
+          } 
+          this.addMarkersToMap(position,this.behavior)
+          return true
+        }
+        else{
           return false;
         }
-        
     }
     // changeCoordinate=(event,map)=>{
     //     var x= event.nativeEvent.offsetX;
@@ -195,7 +238,8 @@ class  HereMaps extends Component {
     //     this.map.setBaseLayer(layer);
     // }
     addMarkersToMap=(position,behavior)=>{
-        var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
+      
+      var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
         this.setState({placeMarker:placeMarker});
         placeMarker.draggable=true;
         let map=this.map;
@@ -210,6 +254,7 @@ class  HereMaps extends Component {
     }
 
     dragEventHandler=(map,behavior)=>{
+      
       map.addEventListener('dragstart', function(ev) {
         var target = ev.target;
         if (target instanceof window.H.map.Marker) {
@@ -234,8 +279,10 @@ class  HereMaps extends Component {
           let loc=map.screenToGeo(pointer.viewportX, pointer.viewportY);
           let x=loc.lat;
           let y=loc.lng;
-          this.setState({lat:x,lng:y},
-          ()=> this.props.dragLatHandler(x,y));
+          // this.setState({lat:x,lng:y},
+          // ()=>
+           this.props.dragLatHandler(x,y)
+          //  );
         }
       }, false);
     }

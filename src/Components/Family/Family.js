@@ -240,7 +240,11 @@ class Family extends Component{
         lat:null,
         lng:null,
         showMap:false,
-        setMapSearchText:''
+        setMapSearchText:'',
+        responseArray:[],
+        centerLat:'',
+        centerLng:'',
+        markerLocationText:''
         //copied from members
     }
 }
@@ -317,7 +321,6 @@ state={}
                     axios.post(HostName+"family/",post1)
                     .then((Response)=>{
                         console.log(Response);
-                        
                     })
                     .catch(err => console.error(err));
                 }
@@ -369,7 +372,9 @@ state={}
         this.landmarkHandler(this.state.family.landmark.value);
         //console.log(this.state.member.landmark.value);
     }
-
+    dropdownArrayHandler=(array)=>{
+        this.setState({responseArray:array})
+    }
     validityHandler=(value,rules)=>{
         let isValid=true;
         if(rules.required&&isValid){
@@ -414,6 +419,12 @@ state={}
         this.setState({qAnswered:noOfTrue});
         console.log(noOfTrue);    
     } 
+    mapCenterHandler=(lat,lng)=>{
+        this.setState({centerLat:lat,centerLng:lng})
+    }
+    selectedOptionHandler=(value,lat,lng)=>{
+        this.setState({markerLocationText:value,lat:lat,lng:lng})
+    }
     submitButtonHandler=(event)=>{
         console.log(this.state.qAnswered);
         event.preventDefault();
@@ -479,7 +490,7 @@ state={}
         style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 27px 51.33px 7.67px', borderRadius: '10px'}}>
         {this.state.showMap?
         <div style={{flex:'2'}} >
-        <MainMaps mapLocation={this.state.setMapSearchText} dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
+        <MainMaps mapCenter={this.mapCenterHandler} markerLocationText={this.state.markerLocationText} dropdownArrayHandler={this.dropdownArrayHandler} mapLocation={this.state.setMapSearchText} lat={this.state.lat} lng={this.state.lng} dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
         </div>:null}
         <div className={classes.FamilyWrapper}>
         <div className={classes.Family}>
@@ -491,8 +502,11 @@ state={}
             <form  className={classes.CustomForm} >
             {familyformArray.map((memFormElement)=>{return(
                 memFormElement.config.show?
-                
                 <Input 
+                    selectedOption={this.selectedOptionHandler}
+                    centerLat={this.state.centerLat}
+                    centerLng={this.state.centerLng}
+                    responseArray={this.state.responseArray}
                     textAlign='center'
                     labelFontWeight='600'
                     autoCompleteShow={this.state.autoCompleteShow}
