@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-// var count=0;
+var count=0;
 class  HereMaps extends Component {
     constructor(props) {
         super(props);
