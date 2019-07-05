@@ -326,15 +326,12 @@ state={}
                     .catch(err => console.error(err));
                 }
                 else{
-                    
+                    const newFamilyUpdated = {...this.state.family};
+                    const update_country={...newFamilyUpdated["country"]};
+                    update_country.value="India";
+                    newFamilyUpdated["country"]=update_country;
+                    this.setState({family:newFamilyUpdated});                    
                 }
-                    // const newMemberUpdated = {...this.state.member};
-                    // //update country back to India
-                    // const update_country={...newMemberUpdated["country"]};
-                    // update_country.value="India";
-                    // newMemberUpdated["country"]=update_country;
-                    
-                    // this.setState({member:newMemberUpdated});
             }
             if(inputIdentifier==="homeState"&&updatedInputElement.valid){
                 const newFamilyUpdated={...this.state.family};
