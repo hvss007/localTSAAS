@@ -8,7 +8,7 @@ class TripAcessAndMode extends Component{
     state={
         access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
         egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
-        mainMode:[{value:'',inValue:{travelTime:'',travelDistance:'',fare:'',cost:''},isValid:false,modeType:"mainMode"}]
+        mainMode:[{value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"}]
     }
     componentDidMount(){
         // this.adjustLine(
@@ -22,12 +22,12 @@ class TripAcessAndMode extends Component{
             const arrId=[this.state.access,this.state.egress,this.state.mainMode];
             const modeArr=[];
             arrId.forEach((mode)=>{
-                // const accessCopy=[...mode];
+                const accessCopy=[...mode];
                 const newAccessArray=[];
-            //     const accessObj=accessCopy.forEach((item)=>{
-            //     let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType,isValid:item.isValid};
-            //     newAccessArray.push(newAccessObjectIn);
-            // })
+                const accessObj=accessCopy.forEach((item)=>{
+                let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType,isValid:item.isValid};
+                newAccessArray.push(newAccessObjectIn);
+            })
                 modeArr.push(newAccessArray);
             })
           const finalAccessObject={

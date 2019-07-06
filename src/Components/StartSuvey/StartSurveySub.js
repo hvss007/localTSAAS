@@ -27,23 +27,22 @@ const startSurveySub=(props)=>{
                             <p>as a Service</p>
                         </div>    
                     </div>
-                    {window.innerWidth>=500? 
-                        <div>
-                        <p>
-                        Welcome to TSaaS! Please take few minutes to complete the survey. Personal information and location are neither asked nor tracked. Your few minutes will help us to synthesize a city traffic model.
-                        </p>
-                        <p>
-                            {(props.collegeName==="home"||props.collegeName==="None")? "" 
-                            :"This survey link is exclusive for students of "+props.collegeName+"."}
-                        </p> </div> :
+                    <p> Welcome to TSaaS! Please take few minutes to complete the survey. Personal information and location are neither asked nor tracked. Your few minutes will help us to synthesize a city traffic model.</p>
+                    <p> </p>
+                    {(props.collegeName==="home"|| props.collegeName==="None") ? null : 
                     <div>
-                    <p>
-                    Welcome to TSaaS! Please take few minutes to complete the survey. Personal information and location are neither asked nor tracked. Your few minutes will help us to synthesize a city traffic model.
-                    </p>
-                    <p style={{margin:'auto'}}>
-                        {(props.collegeName==="home"||props.collegeName==="None")?null:"This survey link is exclusive for students of "+props.collegeName}
-                    </p> </div>
+                       <p > This survey link is exclusive for students of  <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
+                    </div>
                     }
+                    {/* {window.innerWidth>=500? 
+                        <div> <p style={{color:'darkblue'}}>
+                        { (props.collegeName==="home"|| props.collegeName==="None")? "" :"This survey link is exclusive for students of "+ props.collegeName  +"." } 
+                        </p> </div> :
+                        <div>
+                    <p style={{margin:'auto'}}>
+                        {(props.collegeName==="home"|| props.collegeName==="None")?null:"This survey link is exclusive for students of "+props.collegeName}
+                    </p> </div>
+                    } */ }
                     <div style={{marginTop:'5px'}}><button  className={buttonClasses.join(' ')}
             //to={{
              //   pathname:this.props.match.url+'/member'
