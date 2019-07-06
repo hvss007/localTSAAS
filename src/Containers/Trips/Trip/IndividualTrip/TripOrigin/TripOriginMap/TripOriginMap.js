@@ -74,7 +74,8 @@ class TripOriginMap extends Component{
         this.map.addObject(this.group);
         if(this.props.initLat&&this.props.initLng){
           let dataObj={lat:this.props.initLat,lng:this.props.initLng};
-          this.addMarkersToMap(dataObj,this.behavior);  
+          this.addMarkersToMap(dataObj,this.behavior);
+        
         }else{
           // this.addMarkersToMap(this.state.center,this.behavior);  
         }
@@ -99,6 +100,11 @@ class TripOriginMap extends Component{
                       this.setState({dataLoaded:true,center:obj},(
                         )=>{
                           this.props.centerLocationHandler(this.state.center.lat,this.state.center.lng)
+                          if(this.props.initLat&&this.props.initLng){
+                            let dataObj={lat:this.props.initLat,lng:this.props.initLng};
+                            this.addMarkersToMap(dataObj,this.behavior);  
+                            
+                          }
                         })}
                         else{
         
@@ -266,7 +272,8 @@ class TripOriginMap extends Component{
         //   this.group.addObject(placeMarker);
         // }
         // else{
-          this.map.setCenter({lat:position.lat, lng:position.lng})      
+        this.map.setZoom("14",true)
+        this.map.setCenter({lat:position.lat, lng:position.lng})      
         var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
         this.setState({placeMarker:placeMarker});
         placeMarker.draggable=true;

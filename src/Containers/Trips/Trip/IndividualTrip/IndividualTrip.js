@@ -11,8 +11,8 @@ import HostName from '../../../../assets/globalvaribles/GlobalVariables';
 class Trip extends Component{
     state={
         tripInformation:{
-                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,originTime:''},
-                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:''},
+                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,originTime:'',originLandmark:this.props.initialLandmark?this.props.initialLandmark:''},
+                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:'',destinationLandmark:''},
                 accessModeData:{}
             },
         sendData:false,
@@ -99,7 +99,7 @@ class Trip extends Component{
             
             if(validArr.length===0){
                 //this.setState({sendData1:true})
-                this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng)
+                this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng,updatedData.originDestination[0].destinationLandmark)
                 const data={memberID:this.props.match.params.id1};
                 // //console.log(updatedData.originDestination)
                 delete updatedData.originDestination[0].isValid
@@ -140,13 +140,14 @@ class Trip extends Component{
             }
             )
     }
-    latLongHandler1=(lat,lng,originOrDestination)=>{
+    latLongHandler1=(lat,lng,originOrDestination,value)=>{
         const tripInformationCopy={...this.state.tripInformation};
         if(originOrDestination==="Origin")
         {
             const originDataCopy={...tripInformationCopy.originData}
             originDataCopy.originLat=lat;
             originDataCopy.originLng=lng;
+            originDataCopy.originLandmark=value;
             tripInformationCopy.originData=originDataCopy;
             this.setState({tripInformation:tripInformationCopy})
         }
@@ -154,6 +155,7 @@ class Trip extends Component{
             const destinationDataCopy={...tripInformationCopy.destinationData}
             destinationDataCopy.destinationLat=lat;
             destinationDataCopy.destinationLng=lng;
+            destinationDataCopy.destinationLandmark=value;
             tripInformationCopy.destinationData=destinationDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
                 // //console.log(this.state.tripInformation);
@@ -202,7 +204,7 @@ class Trip extends Component{
             <div className={classes.Trip} >
                 <div className={classes.TripHeading}><p>{"Trip "+ this.props.idf}</p></div>
                 <div className={classes.OriginDestinationWrapper} >
-                <TripOrigin mapLocation={this.props.mapLocation}  initLat={this.props.initLat} initLng={this.props.initLng} initialOrigin={this.props.initialOrigin} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
+                <TripOrigin mapLocation={this.props.mapLocation} initialLandmark={this.props.initialLandmark}  initLat={this.props.initLat} initLng={this.props.initLng} initialOrigin={this.props.initialOrigin} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
                 {this.state.showMid?tripAcessAndModeData:null}
                 <TripOrigin mapLocation={this.props.mapLocation} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>
                 </div>

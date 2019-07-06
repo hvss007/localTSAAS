@@ -95,8 +95,8 @@ class TripOrigin extends Component{
         }
         
     }
-    latLongHandler=(lat,lng)=>{
-        this.props.latLongHandler1(lat,lng,this.props.originOrDestination);
+    latLongHandler=(lat,lng,value)=>{
+        this.props.latLongHandler1(lat,lng,this.props.originOrDestination,this.state.markerLocationText);
     }
 
     onChangeTime = event => this.setState({ time:event.target.value })
@@ -129,7 +129,7 @@ class TripOrigin extends Component{
                 {window.innerWidth<='500px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
                 <div style={{margin:this.props.originOrDestination==="Origin"?'0px 0px 0px 70px':'0px 70px 0px 0px', textAlign:'center', width:"80%"} }>
                 <label>Landmark</label>    
-                <Autocomplete centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
+                <Autocomplete initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 </div>
                 
                 <div className={TripOriginWrapperClasses.join(" ")}>

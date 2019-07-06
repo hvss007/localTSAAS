@@ -39,7 +39,7 @@ class Trips extends Component{
     
     
     this.state={
-        trips:[{idf:1,showAdd:true,origin:null,lat:null,lng:null}],
+        trips:[{idf:1,showAdd:true,origin:null,lat:null,lng:null,landmark:null}],
         tripLocation:{
             homeState:{
                 name:'homeState',
@@ -154,9 +154,9 @@ class Trips extends Component{
         //console.log(isValid);
         return isValid;
     }
-    addTrip=(idf,origin,lat ,lng)=>{
+    addTrip=(idf,origin,lat ,lng,landmark)=>{
         //,destination:this.state.trips[idf-1].destination
-        const tripNew={idf:idf+1,showAdd:true,origin:origin,lat:lat,lng:lng};
+        const tripNew={idf:idf+1,showAdd:true,origin:origin,lat:lat,lng:lng,landmark:landmark};
         const tripsCopy=[...this.state.trips];
         const tripsCopyElementOld={...tripsCopy[idf-1]};
         tripsCopyElementOld.showAdd=false;
@@ -174,7 +174,7 @@ class Trips extends Component{
         })
         }
         const tripElements=this.state.trips.map((item,index)=>{
-            return <Trip tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
+            return <Trip tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
         return(
             <Aux> 

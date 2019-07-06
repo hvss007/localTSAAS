@@ -6,8 +6,6 @@ import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
 import fs from '../../../assets/jsonfile/stateAndDistricts.json'
 import HostName from '../../../assets/globalvaribles/GlobalVariables'
-import { object } from 'prop-types';
-
 class Member extends Component{
     constructor(props){
         super(props);
