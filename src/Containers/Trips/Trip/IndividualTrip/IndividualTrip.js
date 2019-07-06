@@ -29,10 +29,10 @@ class Trip extends Component{
         }
     }
     // backdropShowHandler=(show)=>{
-    //     this.setState({backdropShow:show},()=>{console.log(this.state.backdropShow,"dhtjd")})
+    //     this.setState({backdropShow:show},()=>{//console.log(this.state.backdropShow,"dhtjd")})
     // }
     // hidebackdropHandler=(show,callback)=>{
-    //     this.setState({backdropShow:show},()=>{console.log(this.state.backdropShow,"rhxf")})
+    //     this.setState({backdropShow:show},()=>{//console.log(this.state.backdropShow,"rhxf")})
     // }
     // showModalBackdropHandler=(show)=>{
     //     this.setState({commentModalShow:show})
@@ -75,22 +75,23 @@ class Trip extends Component{
           }
     }
     tripAccessDataHandler=(dataObj)=>{
-        console.log(dataObj);
+        // //console.log(dataObj);
         const tripInformationCopy={...this.state.tripInformation};
         //tripInformationCopy["accessModeData"]=dataObj;
         let accessModeDataCopy={...tripInformationCopy.accessModeData};
         accessModeDataCopy={...dataObj};
         //  
         tripInformationCopy.accessModeData={...accessModeDataCopy};
-        console.log(tripInformationCopy,"fvssbs")
-        this.setState({tripInformation:tripInformationCopy},()=>{console.log(this.state.tripInformation)
-            console.log("heli",this.state.tripInformation)
+        // //console.log(tripInformationCopy,"fvssbs")
+        this.setState({tripInformation:tripInformationCopy},()=>{
+            // //console.log(this.state.tripInformation)
+            // //console.log("heli",this.state.tripInformation)
             const dataCopy={...this.state.tripInformation};
-            console.log(dataCopy,"uyyy")
+            // //console.log(dataCopy,"uyyy")
             const originDestinationArray=[{...dataCopy.originData,...dataCopy.destinationData}];
-            console.log(originDestinationArray);
+            // //console.log(originDestinationArray);
             const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
-            console.log(updatedData,'bivivdibbud')
+            // //console.log(updatedData,'bivivdibbud')
             const validArr=updatedData.accessModeData.mode.filter(item=>{
                 return item.accessMode.length===0 
             })
@@ -100,19 +101,19 @@ class Trip extends Component{
                 //this.setState({sendData1:true})
                 this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng)
                 const data={memberID:this.props.match.params.id1};
-                console.log(updatedData.originDestination)
+                // //console.log(updatedData.originDestination)
                 delete updatedData.originDestination[0].isValid
-                console.log(updatedData.originDestination[0])
+                //console.log(updatedData.originDestination[0])
                 Axios.post(HostName+"trips/",data)
                 
                 .then(response=>{
                     
-                        console.log(response.data)            
+                        //console.log(response.data)            
                          Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          ).then(response=>{})
                          updatedData.accessModeData.mode.forEach(element => {
-                            console.log();
+                            //console.log();
                             delete element.isValid;
                             Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
                             //{tripID:response.data.tripID,...updatedData.originDestination[0]}
@@ -133,7 +134,7 @@ class Trip extends Component{
             // Axios.get(HostName+"trips/")
             //     .then((Response)=>{
                     
-            //         console.log(Response);
+            //         //console.log(Response);
             //         //this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
             //     })
             }
@@ -155,7 +156,7 @@ class Trip extends Component{
             destinationDataCopy.destinationLng=lng;
             tripInformationCopy.destinationData=destinationDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
-                // console.log(this.state.tripInformation);
+                // //console.log(this.state.tripInformation);
             })
         }
     }
@@ -167,7 +168,7 @@ class Trip extends Component{
             originDataCopy.originTime=time;
             tripInformationCopy.originData=originDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
-                // console.log(this.state.tripInformation);
+                // //console.log(this.state.tripInformation);
             })
         }
         if(originOrDestination==="Destination"){
@@ -176,7 +177,7 @@ class Trip extends Component{
             destinationDataCopy.destinationTime=time;
             tripInformationCopy.destinationData=destinationDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
-                // console.log(this.state.tripInformation);
+                // //console.log(this.state.tripInformation);
             })
         }
     }
