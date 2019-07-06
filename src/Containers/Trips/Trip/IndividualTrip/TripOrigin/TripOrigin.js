@@ -62,7 +62,7 @@ class TripOrigin extends Component{
                 this.setState({modalShow:false,backdropShow:false})
             }
             });
-        console.log(selctedArr);
+        //console.log(selctedArr);
     }
     backdropClickedHandler=()=>{
         if(window.innerWidth<=500){
