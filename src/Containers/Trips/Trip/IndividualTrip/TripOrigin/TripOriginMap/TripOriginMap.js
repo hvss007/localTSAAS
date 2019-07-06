@@ -119,18 +119,18 @@ class TripOriginMap extends Component{
       if(nextProps.mapLocation!==this.props.mapLocation){
         this.setState({mapCentreText:nextProps.mapLocation},()=>{
 
-          console.log("dcniiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+          //console.log("dcniiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         var geocoder = this.platform.getGeocodingService();
         let geocodingParams = {
           searchText:this.state.mapCentreText+ " India"
         };
         geocoder.geocode(geocodingParams,(result)=>{ 
           //console.log(result)
-          console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
+          //console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
           if(result.Response.View.length>0) {
             // var loc=result.Response.View[0].Result[0].Location.DisplayPosition;  
             var location=result.Response.View[0].Result[0].Location.DisplayPosition;
-            console.log(location);
+            //console.log(location);
             let obj={
                lat:location.Latitude,
                lng:location.Longitude,
@@ -145,7 +145,7 @@ class TripOriginMap extends Component{
             );   
           }
           else{
-            console.log('failed')
+            //console.log('failed')
           }
                 
          

@@ -35,7 +35,7 @@ export default class App extends React.Component {
      */
     retrieveDataAsynchronously(searchText){
         // let _this = this;
-        console.log(process.env)
+        //console.log(process.env)
         Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.props.centerLat+','+this.props.centerLng+'&q='+this.state.value +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
         .then(Response=>{
           let ResponseArrayResponse=Response.data.results;
@@ -57,8 +57,8 @@ export default class App extends React.Component {
         });
 
           
-          console.log(Response);
-          console.log(elementsArray)
+          //console.log(Response);
+          //console.log(elementsArray)
         })
         
         // // Url of your website that process the data and returns a
@@ -117,7 +117,7 @@ export default class App extends React.Component {
          */
         this.retrieveDataAsynchronously(e.target.value);
 
-        console.log("The Input Text has changed to ", e.target.value);
+        //console.log("The Input Text has changed to ", e.target.value);
     }
 
     /**
@@ -138,7 +138,7 @@ export default class App extends React.Component {
             value: val
         },()=>this.props.selectedOption(this.state.value,arr[0],arr[1]));
         
-        console.log("Option from 'database' selected : ", val);
+        //console.log("Option from 'database' selected : ", val);
     }
 
     /**

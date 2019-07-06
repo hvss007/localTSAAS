@@ -131,7 +131,7 @@ class Trips extends Component{
                     newInputConfigOptions.push(dataObj);
                 })
                 //districtList.forEach(item=>{newInputConfigOptions.push(item)})
-                console.log(newInputConfigOptions)
+                //console.log(newInputConfigOptions)
                 newInputConfig.options=newInputConfigOptions;
                 newUpdatedInputElement.elementConfig=newInputConfig;
                 newtripLocationUpdated["nameOfDistrict"]=newUpdatedInputElement;
@@ -139,7 +139,7 @@ class Trips extends Component{
             }
             if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
                     this.mapShowHandler(updatedInputElement.value+" "+this.state.tripLocation.homeState.value);
-                    console.log(updatedInputElement.value,this.state.tripLocation.homeState.value)
+                    //console.log(updatedInputElement.value,this.state.tripLocation.homeState.value)
             }
         });
     }
@@ -151,7 +151,7 @@ class Trips extends Component{
         if(rules.length&&isValid){
             isValid=value.length===rules.length;
         }
-        console.log(isValid);
+        //console.log(isValid);
         return isValid;
     }
     addTrip=(idf,origin,lat ,lng)=>{
