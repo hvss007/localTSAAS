@@ -190,7 +190,7 @@ class Member extends Component{
                 elementType:'input',
                 elementConfig:{
                     type:'number',
-                    placeholder:'Enter number of sim cards here.' 
+                    placeholder:'Enter the number of sim cards here.' 
                  },
                 value:0,
                 validation:{
