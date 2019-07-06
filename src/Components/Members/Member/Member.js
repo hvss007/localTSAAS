@@ -6,6 +6,7 @@ import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
 import fs from '../../../assets/jsonfile/stateAndDistricts.json'
 import HostName from '../../../assets/globalvaribles/GlobalVariables'
+import { object } from 'prop-types';
 
 class Member extends Component{
     constructor(props){
@@ -537,7 +538,21 @@ class Member extends Component{
                 }
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                      window.location.reload();  
+                      const memberCopy={...this.state.member};
+                      const arr=Object.keys(memberCopy);
+                      arr.forEach(item=>{
+                        let updatedElementCopy={...memberCopy[item]};
+                            if(item==='simCards'){
+                                console.log(item)
+                                updatedElementCopy.value=0;
+                            }
+                            else{
+                                updatedElementCopy.value='';
+                            }
+                            
+                            memberCopy[item]=updatedElementCopy;
+                      })  
+                      this.setState({member:memberCopy})
                     })
                     .catch(err => console.error(err));
             }

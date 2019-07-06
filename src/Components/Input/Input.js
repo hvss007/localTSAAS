@@ -34,7 +34,7 @@ class Input extends Component {
         case('input'):
         if(this.props.id!=="landmark"){
             if(this.props.elementconfig.type!=="radio"){
-                inputElement=<input onChange={this.props.changed} 
+                inputElement=<input value={this.props.value} onChange={this.props.changed} 
                         className={inputClasses.join(' ')}
                         {...this.props.elementconfig}>
                      </input>

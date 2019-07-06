@@ -57,6 +57,23 @@ class Trip extends Component{
         //     this.props.addTrip(this.props.idf);}
          )
     }
+    finishClicked=()=>{
+        if (window.confirm("Have you added all members ?")) {
+            this.onSubmitHandler()
+            this.props.history.push({pathname:'/finishsurvey'})
+
+           } else {
+            
+           }
+    }
+    nextMemberClickHandler=()=>{
+        if (window.confirm("Have you added all trips ?")) {
+            this.onSubmitHandler()
+            this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+          } else {
+           
+          }
+    }
     tripAccessDataHandler=(dataObj)=>{
         console.log(dataObj);
         const tripInformationCopy={...this.state.tripInformation};
@@ -211,6 +228,13 @@ class Trip extends Component{
                     {   orValue&&drValue?this.onSubmitHandler():alert('Please fill origin and destination values before proceeding')
                     } 
                      } type="submit">Add Trip</button>:null}
+                {this.props.tripsLength>1&&this.props.showAdd?<div className={classes.NextMemberWrapper}>
+                    
+                    <button onClick={this.nextMemberClickHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Add Member</button>
+                    <button onClick={this.finishClicked} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}> Finish Survey</button>
+                    {/* <Link className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder} to={this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))}>Next Member</Link> */}
+                
+                </div>:null}     
             </div>
         )
     }  

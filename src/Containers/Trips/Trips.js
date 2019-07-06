@@ -101,23 +101,11 @@ class Trips extends Component{
         // //console.log(this.props.match.url-(this.props.match.params.id1+"/trip-info"))
         // console.log(result);
     }
-    nextMemberClickHandler=()=>{
-        if (window.confirm("Have you added all trips ?")) {
-           this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
-          } else {
-           
-          }
-    }
+   
     mapShowHandler=(searchText)=>{
         this.setState({setMapSearchText:searchText})
     }
-    finishClicked=()=>{
-        if (window.confirm("Have you added all members ?")) {
-            this.props.history.push({pathname:'/finishsurvey'})
-           } else {
-            
-           }
-    }
+    
     stringSubtract=(a,b)=>{
         return a.replace(b, '')
     }
@@ -186,7 +174,7 @@ class Trips extends Component{
         })
         }
         const tripElements=this.state.trips.map((item,index)=>{
-            return <Trip mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
+            return <Trip tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
         return(
             <Aux> 
@@ -223,13 +211,7 @@ class Trips extends Component{
             )})}           
                 </div>
                 {tripElements}
-               {this.state.trips.length>0?<div className={classes.NextMemberWrapper}>
-                    
-                    <button onClick={this.nextMemberClickHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Add Member</button>
-                    <button onClick={this.finishClicked} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}> Finish Survey</button>
-                    {/* <Link className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder} to={this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))}>Next Member</Link> */}
-                
-                </div>:null}
+               
             </Aux>
         )
     }
