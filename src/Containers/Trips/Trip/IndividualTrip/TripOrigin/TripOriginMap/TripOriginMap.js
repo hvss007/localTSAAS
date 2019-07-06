@@ -165,6 +165,7 @@ class TripOriginMap extends Component{
 
         }
         this.setState({lat:nextProps.markerLat,lng:nextProps.markerLng,count1:this.state.count1+1})
+        this.map.setCenter({lat:nextProps.markerLat, lng:nextProps.markerLng})      
         this.addMarkersToMap({lat:nextProps.markerLat,lng:nextProps.markerLng},this.behavior);  
         return true
       }
