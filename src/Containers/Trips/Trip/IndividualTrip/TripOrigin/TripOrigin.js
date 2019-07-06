@@ -13,6 +13,7 @@ import School from '../../../../../assets/icons/destinationIcons/School.png';
 import Other from '../../../../../assets/icons/destinationIcons/Other.png';
 import CommentModalInput from '../../../../../Hoc/CommentModal/CommentModalInput/CommentModalInput';
 import TripOriginMap from './TripOriginMap/TripOriginMap';
+import Autocomplete from '../../../../AutoComplete/AutoComplete1';
 class TripOrigin extends Component{
     state={
         src:null,
@@ -31,7 +32,16 @@ class TripOrigin extends Component{
         backdropShow:false,
         lat:"26.9124",
         lng:"75.7873",
-        time:''
+        time:'',
+        centerLat:null,
+        centerLng:null,
+        markerLocationText:''
+    }
+    selectedOptionHandler=(value,lat,lng)=>{
+        this.setState({markerLocationText:value,lat:lat,lng:lng})
+    }
+    centerLocationHandler=(lat,lng)=>{
+        this.setState({centerLat:lat,centerLng:lng})
     }
     onClickHandler=(title,id)=>{
         const originInfoCopy=[...this.state.originInfo];
@@ -114,12 +124,15 @@ class TripOrigin extends Component{
             
 
             return(
-            <Aux>
+            <div style={{display:'flex',flexFlow:'column'}}>
+                
                 {window.innerWidth<='500px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
+                <Autocomplete centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 <div className={TripOriginWrapperClasses.join(" ")}>
+                
                 <div className={classes.Hidden}
                ></div> 
-                <TripOriginMap initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
+                <TripOriginMap markerLat={this.state.lat} markerLng={this.state.lng} markerLocationText={this.state.markerLocationText}  mapLocation={this.props.mapLocation} centerLocationHandler={this.centerLocationHandler}  initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
                 
                 <CommentModal time={time}
                 // time={<TimePicker value={this.state.time} 
@@ -134,7 +147,7 @@ class TripOrigin extends Component{
                         <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
                     </div>
                 </div>
-            </Aux>
+            </div>
         )}
 
 }

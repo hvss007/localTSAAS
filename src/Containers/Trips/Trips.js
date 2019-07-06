@@ -80,7 +80,10 @@ class Trips extends Component{
                 valid:false,
                 touched:false,
                 optional:false
-        }}
+            }
+            
+        }
+        ,setMapSearchText:null
     }
 }
     componentDidMount(){
@@ -104,6 +107,9 @@ class Trips extends Component{
           } else {
            
           }
+    }
+    mapShowHandler=(searchText)=>{
+        this.setState({setMapSearchText:searchText})
     }
     finishClicked=()=>{
         if (window.confirm("Have you added all members ?")) {
@@ -144,7 +150,7 @@ class Trips extends Component{
                 this.setState({tripLocation:newtripLocationUpdated});
             }
             if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
-                    //this.mapShowHandler(updatedInputElement.value+" "+this.state.tripLocation.homeState.value);
+                    this.mapShowHandler(updatedInputElement.value+" "+this.state.tripLocation.homeState.value);
                     console.log(updatedInputElement.value,this.state.tripLocation.homeState.value)
             }
         });
@@ -180,7 +186,7 @@ class Trips extends Component{
         })
         }
         const tripElements=this.state.trips.map((item,index)=>{
-            return <Trip idf={item.idf} showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
+            return <Trip mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
         return(
             <Aux> 

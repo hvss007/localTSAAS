@@ -2,7 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 // Import the Autocomplete Component
 import Autocomplete from 'react-autocomplete';
-
+import classes from './AutoComplete1.css';
 export default class App extends React.Component {
 
     constructor(props, context) {
@@ -171,7 +171,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div key="vad">
+            <div className={classes.AutoCompleteWrapper} key="vad">
                 <Autocomplete
                     getItemValue={this.getItemValue}
                     items={this.state.autocompleteData}
