@@ -75,7 +75,6 @@ class TripOriginMap extends Component{
         if(this.props.initLat&&this.props.initLng){
           let dataObj={lat:this.props.initLat,lng:this.props.initLng};
           this.addMarkersToMap(dataObj,this.behavior);
-        
         }else{
           // this.addMarkersToMap(this.state.center,this.behavior);  
         }

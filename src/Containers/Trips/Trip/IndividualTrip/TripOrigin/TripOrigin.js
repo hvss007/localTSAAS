@@ -141,7 +141,7 @@ class TripOrigin extends Component{
                 <CommentModal time={time}
                 // time={<TimePicker value={this.state.time} 
                 // onChange={this.onChangeTime}></TimePicker>}
-                 key={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
+                 key={this.props.ifj} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
                     {inputElement}
                 </CommentModal>   
                 {/* <div className={classes.OriginModal}></div> */}

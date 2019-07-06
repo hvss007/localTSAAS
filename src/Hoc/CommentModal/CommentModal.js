@@ -23,7 +23,14 @@ const CommentModal =props=>{
       }
       else{
         props.show?bodyClasses.push(classes.BodyDisplay):null
-        style={width:!props.show?'100%':'0%',height:!props.show?'100%':'0%',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
+        if(props.ifj==="11"){
+          style={width:!props.show?'100%':'0%',height:!props.show?'100%':'0%',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
+        }
+        else{
+          !props.show?bodyClasses.push(classes.BodyDisplay):null
+          style={width:props.show?'100%':'0%',height:props.show?'100%':'0%',left:props.show?'0%':'-100%', opacity:props.show?'1':'0'}
+        }
+        
       }
     }
     else if(props.originOrDestination==="Destination"){
