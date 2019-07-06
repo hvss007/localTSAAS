@@ -1,21 +1,24 @@
 .AutoCompleteWrapper{
-    position: relative;
+    
     background: white !important;
+    width:100%;
 }
 
-.AutoCompleteWrapper div{
-    width: 100%;
+.AutoCompleteWrapper >div{
+    /* width: 100%; */
     /* left:0 !important;
     top:20px !important; */
     /* position: absolute !important; */
-    position: relative !important;
+    z-index: 100;
+    max-width: 100% !important;
+    /* position: relative !important; */
     background: white !important;
+    
 }
 
 .AutoCompleteWrapper>div>div{
     /* left:0 !important;
     top:20px !important; */
-    position: fixed !important;
     background: white !important;
 }
 .AutoCompleteWrapper input{
