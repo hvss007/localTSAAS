@@ -465,7 +465,7 @@ class Member extends Component{
     }
     // itemClickedHandler=(event,id,truth)=>{
     //     //let hed=this.state.member.landmark.value;
-    //    // this.setState({hed:""},()=>{console.log(this.state.member.landmark.value)});
+    //    // this.setState({hed:""},()=>{//consoleog(this.state.member.landmark.value)});
     //     const memberUpdated={...this.state.member};
     //     const updatedInputElement={...memberUpdated["landmark"]} ;
     //     updatedInputElement.value=""+document.getElementById(id).innerHTML;
@@ -476,7 +476,7 @@ class Member extends Component{
     // }
     // landmarkValueHandler=()=>{
     //     this.props.landmarkTransfer(this.state.member.landmark.value);
-    //     //console.log(this.state.member.landmark.value);
+    //     ////consoleog(this.state.member.landmark.value);
     // }
     progressHandler=()=>{
         var arr=Object.keys(this.state.member);
@@ -489,7 +489,7 @@ class Member extends Component{
         }
         this.props.percentFind(noOfTrue);
         this.setState({qAnswered:noOfTrue});
-        console.log(noOfTrue);    
+        //consoleog(noOfTrue);    
     } 
     validityHandler=(value,rules)=>{
         let isValid=true;
@@ -498,18 +498,18 @@ class Member extends Component{
         }
 
         if(rules.notLess&&isValid){
-            console.log(value);
+            //consoleog(value);
             isValid=(eval(value)>=0);
         }
         if(rules.length&&isValid){
             isValid=value.length===rules.length;
         }
 
-        console.log(isValid);
+        //consoleog(isValid);
         return isValid;
     }
     submitButtonHandler=(event)=>{
-        console.log(this.state.qAnswered);
+        //consoleog(this.state.qAnswered);
         event.preventDefault();
         
         // if(this.state.qAnswered>=10){
@@ -543,7 +543,7 @@ class Member extends Component{
                       arr.forEach(item=>{
                         let updatedElementCopy={...memberCopy[item]};
                             if(item==='simCards'){
-                                console.log(item)
+                                //consoleog(item)
                                 updatedElementCopy.value=0;
                             }
                             else{
@@ -578,10 +578,12 @@ class Member extends Component{
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
                         
-                        console.log(Response);
+                        // //consoleog(Response);
                         this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
                     })
-                    .catch(err => console.error(err));
+                    .catch(err => 
+                        console.error(err)
+                        );
             }
          
         // }
@@ -595,7 +597,7 @@ class Member extends Component{
         for(let i=0;i<arr.length;i++){
             arrNew.push({backArr:arr[i],clicked:false});
         }
-        // console.log(arrNew);
+        // //consoleog(arrNew);
         
     let memberformArray=[];
     for (let key in this.state.member){

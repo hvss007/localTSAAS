@@ -55,7 +55,9 @@ class Members extends Component{
             found=false;
             
         }
-        this.setState({autoCompleteArr:displayUniqueArr},()=>{console.log(this.state.autoCompleteArr,"ugvytyryfrccyf")});
+        this.setState({autoCompleteArr:displayUniqueArr},()=>{
+            // console.log(this.state.autoCompleteArr,"ugvytyryfrccyf")
+        });
         
     }
     render(){

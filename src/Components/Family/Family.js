@@ -285,11 +285,13 @@ state={}
             found=false;
             
         }
-        this.setState({autoCompleteArr:displayUniqueArr},()=>{console.log(this.state.autoCompleteArr,"ugvytyryfrccyf")});
+        this.setState({autoCompleteArr:displayUniqueArr},()=>{
+            // console.log(this.state.autoCompleteArr,"ugvytyryfrccyf")
+        });
         
     }
     componentDidMount(){
-        console.log(this.props.match.url)
+        // console.log(this.props.match.url)
         axios.get(HostName+"college/").then(
             Response=>{
 
@@ -341,9 +343,11 @@ state={}
                     this.props.history.push({pathname:'/finishsurvey'})
                     axios.post(HostName+"family/",post1)
                     .then((Response)=>{
-                        console.log(Response);
+                        ////console.log(Response);
                     })
-                    .catch(err => console.error(err));
+                    .catch(err => 
+                        console.error(err)
+                        );
                 }
                 else{
                     const newFamilyUpdated = {...this.state.family};
@@ -365,7 +369,7 @@ state={}
                     newInputConfigOptions.push(dataObj);
                 })
                 //districtList.forEach(item=>{newInputConfigOptions.push(item)})
-                console.log(newInputConfigOptions)
+                //console.log(newInputConfigOptions)
                 newInputConfig.options=newInputConfigOptions;
                 newUpdatedInputElement.elementConfig=newInputConfig;
                 newFamilyUpdated["nameOfDistrict"]=newUpdatedInputElement;
@@ -373,7 +377,7 @@ state={}
             }
             if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
                     this.mapShowHandler(updatedInputElement.value+" "+this.state.family.homeState.value);
-                    console.log(updatedInputElement.value,this.state.family.homeState.value)
+                    //console.log(updatedInputElement.value,this.state.family.homeState.value)
             }
             if(inputIdentifier==="landmark"&&updatedInputElement.valid){
                 this.setState({autoCompleteShow:true})
@@ -408,7 +412,7 @@ state={}
         if(rules.length&&isValid){
             isValid=value.length===rules.length;
         }
-        console.log(isValid);
+        //console.log(isValid);
         return isValid;
     }
     addValueHandler=(type)=>{
@@ -442,7 +446,7 @@ state={}
          }
         }
         this.setState({qAnswered:noOfTrue});
-        console.log(noOfTrue);    
+        //console.log(noOfTrue);    
     } 
     mapCenterHandler=(lat,lng)=>{
         this.setState({centerLat:lat,centerLng:lng})
@@ -451,7 +455,7 @@ state={}
         this.setState({markerLocationText:value,lat:lat,lng:lng})
     }
     submitButtonHandler=(event)=>{
-        console.log(this.state.qAnswered);
+        //console.log(this.state.qAnswered);
         event.preventDefault();
         if(this.state.qAnswered===3||true){
             const family=this.state.family;
@@ -471,10 +475,12 @@ state={}
                 }
                 axios.post(HostName+"family/",post)
                     .then((Response)=>{
-                        console.log(Response);
+                        //console.log(Response);
                         this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
                     })
-                    .catch(err => console.error(err));
+                    .catch(err => 
+                        console.error(err)
+                        );
             }
          
         
