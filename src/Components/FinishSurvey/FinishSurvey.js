@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 // import classes from './FinishSurvey.css'
-
+import SubmitButton from '../Members/Member/MemberSubmitButton';
 import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from '../StartSuvey/StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
 import HomePage from '../../assets/icons/homepage.png';
-import Background from '../../assets/icons/homebackground.png';
+import Background from '../../assets/icons/thanksbackground.png';
 // import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 class FinishSurvey extends Component{
 	state={
@@ -24,16 +24,17 @@ class FinishSurvey extends Component{
     }
     render(){
     // const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
-        const backgroundElement =window.innerWidth<=500? <div style={{background:'url('+MobileHomePage+')',marginBottom:'50px',backgroundRepeat:'no-repeat',backgroundSize:'cover'}} className={classes.FirstImageWrapper}></div>:null
-        const background =window.innerWidth>=500?{ 
-            backgroundImage:'url('+HomePage+')'+','+'url('+Background+')',backgroundRepeat:'no-repeat',backgroundSize:'cover,cover',backgroundPosition:'0% 40%,0% 40%'}:null
+    const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
+    const backgroundElement =window.innerWidth<=500? <div style={{...mobileBackgroundStyle}} className={classes.FirstImageWrapper}></div>:null
+    const background =window.innerWidth>=500?{ 
+        backgroundImage:'url('+Background+')',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'0% 40%'}:null
     return(
         <div style={background} className={classes.StartSurvey}>
         <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
         <Toolbar drawerToggleClicked={this.SideDrawerToggleHandler} ></Toolbar>
-            <div  className={classes.MainContainer}>
-                <div className={classes.LeftContainer}>
-                    {backgroundElement}
+            <div  className={classes.MainContainer+' '+classes.MainContainerFinishSurvey}>
+                <div className={classes.LeftContainer+" "+ classes.LeftContainerFinishSurvey}>
+                    
                     {/*<div className={classes.ImgTextWrapper}>
                         <img src={TsaasLogo}></img>
                         <div className={classes.LogoText}>
@@ -44,10 +45,28 @@ class FinishSurvey extends Component{
                     </div>
                         </div>              
                     </div>  */}
-                    <div className={classes.Main}>
-            				<h1>We thank you for taking time to complete the survey.</h1>
-        				</div>        
-            </div>
+ 
+                    <div className={classes.Thank}>
+            				<h3>We <span><b>Thank You</b></span> For taking time to complete the survey.</h3>
+        			</div>
+                    <div className={classes.MobilePageFinishSurvey}>
+                        <img src={MobileHomePage}></img>
+                    </div>
+                    <div className={classes.Thank}>
+            				<h4>Your feefback is valuable to us,please submit your feedback</h4>
+        			</div>
+                    <div className={classes.FeedbackWrapper}>
+                        <textarea rows="4" cols="50" name="comment" form="usrform">
+                            Enter text here...
+                        </textarea>
+                    </div>
+                    <SubmitButton></SubmitButton>
+
+                </div>
+                <div className={classes.RightContainer+' '+ classes.RightContainerFinishSurvey}>
+                    <img className={classes.SurveyMonitor} src={MobileHomePage}/> 
+                </div>
+                
         </div>
         </div>
     )
