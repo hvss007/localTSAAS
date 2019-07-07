@@ -190,7 +190,7 @@ class Member extends Component{
                     type:'number',
                     placeholder:'Enter the number of sim cards here.' 
                  },
-                value:0,
+                value:'Enter the number of sim cards here.',
                 validation:{
                     required:true,
                     notLess:true
@@ -542,7 +542,7 @@ class Member extends Component{
                         let updatedElementCopy={...memberCopy[item]};
                             if(item==='simCards'){
                                 //consoleog(item)
-                                updatedElementCopy.value=0;
+                                updatedElementCopy.value='Enter the number of sim cards here.';
                             }
                             else{
                                 updatedElementCopy.value='';
