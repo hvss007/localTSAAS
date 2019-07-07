@@ -441,8 +441,8 @@ class Member extends Component{
             }
 
             if(inputIdentifier==="simCards" && updatedInputElement.valid){
-
-                if (updatedInputElement.value === 0) {
+                console.log("working!!!!!!!!!!!!!!!!!!!")
+                if (updatedInputElement.value === '0') {
                     const newMemberUpdated = {...this.state.member};
                     //update principalSourceofIncome
                     const update_dataWhileDriving={...newMemberUpdated["dataWhileDriving"]};
