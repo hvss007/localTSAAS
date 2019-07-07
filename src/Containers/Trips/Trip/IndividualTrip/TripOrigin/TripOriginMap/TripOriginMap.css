@@ -11,9 +11,11 @@
 }
 .Origin{
     left:0px;
+    top:20px
 }
 .Destination{
     right:0px;
+    top:20px
 }
 .OriginMapWrapperMoveLeft{
     left:40vw;

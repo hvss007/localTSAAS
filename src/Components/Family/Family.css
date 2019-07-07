@@ -27,6 +27,10 @@
     position:relative;
     display: flex
 }
+.LatitudeLongitude{
+    display:flex;
+    flex-direction: column;
+}
 @media (min-width:600px){
     .Family{
         width:500px;

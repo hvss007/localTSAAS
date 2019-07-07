@@ -554,6 +554,13 @@ state={}
                 >    
                 </Input>:null
             )})}
+            <div className={classes.LatitudeLongitude}>
+            <div><label><b>Latitude</b></label><p>{this.state.lat?this.state.lat.toPrecision(6):null}</p></div>
+            <div><label><b>Longitude</b></label><p>{this.state.lng?this.state.lng.toPrecision(6):null}</p></div>
+            
+            
+            </div>
+            
          <MemberSubmitButton clicked={this.submitButtonHandler} ></MemberSubmitButton> 
         </form>
         </div>
