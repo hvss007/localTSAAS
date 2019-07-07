@@ -107,13 +107,16 @@ class TripOrigin extends Component{
             })
             let timeLabel=""
             const TripOriginWrapperClasses=[classes.TripOriginWrapper];
+            const landmarkWrapperClasses=[classes.LandmarkWrapper]
             if(this.props.originOrDestination==="Origin"){
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperLeft)
-                timeLabel="Departure Time"
+                timeLabel="Departure Time";
+                landmarkWrapperClasses.push(classes.LandmarkWrapperLeft)
             }
             else if(this.props.originOrDestination==="Destination"){
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperRight)
                 timeLabel="Arrival Time"
+                landmarkWrapperClasses.push(classes.LandmarkWrapperRight)
             }
 
             const time=<div>
@@ -121,13 +124,14 @@ class TripOrigin extends Component{
                 <p style={{margin:'0px'}}>hh:mm</p>
                 <input style={{textAlign:'center',appearance:'none'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
             </div>
+        
             
 
             return(
-            <div style={{display:'flex',flexFlow:'column',alignItems:'inherit'}}>
+            <div  style={{display:'flex',flexFlow:'column',alignItems:'inherit'}}>
                 
                 {window.innerWidth<='500px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
-                <div style={{margin:this.props.originOrDestination==="Origin"?'0px 0px 0px 70px':'0px 70px 0px 0px', textAlign:'center', width:"80%"} }>
+                <div className={landmarkWrapperClasses.join(' ')} >
                 <label>Landmark</label>    
                 <Autocomplete initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 </div>

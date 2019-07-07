@@ -10,7 +10,7 @@
   margin-left:auto;
   margin-right: auto;
   /* height: fit-content; */
-  height:70vh; 
+  /* height:70vh;  */
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
@@ -24,7 +24,7 @@
 }
 .LeftContainer{
   box-sizing: border-box;
-  padding: 20px;
+  padding: 2%;
   display:flex;
   flex-flow: column;
   justify-content: center
@@ -56,6 +56,14 @@
   height:100px;
   width:auto;
 }
+.LeftContainer p{
+  margin:0px;
+  color: rgb(19, 18, 18);
+}
+.LeftContainer>p{
+  font-size: 14px;
+  text-align: center
+}
 .LogoText{
   color: rgb(19, 18, 18);
   display: flex;
@@ -64,10 +72,7 @@
   font-size: 26px;
   padding-left: 10px;
 }
-.LeftContainer p{
-  margin:0px;
-  color: rgb(19, 18, 18);
-}
+
 .StartSurveyButton{
 
   margin: auto;
@@ -141,18 +146,27 @@
     .LeftContainer{
       width:40%;
     }
-    .MainContainer{
-      width:90%;
-      padding: 25px;
+    .LeftContainer>p{
+      font-size: 1rem;
+      text-align: left;
     }
-    .LogoText{font-size: 40px}
+    .MainContainer{
+      width:100%;
+      height:70vh; 
+      padding: 0px;
+    }
+    .LogoText{font-size: 30px}
     .ImgTextWrapper{
       justify-content: flex-start
     }
     .ImgTextWrapper>img{
-      width:125px;
+      /* width:125px; */
+      width: 19%; 
       height: auto
     }
+    .ImgTextWrapper>p{
+      font-size: 30px   
+     }
     .LeftContainer>div{
       width: 100%;
       display: block;
@@ -164,3 +178,19 @@
       text-align: left;      
     }
   }
+  @media(min-width:1200px){
+    /* .ImgTextWrapper>p{
+      font-size: 40px   
+     } */
+     .LogoText{font-size: 40px}
+  }
+@media(min-width:1440px){
+  .StartSurvey{
+    background-size: cover , cover
+  }
+  .MainContainer{
+    width:95%;
+    height:70vh; 
+    padding: 10px;
+  }
+}

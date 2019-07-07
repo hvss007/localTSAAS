@@ -59,9 +59,23 @@
         position:relative;
     
 }
+.LandmarkWrapper{
+    z-index:100;
+    text-align:center;
+    width:80%
+}
+.LandmarkWrapperLeft{
+    margin-left:70px;
+}
+.LandmarkWrapperRight{
+    margin-right: 70px
+}
 @media (max-width:500px){
     .Hidden{
        display: none
+    }
+    .LandmarkWrapperLeft,.LandmarkWrapperRight{
+        margin:0px
     }
     .TripOriginWrapper{
         flex-direction: column-reverse;
