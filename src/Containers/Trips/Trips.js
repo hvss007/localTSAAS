@@ -6,6 +6,7 @@ import fs from '../../assets/jsonfile/stateAndDistricts.json'
 // import Backdrop from '../../Hoc/Backdrop/Backdrop';
 // import {Link} from 'react-router-dom';
 import Input from '../../Components/Input/Input';
+
 class Trips extends Component{
     constructor(props){
         super(props);
@@ -39,7 +40,8 @@ class Trips extends Component{
     
     
     this.state={
-        trips:[{idf:1,showAdd:true,origin:null,lat:null,lng:null,landmark:null}],
+        count:0,
+        trips:[{idf:1,showAdd:true,origin:null,lat:null,lng:null,landmark:null,disabled:false,dataAreadySent:false}],
         tripLocation:{
             homeState:{
                 name:'homeState',
@@ -154,14 +156,27 @@ class Trips extends Component{
         //console.log(isValid);
         return isValid;
     }
-    addTrip=(idf,origin,lat ,lng,landmark)=>{
+    addTrip=(idf,origin,lat ,lng,landmark,truth)=>{
         //,destination:this.state.trips[idf-1].destination
-        const tripNew={idf:idf+1,showAdd:true,origin:origin,lat:lat,lng:lng,landmark:landmark};
+        this.setState({count:this.state.count+1})
+        const tripNew={idf:idf+1,showAdd:true,origin:origin,lat:lat,lng:lng,landmark:landmark,disabled:false,dataAreadySent:false};
         const tripsCopy=[...this.state.trips];
         const tripsCopyElementOld={...tripsCopy[idf-1]};
         tripsCopyElementOld.showAdd=false;
+        tripsCopyElementOld.disabled=true;
+        tripsCopyElementOld.dataAreadySent=truth;
         tripsCopy[idf-1]=tripsCopyElementOld;
         tripsCopy.push(tripNew);
+        this.setState({trips:tripsCopy})
+    }
+    removeCurrentTripHandler=(idf)=>{
+        const tripsCopy=[...this.state.trips];
+        
+        const tripsCopyElementOld={...tripsCopy[idf-2]};
+        tripsCopyElementOld.showAdd=true;
+        
+        tripsCopy[idf-2]=tripsCopyElementOld;
+        tripsCopy.splice(idf-1,1)
         this.setState({trips:tripsCopy})
     }
     render(){
@@ -174,7 +189,7 @@ class Trips extends Component{
         })
         }
         const tripElements=this.state.trips.map((item,index)=>{
-            return <Trip tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
+            return <Trip count={this.state.count} removeCurrentTripHandler={this.removeCurrentTripHandler} dataAreadySent={item.dataAreadySent} disabled={item.disabled} tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
         return(
             <Aux> 

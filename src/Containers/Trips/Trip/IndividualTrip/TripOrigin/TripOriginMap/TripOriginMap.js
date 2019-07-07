@@ -187,6 +187,7 @@ class TripOriginMap extends Component{
       // }
       }
     componentWillReceiveProps(nextProps) {
+      if(!this.props.disabled){
       if(nextProps.mapLocation!==this.props.mapLocation){
         this.setState({mapCentreText:nextProps.mapLocation},()=>{
           //console.log("dcni")
@@ -236,7 +237,7 @@ class TripOriginMap extends Component{
         
         this.addMarkersToMap({lat:nextProps.markerLat,lng:nextProps.markerLng},this.behavior);  
         return true
-      }
+      }}
     }
   //   static getDerivedStateFromProps(nextProps, prevState){
   //     if(nextProps.backdropHidden!==prevState.showFrontDrop){
@@ -287,6 +288,8 @@ class TripOriginMap extends Component{
     }
 
     dragEventHandler=(map,behavior)=>{
+      if(!this.props.disabled)
+      {
       map.addEventListener('dragstart', function(ev) {
         var target = ev.target;
         if (target instanceof window.H.map.Marker) {
@@ -313,7 +316,7 @@ class TripOriginMap extends Component{
           let y=loc.lng;
           this.setState({lat:x,lng:y},()=>{this.props.latLong(this.state.lat,this.state.lng)});
         }
-      }, false);
+      }, false);}
     }
     onClickHandler=()=>{
       this.setState({showFrontDrop:true,count:this.state.count+1,backdropShow:true}

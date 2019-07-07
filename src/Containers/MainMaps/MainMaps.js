@@ -18,6 +18,11 @@ class MainMap extends Component {
 //     return true
 //   }
 // }
+componentWillReceiveProps(nextProps){
+  if(this.props.markerLocationLat!==nextProps.markerLocationLat){
+    this.setState({lat:nextProps.markerLocationLat,lng:nextProps.markerLocationLng})
+  }
+}
 inputHandler=(event)=>{
   this.setState({value:event.target.value});
   console.log(this.state.value);
@@ -30,6 +35,7 @@ onChange(evt) {
     return (
       <div className={classes.MainMaps} >
         <div style={{fontSize:'12px',textAlign:'center'}} ><p>*You can drag the marker to your approximate new location</p></div>
+        <div style={{textAlign:'right',position:'fixed', zIndex:'100'}}><p>{this.state.lat} ,{this.state.lng}</p> </div>
         <HereMaps
           markerLocationText={this.props.markerLocationText}
           mapLocation={this.props.mapLocation}

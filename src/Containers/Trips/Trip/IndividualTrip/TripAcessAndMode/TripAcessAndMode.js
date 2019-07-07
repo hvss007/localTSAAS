@@ -18,7 +18,7 @@ class TripAcessAndMode extends Component{
         //   );
     }
     componentWillReceiveProps(nextProps){
-        if(nextProps.sendData!==this.props.sendData){
+        if(nextProps.sendData===true){
             const arrId=[this.state.access,this.state.egress,this.state.mainMode];
             const modeArr=[];
             arrId.forEach((mode)=>{
@@ -153,17 +153,17 @@ class TripAcessAndMode extends Component{
     }
     render(){
         const tripAccess=this.state.access.map((acc,index)=>{
-            return <TripAccess accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={acc.idi} add={this.addHandler} accessName={"Access Mode"}  idi={acc.idi} showAdd={acc.showAdd}>
+            return <TripAccess disabled={this.props.disabled} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={acc.idi} add={this.addHandler} accessName={"Access Mode"}  idi={acc.idi} showAdd={acc.showAdd}>
             </TripAccess>
         })
         const tripEgress=this.state.egress.map((egr,index)=>{
-            return <TripAccess accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={egr.idi} add={this.addHandler} accessName={"Egress Mode"}  idi={egr.idi} showAdd={egr.showAdd}>
+            return <TripAccess disabled={this.props.disabled} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={egr.idi} add={this.addHandler} accessName={"Egress Mode"}  idi={egr.idi} showAdd={egr.showAdd}>
             </TripAccess>
         })
         return(
             <div className={classes.TripAcessAndMode}>  
                  {tripAccess}
-                <TripAccess mainMode={true} accessName={"Main Mode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
+                <TripAccess disabled={this.props.disabled} mainMode={true} accessName={"Main Mode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
                 {tripEgress}
             </div>
         )

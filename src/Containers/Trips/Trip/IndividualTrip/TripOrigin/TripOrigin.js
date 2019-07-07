@@ -44,6 +44,7 @@ class TripOrigin extends Component{
         this.setState({centerLat:lat,centerLng:lng})
     }
     onClickHandler=(title,id)=>{
+        if(!this.props.disabled){
         const originInfoCopy=[...this.state.originInfo];
         const selctedArr=originInfoCopy.filter((item)=>{
             if(item.title===title){
@@ -64,6 +65,7 @@ class TripOrigin extends Component{
             });
         //console.log(selctedArr);
     }
+    }
     backdropClickedHandler=()=>{
         if(window.innerWidth<=500){
             this.setState({modalShow:true,backdropShow:false});
@@ -74,16 +76,18 @@ class TripOrigin extends Component{
         
     }
     onChangeHandler=(event)=>{
+       if(!this.props.disabled){
         const originInfoCopy=[...this.state.originInfo];
         const inputArray={...originInfoCopy[7]};
         inputArray.value=event.target.value;
         originInfoCopy[7]=inputArray;
-        this.setState({originInfo:originInfoCopy});
+        this.setState({originInfo:originInfoCopy});}
     }
      originItemSelectedHandler=(value,src)=>{
+        if(!this.props.disabled){
         this.setState({src:src,title:value},()=>{
         this.props.originDataHandler(this.state.title,this.props.originOrDestination,this.state.time);
-        });
+        });}
         
     }
      originClicked=()=>{
@@ -99,7 +103,9 @@ class TripOrigin extends Component{
         this.props.latLongHandler1(lat,lng,this.props.originOrDestination,this.state.markerLocationText);
     }
 
-    onChangeTime = event => this.setState({ time:event.target.value })
+    onChangeTime = event => {
+        if(!this.props.disabled)
+        {this.setState({ time:event.target.value })}}
         render(){
             const inputElement=this.state.originInfo.map((item,index)=>{
                 return <CommentModalInput changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} source={item.src}>
@@ -133,14 +139,14 @@ class TripOrigin extends Component{
                 {window.innerWidth<='500px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
                 <div className={landmarkWrapperClasses.join(' ')} >
                 <label>Landmark</label>    
-                <Autocomplete initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
+                <Autocomplete disabled={this.props.disabled} initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 </div>
                 
                 <div className={TripOriginWrapperClasses.join(" ")}>
                 
                 <div className={classes.Hidden}
                ></div> 
-                <TripOriginMap markerLat={this.state.lat} markerLng={this.state.lng} markerLocationText={this.state.markerLocationText}  mapLocation={this.props.mapLocation} centerLocationHandler={this.centerLocationHandler}  initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
+                <TripOriginMap disabled={this.props.disabled} markerLat={this.state.lat} markerLng={this.state.lng} markerLocationText={this.state.markerLocationText}  mapLocation={this.props.mapLocation} centerLocationHandler={this.centerLocationHandler}  initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
                 
                 <CommentModal time={time}
                 // time={<TimePicker value={this.state.time} 

@@ -61,6 +61,8 @@ class TripAccess extends Component{
         this.setState({accessClicked:true,backdropShow:true})
     }
     onClickHandler=(title,id)=>{
+        if(!this.props.disabled)
+        {
         const accessInfoCopy=[...this.state.accessInfo];
         const selctedArr=accessInfoCopy.filter((item)=>{
             if(item.title===title){
@@ -84,7 +86,7 @@ class TripAccess extends Component{
                 this.setState({activateAdd:false})
             }
         }
-            );
+            );}
     }
     itemClicked=(title,src)=>{
         //document.querySelector('.'+classes.TripAccessAnchor).innerHTML=title;
@@ -102,17 +104,22 @@ class TripAccess extends Component{
         this.setState({accessClickedIn:true});
     }
     onChangeHandler=(event)=>{
+        if(!this.props.disabled)
+        {
         const accessInfoCopy=[...this.state.originInfo];
         const inputArray={...accessInfoCopy[7]};
         inputArray.value=event.target.value;
         accessInfoCopy[7]=inputArray;
-        this.setState({originInfo:accessInfoCopy});
+        this.setState({originInfo:accessInfoCopy});}
     }
     addButtonHandler=()=>{
-     this.props.add(this.props.idi,this.props.accessName);   
+     if(!this.props.disabled){
+        this.props.add(this.props.idi,this.props.accessName);   
+     }   
     }
     onChangeHandler1=(event,title,id)=>{
-        const accessInfoCopyIn=[...this.state.accessInfoIn];
+        if(!this.props.disabled)
+        {const accessInfoCopyIn=[...this.state.accessInfoIn];
         const selctedArr=accessInfoCopyIn.filter((item)=>{
             if(item.title===title){
                 return true
@@ -131,7 +138,7 @@ class TripAccess extends Component{
                 console.log(valid)
                 this.props.accessDataIn(this.props.accessName,title,value,this.props.idi,valid)}
             );
-        
+        }
     }
     addShower=()=>{
      const validArr=[];
