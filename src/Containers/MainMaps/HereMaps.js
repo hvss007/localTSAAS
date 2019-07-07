@@ -244,6 +244,8 @@ class  HereMaps extends Component {
         this.setState({placeMarker:placeMarker});
         placeMarker.draggable=true;
         let map=this.map;
+        this.map.setZoom("14",true)
+        this.map.setCenter({lat:position.lat, lng:position.lng})      
         console.log(placeMarker)
         //let behavior=this.behavior;
         //map.removeObject(this.group);        
