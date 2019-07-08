@@ -6,7 +6,7 @@ import fs from '../../assets/jsonfile/stateAndDistricts.json'
 // import Backdrop from '../../Hoc/Backdrop/Backdrop';
 // import {Link} from 'react-router-dom';
 import Input from '../../Components/Input/Input';
-
+import SingleDesktopMap from './DesktopMap/SingleDesktopMap';
 class Trips extends Component{
     constructor(props){
         super(props);
@@ -32,16 +32,9 @@ class Trips extends Component{
             let dataObj={value:item,displayValue:item};
             this.stateArray.push(dataObj);
         })
-    
-    
-    
-    
-    
-    
-    
     this.state={
         count:0,
-        trips:[{idf:1,showAdd:true,origin:null,lat:null,lng:null,landmark:null,disabled:false,dataAreadySent:false}],
+        trips:[{idf:1,showAdd:true,origin:null,initLat:null,initLng:null,originLat:null,originLng:null,destinationLat:null,destinationLng:null,landmark:null,disabled:false,dataAreadySent:false}],
         tripLocation:{
             homeState:{
                 name:'homeState',
@@ -85,7 +78,10 @@ class Trips extends Component{
             }
             
         }
-        ,setMapSearchText:null
+        ,setMapSearchText:null,
+        desktopMapShow:false,
+        centerLat:'',
+        centerLng:''
     }
 }
     componentDidMount(){
@@ -141,9 +137,32 @@ class Trips extends Component{
             }
             if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
                     this.mapShowHandler(updatedInputElement.value+" "+this.state.tripLocation.homeState.value);
-                    //console.log(updatedInputElement.value,this.state.tripLocation.homeState.value)
+                    if(window.innerWidth>500){
+                        this.setState({desktopMapShow:true})
+                    }                   
             }
         });
+    }
+    singleDesktopLandmarkLocationHandler=(lat,lng,originOrDestination,idf)=>{
+        if(originOrDestination==="Origin"){
+            const tripsCopy=[...this.state.trips];
+        const tripsCopyElementOld={...tripsCopy[idf-1]};
+        tripsCopyElementOld.originLat=lat;
+        tripsCopyElementOld.originLng=lng;
+        tripsCopy[idf-1]=tripsCopyElementOld;
+        this.setState({trips:tripsCopy})
+        }
+        else{
+            const tripsCopy=[...this.state.trips];
+        const tripsCopyElementOld={...tripsCopy[idf-1]};
+        tripsCopyElementOld.destinationLat=lat;
+        tripsCopyElementOld.destinationLng=lng;
+        tripsCopy[idf-1]=tripsCopyElementOld;
+        this.setState({trips:tripsCopy})
+        }
+    }
+    mapCenterHandler=(lat,lng)=>{
+        this.setState({centerLat:lat,centerLng:lng})
     }
     validityHandler=(value,rules)=>{
         let isValid=true;
@@ -159,7 +178,7 @@ class Trips extends Component{
     addTrip=(idf,origin,lat ,lng,landmark,truth)=>{
         //,destination:this.state.trips[idf-1].destination
         this.setState({count:this.state.count+1})
-        const tripNew={idf:idf+1,showAdd:true,origin:origin,lat:lat,lng:lng,landmark:landmark,disabled:false,dataAreadySent:false};
+        const tripNew={idf:idf+1,showAdd:true,origin:origin,initLat:lat,initLng:lng,landmark:landmark,disabled:false,dataAreadySent:false,originLat:null,originLng:null,destinationLat:null,destinationLng:null};
         const tripsCopy=[...this.state.trips];
         const tripsCopyElementOld={...tripsCopy[idf-1]};
         tripsCopyElementOld.showAdd=false;
@@ -171,10 +190,8 @@ class Trips extends Component{
     }
     removeCurrentTripHandler=(idf)=>{
         const tripsCopy=[...this.state.trips];
-        
         const tripsCopyElementOld={...tripsCopy[idf-2]};
         tripsCopyElementOld.showAdd=true;
-        
         tripsCopy[idf-2]=tripsCopyElementOld;
         tripsCopy.splice(idf-1,1)
         this.setState({trips:tripsCopy})
@@ -189,10 +206,18 @@ class Trips extends Component{
         })
         }
         const tripElements=this.state.trips.map((item,index)=>{
-            return <Trip count={this.state.count} removeCurrentTripHandler={this.removeCurrentTripHandler} dataAreadySent={item.dataAreadySent} disabled={item.disabled} tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.lat} initLng={item.lng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
+            return <Trip singleDesktopLandmarkLocation={this.singleDesktopLandmarkLocationHandler} count={this.state.count} removeCurrentTripHandler={this.removeCurrentTripHandler} dataAreadySent={item.dataAreadySent} disabled={item.disabled} tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.initLat} initLng={item.initLng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
+        const tripMapElements=[...this.state.trips]
         return(
-            <Aux> 
+            <div className={classes.TripsAndMapWrapper}>
+            {this.state.desktopMapShow?<div className={classes.SingleTripsMap}>
+            <SingleDesktopMap tripElements={tripMapElements} mapCenter={this.mapCenterHandler} setMapSearchText={this.state.setMapSearchText}>
+                
+            </SingleDesktopMap>
+            </div>:null}
+            
+            <div className={classes.TripsWrapper}> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
                 <div className={classes.InputTrip}>
                 {tripLocationArray.map((tripLocationElement)=>{return(
@@ -227,7 +252,8 @@ class Trips extends Component{
                 </div>
                 {tripElements}
                
-            </Aux>
+            </div>
+            </div>
         )
     }
 }

@@ -1,5 +1,5 @@
 .TripInformation{
-    width:80%;
+    width:100%;
     margin:0 auto;
     height:100px;
     text-align: center;
@@ -8,6 +8,12 @@
     display:flex;
     letter-spacing: 2px;
     border-bottom: 1px solid black;
+}
+.TripsAndMapWrapper{
+    display: flex;
+}
+.SingleTripsMap{
+    flex:1;
 }
 .TripInformation>h1{
     margin:auto;
@@ -19,6 +25,9 @@
     width: 99%;
     text-align: right
 }
+.TripsWrapper{
+    width:500px;
+}
 @media (max-width:500px){
     .TripInformation{
        width:100%;
@@ -27,5 +36,10 @@
     .NextMemberWrapper{
         text-align: center;
     }
-
+    .TripsWrapper{
+        width:100%
+    }
+    .SingleTripsMap{
+        display: none;
+    }
 }

@@ -364,7 +364,7 @@ class TripOriginMap extends Component{
      <div className={classes.WarningText} ><p  style={{fontSize:'14px' , textAlign:'center'}}> {"*Drag the marker nearest to your "+ this.props.originOrDestination + " location."}</p></div>  
      
       <div  className={originMapWrapperClasses.join(" ")} >
-        <div onClick={this.onClickHandler} style={window.innerWidth<=500?{backgroundImage:'url('+Map+')'}:null} className={frontDropClasses.join(" ")}></div>
+        <div onClick={this.onClickHandler} style={window.innerWidth>=0?{backgroundImage:'url('+Map+')'}:null} className={frontDropClasses.join(" ")}></div>
         <div id={"originmap"+this.props.ifj} className={originMapClasses.join(' ')}
         //style={this.state.showFrontDrop?originMapStyle:null}
         >

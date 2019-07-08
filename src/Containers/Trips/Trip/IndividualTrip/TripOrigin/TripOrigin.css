@@ -70,28 +70,28 @@
 .LandmarkWrapperRight{
     margin-right: 70px
 }
-@media (max-width:500px){
+@media (min-width:0px){
     .Hidden{
-       display: none
+       display: none !important
     }
     .LandmarkWrapperLeft,.LandmarkWrapperRight{
-        margin:0px
+        margin:0px !important
     }
     .TripOriginWrapper{
-        flex-direction: column-reverse;
-        width:100%;
+        flex-direction: column !important; 
+        width:100% !important;
     }
     .TripOriginWrapperLeft,.TripOriginWrapperRight{
-        margin:0px
+        margin:0px !important
     }
     .TripOriginAnchor{
-        margin:0px;
+        margin:0px !important;
     }
     .AnchorImagerapper{
-        margin:auto;
+        margin:auto !important;
         
     }.TripOriginIcon{
-        width: 100px;
+        width: 100px !important;
     }
     .TripOriginAnchor{}
 }

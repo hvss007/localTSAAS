@@ -39,6 +39,9 @@ class TripOrigin extends Component{
     }
     selectedOptionHandler=(value,lat,lng)=>{
         this.setState({markerLocationText:value,lat:lat,lng:lng})
+        if(window.innerWidth>=500){
+            this.props.singleDesktopLandmarkLocation(lat,lng,this.props.originOrDestination,this.props.idf,value)
+        }
     }
     centerLocationHandler=(lat,lng)=>{
         this.setState({centerLat:lat,centerLng:lng})
@@ -56,7 +59,7 @@ class TripOrigin extends Component{
         originInfoCopy[id-1]=selectedArrItems;
         this.originItemSelectedHandler(title,selectedArrItems.src);
         this.setState({originInfo:originInfoCopy},()=>{
-            if(window.innerWidth<=500){
+            if(window.innerWidth>=0){
                 this.setState({modalShow:true,backdropShow:false})
             }
             else{
@@ -67,7 +70,7 @@ class TripOrigin extends Component{
     }
     }
     backdropClickedHandler=()=>{
-        if(window.innerWidth<=500){
+        if(window.innerWidth>0){
             this.setState({modalShow:true,backdropShow:false});
         }
         else{
@@ -91,7 +94,7 @@ class TripOrigin extends Component{
         
     }
      originClicked=()=>{
-        if(window.innerWidth<=500){
+        if(window.innerWidth>0){
             this.setState({modalShow:false,backdropShow:false})
         }
         else{
@@ -136,7 +139,7 @@ class TripOrigin extends Component{
             return(
             <div  style={{display:'flex',flexFlow:'column',alignItems:'inherit'}}>
                 
-                {window.innerWidth<='500px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
+                {window.innerWidth>='0px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
                 <div className={landmarkWrapperClasses.join(' ')} >
                 <label>Landmark</label>    
                 <Autocomplete disabled={this.props.disabled} initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
@@ -148,7 +151,7 @@ class TripOrigin extends Component{
                ></div> 
                 <TripOriginMap disabled={this.props.disabled} markerLat={this.state.lat} markerLng={this.state.lng} markerLocationText={this.state.markerLocationText}  mapLocation={this.props.mapLocation} centerLocationHandler={this.centerLocationHandler}  initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
                 
-                <CommentModal time={time}
+                <CommentModal
                 // time={<TimePicker value={this.state.time} 
                 // onChange={this.onChangeTime}></TimePicker>}
                  key={this.props.ifj} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
@@ -159,6 +162,7 @@ class TripOrigin extends Component{
                         <p style={{margin:'auto',fontSize:'20px'}}>{this.props.originOrDestination}</p>
                         <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
                         <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
+                        {time}
                     </div>
                 </div>
             </div>

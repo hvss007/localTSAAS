@@ -26,25 +26,25 @@
     justify-content:space-between;
     align-items: center;
 }
-@media (max-width:500px){
+@media (min-width:0px){
     .OriginDestinationWrapper{
-        flex-direction: column
+        flex-direction: column !important
     }
     .Trip{
-        padding: 0px;
-        padding-bottom: 20px;
-        text-align: center;
-        border-bottom: 1px solid #0000005e;
+        padding: 0px !important;
+        padding-bottom: 20px !important;
+        text-align: center !important;
+        border-bottom: 1px solid #0000005e !important;
       }
-    .AddTripButton{margin-right: 5px;margin:initial}
+    .AddTripButton{margin-right: 5px !important;margin:initial !important}
     .TripHeading{
-      width: 100%;
-      text-align: center;
+      width: 100% !important;
+      text-align: center !important;
     }
 
     .TripHeading>p{
-      margin:0 auto;
-      padding: 0 30px;
+      margin:0 auto !important;
+      padding: 0 30px !important;
     }
 }
 .AddTripButton{
