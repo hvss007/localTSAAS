@@ -211,11 +211,11 @@ class Trips extends Component{
         const tripMapElements=[...this.state.trips]
         return(
             <div className={classes.TripsAndMapWrapper}>
-            {this.state.desktopMapShow?<div className={classes.SingleTripsMap}>
+            {/* {this.state.desktopMapShow?<div className={classes.SingleTripsMap}>
             <SingleDesktopMap tripElements={tripMapElements} mapCenter={this.mapCenterHandler} setMapSearchText={this.state.setMapSearchText}>
                 
             </SingleDesktopMap>
-            </div>:null}
+            </div>:null} */}
             
             <div className={classes.TripsWrapper}> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
