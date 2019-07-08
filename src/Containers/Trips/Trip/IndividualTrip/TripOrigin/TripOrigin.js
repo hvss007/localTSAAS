@@ -76,7 +76,6 @@ class TripOrigin extends Component{
         else{
             this.setState({modalShow:false,backdropShow:false});
         }
-        
     }
     onChangeHandler=(event)=>{
        if(!this.props.disabled){
@@ -105,7 +104,6 @@ class TripOrigin extends Component{
     latLongHandler=(lat,lng,value)=>{
         this.props.latLongHandler1(lat,lng,this.props.originOrDestination,this.state.markerLocationText);
     }
-
     onChangeTime = event => {
         if(!this.props.disabled)
         {this.setState({ time:event.target.value })}}
@@ -167,6 +165,5 @@ class TripOrigin extends Component{
                 </div>
             </div>
         )}
-
 }
 export default TripOrigin;

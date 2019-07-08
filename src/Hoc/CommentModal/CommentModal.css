@@ -42,13 +42,14 @@
     z-index: 2;
     position: relative;
     /* left:0px; */
-    width: 100%;
+    width: 300px;
+    margin: 10px auto;
     height: 300px;
     overflow: hidden;
     left:0%;
     right:0%;
     opacity: 1;
-    transition:left ease-in-out 0.8s,right ease-in-out 0.8s,opacity ease 0.2s ;
+    transition:left ease-in-out 0.8s,right ease-in-out 0.8s,opacity ease 1s,width ease .3s .6s,height ease .3s .6s ;
     /* display: none; */
   }
 
@@ -64,7 +65,7 @@
     }
   .Dialogbox .Body {
     position: absolute;
-    max-width: 300px;
+    max-width: 400px;
     height: auto;
     margin: 20px 10px;
     padding: 5px;
@@ -73,7 +74,10 @@
     left:0px;
     
   }
-  
+  .BodyDisplay{
+    width:0px !important;
+    height:0px !important;
+  }  
   .Body .Message {
     min-height: 30px;
     border-radius: 3px;

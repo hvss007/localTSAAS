@@ -22,11 +22,11 @@ const CommentModal =props=>{
         //   left:props.show?'100%':'-100%'}
           props.show?bodyClasses.push(classes.BodyDisplay):null
         if(props.ifj==="11"){
-          style={width:!props.show?'100%':'0%',height:!props.show?'300px':'0px',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
+          style={width:!props.show?'360px':'0%',height:!props.show?'300px':'0px',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
         }
         else{
           !props.show?bodyClasses.push(classes.BodyDisplay):null
-          style={width:props.show?'100%':'0%',height:props.show?'300px':'0px',left:props.show?'0%':'-100%', opacity:props.show?'1':'0'}
+          style={width:props.show?'360px':'0%',height:props.show?'300px':'0px',left:props.show?'0%':'-100%', opacity:props.show?'1':'0'}
         }
       }
       else{
@@ -46,11 +46,11 @@ const CommentModal =props=>{
       if(window.innerWidth>=500){
         // style={ right:props.show?'100%':'-100%'}
         props.show?bodyClasses.push(classes.BodyDisplay):null
-        style={width:!props.show?'100%':'0%',height:!props.show?'300px':'0px',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
+        style={width:!props.show?'360px':'0%',height:!props.show?'300px':'0px',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
       }
       else{
         props.show?bodyClasses.push(classes.BodyDisplay):null
-        style={width:!props.show?'100%':'0%',height:!props.show?'100%':'0%',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
+        style={width:!props.show?'360px':'0%',height:!props.show?'300px':'0%',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
       } 
     }
     if(props.show){
