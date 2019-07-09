@@ -58,7 +58,7 @@ class Trip extends Component{
          )
     }
     finishClicked=()=>{
-        if (window.confirm("Have you added all members ?")) {
+        if (window.confirm("Have you added all members?")) {
             if(!this.props.disabled){
                 console.log("working")
                 this.onSubmitHandler()
@@ -77,7 +77,7 @@ class Trip extends Component{
         return a.replace(b, '')
     }
     nextMemberClickHandler=()=>{
-        if (window.confirm("Have you added all trips ?")) {
+        if (window.confirm("Have you added all trips?")) {
             if(!this.props.disabled){
                 console.log("working")
                 this.onSubmitHandler()
@@ -141,7 +141,7 @@ class Trip extends Component{
                     })}
             }
             else{
-                alert("Please fill all the fields before adding next trip")
+                alert("Please complete the fields before adding next trip.")
                  this.setState({sendData:false})
             }
             
@@ -245,7 +245,7 @@ class Trip extends Component{
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShowDestination}></Backdrop1> */}
                 {this.props.showAdd?<button className={addTripClasses.join(' ')} onClick={
                      ()=>
-                    {   orValue&&drValue?this.onSubmitHandler():alert('Please fill origin and destination values before proceeding')
+                    {   orValue&&drValue?this.onSubmitHandler():alert('Please complete the origin and destination information before moving forward.')
                     } 
                      } type="submit">Add Trip</button>:null}
                 {this.props.tripsLength>1&&this.props.showAdd?<div className={classes.NextMemberWrapper}>

@@ -53,11 +53,11 @@ class FinishSurvey extends Component{
                         <img src={MobileHomePage}></img>
                     </div>
                     <div className={classes.Thank}>
-            				<h4>Your feefback is valuable to us,please submit your feedback</h4>
+            				<h4>To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
         			</div>
                     <div className={classes.FeedbackWrapper}>
                         <textarea rows="4" cols="50" name="comment" form="usrform">
-                            Enter text here...
+                            Enter your feedback here...
                         </textarea>
                     </div>
                     <SubmitButton></SubmitButton>

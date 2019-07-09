@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import classes from './Trips.css'
 import Trip from './Trip/IndividualTrip/IndividualTrip'; 
-import Aux from '../../Hoc/Aux';
+// import Aux from '../../Hoc/Aux';
 import fs from '../../assets/jsonfile/stateAndDistricts.json'
 // import Backdrop from '../../Hoc/Backdrop/Backdrop';
 // import {Link} from 'react-router-dom';
 import Input from '../../Components/Input/Input';
-import SingleDesktopMap from './DesktopMap/SingleDesktopMap';
+// import SingleDesktopMap from './DesktopMap/SingleDesktopMap';
 class Trips extends Component{
     constructor(props){
         super(props);
@@ -208,7 +208,7 @@ class Trips extends Component{
         const tripElements=this.state.trips.map((item,index)=>{
             return <Trip singleDesktopLandmarkLocation={this.singleDesktopLandmarkLocationHandler} count={this.state.count} removeCurrentTripHandler={this.removeCurrentTripHandler} dataAreadySent={item.dataAreadySent} disabled={item.disabled} tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.initLat} initLng={item.initLng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
-        const tripMapElements=[...this.state.trips]
+        // const tripMapElements=[...this.state.trips]
         return(
             <div className={classes.TripsAndMapWrapper}>
             {/* {this.state.desktopMapShow?<div className={classes.SingleTripsMap}>
