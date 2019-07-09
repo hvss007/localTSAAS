@@ -11,7 +11,7 @@ export default class App extends React.Component {
         // Set initial State
         this.state = {
             // Current value of the select field
-            value: this.props.initialLandmark?this.props.initialLandmark:"",
+            value: this.props.initialLandmark?this.props.initialLandmark:"Enter the nearest landmark here.",
             // Data that will be rendered in the autocomplete
             // As it is asynchronous, it is initially empty
             autocompleteData: [],

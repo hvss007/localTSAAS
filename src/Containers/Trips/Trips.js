@@ -38,7 +38,7 @@ class Trips extends Component{
         tripLocation:{
             homeState:{
                 name:'homeState',
-                label:'Home State',
+                label:'State',
                 elementType:'select',
                 elementConfig:{
                     type:'text',

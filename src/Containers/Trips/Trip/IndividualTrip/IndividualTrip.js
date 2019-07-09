@@ -60,7 +60,7 @@ class Trip extends Component{
     finishClicked=()=>{
         if (window.confirm("Have you added all members?")) {
             if(!this.props.disabled){
-                console.log("working")
+                // console.log("working")
                 this.onSubmitHandler()
             }
             else{

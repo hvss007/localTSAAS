@@ -117,12 +117,12 @@ class TripOrigin extends Component{
             const landmarkWrapperClasses=[classes.LandmarkWrapper]
             if(this.props.originOrDestination==="Origin"){
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperLeft)
-                timeLabel="Departure Time";
+                timeLabel="When does the member depart?";
                 landmarkWrapperClasses.push(classes.LandmarkWrapperLeft)
             }
             else if(this.props.originOrDestination==="Destination"){
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperRight)
-                timeLabel="Arrival Time"
+                timeLabel="When does the member arrive?"
                 landmarkWrapperClasses.push(classes.LandmarkWrapperRight)
             }
 
@@ -139,7 +139,7 @@ class TripOrigin extends Component{
                 
                 {window.innerWidth>='0px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
                 <div className={landmarkWrapperClasses.join(' ')} >
-                <label>Landmark</label>    
+                <label>What is the location of trip origin?</label>    
                 <Autocomplete disabled={this.props.disabled} initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 </div>
                 
