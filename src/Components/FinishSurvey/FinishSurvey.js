@@ -5,15 +5,36 @@ import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from '../StartSuvey/StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
-import HomePage from '../../assets/icons/homepage.png';
+// import HomePage from '../../assets/icons/homepage.png';
 import Background from '../../assets/icons/thanksbackground.png';
+import axios from 'axios';
+import HostName from '../../assets/globalvaribles/GlobalVariables';
+import Input from '../Input/Input';
 // import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 class FinishSurvey extends Component{
-	state={
+    constructor(props){
+        super(props);
+        this.state={
+            feedback:{
+                elementType:'input',
+                name:'feedback',
+                label: 'Feedback',
+                elementConfig:{
+                    type:'text',
+                    placeholder:'Enter your feedback here...'
+                },
+                value:'',
+                optional:true,
+            },
+        }
+    }
+
+    state={
         showSideDrawer:false,
         displayComponent:false,
     }
 
+	
  	SideDrawerClosedHandler=()=>{
         this.setState({showSideDrawer:false})
     }
@@ -22,30 +43,49 @@ class FinishSurvey extends Component{
             return{showSideDrawer:!prevState.showSideDrawer}
         })
     }
+
+    submitButtonHandler=(event)=>{
+        event.preventDefault();
+            const family=this.state.family;
+            const family1=this.state.family1;
+                const post={
+                    feedback:this.state.feedback,
+                }
+                axios.post(HostName+"feedback/",post)
+                    .then((Response)=>{
+                        //console.log(Response);
+                        this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
+                    })
+                    .catch(err => 
+                        console.error(err)
+                        );
+    }
+
+
     render(){
     // const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
     const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
     const backgroundElement =window.innerWidth<=500? <div style={{...mobileBackgroundStyle}} className={classes.FirstImageWrapper}></div>:null
     const background =window.innerWidth>=500?{ 
         backgroundImage:'url('+Background+')',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'0% 40%'}:null
-    return(
+    
+        let thankyouArray=[];
+        for (let key in this.state.feedback){
+            thankyouArray.push(
+                {
+                    id:key,
+                    config:this.state.feedback[key]
+                }
+            )
+        }
+    
+        return(
         <div style={background} className={classes.StartSurvey}>
         <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
         <Toolbar drawerToggleClicked={this.SideDrawerToggleHandler} ></Toolbar>
             <div  className={classes.MainContainer+' '+classes.MainContainerFinishSurvey}>
                 <div className={classes.LeftContainer+" "+ classes.LeftContainerFinishSurvey}>
                     
-                    {/*<div className={classes.ImgTextWrapper}>
-                        <img src={TsaasLogo}></img>
-                        <div className={classes.LogoText}>
-                            <p>Traffic Survey</p>
-                            <p>as a Service</p>
-
-                        </div>
-                    </div>
-                        </div>              
-                    </div>  */}
- 
                     <div className={classes.Thank}>
             				<h3>We <span><b>Thank You</b></span> For taking time to complete the survey.</h3>
         			</div>
@@ -53,14 +93,35 @@ class FinishSurvey extends Component{
                         <img src={MobileHomePage}></img>
                     </div>
                     <div className={classes.Thank}>
-            				<h4>To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
+            				<h4> To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
         			</div>
                     <div className={classes.FeedbackWrapper}>
                         <textarea rows="4" cols="50" name="comment" form="usrform">
-                            Enter your feedback here...
+                            {/* Enter your feedback here... */}
                         </textarea>
+                    
+                    <form className={classes.CustomForm}>
+                    {thankyouArray.map((memFormElement)=>{return(
+                memFormElement.config.show?
+                <Input 
+                    textAlign='center'
+                    labelFontWeight='600'
+                    style={{textAlignLast:'center'}}
+                    key={memFormElement.id}
+                    label={memFormElement.config.label}
+                    name={memFormElement.config.name}
+                    elementType={memFormElement.config.elementType}
+                    elementconfig={memFormElement.config.elementConfig}
+                    value={memFormElement.config.value}
+                    invalid={!memFormElement.config.valid}
+                    touched={memFormElement.config.touched}
+                    id={memFormElement.id}
+                >    
+                </Input>:null
+            )})}
+                    </form>
                     </div>
-                    <SubmitButton></SubmitButton>
+                    <SubmitButton clicked={this.submitButtonHandler}></SubmitButton>
 
                 </div>
                 <div className={classes.RightContainer+' '+ classes.RightContainerFinishSurvey}>
