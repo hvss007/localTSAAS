@@ -3,7 +3,7 @@ import classes from './TripAcessAndMode.css';
 import TripAccess from './TripAcess/TripAccess';
 // import TripModal from '../../../../../Hoc/TripModal/TripModal';
 //import CommentModal from '../../../../../Hoc/CommentModal/CommentModal';
-
+import Aux from '../../../../../Hoc/Aux';
 class TripAcessAndMode extends Component{
     state={
         access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
@@ -161,11 +161,14 @@ class TripAcessAndMode extends Component{
             </TripAccess>
         })
         return(
+            <Aux>
+                <h3>Mode Information</h3>
             <div className={classes.TripAcessAndMode}>  
                  {tripAccess}
                 <TripAccess disabled={this.props.disabled} mainMode={true} accessName={"How does the member travel to the destination?"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
                 {tripEgress}
             </div>
+            </Aux>
         )
     }
 }

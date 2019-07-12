@@ -138,6 +138,7 @@ class TripOrigin extends Component{
             <div  style={{display:'flex',flexFlow:'column',alignItems:'inherit'}}>
                 
                 {window.innerWidth>='0px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
+                <h3>Trip {this.props.originOrDestination}</h3>
                 <div className={landmarkWrapperClasses.join(' ')} >
                 <label>What is the location of trip origin?</label>    
                 <Autocomplete disabled={this.props.disabled} initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
