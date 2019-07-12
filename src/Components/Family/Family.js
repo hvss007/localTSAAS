@@ -39,54 +39,6 @@ class Family extends Component{
         
     this.state={
         family:{
-            // noOfCars:{
-            //     name:'noOfCars',
-            //     label:'Number of Cars',
-            //     elementType:'input',
-            //     elementConfig:{
-            //         type:'number',
-            //         placeholder:''
-            //     },
-            //     validation:{
-            //         required:true
-            //     },
-            //     value:'',
-            //     show:true,
-            //     valid:false,
-            //     touched:false
-            // },
-            // noOfCycles:{
-            //     name:'noOfCycles',
-            //     label:'Number of Cycles',
-            //     elementType:'input',
-            //     elementConfig:{
-            //         type:'number',
-            //         placeholder:''
-            //     },
-            //     validation:{
-            //         required:true
-            //     },
-            //     value:'',
-            //     show:true,
-            //     valid:false,
-            //     touched:false
-            // },
-            // noOfTwoWheelers:{
-            //     name:'noOfTwoWheelers',
-            //     label:'Number of Motorcycles/Scooters',
-            //     elementType:'input',
-            //     elementConfig:{
-            //         type:'number',
-            //         placeholder:''
-            //     },
-            //     validation:{
-            //         required:true
-            //     },
-            //     value:'',
-            //     show:true,
-            //     valid:false,
-            //     touched:false
-            // },
             familyIncome:{
                 name:'familyIncome',
                 label:'Monthly Income of Family',
@@ -192,39 +144,6 @@ class Family extends Component{
                 touched:false,
                 optional:false
             },
-            // wardNo:{
-            //     label:'Ward Number',
-            //     elementType:'input',
-            //     elementConfig:{
-            //        type:'number',
-            //        placeholder:'' 
-            //     },
-            //     value:'',
-            //     show:true,
-            //     validation:{
-            //         required:true
-            //     },
-            //     valid:false,
-            //     touched:false
-            // },
-            // pinCode:{
-            //     name:'pinCode',
-            //     label:'PIN Code',
-            //     elementType:'input',
-            //     elementConfig:{
-            //        type:'number',
-            //        placeholder:'' 
-            //     },
-            //     value:'',
-            //     show:true,
-            //     validation:{
-            //         required:true,
-            //         length:6,
-            //     },
-            //     valid:false,
-            //     touched:false,
-            //     optional:false
-            // },
         },
         family1:{
             noOfCars:0,
@@ -457,7 +376,7 @@ state={}
     submitButtonHandler=(event)=>{
         //console.log(this.state.qAnswered);
         event.preventDefault();
-        if(this.state.qAnswered===3||true){
+        // if(this.state.qAnswered===3||true){
             const family=this.state.family;
             const family1=this.state.family1;
                 const post={
@@ -481,12 +400,10 @@ state={}
                     .catch(err => 
                         console.error(err)
                         );
-            }
-         
-        
-        else{
-            alert("Please fill all the fields")
-        }
+            // }
+        // else{
+        //     alert("Please fill all the fields")
+        // }
     }
     render(){
         const arrNew=[];
@@ -513,6 +430,7 @@ state={}
         <div className={classes.MapFamilyWrapper}
         // className="row flex-column-reverse flex-md-row" 
         style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 27px 51.33px 7.67px', borderRadius: '10px'}}>
+        
         {this.state.showMap?
         <div style={{flex:'2'}} >
         <MainMaps mapCenter={this.mapCenterHandler} markerLocationText={this.state.markerLocationText} dropdownArrayHandler={this.dropdownArrayHandler} mapLocation={this.state.setMapSearchText} lat={this.state.lat} lng={this.state.lng} dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
@@ -554,11 +472,9 @@ state={}
                 >    
                 </Input>:null
             )})}
-            <div className={classes.LatitudeLongitude}>
-            <div><label><b>Coordinates</b></label><p>{this.state.lat?this.state.lat.toPrecision(6):null} ,{this.state.lng?this.state.lng.toPrecision(6):null} </p></div>
-            
-            
-            
+
+            <div className={classes.LatitudeLongitude}>   
+            <div><label><b>Coordinates</b></label><p>{this.state.lat?this.state.lat.toPrecision(6):null}, {this.state.lng?this.state.lng.toPrecision(6):null} </p></div>
             </div>
             
          <MemberSubmitButton clicked={this.submitButtonHandler} ></MemberSubmitButton> 

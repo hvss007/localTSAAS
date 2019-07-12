@@ -6,8 +6,8 @@ class MainMap extends Component {
     super(props);
     this.state = {
         theme: 'normal.day',
-        lat:"26.9124",
-        lng:"75.7873",
+        // lat:"26.9124",
+        // lng:"75.7873",
         value:null
       }
     this.onChange = this.onChange.bind(this);

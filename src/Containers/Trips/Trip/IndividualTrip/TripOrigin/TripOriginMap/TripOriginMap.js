@@ -24,7 +24,6 @@ class TripOriginMap extends Component{
             count:0,
             dataLoaded:false,
             mapCentreText:this.props.mapLocation,
-            placeMarker:null,
             count1:0
         }
         this.platform = new window.H.service.Platform(this.state);

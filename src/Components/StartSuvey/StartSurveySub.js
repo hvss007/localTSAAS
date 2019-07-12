@@ -28,7 +28,7 @@ const startSurveySub=(props)=>{
                             <p>as a Service</p>
                         </div>    
                     </div>
-                    <p> Welcome to TSaaS! Please take few minutes to complete the survey. Personal information and location are neither asked nor tracked. Your few minutes will help us to synthesize a city traffic model.</p>
+                    <p> Welcome to TSaaS! Please take few minutes to complete the survey. Your few minutes will help us to synthesize a city traffic model. Personal information and location are neither asked nor tracked.</p>
                     <p> </p>
                     {(props.collegeName==="home"|| props.collegeName==="None") ? null : 
                     <div>
@@ -48,7 +48,7 @@ const startSurveySub=(props)=>{
             //to={{
              //   pathname:this.props.match.url+'/member'
             //}}
-             style={{margin:'auto',fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take The Survey </button> </div>
+             style={{margin:'auto',fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the survey </button> </div>
                 </div>
                 <div className={classes.RightContainer}>
                     {/* <img src={Matsim}>

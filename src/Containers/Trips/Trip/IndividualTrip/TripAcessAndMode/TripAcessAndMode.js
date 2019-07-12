@@ -153,17 +153,17 @@ class TripAcessAndMode extends Component{
     }
     render(){
         const tripAccess=this.state.access.map((acc,index)=>{
-            return <TripAccess disabled={this.props.disabled} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={acc.idi} add={this.addHandler} accessName={"Access Mode"}  idi={acc.idi} showAdd={acc.showAdd}>
+            return <TripAccess disabled={this.props.disabled} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={acc.idi} add={this.addHandler} accessName={"How does the member access his/her travel mode?"}  idi={acc.idi} showAdd={acc.showAdd}>
             </TripAccess>
         })
         const tripEgress=this.state.egress.map((egr,index)=>{
-            return <TripAccess disabled={this.props.disabled} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={egr.idi} add={this.addHandler} accessName={"Egress Mode"}  idi={egr.idi} showAdd={egr.showAdd}>
+            return <TripAccess disabled={this.props.disabled} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={egr.idi} add={this.addHandler} accessName={"How does the member egress his/her travel mode?"}  idi={egr.idi} showAdd={egr.showAdd}>
             </TripAccess>
         })
         return(
             <div className={classes.TripAcessAndMode}>  
                  {tripAccess}
-                <TripAccess disabled={this.props.disabled} mainMode={true} accessName={"Main Mode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
+                <TripAccess disabled={this.props.disabled} mainMode={true} accessName={"How does the member travel to the destination?"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
                 {tripEgress}
             </div>
         )
