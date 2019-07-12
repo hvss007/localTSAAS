@@ -49,6 +49,7 @@
     left:0%;
     right:0%;
     opacity: 1;
+    order: 3;
     transition:left ease-in-out 0.8s,right ease-in-out 0.8s,opacity ease 1s,width ease .3s .6s,height ease .3s .6s ;
     /* display: none; */
   }
