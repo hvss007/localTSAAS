@@ -59,7 +59,10 @@ export default class App extends React.Component {
           
           //console.log(Response);
           //console.log(elementsArray)
-        })
+        },error=>{
+            alert("Unable to  connect to geocoding service")
+        }
+        )
         
         // // Url of your website that process the data and returns a
         // let url = `mywebsite/searchApi?query=${searchText}`;
