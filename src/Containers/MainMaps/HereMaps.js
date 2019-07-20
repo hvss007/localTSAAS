@@ -217,6 +217,8 @@ class  HereMaps extends Component {
           } 
           this.addMarkersToMap(position,this.behavior)
           return true
+        }else if(this.props.markerLocationLat!==nextProps.markerLocationLat){
+            return true
         }
         else{
           return false;
@@ -432,7 +434,10 @@ class  HereMaps extends Component {
             <div style={{height:'95%'}}>
             <div id="here-map" 
             //onClick={(event)=>this.changeCoordinate(event,this.map)} 
-            style={{width: '100%', height:'100%', background: 'grey' }} />
+            style={{width: '100%', height:'100%', background: 'grey',position:'relative ' }} >
+                <div style={{textAlign:'right',position:'absolute', zIndex:'100',top:'4%',left:'4%'}}><p>{this.props.markerLocationLat?this.props.markerLocationLat.toPrecision(6):null} ,{this.props.markerLocationLng?this.props.markerLocationLng.toPrecision(6):null}</p> </div>
+            </div>
+            
             </div>
         );
     }

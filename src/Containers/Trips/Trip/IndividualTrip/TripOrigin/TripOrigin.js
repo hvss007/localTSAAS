@@ -129,10 +129,10 @@ class TripOrigin extends Component{
                 landmarkWrapperClasses.push(classes.LandmarkWrapperRight)
             }
 
-            const time=<div style={{display:'flex',justifyContent:'space-between',order:'4'}}>
+            const time=<div style={{display:'flex',justifyContent:'space-between',whiteSpace:'nowrap',order:'4'}}>
                 <p style={{margin:'0px'}}>{timeLabel}</p>
                 <p style={{margin:'0px'}}>hh:mm</p>
-                <input style={{textAlign:'center',appearance:'none'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
+                <input defaultValue="00:00" style={{textAlign:'center',appearance:'none'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
             </div>
         
             
