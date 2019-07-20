@@ -230,7 +230,7 @@ class TripOriginMap extends Component{
         if(this.state.count1>0){
 
         }
-        this.setState({lat:nextProps.markerLat,lng:nextProps.markerLng,count1:this.state.count1+1},()=>{
+        this.setState({lat:nextProps.markerLat,lng:nextProps.markerLng,count1:this.state.count1+1,backdropShow:true,showFrontDrop:true},()=>{
           this.props.latLong(this.state.lat,this.state.lng)
         })
         

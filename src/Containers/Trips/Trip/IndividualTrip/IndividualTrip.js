@@ -243,11 +243,13 @@ class Trip extends Component{
                     hideBackdrop={this.hidebackdropHandler}></Backdrop>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShow}></Backdrop1>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShowDestination}></Backdrop1> */}
-                {this.props.showAdd?<button className={addTripClasses.join(' ')} onClick={
+                {   this.state.showMid?
+                    this.props.showAdd?<button className={addTripClasses.join(' ')} onClick={
                      ()=>
                     {   orValue&&drValue?this.onSubmitHandler():alert('Please complete the origin and destination information before moving forward.')
                     } 
-                     } type="submit">Add Trip</button>:null}
+                     } type="submit">Add Trip</button>:null:null
+                     }
                 {this.props.tripsLength>1&&this.props.showAdd?<div className={classes.NextMemberWrapper}>
                     <button onClick={this.removeCurrentTripHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Remove Trip</button>
                     
