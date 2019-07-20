@@ -177,9 +177,9 @@ class TripAccess extends Component{
        if(this.props.accessName==="Main Mode"){
             tripQuestion="How does the member travel?"
        }else if(this.props.accessName==="Access Mode"){
-        tripQuestion="How does the member access "+this.props.mainmodeValue?this.props.mainmodeValue:null+" ?"
+        tripQuestion="How does the member access "+(this.props.mainmodeValue?this.props.mainmodeValue:null)+" ?"
        }else if(this.props.accessName==="Egress Mode"){
-        tripQuestion="How does the member egress "+this.props.mainmodeValue?this.props.mainmodeValue:null+" ?"
+        tripQuestion="How does the member egress "+(this.props.mainmodeValue?this.props.mainmodeValue:null)+" ?"
        }   
 
         return(<Aux>
@@ -188,9 +188,9 @@ class TripAccess extends Component{
             <div style={{display:'flex'}}>
                 <p onClick={this.accessClicked}>{tripQuestion}</p>
             </div>
-            {/* <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img> */}
+            <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex',flexFlow:'column'}}>
-            <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a>
+            {/* <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a> */}
             {/* this.props.accessName */}
             {/* {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null} */}
             </div>
