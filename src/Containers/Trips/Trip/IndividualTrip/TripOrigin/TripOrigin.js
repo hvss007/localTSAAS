@@ -117,16 +117,16 @@ class TripOrigin extends Component{
             const landmarkWrapperClasses=[classes.LandmarkWrapper]
             if(this.props.originOrDestination==="Origin"){
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperLeft)
-                timeLabel="When does the member depart?";
+                timeLabel="2b)When does the member depart?";
                 landmarkWrapperClasses.push(classes.LandmarkWrapperLeft)
             }
             else if(this.props.originOrDestination==="Destination"){
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperRight)
-                timeLabel="When does the member arrive?"
+                timeLabel="2b) When does the member arrive?"
                 landmarkWrapperClasses.push(classes.LandmarkWrapperRight)
             }
 
-            const time=<div>
+            const time=<div style={{display:'flex',justifyContent:'space-between',order:'4'}}>
                 <p style={{margin:'0px'}}>{timeLabel}</p>
                 <p style={{margin:'0px'}}>hh:mm</p>
                 <input style={{textAlign:'center',appearance:'none'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
@@ -144,7 +144,7 @@ class TripOrigin extends Component{
                 <Autocomplete disabled={this.props.disabled} initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 </div>
                 
-                {true? <div className={TripOriginWrapperClasses.join(" ")}>
+                <div className={TripOriginWrapperClasses.join(" ")}>
                 
                 <div className={classes.Hidden}
                ></div> 
@@ -162,11 +162,11 @@ class TripOrigin extends Component{
                     <p style={{margin:'auto',fontSize:'20px'}}>{this.props.originOrDestination}</p>
                     <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
                     <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
-                    {time}
+                    
                 </div>:null
                 }
-                    
-                </div>:null}
+                {time}    
+                </div>
             </div>
         )}
 }

@@ -19,14 +19,10 @@ class Trip extends Component{
         disableAdd:true,
         sendData1:false,
         showMid:false,
+        showDes:false
         // backdropShow:false,
         // commentModalShow:false,
         // commentModalShowDestination:false
-    }
-    componentDidMount(){
-        if(window.innerWidth>=500){
-            this.setState({showMid:true})
-        }
     }
     // backdropShowHandler=(show)=>{
     //     this.setState({backdropShow:show},()=>{//console.log(this.state.backdropShow,"dhtjd")})
@@ -212,6 +208,7 @@ class Trip extends Component{
              tripAcessAndModeData=<TripAcessAndMode disabled={this.props.disabled} tripIdf={this.props.idf} sendData={this.state.sendData} 
             tripAccessDataHandler={this.tripAccessDataHandler}
             ></TripAcessAndMode>
+            // this.setState({showDes:true})    
         }
         if(destinationData.destinationLat&&destinationData.destinationLng&&destinationData.destinationPlace)
         {   drValue=true
@@ -222,9 +219,11 @@ class Trip extends Component{
                 <div className={classes.TripHeading}><p>{"Trip "+ this.props.idf}</p></div>
                 <div className={classes.OriginDestinationWrapper} >
                 <TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} initialLandmark={this.props.initialLandmark}  initLat={this.props.initLat} initLng={this.props.initLng} initialOrigin={this.props.initialOrigin} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
+                
+                {orValue?<TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>:null}
                 {this.state.showMid?tripAcessAndModeData:null}
-                {this.state.showMid?<TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>:null}
                 </div>
+                
                 {/* <TripAcessAndMode sendData={this.state.sendData} 
                 tripAccessDataHandler={this.tripAccessDataHandler}
                 >
