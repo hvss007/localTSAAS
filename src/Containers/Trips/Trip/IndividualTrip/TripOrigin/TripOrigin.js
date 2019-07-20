@@ -135,35 +135,38 @@ class TripOrigin extends Component{
             
 
             return(
-            <div  style={{display:'flex',flexFlow:'column',alignItems:'inherit'}}>
+            <div  style={{display:'flex',flexFlow:'column',width:'100%'}}>
                 
                 {window.innerWidth>='0px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
-                <h3>Trip {this.props.originOrDestination}</h3>
+                <h3 className={classes.OriginHeading}>Trip {this.props.originOrDestination}</h3>
                 <div className={landmarkWrapperClasses.join(' ')} >
-                <label>What is the location of trip origin?</label>    
+                <label>1) Where does the member start his/her trip ?</label>    
                 <Autocomplete disabled={this.props.disabled} initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 </div>
                 
-                <div className={TripOriginWrapperClasses.join(" ")}>
+                {true? <div className={TripOriginWrapperClasses.join(" ")}>
                 
                 <div className={classes.Hidden}
                ></div> 
+               {/* <label>2) Where does the member begin his journey</label> */}
                 <TripOriginMap disabled={this.props.disabled} markerLat={this.state.lat} markerLng={this.state.lng} markerLocationText={this.state.markerLocationText}  mapLocation={this.props.mapLocation} centerLocationHandler={this.centerLocationHandler}  initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
                 
-                <CommentModal
+                {this.state.markerLocationText?<CommentModal
                 // time={<TimePicker value={this.state.time} 
                 // onChange={this.onChangeTime}></TimePicker>}
                  key={this.props.ifj} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
                     {inputElement}
-                </CommentModal>   
-                {/* <div className={classes.OriginModal}></div> */}
+                </CommentModal>:null   }
+                {this.state.markerLocationText?
                     <div className={classes.AnchorImagerapper} style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
-                        <p style={{margin:'auto',fontSize:'20px'}}>{this.props.originOrDestination}</p>
-                        <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
-                        <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
-                        {time}
-                    </div>
-                </div>
+                    <p style={{margin:'auto',fontSize:'20px'}}>{this.props.originOrDestination}</p>
+                    <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
+                    <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
+                    {time}
+                </div>:null
+                }
+                    
+                </div>:null}
             </div>
         )}
 }

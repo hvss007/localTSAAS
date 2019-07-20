@@ -60,22 +60,26 @@
 }
 .LandmarkWrapper{
     z-index:1;
-    text-align:center;
-    width:80%
+    text-align: left;
+    /* text-align:center;
+    width:80% */
 }
-.LandmarkWrapperLeft{
-    margin-left:70px;
-}
-.LandmarkWrapperRight{
-    margin-right: 70px
+    /* .LandmarkWrapperLeft{
+        margin-left:70px;
+    }
+    .LandmarkWrapperRight{
+        margin-right: 70px
+    } */
+.OriginHeading{
+    text-align: left;
 }
 @media (min-width:0px){
     .Hidden{
        display: none !important
     }
-    .LandmarkWrapperLeft,.LandmarkWrapperRight{
+    /* .LandmarkWrapperLeft,.LandmarkWrapperRight{
         margin:0px !important
-    }
+    } */
     .TripOriginWrapper{
         flex-direction: column !important; 
         width:100% !important;

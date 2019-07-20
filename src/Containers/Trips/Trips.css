@@ -14,6 +14,11 @@
 }
 .SingleTripsMap{
     flex:1;
+
+}
+.InputTrip{
+    display: flex;
+    flex-direction: row;
 }
 .TripInformation>h1{
     margin:auto;
@@ -30,6 +35,10 @@
     width:500px;
 }
 @media (max-width:500px){
+    .InputTrip{
+        display: flex;
+        flex-direction: column
+    }
     .TripInformation{
        width:100%;
        padding:0px;

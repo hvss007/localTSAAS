@@ -35,7 +35,7 @@ onChange(evt) {
     return (
       <div className={classes.MainMaps} >
         <div style={{fontSize:'12px',textAlign:'center'}} ><p>*You can drag the marker to your approximate new location</p></div>
-        <div style={{textAlign:'right',position:'fixed', zIndex:'100'}}><p>{this.state.lat} ,{this.state.lng}</p> </div>
+        <div style={{textAlign:'right',position:'fixed', zIndex:'100',top:'4%',left:'4%'}}><p>{this.props.lat?this.props.lat.toPrecision(6):null} ,{this.props.lng?this.props.lng.toPrecision(6):null}</p> </div>
         <HereMaps
           markerLocationText={this.props.markerLocationText}
           mapLocation={this.props.mapLocation}

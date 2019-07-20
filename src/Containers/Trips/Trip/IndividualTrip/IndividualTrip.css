@@ -7,6 +7,8 @@
 }
 .TripHeading{
   width: 93%;
+  display: flex;
+  align-items: center;
   height:50px;
   text-align: left;
   margin: auto;
@@ -39,12 +41,11 @@
     .AddTripButton{margin-right: 5px !important;margin:initial !important}
     .TripHeading{
       width: 100% !important;
-      text-align: center !important;
     }
 
     .TripHeading>p{
-      margin:0 auto !important;
-      padding: 0 30px !important;
+     
+     
     }
 }
 .AddTripButton{

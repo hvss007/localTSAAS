@@ -10,7 +10,7 @@
   margin-left:auto;
   margin-right: auto;
   /* height: fit-content; */
-  /* height:70vh;  */
+  height:70vh; 
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
@@ -95,7 +95,7 @@
 }
 
 .StartSurveyButton{
-
+  white-space: nowrap;
   margin: auto;
   margin-top: 30px;
   font-size: 18px;
@@ -238,7 +238,7 @@
     /* .ImgTextWrapper>p{
       font-size: 40px   
      } */
-     .LogoText{font-size: 40px}
+     .LogoText{font-size: 30px}
   }
 @media(min-width:1440px){
   .StartSurvey{
@@ -249,5 +249,4 @@
     height:70vh; 
     padding: 10px;
   }
-  
 }

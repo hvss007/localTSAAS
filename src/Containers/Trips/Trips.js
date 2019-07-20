@@ -81,7 +81,8 @@ class Trips extends Component{
         ,setMapSearchText:null,
         desktopMapShow:false,
         centerLat:'',
-        centerLng:''
+        centerLng:'',
+        showTrips:false
     }
 }
     componentDidMount(){
@@ -137,6 +138,7 @@ class Trips extends Component{
             }
             if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
                     this.mapShowHandler(updatedInputElement.value+" "+this.state.tripLocation.homeState.value);
+                    this.setState({showTrips:true})
                     if(window.innerWidth>500){
                         this.setState({desktopMapShow:true})
                     }                   
@@ -250,7 +252,7 @@ class Trips extends Component{
                 </Input>:null
             )})}           
                 </div>
-                {tripElements}
+                {this.state.showTrips?tripElements:null}
                
             </div>
             </div>
