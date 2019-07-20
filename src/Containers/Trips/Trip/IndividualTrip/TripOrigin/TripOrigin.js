@@ -112,15 +112,18 @@ class TripOrigin extends Component{
                 return <CommentModalInput changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} source={item.src}>
                     </CommentModalInput>
             })
-            let timeLabel=""
+            let timeLabel="";
+            let tripLocationQuestionHeading=''
             const TripOriginWrapperClasses=[classes.TripOriginWrapper];
             const landmarkWrapperClasses=[classes.LandmarkWrapper]
             if(this.props.originOrDestination==="Origin"){
+                tripLocationQuestionHeading='1) Where does the member start his/her trip ?'
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperLeft)
                 timeLabel="2b)When does the member depart?";
                 landmarkWrapperClasses.push(classes.LandmarkWrapperLeft)
             }
             else if(this.props.originOrDestination==="Destination"){
+                tripLocationQuestionHeading="1) Where does the member terminate his/her trip ?"
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperRight)
                 timeLabel="2b) When does the member arrive?"
                 landmarkWrapperClasses.push(classes.LandmarkWrapperRight)
@@ -140,7 +143,7 @@ class TripOrigin extends Component{
                 {window.innerWidth>='0px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
                 <h3 className={classes.OriginHeading}>Trip {this.props.originOrDestination}</h3>
                 <div className={landmarkWrapperClasses.join(' ')} >
-                <label>1) Where does the member start his/her trip ?</label>    
+                <label>{tripLocationQuestionHeading}</label>    
                 <Autocomplete disabled={this.props.disabled} initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 </div>
                 
@@ -159,10 +162,9 @@ class TripOrigin extends Component{
                 </CommentModal>:null   }
                 {this.state.markerLocationText?
                     <div className={classes.AnchorImagerapper} style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
-                    <p style={{margin:'auto',fontSize:'20px'}}>{this.props.originOrDestination}</p>
-                    <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
-                    <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Here"}</a>
-                    
+                    <p onClick={this.originClicked}>2a) What is the type of location?</p>
+                    {/* <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img> */}
+                    <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Below"}</a>
                 </div>:null
                 }
                 {time}    

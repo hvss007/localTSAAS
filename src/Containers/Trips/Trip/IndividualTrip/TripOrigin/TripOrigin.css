@@ -40,7 +40,7 @@
     white-space: nowrap;
     margin-top: 10px !important;
     border-radius: 5px;
-    border:1px solid black;
+    border-bottom: 2px solid rgba(41, 128, 185,0.4);
     display:block;
     transition: cursor ease-out 0.4s; 
     letter-spacing: 1px;
@@ -91,9 +91,9 @@
         margin:0px !important;
     }
     .AnchorImagerapper{
-        margin:auto !important;
-        
-    }.TripOriginIcon{
+        text-align: left;   
+    }
+    .TripOriginIcon{
         width: 100px !important;
     }
     .TripOriginAnchor{}

@@ -212,6 +212,7 @@ class Trip extends Component{
         }
         if(destinationData.destinationLat&&destinationData.destinationLng&&destinationData.destinationPlace)
         {   drValue=true
+
         }
         const addTripClasses=[classes.AddTripButton,classes.AddTripButtonBorder]
         return(
@@ -221,14 +222,14 @@ class Trip extends Component{
                 <TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} initialLandmark={this.props.initialLandmark}  initLat={this.props.initLat} initLng={this.props.initLng} initialOrigin={this.props.initialOrigin} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
                 
                 {orValue?<TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>:null}
-                {this.state.showMid?tripAcessAndModeData:null}
+                {orValue&&drValue?tripAcessAndModeData:null}
                 </div>
                 
                 {/* <TripAcessAndMode sendData={this.state.sendData} 
                 tripAccessDataHandler={this.tripAccessDataHandler}
                 >
                 </TripAcessAndMode> */}
-                {!this.state.showMid?tripAcessAndModeData:null}
+                {/* {!this.state.showMid?tripAcessAndModeData:null} */}
                 {/* <div
                    style={this.state.backdropShow?{
                    width:'100%',
@@ -242,7 +243,7 @@ class Trip extends Component{
                     hideBackdrop={this.hidebackdropHandler}></Backdrop>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShow}></Backdrop1>
                  <Backdrop1 hideModalBackdrop={this.hideModalBackdropHandler} show={this.state.commentModalShowDestination}></Backdrop1> */}
-                {   this.state.showMid?
+                {   orValue&&drValue?
                     this.props.showAdd?<button className={addTripClasses.join(' ')} onClick={
                      ()=>
                     {   orValue&&drValue?this.onSubmitHandler():alert('Please complete the origin and destination information before moving forward.')

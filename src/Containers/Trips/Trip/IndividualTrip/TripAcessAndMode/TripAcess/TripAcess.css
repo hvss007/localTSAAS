@@ -25,11 +25,11 @@
 }
 .TripAccessAnchor{
     text-align: center;
-    margin:auto;
+    /* margin:auto; */
     /* width:85px; */
     white-space: nowrap;
     border-radius: 5px;
-    border:1px solid black;
+    border-bottom: 2px solid rgba(41, 128, 185,0.4);
     display:block;
     transition: cursor ease-out 0.4s,letter-spacing ease-in .2s; 
     padding:2px 4px;
