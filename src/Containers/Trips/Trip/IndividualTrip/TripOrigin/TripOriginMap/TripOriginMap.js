@@ -367,6 +367,9 @@ class TripOriginMap extends Component{
         <div id={"originmap"+this.props.ifj} className={originMapClasses.join(' ')}
         //style={this.state.showFrontDrop?originMapStyle:null}
         >
+        <div className={classes.ConfirmButtonOuter+' '+classes.ConfirmButtonBorder}> 
+            <button onClick={()=>{this.setState({backdropShow:false,showFrontDrop:false})}} className={classes.ConfirmButton}> Ok</button>
+        </div>  
 
         </div>
         
