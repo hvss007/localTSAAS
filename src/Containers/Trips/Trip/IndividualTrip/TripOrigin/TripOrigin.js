@@ -117,15 +117,15 @@ class TripOrigin extends Component{
             const TripOriginWrapperClasses=[classes.TripOriginWrapper];
             const landmarkWrapperClasses=[classes.LandmarkWrapper]
             if(this.props.originOrDestination==="Origin"){
-                tripLocationQuestionHeading='1) Where does the member start his/her trip ?'
+                tripLocationQuestionHeading=' Where does the member start his/her trip ?'
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperLeft)
-                timeLabel="2b)When does the member depart (hh:mm)?";
+                timeLabel="When does the member depart (hh:mm)?";
                 landmarkWrapperClasses.push(classes.LandmarkWrapperLeft)
             }
             else if(this.props.originOrDestination==="Destination"){
-                tripLocationQuestionHeading="1) Where does the member terminate his/her trip ?"
+                tripLocationQuestionHeading=" Where does the member terminate his/her trip ?"
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperRight)
-                timeLabel="2b) When does the member arrive (hh:mm)?"
+                timeLabel=" When does the member arrive (hh:mm)?"
                 landmarkWrapperClasses.push(classes.LandmarkWrapperRight)
             }
 
@@ -162,7 +162,7 @@ class TripOrigin extends Component{
                 </CommentModal>:null   }
                 {this.state.markerLocationText?
                     <div className={classes.AnchorImagerapper} style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
-                    <p onClick={this.originClicked}>2a) What is the type of location?</p>
+                    <p onClick={this.originClicked}> What is the type of location?</p>
                     <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
                     {/* <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Below"}</a> */}
                 </div>:null
