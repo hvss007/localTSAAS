@@ -22,3 +22,11 @@
         background: white;
     }
 }
+@media(max-width:350px){
+    .Logo{
+        height: 80%
+    }
+    .LogoText{
+        font-size: 18px
+    }
+}

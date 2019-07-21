@@ -60,8 +60,6 @@ class FinishSurvey extends Component{
                         console.error(err)
                         );
     }
-
-
     render(){
     // const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
     const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
@@ -96,7 +94,7 @@ class FinishSurvey extends Component{
             				<h4> To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
         			</div>
                     <div className={classes.FeedbackWrapper}>
-                        <textarea rows="4" cols="50" name="comment" form="usrform">
+                        <textarea rows="5" style={{width:'100%'}} name="comment" form="usrform">
                             {/* Enter your feedback here... */}
                         </textarea>
                     
@@ -121,8 +119,9 @@ class FinishSurvey extends Component{
             )})}
                     </form>
                     </div>
-                    <SubmitButton clicked={this.submitButtonHandler}></SubmitButton>
-
+                    <div>
+                        <SubmitButton clicked={this.submitButtonHandler}></SubmitButton>
+                    </div>
                 </div>
                 <div className={classes.RightContainer+' '+ classes.RightContainerFinishSurvey}>
                     <img className={classes.SurveyMonitor} src={MobileHomePage}/> 
