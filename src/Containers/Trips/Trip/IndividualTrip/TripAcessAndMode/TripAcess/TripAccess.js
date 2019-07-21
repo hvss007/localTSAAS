@@ -175,11 +175,11 @@ class TripAccess extends Component{
        })
        let tripQuestion=''
        if(this.props.accessName==="Main Mode"){
-            tripQuestion="How does the member travel?"
+            tripQuestion="How does the member travel to "+(this.props.destinationPlace?this.props.destinationPlace:'')+"?"
        }else if(this.props.accessName==="Access Mode"){
-        tripQuestion="How does the member access "+(this.props.mainmodeValue?this.props.mainmodeValue:null)+" ?"
+        tripQuestion="How does the member access "+(this.props.mainmodeValue?this.props.mainmodeValue:'')+" ?"
        }else if(this.props.accessName==="Egress Mode"){
-        tripQuestion="How does the member egress "+(this.props.mainmodeValue?this.props.mainmodeValue:null)+" ?"
+        tripQuestion="How does the member egress "+(this.props.mainmodeValue?this.props.mainmodeValue:'')+" ?"
        }   
 
         return(<Aux>

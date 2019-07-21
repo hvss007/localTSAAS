@@ -164,7 +164,7 @@ class TripAcessAndMode extends Component{
             <Aux>
                 <h3>Mode Information</h3>
             <div className={classes.TripAcessAndMode}>  
-                <TripAccess disabled={this.props.disabled} mainMode={true} accessName={"Main Mode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
+                <TripAccess disabled={this.props.disabled} destinationPlace={this.props.destinationPlace} mainMode={true} accessName={"Main Mode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess>
                 {tripAccess}
                 {tripEgress}
             </div>

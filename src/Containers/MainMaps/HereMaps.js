@@ -435,7 +435,7 @@ class  HereMaps extends Component {
             <div id="here-map" 
             //onClick={(event)=>this.changeCoordinate(event,this.map)} 
             style={{width: '100%', height:'100%', background: 'grey',position:'relative ' }} >
-                <div style={{textAlign:'right',position:'absolute', zIndex:'100',top:'4%',left:'4%'}}><p>{this.props.markerLocationLat?this.props.markerLocationLat.toPrecision(6):null} ,{this.props.markerLocationLng?this.props.markerLocationLng.toPrecision(6):null}</p> </div>
+                <div style={{textAlign:'right',position:'absolute', zIndex:'100',top:'4%',left:'4%',color:'#00008b',fontSize:'19px'}}><p>{this.props.markerLocationLat?this.props.markerLocationLat.toPrecision(6):null} ,{this.props.markerLocationLng?this.props.markerLocationLng.toPrecision(6):null}</p> </div>
             </div>
             
             </div>

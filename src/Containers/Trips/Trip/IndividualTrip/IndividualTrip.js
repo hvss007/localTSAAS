@@ -205,7 +205,7 @@ class Trip extends Component{
         
         if((originData.originLat||this.props.initLat)&&(originData.originLng||this.props.initLng)&&(originData.originPlace||this.props.initialOrigin))
         {   orValue=true
-             tripAcessAndModeData=<TripAcessAndMode disabled={this.props.disabled} tripIdf={this.props.idf} sendData={this.state.sendData} 
+             tripAcessAndModeData=<TripAcessAndMode destinationPlace={this.state.tripInformation.destinationData.destinationPlace} disabled={this.props.disabled} tripIdf={this.props.idf} sendData={this.state.sendData} 
             tripAccessDataHandler={this.tripAccessDataHandler}
             ></TripAcessAndMode>
             // this.setState({showDes:true})    

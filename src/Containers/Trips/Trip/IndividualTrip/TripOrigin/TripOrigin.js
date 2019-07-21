@@ -119,20 +119,20 @@ class TripOrigin extends Component{
             if(this.props.originOrDestination==="Origin"){
                 tripLocationQuestionHeading='1) Where does the member start his/her trip ?'
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperLeft)
-                timeLabel="2b)When does the member depart?";
+                timeLabel="2b)When does the member depart (hh:mm)?";
                 landmarkWrapperClasses.push(classes.LandmarkWrapperLeft)
             }
             else if(this.props.originOrDestination==="Destination"){
                 tripLocationQuestionHeading="1) Where does the member terminate his/her trip ?"
                 TripOriginWrapperClasses.push(classes.TripOriginWrapperRight)
-                timeLabel="2b) When does the member arrive?"
+                timeLabel="2b) When does the member arrive (hh:mm)?"
                 landmarkWrapperClasses.push(classes.LandmarkWrapperRight)
             }
 
-            const time=<div style={{display:'flex',justifyContent:'space-between',whiteSpace:'nowrap',order:'4'}}>
+            const time=<div style={{display:'flex',justifyContent:'space-between',whiteSpace:'nowrap',order:'4',flexDirection:'column',alignItems:'start'}}>
                 <p style={{margin:'0px'}}>{timeLabel}</p>
-                <p style={{margin:'0px'}}>hh:mm</p>
-                <input defaultValue="00:00" style={{textAlign:'center',appearance:'none'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
+                {/* <p style={{margin:'0px'}}></p> */}
+                <input defaultValue="00:00" style={{textAlign:'center',appearance:'none',margin:'0 auto'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
             </div>
         
             
