@@ -12,11 +12,9 @@ const TripModal=(props)=>{
         messageClasses.push(classes.MessageDisplay);
     }
     if(props.clickedIn){
-        tripModalClasses.push(classes.DisplayIn);
-        dialogBoxStyleClasses.push(classes.Dialogbox1Display);
+        // tripModalClasses.push(classes.DisplayIn);
+        // dialogBoxStyleClasses.push(classes.Dialogbox1Display);
     }
-    
-
     return (
         <Aux>
             <FinalBackdrop backdropHide={props.backdropHide} backdropShow={props.backdropShow}></FinalBackdrop>
@@ -30,7 +28,7 @@ const TripModal=(props)=>{
                         </div>   
                     </div>
                     </div>
-                    <div className={dialogBoxStyleClasses.join(' ')}>
+                    <div style={{display:'none'}} className={dialogBoxStyleClasses.join(' ')}>
                     <div className={classes.Body}>
                     {/* <span className={tipClasses.join(' ')}></span> */}
                         <div style={{justifyContent:"space-between"}} className={messageClasses.join(' ')}>

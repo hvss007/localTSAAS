@@ -33,9 +33,9 @@ class TripAccess extends Component{
             {id:9,src:Others,title:'Others',value:''},   
         ],
         accessInfoIn:[
-            {id:1,title:"Travel Time (hh:mm)",value:'',valid:false,touched:false,type:'time'},
-            {id:2,title:"Travel Distance (km)",value:'',valid:false,touched:false},
-            {id:3,title:"Fare ",value:'',valid:false,touched:false,src:Rupee},
+            {id:1,title:"How much time (hh:mm) does the whole trip take",value:'',valid:false,touched:false,type:'time'},
+            {id:2,title:"How long (km) is the whole trip",value:'',valid:false,touched:false},
+            {id:3,title:"How much does the whole trip costs ",value:'',valid:false,touched:false,src:Rupee},
             // {id:4,title:"Cost",value:'',valid:false,touched:false}
         ],
         src:null,
@@ -136,7 +136,10 @@ class TripAccess extends Component{
         this.setState({accessInfoIn:accessInfoCopyIn},
             ()=>{let valid=this.addShower();
                 console.log(valid)
-                this.props.accessDataIn(this.props.accessName,title,value,this.props.idi,valid)}
+                if(this.props.accessName==="Main Mode"){
+                    this.props.accessDataIn(this.props.accessName,title,value,this.props.idi,valid)}
+                }
+                
             );
         }
     }
@@ -171,7 +174,7 @@ class TripAccess extends Component{
                 </CommentModalInput>
         })
        const inputElementIn=this.state.accessInfoIn.map((item)=>{
-           return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} changed={this.onChangeHandler1} key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
+           return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
        })
        let tripQuestion=''
        if(this.props.accessName==="Main Mode"){
@@ -190,6 +193,7 @@ class TripAccess extends Component{
             </div>
             <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex',flexFlow:'column'}}>
+                {this.props.accessName==="Egress Mode"?inputElementIn:null}
             {/* <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a> */}
             {/* this.props.accessName */}
             {/* {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null} */}
@@ -197,7 +201,7 @@ class TripAccess extends Component{
             </div>
             <TripModal 
                 key={this.props.idi} 
-                inputElementIn={inputElementIn} 
+                // inputElementIn={inputElementIn} 
                 clickedIn={this.state.accessClickedIn} 
                 clicked={this.state.accessClicked} 
                 className={classes.TripModal}
