@@ -18,6 +18,12 @@ class Members extends Component{
     // componentDidMount(){
     //     console.log(this.props.match.params.id)
     // }
+    componentDidMount(){
+        window.history.pushState(null, document.title, window.location.href);
+        window.addEventListener('popstate', function (event){
+            window.history.pushState(null, document.title,  window.location.href);
+        });
+    }
     mapShowHandler=(searchText)=>{
         this.setState({showMap:true,setMapSearchText:searchText})
     }

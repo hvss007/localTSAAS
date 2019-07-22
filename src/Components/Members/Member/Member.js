@@ -536,21 +536,27 @@ class Member extends Component{
                 }
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                      const memberCopy={...this.state.member};
-                      const arr=Object.keys(memberCopy);
-                      arr.forEach(item=>{
-                        let updatedElementCopy={...memberCopy[item]};
-                            if(item==='simCards'){
-                                //consoleog(item)
-                                updatedElementCopy.value='Enter the number of sim cards here.';
-                            }
-                            else{
-                                updatedElementCopy.value='';
-                            }
-                            
-                            memberCopy[item]=updatedElementCopy;
-                      })  
-                      this.setState({member:memberCopy})
+                        if (window.confirm("Have you added all members?")) {
+                            this.props.history.push({pathname:'/finishsurvey'})    
+                        } 
+                        else{
+                            const memberCopy={...this.state.member};
+                            const arr=Object.keys(memberCopy);
+                            arr.forEach(item=>{
+                              let updatedElementCopy={...memberCopy[item]};
+                                  if(item==='simCards'){
+                                      //consoleog(item)
+                                      updatedElementCopy.value='Enter the number of sim cards here.';
+                                  }
+                                  else{
+                                      updatedElementCopy.value='';
+                                  }
+                                  
+                                  memberCopy[item]=updatedElementCopy;
+                            })  
+                            this.setState({member:memberCopy})
+                        }
+
                     })
                     .catch(err => console.error(err));
             }
@@ -572,7 +578,6 @@ class Member extends Component{
                     principalSourceofIncome:member.principalSourceofIncome.value,
                     stayAtHome:member.stayAtHome.value
                 }
-    
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
                         

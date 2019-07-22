@@ -86,6 +86,10 @@ class Trips extends Component{
     }
 }
     componentDidMount(){
+        window.history.pushState(null, document.title, window.location.href);
+        window.addEventListener('popstate', function (event){
+            window.history.pushState(null, document.title,  window.location.href);
+        });
         //console.log(this.props.match.params.id1);
         // console.log(this.props.match.url);
         // var a=this.props.match.url;

@@ -209,8 +209,14 @@ state={}
         });
         
     }
+     
+  
     componentDidMount(){
         // console.log(this.props.match.url)
+        window.history.pushState(null, document.title, window.location.href);
+        window.addEventListener('popstate', function (event){
+            window.history.pushState(null, document.title,  window.location.href);
+        });      
         axios.get(HostName+"college/").then(
             Response=>{
 

@@ -83,7 +83,7 @@ class TripOrigin extends Component{
         const inputArray={...originInfoCopy[7]};
         inputArray.value=event.target.value;
         originInfoCopy[7]=inputArray;
-        this.setState({originInfo:originInfoCopy});}
+        this.setState({originInfo:originInfoCopy,title:event.target.value,src:Other});}
     }
      originItemSelectedHandler=(value,src)=>{
         if(!this.props.disabled){
