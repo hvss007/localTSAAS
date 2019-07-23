@@ -33,9 +33,9 @@ class TripAccess extends Component{
             {id:9,src:Others,title:'Others',value:''},   
         ],
         accessInfoIn:[
-            {id:1,title:"How much time (hh:mm) does the whole trip take",value:'',valid:false,touched:false,type:'time'},
-            {id:2,title:"How long (km) is the whole trip",value:'',valid:false,touched:false},
-            {id:3,title:"How much does the whole trip costs ",value:'',valid:false,touched:false,src:Rupee},
+            {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time'},
+            {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false},
+            {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee},
             // {id:4,title:"Cost",value:'',valid:false,touched:false}
         ],
         src:null,
@@ -119,7 +119,8 @@ class TripAccess extends Component{
     }
     onChangeHandler1=(event,title,id)=>{
         if(!this.props.disabled)
-        {const accessInfoCopyIn=[...this.state.accessInfoIn];
+        {
+        const accessInfoCopyIn=[...this.state.accessInfoIn];
         const selctedArr=accessInfoCopyIn.filter((item)=>{
             if(item.title===title){
                 return true
@@ -132,14 +133,12 @@ class TripAccess extends Component{
         selectedArrItems.valid=this.validityHandler(value);
         accessInfoCopyIn[id-1]=selectedArrItems;
         //this.itemClicked(title,selectedArrItems.src);
-        
         this.setState({accessInfoIn:accessInfoCopyIn},
-            ()=>{let valid=this.addShower();
-                console.log(valid)
-                if(this.props.accessName==="Main Mode"){
-                    this.props.accessDataIn(this.props.accessName,title,value,this.props.idi,valid)}
+            ()=>{
+                let valid=this.addShower();
+                if(this.props.accessName==="Egress Mode"){
+                    this.props.accessDataIn("Main Mode",title,value,this.props.idi,valid)}
                 }
-                
             );
         }
     }
@@ -174,7 +173,7 @@ class TripAccess extends Component{
                 </CommentModalInput>
         })
        const inputElementIn=this.state.accessInfoIn.map((item)=>{
-           return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}></TripAccessIn>
+           return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}  displayValue={item.displayValue}></TripAccessIn>
        })
        let tripQuestion=''
        if(this.props.accessName==="Main Mode"){

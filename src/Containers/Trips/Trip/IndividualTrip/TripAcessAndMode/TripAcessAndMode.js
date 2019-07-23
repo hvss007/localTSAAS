@@ -69,13 +69,13 @@ class TripAcessAndMode extends Component{
             const accessCopyElementOld={...accessCopy[idi-1]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
             accessCopyElementOld.isValid=valid;
-            if(valueType==="Travel Time"){
+            if(valueType==="travelTime"){
                 accessInvalueCopy.travelTime=value;
             }
-            else if(valueType==="Travel Distance"){
+            else if(valueType==="journeyLength"){
                 accessInvalueCopy.travelDistance=value;
             }
-            else if(valueType==="Fare"){
+            else if(valueType==="fare"){
                 accessInvalueCopy.fare=value;
             }
             // else if(valueType==="Cost"){
@@ -90,13 +90,13 @@ class TripAcessAndMode extends Component{
             const accessCopyElementOld={...accessCopy[idi-1]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
             accessCopyElementOld.isValid=valid;
-            if(valueType==="Travel Time"){
+            if(valueType==="travelTime"){
                 accessInvalueCopy.travelTime=value;
             }
-            else if(valueType==="Travel Distance"){
+            else if(valueType==="journeyLength"){
                 accessInvalueCopy.travelDistance=value;
             }
-            else if(valueType==="Fare"){
+            else if(valueType==="fare"){
                 accessInvalueCopy.fare=value;
             }
             // else if(valueType==="Cost"){
@@ -111,13 +111,13 @@ class TripAcessAndMode extends Component{
             const accessCopyElementOld={...accessCopy[0]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
             accessCopyElementOld.isValid=valid;
-            if(valueType==="Travel Time"){
+            if(valueType==="travelTime"){
                 accessInvalueCopy.travelTime=value;
             }
-            else if(valueType==="Travel Distance"){
+            else if(valueType==="journeyLength"){
                 accessInvalueCopy.travelDistance=value;
             }
-            else if(valueType==="Fare"){
+            else if(valueType==="fare"){
                 accessInvalueCopy.fare=value;
             }
             // else if(valueType==="Cost"){

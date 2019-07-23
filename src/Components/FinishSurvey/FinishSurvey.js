@@ -9,6 +9,7 @@ import MobileHomePage from '../../assets/icons/mobile.png'
 import Background from '../../assets/icons/thanksbackground.png';
 import axios from 'axios';
 import HostName from '../../assets/globalvaribles/GlobalVariables';
+import {withRouter} from 'react-router-dom';
 import Input from '../Input/Input';
 // import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 class FinishSurvey extends Component{
@@ -33,7 +34,12 @@ class FinishSurvey extends Component{
         showSideDrawer:false,
         displayComponent:false,
     }
-
+    componentDidMount(){
+        window.history.pushState(null, document.title, window.location.href);
+        window.addEventListener('popstate', function (event){
+            window.history.pushState(null, document.title,  window.location.href);
+        });  
+    }
 	
  	SideDrawerClosedHandler=()=>{
         this.setState({showSideDrawer:false})
@@ -133,4 +139,4 @@ class FinishSurvey extends Component{
 	}
 }
 
-export default FinishSurvey;
+export default withRouter(FinishSurvey)

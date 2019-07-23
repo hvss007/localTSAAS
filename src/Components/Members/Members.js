@@ -4,6 +4,7 @@ import Aux from '../../Hoc/Aux';
 // import ProgressBar from '../ProgressBar/ProgressBar'; 
 // import MainMaps from '../../Containers/MainMaps/MainMaps'; 
 import classes from './Members.css';
+import {withRouter} from 'react-router-dom';
 class Members extends Component{
     state={
         percent:null,
@@ -102,4 +103,4 @@ class Members extends Component{
     )
     }
 }
-export default Members;
+export default withRouter(Members);

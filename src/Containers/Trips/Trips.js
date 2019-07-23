@@ -4,7 +4,7 @@ import Trip from './Trip/IndividualTrip/IndividualTrip';
 // import Aux from '../../Hoc/Aux';
 import fs from '../../assets/jsonfile/stateAndDistricts.json'
 // import Backdrop from '../../Hoc/Backdrop/Backdrop';
-// import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Input from '../../Components/Input/Input';
 // import SingleDesktopMap from './DesktopMap/SingleDesktopMap';
 class Trips extends Component{
@@ -263,7 +263,7 @@ class Trips extends Component{
         )
     }
 }
-export default Trips;
+export default withRouter(Trips);
 // const tripAccess=this.state.access.map((acc,index)=>{
 //     return <TripAccess accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={acc.idi} add={this.addHandler} accessName={"Access"}  idi={acc.idi} showAdd={acc.showAdd}>
 //     </TripAccess>
