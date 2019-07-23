@@ -58,7 +58,7 @@ class TripAccess extends Component{
         this.setState({backdropShow:false,accessClicked:false,accessClickedIn:false})
     }
     accessClicked=()=>{
-        this.setState({accessClicked:true,backdropShow:true})
+        this.setState({accessClicked:true,backdropShow:true,accessClickedIn:true})
     }
     onClickHandler=(title,id)=>{
         if(!this.props.disabled)
@@ -77,8 +77,7 @@ class TripAccess extends Component{
         //console.log(accessInfoCopy)
         this.dialogBoxShow();
         this.itemClicked(title,selectedArrItems.src);
-        
-        this.setState({accessInfo:accessInfoCopy},()=>{
+        this.setState({accessInfo:accessInfoCopy,accessClicked:false,backdropShow:false},()=>{
             if(this.state.title.length>=0){
                 this.setState({activateAdd:true})
             }
@@ -177,11 +176,11 @@ class TripAccess extends Component{
        })
        let tripQuestion=''
        if(this.props.accessName==="Main Mode"){
-            tripQuestion="How does the member travel to "+(this.props.destinationPlace?this.props.destinationPlace:'')+"?"
+            tripQuestion="How does the member travel to "+(this.props.destinationPlace?this.props.destinationPlace!=="Other"?'"'+this.props.destinationPlace+'"':'"destination"':'')+"?"
        }else if(this.props.accessName==="Access Mode"){
-        tripQuestion="How does the member access "+(this.props.mainmodeValue?this.props.mainmodeValue:'')+" ?"
+        tripQuestion="How does the member access "+(this.props.mainmodeValue?'"'+this.props.mainmodeValue+'"':'')+" ?"
        }else if(this.props.accessName==="Egress Mode"){
-        tripQuestion="How does the member egress "+(this.props.mainmodeValue?this.props.mainmodeValue:'')+" ?"
+        tripQuestion="How does the member egress "+(this.props.mainmodeValue?'"'+this.props.mainmodeValue+'"':'')+" ?"
        }   
 
         return(<Aux>

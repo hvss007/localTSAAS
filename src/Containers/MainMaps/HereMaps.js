@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import classes from './HereMaps.css'
 var count=0;
 class  HereMaps extends Component {
     constructor(props) {
@@ -432,10 +433,12 @@ class  HereMaps extends Component {
 
         return (
             <div style={{height:'95%'}}>
-            <div id="here-map" 
+            <div id="here-map"
+            className={classes.HereMaps} 
             //onClick={(event)=>this.changeCoordinate(event,this.map)} 
-            style={{width: '100%', height:'100%', background: 'grey',position:'relative ' }} >
-                <div style={{textAlign:'right',position:'absolute', zIndex:'100',top:'4%',left:'4%',color:'#00008b',fontSize:'19px'}}><p>{this.props.markerLocationLat?this.props.markerLocationLat.toPrecision(6):null} ,{this.props.markerLocationLng?this.props.markerLocationLng.toPrecision(6):null}</p> </div>
+            
+            >
+                <div className={classes.Coordinates} ><p>{this.props.markerLocationLat?this.props.markerLocationLat.toPrecision(6):null} ,{this.props.markerLocationLng?this.props.markerLocationLng.toPrecision(6):null}</p> </div>
             </div>
             
             </div>

@@ -10,7 +10,7 @@
 }
 @media(min-width:0px){
 .TripAcessAndMode{
-  padding:1px 20px !important; 
+  padding:1px 0px !important; 
   flex-direction: column !important;
   /* align-items: center !important; */
   flex-wrap: nowrap !important;

@@ -358,7 +358,7 @@ class TripOriginMap extends Component{
  //    const styleSmall={width: '100px', height: '100px', background: 'grey',position:"absolute",marginTop:"30px" };
     return(
       <Aux>
-     <div style={{display:'flex',flexDirection:'column'}}>
+     <div style={{display:'flex',flexDirection:'column',marginBottom:'20px'}}>
      
      <div className={classes.WarningText} ><p  style={{fontSize:'14px' , textAlign:'center'}}> {"*Drag the marker nearest to your "+ this.props.originOrDestination + " location."}</p></div>  
      

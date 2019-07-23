@@ -133,12 +133,8 @@ class TripOrigin extends Component{
                 {/* <p style={{margin:'0px'}}></p> */}
                 <input defaultValue="00:00" style={{textAlign:'center',appearance:'none',margin:'0 auto',border:'none' ,borderBottom:'2px solid rgba(41, 128, 185,0.4)'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
             </div>
-        
-            
-
             return(
-            <div  style={{display:'flex',flexFlow:'column',width:'100%'}}>
-                
+            <div  style={{display:'flex',flexFlow:'column',width:'100%',marginBottom:'20px'}}>
                 {window.innerWidth>='0px'?<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>:<div onClick={this.backdropClickedHandler} style={this.state.backdropShow?{position:'fixed',width:'100vw',top:'0px',left:'0px',height:'100vh',zIndex:'1',background:'rgba(0,0,0,.2'}:{width:'0vw',height:'0vh',display:'none'}}></div>}
                 <h3 className={classes.OriginHeading}>Trip {this.props.originOrDestination}</h3>
                 <div className={landmarkWrapperClasses.join(' ')} >
