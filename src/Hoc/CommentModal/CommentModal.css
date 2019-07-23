@@ -80,7 +80,7 @@
     height:0px !important;
   }  
   .Body .Message {
-    min-height: 30px;
+    /* min-height: 30px; */
     border-radius: 3px;
     font-family: Arial;
     font-size: 14px;

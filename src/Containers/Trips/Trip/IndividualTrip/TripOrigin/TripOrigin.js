@@ -128,11 +128,10 @@ class TripOrigin extends Component{
                 timeLabel=" When does the member arrive (hh:mm)?"
                 landmarkWrapperClasses.push(classes.LandmarkWrapperRight)
             }
-
-            const time=<div style={{display:'flex',justifyContent:'space-between',whiteSpace:'nowrap',order:'4',flexDirection:'column',alignItems:'start'}}>
+            const time=<div style={{display:'flex',justifyContent:'space-between',whiteSpace:'nowrap',order:'4',flexDirection:'column',alignItems:'start',margin:'10px 0 10px'}}>
                 <p style={{margin:'0px'}}>{timeLabel}</p>
                 {/* <p style={{margin:'0px'}}></p> */}
-                <input defaultValue="00:00" style={{textAlign:'center',appearance:'none',margin:'0 auto'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
+                <input defaultValue="00:00" style={{textAlign:'center',appearance:'none',margin:'0 auto',border:'none' ,borderBottom:'2px solid rgba(41, 128, 185,0.4)'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
             </div>
         
             
@@ -161,8 +160,8 @@ class TripOrigin extends Component{
                     {inputElement}
                 </CommentModal>:null   }
                 {this.state.markerLocationText?
-                    <div className={classes.AnchorImagerapper} style={{display:'flex',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
-                    <p onClick={this.originClicked}> What is the type of location?</p>
+                    <div className={classes.AnchorImagerapper} style={{display:'flex',marginTop:'15px',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
+                    <p onClick={this.originClicked} style={{margin:'0'}}> What is the type of location?</p>
                     <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
                     {/* <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Below"}</a> */}
                 </div>:null

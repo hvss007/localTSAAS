@@ -32,11 +32,11 @@ const CommentModal =props=>{
       else{
         props.show?bodyClasses.push(classes.BodyDisplay):null
         if(props.ifj==="11"){
-          style={width:!props.show?'100%':'0%',height:!props.show?'100%':'0%',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
+          style={width:!props.show?'100%':'0%',height:!props.show?'100%':'0px',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
         }
         else{
           !props.show?bodyClasses.push(classes.BodyDisplay):null
-          style={width:props.show?'100%':'0%',height:props.show?'100%':'0%',left:props.show?'0%':'-100%', opacity:props.show?'1':'0'}
+          style={width:props.show?'100%':'0%',height:props.show?'100%':'0px',left:props.show?'0%':'-100%', opacity:props.show?'1':'0'}
         }
         
       }
@@ -50,7 +50,7 @@ const CommentModal =props=>{
       }
       else{
         props.show?bodyClasses.push(classes.BodyDisplay):null
-        style={width:!props.show?'360px':'0%',height:!props.show?'300px':'0%',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
+        style={width:!props.show?'360px':'0%',height:!props.show?'300px':'0px',left:!props.show?'0%':'-100%', opacity:!props.show?'1':'0'}
       } 
     }
     if(props.show){
@@ -66,7 +66,7 @@ const CommentModal =props=>{
           <span className={tipClasses.join(' ')}></span>
           {props.time}
           <div className={classes.Message}>
-          {props.children}
+          {!props.show?props.children:null}
           </div>   
           
         </div>

@@ -40,9 +40,8 @@ export default class App extends React.Component {
         .then(Response=>{
           let ResponseArrayResponse=Response.data.results;
           let elementsArray=[];
-          
           ResponseArrayResponse.forEach((element,index) => {
-            let dataObj={label:""+element.title+" "+element.vicinity,value:index+1}  
+            let dataObj={label:""+element.title+" "+(element.vicinity?element.vicinity:''),value:index+1}  
             //elementsArray.push(""+element.title+" "+element.vicinity);
             elementsArray.push(dataObj)
           });
@@ -136,6 +135,7 @@ export default class App extends React.Component {
         // })
 
         // console.log(jf)
+        
         let arr=this.state.responseArray[val[0]-1].position
         this.setState({
             value: val

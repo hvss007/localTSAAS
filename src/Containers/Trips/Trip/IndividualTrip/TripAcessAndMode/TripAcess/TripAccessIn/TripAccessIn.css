@@ -7,7 +7,7 @@
 }
 .AccessInput{
     outline:none;
-    border:1px solid #ccc;
+    border-bottom: 2px solid rgba(41, 128, 185,0.4);
     background-color: white;
     font: inherit;
     padding:2px 4px;

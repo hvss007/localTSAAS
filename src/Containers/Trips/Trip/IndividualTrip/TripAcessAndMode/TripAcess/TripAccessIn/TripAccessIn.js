@@ -8,7 +8,7 @@ const tripAccessIn=(props)=>{
     return (
         <div className={classes.TripAccessIn}>
             <label name={props.displayValue}>{props.displayValue}{props.src?<span><img style={{width:'11px'}} alt={""} src={props.src}></img></span>:null} ?</label>
-            <input type={props.type} className={tripAccessInputClasses.join(' ')} onChange={(event)=>props.changed(event,props.title,props.id)}></input>
+            <input type={props.type} min={props.min} max={props.max} className={tripAccessInputClasses.join(' ')} onChange={(event)=>props.changed(event,props.title,props.id)}></input>
         </div>
     )
 }

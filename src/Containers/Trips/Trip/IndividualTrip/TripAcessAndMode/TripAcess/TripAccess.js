@@ -33,9 +33,9 @@ class TripAccess extends Component{
             {id:9,src:Others,title:'Others',value:''},   
         ],
         accessInfoIn:[
-            {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time'},
-            {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false},
-            {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee},
+            {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time',min:'00:00',max:'12:00'},
+            {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false,type:'number',min:'0'},
+            {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee,type:'number',min:'0'},
             // {id:4,title:"Cost",value:'',valid:false,touched:false}
         ],
         src:null,
@@ -173,7 +173,7 @@ class TripAccess extends Component{
                 </CommentModalInput>
         })
        const inputElementIn=this.state.accessInfoIn.map((item)=>{
-           return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}  displayValue={item.displayValue}></TripAccessIn>
+           return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} min={item.min?item.min:null} max={item.max?item.max:null} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}  displayValue={item.displayValue}></TripAccessIn>
        })
        let tripQuestion=''
        if(this.props.accessName==="Main Mode"){
