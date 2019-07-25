@@ -50,7 +50,7 @@ class StartSurvey extends Component{
             //    this.props.history.push({pathname:this.props.match.url+response.data.familyID+'/member'})
             // })
             if(this.props.match.url==="/"){
-                this.props.history.push({pathname:"/home/family"})
+                this.props.history.push({pathname:"/demo/family"})
             }
             else{this.props.history.push({pathname:this.props.match.url+"/family"})}
     }
@@ -58,7 +58,7 @@ class StartSurvey extends Component{
     render(){    
         let showElement;
         if(this.props.match.url==="/"){
-            showElement=<StartSurveySub collegeName={"home"} collegeID={'1'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
+            showElement=<StartSurveySub collegeName={"demo"} collegeID={'1'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
         }
         else{
                 showElement=null

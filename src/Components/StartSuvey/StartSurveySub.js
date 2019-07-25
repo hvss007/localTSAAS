@@ -30,7 +30,7 @@ const startSurveySub=(props)=>{
                     </div>
                     <p> Welcome to TSaaS! Please take few minutes to complete the survey. Your few minutes will help us to synthesize a city traffic model. Personal information and location are neither asked nor tracked.</p>
                     <p> </p>
-                    {(props.collegeName==="home"|| props.collegeName==="None") ? null : 
+                    {(props.collegeName==="demo"|| props.collegeName==="None") ? null : 
                     <div>
                        <p > This survey link is exclusive for students of  <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
                     </div>
