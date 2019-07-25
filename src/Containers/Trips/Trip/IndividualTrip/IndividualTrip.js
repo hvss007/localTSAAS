@@ -75,13 +75,13 @@ class Trip extends Component{
     nextMemberClickHandler=()=>{
         if (window.confirm("Have you added all trips?")) {
             if(!this.props.disabled){
-                console.log("working")
+                
                 this.onSubmitHandler()
             }
             else{
-
+                // this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
             }
-            this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+            
           } else {
            
           }
@@ -108,7 +108,7 @@ class Trip extends Component{
                 return item.accessMode.length===0 
             })
             
-            
+            console.log(validArr)
             if(validArr.length===0){
                 //this.setState({sendData1:true})
                 this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng,updatedData.originDestination[0].destinationLandmark,true)
@@ -119,7 +119,6 @@ class Trip extends Component{
                 if(!this.props.disabled)
                 {Axios.post(HostName+"trips/",data)
                 .then(response=>{
-                    
                         //console.log(response.data)            
                          Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                          //{tripID:response.data.tripID,...updatedData.originDestination[0]}
@@ -130,7 +129,7 @@ class Trip extends Component{
                             Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
                             //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                             ).then(response=>{
-
+                                this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
                             })    
                          });
                         // response.data.tripID

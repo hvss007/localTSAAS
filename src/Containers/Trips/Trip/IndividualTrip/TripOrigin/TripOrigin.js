@@ -99,7 +99,15 @@ class TripOrigin extends Component{
         else{
             this.setState({modalShow:true,backdropShow:true})
         }
+    }
+    keyPressHandler=(event)=>{
         
+        if(event.keyCode=="13"){
+            
+            this.setState({modalShow:true,title:event.target.value},()=>{
+                this.props.originDataHandler(this.state.title,this.props.originOrDestination,this.state.time);    
+            })
+        }
     }
     latLongHandler=(lat,lng,value)=>{
         this.props.latLongHandler1(lat,lng,this.props.originOrDestination,this.state.markerLocationText);
@@ -109,7 +117,7 @@ class TripOrigin extends Component{
         {this.setState({ time:event.target.value })}}
         render(){
             const inputElement=this.state.originInfo.map((item,index)=>{
-                return <CommentModalInput changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} source={item.src}>
+                return <CommentModalInput keyPress={this.keyPressHandler} changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} source={item.src}>
                     </CommentModalInput>
             })
             let timeLabel="";
@@ -148,19 +156,23 @@ class TripOrigin extends Component{
                ></div> 
                {/* <label>2) Where does the member begin his journey</label> */}
                 <TripOriginMap disabled={this.props.disabled} markerLat={this.state.lat} markerLng={this.state.lng} markerLocationText={this.state.markerLocationText}  mapLocation={this.props.mapLocation} centerLocationHandler={this.centerLocationHandler}  initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
-                
                 {this.state.markerLocationText?<CommentModal
                 // time={<TimePicker value={this.state.time} 
                 // onChange={this.onChangeTime}></TimePicker>}
                  key={this.props.ifj} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
                     {inputElement}
                 </CommentModal>:null   }
-                {this.state.markerLocationText?
+                {this.props.idf===1?
+                    this.state.markerLocationText?
                     <div className={classes.AnchorImagerapper} style={{display:'flex',marginTop:'15px',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
                     <p onClick={this.originClicked} style={{margin:'0'}}> What is the type of location?</p>
                     <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
                     {/* <a ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginAnchor}>{this.props.initialOrigin?this.props.initialOrigin:this.state.title?this.state.title:"Choose Below"}</a> */}
-                </div>:null
+                </div>:null:
+                <div className={classes.AnchorImagerapper} style={{display:'flex',marginTop:'15px',flexDirection:"column",flexOrder:this.props.originOrDestination==="Origin"?'2':'1'}}>
+                    <p onClick={this.originClicked} style={{margin:'0'}}> What is the type of location?</p>
+                    <img ifj={this.props.ifj} onClick={this.originClicked} className={classes.TripOriginIcon} alt={"origin"} src={this.props.initialOrigin?this.state.originInfo.filter(item=>item.title===this.props.initialOrigin)[0].src:this.state.src?this.state.src:OriginIcon}></img>
+                    </div>
                 }
                 {time}    
                 </div>

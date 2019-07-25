@@ -71,12 +71,12 @@ class TripOriginMap extends Component{
         //this.addMarkersToMap(this.map,behavior);
         //this.req(this.behavior);
         this.map.addObject(this.group);
-        if(this.props.initLat&&this.props.initLng){
-          let dataObj={lat:this.props.initLat,lng:this.props.initLng};
-          this.addMarkersToMap(dataObj,this.behavior);
-        }else{
-          // this.addMarkersToMap(this.state.center,this.behavior);  
-        }
+        // if(this.props.initLat&&this.props.initLng){
+        //   let dataObj={lat:this.props.initLat,lng:this.props.initLng};
+        //   this.addMarkersToMap(dataObj,this.behavior);
+        // }else{
+        //   // this.addMarkersToMap(this.state.center,this.behavior);  
+        // }
         if(this.props.ifj!=="11"||this.props.ifj!=="21"){
           this.setState({mapCentreText:this.props.mapLocation},()=>{
           var geocoder = this.platform.getGeocodingService();
