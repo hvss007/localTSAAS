@@ -102,7 +102,7 @@ class TripOrigin extends Component{
     }
     keyPressHandler=(event)=>{
         
-        if(event.keyCode=="13"){
+        if(event.keyCode==="13"){
             
             this.setState({modalShow:true,title:event.target.value},()=>{
                 this.props.originDataHandler(this.state.title,this.props.originOrDestination,this.state.time);    
