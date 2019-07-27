@@ -77,7 +77,7 @@ class ContactUs extends Component{
                     <p>IIT Roorkee</p>
                     <p>Roorkee, India-247667</p>
                     <p>Phone: +91-1332-285441</p>
-                    <p>amitfce@iitr.ac.in</p>
+                    <a href="mailto:amitfce@iitr.ac.in"> amitfce@iitr.ac.in</a>
                     <a href="http://faculty.iitr.ac.in/~amitfce/">http://faculty.iitr.ac.in/~amitfce/</a>
                     <a href="https://www.iitr.ac.in/~CE/amitfce">https://www.iitr.ac.in/~CE/amitfce</a>
                 </div>
