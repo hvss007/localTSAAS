@@ -79,7 +79,7 @@ class Trip extends Component{
                 this.onSubmitHandler()
             }
             else{
-                // this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+                this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
             }
             
           } else {
@@ -129,7 +129,7 @@ class Trip extends Component{
                             Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
                             //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                             ).then(response=>{
-                                this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+                                
                             })    
                          });
                         // response.data.tripID

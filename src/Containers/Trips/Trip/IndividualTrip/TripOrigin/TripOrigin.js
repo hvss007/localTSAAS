@@ -54,6 +54,13 @@ class TripOrigin extends Component{
                 return true
             }
         })
+        if(title!=='Other'){
+            const othersArray=originInfoCopy[originInfoCopy.length-1]
+            othersArray.value=''
+            originInfoCopy[originInfoCopy.length-1]=othersArray
+        }
+        
+
         const selectedArrItems={...selctedArr[0]};
         selectedArrItems.value=title;
         originInfoCopy[id-1]=selectedArrItems;
@@ -80,9 +87,9 @@ class TripOrigin extends Component{
     onChangeHandler=(event)=>{
        if(!this.props.disabled){
         const originInfoCopy=[...this.state.originInfo];
-        const inputArray={...originInfoCopy[7]};
+        const inputArray={...originInfoCopy[originInfoCopy.length-1]};
         inputArray.value=event.target.value;
-        originInfoCopy[7]=inputArray;
+        originInfoCopy[originInfoCopy.length-1]=inputArray;
         this.setState({originInfo:originInfoCopy,title:event.target.value,src:Other});}
     }
      originItemSelectedHandler=(value,src)=>{
@@ -103,8 +110,12 @@ class TripOrigin extends Component{
     keyPressHandler=(event)=>{
         
         if(event.keyCode=="13"){
+            const originInfoCopy=[...this.state.originInfo]
+            const othersArray=originInfoCopy[originInfoCopy.length-1]
             
-            this.setState({modalShow:true,title:event.target.value},()=>{
+            othersArray.value=event.target.value 
+            originInfoCopy[originInfoCopy.length-1]=othersArray          
+            this.setState({modalShow:true,title:event.target.value,originInfo:originInfoCopy},()=>{
                 this.props.originDataHandler(this.state.title,this.props.originOrDestination,this.state.time);    
             })
         }
@@ -117,7 +128,7 @@ class TripOrigin extends Component{
         {this.setState({ time:event.target.value })}}
         render(){
             const inputElement=this.state.originInfo.map((item,index)=>{
-                return <CommentModalInput keyPress={this.keyPressHandler} changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} source={item.src}>
+                return <CommentModalInput keyPress={this.keyPressHandler} changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} value={item.value} source={item.src}>
                     </CommentModalInput>
             })
             let timeLabel="";
