@@ -32,7 +32,7 @@ const startSurveySub=(props)=>{
                     <p> </p>
                     {(props.collegeName==="demo"|| props.collegeName==="None") ? null : 
                     <div>
-                       <p > This survey link is exclusive for students of  <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
+                       <p > This survey link is exclusive for students / faculties / employees of <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
                     </div>
                     }
                     {/* {window.innerWidth>=500? 
