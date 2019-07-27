@@ -19,7 +19,8 @@ class Trip extends Component{
         disableAdd:true,
         sendData1:false,
         showMid:false,
-        showDes:false
+        showDes:false,
+        whichButtonClicked:null
         // backdropShow:false,
         // commentModalShow:false,
         // commentModalShowDestination:false
@@ -48,8 +49,8 @@ class Trip extends Component{
     // sideClickDesHandler=(truth)=>{
     //     this.setState({commentModalShowDestination:truth})
     // }
-    onSubmitHandler=()=>{
-         this.setState({sendData:true},        
+    onSubmitHandler=(value,button)=>{
+         this.setState({sendData:value,whichButtonClicked:button},        
         //     this.props.addTrip(this.props.idf);}
          )
     }
@@ -57,7 +58,7 @@ class Trip extends Component{
         if (window.confirm("Have you added all members?")) {
             if(!this.props.disabled){
                 // console.log("working")
-                this.onSubmitHandler()
+                this.onSubmitHandler(true,'finishButton')
             }
             else{
 
@@ -73,20 +74,21 @@ class Trip extends Component{
         return a.replace(b, '')
     }
     nextMemberClickHandler=()=>{
-        if (window.confirm("Have you added all trips?")) {
-            if(!this.props.disabled){
+        this.onSubmitHandler(true,'nextMemberButton')
+        // if (window.confirm("Have you added all trips?")) {
+        //     if(!this.props.disabled){
                 
-                this.onSubmitHandler()
-            }
-            else{
-                this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
-            }
+        //         this.onSubmitHandler(true,'nextMemberButton')
+        //     }
+        //     else{
+        //         this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+        //     }
             
-          } else {
+        //   } else {
            
-          }
+        //   }
     }
-    tripAccessDataHandler=(dataObj)=>{
+    tripAccessDataHandler=(dataObj,whichButton)=>{
         // //console.log(dataObj);
         const tripInformationCopy={...this.state.tripInformation};
         //tripInformationCopy["accessModeData"]=dataObj;
@@ -107,33 +109,69 @@ class Trip extends Component{
             const validArr=updatedData.accessModeData.mode.filter(item=>{
                 return item.accessMode.length===0 
             })
-            
-            console.log(validArr)
             if(validArr.length===0){
-                //this.setState({sendData1:true})
-                this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng,updatedData.originDestination[0].destinationLandmark,true)
                 const data={memberID:this.props.match.params.id1};
                 // //console.log(updatedData.originDestination)
                 delete updatedData.originDestination[0].isValid
+                //this.setState({sendData1:true})
+                if(whichButton==='addTrip')
+                {   console.log('add')
+                    this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng,updatedData.originDestination[0].destinationLandmark,true)
+                    if(!this.props.disabled)
+                    {Axios.post(HostName+"trips/",data)
+                    .then(response=>{
+                            //console.log(response.data)            
+                             Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                             //{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                             ).then(response=>{})
+                             updatedData.accessModeData.mode.forEach(element => {
+                                //console.log();
+                                delete element.isValid;
+                                Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                                //{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                                ).then(response=>{
+                                    
+                                })    
+                             });
+                            // response.data.tripID
+                        })}
+                }
+                if(whichButton==='nextMemberButton'){
+                    console.log("next")
+                    if (window.confirm("Have you added all trips?")) {
+                        if(!this.props.disabled){
+                            console.log("Accepted ")
+                            Axios.post(HostName+"trips/",data)
+                            .then(response=>{
+                                    //console.log(response.data)            
+                                     Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                                     //{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                                     ).then(response=>{})
+                                     updatedData.accessModeData.mode.forEach(element => {
+                                        //console.log();
+                                        delete element.isValid;
+                                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                                        //{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                                        ).then(response=>{
+                            
+                                            this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
+                                        })    
+                                     });
+                                    // response.data.tripID
+                                }) 
+                           
+                        }
+                        else{
+                            this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+                        }
+                        
+                      } else {
+                       
+                      }
+                }
+                
                 //console.log(updatedData.originDestination[0])
-                if(!this.props.disabled)
-                {Axios.post(HostName+"trips/",data)
-                .then(response=>{
-                        //console.log(response.data)            
-                         Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                         //{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                         ).then(response=>{})
-                         updatedData.accessModeData.mode.forEach(element => {
-                            //console.log();
-                            delete element.isValid;
-                            Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
-                            //{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                            ).then(response=>{
-                                
-                            })    
-                         });
-                        // response.data.tripID
-                    })}
+
             }
             else{
                 alert("Please complete the fields before adding next trip.")
@@ -204,7 +242,7 @@ class Trip extends Component{
         
         if((originData.originLat||this.props.initLat)&&(originData.originLng||this.props.initLng)&&(originData.originPlace||this.props.initialOrigin))
         {   orValue=true
-             tripAcessAndModeData=<TripAcessAndMode destinationPlace={this.state.tripInformation.destinationData.destinationPlace} disabled={this.props.disabled} tripIdf={this.props.idf} sendData={this.state.sendData} 
+             tripAcessAndModeData=<TripAcessAndMode destinationPlace={this.state.tripInformation.destinationData.destinationPlace} disabled={this.props.disabled} tripIdf={this.props.idf} sendData={this.state.sendData} whichButtonClicked={this.state.whichButtonClicked} 
             tripAccessDataHandler={this.tripAccessDataHandler}
             ></TripAcessAndMode>
             // this.setState({showDes:true})    
@@ -221,7 +259,7 @@ class Trip extends Component{
                 <TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} initialLandmark={this.props.initialLandmark}  initLat={this.props.initLat} initLng={this.props.initLng} initialOrigin={this.props.initialOrigin} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} key={"g"} ifj={1+""+this.props.idf} sideClicked={this.sideClickHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShow} originOrDestination={"Origin"} ></TripOrigin>    
                 
                 {orValue?<TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>:null}
-                {orValue&&drValue?tripAcessAndModeData:null}
+                {orValue&&drValue||this.props.tripsLength>1?tripAcessAndModeData:null}
                 </div>
                 
                 {/* <TripAcessAndMode sendData={this.state.sendData} 
@@ -245,7 +283,7 @@ class Trip extends Component{
                 {   orValue&&drValue?
                     this.props.showAdd?<button className={addTripClasses.join(' ')} onClick={
                      ()=>
-                    {   orValue&&drValue?this.onSubmitHandler():alert('Please complete the origin and destination information before moving forward.')
+                    {   orValue&&drValue?this.onSubmitHandler(true,"addTrip"):alert('Please complete the origin and destination information before moving forward.')
                     } 
                      } type="submit">Add Trip</button>:null:null
                      }

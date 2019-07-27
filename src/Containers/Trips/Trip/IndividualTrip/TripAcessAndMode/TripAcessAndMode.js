@@ -18,7 +18,7 @@ class TripAcessAndMode extends Component{
         //   );
     }
     componentWillReceiveProps(nextProps){
-        if(nextProps.sendData===true){
+        if(nextProps.sendData===true&&nextProps.whichButtonClicked!==''){
             const arrId=[this.state.access,this.state.egress,this.state.mainMode];
             const modeArr=[];
             arrId.forEach((mode)=>{
@@ -36,7 +36,7 @@ class TripAcessAndMode extends Component{
             //   egress:modeArr[1],
             //   mainMode:modeArr[2]
           }  
-          this.props.tripAccessDataHandler(finalAccessObject);
+          this.props.tripAccessDataHandler(finalAccessObject,nextProps.whichButtonClicked);
           return true
         }
     }
