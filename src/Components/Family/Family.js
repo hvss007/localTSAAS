@@ -174,7 +174,9 @@ state={}
         this.setState({showMap:true,setMapSearchText:searchText})
     }
     landmarkHandler=(value)=>{
-        this.setState({landmarkString:value},()=>{console.log(this.state.landmarkString)})
+        this.setState({landmarkString:value},()=>{
+            // console.log(this.state.landmarkString)
+        })
     }
     setMarkerQuery=(query)=>{
         this.setState({query:query})
@@ -403,8 +405,9 @@ state={}
                         //console.log(Response);
                         this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
                     })
-                    .catch(err => 
-                        console.error(err)
+                    .catch(
+                        // err => 
+                        // console.error(err)
                         );
             // }
         // else{

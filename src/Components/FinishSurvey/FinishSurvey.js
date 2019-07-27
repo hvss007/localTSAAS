@@ -59,8 +59,9 @@ class FinishSurvey extends Component{
                         //console.log(Response);
                         // this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
                     })
-                    .catch(err => 
-                        console.error(err)
+                    .catch(
+                        // err => 
+                        // console.error(err)
                         );
     }
     render(){

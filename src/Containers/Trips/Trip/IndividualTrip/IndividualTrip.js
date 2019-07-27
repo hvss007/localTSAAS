@@ -117,7 +117,8 @@ class Trip extends Component{
                 delete updatedData.originDestination[0].isValid
                 //this.setState({sendData1:true})
                 if(whichButton==='addTrip')
-                {   console.log('add')
+                {  
+                    //  console.log('add')
                     this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng,updatedData.originDestination[0].destinationLandmark,true)
                     if(!this.props.disabled)
                     {Axios.post(HostName+"trips/",data)
@@ -139,10 +140,10 @@ class Trip extends Component{
                         })}
                 }
                 if(whichButton==='nextMemberButton'){
-                    console.log("next")
+                    // console.log("next")
                     if (window.confirm("Have you added all trips?")) {
                         if(!this.props.disabled){
-                            console.log("Accepted ")
+                            // console.log("Accepted ")
                             Axios.post(HostName+"trips/",data)
                             .then(response=>{
                                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
