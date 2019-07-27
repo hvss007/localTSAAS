@@ -165,7 +165,8 @@ class Trip extends Component{
                       }
                 }
                 if(whichButton==='finishButton'){
-                    if (window.confirm("Have you added all members?")) {
+                    if (window.confirm("Have you added all trips?")) {
+                       if(window.confirm("Have you added all members?")){
                         if(!this.props.disabled){
                             Axios.post(HostName+"trips/",data)
                             .then(response=>{
@@ -183,6 +184,9 @@ class Trip extends Component{
                         else{
                             this.props.history.push({pathname:'/finishsurvey'})
                         }
+                       }else{
+
+                       }
                        } else {
                        }
                 }
