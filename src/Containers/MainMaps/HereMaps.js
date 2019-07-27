@@ -35,16 +35,16 @@ class  HereMaps extends Component {
           searchText:this.state.mapCentreText+ " India"
         };
         geocoder.geocode(geocodingParams,(result)=>{ 
-          console.log(result)
-          console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
+          // console.log(result)
+          // console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
           if(result.Response.View.length>0) {
             // var loc=result.Response.View[0].Result[0].Location.DisplayPosition;  
           }
           else{
-            console.log('failed')
+            // console.log('failed')
           }
           var location=result.Response.View[0].Result[0].Location.DisplayPosition;
-           console.log(location);
+          //  console.log(location);
            let obj={
              center: {
               lat: location.Latitude,
@@ -137,10 +137,10 @@ class  HereMaps extends Component {
             })
           }
           else{
-            console.log('failed')
+            // console.log('failed')
           }},function(e){alert})
         
-        console.log(this.state.mapLocation,nextState.mapLocation)
+        // console.log(this.state.mapLocation,nextState.mapLocation)
         return true;
       }
       // if(this.props.searchArea!==nextProps.searchArea){
@@ -206,7 +206,7 @@ class  HereMaps extends Component {
           
           return true
         }else if(this.props.markerLocationText!==nextProps.markerLocationText){
-          console.log(count)
+          // console.log(count)
           if(count>0){
             this.group.removeObject(this.state.placeMarker)
            
@@ -249,12 +249,12 @@ class  HereMaps extends Component {
         let map=this.map;
         this.map.setZoom("14",true)
         this.map.setCenter({lat:position.lat, lng:position.lng})      
-        console.log(placeMarker)
+        // console.log(placeMarker)
         //let behavior=this.behavior;
         //map.removeObject(this.group);        
-        console.log(this.group);
+        // console.log(this.group);
         this.group.addObject(placeMarker);
-        console.log(this.group);
+        // console.log(this.group);
         this.dragEventHandler(map,behavior);
        // console.log("working but marker")
     }

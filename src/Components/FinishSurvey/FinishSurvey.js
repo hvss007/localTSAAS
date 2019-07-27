@@ -52,8 +52,8 @@ class FinishSurvey extends Component{
 
     submitButtonHandler=(event)=>{
         event.preventDefault();
-            const family=this.state.family;
-            const family1=this.state.family1;
+            // const family=this.state.family;
+            // const family1=this.state.family1;
                 const post={
                     feedback:this.state.feedback,
                 }
