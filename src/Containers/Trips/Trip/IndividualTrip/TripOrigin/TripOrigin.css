@@ -33,6 +33,9 @@
     height:100%;
     left:50%;
 }
+TimeInput::-webkit-datetime-edit-ampm-field {
+    display: none;
+}
 .TripOriginAnchor{
     text-align: center;
     margin:auto;

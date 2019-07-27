@@ -20,18 +20,11 @@ class StartSurvey extends Component{
         .then(Response=>{
                const collegeArr= Response.data.filter(item=>{
                return (("/"+item.collegeURL===this.props.match.url));
-            //    let element=Response.data.filter(
-            //        item=>{
-            //         return ((item.Name==='home'));
-            //        }
-                   
-            //    )
            })
            if(collegeArr.length===1){
                this.setState({displayComponent:true,collegeName:collegeArr[0].collegeName,collegeID:collegeArr[0].collegeID})
            }
            else{
-
            }
         })
     }
