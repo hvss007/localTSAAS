@@ -17,15 +17,7 @@ class FinishSurvey extends Component{
         super(props);
         this.state={
             feedback:{
-                elementType:'input',
-                name:'feedback',
-                label: 'Feedback',
-                elementConfig:{
-                    type:'text',
-                    placeholder:'Enter your feedback here...'
-                },
-                value:'',
-                optional:true,
+                value:''        
             },
         }
     }
@@ -40,27 +32,32 @@ class FinishSurvey extends Component{
             window.history.pushState(null, document.title,  window.location.href);
         });  
     }
-	
- 	SideDrawerClosedHandler=()=>{
-        this.setState({showSideDrawer:false})
+    
+    onChangeHandler=(event)=>{
+        const feedbackCopy={...this.state.feedback}
+        feedbackCopy.value=event.target.value
+        this.setState({feedback:feedbackCopy})
     }
-    SideDrawerToggleHandler=()=>{
-        this.setState((prevState)=>{
-            return{showSideDrawer:!prevState.showSideDrawer}
-        })
-    }
+ 	// SideDrawerClosedHandler=()=>{
+    //     this.setState({showSideDrawer:false})
+    // }
+    // SideDrawerToggleHandler=()=>{
+    //     this.setState((prevState)=>{
+    //         return{showSideDrawer:!prevState.showSideDrawer}
+    //     })
+    // }
 
     submitButtonHandler=(event)=>{
         event.preventDefault();
             // const family=this.state.family;
             // const family1=this.state.family1;
                 const post={
-                    feedback:this.state.feedback,
+                    feedback:this.state.feedback.value,
                 }
                 axios.post(HostName+"feedback/",post)
                     .then((Response)=>{
                         //console.log(Response);
-                        this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
+                        // this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
                     })
                     .catch(err => 
                         console.error(err)
@@ -100,29 +97,12 @@ class FinishSurvey extends Component{
             				<h4> To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
         			</div>
                     <div className={classes.FeedbackWrapper}>
-                        <textarea rows="5" style={{width:'100%'}} name="comment" form="usrform">
-                            {/* Enter your feedback here... */}
-                        </textarea>
+                    
                     
                     <form className={classes.CustomForm}>
-                    {thankyouArray.map((memFormElement)=>{return(
-                memFormElement.config.show?
-                <Input 
-                    textAlign='center'
-                    labelFontWeight='600'
-                    style={{textAlignLast:'center'}}
-                    key={memFormElement.id}
-                    label={memFormElement.config.label}
-                    name={memFormElement.config.name}
-                    elementType={memFormElement.config.elementType}
-                    elementconfig={memFormElement.config.elementConfig}
-                    value={memFormElement.config.value}
-                    invalid={!memFormElement.config.valid}
-                    touched={memFormElement.config.touched}
-                    id={memFormElement.id}
-                >    
-                </Input>:null
-            )})}
+                    <textarea onChange={(event)=>this.onChangeHandler(event)} rows="5" style={{width:'100%'}} name="comment" form="usrform">
+                            {/* Enter your feedback here... */}
+                        </textarea>
                     </form>
                     </div>
                     <div>
