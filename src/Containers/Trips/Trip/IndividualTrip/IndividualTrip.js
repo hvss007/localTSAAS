@@ -55,17 +55,8 @@ class Trip extends Component{
          )
     }
     finishClicked=()=>{
-        if (window.confirm("Have you added all members?")) {
-            if(!this.props.disabled){
-                // console.log("working")
-                this.onSubmitHandler(true,'finishButton')
-            }
-            else{
-
-            }
-            this.props.history.push({pathname:'/finishsurvey'})
-           } else {
-           }
+        this.onSubmitHandler(true,'finishButton')
+        
     }
     removeCurrentTripHandler=()=>{
         this.props.removeCurrentTripHandler(this.props.idf)
@@ -109,6 +100,17 @@ class Trip extends Component{
             const validArr=updatedData.accessModeData.mode.filter(item=>{
                 return item.accessMode.length===0 
             })
+            let statement=''
+            if(whichButton==='addTrip'){
+                statement="before adding next trip."
+            }
+            else if(whichButton==="nextMemberButton"){
+                statement="before adding next member."
+            }
+            else if(whichButton==="finishButton"){
+                statement="before finishing the survey."
+            }
+
             if(validArr.length===0){
                 const data={memberID:this.props.match.params.id1};
                 // //console.log(updatedData.originDestination)
@@ -143,23 +145,16 @@ class Trip extends Component{
                             console.log("Accepted ")
                             Axios.post(HostName+"trips/",data)
                             .then(response=>{
-                                    //console.log(response.data)            
                                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                                     //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                                      ).then(response=>{})
                                      updatedData.accessModeData.mode.forEach(element => {
-                                        //console.log();
                                         delete element.isValid;
                                         Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
-                                        //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                                         ).then(response=>{
-                            
                                             this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
                                         })    
                                      });
-                                    // response.data.tripID
                                 }) 
-                           
                         }
                         else{
                             this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
@@ -169,12 +164,31 @@ class Trip extends Component{
                        
                       }
                 }
-                
-                //console.log(updatedData.originDestination[0])
-
+                if(whichButton==='finishButton'){
+                    if (window.confirm("Have you added all members?")) {
+                        if(!this.props.disabled){
+                            Axios.post(HostName+"trips/",data)
+                            .then(response=>{
+                                     Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                                     ).then(response=>{})
+                                     updatedData.accessModeData.mode.forEach(element => {
+                                        delete element.isValid;
+                                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                                        ).then(response=>{
+                                            this.props.history.push({pathname:'/finishsurvey'})
+                                        })    
+                                     });
+                                }) 
+                        }
+                        else{
+                            this.props.history.push({pathname:'/finishsurvey'})
+                        }
+                       } else {
+                       }
+                }
             }
             else{
-                alert("Please complete the fields before adding next trip.")
+                alert("Please complete the fields "+statement )
                  this.setState({sendData:false})
             }
             
