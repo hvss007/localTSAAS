@@ -3,7 +3,7 @@
     width: 90%;
     height:100%;
     display:flex;
-    text-align: center;
+    text-align: left;
     flex-direction: column;
     color:rgba(100,100,100,.9)
 }
