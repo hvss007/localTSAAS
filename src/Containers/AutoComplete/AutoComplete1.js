@@ -40,20 +40,41 @@ export default class App extends React.Component {
         .then(Response=>{
           let ResponseArrayResponse=Response.data.results;
           let elementsArray=[];
-          ResponseArrayResponse.forEach((element,index) => {
-            let dataObj={label:""+element.title+" "+(element.vicinity?element.vicinity:''),value:index+1}  
-            //elementsArray.push(""+element.title+" "+element.vicinity);
-            elementsArray.push(dataObj)
-          });
+          console.log(ResponseArrayResponse)
+          if(ResponseArrayResponse.length>0){
+            ResponseArrayResponse.forEach((element,index) => {
+                var vicinity=element.vicinity?element.vicinity:'';
+                console.log(vicinity)   
+                
+                let firstIndex=vicinity.indexOf("<")
+                let secondIndex=vicinity.indexOf(">")
+                
+                if(firstIndex>=0){
+                    vicinity=vicinity.split('<')[0]+vicinity.split('<')[1].split('>')[1]
+                    
+                    
+                }
+                let dataObj={label:""+element.title+" "+vicinity,value:index+1}  
+                //elementsArray.push(""+element.title+" "+element.vicinity);
+                elementsArray.push(dataObj)
+              });
+              const newArr=ResponseArrayResponse.filter(item=>{
+                    return item.vicinity
+              })
+              this.setState({
+                autocompleteData: elementsArray,
+                responseArray:newArr
+            });
+          }
+          else{
+
+          }
 
           //this.props.dropdownArrayHandler(elementsArray)
          // this.setState({ResponseArrayText:elementsArray},()=>{
             
           //})
-          this.setState({
-            autocompleteData: elementsArray,
-            responseArray:ResponseArrayResponse
-        });
+          
 
           
           //console.log(Response);
@@ -136,10 +157,20 @@ export default class App extends React.Component {
 
         // console.log(jf)
         
-        let arr=this.state.responseArray[val[0]-1].position
+        if(this.state.responseArray.length>=0){
+            const newArr=this.state.responseArray.filter(item=>{
+                return item.vicinity
+            })
+            let arr=newArr[val[0]-1].position
         this.setState({
             value: val
-        },()=>this.props.selectedOption(this.state.value,arr[0],arr[1]));
+            
+        },()=>{
+            this.props.selectedOption(this.state.value,arr[0],arr[1])
+            
+        });
+        
+        }
         
         //console.log("Option from 'database' selected : ", val);
     }

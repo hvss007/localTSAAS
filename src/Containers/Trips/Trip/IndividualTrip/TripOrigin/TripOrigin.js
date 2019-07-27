@@ -109,7 +109,7 @@ class TripOrigin extends Component{
     }
     keyPressHandler=(event)=>{
         
-        if(event.keyCode=="13"){
+        if(event.keyCode==="13"){
             const originInfoCopy=[...this.state.originInfo]
             const othersArray=originInfoCopy[originInfoCopy.length-1]
             
@@ -160,9 +160,7 @@ class TripOrigin extends Component{
                 <label>{tripLocationQuestionHeading}</label>    
                 <Autocomplete disabled={this.props.disabled} initialLandmark={this.props.initialLandmark} centerLat={this.state.centerLat} centerLng={this.state.centerLng} selectedOption={this.selectedOptionHandler}></Autocomplete>
                 </div>
-                
                 <div className={TripOriginWrapperClasses.join(" ")}>
-                
                 <div className={classes.Hidden}
                ></div> 
                {/* <label>2) Where does the member begin his journey</label> */}
