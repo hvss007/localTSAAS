@@ -37,16 +37,16 @@ class SingleDesktopMap extends Component{
           searchText:this.state.mapCentreText+ " India"
         };
         geocoder.geocode(geocodingParams,(result)=>{ 
-          console.log(result)
-          console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
+          // console.log(result)
+          // console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
           if(result.Response.View.length>0) {
             // var loc=result.Response.View[0].Result[0].Location.DisplayPosition;  
           }
           else{
-            console.log('failed')
+            // console.log('failed')
           }
           var location=result.Response.View[0].Result[0].Location.DisplayPosition;
-           console.log(location);
+          //  console.log(location);
            let obj={
              center: {
               lat: location.Latitude,
@@ -81,7 +81,7 @@ class SingleDesktopMap extends Component{
         const differentElements= newTripElementsCopy.filter((item,index)=>{
             return item.originLat!==tripElementsCopy[index].originLat
         })
-         console.log(differentElements)
+        //  console.log(differentElements)
         // if(nextProps.tripElements!==this.props.tripElements){
         //     this.setState({trips:[...nextProps.tripElements]},()=>{
         //         this.state.trips.map((item,index)=>{
@@ -114,7 +114,7 @@ class SingleDesktopMap extends Component{
         // }
         if(this.props.setMapSearchText!==nextProps.setMapSearchText){
           
-            console.log(nextProps.setMapSearchText)
+            // console.log(nextProps.setMapSearchText)
           this.setState({mapCentreText:nextProps.setMapSearchText})
            var geocoder = this.platform.getGeocodingService();
           let geocodingParams = {
@@ -129,7 +129,7 @@ class SingleDesktopMap extends Component{
                 lat:location.Latitude,
                 lng:location.Longitude
               }
-              console.log(center);
+              // console.log(center);
               this.map.setCenter({lat:center.lat, lng:center.lng});
               this.setState({center:center},()=>{
   
@@ -139,8 +139,8 @@ class SingleDesktopMap extends Component{
             //   center: this.state.center,
             //   zoom: this.state.zoom,
             // })
-                 console.log(this.state.center)
-                 console.log(this.map)
+                //  console.log(this.state.center)
+                //  console.log(this.map)
                
                 this.props.mapCenter(this.state.center.lat,this.state.center.lng)
                 // this.map.l.center=this.state.center
@@ -158,7 +158,7 @@ class SingleDesktopMap extends Component{
               })
             }
             else{
-              console.log('failed')
+              // console.log('failed')
             }},function(e){alert})
           return true;
         }
@@ -213,7 +213,7 @@ class SingleDesktopMap extends Component{
           
           return true
         }else if(this.props.markerLocationText!==nextProps.markerLocationText){
-          console.log(count)
+          // console.log(count)
           if(count>0){
             this.group.removeObject(this.state.placeMarker)
            
@@ -254,12 +254,12 @@ class SingleDesktopMap extends Component{
         let map=this.map;
         this.map.setZoom("14",true)
         this.map.setCenter({lat:position.lat, lng:position.lng})      
-        console.log(placeMarker)
+        // console.log(placeMarker)
         //let behavior=this.behavior;
         //map.removeObject(this.group);        
-        console.log(this.group);
+        // console.log(this.group);
         this.group.addObject(placeMarker);
-        console.log(this.group);
+        // console.log(this.group);
         this.dragEventHandler(map,behavior);
        // console.log("working but marker")
     }

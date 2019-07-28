@@ -25,7 +25,7 @@ componentWillReceiveProps(nextProps){
 }
 inputHandler=(event)=>{
   this.setState({value:event.target.value});
-  console.log(this.state.value);
+  // console.log(this.state.value);
   return this.state.value;
 }
 onChange(evt) {

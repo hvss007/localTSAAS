@@ -29,7 +29,6 @@ const CommentModal =props=>{
           !props.show?bodyClasses.push(classes.BodyDisplay):bodyClasses.push(null)
           style={width:props.show?'100%':'0%',height:props.show?'100%':'0px',left:props.show?'0%':'-100%', opacity:props.show?'1':'0'}
         }
-        
       }
     }
     else if(props.originOrDestination==="Destination"){

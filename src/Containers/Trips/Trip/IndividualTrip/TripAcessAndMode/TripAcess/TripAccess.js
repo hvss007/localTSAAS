@@ -146,7 +146,7 @@ class TripAccess extends Component{
       const inValidArr=validArr.filter((item)=>{
           return !item
       })
-      console.log(inValidArr)
+    //   console.log(inValidArr)
       if(inValidArr.length>=0){
           
           return true 
@@ -160,7 +160,7 @@ class TripAccess extends Component{
         if(isValid){
             isValid=value.trim() !=='';
         }
-        console.log(isValid);
+        // console.log(isValid);
         return isValid;
     }
     render(){
