@@ -194,7 +194,7 @@ class Member extends Component{
                 validation:{
                     required:true,
                     notLess:true
-                },
+       },
                 show:true,
                 valid:false,
                 touched:false,
@@ -441,7 +441,6 @@ class Member extends Component{
             }
 
             if(inputIdentifier==="simCards" && updatedInputElement.valid){
-                console.log("working!!!!!!!!!!!!!!!!!!!")
                 if (updatedInputElement.value === '0') {
                     const newMemberUpdated = {...this.state.member};
                     //update principalSourceofIncome
@@ -496,8 +495,7 @@ class Member extends Component{
         }
 
         if(rules.notLess&&isValid){
-            //consoleog(value);
-            isValid=(eval(value)>=0);
+            isValid=(parseInt(value,10)>=0);
         }
         if(rules.length&&isValid){
             isValid=value.length===rules.length;

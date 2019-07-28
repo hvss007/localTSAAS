@@ -24,7 +24,7 @@ class TripAcessAndMode extends Component{
             arrId.forEach((mode)=>{
                 const accessCopy=[...mode];
                 const newAccessArray=[];
-                const accessObj=accessCopy.forEach((item)=>{
+                accessCopy.forEach((item)=>{
                 let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType,isValid:item.isValid};
                 newAccessArray.push(newAccessObjectIn);
             })

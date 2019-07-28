@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import OriginIcon from '../../../../../assets/icons/OriginIcon.png';
 import classes from './TripOrigin.css';
 import CommentModal from '../../../../../Hoc/CommentModal/CommentModal';
-import Aux from '../../../../../Hoc/Aux';
 import Home from '../../../../../assets/icons/destinationIcons/Home.png';
 import Office from '../../../../../assets/icons/destinationIcons/Office.png';
 import Leisure from '../../../../../assets/icons/destinationIcons/Leisure.png';
@@ -50,9 +49,9 @@ class TripOrigin extends Component{
         if(!this.props.disabled){
         const originInfoCopy=[...this.state.originInfo];
         const selctedArr=originInfoCopy.filter((item)=>{
-            if(item.title===title){
-                return true
-            }
+            
+        return item.title===title
+            
         })
         if(title!=='Other'){
             const othersArray=originInfoCopy[originInfoCopy.length-1]

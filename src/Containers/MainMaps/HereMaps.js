@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import classes from './HereMaps.css'
 var count=0;
 class  HereMaps extends Component {
@@ -138,7 +137,10 @@ class  HereMaps extends Component {
           }
           else{
             // console.log('failed')
-          }},function(e){alert})
+          }
+        },function(e){
+          // alert
+        })
         
         // console.log(this.state.mapLocation,nextState.mapLocation)
         return true;

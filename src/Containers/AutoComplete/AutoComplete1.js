@@ -46,9 +46,7 @@ export default class App extends React.Component {
                 var vicinity=element.vicinity?element.vicinity:'';
                 console.log(vicinity)   
                 
-                let firstIndex=vicinity.indexOf("<")
-                let secondIndex=vicinity.indexOf(">")
-                
+                let firstIndex=vicinity.indexOf("<")                
                 if(firstIndex>=0){
                     vicinity=vicinity.split('<')[0]+vicinity.split('<')[1].split('>')[1]
                     

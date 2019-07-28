@@ -1,11 +1,8 @@
 import React from 'react';
 import classes from './MemberSubmitButton.css';
-// import { Link } from "react-router-dom";
 import Aux from '../../../Hoc/Aux'
-// import Trips from '../../../Containers/Trips/Trips';
 const memberSubmitButton=function(props){
   const buttonClasses=[classes.MemberSubmitButton,classes.MemberSubmitButtonBorder];
-
   return(
         <Aux>
         <button onClick={(event)=>props.clicked(event)} 
@@ -13,7 +10,6 @@ const memberSubmitButton=function(props){
             Submit
         </button>
         </Aux>
-        
     )
 }
 

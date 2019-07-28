@@ -46,9 +46,9 @@ class Input extends Component {
                       let checked1=option.value===this.props.value?true:false
                       checkedObject={checked:checked1}
                     }
-                    else{
-                        checked:false
-                    }
+                    // else{
+                    //     checked:false
+                    // }
                     return (
                         <div className={classes.RadioWrapper}  key={index}>
                             <input name={this.props.label} type={this.props.elementconfig.type} {...checkedObject} onChange={this.props.changed} value={option.value} ></input>

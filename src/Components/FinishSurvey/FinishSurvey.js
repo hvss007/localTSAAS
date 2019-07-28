@@ -1,17 +1,13 @@
 import React,{Component} from 'react';
-// import classes from './FinishSurvey.css'
 import SubmitButton from '../Members/Member/MemberSubmitButton';
 import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from '../StartSuvey/StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
-// import HomePage from '../../assets/icons/homepage.png';
 import Background from '../../assets/icons/thanksbackground.png';
 import axios from 'axios';
 import HostName from '../../assets/globalvaribles/GlobalVariables';
 import {withRouter} from 'react-router-dom';
-import Input from '../Input/Input';
-// import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 class FinishSurvey extends Component{
     constructor(props){
         super(props);
@@ -56,11 +52,10 @@ class FinishSurvey extends Component{
                 }
                 axios.post(HostName+"feedback/",post)
                     .then((Response)=>{
-                        //console.log(Response);
-                        // this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
+                        console.log(Response);
                     })
                     .catch(err => 
-                        console.error(err)
+                        console.log(err)
                         );
     }
     render(){
@@ -91,7 +86,7 @@ class FinishSurvey extends Component{
             				<h3>We <span><b>Thank You</b></span> For taking time to complete the survey.</h3>
         			</div>
                     <div className={classes.MobilePageFinishSurvey}>
-                        <img src={MobileHomePage}></img>
+                        <img alt="Mobile Home Page" src={MobileHomePage}></img>
                     </div>
                     <div className={classes.Thank}>
             				<h4> To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
@@ -110,7 +105,7 @@ class FinishSurvey extends Component{
                     </div>
                 </div>
                 <div className={classes.RightContainer+' '+ classes.RightContainerFinishSurvey}>
-                    <img className={classes.SurveyMonitor} src={MobileHomePage}/> 
+                    <img alt="Mobile home page " className={classes.SurveyMonitor} src={MobileHomePage}/> 
                 </div>
                 
         </div>

@@ -49,7 +49,7 @@ class TripAccess extends Component{
         this.mainModeHandler()
     }
     mainModeHandler=()=>{
-        this.props.mainMode?this.setState({mainmode:true}):null
+        this.props.mainMode?this.setState({mainmode:true}):this.setState({mainMode:false})
     }
     // backdropShowHandler=()=>{
     //     this.setState({backdropShow:true})
@@ -65,9 +65,7 @@ class TripAccess extends Component{
         {
         const accessInfoCopy=[...this.state.accessInfo];
         const selctedArr=accessInfoCopy.filter((item)=>{
-            if(item.title===title){
-                return true
-            } 
+            return item.title===title
         })
         //console.log(selctedArr);
         const selectedArrItems={...selctedArr[0]};
@@ -121,9 +119,8 @@ class TripAccess extends Component{
         {
         const accessInfoCopyIn=[...this.state.accessInfoIn];
         const selctedArr=accessInfoCopyIn.filter((item)=>{
-            if(item.title===title){
-                return true
-            } 
+                return item.title===title
+             
         })    
         const selectedArrItems={...selctedArr[0]};
         const value=event.target.value;
