@@ -14,3 +14,8 @@
     left: 50%;
     transform: translate(-50% ,-50%)
 }
+@media(max-width:500px){
+    .Backdrop1>img{
+        width:80%;
+    }
+}
