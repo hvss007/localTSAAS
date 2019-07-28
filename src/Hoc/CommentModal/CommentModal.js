@@ -44,9 +44,6 @@ const CommentModal =props=>{
       } 
     }
     if(props.show){
-      // if(props.originOrDestination==="Origin"){
-      //   const style={left:'100'}
-      // }      
       dialogboxClasses.push(classes.DisplayDialogBox);
     }
     return(

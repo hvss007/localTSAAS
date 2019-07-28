@@ -8,19 +8,16 @@ import Background from '../../assets/icons/thanksbackground.png';
 import axios from 'axios';
 import HostName from '../../assets/globalvaribles/GlobalVariables';
 import {withRouter} from 'react-router-dom';
+import Aux from '../../Hoc/Aux'
 class FinishSurvey extends Component{
     constructor(props){
         super(props);
         this.state={
+            show:true,
             feedback:{
-                value:''        
+                value:'',        
             },
         }
-    }
-
-    state={
-        showSideDrawer:false,
-        displayComponent:false,
     }
     componentDidMount(){
         window.history.pushState(null, document.title, window.location.href);
@@ -28,38 +25,24 @@ class FinishSurvey extends Component{
             window.history.pushState(null, document.title,  window.location.href);
         });  
     }
-    
     onChangeHandler=(event)=>{
         const feedbackCopy={...this.state.feedback}
         feedbackCopy.value=event.target.value
         this.setState({feedback:feedbackCopy})
     }
- 	// SideDrawerClosedHandler=()=>{
-    //     this.setState({showSideDrawer:false})
-    // }
-    // SideDrawerToggleHandler=()=>{
-    //     this.setState((prevState)=>{
-    //         return{showSideDrawer:!prevState.showSideDrawer}
-    //     })
-    // }
-
+ 	
     submitButtonHandler=(event)=>{
-        event.preventDefault();
-            // const family=this.state.family;
-            // const family1=this.state.family1;
-                const post={
-                    feedback:this.state.feedback.value,
-                }
-                axios.post(HostName+"feedback/",post)
-                    .then((Response)=>{
-                        console.log(Response);
-                    })
-                    .catch(err => 
-                        console.log(err)
-                        );
+            event.preventDefault();
+            const post={
+                feedback:this.state.feedback.value,
+            }
+            axios.post(HostName+"feedback/",post)
+                .then((Response)=>{
+                    this.setState({show:false})                        
+                })
+                .catch();
     }
     render(){
-    // const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
     const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
     const backgroundElement =window.innerWidth<=500? <div style={{...mobileBackgroundStyle}} className={classes.FirstImageWrapper}></div>:null
     const background =window.innerWidth>=500?{ 
@@ -74,40 +57,38 @@ class FinishSurvey extends Component{
                 }
             )
         }
-    
         return(
         <div style={background} className={classes.StartSurvey}>
         <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
         <Toolbar drawerToggleClicked={this.SideDrawerToggleHandler} ></Toolbar>
             <div  className={classes.MainContainer+' '+classes.MainContainerFinishSurvey}>
                 <div className={classes.LeftContainer+" "+ classes.LeftContainerFinishSurvey}>
-                    
                     <div className={classes.Thank}>
             				<h3>We <span><b>Thank You</b></span> For taking time to complete the survey.</h3>
         			</div>
                     <div className={classes.MobilePageFinishSurvey}>
                         <img alt="Mobile Home Page" src={MobileHomePage}></img>
                     </div>
-                    <div className={classes.Thank}>
-            				<h4> To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
-        			</div>
-                    <div className={classes.FeedbackWrapper}>
-                    
-                    
-                    <form className={classes.CustomForm}>
-                    <textarea onChange={(event)=>this.onChangeHandler(event)} rows="5" style={{width:'100%'}} name="comment" form="usrform">
-                            {/* Enter your feedback here... */}
-                        </textarea>
-                    </form>
-                    </div>
-                    <div>
-                        <SubmitButton clicked={this.submitButtonHandler}></SubmitButton>
-                    </div>
+                    {this.state.show?
+                    <Aux>
+                        <div className={classes.Thank}>
+                                <h4> To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
+                        </div>
+                        <div className={classes.FeedbackWrapper}>
+                        <form className={classes.CustomForm}>
+                            <textarea onChange={(event)=>this.onChangeHandler(event)} rows="5" style={{width:'100%',outline:'1px solid grey'}} name="comment" form="usrform">
+                                {/* Enter your feedback here... */}
+                            </textarea>
+                        </form>
+                        </div>
+                        <div>
+                            <SubmitButton clicked={this.submitButtonHandler}></SubmitButton>
+                        </div>
+                    </Aux>:null}
                 </div>
                 <div className={classes.RightContainer+' '+ classes.RightContainerFinishSurvey}>
                     <img alt="Mobile home page " className={classes.SurveyMonitor} src={MobileHomePage}/> 
                 </div>
-                
         </div>
         </div>
     )
