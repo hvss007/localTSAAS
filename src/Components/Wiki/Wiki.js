@@ -99,7 +99,7 @@ class  Wiki extends Component{
                  <p>TSAAS is looking forward to transform the current program into a more robust traffic data gathering platform by introducing other traffic surveys. Please contact us if you have any suggestions and/or would like to contribute.</p>
 
                  <h4>Team Members:</h4>
-                 <p> <b>Front-end:</b>  Harsh Vardhan, Ishan Rai</p>
+                 <p> <b>Front-end:</b>  Harsh Vardhan</p>
                  <p> <b>Back-end:</b>  Ishan Rai</p>
                  <p> <b>Literature review:</b>  Paras Singh Rajput, Parag Mittal</p>
                  <p> <b>Design:</b> Piyush Anand, Paras Singh Rajput</p>
