@@ -5,7 +5,9 @@ const backdrop1=(props)=>{
     return(
        props.show? <div onClick={()=>{
            props.hideModalBackdrop(!props.show);
-        }}  className={classes.Backdrop1}></div>:null
+        }}  className={classes.Backdrop1}>
+            {props.src?<img alt="image" src={props.src}></img>:null}
+        </div>:null
     )
 }
 export default backdrop1;

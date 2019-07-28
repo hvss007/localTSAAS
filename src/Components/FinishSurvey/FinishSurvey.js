@@ -20,6 +20,9 @@ class FinishSurvey extends Component{
         }
     }
     componentDidMount(){
+        axios.defaults.xsrfHeaderName = "71LrUj4F3nUNTH47wcC0ynSulY78ysb5SFwjQVZ";
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+        axios.defaults.xsrfCookieName = "csrftoken";
         window.history.pushState(null, document.title, window.location.href);
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);

@@ -61,7 +61,7 @@ class  HereMaps extends Component {
               searchText:props.searchArea}   
            this.setState({dataLoaded:true,...obj},()=>this.props.mapCenter(this.state.center.lat,this.state.center.lng));           
          }, function(e) {
-          alert(e);
+          // alert(e);
 
         });
         // console.log(this.location)
@@ -437,8 +437,7 @@ class  HereMaps extends Component {
             <div style={{height:'95%'}}>
             <div id="here-map"
             className={classes.HereMaps} 
-            //onClick={(event)=>this.changeCoordinate(event,this.map)} 
-            
+            //onClick={(event)=>this.changeCoordinate(event,this.map)}       
             >
                 <div className={classes.Coordinates} ><p>{this.props.markerLocationLat?this.props.markerLocationLat.toPrecision(6):null} ,{this.props.markerLocationLng?this.props.markerLocationLng.toPrecision(6):null}</p> </div>
             </div>

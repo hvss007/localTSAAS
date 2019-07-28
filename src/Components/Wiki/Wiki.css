@@ -12,3 +12,7 @@
         text-align: left;
     }
 }
+.ImageLink{
+    color:blue;
+    cursor: pointer;
+}

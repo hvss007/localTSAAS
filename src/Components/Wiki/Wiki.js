@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Backdrop from '../../Hoc/Backdrop/Backdrop1';
+import Aux from '../../Hoc/Aux';
 import FamilyScreenshot1 from '../../assets/screenshots/family1.png';
 import FamilyScreenshot2 from '../../assets/screenshots/family2.png';
 import FamilyScreenshot3 from '../../assets/screenshots/family3.png';
@@ -17,24 +19,26 @@ import TripScreenshot7 from '../../assets/screenshots/trip7.png';
 // import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 // import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from './Wiki.css';
-import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { span } from 'react-router-dom/cjs/react-router-dom';
 
 class  Wiki extends Component{
     state={
-        showSideDrawer:false,
-        displayComponent:false
+        show:false,
+        src:null
     }
-    SideDrawerClosedHandler=()=>{
-        this.setState({showSideDrawer:false})
+    onClickHandler=(src)=>{
+        this.setState({show:true,src:src})
     }
-    SideDrawerToggleHandler=()=>{
-        this.setState((prevState)=>{
-            return{showSideDrawer:!prevState.showSideDrawer}
-        })
+    hideModalBackdrop=(value)=>{
+        this.setState({show:value})
     }
     render(){
         return(
-            <div className={classes.Wiki}>
+            <Aux>
+                <Backdrop show={this.state.show} src={this.state.src} hideModalBackdrop={this.hideModalBackdrop}>
+
+                </Backdrop>
+                <div className={classes.Wiki}>
                 <h1>Wiki</h1>
                 <h4>Aim:</h4>
                 <p>The aim of this project is to build a tool to collect the trip diaries conveniently without asking any personal information and locations of the users. A typical trip diary attempts to answer the following questions:</p>
@@ -55,38 +59,38 @@ class  Wiki extends Component{
                 <ul>
                 	<li>Family page:
                         <ul>
-                            <li>Enter number of cars, scooter/motorcycles and bicycles. <Link to="/FamilyScreenshot1">See an example.</Link></li>
-                            <li>Enter monthly income of the family. <Link to="/FamilyScreenshot2">See an example.</Link></li>
-                            <li>Enter permanent address (home town): choose state and district, enter initials of nearest landmark and select one item from drop down landmarks. Finally drag the marker closest to your permanent address. <Link to="/FamilyScreenshot3">See an example.</Link></li>
+                            <li>Enter number of cars, scooter/motorcycles and bicycles. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(FamilyScreenshot1)} to="/">See an example.</span></li>
+                            <li>Enter monthly income of the family. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(FamilyScreenshot2)} >See an example.</span></li>
+                            <li>Enter permanent address (home town): choose state and district, enter initials of nearest landmark and select one item from drop down landmarks. Finally drag the marker closest to your permanent address. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(FamilyScreenshot3)} >See an example.</span></li>
                             <li>Hint: If no drop down item matches your criteria, search with some other.</li>
                             <li>Click on submit button.</li>
                         </ul>
                     </li>
-                    {/* <div> <span><img style={{width:'250px'}} alt={"family_screenshot1"} src={FamilyScreenshot1}></img></span><p>Family page</p></div>
-                    <div> <span><img style={{width:'250px'}} alt={"family_screenshot2"} src={FamilyScreenshot2}></img></span><p>Family page contd.</p></div>
-                    <div> <span><img style={{width:'250px'}} alt={"family_screenshot3"} src={FamilyScreenshot3}></img></span><p>Family page contd.</p></div> */}
+                    {/* <div> <span className={classes.ImageLink}><img style={{width:'250px'}} alt={"family_screenshot1"} src={FamilyScreenshot1}></img></span><p>Family page</p></div>
+                    <div> <span className={classes.ImageLink}><img style={{width:'250px'}} alt={"family_screenshot2"} src={FamilyScreenshot2}></img></span><p>Family page contd.</p></div>
+                    <div> <span className={classes.ImageLink}><img style={{width:'250px'}} alt={"family_screenshot3"} src={FamilyScreenshot3}></img></span><p>Family page contd.</p></div> */}
                 	<li>Member page:</li>
                     <ul>
-                        <li>Enter gender, age, educational qualification, maritial status, monthly income and principal source of income. <Link to="/MemberScreenshot1">See an example.</Link></li>
-                        <li>Enter number of sim cards, mobile phone usages while driving/traveling, licensing etc. <Link to="/MemberScreenshot2">See an example.</Link></li>
-                        <li>Enter if you are respondent and whether if you stay at home for the whole day and click on submit.<Link to="/MemberScreenshot3">See an example.</Link></li>
-                        <li>If the member stay at the home, a warning will appear. Click on 'Ok' or 'Yes' if this member is last member of family, this will end the survey. Else click on 'Cancel' or 'No', this will send you to the trip page. <Link to="/MemberScreenshot4">See an example.</Link></li>
+                        <li>Enter gender, age, educational qualification, maritial status, monthly income and principal source of income. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot1)} >See an example.</span></li>
+                        <li>Enter number of sim cards, mobile phone usages while driving/traveling, licensing etc. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot2)} >See an example.</span></li>
+                        <li>Enter if you are respondent and whether if you stay at home for the whole day and click on submit.<span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot3)} >See an example.</span></li>
+                        <li>If the member stay at the home, a warning will appear. Click on 'Ok' or 'Yes' if this member is last member of family, this will end the survey. Else click on 'Cancel' or 'No', this will send you to the trip page. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot4)} >See an example.</span></li>
                     </ul>
                 	<li>Trip page:</li>
                     <ul>
-                        <li>Enter the state and district in which a trip is made. <Link to="/TripScreenshot1">See an example.</Link></li>
-                        <li>Enter the landmark nearest to your origin location. This will show a map with a marker. Drag the marker nearest to your origin location and click 'Ok'. <Link to="/TripScreenshot2">See an example.</Link></li>
-                        <li>Enter the type of origin and appeoximate departure time. <Link to="/TripScreenshot3">See an example.</Link></li>
-                        <li>Similar to origin, enter the landmark nearest to your destination, adjust the marker, click on 'Ok', select type of destination type and appeoximate arrival time. <Link to="/TripScreenshot4">See an example.</Link></li>
-                        <li>Enter the main travel mode (vehicle/walk) which the member take to reach destination, enter travel mode (or walk) used to access/egree the main travel mode.<Link to="/TripScreenshot5">See an example.</Link></li>
-                        <li>Enter the travel time, travel cost and travel distance for the whole trip. Click on 'Add Trip'.<Link to="/TripScreenshot6">See an example.</Link></li>
+                        <li>Enter the state and district in which a trip is made. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(TripScreenshot1)}>See an example.</span></li>
+                        <li>Enter the landmark nearest to your origin location. This will show a map with a marker. Drag the marker nearest to your origin location and click 'Ok'. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(TripScreenshot2)} >See an example.</span></li>
+                        <li>Enter the type of origin and appeoximate departure time. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(TripScreenshot3)}>See an example.</span></li>
+                        <li>Similar to origin, enter the landmark nearest to your destination, adjust the marker, click on 'Ok', select type of destination type and appeoximate arrival time. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(TripScreenshot4)} >See an example.</span></li>
+                        <li>Enter the main travel mode (vehicle/walk) which the member take to reach destination, enter travel mode (or walk) used to access/egree the main travel mode.<span className={classes.ImageLink} onClick={()=>this.onClickHandler(TripScreenshot5)} >See an example.</span></li>
+                        <li>Enter the travel time, travel cost and travel distance for the whole trip. Click on 'Add Trip'.<span className={classes.ImageLink} onClick={()=>this.onClickHandler(TripScreenshot6)} >See an example.</span></li>
                         <li>This will start a new trip, origin information of second trip onwards will be auto filled. Start entering details with departure time.</li>
-                        <li>Click on 'Remove trip' to remove a trip. Click on 'Add Member' if all trips of the current member are entered. Click on 'Finish Survey' only if information of all members are entered. <Link to="/TripScreenshot7">See an example.</Link></li>
+                        <li>Click on 'Remove trip' to remove a trip. Click on 'Add Member' if all trips of the current member are entered. Click on 'Finish Survey' only if information of all members are entered. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(TripScreenshot7)} >See an example.</span></li>
                     </ul>
                 </ul>
  				
                  <h4> Privacy Policy:</h4>
-                 <p>The details of our privacy policy is available <Link to="/privacypolicy">here</Link>.</p>
+                 <p>The details of our privacy policy is available <span className={classes.ImageLink} to="/privacypolicy">here</span>.</p>
 
                  <h4> Simulation Model:</h4>
                  <p>The collected data will be used to synthesize a multi-agent transport simulation model (<a href="https://www.matsim.org/" target="_blank" rel="noopener noreferrer">MATSim</a>). This data will also be used to calibrate and validate the model. Afterwards, the model can be used to test various policies in a city. Some examples of the policies are: alteration/re-circulation in the existing network, need of a new transit line or new infrastructure, impacts of a new bus/metro line, optimal locations of smart parking systems, environmental impacts of the travel choices, sustainable transport modes, impact of land-use on trip profiles, etc. Please see the <a href="https://www.matsim.org/gallery/" target="_blank" rel="noopener noreferrer">Gallery</a> for various scenarios world-wide.</p>
@@ -103,10 +107,9 @@ class  Wiki extends Component{
         
                 {/* <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
                 <Toolbar  drawerToggleClicked={this.SideDrawerToggleHandler}></Toolbar> */}
-
-
-                
             </div>
+            </Aux>
+            
         )
     }
 
