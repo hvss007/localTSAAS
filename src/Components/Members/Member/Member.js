@@ -194,12 +194,13 @@ class Member extends Component{
                 validation:{
                     required:true,
                     notLess:true
-       },
+            },
                 show:true,
                 valid:false,
                 touched:false,
                 optional:true
             }, 
+            
              dataWhileDriving:{
                 name:'dataWhileDrivning',
                 label:'Does the member call or use mobile-data while driving/traveling?',
@@ -208,8 +209,53 @@ class Member extends Component{
                     type:'radio',
                     options:[
                         // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'Yes',displayValue:'Yes'},
+                        {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
+                        {value:'dontknow',displayValue:'Don\'t know'},
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:true
+            },
+            bluetooth:{
+                name:'bluetooth',
+                label:'Is bluetooth activated mostly on member\'s phone?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'yes',displayValue:'Yes'},
+                        {value:'no',displayValue:'No'},
+                        {value:'dontknow',displayValue:'Don\'t know'},
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:true
+            },
+            wifi:{
+                name:'wifi',
+                label:'Is WiFi activated mostly on member\'s phone?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                        {value:'yes',displayValue:'Yes'},
+                        {value:'no',displayValue:'No'},
+                        {value:'dontknow',displayValue:'Don\'t know'},
                     ]
                 },
                 value:'',
@@ -423,6 +469,16 @@ class Member extends Component{
                     update_dataWhileDriving.value="no";
                     newMemberUpdated["dataWhileDriving"]=update_dataWhileDriving;
 
+                    //bluetooth
+                    const update_bluetooth={...newMemberUpdated["bluetooth"]};
+                    update_bluetooth.value="no";
+                    newMemberUpdated["bluetooth"]=update_bluetooth;
+
+                    //wifi
+                    const update_wifi={...newMemberUpdated["wifi"]};
+                    update_wifi.value="no";
+                    newMemberUpdated["wifi"]=update_wifi;
+
                     this.setState({member:newMemberUpdated});
                 }
             }
@@ -447,6 +503,16 @@ class Member extends Component{
                     const update_dataWhileDriving={...newMemberUpdated["dataWhileDriving"]};
                     update_dataWhileDriving.value="no";
                     newMemberUpdated["dataWhileDriving"]=update_dataWhileDriving;
+
+                    //bluetooth
+                    const update_bluetooth={...newMemberUpdated["bluetooth"]};
+                    update_bluetooth.value="no";
+                    newMemberUpdated["bluetooth"]=update_bluetooth;
+
+                    //wifi
+                    const update_wifi={...newMemberUpdated["wifi"]};
+                    update_wifi.value="no";
+                    newMemberUpdated["wifi"]=update_wifi;
                     
                     this.setState({member:newMemberUpdated});
                 }
@@ -523,6 +589,8 @@ class Member extends Component{
                     simCards:member.simCards.value,
                     fourWheelerLicense:member.fourWheelerLicense.value,
                     dataWhileDriving:member.dataWhileDriving.value,
+                    bluetooth:member.bluetooth.valid,
+                    wifi:member.wifi.valid,
                     gender:member.gender.value,
                     age:member.age.value,
                     educationalQualification:member.educationalQualification.value,
@@ -567,6 +635,8 @@ class Member extends Component{
                     simCards:member.simCards.value,
                     fourWheelerLicense:member.fourWheelerLicense.value,
                     dataWhileDriving:member.dataWhileDriving.value,
+                    bluetooth:member.bluetooth.valid,
+                    wifi:member.wifi.valid,
                     gender:member.gender.value,
                     age:member.age.value,
                     educationalQualification:member.educationalQualification.value,
