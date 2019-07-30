@@ -188,7 +188,7 @@ class TripAccess extends Component{
             </div>
             <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex',flexFlow:'column'}}>
-                {this.props.accessName==="Egress Mode"?inputElementIn:null}
+                {this.props.accessName==="Main Mode"?inputElementIn:null}
             {/* <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a> */}
             {/* this.props.accessName */}
             {/* {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null} */}
