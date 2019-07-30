@@ -9,8 +9,9 @@ class TripAcessAndMode extends Component{
         // access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
         // egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
         mainMode:[
-            {idi:1,value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"},
-            {idi:1,value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"}
+            {idi:1,showAdd:false, value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"},
+            {idi:2,showAdd:false,value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"},
+            {idi:3,showAdd:true,value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"}
         ]
             
     }
@@ -135,26 +136,35 @@ class TripAcessAndMode extends Component{
         }
     }
     addHandler=(idi,name)=>{
-        if(name==="Access Mode"){
-            
-            const accessElementNew={idi:idi+1,showAdd:true,modeType:'access'};
-            const accessCopy=[...this.state.access];
+        if(name==="Main Mode"){   
+            const accessElementNew={idi:idi+1,showAdd:true,modeType:'mainMode',value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false};
+            const accessCopy=[...this.state.mainMode];
             const accessCopyElementOld={...accessCopy[idi-1]};
             accessCopyElementOld.showAdd=false;
             accessCopy[idi-1]=accessCopyElementOld;
             accessCopy.push(accessElementNew);
-            this.setState({access:accessCopy})
+            this.setState({mainMode:accessCopy})
         }
-        else if(name==="Egress Mode"){
+        // if(name==="Access Mode"){
             
-             const accessElementNew={idi:idi+1,showAdd:true,modeType:'egress'};
-             const accessCopy=[...this.state.egress];
-             const accessCopyElementOld={...accessCopy[idi-1]};
-             accessCopyElementOld.showAdd=false;
-             accessCopy[idi-1]=accessCopyElementOld;
-             accessCopy.push(accessElementNew);
-             this.setState({egress:accessCopy})
-        }
+        //     const accessElementNew={idi:idi+1,showAdd:true,modeType:'access'};
+        //     const accessCopy=[...this.state.access];
+        //     const accessCopyElementOld={...accessCopy[idi-1]};
+        //     accessCopyElementOld.showAdd=false;
+        //     accessCopy[idi-1]=accessCopyElementOld;
+        //     accessCopy.push(accessElementNew);
+        //     this.setState({access:accessCopy})
+        // }
+        // else if(name==="Egress Mode"){
+            
+        //      const accessElementNew={idi:idi+1,showAdd:true,modeType:'egress'};
+        //      const accessCopy=[...this.state.egress];
+        //      const accessCopyElementOld={...accessCopy[idi-1]};
+        //      accessCopyElementOld.showAdd=false;
+        //      accessCopy[idi-1]=accessCopyElementOld;
+        //      accessCopy.push(accessElementNew);
+        //      this.setState({egress:accessCopy})
+        // }
 
     }
     render(){

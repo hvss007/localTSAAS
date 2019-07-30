@@ -110,9 +110,9 @@ class TripAccess extends Component{
         this.setState({originInfo:accessInfoCopy});}
     }
     addButtonHandler=()=>{
-     if(!this.props.disabled){
+    //  if(!this.props.disabled){
         this.props.add(this.props.idi,this.props.accessName);   
-     }   
+    //  }   
     }
     onChangeHandler1=(event,title,id)=>{
         if(!this.props.disabled)
@@ -188,10 +188,10 @@ class TripAccess extends Component{
             </div>
             <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex',flexFlow:'column'}}>
-                {this.props.accessName==="Main Mode"?inputElementIn:null}
+                {this.props.showAdd?inputElementIn:null}
             {/* <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a> */}
             {/* this.props.accessName */}
-            {/* {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null} */}
+            {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null}
             </div>
             </div>
             <TripModal 
