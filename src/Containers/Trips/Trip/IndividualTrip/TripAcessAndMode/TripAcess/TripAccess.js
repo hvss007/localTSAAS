@@ -185,10 +185,11 @@ class TripAccess extends Component{
         return(<Aux>
             <div className={classes.TripAccessWrapper}>
             {/* <CommentModal itemClicked={this.originItemSelectedHandler} sideClicked={this.props.sideClicked} show={this.state.commentModalShow} ></CommentModal>    */}
-            <div style={{display:'flex'}}>
-                <p onClick={this.accessClicked}>{tripQuestion}</p>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <p onClick={this.accessClicked} style={{margin:'auto'}}>{tripQuestion}</p>
+                <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img>
             </div>
-            <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img>
+            
             <div style={{display:'flex',flexFlow:'column'}}>
             {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null}
                 {this.props.showAdd?inputElementIn:null}

@@ -5,8 +5,8 @@
     position: relative;
 }
 .TripAccessIcon{
-    width:100px;
-    margin:0px auto 20px;
+    width:70px;
+    margin: auto;
     height:auto;
     /* background:radial-gradient(rgba(37, 136, 218,.4),rgba(37, 136, 218,.4),white,white); */
     transition: background-color ease-out .8s,cursor ease-in .4s;
@@ -121,6 +121,6 @@
     /* border-bottom: 1px solid rgb(100,100,100); */
     }
     .TripAccessIcon{
-        width:75px;
+        width:55px;
     }
 }
