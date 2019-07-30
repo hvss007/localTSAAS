@@ -1,8 +1,4 @@
 import React,{Component} from 'react';
-// import {Link} from 'react-router-dom';
-// import Axios from 'axios';
-// import Jaipur from '../../assets/icons/matsimjaipur.png';
-//import Matsim from '../../assets/icons/matsim.gif';
 import Axios from 'axios';
 import StartSurveySub from './StartSurveySub';
 // import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
@@ -37,11 +33,6 @@ class StartSurvey extends Component{
         })
     }
     onClickHandler=()=>{  
-            // Axios.get("http://127.0.0.1:8000/api/family/")
-            // .then(response=>{
-            //     console.log(response.data);
-            //    this.props.history.push({pathname:this.props.match.url+response.data.familyID+'/member'})
-            // })
             if(this.props.match.url==="/"){
                 this.props.history.push({pathname:"/demo/family"})
             }
@@ -56,9 +47,6 @@ class StartSurvey extends Component{
         else{
                 showElement=null
         }
-       
-        // const navElement=this.props.match.params.id==="privacypolicy"?<PrivacyPolicy/>:null
-        // const testElement=this.props.match.url==="/"?<StartSurveySub collegeName="none"  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:null
         const element=this.state.displayComponent?<StartSurveySub collegeName={this.state.collegeName} collegeId={this.state.collegeId}  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>:showElement;
     return element
     }

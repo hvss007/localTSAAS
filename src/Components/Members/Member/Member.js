@@ -576,30 +576,30 @@ class Member extends Component{
         
         // if(this.state.qAnswered>=10){
             const member=this.state.member;
-                        
+            const post={
+                familyID:this.state.familyId,
+                householdHead:member.householdHead.value,
+                respondent:member.respondent.value,
+                twoWheelerLicense:member.twoWheelerLicense.value,
+                simCards:member.simCards.value,
+                fourWheelerLicense:member.fourWheelerLicense.value,
+                dataWhileDriving:member.dataWhileDriving.value,
+                bluetooth:member.bluetooth.value,
+                wifi:member.wifi.value,
+                gender:member.gender.value,
+                age:member.age.value,
+                educationalQualification:member.educationalQualification.value,
+                monthlyIncome:member.monthlyIncome.value,
+                maritialStatus:member.maritialStatus.value,
+                differentlyAbled:member.differentlyAbled.value,
+                principalSourceofIncome:member.principalSourceofIncome.value,
+                stayAtHome:member.stayAtHome.value
+            }           
             if(member.stayAtHome.value==="") {
                 alert("Please state whether the member is staying at home for the whole day.")
             }
             else if(member.stayAtHome.value==="yes"){
-                const post={
-                    familyID:this.state.familyId,
-                    householdHead:member.householdHead.value,
-                    respondent:member.respondent.value,
-                    twoWheelerLicense:member.twoWheelerLicense.value,
-                    simCards:member.simCards.value,
-                    fourWheelerLicense:member.fourWheelerLicense.value,
-                    dataWhileDriving:member.dataWhileDriving.value,
-                    bluetooth:member.bluetooth.valid,
-                    wifi:member.wifi.valid,
-                    gender:member.gender.value,
-                    age:member.age.value,
-                    educationalQualification:member.educationalQualification.value,
-                    monthlyIncome:member.monthlyIncome.value,
-                    maritialStatus:member.maritialStatus.value,
-                    differentlyAbled:member.differentlyAbled.value,
-                    principalSourceofIncome:member.principalSourceofIncome.value,
-                    stayAtHome:member.stayAtHome.value
-                }
+                
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
                         if (window.confirm("Have you added all members?")) {
@@ -627,29 +627,9 @@ class Member extends Component{
                     .catch(err => console.error(err));
             }
             else{
-                const post={
-                    familyID:this.state.familyId,
-                    householdHead:member.householdHead.value,
-                    respondent:member.respondent.value,
-                    twoWheelerLicense:member.twoWheelerLicense.value,
-                    simCards:member.simCards.value,
-                    fourWheelerLicense:member.fourWheelerLicense.value,
-                    dataWhileDriving:member.dataWhileDriving.value,
-                    bluetooth:member.bluetooth.valid,
-                    wifi:member.wifi.valid,
-                    gender:member.gender.value,
-                    age:member.age.value,
-                    educationalQualification:member.educationalQualification.value,
-                    monthlyIncome:member.monthlyIncome.value,
-                    maritialStatus:member.maritialStatus.value,
-                    differentlyAbled:member.differentlyAbled.value,
-                    principalSourceofIncome:member.principalSourceofIncome.value,
-                    stayAtHome:member.stayAtHome.value
-                }
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
                         
-                        // //consoleog(Response);
                         this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
                     })
                     .catch(err => 

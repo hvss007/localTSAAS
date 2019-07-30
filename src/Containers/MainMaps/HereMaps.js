@@ -5,8 +5,10 @@ class  HereMaps extends Component {
     constructor(props) {
         super(props);
         this.imp={
+          useCIT:true,
           app_id: props.app_id,
-         app_code:props.app_code,
+          app_code:props.app_code,
+          useHTTPS:true
         }
         this.count=0;
         this.state = {

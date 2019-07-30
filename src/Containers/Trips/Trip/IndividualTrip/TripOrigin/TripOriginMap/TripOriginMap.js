@@ -8,8 +8,10 @@ class TripOriginMap extends Component{
         super(props);
         
         this.state = {
-            app_id: process.env.REACT_APP_PLACES_API_ID,
-            app_code: process.env.REACT_APP_PLACES_APP_CODE,
+          app_id: process.env.REACT_APP_PLACES_API_ID,
+          app_code: process.env.REACT_APP_PLACES_APP_CODE,
+          useCIT:true,
+          useHTTPS:true,
             center: {
                 lat: "26.9124",
                 lng:"75.7873",
