@@ -8,6 +8,7 @@ import MemberScreenshot1 from '../../assets/screenshots/member1.png';
 import MemberScreenshot2 from '../../assets/screenshots/member2.png';
 import MemberScreenshot3 from '../../assets/screenshots/member3.png';
 import MemberScreenshot4 from '../../assets/screenshots/member4.png';
+import MemberScreenshot5 from '../../assets/screenshots/member5.png';
 import TripScreenshot1 from '../../assets/screenshots/trip1.png';
 import TripScreenshot2 from '../../assets/screenshots/trip2.png';
 import TripScreenshot3 from '../../assets/screenshots/trip3.png';
@@ -73,7 +74,8 @@ class  Wiki extends Component{
                     <ul>
                         <li>Enter gender, age, educational qualification, maritial status, monthly income and principal source of income. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot1)} >See an example.</span></li>
                         <li>Enter number of sim cards, mobile phone usages while driving/traveling, licensing etc. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot2)} >See an example.</span></li>
-                        <li>Enter if you are respondent and whether if you stay at home for the whole day and click on submit.<span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot3)} >See an example.</span></li>
+                        <li>Enter information about two-wheeler and four-wheeler licensing etc. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot5)} >See an example.</span></li>
+                        <li>Enter if you are respondent, head of family and whether if you stay at home for the whole day and click on submit.<span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot3)} >See an example.</span></li>
                         <li>If the member stay at the home, a warning will appear. Click on 'Ok' or 'Yes' if this member is last member of family, this will end the survey. Else click on 'Cancel' or 'No', this will send you to the trip page. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot4)} >See an example.</span></li>
                     </ul>
                 	<li>Trip page:</li>
