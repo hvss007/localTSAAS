@@ -8,6 +8,7 @@ import MemberScreenshot1 from '../../assets/screenshots/member1.png';
 import MemberScreenshot2 from '../../assets/screenshots/member2.png';
 import MemberScreenshot3 from '../../assets/screenshots/member3.png';
 import MemberScreenshot4 from '../../assets/screenshots/member4.png';
+import MemberScreenshot5 from '../../assets/screenshots/member5.png';
 import TripScreenshot1 from '../../assets/screenshots/trip1.png';
 import TripScreenshot2 from '../../assets/screenshots/trip2.png';
 import TripScreenshot3 from '../../assets/screenshots/trip3.png';
@@ -72,8 +73,9 @@ class  Wiki extends Component{
                 	<li>Member page:</li>
                     <ul>
                         <li>Enter gender, age, educational qualification, maritial status, monthly income and principal source of income. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot1)} >See an example.</span></li>
-                        <li>Enter number of sim cards, mobile phone usages while driving/traveling, licensing etc. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot2)} >See an example.</span></li>
-                        <li>Enter if you are respondent and whether if you stay at home for the whole day and click on submit.<span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot3)} >See an example.</span></li>
+                        <li>Enter number of sim cards, mobile phone usages while driving/traveling, etc. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot2)} >See an example.</span></li>
+                        <li>Enter information about two-wheeler and four-wheeler licensing, etc. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot5)} >See an example.</span></li>
+                        <li>Enter if you are respondent, head of family and whether if you stay at home for the whole day and click on submit.<span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot3)} >See an example.</span></li>
                         <li>If the member stay at the home, a warning will appear. Click on 'Ok' or 'Yes' if this member is last member of family, this will end the survey. Else click on 'Cancel' or 'No', this will send you to the trip page. <span className={classes.ImageLink} onClick={()=>this.onClickHandler(MemberScreenshot4)} >See an example.</span></li>
                     </ul>
                 	<li>Trip page:</li>
@@ -96,7 +98,7 @@ class  Wiki extends Component{
                  <p>The collected data will be used to synthesize a multi-agent transport simulation model (<a href="https://www.matsim.org/" target="_blank" rel="noopener noreferrer">MATSim</a>). This data will also be used to calibrate and validate the model. Afterwards, the model can be used to test various policies in a city. Some examples of the policies are: alteration/re-circulation in the existing network, need of a new transit line or new infrastructure, impacts of a new bus/metro line, optimal locations of smart parking systems, environmental impacts of the travel choices, sustainable transport modes, impact of land-use on trip profiles, etc. Please see the <a href="https://www.matsim.org/gallery/" target="_blank" rel="noopener noreferrer">Gallery</a> for various scenarios world-wide.</p>
 
                  <h4>Future Scope:</h4>
-                 <p>TSAAS is looking forward to transform the current program into a more robust traffic data gathering platform by introducing other traffic surveys. Please contact us if you have any suggestions and/or would like to contribute.</p>
+                 <p>TSaaS is looking forward to transform the current program into a more robust traffic data gathering platform by introducing other traffic surveys. Please contact us if you have any suggestions and/or would like to contribute.</p>
 
                  <h4>Team Members:</h4>
                  <p> <b>Front-end:</b>  Harsh Vardhan</p>
