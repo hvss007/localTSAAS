@@ -115,9 +115,11 @@ class Trip extends Component{
             // //console.log(originDestinationArray);
             const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
             // //console.log(updatedData,'bivivdibbud')
+            console.log(updatedData.accessModeData)
             const validArr=updatedData.accessModeData.mode.filter(item=>{
-                return item.accessMode.length===0 
+                return item.accessMode.length>0 
             })
+            console.log(validArr)
             let statement=''
             if(whichButton==='addTrip'){
                 statement="before adding next trip."
@@ -129,14 +131,14 @@ class Trip extends Component{
                 statement="before finishing the survey."
             }
 
-            if(validArr.length===0){
+            if(validArr.length>=1){
                 const data={memberID:this.props.match.params.id1};
                 // //console.log(updatedData.originDestination)
                 delete updatedData.originDestination[0].isValid
                 //this.setState({sendData1:true})
                 if(whichButton==='addTrip')
                 {  
-                    //  console.log('add')
+                     console.log('add')
                     this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng,updatedData.originDestination[0].destinationLandmark,true)
                     if(!this.props.disabled)
                     {Axios.post(HostName+"trips/",data)
