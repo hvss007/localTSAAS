@@ -173,12 +173,14 @@ class TripAccess extends Component{
        })
        let tripQuestion=''
        if(this.props.accessName==="Main Mode"){
-            tripQuestion="How does the member travel to "+(this.props.destinationPlace?this.props.destinationPlace!=="Other"?'"'+this.props.destinationPlace+'"':'"destination"':'')+"?"
-       }else if(this.props.accessName==="Access Mode"){
-        tripQuestion="How does the member access "+(this.props.mainmodeValue?'"'+this.props.mainmodeValue+'"':'')+" ?"
-       }else if(this.props.accessName==="Egress Mode"){
-        tripQuestion="How does the member egress "+(this.props.mainmodeValue?'"'+this.props.mainmodeValue+'"':'')+" ?"
-       }   
+            // tripQuestion="How does the member travel to "+(this.props.destinationPlace?this.props.destinationPlace!=="Other"?'"'+this.props.destinationPlace+'"':'"destination"':'')+"?"
+            tripQuestion="Travel Mode "+this.props.idi
+        }
+    //    else if(this.props.accessName==="Access Mode"){
+    //     tripQuestion="How does the member access "+(this.props.mainmodeValue?'"'+this.props.mainmodeValue+'"':'')+" ?"
+    //    }else if(this.props.accessName==="Egress Mode"){
+    //     tripQuestion="How does the member egress "+(this.props.mainmodeValue?'"'+this.props.mainmodeValue+'"':'')+" ?"
+    //    }   
 
         return(<Aux>
             <div className={classes.TripAccessWrapper}>
@@ -188,10 +190,12 @@ class TripAccess extends Component{
             </div>
             <img key={this.props.idi+"s"} onClick={this.accessClicked} className={classes.TripAccessIcon} alt={""} src={this.state.src?this.state.src:AcessIcon}></img>
             <div style={{display:'flex',flexFlow:'column'}}>
+            {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null}
                 {this.props.showAdd?inputElementIn:null}
+            
             {/* <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a> */}
             {/* this.props.accessName */}
-            {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null}
+            
             </div>
             </div>
             <TripModal 
