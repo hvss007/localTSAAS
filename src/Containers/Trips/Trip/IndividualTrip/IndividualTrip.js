@@ -8,14 +8,23 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 // import Backdrop from '../../../../Hoc/Backdrop/Backdrop';
 // import Backdrop1 from '../../../../Hoc/Backdrop/Backdrop1';
 import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
+import Rupee from '../../../../assets/icons/rupee.png'
 import {withRouter} from 'react-router-dom';
 import HostName from '../../../../assets/globalvaribles/GlobalVariables';
+import TripAccessIn from './TripAcessAndMode/TripAcess/TripAccessIn/TripAccessIn'
 class Trip extends Component{
     state={
         tripInformation:{
                 originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,originTime:'',originLandmark:this.props.initialLandmark?this.props.initialLandmark:''},
                 destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:'',destinationLandmark:''},
-                accessModeData:{}
+                accessModeData:{},
+                accessInfoIn:[
+                    {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time',min:'00:00',max:'12:00'},
+                    {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false,type:'number',min:'0'},
+                    {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee,type:'number',min:'0'},
+                    // {id:4,title:"Cost",value:'',valid:false,touched:false}
+                    ],
+                
             },
         sendData:false,
         disableAdd:true,
@@ -99,7 +108,7 @@ class Trip extends Component{
     }
     tripAccessDataHandler=(dataObj,whichButton)=>{
         // //console.log(dataObj);
-        const tripInformationCopy={...this.state.tripInformation};
+        const tripInformationCopy={...this  .state.tripInformation};
         //tripInformationCopy["accessModeData"]=dataObj;
         let accessModeDataCopy={...tripInformationCopy.accessModeData};
         accessModeDataCopy={...dataObj};
@@ -117,9 +126,9 @@ class Trip extends Component{
             // //console.log(updatedData,'bivivdibbud')
             console.log(updatedData.accessModeData)
             const validArr=updatedData.accessModeData.mode.filter(item=>{
-                return item.accessMode.length>0 
+                return item.modeName.length>0 
             })
-            console.log(validArr)
+            // console.log(validArr)
             let statement=''
             if(whichButton==='addTrip'){
                 statement="before adding next trip."
@@ -134,11 +143,14 @@ class Trip extends Component{
             if(validArr.length>=1){
                 const data={memberID:this.props.match.params.id1};
                 // //console.log(updatedData.originDestination)
+                // console.log(updatedData)
+                updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn[0].value
+                updatedData.originDestination[0].journeyLength=this.state.tripInformation.accessInfoIn[1].value
+                updatedData.originDestination[0].fare=this.state.tripInformation.accessInfoIn[2].value
                 delete updatedData.originDestination[0].isValid
                 //this.setState({sendData1:true})
                 if(whichButton==='addTrip')
                 {  
-                     console.log('add')
                     this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng,updatedData.originDestination[0].destinationLandmark,true)
                     if(!this.props.disabled)
                     {Axios.post(HostName+"trips/",data)
@@ -153,7 +165,7 @@ class Trip extends Component{
                                 Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
                                 //{tripID:response.data.tripID,...updatedData.originDestination[0]}
                                 ).then(response=>{
-                                    
+                        
                                 })    
                              });
                             // response.data.tripID
@@ -164,10 +176,12 @@ class Trip extends Component{
                     if (window.confirm("Have you added all trips?")) {
                         if(!this.props.disabled){
                             // console.log("Accepted ")
+                            // console.log(updatedData)
                             Axios.post(HostName+"trips/",data)
                             .then(response=>{
                                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                                      ).then(response=>{})
+                                    //  console.log(updatedData)
                                      updatedData.accessModeData.mode.forEach(element => {
                                         delete element.isValid;
                                         Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
@@ -229,6 +243,40 @@ class Trip extends Component{
             )
 
     }
+    validityHandler=(value)=>{
+        let isValid=true;
+        if(isValid){
+            isValid=value.trim() !=='';
+        }
+        // console.log(isValid);
+        return isValid;
+    }
+    onChangeHandler1=(event,title,id)=>{
+        if(!this.props.disabled)
+        {
+        const tripInformationCopy={...this.state.tripInformation}    
+        const accessInfoCopyIn=[...tripInformationCopy.accessInfoIn];
+        const selctedArr=accessInfoCopyIn.filter((item)=>{
+                return item.title===title
+             
+        })    
+        const selectedArrItems={...selctedArr[0]};
+        const value=event.target.value;
+        selectedArrItems.value=event.target.value;
+        selectedArrItems.touched=true;
+        selectedArrItems.valid=this.validityHandler(value);
+        accessInfoCopyIn[id-1]=selectedArrItems;
+        tripInformationCopy["accessInfoIn"]=accessInfoCopyIn
+        //this.itemClicked(title,selectedArrItems.src);
+        this.setState({tripInformation:tripInformationCopy},
+            // ()=>{
+            //     let valid=this.addShower();
+            //     if(this.props.accessName==="Egress Mode"){
+            //         this.props.accessDataIn("Main Mode",title,value,this.props.idi,valid)}
+            //     }
+            );
+        }
+    }
     latLongHandler1=(lat,lng,originOrDestination,value)=>{
         const tripInformationCopy={...this.state.tripInformation};
         if(originOrDestination==="Origin")
@@ -273,6 +321,9 @@ class Trip extends Component{
         }
     }
     render(){
+        const inputElementIn=this.state.tripInformation.accessInfoIn.map((item)=>{
+            return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} min={item.min?item.min:null} max={item.max?item.max:null} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}  displayValue={item.displayValue}></TripAccessIn>
+        })
         const originData=this.state.tripInformation.originData;
         const destinationData=this.state.tripInformation.destinationData;
         let tripAcessAndModeData=null;
@@ -300,7 +351,7 @@ class Trip extends Component{
                 {orValue?<TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>:null}
                 {((orValue&&drValue)||this.props.tripsLength>1)?tripAcessAndModeData:null}
                 </div>
-                
+                {inputElementIn}
                 {/* <TripAcessAndMode sendData={this.state.sendData} 
                 tripAccessDataHandler={this.tripAccessDataHandler}
                 >

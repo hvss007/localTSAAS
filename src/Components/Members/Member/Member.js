@@ -350,8 +350,6 @@ class Member extends Component{
                 valid:false,
                 touched:false,
                 optional:true
-
-
             },
             respondent:{
                 name:'respondent',

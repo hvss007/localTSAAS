@@ -14,8 +14,8 @@ import Bus from '../../../../../../assets/icons/modeIcons/Bus.png';
 import Train from '../../../../../../assets/icons/modeIcons/Train.png';
 import Others from '../../../../../../assets/icons/modeIcons/Others.png';
 import CommentModalInput from '../../../../../../Hoc/CommentModal/CommentModalInput/CommentModalInput'
-import Rupee from '../../../../../../assets/icons/rupee.png'
-import TripAccessIn from './TripAccessIn/TripAccessIn';
+// import Rupee from '../../../../../../assets/icons/rupee.png'
+// import TripAccessIn from './TripAccessIn/TripAccessIn';
 //import Others from '../../../../../../assets/icons/Others.png';
 class TripAccess extends Component{
     state={
@@ -32,12 +32,12 @@ class TripAccess extends Component{
             {id:8,src:Train,title:'Metro',value:''},
             {id:9,src:Others,title:'Others',value:''},   
         ],
-        accessInfoIn:[
-            {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time',min:'00:00',max:'12:00'},
-            {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false,type:'number',min:'0'},
-            {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee,type:'number',min:'0'},
-            // {id:4,title:"Cost",value:'',valid:false,touched:false}
-        ],
+        // accessInfoIn:[
+        //     {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time',min:'00:00',max:'12:00'},
+        //     {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false,type:'number',min:'0'},
+        //     {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee,type:'number',min:'0'},
+        //     // {id:4,title:"Cost",value:'',valid:false,touched:false}
+        // ],
         src:null,
         title:null,
         inValue:null,
@@ -114,30 +114,30 @@ class TripAccess extends Component{
         this.props.add(this.props.idi,this.props.accessName);   
     //  }   
     }
-    onChangeHandler1=(event,title,id)=>{
-        if(!this.props.disabled)
-        {
-        const accessInfoCopyIn=[...this.state.accessInfoIn];
-        const selctedArr=accessInfoCopyIn.filter((item)=>{
-                return item.title===title
+    // onChangeHandler1=(event,title,id)=>{
+    //     if(!this.props.disabled)
+    //     {
+    //     const accessInfoCopyIn=[...this.state.accessInfoIn];
+    //     const selctedArr=accessInfoCopyIn.filter((item)=>{
+    //             return item.title===title
              
-        })    
-        const selectedArrItems={...selctedArr[0]};
-        const value=event.target.value;
-        selectedArrItems.value=event.target.value;
-        selectedArrItems.touched=true;
-        selectedArrItems.valid=this.validityHandler(value);
-        accessInfoCopyIn[id-1]=selectedArrItems;
-        //this.itemClicked(title,selectedArrItems.src);
-        this.setState({accessInfoIn:accessInfoCopyIn},
-            ()=>{
-                let valid=this.addShower();
-                if(this.props.accessName==="Egress Mode"){
-                    this.props.accessDataIn("Main Mode",title,value,this.props.idi,valid)}
-                }
-            );
-        }
-    }
+    //     })    
+    //     const selectedArrItems={...selctedArr[0]};
+    //     const value=event.target.value;
+    //     selectedArrItems.value=event.target.value;
+    //     selectedArrItems.touched=true;
+    //     selectedArrItems.valid=this.validityHandler(value);
+    //     accessInfoCopyIn[id-1]=selectedArrItems;
+    //     //this.itemClicked(title,selectedArrItems.src);
+    //     this.setState({accessInfoIn:accessInfoCopyIn},
+    //         ()=>{
+    //             let valid=this.addShower();
+    //             if(this.props.accessName==="Egress Mode"){
+    //                 this.props.accessDataIn("Main Mode",title,value,this.props.idi,valid)}
+    //             }
+    //         );
+    //     }
+    // }
     addShower=()=>{
      const validArr=[];
       this.state.accessInfoIn.forEach(item=>{
@@ -155,22 +155,22 @@ class TripAccess extends Component{
         return false
       }
     }
-    validityHandler=(value)=>{
-        let isValid=true;
-        if(isValid){
-            isValid=value.trim() !=='';
-        }
-        // console.log(isValid);
-        return isValid;
-    }
+    // validityHandler=(value)=>{
+    //     let isValid=true;
+    //     if(isValid){
+    //         isValid=value.trim() !=='';
+    //     }
+    //     // console.log(isValid);
+    //     return isValid;
+    // }
     render(){
         const inputElement=this.state.accessInfo.map((item,index)=>{
             return <CommentModalInput changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title} id={item.id} title={item.title} source={item.src}>
                 </CommentModalInput>
         })
-       const inputElementIn=this.state.accessInfoIn.map((item)=>{
-           return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} min={item.min?item.min:null} max={item.max?item.max:null} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}  displayValue={item.displayValue}></TripAccessIn>
-       })
+    //    const inputElementIn=this.state.accessInfoIn.map((item)=>{
+    //        return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} min={item.min?item.min:null} max={item.max?item.max:null} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}  displayValue={item.displayValue}></TripAccessIn>
+    //    })
        let tripQuestion=''
        if(this.props.accessName==="Main Mode"){
             // tripQuestion="How does the member travel to "+(this.props.destinationPlace?this.props.destinationPlace!=="Other"?'"'+this.props.destinationPlace+'"':'"destination"':'')+"?"
@@ -192,7 +192,7 @@ class TripAccess extends Component{
             
             <div style={{display:'flex',flexFlow:'column'}}>
             {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null}
-                {this.props.showAdd?inputElementIn:null}
+                {/* {this.props.showAdd?inputElementIn:null} */}
             
             {/* <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a> */}
             {/* this.props.accessName */}

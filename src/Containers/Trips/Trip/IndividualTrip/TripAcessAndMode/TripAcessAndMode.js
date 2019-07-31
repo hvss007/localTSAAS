@@ -9,9 +9,23 @@ class TripAcessAndMode extends Component{
         // access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
         // egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
         mainMode:[
-            {idi:1,showAdd:false, value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"},
-            {idi:2,showAdd:false,value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"},
-            {idi:3,showAdd:true,value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false,modeType:"mainMode"}
+            {idi:1,showAdd:false, value:'',
+            // ,inValue:{travelTime:'',travelDistance:'',fare:''},
+            isValid:false,
+            // modeType:"mainMode"
+            },
+            {idi:2,showAdd:false,value:'',
+            // inValue:{travelTime:'',travelDistance:'',fare:''},
+            isValid:false,
+            // modeType:"mainMode"
+            },
+            {idi:3,
+                showAdd:true,
+                value:'',
+                // inValue:{travelTime:'',travelDistance:'',fare:''},
+                isValid:false,
+                // modeType:"mainMode"
+            }
         ]
             
     }
@@ -28,7 +42,7 @@ class TripAcessAndMode extends Component{
                 const accessCopy=[...mode];
                 const newAccessArray=[];
                 accessCopy.forEach((item)=>{
-                let newAccessObjectIn={accessMode:item.value,...item.inValue,modeType:item.modeType,isValid:item.isValid};
+                let newAccessObjectIn={modeName:item.value,...item.inValue,modeType:item.modeType,isValid:item.isValid};
                 newAccessArray.push(newAccessObjectIn);
             })
                 modeArr.push(newAccessArray);
@@ -63,9 +77,9 @@ class TripAcessAndMode extends Component{
         // else 
         if(name==="Main Mode"){
             const accessCopy=[...this.state.mainMode];
-            const accessCopyElementOld={...accessCopy[0]};
+            const accessCopyElementOld={...accessCopy[idi-1]};
             accessCopyElementOld.value=value;
-            accessCopy[0]=accessCopyElementOld;
+            accessCopy[idi-1]=accessCopyElementOld;
             this.setState({mainMode:accessCopy})
         }
     }      
