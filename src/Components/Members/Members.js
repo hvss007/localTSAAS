@@ -70,13 +70,14 @@ class Members extends Component{
     render(){
     return(
         <Aux>
-        <div style={{width:'100%',boxSizing:'border-box',padding:'25px',fontSize:'32px',textAlign:'center',paddingBottom:'5px'}}><p style={{color:'rgb(41, 129, 185)'}}>Member Information</p></div>    
+        
         <div className={classes.MembersInner}
         // className="container-fluid my-5 mx-auto px-5" 
         >
         <div className={classes.MapMemberWrapper}
         // className="row flex-column-reverse flex-md-row" 
-        style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 27px 51.33px 7.67px', borderRadius: '10px'}}>
+        style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 27px 51.33px 7.67px', borderRadius: '10px',flexFlow:'column'}}>
+            <div style={{width:'100%',boxSizing:'border-box',padding:'25px',fontSize:'32px',textAlign:'center',paddingBottom:'5px'}}><p style={{color:'rgb(41, 129, 185)'}}>Member Information</p></div>    
         {/* {this.state.showMap?<div style={{flex:'2'}} >
         <MainMaps mapLocation={this.state.setMapSearchText} dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
         </div>:null} */}
