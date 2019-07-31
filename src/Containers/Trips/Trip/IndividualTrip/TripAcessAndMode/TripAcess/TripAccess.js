@@ -13,6 +13,7 @@ import Auto from '../../../../../../assets/icons/modeIcons/Auto.png';
 import Bus from '../../../../../../assets/icons/modeIcons/Bus.png';
 import Train from '../../../../../../assets/icons/modeIcons/Train.png';
 import Others from '../../../../../../assets/icons/modeIcons/Others.png';
+import Passenger from '../../../../../../assets/icons/modeIcons/passenger.png';
 import CommentModalInput from '../../../../../../Hoc/CommentModal/CommentModalInput/CommentModalInput'
 // import Rupee from '../../../../../../assets/icons/rupee.png'
 // import TripAccessIn from './TripAccessIn/TripAccessIn';
@@ -26,11 +27,12 @@ class TripAccess extends Component{
             {id:2,src:Bicycle,title:'Bicycle',value:''},
             {id:3,src:Motorcycle,title:'Motorcycle',value:''},
             {id:4,src:Car,title:'Car',value:''},
-            {id:5,src:Taxi,title:'Taxi',value:''},
-            {id:6,src:Auto,title:'Auto',value:''},
-            {id:7,src:Bus,title:'Bus',value:''},
-            {id:8,src:Train,title:'Metro',value:''},
-            {id:9,src:Others,title:'Others',value:''},   
+            {id:5,src:Passenger,title:'Passenger',value:''},
+            {id:6,src:Taxi,title:'Taxi',value:''},
+            {id:7,src:Auto,title:'Auto',value:''},
+            {id:8,src:Bus,title:'Bus',value:''},
+            {id:9,src:Train,title:'Metro',value:''},
+            {id:10,src:Others,title:'Others',value:''},   
         ],
         // accessInfoIn:[
         //     {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time',min:'00:00',max:'12:00'},
