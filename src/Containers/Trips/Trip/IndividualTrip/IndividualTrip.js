@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './IndividualTrip.css';
 import TripOrigin from './TripOrigin/TripOrigin';
 import Axios from 'axios';
+import Input from '../../../../Components/Input/Input'
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 // import TripOriginMap from './TripOrigin/TripOriginMap/TripOriginMap';
@@ -18,13 +19,84 @@ class Trip extends Component{
                 originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,originTime:'',originLandmark:this.props.initialLandmark?this.props.initialLandmark:''},
                 destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:'',destinationLandmark:''},
                 accessModeData:{},
-                accessInfoIn:[
-                    {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time',min:'00:00',max:'12:00'},
-                    {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false,type:'number',min:'0'},
-                    {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee,type:'number',min:'0'},
-                    // {id:4,title:"Cost",value:'',valid:false,touched:false}
-                    ],
-                
+                // accessInfoIn:[
+                //     {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time',min:'00:00',max:'12:00'},
+                //     {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false,type:'number',min:'0'},
+                //     {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee,type:'number',min:'0'},
+                //     // {id:4,title:"Cost",value:'',valid:false,touched:false}
+                //     ],
+                accessInfoIn:{
+                    travelTime:{
+                        name:'travelTime',
+                        label:'How much time (hh:mm) does the whole trip take',
+                        elementType:'select',
+                        elementConfig:{
+                           options:[
+                            {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                               {value:'<5min',displayValue:'<5 min'},
+                               {value:'5-15min',displayValue:'5 - 15 min'},
+                               {value:'15-30min',displayValue:'15 - 30 min'},
+                               {value:'30-60min',displayValue:'30 - 60 min'},
+                               {value:'>1hour',displayValue:'> 1 hour'}
+                           ]
+                        },
+                        value:'',
+                        show:true,
+                        validation:{
+                            required:true
+                        },
+                        valid:false,
+                        touched:false,
+                        optional:true
+                    },
+                    travelDistance:{
+                        name:'travelDistance',
+                        label:'How long (km) is the whole trip ?',
+                        elementType:'select',
+                        elementConfig:{
+                            options:[
+                                {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                                {value:'<2km',displayValue:'<2 km'},
+                                {value:'2-5km',displayValue:'2 - 5 km'},
+                                {value:'5-10km',displayValue:'5 - 10km'},
+                                {value:'10-20km',displayValue:'10 - 20 km'},
+                                {value:'>20km',displayValue:'> 20 km'},
+                            ]
+                        },
+                        value:'',
+                        show:true,
+                        validation:{
+                            required:true
+                        },
+                        valid:false,
+                        touched:false,
+                        optional:true
+                    },
+                    fare:{
+                        name:'fare',
+                        label:'How much does the whole trip costs ?',
+                        elementType:'select',
+                        elementConfig:{
+                            options:[
+                                {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                                {value:'<10Rs',displayValue:'< 10 Rs'},
+                                {value:'10-25Rs',displayValue:'10 -25 Rs'},
+                                {value:'25-50Rs',displayValue:'25 -50 Rs'},
+                                {value:'50-100Rs',displayValue:'50 -100 Rs'},
+                                {value:'100-500Rs',displayValue:'100 -500 Rs'},
+                                {value:'>500Rs',displayValue:'> 500 Rs'},
+                            ]
+                        },
+                        value:'',
+                        show:true,
+                        validation:{
+                            required:true
+                        },
+                        valid:false,
+                        touched:false,
+                        optional:true
+                    }
+                }              
             },
         sendData:false,
         disableAdd:true,
@@ -36,30 +108,6 @@ class Trip extends Component{
         // commentModalShow:false,
         // commentModalShowDestination:false
     }
-    // backdropShowHandler=(show)=>{
-    //     this.setState({backdropShow:show},()=>{//console.log(this.state.backdropShow,"dhtjd")})
-    // }
-    // hidebackdropHandler=(show,callback)=>{
-    //     this.setState({backdropShow:show},()=>{//console.log(this.state.backdropShow,"rhxf")})
-    // }
-    // showModalBackdropHandler=(show)=>{
-    //     this.setState({commentModalShow:show})
-    // }
-    // showModalBackdropDesHandler=(show)=>{
-    //     this.setState({commentModalShowDes:show})
-    // }
-    // hideModalBackdropHandler=(show)=>{
-    //     this.setState({commentModalShow:show})
-    // }
-    // hideModalBackdropDesHandler=(show)=>{
-    //     this.setState({commentModalShowDestination:show})
-    // }
-    // sideClickHandler=(truth)=>{
-    //     this.setState({commentModalShow:truth})
-    // }
-    // sideClickDesHandler=(truth)=>{
-    //     this.setState({commentModalShowDestination:truth})
-    // }
     submit = (display) => {
         confirmAlert({
           title: 'Confirm to submit',
@@ -78,12 +126,10 @@ class Trip extends Component{
       };
     onSubmitHandler=(value,button)=>{
          this.setState({sendData:value,whichButtonClicked:button},        
-        //     this.props.addTrip(this.props.idf);}
          )
     }
     finishClicked=()=>{
         this.onSubmitHandler(true,'finishButton')
-        
     }
     removeCurrentTripHandler=()=>{
         this.props.removeCurrentTripHandler(this.props.idf)
@@ -93,18 +139,6 @@ class Trip extends Component{
     }
     nextMemberClickHandler=()=>{
         this.onSubmitHandler(true,'nextMemberButton')
-        // if (window.confirm("Have you added all trips?")) {
-        //     if(!this.props.disabled){
-                
-        //         this.onSubmitHandler(true,'nextMemberButton')
-        //     }
-        //     else{
-        //         this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
-        //     }
-            
-        //   } else {
-           
-        //   }
     }
     tripAccessDataHandler=(dataObj,whichButton)=>{
         // //console.log(dataObj);
@@ -144,9 +178,9 @@ class Trip extends Component{
                 const data={memberID:this.props.match.params.id1};
                 // //console.log(updatedData.originDestination)
                 // console.log(updatedData)
-                updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn[0].value
-                updatedData.originDestination[0].journeyLength=this.state.tripInformation.accessInfoIn[1].value
-                updatedData.originDestination[0].fare=this.state.tripInformation.accessInfoIn[2].value
+                updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn["travelTime"].value
+                updatedData.originDestination[0].travelDistance=this.state.tripInformation.accessInfoIn["travelDistance"].value
+                updatedData.originDestination[0].fare=this.state.tripInformation.accessInfoIn["fare"].value
                 delete updatedData.originDestination[0].isValid
                 //this.setState({sendData1:true})
                 if(whichButton==='addTrip')
@@ -251,31 +285,58 @@ class Trip extends Component{
         // console.log(isValid);
         return isValid;
     }
-    onChangeHandler1=(event,title,id)=>{
-        if(!this.props.disabled)
-        {
-        const tripInformationCopy={...this.state.tripInformation}    
-        const accessInfoCopyIn=[...tripInformationCopy.accessInfoIn];
-        const selctedArr=accessInfoCopyIn.filter((item)=>{
-                return item.title===title
+    // onChangeHandler1=(event,title,id)=>{
+    //     if(!this.props.disabled)
+    //     {
+    //     const tripInformationCopy={...this.state.tripInformation}    
+    //     const accessInfoCopyIn=[...tripInformationCopy.accessInfoIn];
+    //     const selctedArr=accessInfoCopyIn.filter((item)=>{
+    //             return item.title===title
              
-        })    
-        const selectedArrItems={...selctedArr[0]};
-        const value=event.target.value;
-        selectedArrItems.value=event.target.value;
-        selectedArrItems.touched=true;
-        selectedArrItems.valid=this.validityHandler(value);
-        accessInfoCopyIn[id-1]=selectedArrItems;
-        tripInformationCopy["accessInfoIn"]=accessInfoCopyIn
-        //this.itemClicked(title,selectedArrItems.src);
-        this.setState({tripInformation:tripInformationCopy},
-            // ()=>{
-            //     let valid=this.addShower();
-            //     if(this.props.accessName==="Egress Mode"){
-            //         this.props.accessDataIn("Main Mode",title,value,this.props.idi,valid)}
-            //     }
-            );
+    //     })    
+    //     const selectedArrItems={...selctedArr[0]};
+    //     const value=event.target.value;
+    //     selectedArrItems.value=event.target.value;
+    //     selectedArrItems.touched=true;
+    //     selectedArrItems.valid=this.validityHandler(value);
+    //     accessInfoCopyIn[id-1]=selectedArrItems;
+    //     tripInformationCopy["accessInfoIn"]=accessInfoCopyIn
+    //     //this.itemClicked(title,selectedArrItems.src);
+    //     this.setState({tripInformation:tripInformationCopy},
+    //         // ()=>{
+    //         //     let valid=this.addShower();
+    //         //     if(this.props.accessName==="Egress Mode"){
+    //         //         this.props.accessDataIn("Main Mode",title,value,this.props.idi,valid)}
+    //         //     }
+    //         );
+    //     }
+    // }
+    inputChangeHandler=(event,inputIdentifier)=>{
+        const tripInformationCopy={...this.state.tripInformation}
+        const memberUpdated={...tripInformationCopy.accessInfoIn};
+        const updatedInputElement={...memberUpdated[inputIdentifier]} ;
+        updatedInputElement.value=event.target.value;
+        updatedInputElement.valid=this.validityHandler(updatedInputElement.value,updatedInputElement.validation);
+        updatedInputElement.touched=true;
+        memberUpdated[inputIdentifier]=updatedInputElement; 
+        tripInformationCopy["accessInfoIn"]=memberUpdated
+        this.setState( {tripInformation:tripInformationCopy});
+    }
+    validityHandler=(value,rules)=>{
+        let isValid=true;
+        if(rules.required&&isValid){
+            isValid=value.trim() !=='';
         }
+
+        if(rules.notLess&&isValid){
+            isValid=(parseInt(value,10)>=0);
+        }
+        if(rules.length&&isValid){
+            isValid=value.length===rules.length;
+        }
+
+        //consoleog(isValid);
+        return isValid;
     }
     latLongHandler1=(lat,lng,originOrDestination,value)=>{
         const tripInformationCopy={...this.state.tripInformation};
@@ -321,9 +382,18 @@ class Trip extends Component{
         }
     }
     render(){
-        const inputElementIn=this.state.tripInformation.accessInfoIn.map((item)=>{
-            return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} min={item.min?item.min:null} max={item.max?item.max:null} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}  displayValue={item.displayValue}></TripAccessIn>
-        })
+        let accessInformArray=[];
+        for (let key in this.state.tripInformation.accessInfoIn){
+            accessInformArray.push(
+                {
+                   id:key,
+                   config:this.state.tripInformation.accessInfoIn[key]     
+            })
+        }
+        
+        // const inputElementIn=this.state.tripInformation.accessInfoIn.map((item)=>{
+        //     return <TripAccessIn touched={item.touched} src={item.src} type={item.type} invalid={!item.valid} min={item.min?item.min:null} max={item.max?item.max:null} changed={this.onChangeHandler1}  key={item.title+this.props.idi} id={item.id} title={item.title}  displayValue={item.displayValue}></TripAccessIn>
+        // })
         const originData=this.state.tripInformation.originData;
         const destinationData=this.state.tripInformation.destinationData;
         let tripAcessAndModeData=null;
@@ -351,7 +421,23 @@ class Trip extends Component{
                 {orValue?<TripOrigin idf={this.props.idf} singleDesktopLandmarkLocation={this.props.singleDesktopLandmarkLocation} disabled={this.props.disabled} mapLocation={this.props.mapLocation} latLongHandler1={this.latLongHandler1} originDataHandler={this.originDataHandler} ifj={2+""+this.props.idf} key={"dhg"} sideClicked={this.sideClickDesHandler} modalShow={this.showModalBackdropHandler} show={this.state.commentModalShowDestination} originOrDestination={"Destination"}></TripOrigin>:null}
                 {((orValue&&drValue)||this.props.tripsLength>1)?tripAcessAndModeData:null}
                 </div>
-                {inputElementIn}
+                {accessInformArray.map((memFormElement)=>{return(
+                    <Input 
+                        key={memFormElement.id}
+                        label={memFormElement.config.label}
+                        name={memFormElement.config.name}
+                        elementType={memFormElement.config.elementType}
+                        elementconfig={memFormElement.config.elementConfig}
+                        value={memFormElement.config.value}
+                        invalid={!memFormElement.config.valid}
+                        touched={memFormElement.config.touched}
+                        changed={(event)=>this.inputChangeHandler(event,memFormElement.id)}
+                        onFocusHandler={this.onFocusHandler}
+                        blurred={this.onBlurHandler}
+                        itemClicked={this.itemClickedHandler}
+                    >    
+                    </Input>
+        )})}
                 {/* <TripAcessAndMode sendData={this.state.sendData} 
                 tripAccessDataHandler={this.tripAccessDataHandler}
                 >
