@@ -40,8 +40,8 @@ class TripAccess extends Component{
         //     {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee,type:'number',min:'0'},
         //     // {id:4,title:"Cost",value:'',valid:false,touched:false}
         // ],
-        src:null,
-        title:null,
+        src:this.props.idi===1?Walk:'',
+        title:this.props.idi===1?'Walk':'',
         inValue:null,
         backdropShow:false,
         mainmode:false,
@@ -88,15 +88,8 @@ class TripAccess extends Component{
             );}
     }
     itemClicked=(title,src)=>{
-        //document.querySelector('.'+classes.TripAccessAnchor).innerHTML=title;
         //document.querySelector('.'+classes.TripAccessIcon).src=src;
         this.setState({src:src,title:title},()=>{
-        //   if(this.state.accessInfo.value.length){
-        //     this.setState({activateAdd:true})
-        //   }
-        //   else{
-        //     this.setState({activateAdd:false})
-        //   }  
             this.props.accessData(this.props.accessName,title,this.props.idi)})
     }
     dialogBoxShow=()=>{

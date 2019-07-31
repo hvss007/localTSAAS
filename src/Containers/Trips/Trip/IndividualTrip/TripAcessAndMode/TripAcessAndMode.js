@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './TripAcessAndMode.css';
 import TripAccess from './TripAcess/TripAccess';
+import Walk from '../../../../../assets/icons/modeIcons/Walk.png';
 // import TripModal from '../../../../../Hoc/TripModal/TripModal';
 //import CommentModal from '../../../../../Hoc/CommentModal/CommentModal';
 import Aux from '../../../../../Hoc/Aux';
@@ -9,7 +10,7 @@ class TripAcessAndMode extends Component{
         // access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
         // egress:[{idi:1,showAdd:true,value:'',modeType:"egress",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],
         mainMode:[
-            {idi:1,showAdd:false, value:'',
+            {idi:1,showAdd:false, value:'Walk',
             // ,inValue:{travelTime:'',travelDistance:'',fare:''},
             isValid:false,
             // modeType:"mainMode"
@@ -200,7 +201,7 @@ class TripAcessAndMode extends Component{
         return(
             <Aux>
                 <h3>Mode Information</h3>
-                <p style={{textAlign:'justify'}}> <b>Note:</b> Please add all travel modes in the order which the member uses them. Starting and ending with Walk.</p>
+                <p style={{textAlign:'justify'}}> <b>Note:</b> Please add all travel modes in the order which the member uses them. Starting and ending with Walk.<span><img style={{width:'30px'}} src={Walk}></img></span></p>
             <div className={classes.TripAcessAndMode}>  
                 {tripMainMode}
                 {/* <TripAccess disabled={this.props.disabled} destinationPlace={this.props.destinationPlace} mainMode={true} accessName={"Main Mode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess> */}

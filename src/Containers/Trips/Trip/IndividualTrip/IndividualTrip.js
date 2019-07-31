@@ -139,7 +139,7 @@ class Trip extends Component{
                 statement="before finishing the survey."
             }
 
-            if(validArr.length>=1){
+            if(validArr.length>=0){
                 const data={memberID:this.props.match.params.id1};
                 updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn["travelTime"].value
                 updatedData.originDestination[0].travelDistance=this.state.tripInformation.accessInfoIn["travelDistance"].value
