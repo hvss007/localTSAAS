@@ -1,5 +1,5 @@
 # tsaas-frontend
 
-- Homepage: [tsaas.iitr.ac.in](tsaas.iitr.ac.in)
-- Wiki: [tsaas.iitr.ac.in/wiki](tsaas.iitr.ac.in/wiki)
-- Privacy policy: [tsaas.iitr.ac.in/privacypolicy](tsaas.iitr.ac.in/privacypolicy)
+- Homepage: [https://tsaas.iitr.ac.in](https://tsaas.iitr.ac.in)
+- Wiki: [https://tsaas.iitr.ac.in/wiki](https://tsaas.iitr.ac.in/wiki)
+- Privacy policy: [https://tsaas.iitr.ac.in/privacypolicy](https://tsaas.iitr.ac.in/privacypolicy)
