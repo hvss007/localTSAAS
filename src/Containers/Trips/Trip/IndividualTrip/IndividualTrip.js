@@ -23,7 +23,7 @@ class Trip extends Component{
                 accessInfoIn:{
                     travelTime:{
                         name:'travelTime',
-                        label:'How much time (hh:mm) does the whole trip take',
+                        label:'How much time does the whole trip take?',
                         elementType:'select',
                         elementConfig:{
                            options:[
@@ -46,7 +46,7 @@ class Trip extends Component{
                     },
                     travelDistance:{
                         name:'travelDistance',
-                        label:'How long (km) is the whole trip ?',
+                        label:'How long is the whole trip?',
                         elementType:'select',
                         elementConfig:{
                             options:[
@@ -69,7 +69,7 @@ class Trip extends Component{
                     },
                     fare:{
                         name:'fare',
-                        label:'How much does the whole trip costs ?',
+                        label:'How much does the whole trip costs?',
                         elementType:'select',
                         elementConfig:{
                             options:[
