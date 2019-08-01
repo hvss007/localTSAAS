@@ -77,7 +77,7 @@ class Family extends Component{
                    
                 ] 
                 },
-                value:'',
+                value:"India",
                 show:true,
                 validation:{
                     required:true
@@ -265,7 +265,7 @@ state={}
                         familyIncome:family.familyIncome.value,
                         homeState:family.homeState.value,
                         nameOfDistrict:family.nameOfDistrict.value,
-                        landmark:family.landmark.value,
+                        landmark:this.state.markerLocationText,
                         lat:this.state.lat,
                         lng:this.state.lng
                     }
@@ -400,7 +400,7 @@ state={}
                     familyIncome:family.familyIncome.value,
                     homeState:family.homeState.value,
                     nameOfDistrict:family.nameOfDistrict.value,
-                    landmark:family.landmark.value,
+                    landmark:this.state.markerLocationText,
                     lat:this.state.lat,
                     lng:this.state.lng
                 }
