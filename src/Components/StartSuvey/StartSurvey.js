@@ -12,6 +12,8 @@ class StartSurvey extends Component{
         collegeID:''
     }
     componentWillMount(){
+        Axios.defaults.xsrfCookieName = 'csrftoken'
+        Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         Axios.get(HostName+"college/")
         .then(Response=>{
                const collegeArr= Response.data.filter(item=>{

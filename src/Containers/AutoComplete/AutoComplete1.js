@@ -43,14 +43,10 @@ export default class App extends React.Component {
           console.log(ResponseArrayResponse)
           if(ResponseArrayResponse.length>0){
             ResponseArrayResponse.forEach((element,index) => {
-                var vicinity=element.vicinity?element.vicinity:'';
-                console.log(vicinity)   
-                
+                var vicinity=element.vicinity?element.vicinity:'';   
                 let firstIndex=vicinity.indexOf("<")                
                 if(firstIndex>=0){
                     vicinity=vicinity.split('<')[0]+vicinity.split('<')[1].split('>')[1]
-                    
-                    
                 }
                 let dataObj={label:""+element.title+" "+vicinity,value:index+1}  
                 //elementsArray.push(""+element.title+" "+element.vicinity);
@@ -65,61 +61,12 @@ export default class App extends React.Component {
             });
           }
           else{
-
+            console.log(ResponseArrayResponse)
           }
-
-          //this.props.dropdownArrayHandler(elementsArray)
-         // this.setState({ResponseArrayText:elementsArray},()=>{
-            
-          //})
-          
-
-          
-          //console.log(Response);
-          //console.log(elementsArray)
         },error=>{
             alert("Unable to  connect to geocoding service")
         }
         )
-        
-        // // Url of your website that process the data and returns a
-        // let url = `mywebsite/searchApi?query=${searchText}`;
-        
-        // // Configure a basic AJAX request to your server side API
-        // // that returns the data according to the sent text
-        // let xhr = new XMLHttpRequest();
-        // xhr.open('GET', url, true);
-        // xhr.responseType = 'json';
-        // xhr.onload = () => {
-        //     let status = xhr.status;
-
-        //     if (status == 200) {
-        //         // In this example we expects from the server data with the structure of:
-        //         // [
-        //         //    {
-        //         //        label: "Some Text",
-        //         //        value: 1,
-        //         //    },
-        //         //    {
-        //         //        label: "Some Other Text",
-        //         //        value: 1,
-        //         //    },
-        //         // ]
-        //         // But you can obviously change the render data :)
-
-        //         // Update the state with the remote data and that's it !
-        //         _this.setState({
-        //             autocompleteData: xhr.response
-        //         });
-
-        //         // Show response of your server in the console
-        //         console.log(xhr.response);
-        //     } else {
-        //         console.error("Cannot load data from remote source");
-        //     }
-        // };
-
-        // xhr.send();
     }
     
     /**

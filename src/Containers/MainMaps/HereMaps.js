@@ -32,6 +32,7 @@ class  HereMaps extends Component {
         this.map = null;
         this.mapCentreText=this.props.mapLocation;
         var geocoder = this.platform.getGeocodingService();
+        
         let geocodingParams = {
           searchText:this.state.mapCentreText+ " India"
         };
@@ -44,7 +45,10 @@ class  HereMaps extends Component {
           else{
             // console.log('failed')
           }
+          // console.log(result)
+          
           var location=result.Response.View[0].Result[0].Location.DisplayPosition;
+          
           //  console.log(location);
            let obj={
              center: {
@@ -95,9 +99,13 @@ class  HereMaps extends Component {
         
         this.setState({mapCentreText:nextProps.mapLocation})
          var geocoder = this.platform.getGeocodingService();
-        let geocodingParams = {
+                  
+         let geocodingParams = {
           searchText:nextProps.mapLocation+ " India"
         };
+        if(geocodingParams.searchText.includes("East Delhi")){
+          geocodingParams=" Delhi India"
+        }
         geocoder.geocode(geocodingParams,(result)=>{ 
           // console.log(result)
           // console.log(result.Response.View[0].Result[0].Location.DisplayPosition)

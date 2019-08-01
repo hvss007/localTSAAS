@@ -597,7 +597,8 @@ class Member extends Component{
                 alert("Please state whether the member is staying at home for the whole day.")
             }
             else if(member.stayAtHome.value==="yes"){
-                
+                axios.defaults.xsrfCookieName = 'csrftoken'
+                axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
                         if (window.confirm("Have you added all members?")) {
@@ -625,6 +626,8 @@ class Member extends Component{
                     .catch(err => console.error(err));
             }
             else{
+                axios.defaults.xsrfCookieName = 'csrftoken'
+                axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
                         

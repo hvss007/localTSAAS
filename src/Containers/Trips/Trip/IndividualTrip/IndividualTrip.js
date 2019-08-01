@@ -4,10 +4,10 @@ import TripOrigin from './TripOrigin/TripOrigin';
 import Axios from 'axios';
 import Input from '../../../../Components/Input/Input'
 import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
-import Rupee from '../../../../assets/icons/rupee.png'
+// import Rupee from '../../../../assets/icons/rupee.png'
 import {withRouter} from 'react-router-dom';
 import HostName from '../../../../assets/globalvaribles/GlobalVariables';
-import TripAccessIn from './TripAcessAndMode/TripAcess/TripAccessIn/TripAccessIn'
+// import TripAccessIn from './TripAcessAndMode/TripAcess/TripAccessIn/TripAccessIn'
 class Trip extends Component{
     state={
         tripInformation:{
@@ -100,6 +100,10 @@ class Trip extends Component{
         showDes:false,
         whichButtonClicked:null
     }
+    componentDidMount(){
+        Axios.defaults.xsrfCookieName = 'csrftoken'
+                    Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+    }
     onSubmitHandler=(value,button)=>{
          this.setState({sendData:value,whichButtonClicked:button},        
          )
@@ -117,7 +121,7 @@ class Trip extends Component{
         this.onSubmitHandler(true,'nextMemberButton')
     }
     tripAccessDataHandler=(dataObj,whichButton)=>{
-        const tripInformationCopy={...this  .state.tripInformation};
+        const tripInformationCopy={...this.state.tripInformation};
         let accessModeDataCopy={...tripInformationCopy.accessModeData};
         accessModeDataCopy={...dataObj};
         tripInformationCopy.accessModeData={...accessModeDataCopy};
@@ -149,7 +153,9 @@ class Trip extends Component{
                 {  
                     this.props.addTrip(this.props.idf,updatedData.originDestination[0].destinationPlace,updatedData.originDestination[0].destinationLat,updatedData.originDestination[0].destinationLng,updatedData.originDestination[0].destinationLandmark,true)
                     if(!this.props.disabled)
-                    {Axios.post(HostName+"trips/",data)
+                    {Axios.defaults.xsrfCookieName = 'csrftoken'
+                    Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                    Axios.post(HostName+"trips/",data)
                     .then(response=>{
                              Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                              ).then(response=>{})

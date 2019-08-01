@@ -201,7 +201,7 @@ class TripAcessAndMode extends Component{
         return(
             <Aux>
                 <h3>Mode Information</h3>
-                <p style={{textAlign:'justify'}}> <b>Note:</b> Please add all travel modes in the order which the member uses them. Starting and ending with Walk.<span><img style={{width:'30px'}} src={Walk}></img></span></p>
+                <p style={{textAlign:'justify'}}> <b>Note:</b> Please add all travel modes in the order which the member uses them. Starting and ending with Walk.<span><img alt="walk" style={{width:'30px'}} src={Walk}></img></span></p>
             <div className={classes.TripAcessAndMode}>  
                 {tripMainMode}
                 {/* <TripAccess disabled={this.props.disabled} destinationPlace={this.props.destinationPlace} mainMode={true} accessName={"Main Mode"} accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler}></TripAccess> */}

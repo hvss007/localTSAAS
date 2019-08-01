@@ -219,6 +219,8 @@ state={}
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
         });      
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         axios.get(HostName+"college/").then(
             Response=>{
 
@@ -268,6 +270,8 @@ state={}
                         lng:this.state.lng
                     }
                     this.props.history.push({pathname:'/finishsurvey'})
+                    axios.defaults.xsrfCookieName = 'csrftoken'
+                    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                     axios.post(HostName+"family/",post1)
                     .then((Response)=>{
                         ////console.log(Response);
@@ -400,6 +404,8 @@ state={}
                     lat:this.state.lat,
                     lng:this.state.lng
                 }
+                axios.defaults.xsrfCookieName = 'csrftoken'
+                axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"family/",post)
                     .then((Response)=>{
                         //console.log(Response);
