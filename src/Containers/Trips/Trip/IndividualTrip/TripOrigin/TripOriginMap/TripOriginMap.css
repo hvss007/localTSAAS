@@ -31,12 +31,13 @@
     display: flex;
     box-sizing: border-box;
     display: inline-block;
+    background-color: #52a7e0;
     position: relative;
     color: #fff;
     font-family: "Open Sans", sans-serif;
     font-size: 18px;
     font-weight: normal;
-    background-color: var(--primary);
+    /* background-color: var(--primary); */
     height: 40px;
     line-height: 40px;
     padding: 0 40px;
