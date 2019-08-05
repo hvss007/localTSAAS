@@ -35,7 +35,7 @@ const startSurveySub=(props)=>{
                     </div> 
                     : 
                     <div>
-                       <p > This survey link is exclusive for students / faculties / employees of <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
+                       <p > This survey link is exclusive for <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
                     </div>
                     }
                     <div style={{marginTop:'5px'}}><button  className={buttonClasses.join(' ')}
