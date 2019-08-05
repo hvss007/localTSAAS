@@ -142,29 +142,58 @@ class Trip extends Component{
             },500)
             
         }
+        if(this.state.question==="q3"){
+            if(id===1){
+                this.finishButtonCustomDialogBoxHandlerIn(this.state.updatedData,this.state.memberIDData)
+            }
+            else if(id===2){
+                
+            }
+        }
     }
     finishButtonCustomDialogBoxHandler=(updatedData,data)=>{
-        if(window.confirm("Have you added all members?")){
-            if(!this.props.disabled){
-                Axios.post(HostName+"trips/",data)
-                .then(response=>{
-                         Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                         ).then(response=>{})
-                         updatedData.accessModeData.mode.forEach(element => {
-                            delete element.isValid;
-                            Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
-                            ).then(response=>{
-                                this.props.history.push({pathname:'/finishsurvey'})
-                            })    
-                         });
-                    }) 
-            }
-            else{
-                this.props.history.push({pathname:'/finishsurvey'})
-            }
-           }else{
-           }
+        this.setState({showCustomConfirmBox:true,message:"Have you added all members?",question:'q3'},()=>{
+        })
+        // if(window.confirm("Have you added all members?")){
+        //     if(!this.props.disabled){
+        //         Axios.post(HostName+"trips/",data)
+        //         .then(response=>{
+        //                  Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+        //                  ).then(response=>{})
+        //                  updatedData.accessModeData.mode.forEach(element => {
+        //                     delete element.isValid;
+        //                     Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+        //                     ).then(response=>{
+        //                         this.props.history.push({pathname:'/finishsurvey'})
+        //                     })    
+        //                  });
+        //             }) 
+        //     }
+        //     else{
+        //         this.props.history.push({pathname:'/finishsurvey'})
+        //     }
+        //    }else{
+        //    }
            
+    }
+    finishButtonCustomDialogBoxHandlerIn(updatedData,data){
+        if(!this.props.disabled){
+            Axios.post(HostName+"trips/",data)
+            .then(response=>{
+                     Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                     ).then(response=>{})
+                     updatedData.accessModeData.mode.forEach(element => {
+                        delete element.isValid;
+                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                        ).then(response=>{
+                            this.props.history.push({pathname:'/finishsurvey'})
+                        })    
+                     });
+                }) 
+        }
+        else{
+            this.props.history.push({pathname:'/finishsurvey'})
+        }
     }
     nextButtonCustomDialogBoxHandler=(updatedData,data)=>{
         if(!this.props.disabled){
