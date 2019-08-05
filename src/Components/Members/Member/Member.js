@@ -6,6 +6,9 @@ import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
 import fs from '../../../assets/jsonfile/stateAndDistricts.json'
 import HostName from '../../../assets/globalvaribles/GlobalVariables'
+import Backdrop from '../../../Hoc/Backdrop/Backdrop1'
+import Alert from '../../Alert/Alert'
+import Aux from '../../../Hoc/Aux'
 class Member extends Component{
     constructor(props){
         super(props);
@@ -252,7 +255,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                         {value:'dontknow',displayValue:'Don\'t know'},
@@ -274,7 +276,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
@@ -395,6 +396,8 @@ class Member extends Component{
             }
         },
         qAnswered:0,
+        show:false,
+        message:'',
         autoCompleteShow:true
         }
     }
@@ -539,6 +542,31 @@ class Member extends Component{
     //     this.props.landmarkTransfer(this.state.member.landmark.value);
     //     ////consoleog(this.state.member.landmark.value);
     // }
+    buttonClickHandler=(id)=>{
+        if(id===1){
+            this.props.history.push({pathname:'/finishsurvey'})    
+        }
+        else if(id===2){
+            const memberCopy={...this.state.member};
+            const arr=Object.keys(memberCopy);
+            arr.forEach(item=>{
+              let updatedElementCopy={...memberCopy[item]};
+                  if(item==='simCards'){
+                      //consoleog(item)
+                      updatedElementCopy.value='Enter the number of sim cards here.';
+                  }
+                  else{
+                      updatedElementCopy.value='';
+                  }
+                  
+                  memberCopy[item]=updatedElementCopy;
+            })  
+            this.setState({member:memberCopy})
+        }
+    }
+    hideModalBackdrop=(value)=>{
+        this.setState({show:value})
+    }
     progressHandler=()=>{
         var arr=Object.keys(this.state.member);
         var noOfTrue=0;
@@ -601,26 +629,27 @@ class Member extends Component{
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                        if (window.confirm("Have you added all members?")) {
-                            this.props.history.push({pathname:'/finishsurvey'})    
-                        } 
-                        else{
-                            const memberCopy={...this.state.member};
-                            const arr=Object.keys(memberCopy);
-                            arr.forEach(item=>{
-                              let updatedElementCopy={...memberCopy[item]};
-                                  if(item==='simCards'){
-                                      //consoleog(item)
-                                      updatedElementCopy.value='Enter the number of sim cards here.';
-                                  }
-                                  else{
-                                      updatedElementCopy.value='';
-                                  }
+                        this.setState({show:true,message:"Have you added all members?"})
+                        // if (window.confirm("Have you added all members?")) {
+                        //     this.props.history.push({pathname:'/finishsurvey'})    
+                        // } 
+                        // else{
+                        //     const memberCopy={...this.state.member};
+                        //     const arr=Object.keys(memberCopy);
+                        //     arr.forEach(item=>{
+                        //       let updatedElementCopy={...memberCopy[item]};
+                        //           if(item==='simCards'){
+                        //               //consoleog(item)
+                        //               updatedElementCopy.value='Enter the number of sim cards here.';
+                        //           }
+                        //           else{
+                        //               updatedElementCopy.value='';
+                        //           }
                                   
-                                  memberCopy[item]=updatedElementCopy;
-                            })  
-                            this.setState({member:memberCopy})
-                        }
+                        //           memberCopy[item]=updatedElementCopy;
+                        //     })  
+                        //     this.setState({member:memberCopy})
+                        // }
 
                     })
                     .catch(err => console.error(err));
@@ -637,11 +666,6 @@ class Member extends Component{
                         console.error(err)
                         );
             }
-         
-        // }
-        // else{
-        //     alert("Please fill all the fields")
-        // }
     }
     render(){
         const arrNew=[];
@@ -660,6 +684,7 @@ class Member extends Component{
         })
     }
     return(
+        <Aux>
         <div className={classes.MemberData} >
         <form className={classes.CustomForm} >
         {memberformArray.map((memFormElement)=>{return(
@@ -679,13 +704,17 @@ class Member extends Component{
                 onFocusHandler={this.onFocusHandler}
                 blurred={this.onBlurHandler}
                 itemClicked={this.itemClickedHandler}
-              //  outFocus={()=>this.onBlurHandler(memFormElement.id)}
             >    
             </Input>:null
         )})}
         <MemberSubmitButton clicked={this.submitButtonHandler} ></MemberSubmitButton>
         </form>
         </div>
+        <Backdrop hideModalBackdrop={this.hideModalBackdrop} alert={true} show={this.state.show}>
+            <Alert buttonClickHandler={this.buttonClickHandler} message={this.state.message}>
+            </Alert>
+        </Backdrop>
+        </Aux>
     )}
 }
 export default withRouter(Member);

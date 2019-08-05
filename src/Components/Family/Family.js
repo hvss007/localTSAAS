@@ -519,7 +519,6 @@ class Family extends Component{
                     blurred={this.onBlurHandler}
                     itemClicked={this.itemClickedHandler}
                     id={memFormElement.id}
-                //  outFocus={()=>this.onBlurHandler(memFormElement.id)}
                 >    
                 </Input>:null
             )})}
