@@ -7,8 +7,8 @@ const alert=(props)=>{
                 {props.message}
             </p>
             <div className={classes.ButtonContainer}>
-                <button onClick={()=>props.buttonClickHandler(1)}>Yes</button>
-                <button onClick={()=>props.buttonClickHandler(2)}>No</button>
+                <button onClick={()=>props.buttonClickHandler(1,props.question)}>Yes</button>
+                <button onClick={()=>props.buttonClickHandler(2,props.question)}>No</button>
             </div>
         </div>
     )

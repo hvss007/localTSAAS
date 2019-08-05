@@ -23,22 +23,6 @@ class Member extends Component{
         this.state={
             familyId:null,
         member:{
-            // memberId:{
-            //     title:'member_id',
-            //     label:'Member ID',
-            //     elementType:'input',
-            //     elementConfig:{
-            //        type:'text',
-            //        placeholder:1 
-            //     },
-            //     value:1,
-            //     show:true,
-            //     validation:{
-            //         required:true
-            //     },
-            //     valid:true,
-            //     touched:false
-            // },
             gender:{
                 name:'gender',
                 label:'Gender',
@@ -93,7 +77,6 @@ class Member extends Component{
                     options:[
                         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'notApplicable',displayValue:'Not applicable'},
-                        // {value:'prePrimary',displayValue:'Pre Primary'},
                         {value:'primary',displayValue:'Primary'},
                         {value:'passX',displayValue:'10th Pass'},
                         {value:'passXII',displayValue:'12th Pass'},
@@ -211,7 +194,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                         {value:'dontknow',displayValue:'Don\'t know'},
@@ -233,7 +215,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                         {value:'dontknow',displayValue:'Don\'t know'},
@@ -296,7 +277,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
@@ -317,7 +297,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                     ]
@@ -338,7 +317,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                     ]
@@ -359,7 +337,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                        {value:'yes',displayValue:'Yes'},
                        {value:'no',displayValue:'No'},    
                     ]
@@ -380,7 +357,6 @@ class Member extends Component{
                 elementConfig:{
                     type:'radio',
                     options:[
-                        // {value:'',displayValue:"Choose Here", selected:true, disabled:true},
                         {value:'yes',displayValue:'Yes'},
                         {value:'no',displayValue:'No'},
                     ]
@@ -527,21 +503,6 @@ class Member extends Component{
     onBlurHandler=()=>{
         this.setState({autoCompleteShow:false})
     }
-    // itemClickedHandler=(event,id,truth)=>{
-    //     //let hed=this.state.member.landmark.value;
-    //    // this.setState({hed:""},()=>{//consoleog(this.state.member.landmark.value)});
-    //     const memberUpdated={...this.state.member};
-    //     const updatedInputElement={...memberUpdated["landmark"]} ;
-    //     updatedInputElement.value=""+document.getElementById(id).innerHTML;
-    //     memberUpdated["landmark"]=updatedInputElement; 
-    //     this.setState({member:memberUpdated,autoCompleteShow:false},()=>{this.landmarkValueHandler()}
-    //     )
-    //     this.props.setMarkerQuery(""+updatedInputElement.value);
-    // }
-    // landmarkValueHandler=()=>{
-    //     this.props.landmarkTransfer(this.state.member.landmark.value);
-    //     ////consoleog(this.state.member.landmark.value);
-    // }
     buttonClickHandler=(id)=>{
         if(id===1){
             this.props.history.push({pathname:'/finishsurvey'})    
@@ -552,7 +513,6 @@ class Member extends Component{
             arr.forEach(item=>{
               let updatedElementCopy={...memberCopy[item]};
                   if(item==='simCards'){
-                      //consoleog(item)
                       updatedElementCopy.value='Enter the number of sim cards here.';
                   }
                   else{
