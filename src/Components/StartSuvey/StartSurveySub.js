@@ -28,7 +28,7 @@ const startSurveySub=(props)=>{
                             <p>as a Service</p>
                         </div>    
                     </div>
-                    <p> Welcome to TSaaS! Please take few minutes to complete the survey. Your few minutes will help us to synthesize a city traffic model. Personal information and location are neither asked nor tracked.</p>
+                    <p style={{margin:'4px auto 4px'}}> Welcome to TSaaS! Please take few minutes to complete the survey. Your few minutes will help us to synthesize a city traffic model. Personal information and location are neither asked nor tracked.</p>
                     {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
                     <div>
                         <p>Please <a href="mailto:amitfce@iitr.ac.in"> contact us</a> to set up a survey or take a demo survey. </p>
@@ -38,9 +38,16 @@ const startSurveySub=(props)=>{
                        <p > This survey link is exclusive for <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
                     </div>
                     }
-                    <div style={{marginTop:'5px'}}><button  className={buttonClasses.join(' ')}
-                     style={{margin:'auto',fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the survey </button> </div>
+                    <div className={classes.StartSurveyButtonContainer} >
+                        <button  className={buttonClasses.join(' ')}
+                            style={{fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the survey </button> 
+
+                        <button  className={buttonClasses.join(' ')}
+                            style={{fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the demo survey </button> 
+                     </div>
+                    
                     </div>
+                    
                 <div className={classes.RightContainer}> </div>
             </div>
         </div>

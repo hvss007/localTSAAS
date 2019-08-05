@@ -11,6 +11,8 @@ import MainMaps from '../../Containers/MainMaps/MainMaps'
 import fs from '../../assets/jsonfile/stateAndDistricts.json'
 import Aux from '../../Hoc/Aux';
 import HostName from '../../assets/globalvaribles/GlobalVariables';
+import Backdrop from '../../Hoc/Backdrop/Backdrop1'
+import Alert from '../Alert/Alert';
 class Family extends Component{
     constructor(props){
         super(props);
@@ -164,11 +166,12 @@ class Family extends Component{
         centerLat:'',
         centerLng:'',
         markerLocationText:'',
-        collegeID:''
+        collegeID:'',
+        show:false
         //copied from members
     }
 }
-state={}
+ state={}
     //these functions imported from members
     mapShowHandler=(searchText)=>{
         this.setState({showMap:true,setMapSearchText:searchText})
@@ -239,6 +242,10 @@ state={}
             }
         )
     }
+    hideModalBackdrop=(value)=>{
+        this.setState({show:value})
+    }
+    
     //these functions imported from members
     //these functions imported from member
     //these functions imported from member
@@ -252,41 +259,41 @@ state={}
         this.setState({family:familyUpdated},()=>{
             this.progressHandler()
             if(inputIdentifier==="country" && updatedInputElement.value==="Others"){
-
-                if(window.confirm("Sorry. Currently this survey is confined to residents of India. Press Ok to finish the survey")){
-                    const family=this.state.family;
-                    const family1=this.state.family1;
-                    const post1={
-                        collegeID:this.state.collegeID,
-                        noOfCars:family1.noOfCars,
-                        noOfCycles:family1.noOfCycles,
-                        noOfTwoWheelers:family1.noOfTwoWheelers,
-                        country:family.country.value,
-                        familyIncome:family.familyIncome.value,
-                        homeState:family.homeState.value,
-                        nameOfDistrict:family.nameOfDistrict.value,
-                        landmark:this.state.markerLocationText,
-                        lat:this.state.lat,
-                        lng:this.state.lng
-                    }
-                    this.props.history.push({pathname:'/finishsurvey'})
-                    axios.defaults.xsrfCookieName = 'csrftoken'
-                    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-                    axios.post(HostName+"family/",post1)
-                    .then((Response)=>{
-                        ////console.log(Response);
-                    })
-                    .catch(err => 
-                        console.error(err)
-                        );
-                }
-                else{
-                    const newFamilyUpdated = {...this.state.family};
-                    const update_country={...newFamilyUpdated["country"]};
-                    update_country.value="India";
-                    newFamilyUpdated["country"]=update_country;
-                    this.setState({family:newFamilyUpdated});                    
-                }
+                this.setState({show:true})
+                // if(window.confirm("Sorry. Currently this survey is confined to residents of India. Press Ok to finish the survey")){
+                //     const family=this.state.family;
+                //     const family1=this.state.family1;
+                //     const post1={
+                //         collegeID:this.state.collegeID,
+                //         noOfCars:family1.noOfCars,
+                //         noOfCycles:family1.noOfCycles,
+                //         noOfTwoWheelers:family1.noOfTwoWheelers,
+                //         country:family.country.value,
+                //         familyIncome:family.familyIncome.value,
+                //         homeState:family.homeState.value,
+                //         nameOfDistrict:family.nameOfDistrict.value,
+                //         landmark:this.state.markerLocationText,
+                //         lat:this.state.lat,
+                //         lng:this.state.lng
+                //     }
+                //     this.props.history.push({pathname:'/finishsurvey'})
+                //     axios.defaults.xsrfCookieName = 'csrftoken'
+                //     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                //     axios.post(HostName+"family/",post1)
+                //     .then((Response)=>{
+                //         ////console.log(Response);
+                //     })
+                //     .catch() 
+                //         // console.error(err)
+                //         // );
+                // }
+                // else{
+                //     const newFamilyUpdated = {...this.state.family};
+                //     const update_country={...newFamilyUpdated["country"]};
+                //     update_country.value="India";
+                //     newFamilyUpdated["country"]=update_country;
+                //     this.setState({family:newFamilyUpdated});                    
+                // }
             }
             if(inputIdentifier==="homeState"&&updatedInputElement.valid){
                 const newFamilyUpdated={...this.state.family};
@@ -316,6 +323,41 @@ state={}
                 this.setMarkerQuery(null)
             }
         });
+    }
+    buttonClickHandler=(id)=>{
+        if(id===1){
+            const family=this.state.family;
+                    const family1=this.state.family1;
+                    const post1={
+                        collegeID:this.state.collegeID,
+                        noOfCars:family1.noOfCars,
+                        noOfCycles:family1.noOfCycles,
+                        noOfTwoWheelers:family1.noOfTwoWheelers,
+                        country:family.country.value,
+                        familyIncome:family.familyIncome.value,
+                        homeState:family.homeState.value,
+                        nameOfDistrict:family.nameOfDistrict.value,
+                        landmark:this.state.markerLocationText,
+                        lat:this.state.lat,
+                        lng:this.state.lng
+                    }
+                    this.props.history.push({pathname:'/finishsurvey'})
+                    axios.defaults.xsrfCookieName = 'csrftoken'
+                    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                    axios.post(HostName+"family/",post1)
+                    .then((Response)=>{
+         
+                    })
+                    // .catch(err=> 
+                    //     );
+        }
+        else if(id===2){
+            const newFamilyUpdated = {...this.state.family};
+                    const update_country={...newFamilyUpdated["country"]};
+                    update_country.value="India";
+                    newFamilyUpdated["country"]=update_country;
+                    this.setState({family:newFamilyUpdated});  
+        }
     }
     itemClickedHandler=(event,id,truth)=>{
         //let hed=this.state.member.landmark.value;
@@ -426,7 +468,6 @@ state={}
         for(let i=0;i<arr.length;i++){
             arrNew.push({backArr:arr[i],clicked:false});
         }
-        // console.log(arrNew);
         let familyformArray=[];
         for (let key in this.state.family){
         familyformArray.push(
@@ -437,13 +478,9 @@ state={}
     }
         return(
         <Aux>
-            {/* <div style={{width:'100%',boxSizing:'border-box',padding:'25px',fontSize:'32px',textAlign:'center',paddingBottom:'5px'}}><p style={{color:'rgb(41, 129, 185)'}}>Trip Information</p></div>     */}
             <div className={classes.MembersInner}
-        // className="container-fluid my-5 mx-auto px-5" 
         >
-        {/* <div style={{display:'flex' ,width:'100%',height:'100vh',flexDirection:'column',alignItems:'center'}}>     */}
         <div className={classes.MapFamilyWrapper}
-        // className="row flex-column-reverse flex-md-row" 
         style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 27px 51.33px 7.67px', borderRadius: '10px'}}>
         
         {this.state.showMap?
@@ -453,7 +490,6 @@ state={}
         <div className={classes.FamilyWrapper}>
         <div className={classes.Family}>
             <div className={classes.Heading}><span><img style={{width:'40px'}} alt={"family"} src={Family1}></img></span><p>Family Information</p></div>
-            {/*<ProgressBar total={3} transformValue={this.state.qAnswered}></ProgressBar>*/}
             <BuildControls valueAdded={this.addValueHandler}
                 valueRemoved={this.removeValueHandler}
                 family={this.state.family1}></BuildControls>
@@ -483,7 +519,6 @@ state={}
                     blurred={this.onBlurHandler}
                     itemClicked={this.itemClickedHandler}
                     id={memFormElement.id}
-                //  outFocus={()=>this.onBlurHandler(memFormElement.id)}
                 >    
                 </Input>:null
             )})}
@@ -499,6 +534,9 @@ state={}
         </div>
         </div>
         {/* </div> */}
+        <Backdrop alert={true} hideModalBackdrop={this.hideModalBackdrop} show={this.state.show}>
+            <Alert buttonClickHandler={this.buttonClickHandler} message="Sorry. Currently this survey is confined to residents of India. Press Yes to finish the survey"></Alert>
+        </Backdrop>
         </Aux>
     )}
 }

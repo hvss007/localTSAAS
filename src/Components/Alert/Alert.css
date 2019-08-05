@@ -1,0 +1,27 @@
+.Alert{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:80%;
+    height:20vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(13, 31, 70);
+    color:white;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: justify;
+}
+.Message{
+    font-size: 18px;
+    line-height: 20px;
+}
+.ButtonContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+

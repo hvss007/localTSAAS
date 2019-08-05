@@ -7,19 +7,15 @@ import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
 // import Rupee from '../../../../assets/icons/rupee.png'
 import {withRouter} from 'react-router-dom';
 import HostName from '../../../../assets/globalvaribles/GlobalVariables';
-// import TripAccessIn from './TripAcessAndMode/TripAcess/TripAccessIn/TripAccessIn'
+import Aux from '../../../../Hoc/Aux'
+import Backdrop from '../../../../Hoc/Backdrop/Backdrop1' 
+import Alert from'../../../../Components/Alert/Alert'
 class Trip extends Component{
     state={
         tripInformation:{
                 originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,originTime:'',originLandmark:this.props.initialLandmark?this.props.initialLandmark:''},
                 destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:'',destinationLandmark:''},
                 accessModeData:{},
-                // accessInfoIn:[
-                //     {id:1,displayValue:"How much time (hh:mm) does the whole trip take",title:"travelTime",value:'',valid:false,touched:false,type:'time',min:'00:00',max:'12:00'},
-                //     {id:2,displayValue:"How long (km) is the whole trip", title:"journeyLength",value:'',valid:false,touched:false,type:'number',min:'0'},
-                //     {id:3,displayValue:"How much does the whole trip costs ",title:"fare",value:'',valid:false,touched:false,src:Rupee,type:'number',min:'0'},
-                //     // {id:4,title:"Cost",value:'',valid:false,touched:false}
-                //     ],
                 accessInfoIn:{
                     travelTime:{
                         name:'travelTime',
@@ -98,7 +94,11 @@ class Trip extends Component{
         sendData1:false,
         showMid:false,
         showDes:false,
-        whichButtonClicked:null
+        whichButtonClicked:null,
+        showCustomConfirmBox:false,
+        message:'',
+        question:'',
+        updatedData:null,memberIDData:null
     }
     componentDidMount(){
         Axios.defaults.xsrfCookieName = 'csrftoken'
@@ -119,6 +119,71 @@ class Trip extends Component{
     }
     nextMemberClickHandler=()=>{
         this.onSubmitHandler(true,'nextMemberButton')
+    }
+    hideModalBackdrop=(value)=>{
+        this.setState({showCustomConfirmBox:value})
+    }
+    buttonClickHandler=(id,question)=>{
+        if(this.state.question==='q1')
+        {if(id===1){
+            this.nextButtonCustomDialogBoxHandler(this.state.updatedData,this.state.memberIDData)
+        }
+        else if(id===2){
+            
+        }}
+        if(this.state.question==='q2'){
+            setTimeout(()=>{
+                if(id===1){
+                    this.finishButtonCustomDialogBoxHandler(this.state.updatedData,this.state.memberIDData)
+                }
+                else if(id===2){
+                    
+                }
+            },500)
+            
+        }
+    }
+    finishButtonCustomDialogBoxHandler=(updatedData,data)=>{
+        if(window.confirm("Have you added all members?")){
+            if(!this.props.disabled){
+                Axios.post(HostName+"trips/",data)
+                .then(response=>{
+                         Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                         ).then(response=>{})
+                         updatedData.accessModeData.mode.forEach(element => {
+                            delete element.isValid;
+                            Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                            ).then(response=>{
+                                this.props.history.push({pathname:'/finishsurvey'})
+                            })    
+                         });
+                    }) 
+            }
+            else{
+                this.props.history.push({pathname:'/finishsurvey'})
+            }
+           }else{
+           }
+           
+    }
+    nextButtonCustomDialogBoxHandler=(updatedData,data)=>{
+        if(!this.props.disabled){
+            Axios.post(HostName+"trips/",data)
+            .then(response=>{
+                     Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                     ).then(response=>{})
+                     updatedData.accessModeData.mode.forEach(element => {
+                        delete element.isValid;
+                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                        ).then(response=>{
+                            this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
+                        })    
+                     });
+                }) 
+        }
+        else{
+            this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+        }
     }
     tripAccessDataHandler=(dataObj,whichButton)=>{
         const tripInformationCopy={...this.state.tripInformation};
@@ -168,53 +233,60 @@ class Trip extends Component{
                         })}
                 }
                 if(whichButton==='nextMemberButton'){
-                    if (window.confirm("Have you added all trips?")) {
-                        if(!this.props.disabled){
-                            Axios.post(HostName+"trips/",data)
-                            .then(response=>{
-                                     Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                                     ).then(response=>{})
-                                     updatedData.accessModeData.mode.forEach(element => {
-                                        delete element.isValid;
-                                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
-                                        ).then(response=>{
-                                            this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
-                                        })    
-                                     });
-                                }) 
-                        }
-                        else{
-                            this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
-                        }
+                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q1'},()=>{
+                    })
+                    
+                    
+                    // if (window.confirm("Have you added all trips?")) {
+                    //     if(!this.props.disabled){
+                    //         Axios.post(HostName+"trips/",data)
+                    //         .then(response=>{
+                    //                  Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                    //                  ).then(response=>{})
+                    //                  updatedData.accessModeData.mode.forEach(element => {
+                    //                     delete element.isValid;
+                    //                     Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                    //                     ).then(response=>{
+                    //                         this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
+                    //                     })    
+                    //                  });
+                    //             }) 
+                    //     }
+                    //     else{
+                    //         this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})
+                    //     }
                         
-                      } else {
+                    //   } else {
                        
-                      }
+                    //   }
                 }
                 if(whichButton==='finishButton'){
-                    if (window.confirm("Have you added all trips?")) {
-                       if(window.confirm("Have you added all members?")){
-                        if(!this.props.disabled){
-                            Axios.post(HostName+"trips/",data)
-                            .then(response=>{
-                                     Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                                     ).then(response=>{})
-                                     updatedData.accessModeData.mode.forEach(element => {
-                                        delete element.isValid;
-                                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
-                                        ).then(response=>{
-                                            this.props.history.push({pathname:'/finishsurvey'})
-                                        })    
-                                     });
-                                }) 
-                        }
-                        else{
-                            this.props.history.push({pathname:'/finishsurvey'})
-                        }
-                       }else{
-                       }
-                       } else {
-                       }
+                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q2'},()=>{
+                    })
+                    // if (window.confirm("Have you added all trips?")) {
+                    //    if(window.confirm("Have you added all members?")){
+                    //     if(!this.props.disabled){
+                    //         Axios.post(HostName+"trips/",data)
+                    //         .then(response=>{
+                    //                  Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
+                    //                  ).then(response=>{})
+                    //                  updatedData.accessModeData.mode.forEach(element => {
+                    //                     delete element.isValid;
+                    //                     Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                    //                     ).then(response=>{
+                    //                         this.props.history.push({pathname:'/finishsurvey'})
+                    //                     })    
+                    //                  });
+                    //             }) 
+                    //     }
+                    //     else{
+                    //         this.props.history.push({pathname:'/finishsurvey'})
+                    //     }
+                    //    }else{
+                    //    }
+                    //    } 
+                    //    else {
+                    //    }
                 }
             }
             else{
@@ -323,6 +395,7 @@ class Trip extends Component{
         }
         const addTripClasses=[classes.AddTripButton,classes.AddTripButtonBorder]
         return(
+            <Aux>
             <div className={classes.Trip} >
                 <div className={classes.TripHeading}><p>{"Trip "+ this.props.idf}</p></div>
                 <div className={classes.OriginDestinationWrapper} >
@@ -362,6 +435,10 @@ class Trip extends Component{
                     <button  onClick={this.nextMemberClickHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Add Member</button>
                     <button onClick={this.finishClicked} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}> Finish Survey</button></div>:null}
             </div>
+            <Backdrop  alert={true} hideModalBackdrop={this.hideModalBackdrop} show={this.state.showCustomConfirmBox}>
+                <Alert buttonClickHandler={this.buttonClickHandler} qusetion={this.state.question} message={this.state.message}></Alert>
+            </Backdrop>
+            </Aux>
         )
     }  
 }

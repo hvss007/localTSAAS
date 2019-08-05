@@ -104,11 +104,16 @@
   padding-left: 10px;
   white-space: nowrap;
 }
-
+ .StartSurveyButtonContainer{
+   margin-top:7px;
+   display:flex;
+   flex-flow: column
+ } 
 .StartSurveyButton{
   white-space: nowrap;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-size: 18px;
   font-weight: 600;
   box-sizing: border-box;
@@ -239,6 +244,12 @@
     }
   }
   @media(min-width:800px){
+    .StartSurveyButtonContainer{
+      flex-flow: row
+    }
+    .StartSurveyButtonContainer:nth-child(1){
+      margin-right:15px
+    }
     .Thank span{
       font-size: 36px
     }
