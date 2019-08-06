@@ -453,12 +453,12 @@ class Trip extends Component{
                     >    
                     </Input>
         )})}
-                {   orValue&&drValue?
+                {
                     this.props.showAdd?<button className={addTripClasses.join(' ')} onClick={
                      ()=>
                     {   orValue&&drValue?this.onSubmitHandler(true,"addTrip"):alert('Please complete the origin and destination information before moving forward.')
                     } 
-                     } type="submit">Add Trip</button>:null:null
+                     } type="submit">Add Trip</button>:null
                      }
                 {this.props.tripsLength>1&&this.props.showAdd?<div className={classes.NextMemberWrapper}>
                     <button onClick={this.removeCurrentTripHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Remove Trip</button>

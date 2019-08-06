@@ -163,28 +163,23 @@ class TripOriginMap extends Component{
           }         
           }, function(e) {
           alert(e);
-
         });
-
-
         })
         return true
       }
       if(this.props.markerLocationText!==nextProps.markerLocationText){
         if(this.state.count1>0){
-
+          this.group.removeObject(this.state.placeMarker)
         }
         this.setState({lat:nextProps.markerLat,lng:nextProps.markerLng,count1:this.state.count1+1,backdropShow:true,showFrontDrop:true},()=>{
           this.props.latLong(this.state.lat,this.state.lng)
         })
-        
+        // this.group.removeObject(this.state.placeMarker)
         this.addMarkersToMap({lat:nextProps.markerLat,lng:nextProps.markerLng},this.behavior);  
         return true
       }}
     }
-
     addMarkersToMap=(position,behavior)=>{
-
         this.map.setZoom("14",true)
         this.map.setCenter({lat:position.lat, lng:position.lng})      
         var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
@@ -196,7 +191,6 @@ class TripOriginMap extends Component{
         this.dragEventHandler(map,behavior);
         
     }
-
     dragEventHandler=(map,behavior)=>{
       if(!this.props.disabled)
       {
