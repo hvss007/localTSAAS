@@ -60,7 +60,7 @@ export default class App extends React.Component {
             });
           }
           else{
-            console.log(ResponseArrayResponse)
+            // console.log(ResponseArrayResponse)
           }
         },error=>{
             alert("Unable to  connect to geocoding service")
