@@ -6,7 +6,6 @@ import Map from '../../../../../../assets/icons/map.png';
 class TripOriginMap extends Component{
     constructor(props) {
         super(props);
-        
         this.state = {
           app_id: process.env.REACT_APP_PLACES_API_ID,
           app_code: process.env.REACT_APP_PLACES_APP_CODE,
@@ -33,27 +32,6 @@ class TripOriginMap extends Component{
         this.mapCentreText=this.props.mapLocation;
         
         
-    }
-
-    componentDidUpdate(prevProps,prevState){
-      // if(this.state.dataLoaded&&this.state.count===0){
-      //   this.layer = this.platform.createDefaultLayers();
-      //   this.container = document.getElementById('here-map');
-      //   this.map = new window.H.Map(this.container, this.layer.normal.map, {
-      //     center: this.state.center,
-      //     zoom: this.state.zoom,
-      //   })
-      //   this.group = new window.H.map.Group();  
-      //   var events = new window.H.mapevents.MapEvents(this.map);
-      // // eslint-disable-next-line
-      //   this.behavior = new window.H.mapevents.Behavior(events);
-      // // eslint-disable-next-line
-      //   var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
-      //     //this.addMarkersToMap(this.map,behavior); 
-      //     //this.req(this.behavior);
-      //     this.map.addObject(this.group);
-      //     return true
-      //   }
     }
     componentDidMount() {
         this.platform = new window.H.service.Platform(this.state);
@@ -86,12 +64,8 @@ class TripOriginMap extends Component{
             searchText:this.state.mapCentreText+ " India"
           };
           geocoder.geocode(geocodingParams,(result)=>{ 
-            //console.log(result)
-            //console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
             if(result.Response.View.length>0) {
-              // var loc=result.Response.View[0].Result[0].Location.DisplayPosition;  
               var location=result.Response.View[0].Result[0].Location.DisplayPosition;
-              //console.log(location);
               let obj={
                  lat:location.Latitude,
                  lng:location.Longitude,
@@ -106,9 +80,9 @@ class TripOriginMap extends Component{
                             
                           }
                         })}
-                        else{
-        
-                        }
+           else{
+                          
+               }
                       }, function(e) {
                         alert(e);
                       });
@@ -116,93 +90,29 @@ class TripOriginMap extends Component{
         
         }
         else{}
-                        //console.log(result)
-            //console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
-        //     if(result.Response.View.length>0) {
-        //       // var loc=result.Response.View[0].Result[0].Location.DisplayPosition;  
-        //       var location=result.Response.View[0].Result[0].Location.DisplayPosition;
-        //       //console.log(location);
-        //       let obj={
-        //          lat:location.Latitude,
-        //          lng:location.Longitude,
-        //          }
-                
-        //          this.map = new window.H.Map(this.container, this.layer.normal.map, {
-        //           center: {...obj},
-        //           zoom: this.state.zoom,
-                  
-              
-        //         })
-        //         var events = new window.H.mapevents.MapEvents(this.map);
-        // // eslint-disable-next-line
-        //         this. behavior = new window.H.mapevents.Behavior(events);
-        // // eslint-disable-next-line
-        //         var ui = new window.H.ui.UI.createDefault(this.map,this. layer)
-        //         this.map.addObject(this.group);
-        //         console.log(this.props.initLat,"dcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbsj")
-        //         if(this.props.initLat&&this.props.initLng){
-        //         let dataObj={lat:this.props.initLat,lng:this.props.initLng};
-        //         this.addMarkersToMap(dataObj,this.behavior);  
-        //         console.log("woeeeeeeeee")
-        //       }else{
-        //         // this.addMarkersToMap(this.state.center,this.behavior);  
-        //       } 
-        //       this.setState({dataLoaded:true,center:obj},(
-        //       )=>
-        //       { 
-        //         this.props.centerLocationHandler(this.state.center.lat,this.state.center.lng)
-        //        }
-        //       )  
-        //       ;   
-        //     }
-        //     else{
-        //       //console.log('failed')
-        //     }         
-        //     }, function(e) {
-        //     alert(e);
-        //   });
-        //   })  
-        
-        
     }
     shouldComponentUpdate(nextProps,nextState){
-      // console.log(nextState.showFrontDrop);  
-      // console.log(this.state.showFrontDrop);  
-      // console.log(nextState.showFrontDrop!==this.state.showFrontDrop)
       if(nextState.showFrontDrop!==this.state.showFrontDrop){
           setTimeout(()=>{
-            // document.getElementById("originmap").addEventListener('resize',  ()=> {
-            //   console.log("Hello")
               this.map.getViewPort().resize(); 
-            // });
           },2000)
           return true   
       }
       else{
            return false
       }
-      
-      // if(nextProps.backdropHidden!==this.props.backdropHidden){
-      //  this.setState(showFrontDrop:)
-      //   return true 
-      // }
       }
     componentWillReceiveProps(nextProps) {
       if(!this.props.disabled){
       if(nextProps.mapLocation!==this.props.mapLocation){
         this.setState({mapCentreText:nextProps.mapLocation},()=>{
-          //console.log("dcni")
         var geocoder = this.platform.getGeocodingService();
         let geocodingParams = {
           searchText:this.state.mapCentreText+ " India"
         };
         geocoder.geocode(geocodingParams,(result)=>{ 
-          //console.log(result)
-          //console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
           if(result.Response.View.length>0) {
-            // var loc=result.Response.View[0].Result[0].Location.DisplayPosition;  
             var location=result.Response.View[0].Result[0].Location.DisplayPosition;
-            //console.log(location);
             let obj={
                lat:location.Latitude,
                lng:location.Longitude,
@@ -215,7 +125,6 @@ class TripOriginMap extends Component{
             );   
           }
           else{
-            //console.log('failed')
           }         
           }, function(e) {
           alert(e);
@@ -224,8 +133,6 @@ class TripOriginMap extends Component{
 
 
         })
-        
-        // 
         return true
       }
       if(this.props.markerLocationText!==nextProps.markerLocationText){
@@ -240,51 +147,18 @@ class TripOriginMap extends Component{
         return true
       }}
     }
-  //   static getDerivedStateFromProps(nextProps, prevState){
-  //     if(nextProps.backdropHidden!==prevState.showFrontDrop){
-  //       return { someState: nextProps.someValue};
-  //    }
-  //    else return null;
-  //  }
-   
-  //  componentDidUpdate(prevProps, prevState) {
-  //    if(prevProps.someValue!==this.props.someValue){
-  //      //Perform some operation here
-  //      this.setState({someState: someValue});
-  //      this.classMethod();
-  //    }
-  //  }
-    // componentDidUpdate(prevState) {
-    //   // Typical usage (don't forget to compare props):
-    //   if (this.state.showFrontDrop !== prevState.showFrontDrop) {
-    //     window.addEventListener('resize', function () {
-    //               console.log("Hello")
-    //               this.map.getViewPort().resize(); 
-                
-    //             });
-    //   }
-    // }
-
 
     addMarkersToMap=(position,behavior)=>{
-        // if(this.props.initLat!==null&&this.props.initLng!==null)
-        // {
-        //   var placeMarker=new window.H.map.Marker({lat:this.props.initLat, lng:this.props.initLng})
-        //   this.group.addObject(placeMarker);
-        // }
-        // else{
+
         this.map.setZoom("14",true)
         this.map.setCenter({lat:position.lat, lng:position.lng})      
         var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
         this.setState({placeMarker:placeMarker});
         placeMarker.draggable=true;
         let map=this.map;
-        //let behavior=this.behavior;
-        //map.removeObject(this.group);        
         this.group.addObject(placeMarker);
         
         this.dragEventHandler(map,behavior);
-        // }
         
     }
 
@@ -348,16 +222,6 @@ class TripOriginMap extends Component{
           originMapWrapperClasses.push(classes.OriginMapWrapperMoveRight);
         }
       }
-
-
-      // let x=window.innerWidth/2-50;
-      
-      // const originMapStyle={
-      //   transition:'all linear .5s',
-      //   transform: 'translateX('+ x+'px)'
-      // }
-      
- //    const styleSmall={width: '100px', height: '100px', background: 'grey',position:"absolute",marginTop:"30px" };
     return(
       <Aux>
      <div style={{display:'flex',flexDirection:'column',marginBottom:'20px'}}>
