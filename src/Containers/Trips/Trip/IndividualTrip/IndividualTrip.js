@@ -230,10 +230,10 @@ class Trip extends Component{
             let valid=originDestinationArray[0].destinationPlace?true:false
             let statement=''
             if(whichButton==='addTrip'){
-                statement="before adding next trip."
+                statement="before adding the next trip."
             }
             else if(whichButton==="nextMemberButton"){
-                statement="before adding next member."
+                statement="before adding the next member."
             }
             else if(whichButton==="finishButton"){
                 statement="before finishing the survey."
@@ -322,7 +322,7 @@ class Trip extends Component{
                 }
             }
             else{
-                alert("Please complete the fields "+statement )
+                alert("Please complete the origin, destination and travel mode information "+statement )
                  this.setState({sendData:false})
             }
             }
@@ -456,7 +456,7 @@ class Trip extends Component{
                 {   orValue&&drValue?
                     this.props.showAdd?<button className={addTripClasses.join(' ')} onClick={
                      ()=>
-                    {   orValue&&drValue?this.onSubmitHandler(true,"addTrip"):alert('Please complete the origin and destination information before moving forward.')
+                    {   orValue&&drValue?this.onSubmitHandler(true,"addTrip"):alert('Please complete the origin, destination and travel mode information before moving forward.')
                     } 
                      } type="submit">Add Trip</button>:null:null
                      }
