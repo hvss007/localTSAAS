@@ -535,7 +535,7 @@ class Family extends Component{
         </div>
         {/* </div> */}
         <Backdrop alert={true} hideModalBackdrop={this.hideModalBackdrop} show={this.state.show}>
-            <Alert buttonClickHandler={this.buttonClickHandler} message="Sorry. Currently this survey is confined to residents of India. Press Yes to finish the survey"></Alert>
+            <Alert buttonClickHandler={this.buttonClickHandler} message="Sorry. Currently this survey is confined to residents of India. Click 'Yes' to finish the survey, 'No' to continue."></Alert>
         </Backdrop>
         </Aux>
     )}

@@ -589,7 +589,7 @@ class Member extends Component{
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                        this.setState({show:true,message:"Have you added all members?"})
+                        this.setState({show:true,message:"Have you added all members of the family?"})
                         // if (window.confirm("Have you added all members?")) {
                         //     this.props.history.push({pathname:'/finishsurvey'})    
                         // } 
