@@ -10,10 +10,10 @@ const alert=(props)=>{
             <div className={classes.ButtonContainer}>
                 {props.showButton?
                                 <Aux>
-                                <button onClick={()=>props.buttonClickHandler(1,props.question)}>Yes</button>
-                                <button onClick={()=>props.buttonClickHandler(2,props.question)}>No</button></Aux>
+                                <button className={classes.AlertButton+' '+classes.AlertButtonBorder} onClick={()=>props.buttonClickHandler(1,props.question)}>Yes</button>
+                                <button className={classes.AlertButton+' '+classes.AlertButtonBorder} onClick={()=>props.buttonClickHandler(2,props.question)}>No</button></Aux>
                             :
-                            <button style={{margin:'auto'}}>Ok</button>
+                            <button className={classes.AlertButton+' '+classes.AlertButtonBorder} style={{margin:'auto'}}>Ok</button>
                             }
 
             </div>
