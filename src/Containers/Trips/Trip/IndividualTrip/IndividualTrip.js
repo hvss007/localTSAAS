@@ -223,9 +223,11 @@ class Trip extends Component{
             const dataCopy={...this.state.tripInformation};
             const originDestinationArray=[{...dataCopy.originData,...dataCopy.destinationData}];
             const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
-            const validArr=updatedData.accessModeData.mode.filter(item=>{
-                return item.modeName.length>0 
-            })
+            console.log(originDestinationArray)
+            // const validArr=updatedData.accessModeData.mode.filter(item=>{
+            //     return item.modeName.length>0 
+            // })
+            let valid=originDestinationArray[0].destinationPlace?true:false
             let statement=''
             if(whichButton==='addTrip'){
                 statement="before adding next trip."
@@ -236,8 +238,9 @@ class Trip extends Component{
             else if(whichButton==="finishButton"){
                 statement="before finishing the survey."
             }
-
-            if(validArr.length>=0){
+            console.log(valid)
+            // console.log(validArr)
+            if(valid){
                 const data={memberID:this.props.match.params.id1};
                 updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn["travelTime"].value
                 updatedData.originDestination[0].travelDistance=this.state.tripInformation.accessInfoIn["travelDistance"].value
