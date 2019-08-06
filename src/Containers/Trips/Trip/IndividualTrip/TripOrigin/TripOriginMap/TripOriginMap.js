@@ -51,12 +51,6 @@ class TripOriginMap extends Component{
         //this.addMarkersToMap(this.map,behavior);
         //this.req(this.behavior);
         this.map.addObject(this.group);
-        // if(this.props.initLat&&this.props.initLng){
-        //   let dataObj={lat:this.props.initLat,lng:this.props.initLng};
-        //   this.addMarkersToMap(dataObj,this.behavior);
-        // }else{
-        //   // this.addMarkersToMap(this.state.center,this.behavior);  
-        // }
         if(this.props.ifj!=="11"||this.props.ifj!=="21"){
           this.setState({mapCentreText:this.props.mapLocation},()=>{
           var geocoder = this.platform.getGeocodingService();
@@ -77,12 +71,33 @@ class TripOriginMap extends Component{
                           if(this.props.initLat&&this.props.initLng){
                             let dataObj={lat:this.props.initLat,lng:this.props.initLng};
                             this.addMarkersToMap(dataObj,this.behavior);  
-                            
                           }
-                        })}
+                        })
+                      }
            else{
-                          
-               }
+
+            const text=this.state.mapCentreText;
+            const newText= text.split(" ")
+            let geocodingParams = {
+              searchText:newText[newText.length-1]+ " India"
+            };
+            geocoder.geocode(geocodingParams,(result)=>{ 
+              var location=result.Response.View[0].Result[0].Location.DisplayPosition;
+              let obj={
+                 lat:location.Latitude,
+                 lng:location.Longitude,
+                 }
+                  this.map.setCenter({lat:location.Latitude, lng:location.Longitude})      
+                      this.setState({dataLoaded:true,center:obj},(
+                        )=>{
+                          this.props.centerLocationHandler(this.state.center.lat,this.state.center.lng)
+                          if(this.props.initLat&&this.props.initLng){
+                            let dataObj={lat:this.props.initLat,lng:this.props.initLng};
+                            this.addMarkersToMap(dataObj,this.behavior);  
+                          }
+                        })
+            },function(e){}) 
+          }
                       }, function(e) {
                         alert(e);
                       });
@@ -125,6 +140,26 @@ class TripOriginMap extends Component{
             );   
           }
           else{
+            const text=this.state.mapCentreText;
+            const newText= text.split(" ")
+            let geocodingParams = {
+              searchText:newText[newText.length-1]+ " India"
+            };
+            geocoder.geocode(geocodingParams,(result)=>{
+              var location=result.Response.View[0].Result[0].Location.DisplayPosition;
+            let obj={
+               lat:location.Latitude,
+               lng:location.Longitude,
+               }
+               this.map.setCenter({lat:location.Latitude, lng:location.Longitude})      
+            this.setState({dataLoaded:true,center:obj},()=>
+            {
+              this.props.centerLocationHandler(this.state.center.lat,this.state.center.lng)
+             }
+            );
+            },function(e){
+              
+            })
           }         
           }, function(e) {
           alert(e);
