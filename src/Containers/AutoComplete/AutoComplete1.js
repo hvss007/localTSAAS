@@ -40,7 +40,6 @@ export default class App extends React.Component {
         .then(Response=>{
           let ResponseArrayResponse=Response.data.results;
           let elementsArray=[];
-          console.log(ResponseArrayResponse)
           if(ResponseArrayResponse.length>0){
             ResponseArrayResponse.forEach((element,index) => {
                 var vicinity=element.vicinity?element.vicinity:'';   

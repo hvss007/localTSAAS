@@ -63,7 +63,6 @@ class  HereMaps extends Component {
           else{
             const text=this.state.mapCentreText;
             const newText= text.split(" ")
-            // console.log(newText)
             console.log("else")
             let geocodingParams = {
               searchText:newText[newText.length-1]+ " India"
@@ -146,8 +145,7 @@ class  HereMaps extends Component {
       //   this.count++;
       //   return true
       // }
-      if(this.props.mapLocation!==nextProps.mapLocation){
-        
+      if(this.props.mapLocation!==nextProps.mapLocation){      
         this.setState({mapCentreText:nextProps.mapLocation})
          var geocoder = this.platform.getGeocodingService();
                   
@@ -189,26 +187,30 @@ class  HereMaps extends Component {
         //     //this.req(this.behavior);
         //     this.map.addObject(this.group);
             return true
-              
-
-
-
-
-            })
+           })
           }
           else{
-            
-            
-            
-            
-            
-            // console.log('failed')
+            const text=this.state.mapCentreText;
+            const newText= text.split(" ")
+            console.log(text)
+            let geocodingParams = {
+              searchText:newText[newText.length-1]+ " India"
+            };
+            console.log(geocodingParams)
+            geocoder.geocode(geocodingParams,(result)=>{
+              var location=result.Response.View[0].Result[0].Location.DisplayPosition;  
+            const center={
+              lat:location.Latitude,
+              lng:location.Longitude
+            }
+            this.setState({center:center},()=>{
+             this.map.setCenter({lat:this.state.center.lat, lng:this.state.center.lng});
+             this.props.mapCenter(this.state.center.lat,this.state.center.lng)
+            })
+             },function(e){})
           }
         },function(e){
-          // alert
         })
-        
-        // console.log(this.state.mapLocation,nextState.mapLocation)
         return true;
       }
       // if(this.props.searchArea!==nextProps.searchArea){
