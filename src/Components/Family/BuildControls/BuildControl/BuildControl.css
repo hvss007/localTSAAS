@@ -79,3 +79,11 @@
   background-color: #3a7185;
   color: white;
 }
+@media(max-width:400px){
+  .Label {
+    font-size: 12px
+  }
+  .LabelWrapper{
+    flex:none
+  }
+}
