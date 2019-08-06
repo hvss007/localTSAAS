@@ -75,7 +75,7 @@ class FinishSurvey extends Component{
                     {this.state.show?
                     <Aux>
                         <div className={classes.Thank}>
-                                <h4> To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</h4>
+                                <p> To improve the survey database, your feedback is valuable to us. Please feel free to submit your feedback.</p>
                         </div>
                         <div className={classes.FeedbackWrapper}>
                         <form className={classes.CustomForm}>
