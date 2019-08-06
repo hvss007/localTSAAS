@@ -32,26 +32,25 @@ const startSurveySub=(props)=>{
                     {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
                     <div>
                         <p>Please <a href="mailto:amitfce@iitr.ac.in"> contact us</a> to set up a survey or take a demo survey. </p>
-
-                        <div className={classes.StartSurveyButtonContainer} >
-                        <button  className={buttonClasses.join(' ')}
-                            style={{fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the demo survey </button> 
-                     </div>
-
                     </div> 
                     : 
                     <div>
                        <p > This survey link is exclusive for <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
-                   
-                       <div className={classes.StartSurveyButtonContainer} >
-                        <button  className={buttonClasses.join(' ')}
-                            style={{fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the survey </button> 
-                     </div>
-
                     </div>
                     }
-                    
-                    
+                    {/* TODO: following is a repetition, should be merged with above.*/}
+                    {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
+
+                    <div className={classes.StartSurveyButtonContainer} >
+                        <button  className={buttonClasses.join(' ')}
+                            style={{fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the demo survey </button> 
+                    </div>
+                    :
+                    <div className={classes.StartSurveyButtonContainer} >
+                        <button  className={buttonClasses.join(' ')}
+                            style={{fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the survey </button> 
+                    </div>
+                    }
                     </div>
                     
                 <div className={classes.RightContainer}> </div>

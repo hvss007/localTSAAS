@@ -28,9 +28,6 @@
 .Thank{
   display:flex;
 }
-.Thank span{
-  /* font-size: 36px */
-}
 .Thank>h3{
   font-size: 18px;
 }
@@ -239,8 +236,6 @@
       width: 100%;
       display: flex;
       text-align: left;      
-    }
-    .Thank{
     }
   }
   @media(min-width:800px){

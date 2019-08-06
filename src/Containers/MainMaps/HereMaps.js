@@ -32,40 +32,90 @@ class  HereMaps extends Component {
         this.map = null;
         this.mapCentreText=this.props.mapLocation;
         var geocoder = this.platform.getGeocodingService();
-        
+            
         let geocodingParams = {
           searchText:this.state.mapCentreText+ " India"
         };
+        console.log(this.state.mapCentreText)
         geocoder.geocode(geocodingParams,(result)=>{ 
           // console.log(result)
           // console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
           if(result.Response.View.length>0) {
+            var location=result.Response.View[0].Result[0].Location.DisplayPosition;
             // var loc=result.Response.View[0].Result[0].Location.DisplayPosition;  
+            let obj={
+              center: {
+               lat: location.Latitude,
+               lng: location.Longitude,
+              },
+               lat:location.Latitude,
+               lng:location.Longitude,
+               zoom: this.props.zoom,
+               theme:this.props.theme,
+               arr:[],
+               count:0,
+               placeMarker:null,
+               displayText:[],
+               finalPassArrat:[],
+               searchText:props.searchArea}   
+            this.setState({dataLoaded:true,...obj},()=>this.props.mapCenter(this.state.center.lat,this.state.center.lng));           
           }
           else{
+            const text=this.state.mapCentreText;
+            const newText= text.split(" ")
+            console.log("else")
+            let geocodingParams = {
+              searchText:newText[newText.length-1]+ " India"
+            };
+            console.log(geocodingParams.searchText)  
+            var geocoder1 = this.platform.getGeocodingService();
+            geocoder1.geocode(geocodingParams,(result)=>{
+              console.log(result.Response)
+             var location=result.Response.View[0].Result[0].Location.DisplayPosition;
+             let obj={
+              center: {
+               lat: location.Latitude,
+               lng: location.Longitude,
+              },
+               lat:location.Latitude,
+               lng:location.Longitude,
+               zoom: this.props.zoom,
+               theme:this.props.theme,
+               arr:[],
+               count:0,
+               placeMarker:null,
+               displayText:[],
+               finalPassArrat:[],
+               searchText:props.searchArea}   
+            this.setState({dataLoaded:true,...obj},()=>this.props.mapCenter(this.state.center.lat,this.state.center.lng));           
+             console.log(location)
+            },function(e){
+
+            } )   
+            
             // console.log('failed')
           }
           // console.log(result)
           
-          var location=result.Response.View[0].Result[0].Location.DisplayPosition;
+          // var location=result.Response.View[0].Result[0].Location.DisplayPosition;
           
           //  console.log(location);
-           let obj={
-             center: {
-              lat: location.Latitude,
-              lng: location.Longitude,
-             },
-              lat:location.Latitude,
-              lng:location.Longitude,
-              zoom: this.props.zoom,
-              theme:this.props.theme,
-              arr:[],
-              count:0,
-              placeMarker:null,
-              displayText:[],
-              finalPassArrat:[],
-              searchText:props.searchArea}   
-           this.setState({dataLoaded:true,...obj},()=>this.props.mapCenter(this.state.center.lat,this.state.center.lng));           
+          //  let obj={
+          //    center: {
+          //     lat: location.Latitude,
+          //     lng: location.Longitude,
+          //    },
+          //     lat:location.Latitude,
+          //     lng:location.Longitude,
+          //     zoom: this.props.zoom,
+          //     theme:this.props.theme,
+          //     arr:[],
+          //     count:0,
+          //     placeMarker:null,
+          //     displayText:[],
+          //     finalPassArrat:[],
+          //     searchText:props.searchArea}   
+          //  this.setState({dataLoaded:true,...obj},()=>this.props.mapCenter(this.state.center.lat,this.state.center.lng));           
          }, function(e) {
           // alert(e);
 
@@ -95,17 +145,16 @@ class  HereMaps extends Component {
       //   this.count++;
       //   return true
       // }
-      if(this.props.mapLocation!==nextProps.mapLocation){
-        
+      if(this.props.mapLocation!==nextProps.mapLocation){      
         this.setState({mapCentreText:nextProps.mapLocation})
          var geocoder = this.platform.getGeocodingService();
                   
          let geocodingParams = {
           searchText:nextProps.mapLocation+ " India"
         };
-        if(geocodingParams.searchText.includes("East Delhi")){
-          geocodingParams=" Delhi India"
-        }
+        // if(geocodingParams.searchText.includes("East Delhi")){
+        //   geocodingParams=" Delhi India"
+        // }
         geocoder.geocode(geocodingParams,(result)=>{ 
           // console.log(result)
           // console.log(result.Response.View[0].Result[0].Location.DisplayPosition)
@@ -138,21 +187,30 @@ class  HereMaps extends Component {
         //     //this.req(this.behavior);
         //     this.map.addObject(this.group);
             return true
-
-
-
-
-
-            })
+           })
           }
           else{
-            // console.log('failed')
+            const text=this.state.mapCentreText;
+            const newText= text.split(" ")
+            console.log(text)
+            let geocodingParams = {
+              searchText:newText[newText.length-1]+ " India"
+            };
+            console.log(geocodingParams)
+            geocoder.geocode(geocodingParams,(result)=>{
+              var location=result.Response.View[0].Result[0].Location.DisplayPosition;  
+            const center={
+              lat:location.Latitude,
+              lng:location.Longitude
+            }
+            this.setState({center:center},()=>{
+             this.map.setCenter({lat:this.state.center.lat, lng:this.state.center.lng});
+             this.props.mapCenter(this.state.center.lat,this.state.center.lng)
+            })
+             },function(e){})
           }
         },function(e){
-          // alert
         })
-        
-        // console.log(this.state.mapLocation,nextState.mapLocation)
         return true;
       }
       // if(this.props.searchArea!==nextProps.searchArea){
