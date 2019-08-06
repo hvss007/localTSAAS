@@ -257,9 +257,10 @@ class Trip extends Component{
                     .then(response=>{
                              Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                              ).then(response=>{})
-                             updatedData.accessModeData.mode.forEach(element => {
+                             console.log(updatedData.accessModeData.mode)
+                             updatedData.accessModeData.mode.forEach((element,index) => {
                                 delete element.isValid;
-                                Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                                Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
                                 ).then(response=>{
                                 })    
                              });
