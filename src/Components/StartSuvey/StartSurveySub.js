@@ -43,12 +43,12 @@ const startSurveySub=(props)=>{
 
                     <div className={classes.StartSurveyButtonContainer} >
                         <button  className={buttonClasses.join(' ')}
-                            style={{fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the demo survey </button> 
+                            style={{fontWeight:'600', fontSize:'18px', textTransform:'none'}} onClick={props.submitClicked}> Take the demo survey </button> 
                     </div>
                     :
                     <div className={classes.StartSurveyButtonContainer} >
                         <button  className={buttonClasses.join(' ')}
-                            style={{fontWeight:'600', fontSize:'18px'}} onClick={props.submitClicked}> Take the survey </button> 
+                            style={{fontWeight:'600', fontSize:'18px', textTransform:'none'}} onClick={props.submitClicked}> Take the survey </button> 
                     </div>
                     }
                     </div>
