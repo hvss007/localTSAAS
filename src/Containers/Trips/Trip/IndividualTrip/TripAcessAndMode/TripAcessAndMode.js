@@ -133,18 +133,7 @@ class TripAcessAndMode extends Component{
             const accessCopyElementOld={...accessCopy[0]};
             const accessInvalueCopy={...accessCopyElementOld.inValue};
             accessCopyElementOld.isValid=valid;
-            if(valueType==="travelTime"){
-                accessInvalueCopy.travelTime=value;
-            }
-            else if(valueType==="journeyLength"){
-                accessInvalueCopy.travelDistance=value;
-            }
-            else if(valueType==="fare"){
-                accessInvalueCopy.fare=value;
-            }
-            // else if(valueType==="Cost"){
-            //     accessInvalueCopy.cost=value;
-            // }
+            
             accessCopyElementOld.inValue=accessInvalueCopy;
             accessCopy[0]=accessCopyElementOld;
             this.setState({mainMode:accessCopy})
@@ -152,7 +141,7 @@ class TripAcessAndMode extends Component{
     }
     addHandler=(idi,name)=>{
         if(name==="Main Mode"){   
-            const accessElementNew={idi:idi+1,showAdd:true,modeType:'mainMode',value:'',inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false};
+            const accessElementNew={idi:idi+1,showAdd:true, value:'', isValid:false};
             const accessCopy=[...this.state.mainMode];
             const accessCopyElementOld={...accessCopy[idi-1]};
             accessCopyElementOld.showAdd=false;
