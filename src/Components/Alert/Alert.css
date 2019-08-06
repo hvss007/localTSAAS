@@ -24,17 +24,17 @@
 .ButtonContainer{
     display: flex;
     justify-content: space-between;
-    width:80%
+    width:50%
 }
 
 button{
-   padding: 10px 70px 10px 70px;
+   padding: 04px 30px 04px 30px;
   /* background: #491F65; */
   box-shadow: 0px 4px 20px rgba(48, 4, 78, 0.3);
   border: none;
   border-radius: 4px;
   font-family: Lato;
-  font-size: 28px;
+  font-size: 18px;
   line-height: 34px;
   text-align: center;
   text-transform: capitalize;
