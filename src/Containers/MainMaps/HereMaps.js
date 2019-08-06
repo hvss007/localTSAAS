@@ -144,7 +144,7 @@ class  HereMaps extends Component {
           this.group = new window.H.map.Group();  
           var events = new window.H.mapevents.MapEvents(this.map);
           this.behavior = new window.H.mapevents.Behavior(events);
-          var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
+          // var ui = new window.H.ui.UI.createDefault(this.map,this. layer)     
             this.map.addObject(this.group);
             return true
           }
