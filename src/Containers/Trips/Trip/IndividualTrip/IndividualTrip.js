@@ -183,9 +183,9 @@ class Trip extends Component{
             .then(response=>{
                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                      ).then(response=>{})
-                     updatedData.accessModeData.mode.forEach(element => {
+                     updatedData.accessModeData.mode.forEach((element,index) => {
                         delete element.isValid;
-                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
                         ).then(response=>{
                             this.props.history.push({pathname:'/finishsurvey'})
                         })    
@@ -202,9 +202,9 @@ class Trip extends Component{
             .then(response=>{
                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                      ).then(response=>{})
-                     updatedData.accessModeData.mode.forEach(element => {
+                     updatedData.accessModeData.mode.forEach((element,index) => {
                         delete element.isValid;
-                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
                         ).then(response=>{
                             this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
                         })    
