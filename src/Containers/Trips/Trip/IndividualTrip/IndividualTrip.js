@@ -153,7 +153,7 @@ class Trip extends Component{
         }
     }
     finishButtonCustomDialogBoxHandler=(updatedData,data)=>{
-        this.setState({showCustomConfirmBox:true,message:"Have you added all members?",question:'q3',showButton:true},()=>{
+        this.setState({showCustomConfirmBox:true,message:"Have you added all members of the family?",question:'q3',showButton:true},()=>{
         })
         // if(window.confirm("Have you added all members?")){
         //     if(!this.props.disabled){
@@ -267,7 +267,7 @@ class Trip extends Component{
                         })}
                 }
                 if(whichButton==='nextMemberButton'){
-                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q1',showButton:true},()=>{
+                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips for this member?",updatedData:updatedData,memberIDData:data,question:'q1',showButton:true},()=>{
                     })
                     
                     
@@ -295,7 +295,7 @@ class Trip extends Component{
                     //   }
                 }
                 if(whichButton==='finishButton'){
-                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q2',showButton:true},()=>{
+                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips for this member?",updatedData:updatedData,memberIDData:data,question:'q2',showButton:true},()=>{
                     })
                     // if (window.confirm("Have you added all trips?")) {
                     //    if(window.confirm("Have you added all members?")){
