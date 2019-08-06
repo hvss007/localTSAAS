@@ -174,7 +174,6 @@ class TripOriginMap extends Component{
         this.setState({lat:nextProps.markerLat,lng:nextProps.markerLng,count1:this.state.count1+1,backdropShow:true,showFrontDrop:true},()=>{
           this.props.latLong(this.state.lat,this.state.lng)
         })
-        // this.group.removeObject(this.state.placeMarker)
         this.addMarkersToMap({lat:nextProps.markerLat,lng:nextProps.markerLng},this.behavior);  
         return true
       }}
@@ -265,12 +264,8 @@ class TripOriginMap extends Component{
         <div className={classes.ConfirmButtonOuter+' '+classes.ConfirmButtonBorder}> 
             <button onClick={()=>{this.setState({backdropShow:false,showFrontDrop:false})}} className={classes.ConfirmButton}> Ok</button>
         </div>  
-
         </div>
-        
         </div>
-
-
      </div>
     
         <FinalBackdrop backdropHide={this.backdropHideHandler} backdropShow={this.state.backdropShow} ></FinalBackdrop>

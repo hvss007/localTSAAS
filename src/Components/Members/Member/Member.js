@@ -374,7 +374,8 @@ class Member extends Component{
         qAnswered:0,
         show:false,
         message:'',
-        autoCompleteShow:true
+        autoCompleteShow:true,
+        showButton:true
         }
     }
 
@@ -582,14 +583,15 @@ class Member extends Component{
                 stayAtHome:member.stayAtHome.value
             }           
             if(member.stayAtHome.value==="") {
-                alert("Please state whether the member is staying at home for the whole day.")
+                // alert("Please state whether the member is staying at home for the whole day.")
+                this.setState({show:true,showButton:false,message:"Please state whether the member is staying at home for the whole day."})
             }
             else if(member.stayAtHome.value==="yes"){
                 axios.defaults.xsrfCookieName = 'csrftoken'
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                        this.setState({show:true,message:"Have you added all members of the family?"})
+                        this.setState({show:true,message:"Have you added all members of the family?",showButton:true})
                         // if (window.confirm("Have you added all members?")) {
                         //     this.props.history.push({pathname:'/finishsurvey'})    
                         // } 
@@ -671,7 +673,7 @@ class Member extends Component{
         </form>
         </div>
         <Backdrop hideModalBackdrop={this.hideModalBackdrop} alert={true} show={this.state.show}>
-            <Alert buttonClickHandler={this.buttonClickHandler} message={this.state.message}>
+            <Alert showButton={this.state.showButton} buttonClickHandler={this.buttonClickHandler} message={this.state.message}>
             </Alert>
         </Backdrop>
         </Aux>

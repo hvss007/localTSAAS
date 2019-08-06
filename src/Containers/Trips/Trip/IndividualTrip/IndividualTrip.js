@@ -98,6 +98,7 @@ class Trip extends Component{
         showCustomConfirmBox:false,
         message:'',
         question:'',
+        showButton:true,
         updatedData:null,memberIDData:null
     }
     componentDidMount(){
@@ -152,7 +153,7 @@ class Trip extends Component{
         }
     }
     finishButtonCustomDialogBoxHandler=(updatedData,data)=>{
-        this.setState({showCustomConfirmBox:true,message:"Have you added all members?",question:'q3'},()=>{
+        this.setState({showCustomConfirmBox:true,message:"Have you added all members?",question:'q3',showButton:true},()=>{
         })
         // if(window.confirm("Have you added all members?")){
         //     if(!this.props.disabled){
@@ -227,7 +228,7 @@ class Trip extends Component{
             // const validArr=updatedData.accessModeData.mode.filter(item=>{
             //     return item.modeName.length>0 
             // })
-            let valid=originDestinationArray[0].destinationPlace?true:false
+            let valid=originDestinationArray[0].destinationPlace&&originDestinationArray[0].destinationLandmark?true:false
             let statement=''
             if(whichButton==='addTrip'){
                 statement="before adding the next trip."
@@ -238,7 +239,7 @@ class Trip extends Component{
             else if(whichButton==="finishButton"){
                 statement="before finishing the survey."
             }
-            console.log(valid)
+            // console.log(valid)
             // console.log(validArr)
             if(valid){
                 const data={memberID:this.props.match.params.id1};
@@ -265,7 +266,7 @@ class Trip extends Component{
                         })}
                 }
                 if(whichButton==='nextMemberButton'){
-                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q1'},()=>{
+                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q1',showButton:true},()=>{
                     })
                     
                     
@@ -293,7 +294,7 @@ class Trip extends Component{
                     //   }
                 }
                 if(whichButton==='finishButton'){
-                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q2'},()=>{
+                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q2',showButton:true},()=>{
                     })
                     // if (window.confirm("Have you added all trips?")) {
                     //    if(window.confirm("Have you added all members?")){
@@ -322,8 +323,8 @@ class Trip extends Component{
                 }
             }
             else{
-                alert("Please complete the origin, destination and travel mode information "+statement )
-                 this.setState({sendData:false})
+                // alert("Please complete the origin, destination and travel mode information "+statement )
+                 this.setState({sendData:false,showButton:false,message:"Please complete the origin, destination and travel mode information "+statement,showCustomConfirmBox:true})
             }
             }
             )
@@ -456,7 +457,9 @@ class Trip extends Component{
                 {
                     this.props.showAdd?<button className={addTripClasses.join(' ')} onClick={
                      ()=>
-                    {   orValue&&drValue?this.onSubmitHandler(true,"addTrip"):alert('Please complete the origin, destination and travel mode information before moving forward.')
+                    {   orValue&&drValue?this.onSubmitHandler(true,"addTrip"):
+                        this.setState({showCustomConfirmBox:true,message:'Please complete the origin, destination and travel mode information before moving forward.',showButton:false})
+                    // alert('Please complete the origin, destination and travel mode information before moving forward.')
                     } 
                      } type="submit">Add Trip</button>:null
                      }
@@ -468,7 +471,7 @@ class Trip extends Component{
                     <button onClick={this.finishClicked} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}> Finish Survey</button></div>:null}
             </div>
             <Backdrop  alert={true} hideModalBackdrop={this.hideModalBackdrop} show={this.state.showCustomConfirmBox}>
-                <Alert buttonClickHandler={this.buttonClickHandler} qusetion={this.state.question} message={this.state.message}></Alert>
+                <Alert showButton={this.state.showButton} buttonClickHandler={this.buttonClickHandler} question={this.state.question} message={this.state.message}></Alert>
             </Backdrop>
             </Aux>
         )
