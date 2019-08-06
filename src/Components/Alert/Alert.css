@@ -3,7 +3,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width:80%;
+    width:40%;
     height:20vh;
     display:flex;
     flex-direction: column;
@@ -24,6 +24,42 @@
 .ButtonContainer{
     display: flex;
     justify-content: space-between;
+    width:60%
 }
 
-
+button{
+   padding: 10px 70px 10px 70px;
+  /* background: #491F65; */
+  box-shadow: 0px 4px 20px rgba(48, 4, 78, 0.3);
+  border: none;
+  border-radius: 4px;
+  font-family: Lato;
+  font-size: 28px;
+  line-height: 34px;
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: none;
+  /* color: #FFFFFF; */
+  
+  transition: letter-spacing .5s ease-in-out;
+} 
+button:hover{
+  cursor:pointer;
+  letter-spacing: 1px
+}
+@media(max-width:500px){
+    .Alert{
+        width:100%;
+    }
+    .ButtonContainer{
+        width:60%;
+    }
+    
+    button{
+        font-size: 18px;
+        line-height: 20px;
+        padding: 10px 25px 10px 25px;
+    }     
+        
+    
+}
