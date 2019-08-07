@@ -153,7 +153,7 @@ class Trip extends Component{
         }
     }
     finishButtonCustomDialogBoxHandler=(updatedData,data)=>{
-        this.setState({showCustomConfirmBox:true,message:"Have you added all members?",question:'q3',showButton:true},()=>{
+        this.setState({showCustomConfirmBox:true,message:"Have you added all members of the family?",question:'q3',showButton:true},()=>{
         })
         // if(window.confirm("Have you added all members?")){
         //     if(!this.props.disabled){
@@ -179,13 +179,15 @@ class Trip extends Component{
     }
     finishButtonCustomDialogBoxHandlerIn(updatedData,data){
         if(!this.props.disabled){
+            Axios.defaults.xsrfCookieName = 'csrftoken'
+             Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
             Axios.post(HostName+"trips/",data)
             .then(response=>{
                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                      ).then(response=>{})
-                     updatedData.accessModeData.mode.forEach(element => {
+                     updatedData.accessModeData.mode.forEach((element,index) => {
                         delete element.isValid;
-                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
                         ).then(response=>{
                             this.props.history.push({pathname:'/finishsurvey'})
                         })    
@@ -198,13 +200,15 @@ class Trip extends Component{
     }
     nextButtonCustomDialogBoxHandler=(updatedData,data)=>{
         if(!this.props.disabled){
+            Axios.defaults.xsrfCookieName = 'csrftoken'
+            Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
             Axios.post(HostName+"trips/",data)
             .then(response=>{
                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
                      ).then(response=>{})
-                     updatedData.accessModeData.mode.forEach(element => {
+                     updatedData.accessModeData.mode.forEach((element,index) => {
                         delete element.isValid;
-                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
+                        Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
                         ).then(response=>{
                             this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
                         })    
@@ -256,7 +260,9 @@ class Trip extends Component{
                     Axios.post(HostName+"trips/",data)
                     .then(response=>{
                              Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                             ).then(response=>{})
+                             ).then(response=>{
+
+                             })
                              console.log(updatedData.accessModeData.mode)
                              updatedData.accessModeData.mode.forEach((element,index) => {
                                 delete element.isValid;
@@ -267,7 +273,7 @@ class Trip extends Component{
                         })}
                 }
                 if(whichButton==='nextMemberButton'){
-                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q1',showButton:true},()=>{
+                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips for this member?",updatedData:updatedData,memberIDData:data,question:'q1',showButton:true},()=>{
                     })
                     
                     
@@ -295,7 +301,7 @@ class Trip extends Component{
                     //   }
                 }
                 if(whichButton==='finishButton'){
-                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips?",updatedData:updatedData,memberIDData:data,question:'q2',showButton:true},()=>{
+                    this.setState({showCustomConfirmBox:true,message:"Have you added all trips for this member?",updatedData:updatedData,memberIDData:data,question:'q2',showButton:true},()=>{
                     })
                     // if (window.confirm("Have you added all trips?")) {
                     //    if(window.confirm("Have you added all members?")){
