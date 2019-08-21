@@ -179,6 +179,8 @@ class Trip extends Component{
     }
     finishButtonCustomDialogBoxHandlerIn(updatedData,data){
         if(!this.props.disabled){
+            Axios.defaults.xsrfCookieName = 'csrftoken'
+             Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
             Axios.post(HostName+"trips/",data)
             .then(response=>{
                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
@@ -223,6 +225,8 @@ class Trip extends Component{
     }
     nextButtonCustomDialogBoxHandler=(updatedData,data)=>{
         if(!this.props.disabled){
+            Axios.defaults.xsrfCookieName = 'csrftoken'
+            Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
             Axios.post(HostName+"trips/",data)
             .then(response=>{
                      Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
@@ -281,7 +285,9 @@ class Trip extends Component{
                     Axios.post(HostName+"trips/",data)
                     .then(response=>{
                              Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-                             ).then(response=>{})
+                             ).then(response=>{
+
+                             })
                              console.log(updatedData.accessModeData.mode)
                              updatedData.accessModeData.mode.forEach((element,index) => {
                                 delete element.isValid;
