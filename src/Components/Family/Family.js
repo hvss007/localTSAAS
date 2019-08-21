@@ -246,9 +246,11 @@ class Family extends Component{
         // })
         axios.get(HostName+"college/").then(
             Response=>{
-
+                console.log(this.props.match.url.split('/')[1])
                 const collegeArr= Response.data.filter(item=>{
-                    return ((item.collegeURL===this.props.match.params.id));
+                    // return ((item.collegeURL===this.props.match.params.id));
+                    return ((item.collegeURL===this.props.match.url.split('/')[1]));
+                    
                 }
                 
                 
