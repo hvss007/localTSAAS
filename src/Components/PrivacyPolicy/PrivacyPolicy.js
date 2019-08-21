@@ -24,7 +24,7 @@ class  PrivacyPolicy extends Component{
                 <ul>
                     <li><b>non-personal information:</b> it is the information that does not exclusively identify you but is little related such as, information about your demographics (e.g., age category , gender, education, income category, etc.), address limited to the closest landmark etc.</li>
                     <li><b>travel information:</b> it includes the landmarks near to origins, destinations, travel mode, travel time, distance, trip cost. We do not track the location of the users by using GPS of the device.</li>
-                    <li><b>no personal information </b>like (sign up, logins, email address, phone number, IP address etc)  are taken up by users.</li>
+                    <li><b>respondent information </b>like (sign up, logins, email address, phone number, IP address etc)  are taken up by users.</li>
                 </ul>
                 <h3>
                     How do we use your information:
