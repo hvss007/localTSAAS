@@ -35,10 +35,17 @@ class StartSurvey extends Component{
         })
     }
     onClickHandler=()=>{  
+        Axios.defaults.xsrfCookieName = 'csrftoken'
+        Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+        Axios.post(HostName+"survey/",{surveyType:'hhs'}).then(response=>{
+            const surveyID=response.data.surveyID
             if(this.props.match.url==="/"){
-                this.props.history.push({pathname:"/demo/family"})
+                this.props.history.push({pathname:"/demo/hhs"+surveyID+"/family"})
             }
-            else{this.props.history.push({pathname:this.props.match.url+"/family"})}
+            else{this.props.history.push({pathname:this.props.match.url+"/hhs"+surveyID+"/family"})}
+        })
+        .catch(e=>console.log("network not connected"))
+            
     }
     
     render(){    

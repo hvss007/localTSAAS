@@ -82,7 +82,8 @@ class Trips extends Component{
         desktopMapShow:false,
         centerLat:'',
         centerLng:'',
-        showTrips:false
+        showTrips:false,
+        familyId:null
     }
 }
     componentDidMount(){
@@ -90,6 +91,11 @@ class Trips extends Component{
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
         });
+        // const url=this.props.match.url
+        // const fam=url.split('family')
+        // const familyId=fam[1].split("/")[0]
+        // this.setState({familyId:familyId})
+        
         //console.log(this.props.match.params.id1);
         // console.log(this.props.match.url);
         // var a=this.props.match.url;
@@ -212,7 +218,7 @@ class Trips extends Component{
         })
         }
         const tripElements=this.state.trips.map((item,index)=>{
-            return <Trip singleDesktopLandmarkLocation={this.singleDesktopLandmarkLocationHandler} count={this.state.count} removeCurrentTripHandler={this.removeCurrentTripHandler} dataAreadySent={item.dataAreadySent} disabled={item.disabled} tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.initLat} initLng={item.initLng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
+            return <Trip familyId={this.state.familyId} singleDesktopLandmarkLocation={this.singleDesktopLandmarkLocationHandler} count={this.state.count} removeCurrentTripHandler={this.removeCurrentTripHandler} dataAreadySent={item.dataAreadySent} disabled={item.disabled} tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.initLat} initLng={item.initLng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
         // const tripMapElements=[...this.state.trips]
         return(

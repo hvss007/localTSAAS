@@ -506,6 +506,18 @@ class Member extends Component{
     }
     buttonClickHandler=(id)=>{
         if(id===1){
+            // const familyId=this.props.familyId
+            var time=new Date().toLocaleTimeString()                                
+            const url=this.props.match.url;
+            const fam=url.split('hhs')
+            const hhsId=fam[1].split("/")[0]
+               // this.setState({surveyID:hhsId})
+                      
+            axios.patch(HostName+'responseTime/'+hhsId,{
+                                // surveyStartTimeID:hhsId,
+                                surveyEndTime:time,
+                            //    surveyID:hhsId           
+                            })
             this.props.history.push({pathname:'/finishsurvey'})    
         }
         else if(id===2){

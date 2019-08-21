@@ -188,12 +188,37 @@ class Trip extends Component{
                         Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
                         ).then(response=>{
                             this.props.history.push({pathname:'/finishsurvey'})
+                            // const familyId=this.props.familyId
+                            var time=new Date().toLocaleTimeString()                                
+                            const url=this.props.match.url;
+                            const fam=url.split('hhs')
+                            const hhsId=fam[1].split("/")[0]
+                            // this.setState({surveyID:hhsId})
+                            
+                            Axios.patch(HostName+'responseTime/'+hhsId,{
+                                // surveyStartTimeID:hhsId,
+                                surveyEndTime:time,
+                            //    surveyID:hhsId           
+                            })
                         })    
                      });
                 }) 
         }
         else{
+            // const familyId=this.props.familyId
+                            var time=new Date().toLocaleTimeString()                                
+                            const url=this.props.match.url;
+                            const fam=url.split('hhs')
+                            const hhsId=fam[1].split("/")[0]
+                            // this.setState({surveyID:hhsId})
+                            
+                            Axios.patch(HostName+'responseTime/'+hhsId,{
+                                // surveyStartTimeID:hhsId,
+                                surveyEndTime:time,
+                            //    surveyID:hhsId           
+                            })
             this.props.history.push({pathname:'/finishsurvey'})
+            
         }
     }
     nextButtonCustomDialogBoxHandler=(updatedData,data)=>{

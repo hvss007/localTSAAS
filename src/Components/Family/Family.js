@@ -13,6 +13,7 @@ import Aux from '../../Hoc/Aux';
 import HostName from '../../assets/globalvaribles/GlobalVariables';
 import Backdrop from '../../Hoc/Backdrop/Backdrop1'
 import Alert from '../Alert/Alert';
+import Axios from 'axios';
 class Family extends Component{
     constructor(props){
         super(props);
@@ -167,7 +168,9 @@ class Family extends Component{
         centerLng:'',
         markerLocationText:'',
         collegeID:'',
-        show:false
+        show:false,
+        time:null,
+        surveyID:null
         //copied from members
     }
 }
@@ -217,13 +220,30 @@ class Family extends Component{
      
   
     componentDidMount(){
+        var time=new Date().toLocaleTimeString()
+        // this.setState({time:time})
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
+
         // console.log(this.props.match.url)
+        const url=this.props.match.url;
+        const fam=url.split('hhs')
+        const hhsId=fam[1].split("/")[0]
+        this.setState({surveyID:hhsId})
+        Axios.patch(HostName+'responseTime/'+hhsId,{
+            // surveyStartTimeID:hhsId,
+            surveyStartTime:time,
+        //    surveyID:hhsId           
+        })
         window.history.pushState(null, document.title, window.location.href);
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
         });      
-        axios.defaults.xsrfCookieName = 'csrftoken'
-        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+         // axios.post(HostName+"survey.",{surveyType:'hhs'})
+        // .then(response=>{
+        //     this.setState(response.surveyID)
+        // })
         axios.get(HostName+"college/").then(
             Response=>{
 
@@ -326,6 +346,9 @@ class Family extends Component{
     }
     buttonClickHandler=(id)=>{
         if(id===1){
+            const url=this.props.match.url;
+            const fam=url.split('hhs')
+            const hhsId=fam[1].split("/")[0]
             const family=this.state.family;
                     const family1=this.state.family1;
                     const post1={
@@ -339,7 +362,9 @@ class Family extends Component{
                         nameOfDistrict:family.nameOfDistrict.value,
                         landmark:this.state.markerLocationText,
                         lat:this.state.lat,
-                        lng:this.state.lng
+                        lng:this.state.lng,
+                        time:this.state.time,
+                        surveyID:hhsId
                     }
                     this.props.history.push({pathname:'/finishsurvey'})
                     axios.defaults.xsrfCookieName = 'csrftoken'
@@ -430,6 +455,9 @@ class Family extends Component{
     submitButtonHandler=(event)=>{
         //console.log(this.state.qAnswered);
         event.preventDefault();
+        const url=this.props.match.url;
+            const fam=url.split('hhs')
+            const hhsId=fam[1].split("/")[0]
         // if(this.state.qAnswered===3||true){
             const family=this.state.family;
             const family1=this.state.family1;
@@ -444,7 +472,9 @@ class Family extends Component{
                     nameOfDistrict:family.nameOfDistrict.value,
                     landmark:this.state.markerLocationText,
                     lat:this.state.lat,
-                    lng:this.state.lng
+                    lng:this.state.lng,
+                    time:this.state.time,
+                    surveyID:hhsId
                 }
                 axios.defaults.xsrfCookieName = 'csrftoken'
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
