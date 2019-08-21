@@ -1,13 +1,13 @@
 import React from 'react';
-// import Toolbar from './Navigation/Toolbar/Toolbar';
-// import SideDrawer from './SideDrawer/SideDrawer';
+import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
+import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from '../StartSuvey/StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
 import HomePage from '../../assets/icons/homepage.png';
 import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 
-const startSurveySub=(props)=>{
+const MainHom=(props)=>{
     const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
         const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
         const backgroundElement =window.innerWidth<=500? <div style={{...mobileBackgroundStyle}} className={classes.FirstImageWrapper}></div>:null
@@ -15,8 +15,8 @@ const startSurveySub=(props)=>{
             backgroundImage:'url('+HomePage+'),url('+Background+')',backgroundRepeat:'no-repeat',backgroundSize:'contain,cover',backgroundPosition:'80% 40%,0% 40%'}:null
     return(
         <div style={background} className={classes.StartSurvey} >
-        {/* <SideDrawer open={props.showSideDrawer} closed={props.SideDrawerClosedHandler}></SideDrawer> */}
-        {/* <Toolbar drawerToggleClicked={props.SideDrawerToggleHandler} ></Toolbar> */}
+        <SideDrawer open={props.showSideDrawer} closed={props.SideDrawerClosedHandler}></SideDrawer>
+        <Toolbar drawerToggleClicked={props.SideDrawerToggleHandler} ></Toolbar>
             
             <div  className={classes.MainContainer}>
                 <div className={classes.LeftContainer}>
@@ -28,34 +28,14 @@ const startSurveySub=(props)=>{
                             <p>as a Service</p>
                         </div>    
                     </div>
-                    {/* <p style={{margin:'4px auto 4px'}}> Welcome to TSaaS! Please take few minutes to complete the survey. Your few minutes will help us to synthesize a city traffic model. Personal information and location are neither asked nor tracked.</p>
-                    {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
-                    <div>
-                        <p>Please <a href="mailto:amitfce@iitr.ac.in"> contact us</a> to set up a survey or take a demo survey. </p>
-                    </div> 
-                    : 
-                    <div>
-                       <p > This survey link is exclusive for <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {props.collegeName}</span>. </p>
+                    <p> Welcome to TSaaS! Please select a survey from the following list which will take you to the survey page.</p>
+                    {/* A drop down should show up here which will directly take to survey page. */}
+                    <p> If the desired survey is not available, you can request a survey <a href="mailto:amitfce@iitr.ac.in?subject=Request for a new survey"> here</a>.</p> 
                     </div>
-                    }
-                    {/* TODO: following is a repetition, should be merged with above.*/}
-                    {/* {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
-
-                    <div className={classes.StartSurveyButtonContainer} >
-                        <button  className={buttonClasses.join(' ')}
-                            style={{fontWeight:'600', fontSize:'18px', textTransform:'none'}} onClick={props.submitClicked}> Take the demo survey </button> 
-                    </div>
-                    :
-                    <div className={classes.StartSurveyButtonContainer} >
-                        <button  className={buttonClasses.join(' ')}
-                            style={{fontWeight:'600', fontSize:'18px', textTransform:'none'}} onClick={props.submitClicked}> Take the survey </button> 
-                    </div>
-                    }  */}
-                                        </div>
                     
                 <div className={classes.RightContainer}> </div>
             </div>
         </div>
     )
 }
-export default startSurveySub
+export default MainHom
