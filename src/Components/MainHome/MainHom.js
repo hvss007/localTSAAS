@@ -3,7 +3,7 @@ import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from '../StartSuvey/StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
-import HomePage from '../../assets/icons/homepage.png';
+import HomePage from '../../assets/icons/parentHome.png';
 import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 
