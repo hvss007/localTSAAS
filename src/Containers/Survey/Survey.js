@@ -3,7 +3,7 @@ import {Route,Switch} from 'react-router-dom';
 import Members from '../../Components/Members/Members';
 import Trips from '../Trips/Trips';
 import StartSurvey from '../../Components/StartSuvey/StartSurvey';
-import MainHome from '../../Components/MainHome/MainHom';
+import ParentHome from '../../Components/ParentHome/ParentHome';
 import Family from '../../Components/Family/Family';
 import PrivacyPolicy from '../../Components/PrivacyPolicy/PrivacyPolicy';
 import ContactUs from '../../Components/ContactUs/ContactUs';
@@ -26,7 +26,7 @@ class Survey extends Component{
         <Route path='/privacypolicy' exact component={PrivacyPolicy}/> 
         <Route path='/contact' exact component={ContactUs}/> 
         <Route path='/wiki' exact component={Wiki}/> 
-        <Route path='/' exact  component={MainHome}/>
+        <Route path='/' exact  component={ParentHome}/>
         <Route path='/:id' exact  component={StartSurvey}/>
         {/* <Route path='/:id/wiki' exact component={Wiki}/> */}
         {/* <Route path='/privacypolicy' exact component={PrivacyPolicy}/>  */}

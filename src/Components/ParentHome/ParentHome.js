@@ -2,12 +2,12 @@ import React from 'react';
 import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from '../StartSuvey/StartSurvey.css';
-import MobileHomePage from '../../assets/icons/mobile.png'
+import MobileHomePage from '../../assets/icons/parentHomeMobile.png'
 import HomePage from '../../assets/icons/parentHome.png';
 import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 
-const MainHom=(props)=>{
+const ParentHome=(props)=>{
     const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
         const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
         const backgroundElement =window.innerWidth<=500? <div style={{...mobileBackgroundStyle}} className={classes.FirstImageWrapper}></div>:null
@@ -38,4 +38,4 @@ const MainHom=(props)=>{
         </div>
     )
 }
-export default MainHom
+export default ParentHome
