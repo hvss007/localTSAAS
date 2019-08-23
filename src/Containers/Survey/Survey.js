@@ -9,6 +9,7 @@ import PrivacyPolicy from '../../Components/PrivacyPolicy/PrivacyPolicy';
 import ContactUs from '../../Components/ContactUs/ContactUs';
 import FinishSurvey from '../../Components/FinishSurvey/FinishSurvey';
 import Wiki from '../../Components/Wiki/Wiki';
+import RAHome from "../../Components/roadAccidents/AccidentsHome";
 class Survey extends Component{
     render(){
         return(
@@ -22,6 +23,9 @@ class Survey extends Component{
         </Trips> */}
         <Switch>
         {/* <Route path='/' component={StartSurvey}/>     */}
+
+        <Route path='/rdac' exact component={RAHome}/> 
+
         <Route path='/finishsurvey' exact component={FinishSurvey}/> 
         <Route path='/privacypolicy' exact component={PrivacyPolicy}/> 
         <Route path='/contact' exact component={ContactUs}/> 
