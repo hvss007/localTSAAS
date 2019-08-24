@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import NumberControl from "./../../NumberControl/NumberControl";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
@@ -70,7 +71,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function PersonalInformation() {
+function PersonalInformation(props) {
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
@@ -78,7 +79,7 @@ function PersonalInformation() {
   }, []);
 
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
+  const [age, setAge] = React.useState();
   const [gender, setGender] = React.useState("");
   const [license, setLicense] = React.useState("");
   const [qualification, setQualification] = React.useState("");
@@ -124,13 +125,13 @@ function PersonalInformation() {
       noOfCycles: bicycle
     };
 
-    // axios.defaults.xsrfCookieName = "csrftoken";
-    // axios.defaults.xsrfHeaderName = "X-CSRFToken";
-    // axios.post(HostName + "/api/ptSurvey",data).then((Response) => {
-
-    // })
-
-    // console.log("data:", data);
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.xsrfHeaderName = "X-CSRFToken";
+    axios.post(HostName + "ptSurvey/", data).then(Response => {
+      props.history.push({
+        pathname: "pts/" + Response.data.personId + "/travel-info"
+      });
+    });
   }
 
   return (
@@ -333,4 +334,4 @@ function PersonalInformation() {
   );
 }
 
-export default PersonalInformation;
+export default withRouter(PersonalInformation);
