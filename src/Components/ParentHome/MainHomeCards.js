@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './MainHome.css'
+// import classes from './MainHome.css'
 const surveyCards=(props)=>{
 
     return(

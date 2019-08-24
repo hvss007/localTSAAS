@@ -3,12 +3,13 @@ import {Route,Switch} from 'react-router-dom';
 import Members from '../../Components/Members/Members';
 import Trips from '../Trips/Trips';
 import StartSurvey from '../../Components/StartSuvey/StartSurvey';
-import MainHome from '../../Components/MainHome/MainHom';
+import ParentHome from '../../Components/ParentHome/ParentHome';
 import Family from '../../Components/Family/Family';
 import PrivacyPolicy from '../../Components/PrivacyPolicy/PrivacyPolicy';
 import ContactUs from '../../Components/ContactUs/ContactUs';
 import FinishSurvey from '../../Components/FinishSurvey/FinishSurvey';
 import Wiki from '../../Components/Wiki/Wiki';
+import RAHome from "../../Components/roadAccidents/AccidentsHome";
 class Survey extends Component{
     render(){
         return(
@@ -22,11 +23,14 @@ class Survey extends Component{
         </Trips> */}
         <Switch>
         {/* <Route path='/' component={StartSurvey}/>     */}
+
+        <Route path='/rdac' exact component={RAHome}/> 
+
         <Route path='/finishsurvey' exact component={FinishSurvey}/> 
         <Route path='/privacypolicy' exact component={PrivacyPolicy}/> 
         <Route path='/contact' exact component={ContactUs}/> 
         <Route path='/wiki' exact component={Wiki}/> 
-        <Route path='/' exact  component={MainHome}/>
+        <Route path='/' exact  component={ParentHome}/>
         <Route path='/:id' exact  component={StartSurvey}/>
         <Route path='/:id/:id' exact  component={StartSurvey}/>
         {/* <Route path='/:id/wiki' exact component={Wiki}/> */}
