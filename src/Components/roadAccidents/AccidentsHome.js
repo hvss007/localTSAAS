@@ -2,7 +2,7 @@ import React from 'react';
 import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from '../StartSuvey/StartSurvey.css';
-import MobileHomePage from '../../assets/icons/mobile.png'
+import MobileHomePage from '../../assets/icons/accidentsMobile.png'
 import HomePage from '../../assets/icons/accidentHome.png';
 import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
@@ -31,10 +31,10 @@ const RAHome=(props)=>{
                             <p>as a Service</p>
                         </div>    
                     </div>
-                    <p style={{margin:'4px auto 4px'}}>Please take few minutes to complete the survey. Your few minutes will help us to get information to improve the public transport system. Personal information and location are neither asked nor tracked.</p>
-                    {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
+                    <p style={{margin:'4px auto 4px'}}>Please take few minutes to complete the road accident record. Your few minutes will help us to get information to improve the black spot and prevent further accidents. Personal information and location are neither asked nor tracked.</p>
+                    {/* {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
                     <div>
-                        <p>Please <a href="mailto:amitfce@iitr.ac.in"> contact us</a> to set up a survey or take a demo survey. </p>
+                        <p>Please <a href="mailto:amitfce@iitr.ac.in?subject:Request to set up a road accident recorder"> contact us</a> to set up a survey or take a demo survey. </p>
                     </div> 
                     : 
                     <div>
@@ -42,7 +42,7 @@ const RAHome=(props)=>{
                     </div>
                     }
                     {/* TODO: following is a repetition, should be merged with above.*/}
-                    {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
+                    {/* {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
 
                     <div className={classes.StartSurveyButtonContainer} >
                         <button  className={buttonClasses.join(' ')}
@@ -50,12 +50,11 @@ const RAHome=(props)=>{
                     </div>
                     :
                     null
-                    }  */}
+                    }  */} 
                      <div className={classes.StartSurveyButtonContainer} >
                         <button  className={buttonClasses.join(' ')}
                             style={{fontWeight:'600', fontSize:'18px', textTransform:'none'}} onClick={this.submitClickedHandler}> Take the survey </button> 
                     </div>
-                    }
                     </div>
                     
                 <div className={classes.RightContainer}> </div>
