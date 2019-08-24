@@ -216,7 +216,9 @@ function PersonalInformation(props) {
           <hr />
         </div>
         <div className={classes.divStyle}>
-          <Typography className={classes.labelStyle}>Educational Qualification</Typography>
+          <Typography className={classes.labelStyle}>
+            Educational Qualification
+          </Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
               Educational qualification
@@ -325,15 +327,17 @@ function PersonalInformation(props) {
           </FormControl>
           <hr />
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={handleSubmit}
-          size="large"
-        >
-          Submit
-        </Button>
+        <a href="http://localhost:3000/pts/travel-info">
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={handleSubmit}
+            size="large"
+          >
+            Submit
+          </Button>
+        </a>
       </FormGroup>
     </Card>
   );

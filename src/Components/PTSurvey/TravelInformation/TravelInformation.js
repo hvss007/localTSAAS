@@ -119,7 +119,7 @@ function PersonalInformation() {
           <hr />
         </FormLabel>
         <div className={classes.divStyle}>
-        <Typography className={classes.labelStyle}>Trip Purpose</Typography>
+          <Typography className={classes.labelStyle}>Trip Purpose</Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
               Trip Purpose
@@ -152,7 +152,7 @@ function PersonalInformation() {
           </FormLabel>
           <Grid container spacing={1}>
             <Grid item xs={6}>
-            <Typography className={classes.labelStyle}>From</Typography>
+              <Typography className={classes.labelStyle}>From</Typography>
               <TextField
                 id="outlined-required"
                 label="From"
@@ -161,7 +161,7 @@ function PersonalInformation() {
               />
             </Grid>
             <Grid item xs={6}>
-            <Typography className={classes.labelStyle}>To</Typography>
+              <Typography className={classes.labelStyle}>To</Typography>
               <TextField
                 id="outlined-required"
                 label="To"
@@ -172,7 +172,9 @@ function PersonalInformation() {
           </Grid>
           <Grid container spacing={1}>
             <Grid item xs={6}>
-            <Typography className={classes.labelStyle}>Avg. Travel Time (min)</Typography>
+              <Typography className={classes.labelStyle}>
+                Avg. Travel Time (min)
+              </Typography>
               <TextField
                 id="outlined-required"
                 label="Avg. Travel Time (min)"
@@ -181,7 +183,9 @@ function PersonalInformation() {
               />
             </Grid>
             <Grid item xs={6}>
-            <Typography className={classes.labelStyle}>Avg. Travel cost (Rs.)</Typography>
+              <Typography className={classes.labelStyle}>
+                Avg. Travel cost (Rs.)
+              </Typography>
               <TextField
                 id="outlined-required"
                 label="Avg. Travel Cost"
@@ -190,7 +194,9 @@ function PersonalInformation() {
               />
             </Grid>
             <Grid item xs={12}>
-            <Typography className={classes.labelStyle}>Metro Station</Typography>
+              <Typography className={classes.labelStyle}>
+                Metro Station
+              </Typography>
               <TextField
                 id="outlined-required"
                 label="Metro station"
@@ -449,16 +455,17 @@ function PersonalInformation() {
           </FormControl>
           <hr />
         </div>
-
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={handleSubmit}
-          size="large"
-        >
-          Submit
-        </Button>
+        <a href="http://localhost:3000/pts/rating-form">
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={handleSubmit}
+            size="large"
+          >
+            Submit
+          </Button>
+        </a>
       </FormGroup>
     </Card>
   );

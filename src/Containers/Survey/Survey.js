@@ -37,12 +37,8 @@ class Survey extends Component {
             exact
             component={PersonalInformation}
           />
-          <Route
-            path="/pts/:id/travel-info"
-            exact
-            component={TravelInformation}
-          />
-          <Route path="/pts/:id/rating-form" exact component={RatingForm} />
+          <Route path="/pts/travel-info" exact component={TravelInformation} />
+          <Route path="/pts/rating-form" exact component={RatingForm} />
           <Route path="/finishsurvey" exact component={FinishSurvey} />
           <Route path="/privacypolicy" exact component={PrivacyPolicy} />
           <Route path="/contact" exact component={ContactUs} />
