@@ -509,11 +509,11 @@ class Member extends Component{
             // const familyId=this.props.familyId
             var time=new Date().toLocaleTimeString()                                
             const url=this.props.match.url;
-            const fam=url.split('hhs')
-            const hhsId=fam[1].split("/")[0]
+            const fam=url.split('/')
+            const surveyId=fam[3]  
                // this.setState({surveyID:hhsId})
                       
-            axios.patch(HostName+'responseTime/'+hhsId,{
+            axios.patch(HostName+'responseTime/'+surveyId,{
                                 // surveyStartTimeID:hhsId,
                                 surveyEndTime:time,
                             //    surveyID:hhsId           

@@ -13,20 +13,6 @@ class Trips extends Component{
         this.data=fs;
         const states=Object.keys(this.data);
         states.sort();
-        // console.log(states);
-        // this.stateDataArray=[];
-
-    //    let memberformArray=[];
-        // for (let key in this.data){
-        //     this.stateDataArray.push(
-        //         {
-        //         id:key,
-        //         config:this.data[key]     
-        //     })
-        // }
-        
-        
-        // console.log(this.stateDataArray)
         this.stateArray=[];
         states.forEach(item=>{
             let dataObj={value:item,displayValue:item};
@@ -91,24 +77,7 @@ class Trips extends Component{
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
         });
-        // const url=this.props.match.url
-        // const fam=url.split('family')
-        // const familyId=fam[1].split("/")[0]
-        // this.setState({familyId:familyId})
-        
-        //console.log(this.props.match.params.id1);
-        // console.log(this.props.match.url);
-        // var a=this.props.match.url;
-        // var b=(this.props.match.params.id1+'/trip-info');
-        // var start = a.indexOf(b);
-        // console.log(start);
-        // var s = a.replace(b, '')
-        // console.log(s)
-        // var end = start + b.length;
-        // var result= a.substring(0, start - 1) + a.substring(end);
-        // //console.log(this.props.match.params.id1+'/trip-info')
-        // //console.log(this.props.match.url-(this.props.match.params.id1+"/trip-info"))
-        // console.log(result);
+
     }
    
     mapShowHandler=(searchText)=>{

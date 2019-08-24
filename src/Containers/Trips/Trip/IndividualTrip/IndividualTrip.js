@@ -101,7 +101,7 @@ class Trip extends Component{
         showButton:true,
         updatedData:null,memberIDData:null
     }
-    componentDidMount(){
+    componentDidMount(){                
         Axios.defaults.xsrfCookieName = 'csrftoken'
                     Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
     }
@@ -154,28 +154,7 @@ class Trip extends Component{
     }
     finishButtonCustomDialogBoxHandler=(updatedData,data)=>{
         this.setState({showCustomConfirmBox:true,message:"Have you added all members of the family?",question:'q3',showButton:true},()=>{
-        })
-        // if(window.confirm("Have you added all members?")){
-        //     if(!this.props.disabled){
-        //         Axios.post(HostName+"trips/",data)
-        //         .then(response=>{
-        //                  Axios.post(HostName+"od/",{tripID:response.data.tripID,...updatedData.originDestination[0]}
-        //                  ).then(response=>{})
-        //                  updatedData.accessModeData.mode.forEach(element => {
-        //                     delete element.isValid;
-        //                     Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element}
-        //                     ).then(response=>{
-        //                         this.props.history.push({pathname:'/finishsurvey'})
-        //                     })    
-        //                  });
-        //             }) 
-        //     }
-        //     else{
-        //         this.props.history.push({pathname:'/finishsurvey'})
-        //     }
-        //    }else{
-        //    }
-           
+        }) 
     }
     finishButtonCustomDialogBoxHandlerIn(updatedData,data){
         if(!this.props.disabled){
@@ -193,14 +172,10 @@ class Trip extends Component{
                             // const familyId=this.props.familyId
                             var time=new Date().toLocaleTimeString()                                
                             const url=this.props.match.url;
-                            const fam=url.split('hhs')
-                            const hhsId=fam[1].split("/")[0]
-                            // this.setState({surveyID:hhsId})
-                            
-                            Axios.patch(HostName+'responseTime/'+hhsId,{
-                                // surveyStartTimeID:hhsId,
+                            const fam=url.split('/')
+                            const surveyId=fam[3]                
+                            Axios.patch(HostName+'responseTime/'+surveyId,{
                                 surveyEndTime:time,
-                            //    surveyID:hhsId           
                             })
                         })    
                      });
@@ -210,11 +185,11 @@ class Trip extends Component{
             // const familyId=this.props.familyId
                             var time=new Date().toLocaleTimeString()                                
                             const url=this.props.match.url;
-                            const fam=url.split('hhs')
-                            const hhsId=fam[1].split("/")[0]
+                            const fam=url.split('/')
+                            const surveyId=fam[3]                
                             // this.setState({surveyID:hhsId})
                             
-                            Axios.patch(HostName+'responseTime/'+hhsId,{
+                            Axios.patch(HostName+'responseTime/'+surveyId,{
                                 // surveyStartTimeID:hhsId,
                                 surveyEndTime:time,
                             //    surveyID:hhsId           

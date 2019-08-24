@@ -220,22 +220,7 @@ class Family extends Component{
      
   
     componentDidMount(){
-        var time=new Date().toLocaleTimeString()
-        // this.setState({time:time})
-        axios.defaults.xsrfCookieName = 'csrftoken'
-        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-
-
-        // console.log(this.props.match.url)
-        const url=this.props.match.url;
-        const fam=url.split('hhs')
-        const hhsId=fam[1].split("/")[0]
-        this.setState({surveyID:hhsId})
-        Axios.patch(HostName+'responseTime/'+hhsId,{
-            // surveyStartTimeID:hhsId,
-            surveyStartTime:time,
-        //    surveyID:hhsId           
-        })
+        
         window.history.pushState(null, document.title, window.location.href);
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
@@ -246,17 +231,30 @@ class Family extends Component{
         // })
         axios.get(HostName+"college/").then(
             Response=>{
-                console.log(this.props.match.url.split('/')[1])
+                console.log(this.props.match.url.split('/')[2])
+                const collegeIdNo=this.props.match.url.split('/')[2]
                 const collegeArr= Response.data.filter(item=>{
                     // return ((item.collegeURL===this.props.match.params.id));
-                    return ((item.collegeURL===this.props.match.url.split('/')[1]));
-                    
-                }
-                
-                
-                )
+                    return (
+                        collegeIdNo.includes(item.collegeURL)   )
+                })
+                console.log(collegeArr)
                 if(collegeArr.length===1){
+                    
                     this.setState({collegeID:collegeArr[0].collegeID})
+                    
+                    var time=new Date().toLocaleTimeString()
+                    // this.setState({time:time})
+                    axios.defaults.xsrfCookieName = 'csrftoken'
+                    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
+                    const url=this.props.match.url;
+                    const fam=url.split('/')
+                    const surveyID=fam[3]
+                    this.setState({surveyID:surveyID})
+                    Axios.patch(HostName+'responseTime/'+surveyID,{
+                        surveyStartTime:time,
+                    })
                 }
                 else{
      
@@ -268,9 +266,6 @@ class Family extends Component{
         this.setState({show:value})
     }
     
-    //these functions imported from members
-    //these functions imported from member
-    //these functions imported from member
     inputChangeHandler=(event,inputIdentifier)=>{
         const familyUpdated={...this.state.family};
         const updatedInputElement={...familyUpdated[inputIdentifier]} ;
@@ -348,9 +343,6 @@ class Family extends Component{
     }
     buttonClickHandler=(id)=>{
         if(id===1){
-            const url=this.props.match.url;
-            const fam=url.split('hhs')
-            const hhsId=fam[1].split("/")[0]
             const family=this.state.family;
                     const family1=this.state.family1;
                     const post1={
@@ -366,7 +358,7 @@ class Family extends Component{
                         lat:this.state.lat,
                         lng:this.state.lng,
                         time:this.state.time,
-                        surveyID:hhsId
+                        surveyID:this.state.surveyID
                     }
                     this.props.history.push({pathname:'/finishsurvey'})
                     axios.defaults.xsrfCookieName = 'csrftoken'
@@ -457,9 +449,7 @@ class Family extends Component{
     submitButtonHandler=(event)=>{
         //console.log(this.state.qAnswered);
         event.preventDefault();
-        const url=this.props.match.url;
-            const fam=url.split('hhs')
-            const hhsId=fam[1].split("/")[0]
+        
         // if(this.state.qAnswered===3||true){
             const family=this.state.family;
             const family1=this.state.family1;
@@ -475,8 +465,7 @@ class Family extends Component{
                     landmark:this.state.markerLocationText,
                     lat:this.state.lat,
                     lng:this.state.lng,
-                    time:this.state.time,
-                    surveyID:hhsId
+                    surveyID:this.state.surveyID
                 }
                 axios.defaults.xsrfCookieName = 'csrftoken'
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'

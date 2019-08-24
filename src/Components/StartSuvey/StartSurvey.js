@@ -17,9 +17,6 @@ class StartSurvey extends Component{
         Axios.get(HostName+"college/")
         .then(Response=>{
                const collegeArr= Response.data.filter(item=>{
-               
-               
-                //return (("/"+item.collegeURL===this.props.match.url));
                 return ((item.collegeURL===this.props.match.url.split('/')[2]));
            })
            if(collegeArr.length===1){
@@ -45,9 +42,9 @@ class StartSurvey extends Component{
             console.log()
             if(this.props.match.url.split('/').length===2){
                 // this.props.history.push({pathname:"/demo/hhs"+surveyID+"/family"})
-                this.props.history.push({pathname:this.props.match.url+"/demo"+surveyID+"/family"})
+                this.props.history.push({pathname:this.props.match.url+"/demo/"+surveyID+"/family"})
             }
-            else{this.props.history.push({pathname:this.props.match.url+surveyID+"/family"})}
+            else{this.props.history.push({pathname:this.props.match.url+"/"+surveyID+"/family"})}
         })
         .catch(e=>console.log("network not connected"))
             
