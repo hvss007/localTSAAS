@@ -215,7 +215,7 @@ function PersonalInformation() {
           <hr />
         </div>
         <div className={classes.divStyle}>
-          <Typography className={classes.labelStyle}>Qualification</Typography>
+          <Typography className={classes.labelStyle}>Educational Qualification</Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
               Educational qualification

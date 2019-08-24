@@ -12,6 +12,7 @@ import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -118,6 +119,7 @@ function PersonalInformation() {
           <hr />
         </FormLabel>
         <div className={classes.divStyle}>
+        <Typography className={classes.labelStyle}>Trip Purpose</Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
               Trip Purpose
@@ -135,10 +137,10 @@ function PersonalInformation() {
               }
             >
               <option value="" />
-              <option value="work">Upto 10th</option>
-              <option value="education">10+2</option>
-              <option value="social/gathering">Graduation</option>
-              <option value="recreational/tourism">Post Graduation</option>
+              <option value="work">Work</option>
+              <option value="education">Education</option>
+              <option value="social/gathering">Social/Gathering</option>
+              <option value="recreational/tourism">Recreational/Tourism</option>
             </Select>
           </FormControl>
           <hr />
@@ -150,6 +152,7 @@ function PersonalInformation() {
           </FormLabel>
           <Grid container spacing={1}>
             <Grid item xs={6}>
+            <Typography className={classes.labelStyle}>From</Typography>
               <TextField
                 id="outlined-required"
                 label="From"
@@ -158,6 +161,7 @@ function PersonalInformation() {
               />
             </Grid>
             <Grid item xs={6}>
+            <Typography className={classes.labelStyle}>To</Typography>
               <TextField
                 id="outlined-required"
                 label="To"
@@ -168,17 +172,28 @@ function PersonalInformation() {
           </Grid>
           <Grid container spacing={1}>
             <Grid item xs={6}>
+            <Typography className={classes.labelStyle}>Avg. Travel Time (min)</Typography>
               <TextField
                 id="outlined-required"
-                label="Avg. Travel Time"
+                label="Avg. Travel Time (min)"
                 margin="normal"
                 variant="outlined"
               />
             </Grid>
             <Grid item xs={6}>
+            <Typography className={classes.labelStyle}>Avg. Travel cost (Rs.)</Typography>
               <TextField
                 id="outlined-required"
                 label="Avg. Travel Cost"
+                margin="normal"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12}>
+            <Typography className={classes.labelStyle}>Metro Station</Typography>
+              <TextField
+                id="outlined-required"
+                label="Metro station"
                 margin="normal"
                 variant="outlined"
               />
