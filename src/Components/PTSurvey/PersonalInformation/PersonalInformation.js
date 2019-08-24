@@ -180,6 +180,11 @@ function PersonalInformation(props) {
                 control={<Radio color="primary" />}
                 label="Male"
               />
+              <FormControlLabel
+                value="other"
+                control={<Radio color="primary" />}
+                label="Other"
+              />
             </RadioGroup>
           </FormControl>
           <hr />
@@ -187,7 +192,7 @@ function PersonalInformation(props) {
         <div className={classes.divStyle}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
-              Driving License
+              Light motor vehicle driving license
             </FormLabel>
             <RadioGroup
               aria-label="license"
@@ -211,10 +216,10 @@ function PersonalInformation(props) {
           <hr />
         </div>
         <div className={classes.divStyle}>
-          <Typography className={classes.labelStyle}>Qualification</Typography>
+          <Typography className={classes.labelStyle}>Educational Qualification</Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
-              Qualification
+              Educational qualification
             </InputLabel>
             <Select
               native
@@ -267,11 +272,11 @@ function PersonalInformation(props) {
         </div>
         <div className={classes.divStyle}>
           <Typography className={classes.labelStyle}>
-            Avg. Monthly Income
+            Average Monthly Income
           </Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
-              Avg. Monthly Income
+              Average Monthly Income
             </InputLabel>
             <Select
               native

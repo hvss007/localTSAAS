@@ -29,8 +29,9 @@ class Survey extends Component {
         </Trips> */}
         <Switch>
           {/* <Route path='/' component={StartSurvey}/>     */}
+
           <Route path="/rdac" exact component={RAHome} />
-          Route path="/pts" exact component={PTHome} />
+          <Route path="/pts" exact component={PTHome} />
           <Route
             path="/pts/personal-info"
             exact
