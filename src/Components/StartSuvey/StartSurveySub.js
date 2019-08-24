@@ -2,7 +2,7 @@ import React from 'react';
 import Toolbar from './Navigation/Toolbar/Toolbar';
 import SideDrawer from './SideDrawer/SideDrawer';
 import classes from './StartSurvey.css';
-import MobileHomePage from '../../assets/icons/mobile.png'
+import MobileHomePage from '../../assets/icons/hhs-mobile.png'
 import HomePage from '../../assets/icons/homepage.png';
 import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';

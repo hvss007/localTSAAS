@@ -17,6 +17,7 @@ class StartSurvey extends Component{
         Axios.get(HostName+"college/")
         .then(Response=>{
                const collegeArr= Response.data.filter(item=>{
+                   
                 return ((item.collegeURL===this.props.match.url.split('/')[2]));
            })
            if(collegeArr.length===1){
@@ -52,11 +53,8 @@ class StartSurvey extends Component{
     
     render(){    
         let showElement;
-        console.log("/hh65".split('/'))
-        // if(this.props.match.url==="/"){
-        //     showElement=<StartSurveySub collegeName={"demo"} collegeID={'1'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
-        // }
-        if(this.props.match.url.split('/').length===2){
+        console.log(this.props.match.url.split('/'))
+        if(this.props.match.url.split('/')[1]==='hhs'){
             showElement=<StartSurveySub collegeName={"demo"} collegeID={'1'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
         }
         else{

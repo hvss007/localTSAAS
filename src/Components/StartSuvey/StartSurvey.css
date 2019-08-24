@@ -12,6 +12,7 @@
   /* height: fit-content; */
   height:80vh; 
   display: flex;
+  flex-flow: column;
   justify-content: space-between;
   box-sizing: border-box;
   /* padding:25px; */
@@ -19,6 +20,7 @@
 /* .LeftContainer,.RightContainer{
   width: 40%
 } */
+
 .MainContainerFinishSurvey{
   height: unset;
 }
@@ -290,7 +292,9 @@
     width:95%;
     height:70vh; 
     padding: 10px;
+    flex-direction: row;
   }
+  
   .MainContainerFinishSurvey{
     width: 90%;
   }
