@@ -1,7 +1,7 @@
 .RightContainer{
     width:50%;
     display:flex;
-    flex-wrap: wrap,
+    flex-wrap: wrap !important;
 }
 .Tiles{
     display:flex;
