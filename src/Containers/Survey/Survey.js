@@ -10,6 +10,12 @@ import ContactUs from '../../Components/ContactUs/ContactUs';
 import FinishSurvey from '../../Components/FinishSurvey/FinishSurvey';
 import Wiki from '../../Components/Wiki/Wiki';
 import RAHome from "../../Components/roadAccidents/AccidentsHome";
+
+import PersonalInformation from "../../Components/PTSurvey/PersonalInformation/PersonalInformation";
+import TravelInformation from "../../Components/PTSurvey/TravelInformation/TravelInformation";
+import PTHome from "../../Components/PTSurvey/PTHome";
+import RatingForm from "../../Components/PTSurvey/RatingForm/RatingForm";
+
 class Survey extends Component{
     render(){
         return(
@@ -25,6 +31,14 @@ class Survey extends Component{
         {/* <Route path='/' component={StartSurvey}/>     */}
 
         <Route path='/rdac' exact component={RAHome}/> 
+        <Route path="/pts" exact component={PTHome} />
+          <Route
+            path="/pts/personal-info"
+            exact
+            component={PersonalInformation}
+          />
+          <Route path="/pts/travel-info" exact component={TravelInformation} />
+          <Route path="/pts/rating-form" exact component={RatingForm} />
 
         <Route path='/finishsurvey' exact component={FinishSurvey}/> 
         <Route path='/privacypolicy' exact component={PrivacyPolicy}/> 
