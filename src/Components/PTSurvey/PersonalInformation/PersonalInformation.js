@@ -1,6 +1,7 @@
 import React from "react";
 import NumberControl from "./../../NumberControl/NumberControl";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
@@ -13,6 +14,8 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
+import Typography from "@material-ui/core/Typography";
+import HostName from "./../../../assets/globalvaribles/GlobalVariables";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -110,7 +113,24 @@ function PersonalInformation() {
   }
 
   function handleSubmit() {
-    console.log("cars:", cars, "bicycle:", bicycle, "2wheel:", two_wheeler);
+    const data = {
+      age: age,
+      gender: gender,
+      educationalQualificaton: qualification,
+      profession: profession,
+      monthlyIncome: income,
+      noOfCars: cars,
+      noOfTwoWheeler: two_wheeler,
+      noOfCycles: bicycle
+    };
+
+    // axios.defaults.xsrfCookieName = "csrftoken";
+    // axios.defaults.xsrfHeaderName = "X-CSRFToken";
+    // axios.post(HostName + "/api/ptSurvey",data).then((Response) => {
+
+    // })
+
+    // console.log("data:", data);
   }
 
   return (
@@ -190,6 +210,7 @@ function PersonalInformation() {
           <hr />
         </div>
         <div className={classes.divStyle}>
+          <Typography className={classes.labelStyle}>Qualification</Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
               Qualification
@@ -216,6 +237,7 @@ function PersonalInformation() {
           <hr />
         </div>
         <div className={classes.divStyle}>
+          <Typography className={classes.labelStyle}>Profession</Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
               Profession
@@ -243,6 +265,9 @@ function PersonalInformation() {
           <hr />
         </div>
         <div className={classes.divStyle}>
+          <Typography className={classes.labelStyle}>
+            Avg. Monthly Income
+          </Typography>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
               Avg. Monthly Income
