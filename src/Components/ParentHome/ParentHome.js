@@ -50,12 +50,10 @@ export default class ParentHome extends Component{
         .catch(e=>console.log("network not connected",e))
     }
     
-    
-    
     render()
     
     {   
-        const imgArray=[HHS,RDAC,PTS]
+        const imgArray=[HHS,PTS,RDAC]
         const cards=this.state.surveyType.map((item,index)=>{
         return <Cards src={imgArray[index]} clicked={this.onClickHandler} key={index} name={item.surveyFormat} url={item.surveyURL} ></Cards>
     })
