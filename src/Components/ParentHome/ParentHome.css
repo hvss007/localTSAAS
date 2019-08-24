@@ -1,0 +1,21 @@
+.RightContainer{
+    width:50%;
+    display:flex;
+    flex-wrap: wrap,
+}
+.Tiles{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@media(max-width:768px){
+    .RightContainer{
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center
+        
+    }
+    
+}

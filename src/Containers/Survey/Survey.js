@@ -40,9 +40,10 @@ class Survey extends Component{
         <Route path="/:id/hhs:id/family:id/member" exact component={Members}/>
         <Route path="/:id/hhs:id/family:id/member:id1/trip-info" exact component={Trips}/>
          */}
-         <Route path='/:id/:id/:id/family'exact component={Family}></Route>
-         <Route path="/:id/:id/:id/family:id/member" exact component={Members}/>
-         <Route path="/:id/:id/:id/family:id/member:id1/trip-info" exact component={Trips}/>
+         <Route path='/hhs/:id/:id/family'exact component={Family}></Route>
+         <Route path="/hhs/:id/:id/family:id/member" exact component={Members}/>
+         <Route path="/hhs/:id/:id/family:id/member:id1/trip-info" exact component={Trips}/>
+         {/* <Route path='/pt'exact component={Family}></Route> */}
         </Switch>
         </div>
         )

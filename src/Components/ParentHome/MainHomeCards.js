@@ -1,10 +1,10 @@
 import React from 'react';
-// import classes from './MainHome.css'
+import classes from './ParentHome.css'
 const surveyCards=(props)=>{
-
     return(
-        <div onClick={()=>props.clicked(props.url)} >
-            {props.name}
+        <div  className={classes.Tiles} onClick={()=>props.clicked(props.url)} >
+            <img style={{width:'391px'}} alt={props.name} src={props.src}></img>
+            <p>{props.name}</p>
         </div>
     )
 } 
