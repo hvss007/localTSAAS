@@ -31,10 +31,10 @@ const RAHome=(props)=>{
                             <p>as a Service</p>
                         </div>    
                     </div>
-                    <p style={{margin:'4px auto 4px'}}>Please take few minutes to complete the survey. Your few minutes will help us to get information to improve the public transport system. Personal information and location are neither asked nor tracked.</p>
+                    <p style={{margin:'4px auto 4px'}}>Please take few minutes to complete the road accident record. Your few minutes will help us to get information to improve the black spot and prevent further accidents. Personal information and location are neither asked nor tracked.</p>
                     {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
                     <div>
-                        <p>Please <a href="mailto:amitfce@iitr.ac.in"> contact us</a> to set up a survey or take a demo survey. </p>
+                        <p>Please <a href="mailto:amitfce@iitr.ac.in?subject:Request to set up a road accident recorder"> contact us</a> to set up a survey or take a demo survey. </p>
                     </div> 
                     : 
                     <div>
