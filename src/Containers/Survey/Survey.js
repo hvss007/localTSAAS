@@ -28,13 +28,17 @@ class Survey extends Component{
         <Route path='/wiki' exact component={Wiki}/> 
         <Route path='/' exact  component={MainHome}/>
         <Route path='/:id' exact  component={StartSurvey}/>
+        <Route path='/:id/:id' exact  component={StartSurvey}/>
         {/* <Route path='/:id/wiki' exact component={Wiki}/> */}
         {/* <Route path='/privacypolicy' exact component={PrivacyPolicy}/>  */}
         {/* <Route path='/family' exact component={Family}></Route> */}
-        <Route path='/:id/hhs:id/family'exact component={Family}></Route>
+        {/* <Route path='/:id/hhs:id/family'exact component={Family}></Route>
         <Route path="/:id/hhs:id/family:id/member" exact component={Members}/>
         <Route path="/:id/hhs:id/family:id/member:id1/trip-info" exact component={Trips}/>
-        
+         */}
+         <Route path='/:id/:id/family'exact component={Family}></Route>
+         <Route path="/:id/:id/family:id/member" exact component={Members}/>
+         <Route path="/:id/:id/family:id/member:id1/trip-info" exact component={Trips}/>
         </Switch>
         </div>
         )

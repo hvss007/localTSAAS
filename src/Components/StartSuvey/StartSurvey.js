@@ -17,7 +17,10 @@ class StartSurvey extends Component{
         Axios.get(HostName+"college/")
         .then(Response=>{
                const collegeArr= Response.data.filter(item=>{
-               return (("/"+item.collegeURL===this.props.match.url));
+               
+               
+                //return (("/"+item.collegeURL===this.props.match.url));
+                return ((item.collegeURL===this.props.match.url.split('/')[2]));
            })
            if(collegeArr.length===1){
                this.setState({displayComponent:true,collegeName:collegeArr[0].collegeName,collegeID:collegeArr[0].collegeID})
@@ -39,10 +42,12 @@ class StartSurvey extends Component{
         Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         Axios.post(HostName+"survey/",{surveyType:'hhs'}).then(response=>{
             const surveyID=response.data.surveyID
-            if(this.props.match.url==="/"){
-                this.props.history.push({pathname:"/demo/hhs"+surveyID+"/family"})
+            console.log()
+            if(this.props.match.url.split('/').length===2){
+                // this.props.history.push({pathname:"/demo/hhs"+surveyID+"/family"})
+                this.props.history.push({pathname:this.props.match.url+"/demo"+surveyID+"/family"})
             }
-            else{this.props.history.push({pathname:this.props.match.url+"/hhs"+surveyID+"/family"})}
+            else{this.props.history.push({pathname:this.props.match.url+surveyID+"/family"})}
         })
         .catch(e=>console.log("network not connected"))
             
@@ -50,7 +55,11 @@ class StartSurvey extends Component{
     
     render(){    
         let showElement;
-        if(this.props.match.url==="/"){
+        console.log("/hh65".split('/'))
+        // if(this.props.match.url==="/"){
+        //     showElement=<StartSurveySub collegeName={"demo"} collegeID={'1'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
+        // }
+        if(this.props.match.url.split('/').length===2){
             showElement=<StartSurveySub collegeName={"demo"} collegeID={'1'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
         }
         else{
