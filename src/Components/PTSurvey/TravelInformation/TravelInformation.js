@@ -13,6 +13,10 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Typography from "@material-ui/core/Typography";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,10 +74,34 @@ const useStyles = makeStyles(theme => ({
   },
   divStyle: {
     margin: "0 10px 0 10px"
+  },
+  heading: {
+    fontSize: "1.3rem",
+    flexBasis: "33.33%",
+    flexShrink: 0
+  },
+  secondaryHeading: {
+    fontSize: "1.3rem",
+    color: theme.palette.text.secondary
+  },
+  locationBox: {
+    justifyContent: "center",
+    borderRadius: 8
+  },
+  locationExpand: {
+    margin: "2vh 10vh 2vh 10vh",
+    backgroundColor: "#bbdefb",
+    borderRadius: 8
   }
 }));
 
 function PersonalInformation() {
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
@@ -114,10 +142,25 @@ function PersonalInformation() {
   return (
     <Card className={classes.root}>
       <FormGroup className={classes.formGroup}>
-        <FormLabel component="legend" className={classes.formHeader}>
-          TRAVEL INFORMATION:
+        <Grid container spacing={0}>
+          <Grid item xs={3}>
+            <TextField
+              id="outlined-required"
+              label="Metro station"
+              margin="normal"
+              variant="outlined"
+              required
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <FormLabel component="legend" className={classes.formHeader}>
+              TRAVEL INFORMATION:
+            </FormLabel>
+          </Grid>
+          <Grid item xs={3}></Grid>
           <hr />
-        </FormLabel>
+        </Grid>
+
         <div className={classes.divStyle}>
           <Typography className={classes.labelStyle}>Trip Purpose</Typography>
           <FormControl variant="outlined" className={classes.formControl}>
@@ -150,26 +193,61 @@ function PersonalInformation() {
           <FormLabel component="legend" className={classes.labelStyle}>
             You are Going:
           </FormLabel>
-          <Grid container spacing={1}>
-            <Grid item xs={6}>
-              <Typography className={classes.labelStyle}>From</Typography>
-              <TextField
-                id="outlined-required"
-                label="From"
-                margin="normal"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Typography className={classes.labelStyle}>To</Typography>
-              <TextField
-                id="outlined-required"
-                label="To"
-                margin="normal"
-                variant="outlined"
-              />
-            </Grid>
-          </Grid>
+          <ExpansionPanel
+            expanded={expanded === "panel1"}
+            onChange={handleChange("panel1")}
+            className={classes.locationExpand}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography className={classes.heading}>From</Typography>
+              <Typography className={classes.secondaryHeading}>
+                Please select your origin location
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <iframe
+                className={classes.locationBox}
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13839.414621384869!2d77.88753742905271!3d29.8684940614533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1566766554708!5m2!1sen!2sin"
+                width="100%"
+                height="450"
+                frameBorder="0"
+                style={{ border: 0 }}
+                allowFullScreen=""
+              ></iframe>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel
+            className={classes.locationExpand}
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2bh-content"
+              id="panel2bh-header"
+            >
+              <Typography className={classes.heading}>To</Typography>
+              <Typography className={classes.secondaryHeading}>
+                Please select your destination location
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <iframe
+                className={classes.locationBox}
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13839.414621384869!2d77.88753742905271!3d29.8684940614533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1566766554708!5m2!1sen!2sin"
+                width="100%"
+                height="450"
+                frameBorder="0"
+                style={{ border: 0 }}
+                allowFullScreen=""
+              ></iframe>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+
           <Grid container spacing={1}>
             <Grid item xs={6}>
               <Typography className={classes.labelStyle}>
@@ -189,17 +267,6 @@ function PersonalInformation() {
               <TextField
                 id="outlined-required"
                 label="Avg. Travel Cost"
-                margin="normal"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography className={classes.labelStyle}>
-                Metro Station
-              </Typography>
-              <TextField
-                id="outlined-required"
-                label="Metro station"
                 margin="normal"
                 variant="outlined"
               />
