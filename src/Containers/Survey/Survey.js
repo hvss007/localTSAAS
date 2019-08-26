@@ -13,7 +13,7 @@ import RAHome from "../../Components/roadAccidents/AccidentsHome";
 
 import PersonalInformation from "../../Components/PTSurvey/PersonalInformation/PersonalInformation";
 import TravelInformation from "../../Components/PTSurvey/TravelInformation/TravelInformation";
-import PTHome from "../../Components/PTSurvey/PTHome";
+import PTHome from "../../Components/PTSurvey/PThm";
 import RatingForm from "../../Components/PTSurvey/RatingForm/RatingForm";
 
 class Survey extends Component {

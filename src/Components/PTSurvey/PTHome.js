@@ -6,6 +6,7 @@ import MobileHomePage from "../../assets/icons/pts-mobile.png";
 import HomePage from "../../assets/icons/pts-home.png";
 import Background from "../../assets/icons/homebackground.png";
 import TsaasLogo from "../../assets/icons/tsaaslogo.png";
+import HostName from '../../assets/globalvaribles/GlobalVariables';
 
 const PTHome = props => {
   const buttonClasses = [
@@ -58,12 +59,12 @@ const PTHome = props => {
             system. Personal information and location are neither asked nor
             tracked.
           </p>
-          {props.collegeName === "demo" ||
+          {props.collegeName === "demopt" ||
           props.collegeName === "None" ||
           props.collegeName === "home" ? (
             <div>
               <p>
-                Please <a href="mailto:amitfce@iitr.ac.in"> contact us</a> to
+                Please <a href="mailto:amitfce@iitr.ac.in?subject:Request to set up a PT Survey"> contact us</a> to
                 set up a survey or take a demo survey.{" "}
               </p>
             </div>
@@ -86,7 +87,7 @@ const PTHome = props => {
             </div>
           )}
           {/* TODO: following is a repetition, should be merged with above.*/}
-          {props.collegeName === "demo" ||
+          {props.collegeName === "demopt" ||
           props.collegeName === "None" ||
           props.collegeName === "home" ? (
             <div className={classes.StartSurveyButtonContainer}>
@@ -105,7 +106,7 @@ const PTHome = props => {
             </div>
           ) : (
             <div className={classes.StartSurveyButtonContainer}>
-              <a href="http://localhost:3000/pts/personal-info">
+              {/* <a href="http://localhost:3000/pts/personal-info"> */}
                 <button
                   className={buttonClasses.join(" ")}
                   style={{
@@ -113,12 +114,12 @@ const PTHome = props => {
                     fontSize: "18px",
                     textTransform: "none"
                   }}
-                  // onClick={props.submitClicked}
+                  onClick={props.submitClicked}
                 >
                   {" "}
                   Take the survey{" "}
                 </button>
-              </a>
+              {/* </a> */}
             </div>
           )}
         </div>
