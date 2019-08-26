@@ -55,7 +55,7 @@ export default class ParentHome extends Component{
     {   
         const imgArray=[HHS,PTS,RDAC]
         const cards=this.state.surveyType.map((item,index)=>{
-        return <Cards src={imgArray[index]} clicked={this.onClickHandler} key={index} name={item.surveyFormat} url={item.surveyURL} ></Cards>
+        return <Cards src={imgArray[item.surveyTypeID-1]} clicked={this.onClickHandler} key={index} name={item.surveyFormat} url={item.surveyURL} ></Cards>
     })
         const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
         // const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
