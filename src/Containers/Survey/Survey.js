@@ -28,39 +28,32 @@ class Survey extends Component {
         {/* <Trips>\
         </Trips> */}
         <Switch>
-          {/* <Route path='/' component={StartSurvey}/>     */}
-
+          {/* home */}
+          <Route path="/" exact component={ParentHome} />
+          {/* Road accident */}
           <Route path="/rdac" exact component={RAHome} />
+          {/* pt survey */}
           <Route path="/pts" exact component={PTHome} />
-          <Route
-            path="/pts/personal-info"
-            exact
-            component={PersonalInformation}
-          />
-          <Route path="/pts/travel-info" exact component={TravelInformation} />
-          <Route path="/pts/rating-form" exact component={RatingForm} />
+          <Route path="/pts/:id" exact component={PTHome} />
+          <Route path="/pts/:id/:id/personal-info"  exact component={PersonalInformation} />
+          <Route path="/pts/:id/:id/person:id/travel-info"  exact component={TravelInformation} />
+          <Route path="/pts/:id/:id/person:id/rating-form" exact component={RatingForm} />
+         {/* fixed pages */}
           <Route path="/finishsurvey" exact component={FinishSurvey} />
           <Route path="/privacypolicy" exact component={PrivacyPolicy} />
           <Route path="/contact" exact component={ContactUs} />
           <Route path="/wiki" exact component={Wiki} />
-          <Route path="/" exact component={ParentHome} />
-          <Route path="/:id" exact component={StartSurvey} />
-          <Route path="/:id/:id" exact component={StartSurvey} />
-          {/* <Route path='/:id/wiki' exact component={Wiki}/> */}
-          {/* <Route path='/privacypolicy' exact component={PrivacyPolicy}/>  */}
-          {/* <Route path='/family' exact component={Family}></Route> */}
-          {/* <Route path='/:id/hhs:id/family'exact component={Family}></Route>
-        <Route path="/:id/hhs:id/family:id/member" exact component={Members}/>
-        <Route path="/:id/hhs:id/family:id/member:id1/trip-info" exact component={Trips}/>
-         */}
-          <Route path="/:id/:id/:id/family" exact component={Family}></Route>
+          {/* household survey */}
+          <Route path="/hhs" exact component={StartSurvey} />
+          <Route path="/hhs/:id" exact component={StartSurvey} />
+          <Route path="/hhs/:id/:id/family" exact component={Family}></Route>
           <Route
-            path="/:id/:id/:id/family:id/member"
+            path="/hhs/:id/:id/family:id/member"
             exact
             component={Members}
           />
           <Route
-            path="/:id/:id/:id/family:id/member:id1/trip-info"
+            path="/hhs/:id/:id/family:id/member:id1/trip-info"
             exact
             component={Trips}
           />

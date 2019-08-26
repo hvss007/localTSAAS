@@ -17,6 +17,8 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import axios from "axios";
+import HostName from "./../../../assets/globalvaribles/GlobalVariables";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -95,7 +97,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function PersonalInformation() {
+function TravelInformation(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = panel => (event, isExpanded) => {
@@ -136,7 +138,20 @@ function PersonalInformation() {
   }
 
   function handleSubmit() {
-    console.log(travelFrequency, comingToMode, comingFromMode);
+    // console.log(travelFrequency, comingToMode, comingFromMode);
+    const data = {
+      personID:this.props.personID,
+    };
+
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.xsrfHeaderName = "X-CSRFToken";
+    axios.post(HostName + "ptSurvey/", data).then(Response => {
+      console.log(Response)
+
+      props.history.push({
+        pathname: "person" + Response.data.personID + "/rating-form"
+      });
+    });
   }
 
   return (
@@ -522,7 +537,7 @@ function PersonalInformation() {
           </FormControl>
           <hr />
         </div>
-        <a href="http://localhost:3000/pts/rating-form">
+        {/* <a href="http://localhost:3000/pts/rating-form"> */}
           <Button
             variant="contained"
             color="primary"
@@ -532,10 +547,10 @@ function PersonalInformation() {
           >
             Submit
           </Button>
-        </a>
+        {/* </a> */}
       </FormGroup>
     </Card>
   );
 }
 
-export default PersonalInformation;
+export default TravelInformation;
