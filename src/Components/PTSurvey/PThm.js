@@ -43,9 +43,9 @@ class StartSurvey extends Component{
             console.log()
             if(this.props.match.url.split('/').length===2){
                 // this.props.history.push({pathname:"/demo/hhs"+surveyID+"/family"})
-                this.props.history.push({pathname:this.props.match.url+"/demopt/"+surveyID+"/personal-info"})
+                this.props.history.push({pathname:this.props.match.url+"/demopt/"+surveyID+"/pts-main"})
             }
-            else{this.props.history.push({pathname:this.props.match.url+"/"+surveyID+"/personal-info"})}
+            else{this.props.history.push({pathname:this.props.match.url+"/"+surveyID+"/pts-main"})}
         })
         .catch(e=>console.log("network not connected"))
             

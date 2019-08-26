@@ -207,7 +207,7 @@ function PersonalInformation(props) {
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
     axios.post(HostName + "ptSurvey/", data).then(Response => {
       props.history.push({
-        pathname: Response.data.personID + "/rating-form"
+        pathname: "person" + Response.data.personID + "/rating-form"
       });
     });
   }

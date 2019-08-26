@@ -119,7 +119,7 @@ export default function RatingForm(props) {
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
     axios.post(HostName + "ptSurveyRating/", data).then(Response => {
       props.history.push({
-        pathname: "/"
+        pathname: "/finishsurvey" 
       });
     });
   }

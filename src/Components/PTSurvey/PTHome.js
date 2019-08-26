@@ -59,7 +59,7 @@ const PTHome = props => {
             system. Personal information and location are neither asked nor
             tracked.
           </p>
-          {props.collegeName === "demopt" ||
+          {props.collegeName.includes("demo") ||
           props.collegeName === "None" ||
           props.collegeName === "home" ? (
             <div>
@@ -87,7 +87,7 @@ const PTHome = props => {
             </div>
           )}
           {/* TODO: following is a repetition, should be merged with above.*/}
-          {props.collegeName === "demopt" ||
+          {props.collegeName.includes("demo") ||
           props.collegeName === "None" ||
           props.collegeName === "home" ? (
             <div className={classes.StartSurveyButtonContainer}>
