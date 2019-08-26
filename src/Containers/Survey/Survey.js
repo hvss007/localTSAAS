@@ -15,6 +15,7 @@ import PersonalInformation from "../../Components/PTSurvey/PersonalInformation/P
 import TravelInformation from "../../Components/PTSurvey/TravelInformation/TravelInformation";
 import PTHome from "../../Components/PTSurvey/PThm";
 import RatingForm from "../../Components/PTSurvey/RatingForm/RatingForm";
+import PublicTransportForm from "../../Components/PTSurvey/MainForm/PublicTransportForm";
 
 class Survey extends Component {
   render() {
@@ -33,12 +34,25 @@ class Survey extends Component {
           {/* Road accident */}
           <Route path="/rdac" exact component={RAHome} />
           {/* pt survey */}
+          <Route path="/pts/pts-main" exact component={PublicTransportForm} />
           <Route path="/pts" exact component={PTHome} />
           <Route path="/pts/:id" exact component={PTHome} />
-          <Route path="/pts/:id/:id/personal-info"  exact component={PersonalInformation} />
-          <Route path="/pts/:id/:id/person:id/travel-info"  exact component={TravelInformation} />
-          <Route path="/pts/:id/:id/person:id/rating-form" exact component={RatingForm} />
-         {/* fixed pages */}
+          <Route
+            path="/pts/:id/:id/personal-info"
+            exact
+            component={PersonalInformation}
+          />
+          <Route
+            path="/pts/:id/:id/person:id/travel-info"
+            exact
+            component={TravelInformation}
+          />
+          <Route
+            path="/pts/:id/:id/person:id/rating-form"
+            exact
+            component={RatingForm}
+          />
+          {/* fixed pages */}
           <Route path="/finishsurvey" exact component={FinishSurvey} />
           <Route path="/privacypolicy" exact component={PrivacyPolicy} />
           <Route path="/contact" exact component={ContactUs} />

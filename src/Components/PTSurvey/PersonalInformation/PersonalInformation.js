@@ -128,7 +128,7 @@ function PersonalInformation(props) {
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
     axios.post(HostName + "ptSurvey/", data).then(Response => {
-      console.log(Response)
+      console.log(Response);
       props.history.push({
         pathname: "person" + Response.data.personID + "/travel-info"
       });
@@ -329,15 +329,15 @@ function PersonalInformation(props) {
           <hr />
         </div>
         {/* <a href="http://localhost:3000/pts/travel-info"> */}
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onClick={handleSubmit}
-            size="large"
-          >
-            Submit
-          </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={handleSubmit}
+          size="large"
+        >
+          Submit
+        </Button>
         {/* </a> */}
       </FormGroup>
     </Card>
