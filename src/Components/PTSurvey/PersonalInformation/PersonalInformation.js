@@ -117,11 +117,11 @@ function PersonalInformation(props) {
     const data = {
       age: age,
       gender: gender,
-      educationalQualificaton: qualification,
+      educationalQualification: qualification,
       profession: profession,
       monthlyIncome: income,
       noOfCars: cars,
-      noOfTwoWheeler: two_wheeler,
+      noOfTwoWheelers: two_wheeler,
       noOfCycles: bicycle
     };
 
