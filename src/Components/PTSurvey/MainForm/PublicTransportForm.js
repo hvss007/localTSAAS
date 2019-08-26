@@ -116,6 +116,7 @@ function PersonalInformation(props) {
 
   const classes = useStyles();
 
+  //Personal Info
   const [age, setAge] = React.useState();
   const [gender, setGender] = React.useState("");
   const [license, setLicense] = React.useState("");
@@ -125,11 +126,15 @@ function PersonalInformation(props) {
   const [two_wheeler, setTwoWheeler] = React.useState(0);
   const [bicycle, setBicycle] = React.useState(0);
   const [income, setIncome] = React.useState("");
-  const [tripPurpose, setTripPurpose] = React.useState("");
-  const [comingFromMode, setComingFromMode] = React.useState({});
-  const [comingToMode, setComingToMode] = React.useState({});
-  const [travelFrequency, setTravelFrequency] = React.useState({});
 
+  //Travel Info
+  const [tripPurpose, setTripPurpose] = React.useState("");
+  const [comingFromMode, setComingFromMode] = React.useState("");
+  const [comingToMode, setComingToMode] = React.useState("");
+  const [travelFrequency, setTravelFrequency] = React.useState("");
+  const [avg_travel_cost, setTravelCost] = React.useState("");
+  const [avg_travel_time, setTravelTime] = React.useState("");
+  // const [travelFrequency, setTravelFrequency] = React.useState({});
   function handleAge(event) {
     setAge(event.target.value);
   }
@@ -155,20 +160,22 @@ function PersonalInformation(props) {
   }
 
   const handleComingFromMode = name => event => {
-    setComingFromMode({
-      commingFromMode: { [name]: event.target.checked }
-    });
+    setComingFromMode(name);
   };
   const handleComingToMode = name => event => {
-    setComingToMode({
-      commingToMode: { [name]: event.target.checked }
-    });
+    setComingToMode(name);
   };
   const handleTravelFrequency = name => event => {
-    setTravelFrequency({
-      travelFrequency: { [name]: event.target.checked }
-    });
+    setTravelFrequency(name);
   };
+
+  function handleTravelTime(event) {
+    setTravelTime(event.target.value);
+  }
+
+  function handleTravelCost(event) {
+    setTravelCost(event.target.value);
+  }
 
   function handleTripPurpose(event) {
     setTripPurpose(event.target.value);
@@ -183,15 +190,24 @@ function PersonalInformation(props) {
       monthlyIncome: income,
       noOfCars: cars,
       noOfTwoWheelers: two_wheeler,
-      noOfCycles: bicycle
+      noOfCycles: bicycle,
+      travelPurpose: tripPurpose,
+      // fromLandmark: ,
+      // toLandmark: ,
+      travelTime: avg_travel_time,
+      travelCost: avg_travel_time,
+      accessMode: comingFromMode,
+      egressMode: comingToMode,
+      travelFreq: travelFrequency
     };
+
+    console.log("data", data);
 
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
     axios.post(HostName + "ptSurvey/", data).then(Response => {
-      console.log(Response);
       props.history.push({
-        pathname: "person" + Response.data.personID + "/travel-info"
+        pathname: Response.data.personID + "/rating-form"
       });
     });
   }
@@ -205,18 +221,21 @@ function PersonalInformation(props) {
         </FormLabel>
 
         <div>
-          <FormLabel component="legend" className={classes.labelStyle}>
-            Enter Age
-          </FormLabel>
-          <TextField
-            required
-            id="outlined-required"
-            label="Age"
-            margin="normal"
-            variant="outlined"
-            value={age}
-            onChange={handleAge}
-          />
+          <FormControl component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend" className={classes.labelStyle}>
+              Enter Age
+            </FormLabel>
+            <TextField
+              required
+              id="outlined-required"
+              label="Age"
+              margin="normal"
+              variant="outlined"
+              value={age}
+              onChange={handleAge}
+            />
+          </FormControl>
+
           <hr />
         </div>
 
@@ -505,6 +524,8 @@ function PersonalInformation(props) {
                 label="Avg. Travel Time (min)"
                 margin="normal"
                 variant="outlined"
+                value={avg_travel_time}
+                onChange={handleTravelTime}
               />
             </Grid>
             <Grid item xs={6}>
@@ -516,6 +537,8 @@ function PersonalInformation(props) {
                 label="Avg. Travel Cost"
                 margin="normal"
                 variant="outlined"
+                value={avg_travel_cost}
+                onChange={handleTravelCost}
               />
             </Grid>
           </Grid>
