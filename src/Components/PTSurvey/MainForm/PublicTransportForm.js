@@ -201,13 +201,16 @@ function PersonalInformation(props) {
       travelFreq: travelFrequency
     };
 
-    console.log("data", data);
+    // console.log("data", data);
 
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
     axios.post(HostName + "ptSurvey/", data).then(Response => {
+      // console.log(props);
+      const url = props.match.url;
+      // console.log(url);
       props.history.push({
-        pathname: "person" + Response.data.personID + "/rating-form"
+        pathname: url + "/" +Response.data.personID + "/rating-form"
       });
     });
   }

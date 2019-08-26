@@ -67,8 +67,11 @@ export default function RatingForm(props) {
   const [rover1, setRover1] = React.useState(0);
   const [rover2, setRover2] = React.useState(0);
 
+  const [pId] = props.match.url.split("/")[5];
+
   function handleSubmit() {
     const data = {
+      personID: pId,
       racc1: racc1,
       racc2: racc2,
       racc3: racc3,
@@ -117,7 +120,8 @@ export default function RatingForm(props) {
 
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
-    axios.post(HostName + "ptSurveyRating/", data).then(Response => {
+    console.log(HostName);
+    axios.post(HostName +  "ptSurveyRating/", data).then(Response => {
       props.history.push({
         pathname: "/finishsurvey" 
       });
