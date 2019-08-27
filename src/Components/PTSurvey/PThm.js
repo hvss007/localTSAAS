@@ -17,9 +17,20 @@ class StartSurvey extends Component{
         Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         Axios.get(HostName+"college/")
         .then(Response=>{
-               const collegeArr= Response.data.filter(item=>{
+            // get id of survey type 'hhs'
+            Axios.get(HostName+"surveyType/").then(Res=>{
+                const hhsItem = Res.data.filter(item=>{
+                    return (item.surveyURL==='pts');
+                });
+               const survId = hhsItem[0].surveyTypeID;
+
+            const collegeArr= Response.data.filter(item=>{
                    
-                return ((item.collegeURL===this.props.match.url.split('/')[2]));
+                return (
+                    (item.collegeURL===this.props.match.url.split('/')[2])
+                    &&
+                    (item.surveyTypeID===survId)
+                    );
            })
            if(collegeArr.length===1){
                this.setState({
@@ -32,6 +43,7 @@ class StartSurvey extends Component{
             //    multiple entries for the same URL, should not happen.
            }
         })
+    })
     }
     SideDrawerClosedHandler=()=>{
         this.setState({showSideDrawer:false})

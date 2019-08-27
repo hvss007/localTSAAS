@@ -17,18 +17,30 @@ class StartSurvey extends Component{
         Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         Axios.get(HostName+"college/")
         .then(Response=>{
-               const collegeArr= Response.data.filter(item=>{
-                   
-                return ((item.collegeURL===this.props.match.url.split('/')[2]));
-           })
-           if(collegeArr.length===1){
-               this.setState({displayComponent:true,
-                collegeName:collegeArr[0].collegeName,
-                collegeURL:collegeArr[0].collegeURL,
-                surveyTypeID:collegeArr[0].surveyTypeID})
-           }
-           else{
-           }
+                // get id of survey type 'hhs'
+                Axios.get(HostName+"surveyType/").then(Res=>{
+                    const hhsItem = Res.data.filter(item=>{
+                        return (item.surveyURL==='hhs');
+                    });
+                   const survId = hhsItem[0].surveyTypeID;
+                   const collegeArr= Response.data.filter(item=>{
+                    return ( 
+                        (item.collegeURL===this.props.match.url.split('/')[2])
+                        &&
+                        (item.surveyTypeID===survId)
+                        );
+               })
+            //    console.log(collegeArr);
+               if(collegeArr.length===1){
+                   this.setState({displayComponent:true,
+                    collegeName:collegeArr[0].collegeName,
+                    collegeURL:collegeArr[0].collegeURL,
+                    surveyTypeID:collegeArr[0].surveyTypeID})
+               }
+               else{
+               }
+
+                })
         })
     }
     SideDrawerClosedHandler=()=>{

@@ -7,7 +7,7 @@ import HomePage from '../../assets/icons/accidentHome.png';
 import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 import Axios from 'axios'
-import HostName from '../../assets/globalvaribles/GlobalVariables'
+// import HostName from '../../assets/globalvaribles/GlobalVariables'
 // import Cards from './MainHomeCards'
 
 const RAHome=(props)=>{
@@ -34,26 +34,7 @@ const RAHome=(props)=>{
                     <p style={{margin:'4px auto 4px'}}> 
                         {/* Please take few minutes to complete the road accident record. Your few minutes will help us to get information to improve the black spot and prevent further accidents. Personal information and location are neither asked nor tracked. */}
                         We are working on an survey form to enter the information of a road accidents. 
-                        </p>
-                    {/* {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
-                    <div>
-                        <p>Please <a href="mailto:amitfce@iitr.ac.in?subject:Request to set up a road accident recorder"> contact us</a> to set up a survey or take a demo survey. </p>
-                    </div> 
-                    : 
-                    <div>
-                       <p > This survey link is exclusive for <span style={ {fontWeight:'bold',textDecorationLine:'underline'}}> {this.props.collegeName}</span>. </p>
-                    </div>
-                    }
-                    {/* TODO: following is a repetition, should be merged with above.*/}
-                    {/* {(props.collegeName==="demo" || props.collegeName==="None" || props.collegeName==="home") ? 
-
-                    <div className={classes.StartSurveyButtonContainer} >
-                        <button  className={buttonClasses.join(' ')}
-                            style={{fontWeight:'600', fontSize:'18px', textTransform:'none'}} onClick={this.props.submitClicked}> Take the demo survey </button> 
-                    </div>
-                    :
-                    null
-                    }  */} 
+                        </p> 
                      <div className={classes.StartSurveyButtonContainer} >
                         <button  className={buttonClasses.join(' ')}
                             style={{fontWeight:'600', fontSize:'18px', textTransform:'none'}} onClick={this.submitClickedHandler}> Launching soon ... </button> 
