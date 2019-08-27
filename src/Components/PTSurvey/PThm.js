@@ -9,7 +9,8 @@ class StartSurvey extends Component{
         showSideDrawer:false,
         displayComponent:false,
         collegeName:'',
-        collegeID:''
+        collegeURL:'' ,
+        surveyTypeID:''
     }
     componentWillMount(){
         Axios.defaults.xsrfCookieName = 'csrftoken'
@@ -21,9 +22,14 @@ class StartSurvey extends Component{
                 return ((item.collegeURL===this.props.match.url.split('/')[2]));
            })
            if(collegeArr.length===1){
-               this.setState({displayComponent:true,collegeName:collegeArr[0].collegeName,collegeID:collegeArr[0].collegeID})
+               this.setState({
+                   displayComponent:true,
+                   collegeName:collegeArr[0].collegeName,
+                   collegeURL:collegeArr[0].collegeURL,
+                   surveyTypeID:collegeArr[0].surveyTypeID})
            }
            else{
+            //    multiple entries for the same URL, should not happen.
            }
         })
     }
@@ -40,7 +46,7 @@ class StartSurvey extends Component{
         Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         Axios.post(HostName+"survey/",{surveyType:'pts'}).then(response=>{
             const surveyID=response.data.surveyID
-            console.log()
+            // console.log()
             if(this.props.match.url.split('/').length===2){
                 // this.props.history.push({pathname:"/demo/hhs"+surveyID+"/family"})
                 this.props.history.push({pathname:this.props.match.url+"/demopt/"+surveyID+"/pts-main"})
@@ -55,12 +61,21 @@ class StartSurvey extends Component{
         let showElement;
         // console.log(this.props.match.url.split('/'))
         if(this.props.match.url.split('/')[1]==='pts'){
-            showElement=<PTHome collegeName={"demopt"} collegeID={'1'} showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></PTHome>
+            showElement=<PTHome 
+            collegeURL={'demopt'} 
+            // collegeID={'1'} 
+            // collegeName={this.state.collegeName}
+            surveyTypeID={'2'}
+            showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></PTHome>
         }
         else{
                 showElement=null
         }
-        const element=this.state.displayComponent?<PTHome collegeName={this.state.collegeName} collegeId={this.state.collegeId}  showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></PTHome>:showElement;
+        const element=this.state.displayComponent ? <PTHome 
+        collegeName={this.state.collegeName} 
+        collegeURL={this.state.collegeURL} 
+        surveyTypeID={this.state.surveyTypeID} 
+        showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></PTHome>:showElement;
     return element
     }
 }

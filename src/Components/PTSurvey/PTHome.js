@@ -35,6 +35,7 @@ const PTHome = props => {
           backgroundPosition: "80% 40%,0% 40%"
         }
       : null;
+      // console.log(props)
   return (
     <div style={background} className={classes.StartSurvey}>
       <SideDrawer
@@ -59,9 +60,9 @@ const PTHome = props => {
             system. Personal information and location are neither asked nor
             tracked.
           </p>
-          {props.collegeName.includes("demo") ||
-          props.collegeName === "None" ||
-          props.collegeName === "home" ? (
+          {props.collegeURL.includes("demo") ||
+          props.collegeURL === "None" ||
+          props.collegeURL === "home" ? (
             <div>
               <p>
                 Please <a href="mailto:amitfce@iitr.ac.in?subject:Request to set up a PT Survey"> contact us</a> to
@@ -87,9 +88,9 @@ const PTHome = props => {
             </div>
           )}
           {/* TODO: following is a repetition, should be merged with above.*/}
-          {props.collegeName.includes("demo") ||
-          props.collegeName === "None" ||
-          props.collegeName === "home" ? (
+          {props.collegeURL.includes("demo") ||
+          props.collegeURL === "None" ||
+          props.collegeURL === "home" ? (
             <div className={classes.StartSurveyButtonContainer}>
               <button
                 className={buttonClasses.join(" ")}

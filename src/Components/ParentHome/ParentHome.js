@@ -5,7 +5,7 @@ import classes from '../StartSuvey/StartSurvey.css';
 import styles from './ParentHome.css'
 // import MobileHomePage from '../../assets/icons/parentHomeMobile.png'
 // import HomePage from '../../assets/icons/parentHome.png';
-import Background from '../../assets/icons/homebackground.png';
+// import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 import HostName from '../../assets/globalvaribles/GlobalVariables'
 import Cards from './MainHomeCards'
@@ -32,9 +32,9 @@ export default class ParentHome extends Component{
             return{showSideDrawer:!prevState.showSideDrawer}
         })
     }
-    submitClickedHandler=()=>{
-        this.props.history.push({pathname:"/hhs"})
-    }
+    // submitClickedHandler=()=>{
+    //     this.props.history.push({pathname:"/hhs"})
+    // }
 
     onClickHandler=(url)=>{
         this.props.history.push({pathname:"/"+url})

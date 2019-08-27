@@ -67,7 +67,7 @@ export default function RatingForm(props) {
   const [rover1, setRover1] = React.useState(0);
   const [rover2, setRover2] = React.useState(0);
 
-  const [pId] = props.match.url.split("/")[5];
+  const pId = props.match.url.split("/")[5];
 
   function handleSubmit() {
     const data = {
@@ -116,15 +116,24 @@ export default function RatingForm(props) {
       rover2: rover2
     };
 
-    console.log("data", data);
+    // console.log("data", data);
 
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
-    console.log(HostName);
+    // console.log(HostName);
+    
     axios.post(HostName +  "ptSurveyRating/", data).then(Response => {
+      console.log(Response);
       props.history.push({
         pathname: "/finishsurvey" 
       });
+      var time = new Date().toLocaleTimeString();
+      const url = props.match.url;
+      const survId = url.split('/')[3];
+    
+      axios.patch(HostName+'responseTime/'+survId,{
+      surveyEndTime:time,
+    })
     });
   }
   return (
