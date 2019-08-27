@@ -128,6 +128,7 @@ function PersonalInformation(props) {
   const [income, setIncome] = React.useState("");
 
   //Travel Info
+  const [metro, setMetro] = React.useState("");
   const [tripPurpose, setTripPurpose] = React.useState("");
   const [comingFromMode, setComingFromMode] = React.useState("");
   const [comingToMode, setComingToMode] = React.useState("");
@@ -157,6 +158,10 @@ function PersonalInformation(props) {
 
   function handleIncome(event) {
     setIncome(event.target.value);
+  }
+
+  function handleMetro(event) {
+    setMetro(event.target.value);
   }
 
   const handleComingFromMode = name => event => {
@@ -191,12 +196,14 @@ function PersonalInformation(props) {
       noOfCars: cars,
       noOfTwoWheelers: two_wheeler,
       noOfCycles: bicycle,
+
+      metro:metro,
       travelPurpose: tripPurpose,
-      // fromLandmark: ,
-      // toLandmark: ,
+      fromLandmark: null ,
+      toLandmark: null,
       travelTime: avg_travel_time,
       travelCost: avg_travel_time,
-      accessMode: comingFromMode,
+      accesMode: comingFromMode,
       egressMode: comingToMode,
       travelFreq: travelFrequency
     };
@@ -418,6 +425,8 @@ function PersonalInformation(props) {
               label="Metro station"
               margin="normal"
               variant="outlined"
+              value={metro}
+              onChange={handleMetro}
               required
             />
           </Grid>
