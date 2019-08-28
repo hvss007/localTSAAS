@@ -102,6 +102,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function PersonalInformation(props) {
+  const today = new Date();
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+  console.log(time);
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = panel => (event, isExpanded) => {
@@ -197,9 +203,9 @@ function PersonalInformation(props) {
       noOfTwoWheelers: two_wheeler,
       noOfCycles: bicycle,
 
-      metro:metro,
+      metro: metro,
       travelPurpose: tripPurpose,
-      fromLandmark: null ,
+      fromLandmark: null,
       toLandmark: null,
       travelTime: avg_travel_time,
       travelCost: avg_travel_time,
@@ -217,7 +223,7 @@ function PersonalInformation(props) {
       const url = props.match.url;
       // console.log(url);
       props.history.push({
-        pathname: url + "/" +Response.data.personID + "/rating-form"
+        pathname: url + "/" + Response.data.personID + "/rating-form"
       });
     });
   }
