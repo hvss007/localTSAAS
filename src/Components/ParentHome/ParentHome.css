@@ -2,7 +2,7 @@
     width:50%;
     display:flex;
     flex-wrap: wrap !important;
-    justify-content: center
+    justify-content:space-around
 }
 .Tiles{
     display:flex;
@@ -10,13 +10,17 @@
     justify-content: center;
     align-items: center;
 }
+.Tiles>img{
+    width: 391px;
+}
 @media(max-width:768px){
     .RightContainer{
         width: 100%;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center
-        
+        align-items: center   
     }
-    
+    .Tiles>img{
+        width: 90%
+    }
 }
