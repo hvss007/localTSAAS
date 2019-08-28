@@ -102,11 +102,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function PersonalInformation(props) {
-  const today = new Date();
-  const time =
-    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
-  console.log(time);
+  const surveyStartTime = new Date().toLocaleTimeString();
+  // console.log(surveyStartTime);
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -214,14 +211,15 @@ function PersonalInformation(props) {
       travelFreq: travelFrequency
     };
 
-    // console.log("data", data);
-
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
+    // console.log(surveyStartTime)
     axios.post(HostName + "ptSurvey/", data).then(Response => {
-      // console.log(props);
       const url = props.match.url;
-      // console.log(url);
+      const surveyID = url.split('/')[3]
+      axios.patch(HostName+'responseTime/'+surveyID,{
+        surveyStartTime:surveyStartTime,
+    })
       props.history.push({
         pathname: url + "/" + Response.data.personID + "/rating-form"
       });
