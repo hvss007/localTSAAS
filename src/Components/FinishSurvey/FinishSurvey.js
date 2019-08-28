@@ -19,6 +19,16 @@ class FinishSurvey extends Component{
             },
         }
     }
+
+    SideDrawerClosedHandler=()=>{
+        this.setState({showSideDrawer:false})
+    }
+    SideDrawerToggleHandler=()=>{
+        this.setState((prevState)=>{
+            return{showSideDrawer:!prevState.showSideDrawer}
+        })
+    }
+    
     componentDidMount(){
         axios.defaults.xsrfHeaderName = "71LrUj4F3nUNTH47wcC0ynSulY78ysb5SFwjQVZ";
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
