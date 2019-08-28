@@ -7,6 +7,10 @@ import axios from "axios";
 import HostName from "./../../../assets/globalvaribles/GlobalVariables";
 import Button from "@material-ui/core/Button";
 
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import TextField from "@material-ui/core/TextField";
+
 const useStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(2, 30),
@@ -14,6 +18,19 @@ const useStyles = makeStyles(theme => ({
     "@media (max-width:1024px)": {
       margin: theme.spacing(2, 2)
     }
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 240
+  },
+  labelStyle: {
+    fontFamily: "Julius Sans One",
+    fontSize: "24px",
+    "@media (max-width:480px)": {
+      fontSize: "20px"
+    },
+    color: "#410373",
+    textTransform: "uppercase"
   },
   button: {
     justifyContent: "center",
@@ -24,6 +41,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function RatingForm(props) {
   const classes = useStyles();
+
+  const [metro, setMetro] = React.useState("");
+
   const [racc1, setRacc1] = React.useState(0);
   const [racc2, setRacc2] = React.useState(0);
   const [racc3, setRacc3] = React.useState(0);
@@ -69,9 +89,14 @@ export default function RatingForm(props) {
 
   const pId = props.match.url.split("/")[5];
 
+  function handleMetro(event) {
+    setMetro(event.target.value);
+  }
+
   function handleSubmit() {
     const data = {
       personID: pId,
+      metro:metro,
       racc1: racc1,
       racc2: racc2,
       racc3: racc3,
@@ -139,6 +164,26 @@ export default function RatingForm(props) {
   return (
     <div>
       <Card raised className={classes.root}>
+        
+      <div>
+          <FormControl component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend" className={classes.labelStyle}>
+              Metro station
+            </FormLabel>
+            <TextField
+              required
+              id="outlined-required"
+              label="Metro"
+              margin="normal"
+              variant="outlined"
+              value={metro}
+              onChange={handleMetro}
+            />
+          </FormControl>
+
+          <hr />
+        </div>
+        
         <Typography variant="h4" align="center">
           Accessibility Ratings:
         </Typography>

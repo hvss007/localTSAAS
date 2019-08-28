@@ -423,7 +423,7 @@ function PersonalInformation(props) {
           <hr />
         </div>
         <Grid container spacing={0}>
-          <Grid item xs={3}>
+          {/* <Grid item xs={3}>
             <TextField
               id="outlined-required"
               label="Metro station"
@@ -433,8 +433,8 @@ function PersonalInformation(props) {
               onChange={handleMetro}
               required
             />
-          </Grid>
-          <Grid item xs={6}>
+          </Grid> */}
+          <Grid item xs={12}>
             <FormLabel component="legend" className={classes.formHeader}>
               TRAVEL INFORMATION:
             </FormLabel>
@@ -442,6 +442,25 @@ function PersonalInformation(props) {
           <Grid item xs={3}></Grid>
           <hr />
         </Grid>
+
+        <div>
+          <FormControl component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend" className={classes.labelStyle}>
+              Metro station
+            </FormLabel>
+            <TextField
+              required
+              id="outlined-required"
+              label="Metro"
+              margin="normal"
+              variant="outlined"
+              value={metro}
+              onChange={handleMetro}
+            />
+          </FormControl>
+
+          <hr />
+        </div>
 
         <div className={classes.divStyle}>
           <Typography className={classes.labelStyle}>Trip Purpose</Typography>
@@ -564,7 +583,7 @@ function PersonalInformation(props) {
         <div className={classes.divStyle}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
-              Mode used while coming to Anand Vihar:
+              Mode used while coming to <span> metro </span> :
             </FormLabel>
             <div className={classes.checkboxes}>
               <FormControlLabel
