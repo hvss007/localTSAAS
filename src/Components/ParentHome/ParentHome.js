@@ -3,14 +3,17 @@ import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from '../StartSuvey/StartSurvey.css';
 import styles from './ParentHome.css'
-import MobileHomePage from '../../assets/icons/parentHomeMobile.png'
-import HomePage from '../../assets/icons/parentHome.png';
-import Background from '../../assets/icons/homebackground.png';
+// import MobileHomePage from '../../assets/icons/parentHomeMobile.png'
+// import HomePage from '../../assets/icons/parentHome.png';
+// import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 import HostName from '../../assets/globalvaribles/GlobalVariables'
 import Cards from './MainHomeCards'
 import Axios from 'axios'
-import Img from '../../assets/icons/Tile1.png'
+import HHS from '../../assets/icons/hhs-mobile.png'
+import PTS from '../../assets/icons/pts-mobile.png'
+import RDAC from '../../assets/icons/rdac-mobile.png'
+
 export default class ParentHome extends Component{
     constructor(props){
         super(props)
@@ -29,17 +32,9 @@ export default class ParentHome extends Component{
             return{showSideDrawer:!prevState.showSideDrawer}
         })
     }
-    submitClickedHandler=()=>{
-        this.props.history.push({pathname:"/hhs"})
-        // Axios.defaults.xsrfCookieName = 'csrftoken'
-        // Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-        // Axios.post(HostName+"survey/",{surveyType:'hhs'}).then(response=>{
-        //     const surveyID=response.data.surveyID
-            
-        //     this.props.history.push({pathname:"/hhs"+surveyID})
-        // })
-        // .catch(e=>console.log("network not connected",e))
-    }
+    // submitClickedHandler=()=>{
+    //     this.props.history.push({pathname:"/hhs"})
+    // }
 
     onClickHandler=(url)=>{
         this.props.history.push({pathname:"/"+url})
@@ -55,12 +50,12 @@ export default class ParentHome extends Component{
         .catch(e=>console.log("network not connected",e))
     }
     
-    
-    
     render()
     
-    { const cards=this.state.surveyType.map(item=>{
-        return <Cards src={Img} clicked={this.onClickHandler} key={item.index} name={item.surveyFormat} url={item.surveyURL} ></Cards>
+    {   
+        const imgArray=[HHS,PTS,RDAC]
+        const cards=this.state.surveyType.map((item,index)=>{
+        return <Cards src={imgArray[item.surveyTypeID-1]} clicked={this.onClickHandler} key={index} name={item.surveyFormat} url={item.surveyURL} ></Cards>
     })
         const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
         // const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
