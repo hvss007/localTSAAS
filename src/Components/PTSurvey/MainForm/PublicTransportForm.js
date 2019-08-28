@@ -102,6 +102,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function PersonalInformation(props) {
+  const surveyStartTime = new Date().toLocaleTimeString();
+  // console.log(surveyStartTime);
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = panel => (event, isExpanded) => {
@@ -197,9 +200,9 @@ function PersonalInformation(props) {
       noOfTwoWheelers: two_wheeler,
       noOfCycles: bicycle,
 
-      metro:metro,
+      metro: metro,
       travelPurpose: tripPurpose,
-      fromLandmark: null ,
+      fromLandmark: null,
       toLandmark: null,
       travelTime: avg_travel_time,
       travelCost: avg_travel_time,
@@ -208,16 +211,17 @@ function PersonalInformation(props) {
       travelFreq: travelFrequency
     };
 
-    // console.log("data", data);
-
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
+    // console.log(surveyStartTime)
     axios.post(HostName + "ptSurvey/", data).then(Response => {
-      // console.log(props);
       const url = props.match.url;
-      // console.log(url);
+      const surveyID = url.split('/')[3]
+      axios.patch(HostName+'responseTime/'+surveyID,{
+        surveyStartTime:surveyStartTime,
+    })
       props.history.push({
-        pathname: url + "/" +Response.data.personID + "/rating-form"
+        pathname: url + "/" + Response.data.personID + "/rating-form"
       });
     });
   }
