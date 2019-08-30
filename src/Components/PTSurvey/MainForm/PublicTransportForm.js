@@ -138,7 +138,11 @@ function PersonalInformation(props) {
   const [travelFrequency, setTravelFrequency] = React.useState("");
   const [avg_travel_cost, setTravelCost] = React.useState("");
   const [avg_travel_time, setTravelTime] = React.useState("");
-  // const [travelFrequency, setTravelFrequency] = React.useState({});
+
+  const url = props.match.url;
+  const colID = url.split('/')[2];
+  const surveyID = url.split('/')[3];
+  
   function handleAge(event) {
     setAge(event.target.value);
   }
@@ -191,6 +195,8 @@ function PersonalInformation(props) {
 
   function handleSubmit() {
     const data = {
+      collegeID:colID,
+      surveyID:surveyID,
       age: age,
       gender: gender,
       educationalQualification: qualification,
@@ -213,10 +219,8 @@ function PersonalInformation(props) {
 
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
-    // console.log(surveyStartTime)
     axios.post(HostName + "ptSurvey/", data).then(Response => {
-      const url = props.match.url;
-      const surveyID = url.split('/')[3]
+      console.log(Response);
       axios.patch(HostName+'responseTime/'+surveyID,{
         surveyStartTime:surveyStartTime,
     })
