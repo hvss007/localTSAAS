@@ -177,10 +177,18 @@ function PersonalInformation(props) {
   }
 
   const handleComingFromMode = name => event => {
-    setComingFromMode(name);
+    if (comingFromMode===''){
+      setComingFromMode(name);
+    } else {
+      setComingFromMode(comingFromMode.concat("&").concat(name));
+    }
   };
   const handleComingToMode = name => event => {
-    setComingToMode(name);
+    if (comingToMode===''){
+      setComingToMode(name);
+    } else {
+      setComingToMode(comingToMode.concat("&").concat(name));
+    }
   };
   const handleTravelFrequency = name => event => {
     setTravelFrequency(name);
