@@ -598,7 +598,7 @@ function PersonalInformation(props) {
         <div className={classes.divStyle}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
-              Mode used while coming to <span> metro </span> :
+              Mode used while coming to {metro} :
             </FormLabel>
             <div className={classes.checkboxes}>
               <FormControlLabel
@@ -688,7 +688,7 @@ function PersonalInformation(props) {
         <div className={classes.divStyle}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
-              Mode used while coming from Anand Vihar:
+              Mode used while coming from {metro}:
             </FormLabel>
             <div className={classes.checkboxes}>
               <FormControlLabel
@@ -778,7 +778,7 @@ function PersonalInformation(props) {
         <div className={classes.divStyle}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
-              Travel frequency from anand Vihar:
+              Travel frequency from {metro}:
             </FormLabel>
             <div className={classes.checkboxes}>
               <FormControlLabel
