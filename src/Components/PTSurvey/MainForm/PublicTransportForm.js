@@ -102,9 +102,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function PersonalInformation(props) {
-  const surveyStartTime = new Date().toLocaleTimeString();
-  // console.log(surveyStartTime);
-
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = panel => (event, isExpanded) => {
@@ -113,10 +110,21 @@ function PersonalInformation(props) {
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
+ 
+  const url = props.match.url;
+  const colURL = url.split('/')[2];
+  const surveyID = url.split('/')[3];
+ 
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
+
+    const surveyStartTime = new Date().toLocaleTimeString();
+    axios.patch(HostName+'responseTime/'+surveyID,{
+      surveyStartTime:surveyStartTime,
+    })    
   }, []);
 
+ 
   const classes = useStyles();
 
   //Personal Info
@@ -138,7 +146,8 @@ function PersonalInformation(props) {
   const [travelFrequency, setTravelFrequency] = React.useState("");
   const [avg_travel_cost, setTravelCost] = React.useState("");
   const [avg_travel_time, setTravelTime] = React.useState("");
-  // const [travelFrequency, setTravelFrequency] = React.useState({});
+
+  
   function handleAge(event) {
     setAge(event.target.value);
   }
@@ -213,17 +222,23 @@ function PersonalInformation(props) {
 
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
-    // console.log(surveyStartTime)
-    axios.post(HostName + "ptSurvey/", data).then(Response => {
-      const url = props.match.url;
-      const surveyID = url.split('/')[3]
-      axios.patch(HostName+'responseTime/'+surveyID,{
-        surveyStartTime:surveyStartTime,
-    })
-      props.history.push({
-        pathname: url + "/" + Response.data.personID + "/rating-form"
+
+    axios.get(HostName+"college/").then(Response=>{
+      console.log(Response)
+      const collArray = Response.data.filter(item=>{
+        return (colURL===item.collegeURL)
+      })
+      console.log(collArray)
+      const collegeID = collArray[0].collegeID
+
+      axios.post(HostName + "ptSurvey/", {data,surveyID:surveyID,collegeID:collegeID}).then(Response => {
+        console.log(Response);
+        props.history.push({
+          pathname: url + "/" + Response.data.personID + "/rating-form"
+        });
       });
-    });
+
+    })
   }
 
   return (
