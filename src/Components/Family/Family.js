@@ -236,7 +236,7 @@ class Family extends Component{
                 const collegeArr= Response.data.filter(item=>{
                     // return ((item.collegeURL===this.props.match.params.id));
                     return (
-                        collegeIdNo.includes(item.collegeURL)   )
+                        collegeIdNo===item.collegeURL  )
                 })
                 // console.log(collegeArr)
                 if(collegeArr.length===1){
