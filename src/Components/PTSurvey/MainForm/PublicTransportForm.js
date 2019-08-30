@@ -199,26 +199,6 @@ function PersonalInformation(props) {
   }
 
   function handleSubmit() {
-    const data = {
-      age: age,
-      gender: gender,
-      educationalQualification: qualification,
-      profession: profession,
-      monthlyIncome: income,
-      noOfCars: cars,
-      noOfTwoWheelers: two_wheeler,
-      noOfCycles: bicycle,
-
-      metro: metro,
-      travelPurpose: tripPurpose,
-      fromLandmark: null,
-      toLandmark: null,
-      travelTime: avg_travel_time,
-      travelCost: avg_travel_time,
-      accesMode: comingFromMode,
-      egressMode: comingToMode,
-      travelFreq: travelFrequency
-    };
 
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -231,7 +211,30 @@ function PersonalInformation(props) {
       console.log(collArray)
       const collegeID = collArray[0].collegeID
 
-      axios.post(HostName + "ptSurvey/", {data,surveyID:surveyID,collegeID:collegeID}).then(Response => {
+      axios.post(HostName + "ptSurvey/", {
+        surveyID:surveyID,
+        collegeID:collegeID,
+    
+        age: age,
+        gender: gender,
+        educationalQualification: qualification,
+        profession: profession,
+        monthlyIncome: income,
+        noOfCars: cars,
+        noOfTwoWheelers: two_wheeler,
+        noOfCycles: bicycle,
+  
+        metro: metro,
+        travelPurpose: tripPurpose,
+        fromLandmark: null,
+        toLandmark: null,
+        travelTime: avg_travel_time,
+        travelCost: avg_travel_time,
+        accesMode: comingFromMode,
+        egressMode: comingToMode,
+        travelFreq: travelFrequency
+
+      }).then(Response => {
         console.log(Response);
         props.history.push({
           pathname: url + "/" + Response.data.personID + "/rating-form"
