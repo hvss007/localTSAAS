@@ -8,7 +8,7 @@ import styles from './ParentHome.css'
 // import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
 import HostName from '../../assets/globalvaribles/GlobalVariables'
-import Cards from './MainHomeCards'
+import Cards from './ParentHomeCards'
 import Axios from 'axios'
 import HHS from '../../assets/icons/hhs-mobile.png'
 import PTS from '../../assets/icons/pts-mobile.png'
@@ -43,7 +43,7 @@ export default class ParentHome extends Component{
         Axios.defaults.xsrfCookieName = 'csrftoken'
         Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         Axios.get(HostName+"surveyType").then(response=>{
-            const surveyTypeCopy=[...this.state.surveyType]
+            // const surveyTypeCopy=[...this.state.surveyType]
             
             this.setState({surveyType:[...response.data]})
         })
@@ -57,7 +57,7 @@ export default class ParentHome extends Component{
         const cards=this.state.surveyType.map((item,index)=>{
         return <Cards src={imgArray[item.surveyTypeID-1]} clicked={this.onClickHandler} key={index} name={item.surveyFormat} url={item.surveyURL} ></Cards>
     })
-        const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
+        // const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
         // const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
         // const backgroundElement =window.innerWidth<=500? <div style={{...mobileBackgroundStyle}} className={classes.FirstImageWrapper}></div>:null
         // const background =window.innerWidth>=500?{ 
