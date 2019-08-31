@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2, 30),
     backgroundColor: "#f3e5f5",
     "@media (max-width:1024px)": {
-      margin: theme.spacing(2, 2)
+      margin: theme.spacing(2, 2),
+      justifyContent: "center"
     }
   },
   formControl: {
@@ -34,7 +35,11 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     justifyContent: "center",
-    margin: "0 15vw 2vh 15vw",
+    margin: "0 50% 2vh 50%",
+    textAlign: "center"
+  },
+  inputField: {
+    justifyContent: "center",
     textAlign: "center"
   }
 }));
@@ -96,7 +101,7 @@ export default function RatingForm(props) {
   function handleSubmit() {
     const data = {
       personID: pId,
-      metro:metro,
+      metro: metro,
       racc1: racc1,
       racc2: racc2,
       racc3: racc3,
@@ -141,31 +146,27 @@ export default function RatingForm(props) {
       rover2: rover2
     };
 
-    // console.log("data", data);
-
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
-    // console.log(HostName);
-    
-    axios.post(HostName +  "ptSurveyRating/", data).then(Response => {
+
+    axios.post(HostName + "ptSurveyRating/", data).then(Response => {
       console.log(Response);
       props.history.push({
-        pathname: "/finishsurvey" 
+        pathname: "/finishsurvey"
       });
       var time = new Date().toLocaleTimeString();
       const url = props.match.url;
-      const survId = url.split('/')[3];
-    
-      axios.patch(HostName+'responseTime/'+survId,{
-      surveyEndTime:time,
-    })
+      const survId = url.split("/")[3];
+
+      axios.patch(HostName + "responseTime/" + survId, {
+        surveyEndTime: time
+      });
     });
   }
   return (
     <div>
       <Card raised className={classes.root}>
-        
-      <div>
+        <div className={classes.inputField}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
               Metro station
@@ -183,28 +184,31 @@ export default function RatingForm(props) {
 
           <hr />
         </div>
-        
+
         <Typography variant="h4" align="center">
           Accessibility Ratings:
         </Typography>
         <RatingStars
+          name="simple-controlled"
           ratingQuestion="Convenience and ease to acces the interchange"
           value={racc1}
-          onChange={(event, value) => {
-            setRacc1(value);
+          onChange={() => {
+            setRacc1(racc1);
           }}
         />
         <RatingStars
+          name="simple-controlled"
           ratingQuestion="Availability of fix Pick and drop places for different modes"
           value={racc2}
-          onChange={(event, value) => {
-            setRacc2(value);
+          onChange={() => {
+            setRacc2(racc2);
           }}
         />
         <RatingStars
+          name="simple-controlled"
           ratingQuestion="Presence of sequence entry and exit points for arrival and departure passengers"
           value={racc3}
-          onChange={(event, value) => {
+          onChangeActive={(event, value) => {
             setRacc3(value);
           }}
         />
