@@ -45,7 +45,7 @@ class TripAccess extends Component{
         inValue:null,
         backdropShow:false,
         mainmode:false,
-        activateAdd:false
+        activateAdd:true
     }
     componentDidMount(){
         this.mainModeHandler()
@@ -186,7 +186,9 @@ class TripAccess extends Component{
             </div>
             
             <div style={{display:'flex',flexFlow:'column'}}>
-            {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another {this.props.accessName}</button>:null}
+            {this.props.showAdd&&this.state.activateAdd?<button className={classes.AddModeButton +" "+ classes.AddModeButtonBorder} onClick={this.addButtonHandler}>Add another travel mode 
+            {/* {this.props.accessName} */}
+            </button>:null}
                 {/* {this.props.showAdd?inputElementIn:null} */}
             
             {/* <a key={this.props.idi+"a"} onClick={this.accessClicked} className={classes.TripAccessAnchor}>{this.state.title?this.state.title:"Choose Here"}</a> */}

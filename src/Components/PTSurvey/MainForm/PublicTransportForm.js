@@ -110,10 +110,21 @@ function PersonalInformation(props) {
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
+ 
+  const url = props.match.url;
+  const colURL = url.split('/')[2];
+  const surveyID = url.split('/')[3];
+ 
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
+
+    const surveyStartTime = new Date().toLocaleTimeString();
+    axios.patch(HostName+'responseTime/'+surveyID,{
+      surveyStartTime:surveyStartTime,
+    })    
   }, []);
 
+ 
   const classes = useStyles();
 
   //Personal Info
@@ -135,7 +146,8 @@ function PersonalInformation(props) {
   const [travelFrequency, setTravelFrequency] = React.useState("");
   const [avg_travel_cost, setTravelCost] = React.useState("");
   const [avg_travel_time, setTravelTime] = React.useState("");
-  // const [travelFrequency, setTravelFrequency] = React.useState({});
+
+  
   function handleAge(event) {
     setAge(event.target.value);
   }
@@ -187,39 +199,49 @@ function PersonalInformation(props) {
   }
 
   function handleSubmit() {
-    const data = {
-      age: age,
-      gender: gender,
-      educationalQualification: qualification,
-      profession: profession,
-      monthlyIncome: income,
-      noOfCars: cars,
-      noOfTwoWheelers: two_wheeler,
-      noOfCycles: bicycle,
-
-      metro:metro,
-      travelPurpose: tripPurpose,
-      fromLandmark: null ,
-      toLandmark: null,
-      travelTime: avg_travel_time,
-      travelCost: avg_travel_time,
-      accesMode: comingFromMode,
-      egressMode: comingToMode,
-      travelFreq: travelFrequency
-    };
-
-    // console.log("data", data);
 
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
-    axios.post(HostName + "ptSurvey/", data).then(Response => {
-      // console.log(props);
-      const url = props.match.url;
-      // console.log(url);
-      props.history.push({
-        pathname: url + "/" +Response.data.personID + "/rating-form"
+
+    axios.get(HostName+"college/").then(Response=>{
+      console.log(Response)
+      const collArray = Response.data.filter(item=>{
+        return (colURL===item.collegeURL)
+      })
+      console.log(collArray)
+      const collegeID = collArray[0].collegeID
+
+      axios.post(HostName + "ptSurvey/", {
+        surveyID:surveyID,
+        collegeID:collegeID,
+    
+        age: age,
+        gender: gender,
+        educationalQualification: qualification,
+        profession: profession,
+        monthlyIncome: income,
+        noOfCars: cars,
+        noOfTwoWheelers: two_wheeler,
+        noOfCycles: bicycle,
+  
+        metro: metro,
+        travelPurpose: tripPurpose,
+        fromLandmark: null,
+        toLandmark: null,
+        travelTime: avg_travel_time,
+        travelCost: avg_travel_time,
+        accesMode: comingFromMode,
+        egressMode: comingToMode,
+        travelFreq: travelFrequency
+
+      }).then(Response => {
+        console.log(Response);
+        props.history.push({
+          pathname: url + "/" + Response.data.personID + "/rating-form"
+        });
       });
-    });
+
+    })
   }
 
   return (
@@ -419,7 +441,7 @@ function PersonalInformation(props) {
           <hr />
         </div>
         <Grid container spacing={0}>
-          <Grid item xs={3}>
+          {/* <Grid item xs={3}>
             <TextField
               id="outlined-required"
               label="Metro station"
@@ -429,8 +451,8 @@ function PersonalInformation(props) {
               onChange={handleMetro}
               required
             />
-          </Grid>
-          <Grid item xs={6}>
+          </Grid> */}
+          <Grid item xs={12}>
             <FormLabel component="legend" className={classes.formHeader}>
               TRAVEL INFORMATION:
             </FormLabel>
@@ -438,6 +460,25 @@ function PersonalInformation(props) {
           <Grid item xs={3}></Grid>
           <hr />
         </Grid>
+
+        <div>
+          <FormControl component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend" className={classes.labelStyle}>
+              Metro station
+            </FormLabel>
+            <TextField
+              required
+              id="outlined-required"
+              label="Metro"
+              margin="normal"
+              variant="outlined"
+              value={metro}
+              onChange={handleMetro}
+            />
+          </FormControl>
+
+          <hr />
+        </div>
 
         <div className={classes.divStyle}>
           <Typography className={classes.labelStyle}>Trip Purpose</Typography>
@@ -560,7 +601,7 @@ function PersonalInformation(props) {
         <div className={classes.divStyle}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
-              Mode used while coming to Anand Vihar:
+              Mode used while coming to {metro} :
             </FormLabel>
             <div className={classes.checkboxes}>
               <FormControlLabel
@@ -650,7 +691,7 @@ function PersonalInformation(props) {
         <div className={classes.divStyle}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
-              Mode used while coming from Anand Vihar:
+              Mode used while coming from {metro}:
             </FormLabel>
             <div className={classes.checkboxes}>
               <FormControlLabel
@@ -740,7 +781,7 @@ function PersonalInformation(props) {
         <div className={classes.divStyle}>
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend" className={classes.labelStyle}>
-              Travel frequency from anand Vihar:
+              Travel frequency from {metro}:
             </FormLabel>
             <div className={classes.checkboxes}>
               <FormControlLabel
