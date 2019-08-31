@@ -3,14 +3,16 @@
     min-height:100vh;
     display:flex;
     background: #fff;
+    justify-content: center;
+    align-items: center
 }
 .MainContainer{
   width:100%;
-  margin-top: 100px;
+  margin-top: 12vh;
   margin-left:auto;
   margin-right: auto;
   /* height: fit-content; */
-  height:80vh; 
+  /* height:80vh;  */
   display: flex;
   flex-flow: column;
   justify-content: space-between;
@@ -21,8 +23,11 @@
   width: 40%
 } */
 
+.TsaasLogoTextHeading{
+  margin-bottom: 5px !important;
+}
 .MainContainerFinishSurvey{
-  height: unset;
+  /* height: unset; */
 }
 .LeftContainer{
   width:100%
@@ -61,7 +66,7 @@
 }
 
 .RightContainer>img{
-  height:500px; 
+  height:40vh; 
   width: auto;
 }
 .RightContainerFinishSurvey{
@@ -87,7 +92,7 @@
   width:auto;
 }
 .LeftContainer p{
-  margin:0px;
+  margin:0px 0px 15px;
   color: rgb(19, 18, 18);
 }
 .LeftContainer>p{
@@ -180,11 +185,11 @@
   }
   @media(min-width:500px){
     .LeftContainer{
-      width:40%;
+      max-width:50%;
     }
     .LeftContainerFinishSurvey{
       width: 50%;
-      justify-content: space-between;
+      /* justify-content: space-between; */
       padding: 0% !important;
     }
     .MobilePageFinishSurvey{
@@ -197,7 +202,7 @@
     .SurveyMonitor{
       border-radius: 15px;
       box-shadow: 0 4px 6px -6px rgba(120,120,120,.1), 0 8px 6px -6px rgba(120,120,120,.4);
-      height:70% !important; 
+      /* height:70% !important;  */
     
     }
     .RightContainerFinishSurvey{
@@ -206,14 +211,17 @@
     }
     .MainContainer{
       width:100%;
-      height:70vh; 
+      height: fit-content;
+      /* height:70vh;  */
+      margin-top: 0vh;
       padding: 0px;
+      flex-direction: row
     }
     .MainContainerFinishSurvey{
       width:90%;
-      height:50vh !important;
+      /* height:50vh !important; */
      /* justify-content: space-around !important; */
-      margin-top: 25vh;
+      /* margin-top: 25vh; */
       padding: 0;
   
     }
@@ -260,6 +268,9 @@
       width: 84px; 
       height: auto
     }
+    .MainContainer{
+      flex-direction: row;
+    }
     .ImgTextWrapper>p{
       font-size: 30px   
      }
@@ -280,7 +291,7 @@
       font-size:22px; 
     }
     .LeftContainerFinishSurvey{
-      width: 40%;
+      /* width: 40%; */
     }
      .LogoText{font-size: 30px}
   }
@@ -290,7 +301,7 @@
   }
   .MainContainer{
     width:95%;
-    height:70vh; 
+    /* height:70vh;  */
     padding: 10px;
     flex-direction: row;
   }

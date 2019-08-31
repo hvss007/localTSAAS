@@ -13,6 +13,11 @@
 .Tiles>img{
     width: 391px;
 }
+@media(max-width:1400px){
+   .Tiles>img{
+    width: 270px;   
+   }
+}
 @media(max-width:768px){
     .RightContainer{
         width: 100%;

@@ -74,8 +74,8 @@ export default class ParentHome extends Component{
                     <div className={classes.ImgTextWrapper}>
                         <img alt={"TSaaS"} src={TsaasLogo}></img>
                         <div className={classes.LogoText}>
-                            <p>Traffic Survey</p>
-                            <p>as a Service</p>
+                            <p className={classes.TsaasLogoTextHeading}>Traffic Survey</p>
+                            <p className={classes.TsaasLogoTextHeading}>as a Service</p>
                         </div>    
                     </div>
                     <p style={{fontSize:'20px',margin:'10px 0'}}> Welcome to TSaaS! Please select a survey from the following list which will take you to the survey page.</p>

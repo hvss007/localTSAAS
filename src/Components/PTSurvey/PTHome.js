@@ -50,8 +50,8 @@ const PTHome = props => {
           <div className={classes.ImgTextWrapper}>
             <img alt={"TSaaS"} src={TsaasLogo}></img>
             <div className={classes.LogoText}>
-              <p>Traffic Survey</p>
-              <p>as a Service</p>
+              <p className={classes.TsaasLogoTextHeading}>Traffic Survey</p>
+              <p className={classes.TsaasLogoTextHeading}>as a Service</p>
             </div>
           </div>
           <p style={{ margin: "4px auto 4px" }}>
