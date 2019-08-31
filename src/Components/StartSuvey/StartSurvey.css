@@ -30,7 +30,8 @@
   /* height: unset; */
 }
 .LeftContainer{
-  width:100%
+  width:100%;
+  justify-content: center;
 }
 .Thank{
   display:flex;
@@ -48,7 +49,7 @@
   display: block
 }
 .MobilePageFinishSurvey>img{
-  width:100%;
+  width:80%;
   height:auto
 }
 .LeftContainer{
@@ -77,6 +78,7 @@
   width: 100%;
   display: flex;
   text-align: center;
+  justify-content: center;
 }
 .FirstImageWrapper{
   height: 240px;

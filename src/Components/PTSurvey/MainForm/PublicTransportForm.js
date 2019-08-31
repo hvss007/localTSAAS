@@ -528,7 +528,7 @@ function PersonalInformation(props) {
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <iframe
+              <iframe title="map2"
                 className={classes.locationBox}
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13839.414621384869!2d77.88753742905271!3d29.8684940614533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1566766554708!5m2!1sen!2sin"
                 width="100%"
@@ -555,7 +555,7 @@ function PersonalInformation(props) {
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <iframe
+              <iframe title="map1"
                 className={classes.locationBox}
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13839.414621384869!2d77.88753742905271!3d29.8684940614533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1566766554708!5m2!1sen!2sin"
                 width="100%"

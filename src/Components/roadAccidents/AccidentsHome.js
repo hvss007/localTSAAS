@@ -6,7 +6,7 @@ import MobileHomePage from '../../assets/icons/rdac-mobile.png'
 import HomePage from '../../assets/icons/accidentHome.png';
 import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
-import Axios from 'axios'
+// import Axios from 'axios'
 // import HostName from '../../assets/globalvaribles/GlobalVariables'
 // import Cards from './MainHomeCards'
 
