@@ -189,6 +189,9 @@
     .LeftContainer{
       max-width:50%;
     }
+    .LeftContainer>div{
+      justify-content: flex-start
+    }
     .LeftContainerFinishSurvey{
       width: 50%;
       /* justify-content: space-between; */
@@ -316,5 +319,13 @@
   }
   .Thank>h4{
     font-size:24px; 
+  }
+}
+@media screen and (max-width: 768px) and (min-height: 1024px){
+  .MainContainer{
+     
+  }  
+  .RightContainerFinishSurvey>img{
+    height: 20vh
   }
 }
