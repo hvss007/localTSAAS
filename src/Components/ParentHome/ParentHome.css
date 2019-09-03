@@ -21,6 +21,11 @@
     width: 270px;   
    }
 }
+@media(max-width:1100px){
+    .Tiles>img{
+     width: 200px;   
+    }
+ }
 @media(max-width:768px){
     .RightContainer{
         width: 100%;
@@ -42,6 +47,6 @@
         overflow-y: unset
     }
     .Tiles>img{
-        width:185px
+        width:160px
     }
 }

@@ -31,8 +31,8 @@ const PTHome = props => {
       ? {
           backgroundImage: "url(" + HomePage + "),url(" + Background + ")",
           backgroundRepeat: "no-repeat",
-          backgroundSize: "contain,cover",
-          backgroundPosition: "80% 40%,0% 40%"
+          backgroundSize: "85%,cover",
+          backgroundPosition: "100% 40%,0% 40%"
         }
       : null;
       // console.log(props)

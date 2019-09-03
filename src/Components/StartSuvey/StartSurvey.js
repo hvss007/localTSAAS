@@ -69,13 +69,14 @@ class StartSurvey extends Component{
     
     render(){    
         let showElement;
-        // console.log(this.props.match.url.split('/'))
-        if(this.props.match.url.split('/')[1]==='hhs'){
+        console.log(this.props.match.url.split('/'))
+        if(this.props.match.url==='/hhs'){
             showElement=<StartSurveySub 
             collegeURL={"demo"} 
             surveyTypeID={'1'} 
             showSideDrawer={this.state.showSideDrawer} SideDrawerToggleHandler={this.SideDrawerToggleHandler} SideDrawerClosedHandler={this.SideDrawerClosedHandler}  submitClicked={this.onClickHandler}></StartSurveySub>
         }
+        
         else{
                 showElement=null
         }

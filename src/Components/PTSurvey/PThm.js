@@ -70,7 +70,7 @@ class StartSurvey extends Component{
     render(){    
         let showElement;
         // console.log(this.props.match.url.split('/'))
-        if(this.props.match.url.split('/')[1]==='pts'){
+        if(this.props.match.url==='/pts'){
             showElement=<PTHome 
             collegeURL={'demopt'} 
             // collegeID={'1'} 
