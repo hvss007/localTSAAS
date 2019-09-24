@@ -42,7 +42,7 @@ class  Wiki extends Component{
                 <div className={classes.Wiki}>
                 <h1>Wiki</h1>
                 <h4>Aim:</h4>
-                <p>The aim of this project is to build a tool to collect the trip diaries conveniently without asking any personal information and locations of the users. A typical trip diary attempts to answer the following questions:</p>
+                <p>The aim of this project is to build a tool to collect the trip diaries conveniently without asking any personal information (e.g. Name, Phone numbers, etc.) and locations of the users. A typical trip diary attempts to answer the following questions:</p>
                 <ul>
                 	<li>How many trips do people make per day?</li>
                 	<li>What is the detaination?</li>

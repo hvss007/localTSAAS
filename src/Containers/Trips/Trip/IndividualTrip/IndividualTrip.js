@@ -153,7 +153,7 @@ class Trip extends Component{
         }
     }
     finishButtonCustomDialogBoxHandler=(updatedData,data)=>{
-        this.setState({showCustomConfirmBox:true,message:"Have you added all members of the family?",question:'q3',showButton:true},()=>{
+        this.setState({showCustomConfirmBox:true,message:"Have you added information for all members of the family?",question:'q3',showButton:true},()=>{
         }) 
     }
     finishButtonCustomDialogBoxHandlerIn(updatedData,data){
