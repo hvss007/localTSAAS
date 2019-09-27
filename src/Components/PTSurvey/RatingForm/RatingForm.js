@@ -150,7 +150,6 @@ export default function RatingForm(props) {
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
     axios.post(HostName + "ptSurveyRating/", data).then(Response => {
-      console.log(Response);
       props.history.push({
         pathname: "/finishsurvey"
       });
@@ -189,279 +188,313 @@ export default function RatingForm(props) {
           Accessibility Ratings:
         </Typography>
         <RatingStars
-          name="simple-controlled"
+          name="control-racc1"
           ratingQuestion="Convenience and ease to acces the interchange"
           value={racc1}
-          onChange={() => {
-            setRacc1(racc1);
+          onChange={event => {
+            setRacc1(event.target.value);
           }}
         />
         <RatingStars
-          name="simple-controlled"
+          name="control-racc2"
           ratingQuestion="Availability of fix Pick and drop places for different modes"
           value={racc2}
-          onChange={() => {
-            setRacc2(racc2);
+          onChange={event => {
+            setRacc2(event.target.value);
           }}
         />
         <RatingStars
-          name="simple-controlled"
+          name="control-racc3"
           ratingQuestion="Presence of sequence entry and exit points for arrival and departure passengers"
           value={racc3}
-          onChangeActive={(event, value) => {
-            setRacc3(value);
+          onChange={event => {
+            setRacc3(event.target.value);
           }}
         />
         <Typography variant="h4" align="center">
           Way finding and travel Information Rating:
         </Typography>
         <RatingStars
+          name="control-rtrav1"
           ratingQuestion="Availability of information Signs of different tranport services, facilities and tranfers"
           value={rtrav1}
-          onChange={(event, rtrav1) => {
-            setRtrav1(rtrav1);
+          onChange={event => {
+            setRtrav1(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rtrav2"
           ratingQuestion="Clarity in understanding of informatory signs"
           value={rtrav2}
-          onChange={(event, rtrav2) => {
-            setRtrav2(rtrav2);
+          onChange={event => {
+            setRtrav2(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rtrav3"
           ratingQuestion="Availability of time table and travel information related to different modes"
           value={rtrav3}
-          onChange={(event, rtrav3) => {
-            setRtrav3(rtrav3);
+          onChange={event => {
+            setRtrav3(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rtrav4"
           ratingQuestion="Presence of information screens fro time table and travel information in required language"
           value={rtrav4}
-          onChange={(event, rtrav4) => {
-            setRtrav4(rtrav4);
+          onChange={event => {
+            setRtrav4(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rtrav5"
           ratingQuestion="Accuracy and reliability among different modes"
           value={rtrav5}
-          onChange={(event, rtrav5) => {
-            setRtrav5(rtrav5);
+          onChange={event => {
+            setRtrav5(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rtrav6"
           ratingQuestion="Schedule coordination among different modes"
           value={rtrav6}
-          onChange={(event, rtrav6) => {
-            setRtrav6(rtrav6);
+          onChange={event => {
+            setRtrav6(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rtrav7"
           ratingQuestion="Frequency of the modes within the city (intra-city)"
           value={rtrav7}
-          onChange={(event, rtrav7) => {
-            setRtrav7(rtrav7);
+          onChange={event => {
+            setRtrav7(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rtrav8"
           ratingQuestion="Frequency of the modes outside the city (inter-city)"
           value={rtrav8}
-          onChange={(event, rtrav8) => {
-            setRtrav8(rtrav8);
+          onChange={event => {
+            setRtrav8(event.target.value);
           }}
         />
         <Typography variant="h4" align="center">
           Transfer and Movement Ratings:
         </Typography>
         <RatingStars
+          name="control-rmov1"
           ratingQuestion="Satisfaction related to transfer distance between differet modes"
           value={rmov1}
-          onChange={(event, rmov1) => {
-            setRmov1(rmov1);
+          onChange={event => {
+            setRmov1(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov2"
           ratingQuestion="Presence of number of escalators, walkways and lifts"
           value={rmov2}
-          onChange={(event, rmov2) => {
-            setRmov2(rmov2);
+          onChange={event => {
+            setRmov2(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov3"
           ratingQuestion="Presence of facilities for people with disablities"
           value={rmov3}
-          onChange={(event, rmov3) => {
-            setRmov3(rmov3);
+          onChange={event => {
+            setRmov3(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov4"
           ratingQuestion="Presence of facilities for people with luggage"
           value={rmov4}
-          onChange={(event, rmov4) => {
-            setRmov4(rmov4);
+          onChange={event => {
+            setRmov4(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov5"
           ratingQuestion="Satisfaction related to the distance between the parking area and modes"
           value={rmov5}
-          onChange={(event, rmov5) => {
-            setRmov5(rmov5);
+          onChange={event => {
+            setRmov5(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov6"
           ratingQuestion="Availability of spaces for parking of vehicles"
           value={rmov6}
-          onChange={(event, rmov6) => {
-            setRmov6(rmov6);
+          onChange={event => {
+            setRmov6(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov7"
           ratingQuestion="Availability of enquery countries"
           value={rmov7}
-          onChange={(event, rmov7) => {
-            setRmov7(rmov7);
+          onChange={event => {
+            setRmov7(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov8"
           ratingQuestion="Presence of enquiry counters"
           value={rmov8}
-          onChange={(event, rmov8) => {
-            setRmov8(rmov8);
+          onChange={event => {
+            setRmov8(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov9"
           ratingQuestion="Satisfaction related to time used in queuing and security check"
           value={rmov9}
-          onChange={(event, rmov9) => {
-            setRmov9(rmov9);
+          onChange={event => {
+            setRmov9(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rmov10"
           ratingQuestion="Satisfaction from Behaviour and Assistance by the staff"
           value={rmov10}
-          onChange={(event, rmov10) => {
-            setRmov10(rmov10);
+          onChange={event => {
+            setRmov10(event.target.value);
           }}
         />
         <Typography variant="h4" align="center">
           Comfort and Convenience Rating:
         </Typography>
         <RatingStars
+          name="control-rcom1"
           ratingQuestion="Availability of facilities like different varieties of shops, waiting areas, restaurants, toilets, protection from weather, ATMs, etc"
           value={rcom1}
-          onChange={(event, rcom1) => {
-            setRcom1(rcom1);
+          onChange={event => {
+            setRcom1(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom2"
           ratingQuestion="Availability of total number of seats inside the travel modes nad waiting areas"
-          value={rcom1}
-          onChange={(event, rcom2) => {
-            setRcom2(rcom2);
+          value={rcom2}
+          onChange={event => {
+            setRcom2(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom3"
           ratingQuestion="Availability of Wi-Fi, mobilephone and internet signals"
           value={rcom3}
-          onChange={(event, rcom3) => {
-            setRcom3(rcom3);
+          onChange={event => {
+            setRcom3(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom4"
           ratingQuestion="Availability of total number of charging points inside the travel modes and waiting areas"
           value={rcom4}
-          onChange={(event, rcom4) => {
-            setRcom4(rcom4);
+          onChange={event => {
+            setRcom4(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom5"
           ratingQuestion="Facilities provided for infants, children nad pregnant women"
           value={rcom5}
-          onChange={(event, rcom5) => {
-            setRcom5(rcom5);
+          onChange={event => {
+            setRcom5(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom6"
           ratingQuestion="Facilities for elderly people"
           value={rcom6}
-          onChange={(event, rcom6) => {
-            setRcom6(rcom6);
+          onChange={event => {
+            setRcom6(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom7"
           ratingQuestion="Noise level"
           value={rcom7}
-          onChange={(event, rcom7) => {
-            setRcom7(rcom7);
+          onChange={event => {
+            setRcom7(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom8"
           ratingQuestion="Air quality"
           value={rcom8}
-          onChange={(event, rcom8) => {
-            setRcom8(rcom8);
+          onChange={event => {
+            setRcom8(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom9"
           ratingQuestion="Presence of amount of dustbins (seperate for wet and dry waste)"
           value={rcom9}
-          onChange={(event, rcom9) => {
-            setRcom9(rcom9);
+          onChange={event => {
+            setRcom9(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rcom10"
           ratingQuestion="Overall cleanliness"
           value={rcom10}
-          onChange={(event, rcom10) => {
-            setRcom10(rcom10);
+          onChange={event => {
+            setRcom10(event.target.value);
           }}
         />
         <Typography variant="h4" align="center">
           Safety and Security Rating:
         </Typography>
         <RatingStars
+          name="control-rsec1"
           ratingQuestion="Safety and security in the waiting areas inside transport modes"
           value={rsec1}
-          onChange={(event, rsec1) => {
-            setRsec1(rsec1);
+          onChange={event => {
+            setRsec1(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rsec2"
           ratingQuestion="Safety and security in transfer areas"
           value={rsec2}
-          onChange={(event, rsec2) => {
-            setRsec2(rsec2);
+          onChange={event => {
+            setRsec2(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rsec3"
           ratingQuestion="Safety and security while getting on and off transport"
           value={rsec3}
-          onChange={(event, rsec3) => {
-            setRsec3(rsec3);
+          onChange={event => {
+            setRsec3(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rsec4"
           ratingQuestion="Availability of CCTVs cameras and security guards"
           value={rsec4}
-          onChange={(event, rsec4) => {
-            setRsec4(rsec4);
+          onChange={event => {
+            setRsec4(event.target.value);
           }}
         />
         <hr />
 
         <RatingStars
+          name="control-rover1"
           ratingQuestion="Overall rating of Anand Vihar as a multimodal transport hub"
           value={rover1}
-          onChange={(event, rover1) => {
-            setRover1(rover1);
+          onChange={event => {
+            setRover1(event.target.value);
           }}
         />
         <RatingStars
+          name="control-rover2"
           ratingQuestion="Rating of overall development around Anand Vihar to multimodal hub"
           value={rover2}
-          onChange={(event, rover2) => {
-            setRover2(rover2);
+          onChange={event => {
+            setRover2(event.target.value);
           }}
         />
 
