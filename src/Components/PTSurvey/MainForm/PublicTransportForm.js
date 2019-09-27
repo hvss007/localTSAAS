@@ -110,21 +110,20 @@ function PersonalInformation(props) {
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
- 
+
   const url = props.match.url;
-  const colURL = url.split('/')[2];
-  const surveyID = url.split('/')[3];
- 
+  const colURL = url.split("/")[2];
+  const surveyID = url.split("/")[3];
+
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
 
     const surveyStartTime = new Date().toLocaleTimeString();
-    axios.patch(HostName+'responseTime/'+surveyID,{
-      surveyStartTime:surveyStartTime,
-    })    
+    axios.patch(HostName + "responseTime/" + surveyID, {
+      surveyStartTime: surveyStartTime
+    });
   }, []);
 
- 
   const classes = useStyles();
 
   //Personal Info
@@ -147,7 +146,6 @@ function PersonalInformation(props) {
   const [avg_travel_cost, setTravelCost] = React.useState("");
   const [avg_travel_time, setTravelTime] = React.useState("");
 
-  
   function handleAge(event) {
     setAge(event.target.value);
   }
@@ -177,14 +175,14 @@ function PersonalInformation(props) {
   }
 
   const handleComingFromMode = name => event => {
-    if (comingFromMode===''){
+    if (comingFromMode === "") {
       setComingFromMode(name);
     } else {
       setComingFromMode(comingFromMode.concat("&").concat(name));
     }
   };
   const handleComingToMode = name => event => {
-    if (comingToMode===''){
+    if (comingToMode === "") {
       setComingToMode(name);
     } else {
       setComingToMode(comingToMode.concat("&").concat(name));
@@ -207,49 +205,48 @@ function PersonalInformation(props) {
   }
 
   function handleSubmit() {
-
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
-    axios.get(HostName+"college/").then(Response=>{
-      console.log(Response)
-      const collArray = Response.data.filter(item=>{
-        return (colURL===item.collegeURL)
-      })
-      console.log(collArray)
-      const collegeID = collArray[0].collegeID
-
-      axios.post(HostName + "ptSurvey/", {
-        surveyID:surveyID,
-        collegeID:collegeID,
-    
-        age: age,
-        gender: gender,
-        educationalQualification: qualification,
-        profession: profession,
-        monthlyIncome: income,
-        noOfCars: cars,
-        noOfTwoWheelers: two_wheeler,
-        noOfCycles: bicycle,
-  
-        metro: metro,
-        travelPurpose: tripPurpose,
-        fromLandmark: null,
-        toLandmark: null,
-        travelTime: avg_travel_time,
-        travelCost: avg_travel_time,
-        accesMode: comingFromMode,
-        egressMode: comingToMode,
-        travelFreq: travelFrequency
-
-      }).then(Response => {
-        console.log(Response);
-        props.history.push({
-          pathname: url + "/" + Response.data.personID + "/rating-form"
-        });
+    axios.get(HostName + "college/").then(Response => {
+      console.log(Response);
+      const collArray = Response.data.filter(item => {
+        return colURL === item.collegeURL;
       });
+      console.log(collArray);
+      const collegeID = collArray[0].collegeID;
 
-    })
+      axios
+        .post(HostName + "ptSurvey/", {
+          surveyID: surveyID,
+          collegeID: collegeID,
+
+          age: age,
+          gender: gender,
+          educationalQualification: qualification,
+          profession: profession,
+          monthlyIncome: income,
+          noOfCars: cars,
+          noOfTwoWheelers: two_wheeler,
+          noOfCycles: bicycle,
+
+          metro: metro,
+          travelPurpose: tripPurpose,
+          fromLandmark: null,
+          toLandmark: null,
+          travelTime: avg_travel_time,
+          travelCost: avg_travel_time,
+          accesMode: comingFromMode,
+          egressMode: comingToMode,
+          travelFreq: travelFrequency
+        })
+        .then(Response => {
+          console.log(Response);
+          props.history.push({
+            pathname: url + "/" + Response.data.personID + "/rating-form"
+          });
+        });
+    });
   }
 
   return (
@@ -537,6 +534,7 @@ function PersonalInformation(props) {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <iframe
+                title="originloc"
                 className={classes.locationBox}
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13839.414621384869!2d77.88753742905271!3d29.8684940614533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1566766554708!5m2!1sen!2sin"
                 width="100%"
@@ -564,6 +562,7 @@ function PersonalInformation(props) {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <iframe
+                title="destloc"
                 className={classes.locationBox}
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13839.414621384869!2d77.88753742905271!3d29.8684940614533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1566766554708!5m2!1sen!2sin"
                 width="100%"

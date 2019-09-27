@@ -504,7 +504,6 @@ export default function RatingForm(props) {
           color="primary"
           className={classes.button}
           onClick={handleSubmit}
-          size="large"
         >
           Finish Survey
         </Button>
