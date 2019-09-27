@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     justifyContent: "center",
-    margin: "0 50% 2vh 50%",
+    margin: "0 40% 2vh 45%",
     textAlign: "center"
   },
   inputField: {
@@ -189,7 +189,7 @@ export default function RatingForm(props) {
         </Typography>
         <RatingStars
           name="control-racc1"
-          ratingQuestion="Convenience and ease to acces the interchange"
+          ratingQuestion="Convenience and ease to acces the interchange?"
           value={racc1}
           onChange={event => {
             setRacc1(event.target.value);
@@ -197,7 +197,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-racc2"
-          ratingQuestion="Availability of fix Pick and drop places for different modes"
+          ratingQuestion="Availability of fix Pick and drop places for different modes?"
           value={racc2}
           onChange={event => {
             setRacc2(event.target.value);
@@ -205,7 +205,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-racc3"
-          ratingQuestion="Presence of sequence entry and exit points for arrival and departure passengers"
+          ratingQuestion="Presence of sequence entry and exit points for arrival and departure passengers?"
           value={racc3}
           onChange={event => {
             setRacc3(event.target.value);
@@ -216,7 +216,7 @@ export default function RatingForm(props) {
         </Typography>
         <RatingStars
           name="control-rtrav1"
-          ratingQuestion="Availability of information Signs of different tranport services, facilities and tranfers"
+          ratingQuestion="Availability of information Signs of different tranport services, facilities and tranfers?"
           value={rtrav1}
           onChange={event => {
             setRtrav1(event.target.value);
@@ -224,7 +224,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rtrav2"
-          ratingQuestion="Clarity in understanding of informatory signs"
+          ratingQuestion="Clarity in understanding of informatory signs?"
           value={rtrav2}
           onChange={event => {
             setRtrav2(event.target.value);
@@ -232,7 +232,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rtrav3"
-          ratingQuestion="Availability of time table and travel information related to different modes"
+          ratingQuestion="Availability of time table and travel information related to different modes?"
           value={rtrav3}
           onChange={event => {
             setRtrav3(event.target.value);
@@ -240,7 +240,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rtrav4"
-          ratingQuestion="Presence of information screens fro time table and travel information in required language"
+          ratingQuestion="Presence of information screens fro time table and travel information in required language?"
           value={rtrav4}
           onChange={event => {
             setRtrav4(event.target.value);
@@ -248,7 +248,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rtrav5"
-          ratingQuestion="Accuracy and reliability among different modes"
+          ratingQuestion="Accuracy and reliability among different modes?"
           value={rtrav5}
           onChange={event => {
             setRtrav5(event.target.value);
@@ -256,7 +256,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rtrav6"
-          ratingQuestion="Schedule coordination among different modes"
+          ratingQuestion="Schedule coordination among different modes?"
           value={rtrav6}
           onChange={event => {
             setRtrav6(event.target.value);
@@ -264,7 +264,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rtrav7"
-          ratingQuestion="Frequency of the modes within the city (intra-city)"
+          ratingQuestion="Frequency of the modes within the city (intra-city)?"
           value={rtrav7}
           onChange={event => {
             setRtrav7(event.target.value);
@@ -272,7 +272,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rtrav8"
-          ratingQuestion="Frequency of the modes outside the city (inter-city)"
+          ratingQuestion="Frequency of the modes outside the city (inter-city)?"
           value={rtrav8}
           onChange={event => {
             setRtrav8(event.target.value);
@@ -283,7 +283,7 @@ export default function RatingForm(props) {
         </Typography>
         <RatingStars
           name="control-rmov1"
-          ratingQuestion="Satisfaction related to transfer distance between differet modes"
+          ratingQuestion="Satisfaction related to transfer distance between differet modes?"
           value={rmov1}
           onChange={event => {
             setRmov1(event.target.value);
@@ -291,7 +291,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov2"
-          ratingQuestion="Presence of number of escalators, walkways and lifts"
+          ratingQuestion="Presence of number of escalators, walkways and lifts?"
           value={rmov2}
           onChange={event => {
             setRmov2(event.target.value);
@@ -299,7 +299,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov3"
-          ratingQuestion="Presence of facilities for people with disablities"
+          ratingQuestion="Presence of facilities for people with disablities?"
           value={rmov3}
           onChange={event => {
             setRmov3(event.target.value);
@@ -307,7 +307,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov4"
-          ratingQuestion="Presence of facilities for people with luggage"
+          ratingQuestion="Presence of facilities for people with luggage?"
           value={rmov4}
           onChange={event => {
             setRmov4(event.target.value);
@@ -315,7 +315,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov5"
-          ratingQuestion="Satisfaction related to the distance between the parking area and modes"
+          ratingQuestion="Satisfaction related to the distance between the parking area and modes?"
           value={rmov5}
           onChange={event => {
             setRmov5(event.target.value);
@@ -323,7 +323,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov6"
-          ratingQuestion="Availability of spaces for parking of vehicles"
+          ratingQuestion="Availability of spaces for parking of vehicles?"
           value={rmov6}
           onChange={event => {
             setRmov6(event.target.value);
@@ -331,7 +331,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov7"
-          ratingQuestion="Availability of enquery countries"
+          ratingQuestion="Availability of enquery countries?"
           value={rmov7}
           onChange={event => {
             setRmov7(event.target.value);
@@ -339,7 +339,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov8"
-          ratingQuestion="Presence of enquiry counters"
+          ratingQuestion="Presence of enquiry counters?"
           value={rmov8}
           onChange={event => {
             setRmov8(event.target.value);
@@ -347,7 +347,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov9"
-          ratingQuestion="Satisfaction related to time used in queuing and security check"
+          ratingQuestion="Satisfaction related to time used in queuing and security check?"
           value={rmov9}
           onChange={event => {
             setRmov9(event.target.value);
@@ -355,7 +355,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rmov10"
-          ratingQuestion="Satisfaction from Behaviour and Assistance by the staff"
+          ratingQuestion="Satisfaction from Behaviour and Assistance by the staff?"
           value={rmov10}
           onChange={event => {
             setRmov10(event.target.value);
@@ -366,7 +366,7 @@ export default function RatingForm(props) {
         </Typography>
         <RatingStars
           name="control-rcom1"
-          ratingQuestion="Availability of facilities like different varieties of shops, waiting areas, restaurants, toilets, protection from weather, ATMs, etc"
+          ratingQuestion="Availability of facilities like different varieties of shops, waiting areas, restaurants, toilets, protection from weather, ATMs, etc?"
           value={rcom1}
           onChange={event => {
             setRcom1(event.target.value);
@@ -374,7 +374,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom2"
-          ratingQuestion="Availability of total number of seats inside the travel modes nad waiting areas"
+          ratingQuestion="Availability of total number of seats inside the travel modes nad waiting areas?"
           value={rcom2}
           onChange={event => {
             setRcom2(event.target.value);
@@ -382,7 +382,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom3"
-          ratingQuestion="Availability of Wi-Fi, mobilephone and internet signals"
+          ratingQuestion="Availability of Wi-Fi, mobilephone and internet signals?"
           value={rcom3}
           onChange={event => {
             setRcom3(event.target.value);
@@ -390,7 +390,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom4"
-          ratingQuestion="Availability of total number of charging points inside the travel modes and waiting areas"
+          ratingQuestion="Availability of total number of charging points inside the travel modes and waiting areas?"
           value={rcom4}
           onChange={event => {
             setRcom4(event.target.value);
@@ -398,7 +398,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom5"
-          ratingQuestion="Facilities provided for infants, children nad pregnant women"
+          ratingQuestion="Facilities provided for infants, children nad pregnant women?"
           value={rcom5}
           onChange={event => {
             setRcom5(event.target.value);
@@ -406,7 +406,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom6"
-          ratingQuestion="Facilities for elderly people"
+          ratingQuestion="Facilities for elderly people?"
           value={rcom6}
           onChange={event => {
             setRcom6(event.target.value);
@@ -414,7 +414,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom7"
-          ratingQuestion="Noise level"
+          ratingQuestion="Noise level?"
           value={rcom7}
           onChange={event => {
             setRcom7(event.target.value);
@@ -422,7 +422,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom8"
-          ratingQuestion="Air quality"
+          ratingQuestion="Air quality?"
           value={rcom8}
           onChange={event => {
             setRcom8(event.target.value);
@@ -430,7 +430,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom9"
-          ratingQuestion="Presence of amount of dustbins (seperate for wet and dry waste)"
+          ratingQuestion="Presence of amount of dustbins (seperate for wet and dry waste)?"
           value={rcom9}
           onChange={event => {
             setRcom9(event.target.value);
@@ -438,7 +438,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rcom10"
-          ratingQuestion="Overall cleanliness"
+          ratingQuestion="Overall cleanliness?"
           value={rcom10}
           onChange={event => {
             setRcom10(event.target.value);
@@ -449,7 +449,7 @@ export default function RatingForm(props) {
         </Typography>
         <RatingStars
           name="control-rsec1"
-          ratingQuestion="Safety and security in the waiting areas inside transport modes"
+          ratingQuestion="Safety and security in the waiting areas inside transport modes?"
           value={rsec1}
           onChange={event => {
             setRsec1(event.target.value);
@@ -457,7 +457,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rsec2"
-          ratingQuestion="Safety and security in transfer areas"
+          ratingQuestion="Safety and security in transfer areas?"
           value={rsec2}
           onChange={event => {
             setRsec2(event.target.value);
@@ -465,7 +465,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rsec3"
-          ratingQuestion="Safety and security while getting on and off transport"
+          ratingQuestion="Safety and security while getting on and off transport?"
           value={rsec3}
           onChange={event => {
             setRsec3(event.target.value);
@@ -473,7 +473,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rsec4"
-          ratingQuestion="Availability of CCTVs cameras and security guards"
+          ratingQuestion="Availability of CCTVs cameras and security guards?"
           value={rsec4}
           onChange={event => {
             setRsec4(event.target.value);
@@ -483,7 +483,7 @@ export default function RatingForm(props) {
 
         <RatingStars
           name="control-rover1"
-          ratingQuestion="Overall rating of Anand Vihar as a multimodal transport hub"
+          ratingQuestion={`Overall rating of ${metro} as a multimodal transport hub?`}
           value={rover1}
           onChange={event => {
             setRover1(event.target.value);
@@ -491,7 +491,7 @@ export default function RatingForm(props) {
         />
         <RatingStars
           name="control-rover2"
-          ratingQuestion="Rating of overall development around Anand Vihar to multimodal hub"
+          ratingQuestion={`Rating of overall development around ${metro} to multimodal hub?`}
           value={rover2}
           onChange={event => {
             setRover2(event.target.value);
@@ -499,13 +499,14 @@ export default function RatingForm(props) {
         />
 
         <Button
+          size="large"
           variant="contained"
           color="primary"
           className={classes.button}
           onClick={handleSubmit}
           size="large"
         >
-          Submit
+          Finish Survey
         </Button>
       </Card>
     </div>
