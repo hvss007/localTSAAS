@@ -151,7 +151,8 @@ class Family extends Component{
         family1:{
             noOfCars:0,
             noOfCycles:0,
-            noOfTwoWheelers:0
+            noOfTwoWheelers:0,
+            noOfMembers:0
         },
         qAnswered:0,
         autoCompleteShow:true,
@@ -350,6 +351,7 @@ class Family extends Component{
                         noOfCars:family1.noOfCars,
                         noOfCycles:family1.noOfCycles,
                         noOfTwoWheelers:family1.noOfTwoWheelers,
+                        noOfMembers:family1.noOfMembers,
                         country:family.country.value,
                         familyIncome:family.familyIncome.value,
                         homeState:family.homeState.value,
@@ -459,6 +461,7 @@ class Family extends Component{
                     country:family.country.value,
                     noOfCycles:family1.noOfCycles,
                     noOfTwoWheelers:family1.noOfTwoWheelers,
+                    noOfMembers:family1.noOfMembers,
                     familyIncome:family.familyIncome.value,
                     homeState:family.homeState.value,
                     nameOfDistrict:family.nameOfDistrict.value,
