@@ -61,7 +61,8 @@ class StartSurvey extends Component{
                 // this.props.history.push({pathname:"/demo/hhs"+surveyID+"/family"})
                 this.props.history.push({pathname:this.props.match.url+"/demo/"+surveyID+"/family"})
             }
-            else{this.props.history.push({pathname:this.props.match.url+"/"+surveyID+"/family"})}
+            else{
+                this.props.history.push({pathname:this.props.match.url+"/"+surveyID+"/family"})}
         })
         .catch(e=>console.log("network not connected"))
             

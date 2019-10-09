@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
 import Member from './Member/Member';
 import Aux from '../../Hoc/Aux';
-// import ProgressBar from '../ProgressBar/ProgressBar'; 
-// import MainMaps from '../../Containers/MainMaps/MainMaps'; 
+import axios from 'axios'
 import classes from './Members.css';
 import {withRouter} from 'react-router-dom';
+import HostName from '../../assets/globalvaribles/GlobalVariables'
 class Members extends Component{
     state={
         percent:null,
@@ -16,14 +16,25 @@ class Members extends Component{
         showMap:false,
         setMapSearchText:''
     }
-    // componentDidMount(){
-    //     console.log(this.props.match.params.id)
-    // }
     componentDidMount(){
         window.history.pushState(null, document.title, window.location.href);
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
         });
+    }
+    componentWillMount(){
+        const familyID=this.props.match.params.id
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+        
+        axios.get(HostName+"family/"+familyID+"/")
+                    .then((response)=>{
+                        // if(currentID)                
+                        console.log(response)
+                    })
+                    .catch(err =>{} 
+                        
+                        );
     }
     mapShowHandler=(searchText)=>{
         this.setState({showMap:true,setMapSearchText:searchText})
