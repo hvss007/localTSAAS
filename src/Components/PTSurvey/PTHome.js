@@ -35,7 +35,7 @@ const PTHome = props => {
           backgroundPosition: "100% 40%,0% 40%"
         }
       : null;
-      // console.log(props)
+  // console.log(props)
   return (
     <div style={background} className={classes.StartSurvey}>
       <SideDrawer
@@ -65,8 +65,12 @@ const PTHome = props => {
           props.collegeURL === "home" ? (
             <div>
               <p>
-                Please <a href="mailto:amitfce@iitr.ac.in?subject:Request to set up a PT Survey"> contact us</a> to
-                set up a survey or take a demo survey.{" "}
+                Please{" "}
+                <a href="mailto:amitfce@iitr.ac.in?subject:Request to set up a PT Survey">
+                  {" "}
+                  contact us
+                </a>{" "}
+                to set up a survey or take a demo survey.{" "}
               </p>
             </div>
           ) : (
@@ -108,18 +112,18 @@ const PTHome = props => {
           ) : (
             <div className={classes.StartSurveyButtonContainer}>
               {/* <a href="http://localhost:3000/pts/personal-info"> */}
-                <button
-                  className={buttonClasses.join(" ")}
-                  style={{
-                    fontWeight: "600",
-                    fontSize: "18px",
-                    textTransform: "none"
-                  }}
-                  onClick={props.submitClicked}
-                >
-                  {" "}
-                  Take the survey{" "}
-                </button>
+              <button
+                className={buttonClasses.join(" ")}
+                style={{
+                  fontWeight: "600",
+                  fontSize: "18px",
+                  textTransform: "none"
+                }}
+                onClick={props.submitClicked}
+              >
+                {" "}
+                Take the survey{" "}
+              </button>
               {/* </a> */}
             </div>
           )}

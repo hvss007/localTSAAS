@@ -1,3 +1,4 @@
+
 import React,{Component} from 'react';
 import Input from '../../Input/Input';
 import classes from './Member.css';
@@ -603,7 +604,7 @@ class Member extends Component{
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                        this.setState({show:true,message:"Have you added all members of the family?",showButton:true})
+                        this.setState({show:true,message:"Have you added information for all members of the family?",showButton:true})
                         // if (window.confirm("Have you added all members?")) {
                         //     this.props.history.push({pathname:'/finishsurvey'})    
                         // } 

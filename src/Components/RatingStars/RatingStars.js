@@ -13,12 +13,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SimpleRating(props) {
-  const [rating, setRating] = React.useState(0);
+  // const [rating, setRating] = React.useState(0);
   const classes = useStyles();
 
-  function handleValue(event) {
-    setRating(event.target.value);
-  }
+  // function handleValue(event) {
+  //   setRating(event.target.value);
+  // }
 
   return (
     <div>
@@ -40,10 +40,10 @@ export default function SimpleRating(props) {
           <Rating
             className={classes.ratingStyle}
             align="right"
-            name="simple-controlled"
-            value={rating}
+            name={props.name}
+            value={props.value}
             size="large"
-            onChange={handleValue}
+            onChange={props.onChange}
           />
         </Box>
       </Paper>
