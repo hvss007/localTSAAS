@@ -8,6 +8,9 @@ import {withRouter} from 'react-router-dom';
 import Input from '../../Components/Input/Input';
 import axios from 'axios'
 import HostName from '../../assets/globalvaribles/GlobalVariables'
+import Aux from '../../Hoc/Aux'
+import Backdrop from '../../Hoc/Backdrop/Backdrop1'
+import Alert from '../../Components/Alert/Alert'
 // import SingleDesktopMap from './DesktopMap/SingleDesktopMap';
 class Trips extends Component{
     constructor(props){
@@ -71,8 +74,12 @@ class Trips extends Component{
         centerLat:'',
         centerLng:'',
         showTrips:false,
+        showButton:true,
         familyId:null,
-        constraintField:''
+        constraintField:'',
+        matched:null,
+        showCustomConfirmBox:false,
+        // message:
     }
 }
     componentDidMount(){
@@ -98,8 +105,10 @@ class Trips extends Component{
                     return (
                         collegeIdNo===item.collegeURL  )
                 })
+                console.log(collegeArr)
                 if(collegeArr.length===1){
-                    this.setState({constraintField:collegeArr.constrainField})
+                    console.log("working")
+                    this.setState({constraintField:collegeArr[0].constrainField})
                 }
             }
         )
@@ -130,10 +139,28 @@ class Trips extends Component{
             }
             if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
                     this.mapShowHandler(updatedInputElement.value+" "+this.state.tripLocation.homeState.value);
-                    this.setState({showTrips:true})
-                    if(window.innerWidth>500){
-                        this.setState({desktopMapShow:true})
-                    }                   
+                    if(this.state.constraintField!==null)
+                    {   
+                        if(updatedInputElement.value===this.state.constraintField){
+                            this.setState({matched:true})
+                            console.log(updatedInputElement,"why")
+                            //this.setState({showTrips:true})
+                        
+                        if(window.innerWidth>500){
+                            this.setState({desktopMapShow:true})
+                        } 
+                        }
+                    else{
+                        this.setState({matched:false})
+                        // alert("Your choosen area lies outside our survey area")
+                    }}
+                    else{
+                        this.setState({showTrips:true})
+                        if(window.innerWidth>500){
+                            this.setState({desktopMapShow:true})
+                        }
+                    }
+                                      
             }
         });
     }
@@ -155,6 +182,25 @@ class Trips extends Component{
         this.setState({trips:tripsCopy})
         }
     }
+    constraintFieldHandler=()=>{
+        
+        if(this.state.matched!==null){
+            if(this.state.matched){
+                this.setState({showTrips:true})
+            }
+           else{
+               if(window.confirm("The trip made by this member is outside of survey zone,please proceed")){
+                this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
+               }
+               else{
+
+
+               }
+               // "The trip made by this member is outside of survey zone,please proceed"
+           }
+        }
+        
+    }
     mapCenterHandler=(lat,lng)=>{
         this.setState({centerLat:lat,centerLng:lng})
     }
@@ -167,6 +213,9 @@ class Trips extends Component{
             isValid=value.length===rules.length;
         }
         return isValid;
+    }
+    hideModalBackdrop=(value)=>{
+        this.setState({showCustomConfirmBox:value})
     }
     addTrip=(idf,origin,lat ,lng,landmark,truth)=>{
         this.setState({count:this.state.count+1})
@@ -201,12 +250,11 @@ class Trips extends Component{
             return <Trip familyId={this.state.familyId} singleDesktopLandmarkLocation={this.singleDesktopLandmarkLocationHandler} count={this.state.count} removeCurrentTripHandler={this.removeCurrentTripHandler} dataAreadySent={item.dataAreadySent} disabled={item.disabled} tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.initLat} initLng={item.initLng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
         return(
+            <Aux>
             <div className={classes.TripsAndMapWrapper}>
             <div className={classes.TripsWrapper}> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
                 <div className={classes.InputTrip}>
-                {/* {this.state.constraintField!==null? <input type="checkbox"> My trips are only around </input>: } */}
-               
                 {tripLocationArray.map((tripLocationElement)=>{return(
                 tripLocationElement.config.show?
                 <Input 
@@ -228,11 +276,20 @@ class Trips extends Component{
                 >    
                 </Input>:null
             )})}           
+
                 </div>
+                <div style={{display:'flex'}}>
+                {!this.state.showTrips?<button onClick={this.constraintFieldHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder} style={{margin:'auto',textAlign:'center'}}>Proceed</button>:null}
+                </div>
+                
                 {this.state.showTrips?tripElements:null}
                
             </div>
             </div>
+            {/* <Backdrop  alert={true} hideModalBackdrop={this.hideModalBackdrop} show={this.state.showCustomConfirmBox}>
+            <Alert showButton={this.state.showButton} buttonClickHandler={this.buttonClickHandler} question={this.state.question} message={this.state.message}></Alert>
+            </Backdrop> */}
+            </Aux>
         )
     }
 }
