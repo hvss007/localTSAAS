@@ -629,7 +629,9 @@ class Member extends Component{
                         }
                          memberCopy[item]=updatedElementCopy;
              })  
-            this.setState({member:memberCopy})    
+            this.setState({member:memberCopy})
+            this.props.memberIndexUpdate(response.data[0].currentCount+1)  
+            window.scrollTo(0, 0)  
                         }                
                     })
                     .catch(err =>{} 

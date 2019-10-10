@@ -46,6 +46,10 @@ class Members extends Component{
                     .catch(err =>{} 
                         );
     }
+    memberIndexUpdate=(count)=>{
+        console.log(count)
+        this.setState({currentCount:count})
+    }
     mapShowHandler=(searchText)=>{
         this.setState({showMap:true,setMapSearchText:searchText})
     }
@@ -97,6 +101,7 @@ class Members extends Component{
         <div className={classes.MemberWrapper}>
         {this.state.showMembers?
         <Member
+            memberIndexUpdate={this.memberIndexUpdate}
             lat={this.state.lat}
             lng={this.state.lng}
             familyId={this.props.match.params.id}
