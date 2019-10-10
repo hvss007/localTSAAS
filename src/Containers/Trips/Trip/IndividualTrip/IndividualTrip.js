@@ -474,7 +474,7 @@ class Trip extends Component{
                     <button onClick={this.removeCurrentTripHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Remove Trip</button>
                 </div>:null}
                 {this.props.count>=1&&this.props.showAdd?<div>
-                    <button  onClick={this.nextMemberClickHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Add Member</button>
+                    <button  onClick={this.nextMemberClickHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Proceed</button>
                     {/* <button onClick={this.finishClicked} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}> Finish Survey</button> */}
                     </div>:null}
             </div>
