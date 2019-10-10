@@ -333,7 +333,7 @@ class Member extends Component{
             },
             respondent:{
                 name:'respondent',
-                label:'Is the member respondent?',
+                label:'Is this your information?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',

@@ -17,29 +17,29 @@ class Trip extends Component{
                 destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:'',destinationLandmark:''},
                 accessModeData:{},
                 accessInfoIn:{
-                    travelTime:{
-                        name:'travelTime',
-                        label:'How much time does the whole trip take?',
-                        elementType:'select',
-                        elementConfig:{
-                           options:[
-                            {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                               {value:'<5min',displayValue:'<5 min'},
-                               {value:'5-15min',displayValue:'5 - 15 min'},
-                               {value:'15-30min',displayValue:'15 - 30 min'},
-                               {value:'30-60min',displayValue:'30 - 60 min'},
-                               {value:'>1hour',displayValue:'> 1 hour'}
-                           ]
-                        },
-                        value:'',
-                        show:true,
-                        validation:{
-                            required:true
-                        },
-                        valid:false,
-                        touched:false,
-                        optional:true
-                    },
+                    // travelTime:{
+                    //     name:'travelTime',
+                    //     label:'How much time does the whole trip take?',
+                    //     elementType:'select',
+                    //     elementConfig:{
+                    //        options:[
+                    //         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                    //            {value:'<5min',displayValue:'<5 min'},
+                    //            {value:'5-15min',displayValue:'5 - 15 min'},
+                    //            {value:'15-30min',displayValue:'15 - 30 min'},
+                    //            {value:'30-60min',displayValue:'30 - 60 min'},
+                    //            {value:'>1hour',displayValue:'> 1 hour'}
+                    //        ]
+                    //     },
+                    //     value:'',
+                    //     show:true,
+                    //     validation:{
+                    //         required:true
+                    //     },
+                    //     valid:false,
+                    //     touched:false,
+                    //     optional:true
+                    // },
                     travelDistance:{
                         name:'travelDistance',
                         label:'How long is the whole trip?',
