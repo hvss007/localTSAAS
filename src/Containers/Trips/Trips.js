@@ -6,6 +6,8 @@ import fs from '../../assets/jsonfile/stateAndDistricts.json'
 // import Backdrop from '../../Hoc/Backdrop/Backdrop';
 import {withRouter} from 'react-router-dom';
 import Input from '../../Components/Input/Input';
+import axios from 'axios'
+import HostName from '../../assets/globalvaribles/GlobalVariables'
 // import SingleDesktopMap from './DesktopMap/SingleDesktopMap';
 class Trips extends Component{
     constructor(props){
@@ -69,7 +71,8 @@ class Trips extends Component{
         centerLat:'',
         centerLng:'',
         showTrips:false,
-        familyId:null
+        familyId:null,
+        constraintField:''
     }
 }
     componentDidMount(){
@@ -77,15 +80,29 @@ class Trips extends Component{
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
         });
-
     }
-   
     mapShowHandler=(searchText)=>{
         this.setState({setMapSearchText:searchText})
     }
     
     stringSubtract=(a,b)=>{
         return a.replace(b, '')
+    }
+    componentWillMount(){
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+        axios.get(HostName+"college/").then(
+            Response=>{
+                const collegeIdNo=this.props.match.url.split('/')[2]
+                const collegeArr= Response.data.filter(item=>{
+                    return (
+                        collegeIdNo===item.collegeURL  )
+                })
+                if(collegeArr.length===1){
+                    this.setState({constraintField:collegeArr.constrainField})
+                }
+            }
+        )
     }
     inputChangeHandler=(event,inputIdentifier)=>{
         const tripLocationUpdated={...this.state.tripLocation};
@@ -94,9 +111,7 @@ class Trips extends Component{
         updatedInputElement.valid=this.validityHandler(updatedInputElement.value,updatedInputElement.validation);
         updatedInputElement.touched=true;
         tripLocationUpdated[inputIdentifier]=updatedInputElement; 
-        this.setState({tripLocation:tripLocationUpdated},()=>{
-           // this.progressHandler()
-            
+        this.setState({tripLocation:tripLocationUpdated},()=>{ 
             if(inputIdentifier==="homeState"&&updatedInputElement.valid){
                 const newtripLocationUpdated={...this.state.tripLocation};
                 const newUpdatedInputElement={...newtripLocationUpdated["nameOfDistrict"]} ;
@@ -108,8 +123,6 @@ class Trips extends Component{
                     const dataObj={value:item,displayValue:item}
                     newInputConfigOptions.push(dataObj);
                 })
-                //districtList.forEach(item=>{newInputConfigOptions.push(item)})
-                //console.log(newInputConfigOptions)
                 newInputConfig.options=newInputConfigOptions;
                 newUpdatedInputElement.elementConfig=newInputConfig;
                 newtripLocationUpdated["nameOfDistrict"]=newUpdatedInputElement;
@@ -153,11 +166,9 @@ class Trips extends Component{
         if(rules.length&&isValid){
             isValid=value.length===rules.length;
         }
-        //console.log(isValid);
         return isValid;
     }
     addTrip=(idf,origin,lat ,lng,landmark,truth)=>{
-        //,destination:this.state.trips[idf-1].destination
         this.setState({count:this.state.count+1})
         const tripNew={idf:idf+1,showAdd:true,origin:origin,initLat:lat,initLng:lng,landmark:landmark,disabled:false,dataAreadySent:false,originLat:null,originLng:null,destinationLat:null,destinationLng:null};
         const tripsCopy=[...this.state.trips];
@@ -189,29 +200,19 @@ class Trips extends Component{
         const tripElements=this.state.trips.map((item,index)=>{
             return <Trip familyId={this.state.familyId} singleDesktopLandmarkLocation={this.singleDesktopLandmarkLocationHandler} count={this.state.count} removeCurrentTripHandler={this.removeCurrentTripHandler} dataAreadySent={item.dataAreadySent} disabled={item.disabled} tripsLength={this.state.trips.length} mapLocation={this.state.setMapSearchText} idf={item.idf}  showAdd={item.showAdd} initialOrigin={item.origin} initLat={item.initLat} initLng={item.initLng} initialLandmark={item.landmark} endOriginHandler={this.endOriginHandler} key={item.idf} addTrip={this.addTrip}></Trip>
         })
-        // const tripMapElements=[...this.state.trips]
         return(
             <div className={classes.TripsAndMapWrapper}>
-            {/* {this.state.desktopMapShow?<div className={classes.SingleTripsMap}>
-            <SingleDesktopMap tripElements={tripMapElements} mapCenter={this.mapCenterHandler} setMapSearchText={this.state.setMapSearchText}>
-                
-            </SingleDesktopMap>
-            </div>:null} */}
-            
             <div className={classes.TripsWrapper}> 
                 <div className={classes.TripInformation}><h1>Trips Information</h1></div>
                 <div className={classes.InputTrip}>
+                {/* {this.state.constraintField!==null? <input type="checkbox"> My trips are only around </input>: } */}
+               
                 {tripLocationArray.map((tripLocationElement)=>{return(
                 tripLocationElement.config.show?
                 <Input 
-                    // selectedOption={this.selectedOptionHandler}
-                    // centerLat={this.state.centerLat}
-                    // centerLng={this.state.centerLng}
                     responseArray={this.state.responseArray}
                     textAlign='center'
                     labelFontWeight='600'
-                    // autoCompleteShow={this.state.autoCompleteShow}
-                    // autoCompleteArr={arrNew}
                     style={{textAlignLast:'center'}}
                     key={tripLocationElement.id}
                     label={tripLocationElement.config.label}
@@ -222,11 +223,8 @@ class Trips extends Component{
                     invalid={!tripLocationElement.config.valid}
                     touched={tripLocationElement.config.touched}
                     changed={(event)=>this.inputChangeHandler(event,tripLocationElement.id)}
-                    // onFocusHandler={this.onFocusHandler}
-                    // blurred={this.onBlurHandler}
                     itemClicked={this.itemClickedHandler}
                     id={tripLocationElement.id}
-                //  outFocus={()=>this.onBlurHandler(tripLocationElement.id)}
                 >    
                 </Input>:null
             )})}           
@@ -239,7 +237,3 @@ class Trips extends Component{
     }
 }
 export default withRouter(Trips);
-// const tripAccess=this.state.access.map((acc,index)=>{
-//     return <TripAccess accessDataIn={this.accessDataInHandler} accessData={this.accessDataHandler} key={acc.idi} add={this.addHandler} accessName={"Access"}  idi={acc.idi} showAdd={acc.showAdd}>
-//     </TripAccess>
-// })

@@ -571,10 +571,7 @@ class Member extends Component{
         return isValid;
     }
     submitButtonHandler=(event)=>{
-        //consoleog(this.state.qAnswered);
         event.preventDefault();
-        
-        // if(this.state.qAnswered>=10){
             const member=this.state.member;
             const post={
                 familyID:this.state.familyId,
@@ -604,28 +601,39 @@ class Member extends Component{
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                        this.setState({show:true,message:"Have you added information for all members of the family?",showButton:true})
-                        // if (window.confirm("Have you added all members?")) {
-                        //     this.props.history.push({pathname:'/finishsurvey'})    
-                        // } 
-                        // else{
-                        //     const memberCopy={...this.state.member};
-                        //     const arr=Object.keys(memberCopy);
-                        //     arr.forEach(item=>{
-                        //       let updatedElementCopy={...memberCopy[item]};
-                        //           if(item==='simCards'){
-                        //               //consoleog(item)
-                        //               updatedElementCopy.value='Enter the number of sim cards here.';
-                        //           }
-                        //           else{
-                        //               updatedElementCopy.value='';
-                        //           }
-                                  
-                        //           memberCopy[item]=updatedElementCopy;
-                        //     })  
-                        //     this.setState({member:memberCopy})
-                        // }
-
+                        const familyID=this.props.match.params.id
+                         axios.defaults.xsrfCookieName = 'csrftoken'
+                        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                        axios.get(HostName+"family/"+familyID+"/")
+                    .then((response)=>{
+                        if(response.data[0].currentCount===response.data[0].noOfMembers){
+                            var time=new Date().toLocaleTimeString()                                
+                            const url=this.props.match.url;
+                            const fam=url.split('/')
+                            const surveyId=fam[3]                                        
+                            axios.patch(HostName+'responseTime/'+surveyId,{
+                                                surveyEndTime:time,
+                                            })
+                            this.props.history.push({pathname:'/finishsurvey'})
+                        }
+                        else{
+                            const memberCopy={...this.state.member};
+                        const arr=Object.keys(memberCopy);
+                        arr.forEach(item=>{
+                        let updatedElementCopy={...memberCopy[item]};
+                        if(item==='simCards'){
+                            updatedElementCopy.value='Enter the number of sim cards here.';
+                        }
+                        else{
+                            updatedElementCopy.value='';
+                        }
+                         memberCopy[item]=updatedElementCopy;
+             })  
+            this.setState({member:memberCopy})    
+                        }                
+                    })
+                    .catch(err =>{} 
+                        );
                     })
                     .catch(err => console.error(err));
             }
@@ -634,7 +642,6 @@ class Member extends Component{
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"members/",post)
                     .then((Response)=>{
-                        
                         this.props.history.push({pathname:this.props.match.url+Response.data.memberID+'/trip-info'})
                     })
                     .catch(err => 
@@ -648,8 +655,6 @@ class Member extends Component{
         for(let i=0;i<arr.length;i++){
             arrNew.push({backArr:arr[i],clicked:false});
         }
-        // //consoleog(arrNew);
-        
     let memberformArray=[];
     for (let key in this.state.member){
         memberformArray.push(
@@ -660,35 +665,35 @@ class Member extends Component{
     }
     return(
         <Aux>
-        <div className={classes.MemberData} >
-        <form className={classes.CustomForm} >
-        {memberformArray.map((memFormElement)=>{return(
-            memFormElement.config.show?
-            <Input 
-                autoCompleteShow={this.state.autoCompleteShow}
-                autoCompleteArr={arrNew}
-                key={memFormElement.id}
-                label={memFormElement.config.label}
-                name={memFormElement.config.name}
-                elementType={memFormElement.config.elementType}
-                elementconfig={memFormElement.config.elementConfig}
-                value={memFormElement.config.value}
-                invalid={!memFormElement.config.valid}
-                touched={memFormElement.config.touched}
-                changed={(event)=>this.inputChangeHandler(event,memFormElement.id)}
-                onFocusHandler={this.onFocusHandler}
-                blurred={this.onBlurHandler}
-                itemClicked={this.itemClickedHandler}
-            >    
-            </Input>:null
-        )})}
-        <MemberSubmitButton clicked={this.submitButtonHandler} ></MemberSubmitButton>
-        </form>
-        </div>
-        <Backdrop hideModalBackdrop={this.hideModalBackdrop} alert={true} show={this.state.show}>
-            <Alert showButton={this.state.showButton} buttonClickHandler={this.buttonClickHandler} message={this.state.message}>
-            </Alert>
-        </Backdrop>
+            <div className={classes.MemberData} >
+            <form className={classes.CustomForm} >
+            {memberformArray.map((memFormElement)=>{return(
+                memFormElement.config.show?
+                <Input 
+                    autoCompleteShow={this.state.autoCompleteShow}
+                    autoCompleteArr={arrNew}
+                    key={memFormElement.id}
+                    label={memFormElement.config.label}
+                    name={memFormElement.config.name}
+                    elementType={memFormElement.config.elementType}
+                    elementconfig={memFormElement.config.elementConfig}
+                    value={memFormElement.config.value}
+                    invalid={!memFormElement.config.valid}
+                    touched={memFormElement.config.touched}
+                    changed={(event)=>this.inputChangeHandler(event,memFormElement.id)}
+                    onFocusHandler={this.onFocusHandler}
+                    blurred={this.onBlurHandler}
+                    itemClicked={this.itemClickedHandler}
+                >    
+                </Input>:null
+            )})}
+            <MemberSubmitButton clicked={this.submitButtonHandler} ></MemberSubmitButton>
+            </form>
+            </div>
+            <Backdrop hideModalBackdrop={this.hideModalBackdrop} alert={true} show={this.state.show}>
+                <Alert showButton={this.state.showButton} buttonClickHandler={this.buttonClickHandler} message={this.state.message}>
+                </Alert>
+            </Backdrop>
         </Aux>
     )}
 }

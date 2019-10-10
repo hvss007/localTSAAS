@@ -6,7 +6,7 @@ import MemberSubmitButton from '../Members/Member/MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
 // import ProgressBar from '../ProgressBar/ProgressBar';
 import BuildControls from './BuildControls/BuildControls';
-import Family1 from '../../assets/icons/family.png';
+// import Family1 from '../../assets/icons/family.png';
 import MainMaps from '../../Containers/MainMaps/MainMaps'
 import fs from '../../assets/jsonfile/stateAndDistricts.json'
 import Aux from '../../Hoc/Aux';
@@ -20,26 +20,11 @@ class Family extends Component{
         this.data=fs;
         const states=Object.keys(this.data);
         states.sort();
-        // console.log(states);
-        // this.stateDataArray=[];
-
-    //    let memberformArray=[];
-        // for (let key in this.data){
-        //     this.stateDataArray.push(
-        //         {
-        //         id:key,
-        //         config:this.data[key]     
-        //     })
-        // }
-        
-        
-        // console.log(this.stateDataArray)
         this.stateArray=[];
         states.forEach(item=>{
             let dataObj={value:item,displayValue:item};
             this.stateArray.push(dataObj);
-        })
-        
+        })  
     this.state={
         family:{
             familyIncome:{
@@ -76,8 +61,7 @@ class Family extends Component{
                    type:'text',
                    options:[
                    {value:'India',displayValue:"India", selected:true},
-                   {value:'Others',displayValue:"Others"}
-                   
+                   {value:'Others',displayValue:"Others"}  
                 ] 
                 },
                 value:"India",
@@ -152,7 +136,7 @@ class Family extends Component{
             noOfCars:0,
             noOfCycles:0,
             noOfTwoWheelers:0,
-            noOfMembers:0
+            noOfMembers:1
         },
         qAnswered:0,
         autoCompleteShow:true,
@@ -172,17 +156,14 @@ class Family extends Component{
         show:false,
         time:null,
         surveyID:null
-        //copied from members
     }
 }
  state={}
-    //these functions imported from members
     mapShowHandler=(searchText)=>{
         this.setState({showMap:true,setMapSearchText:searchText})
     }
     landmarkHandler=(value)=>{
         this.setState({landmarkString:value},()=>{
-            // console.log(this.state.landmarkString)
         })
     }
     setMarkerQuery=(query)=>{
@@ -220,35 +201,23 @@ class Family extends Component{
     }
      
   
-    componentDidMount(){
-        
+    componentDidMount(){   
         window.history.pushState(null, document.title, window.location.href);
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
         });      
-         // axios.post(HostName+"survey.",{surveyType:'hhs'})
-        // .then(response=>{
-        //     this.setState(response.surveyID)
-        // })
         axios.get(HostName+"college/").then(
             Response=>{
-                // console.log(this.props.match.url.split('/')[2])
                 const collegeIdNo=this.props.match.url.split('/')[2]
                 const collegeArr= Response.data.filter(item=>{
-                    // return ((item.collegeURL===this.props.match.params.id));
                     return (
                         collegeIdNo===item.collegeURL  )
                 })
-                // console.log(collegeArr)
                 if(collegeArr.length===1){
-                    
                     this.setState({collegeID:collegeArr[0].collegeID})
-                    
                     var time=new Date().toLocaleTimeString()
-                    // this.setState({time:time})
                     axios.defaults.xsrfCookieName = 'csrftoken'
                     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-
                     const url=this.props.match.url;
                     const fam=url.split('/')
                     const surveyID=fam[3]
@@ -256,9 +225,6 @@ class Family extends Component{
                     Axios.patch(HostName+'responseTime/'+surveyID,{
                         surveyStartTime:time,
                     })
-                }
-                else{
-     
                 }
             }
         )
@@ -278,40 +244,7 @@ class Family extends Component{
             this.progressHandler()
             if(inputIdentifier==="country" && updatedInputElement.value==="Others"){
                 this.setState({show:true})
-                // if(window.confirm("Sorry. Currently this survey is confined to residents of India. Press Ok to finish the survey")){
-                //     const family=this.state.family;
-                //     const family1=this.state.family1;
-                //     const post1={
-                //         collegeID:this.state.collegeID,
-                //         noOfCars:family1.noOfCars,
-                //         noOfCycles:family1.noOfCycles,
-                //         noOfTwoWheelers:family1.noOfTwoWheelers,
-                //         country:family.country.value,
-                //         familyIncome:family.familyIncome.value,
-                //         homeState:family.homeState.value,
-                //         nameOfDistrict:family.nameOfDistrict.value,
-                //         landmark:this.state.markerLocationText,
-                //         lat:this.state.lat,
-                //         lng:this.state.lng
-                //     }
-                //     this.props.history.push({pathname:'/finishsurvey'})
-                //     axios.defaults.xsrfCookieName = 'csrftoken'
-                //     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-                //     axios.post(HostName+"family/",post1)
-                //     .then((Response)=>{
-                //         ////console.log(Response);
-                //     })
-                //     .catch() 
-                //         // console.error(err)
-                //         // );
-                // }
-                // else{
-                //     const newFamilyUpdated = {...this.state.family};
-                //     const update_country={...newFamilyUpdated["country"]};
-                //     update_country.value="India";
-                //     newFamilyUpdated["country"]=update_country;
-                //     this.setState({family:newFamilyUpdated});                    
-                // }
+                
             }
             if(inputIdentifier==="homeState"&&updatedInputElement.valid){
                 const newFamilyUpdated={...this.state.family};
@@ -324,8 +257,6 @@ class Family extends Component{
                     const dataObj={value:item,displayValue:item}
                     newInputConfigOptions.push(dataObj);
                 })
-                //districtList.forEach(item=>{newInputConfigOptions.push(item)})
-                //console.log(newInputConfigOptions)
                 newInputConfig.options=newInputConfigOptions;
                 newUpdatedInputElement.elementConfig=newInputConfig;
                 newFamilyUpdated["nameOfDistrict"]=newUpdatedInputElement;
@@ -333,7 +264,6 @@ class Family extends Component{
             }
             if(inputIdentifier==='nameOfDistrict'&&updatedInputElement.valid){
                     this.mapShowHandler(updatedInputElement.value+" "+this.state.family.homeState.value);
-                    //console.log(updatedInputElement.value,this.state.family.homeState.value)
             }
             if(inputIdentifier==="landmark"&&updatedInputElement.valid){
                 this.setState({autoCompleteShow:true})
@@ -369,8 +299,6 @@ class Family extends Component{
                     .then((Response)=>{
          
                     })
-                    // .catch(err=> 
-                    //     );
         }
         else if(id===2){
             const newFamilyUpdated = {...this.state.family};
@@ -381,8 +309,6 @@ class Family extends Component{
         }
     }
     itemClickedHandler=(event,id,truth)=>{
-        //let hed=this.state.member.landmark.value;
-       // this.setState({hed:""},()=>{console.log(this.state.member.landmark.value)});
         const familyUpdated={...this.state.family};
         const updatedInputElement={...familyUpdated["landmark"]} ;
         updatedInputElement.value=""+document.getElementById(id).innerHTML;
@@ -393,7 +319,6 @@ class Family extends Component{
     }
     landmarkValueHandler=()=>{
         this.landmarkHandler(this.state.family.landmark.value);
-        //console.log(this.state.member.landmark.value);
     }
     dropdownArrayHandler=(array)=>{
         this.setState({responseArray:array})
@@ -406,7 +331,6 @@ class Family extends Component{
         if(rules.length&&isValid){
             isValid=value.length===rules.length;
         }
-        //console.log(isValid);
         return isValid;
     }
     addValueHandler=(type)=>{
@@ -440,7 +364,6 @@ class Family extends Component{
          }
         }
         this.setState({qAnswered:noOfTrue});
-        //console.log(noOfTrue);    
     } 
     mapCenterHandler=(lat,lng)=>{
         this.setState({centerLat:lat,centerLng:lng})
@@ -449,10 +372,7 @@ class Family extends Component{
         this.setState({markerLocationText:value,lat:lat,lng:lng})
     }
     submitButtonHandler=(event)=>{
-        //console.log(this.state.qAnswered);
-        event.preventDefault();
-        
-        // if(this.state.qAnswered===3||true){
+        event.preventDefault();       
             const family=this.state.family;
             const family1=this.state.family1;
                 const post={
@@ -474,17 +394,10 @@ class Family extends Component{
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                 axios.post(HostName+"family/",post)
                     .then((Response)=>{
-                        //console.log(Response);
                         this.props.history.push({pathname:this.props.match.url+Response.data.familyID+'/member'})
                     })
                     .catch(
-                        // err => 
-                        // console.error(err)
                         );
-            // }
-        // else{
-        //     alert("Please fill all the fields")
-        // }
     }
     render(){
         const arrNew=[];
@@ -514,7 +427,6 @@ class Family extends Component{
         <div className={classes.FamilyWrapper}>
         <div className={classes.Family}>
             <div className={classes.Heading}><span>
-                {/* <img style={{width:'40px'}} alt={"family"} src={Family1}></img> */}
                 </span><p>Family Information</p></div>
             <BuildControls valueAdded={this.addValueHandler}
                 valueRemoved={this.removeValueHandler}

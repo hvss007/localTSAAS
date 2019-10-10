@@ -475,7 +475,8 @@ class Trip extends Component{
                 </div>:null}
                 {this.props.count>=1&&this.props.showAdd?<div>
                     <button  onClick={this.nextMemberClickHandler} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}>Add Member</button>
-                    <button onClick={this.finishClicked} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}> Finish Survey</button></div>:null}
+                    {/* <button onClick={this.finishClicked} className={classes.NextMemberButton+" "+ classes.NextMemberButtonBorder}> Finish Survey</button> */}
+                    </div>:null}
             </div>
             <Backdrop  alert={true} hideModalBackdrop={this.hideModalBackdrop} show={this.state.showCustomConfirmBox}>
                 <Alert showButton={this.state.showButton} buttonClickHandler={this.buttonClickHandler} question={this.state.question} message={this.state.message}></Alert>

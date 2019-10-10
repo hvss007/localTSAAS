@@ -5,6 +5,7 @@ import axios from 'axios'
 import classes from './Members.css';
 import {withRouter} from 'react-router-dom';
 import HostName from '../../assets/globalvaribles/GlobalVariables'
+import FinishSurvey from '../FinishSurvey/FinishSurvey'
 class Members extends Component{
     state={
         percent:null,
@@ -14,7 +15,9 @@ class Members extends Component{
         lat:null,
         lng:null,
         showMap:false,
-        setMapSearchText:''
+        setMapSearchText:'',
+        showMembers:true,
+        currentCount:null
     }
     componentDidMount(){
         window.history.pushState(null, document.title, window.location.href);
@@ -26,14 +29,21 @@ class Members extends Component{
         const familyID=this.props.match.params.id
         axios.defaults.xsrfCookieName = 'csrftoken'
         axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-        
         axios.get(HostName+"family/"+familyID+"/")
                     .then((response)=>{
-                        // if(currentID)                
-                        console.log(response)
+                        this.setState({currentCount:response.data[0].currentCount+1})
+                        if(response.data[0].currentCount===response.data[0].noOfMembers){
+                            var time=new Date().toLocaleTimeString()                                
+                            const url=this.props.match.url;
+                            const fam=url.split('/')
+                            const surveyId=fam[3]                                        
+                            axios.patch(HostName+'responseTime/'+surveyId,{
+                                                surveyEndTime:time,
+                                            })
+                            this.props.history.push({pathname:'/finishsurvey'})
+                        }                
                     })
                     .catch(err =>{} 
-                        
                         );
     }
     mapShowHandler=(searchText)=>{
@@ -70,31 +80,22 @@ class Members extends Component{
                 displayUniqueArr.push(displayArr[i]);
             }
             count=0;
-            found=false;
-            
+            found=false; 
         }
         this.setState({autoCompleteArr:displayUniqueArr},()=>{
-            // console.log(this.state.autoCompleteArr,"ugvytyryfrccyf")
-        });
-        
+        });        
     }
     render(){
     return(
         <Aux>
-        
         <div className={classes.MembersInner}
-        // className="container-fluid my-5 mx-auto px-5" 
         >
         <div className={classes.MapMemberWrapper}
-        // className="row flex-column-reverse flex-md-row" 
         style={{boxShadow: 'rgba(0, 0, 0, 0.15) 0px 27px 51.33px 7.67px', borderRadius: '10px',flexFlow:'column'}}>
             <div style={{width:'100%',boxSizing:'border-box',padding:'25px',fontSize:'32px',textAlign:'center',paddingBottom:'5px'}}><p style={{color:'rgb(41, 129, 185)'}}>Member Information</p></div>    
-        {/* {this.state.showMap?<div style={{flex:'2'}} >
-        <MainMaps mapLocation={this.state.setMapSearchText} dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
-        </div>:null} */}
+            <div style={{width:'100%',boxSizing:'border-box',fontSize:'20px',textAlign:'center',paddingBottom:'5px'}}><p style={{color:'rgb(41, 129, 185)'}}>Member Index {this.state.currentCount}</p></div>    
         <div className={classes.MemberWrapper}>
-        {/* <ProgressBar total={10} transformValue={this.state.percent}>
-        1 </ProgressBar> */}
+        {this.state.showMembers?
         <Member
             lat={this.state.lat}
             lng={this.state.lng}
@@ -104,9 +105,8 @@ class Members extends Component{
             percentFind={this.percentageHandler}
             mapShow={this.mapShowHandler}
             landmarkTransfer={this.landmarkHandler}
-        // membInfo={props.membInfo} changedMem={props.changedMems}
         >
-        </Member>
+        </Member>:<FinishSurvey/>}
         </div>
         </div>
         {/* </div> */}
