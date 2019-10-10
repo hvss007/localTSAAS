@@ -247,7 +247,7 @@ class Trip extends Component{
             // console.log(validArr)
             if(valid){
                 const data={memberID:this.props.match.params.id1};
-                updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn["travelTime"].value
+                // updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn["travelTime"].value
                 updatedData.originDestination[0].travelDistance=this.state.tripInformation.accessInfoIn["travelDistance"].value
                 updatedData.originDestination[0].fare=this.state.tripInformation.accessInfoIn["fare"].value
                 delete updatedData.originDestination[0].isValid
