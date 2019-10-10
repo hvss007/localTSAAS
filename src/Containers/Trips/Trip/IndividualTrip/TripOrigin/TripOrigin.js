@@ -13,6 +13,7 @@ import Other from '../../../../../assets/icons/destinationIcons/Other.png';
 import CommentModalInput from '../../../../../Hoc/CommentModal/CommentModalInput/CommentModalInput';
 import TripOriginMap from './TripOriginMap/TripOriginMap';
 import Autocomplete from '../../../../AutoComplete/AutoComplete1';
+
 class TripOrigin extends Component{
     state={
         src:null,

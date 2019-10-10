@@ -13,8 +13,8 @@ import Alert from'../../../../Components/Alert/Alert'
 class Trip extends Component{
     state={
         tripInformation:{
-                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,originTime:'',originLandmark:this.props.initialLandmark?this.props.initialLandmark:''},
-                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:'',destinationLandmark:''},
+                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,departureTime:'',originLandmark:this.props.initialLandmark?this.props.initialLandmark:''},
+                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,arrivalTime:'',destinationLandmark:''},
                 accessModeData:{},
                 accessInfoIn:{
                     // travelTime:{
@@ -228,7 +228,7 @@ class Trip extends Component{
             const dataCopy={...this.state.tripInformation};
             const originDestinationArray=[{...dataCopy.originData,...dataCopy.destinationData}];
             const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
-            console.log(originDestinationArray)
+            // console.log(originDestinationArray)
             // const validArr=updatedData.accessModeData.mode.filter(item=>{
             //     return item.modeName.length>0 
             // })
@@ -263,7 +263,7 @@ class Trip extends Component{
                              ).then(response=>{
 
                              })
-                             console.log(updatedData.accessModeData.mode)
+                            //  console.log(updatedData.accessModeData.mode)
                              updatedData.accessModeData.mode.forEach((element,index) => {
                                 delete element.isValid;
                                 Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
@@ -394,7 +394,8 @@ class Trip extends Component{
         if(originOrDestination==="Origin"){
             const originDataCopy={...tripInformationCopy.originData}
             originDataCopy.originPlace=place;
-            originDataCopy.originTime=time;
+            console.log(time)
+            originDataCopy.departureTime=time;
             tripInformationCopy.originData=originDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
             })
@@ -402,7 +403,7 @@ class Trip extends Component{
         if(originOrDestination==="Destination"){
             const destinationDataCopy={...tripInformationCopy.destinationData}
             destinationDataCopy.destinationPlace=place;
-            destinationDataCopy.destinationTime=time;
+            destinationDataCopy.arrivalTime=time;
             tripInformationCopy.destinationData=destinationDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
             })
