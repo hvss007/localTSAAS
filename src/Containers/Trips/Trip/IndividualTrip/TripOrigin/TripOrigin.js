@@ -13,8 +13,14 @@ import Other from '../../../../../assets/icons/destinationIcons/Other.png';
 import CommentModalInput from '../../../../../Hoc/CommentModal/CommentModalInput/CommentModalInput';
 import TripOriginMap from './TripOriginMap/TripOriginMap';
 import Autocomplete from '../../../../AutoComplete/AutoComplete1';
+// import TimePicker from 'react-time-picker'
+import TimeField from 'react-simple-timefield';
 
 class TripOrigin extends Component{
+    constructor(props){
+        super(props)
+        this.onChangeTime = this.onChangeTime.bind(this);
+    }
     state={
         src:null,
         title:null,
@@ -32,7 +38,7 @@ class TripOrigin extends Component{
         backdropShow:false,
         lat:"26.9124",
         lng:"75.7873",
-        time:'',
+        time:'00:00',
         centerLat:null,
         centerLng:null,
         markerLocationText:''
@@ -123,9 +129,9 @@ class TripOrigin extends Component{
     latLongHandler=(lat,lng,value)=>{
         this.props.latLongHandler1(lat,lng,this.props.originOrDestination,this.state.markerLocationText);
     }
-    onChangeTime = event => {
+    onChangeTime =(event, time) => {
         if(!this.props.disabled)
-        {this.setState({ time:event.target.value })}
+        {this.setState({ time })}
         this.props.originDataHandler(this.state.title,this.props.originOrDestination,this.state.time);
     }
         render(){
@@ -152,7 +158,17 @@ class TripOrigin extends Component{
             const time=<div style={{display:'flex',justifyContent:'space-between',whiteSpace:'nowrap',order:'4',flexDirection:'column',alignItems:'start',margin:'10px 0 10px'}}>
                 <p style={{margin:'0px'}}>{timeLabel}</p>
                 {/* <p style={{margin:'0px'}}></p> */}
-                <input className={classes.TimeInput} defaultValue="00:00" min="00:00"  max="24:00" style={{textAlign:'center',appearance:'none',margin:'0 auto',border:'none' ,borderBottom:'2px solid rgba(41, 128, 185,0.4)'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
+                {/* <input className={classes.TimeInput} defaultValue="00:00" min="00:00"  max="24:00" style={{textAlign:'center',appearance:'none',margin:'0 auto',border:'none' ,borderBottom:'2px solid rgba(41, 128, 185,0.4)'}} onChange={(event)=>this.onChangeTime(event)} type="time"></input>
+             */}
+                {/* <TimePicker amPmAriaLabel="Select AM/PM" onChange={this.onChangeTime} value={this.state.time}></TimePicker> */}
+                
+                <TimeField
+                style={{margin:'auto',width:"60px",textAlign:"center"}}
+                    value={this.state.time}                       // {String}   required, format '00:00' or '00:00:00'
+                    onChange= {this.onChangeTime} // {Function} required
+                    // colon=":"                          // {String}   default: ":"
+                    // showSeconds                        // {Boolean}  default: false
+/>
             </div>
             return(
             <div  style={{display:'flex',flexFlow:'column',width:'100%',marginBottom:'20px'}}>
