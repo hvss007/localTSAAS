@@ -136,7 +136,7 @@ class Input extends Component {
         <label  style={{textAlign:this.props.textAlign,fontWeight:this.props.labelFontWeight}} className={classes.Label}>{this.props.label} </label>
         {inputElement}
     </div>
-    <p  style={{fontWeight:'600',marginBottom:'1px',fontSize:'20px',borderBottom:'solid 1px rgba(200,200,200)'}}> Permanent Address:</p>
+    <p  style={{fontWeight:'600',marginBottom:'1px',fontSize:'20px',borderBottom:'solid 1px rgba(200,200,200)'}}> Permanent Address(Hometown):</p>
     </div>
        
     )

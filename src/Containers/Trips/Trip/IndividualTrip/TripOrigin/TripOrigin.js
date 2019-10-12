@@ -124,7 +124,9 @@ class TripOrigin extends Component{
     }
     onChangeTime = event => {
         if(!this.props.disabled)
-        {this.setState({ time:event.target.value })}}
+        {this.setState({ time:event.target.value })}
+        this.props.originDataHandler(this.state.title,this.props.originOrDestination,this.state.time);
+    }
         render(){
             const inputElement=this.state.originInfo.map((item,index)=>{
                 return <CommentModalInput keyPress={this.keyPressHandler} changed={this.onChangeHandler} clicked={this.onClickHandler} key={item.title+this.props.ifj} id={item.id} title={item.title} value={item.value} source={item.src}>
@@ -162,11 +164,8 @@ class TripOrigin extends Component{
                 <div className={TripOriginWrapperClasses.join(" ")}>
                 <div className={classes.Hidden}
                ></div> 
-               {/* <label>2) Where does the member begin his journey</label> */}
                 <TripOriginMap disabled={this.props.disabled} markerLat={this.state.lat} markerLng={this.state.lng} markerLocationText={this.state.markerLocationText}  mapLocation={this.props.mapLocation} centerLocationHandler={this.centerLocationHandler}  initLat={this.props.initLat} initLng={this.props.initLng} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} latLong={this.latLongHandler} backdropHidden={this.state.backdropShow} backdropShowed={this.backdropShowHandler} ></TripOriginMap>
                 {this.state.markerLocationText?<CommentModal
-                // time={<TimePicker value={this.state.time} 
-                // onChange={this.onChangeTime}></TimePicker>}
                  key={this.props.ifj} ifj={this.props.ifj} originOrDestination={this.props.originOrDestination} show={this.state.modalShow} >
                     {inputElement}
                 </CommentModal>:null   }
