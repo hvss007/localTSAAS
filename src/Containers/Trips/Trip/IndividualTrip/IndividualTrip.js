@@ -13,33 +13,33 @@ import Alert from'../../../../Components/Alert/Alert'
 class Trip extends Component{
     state={
         tripInformation:{
-                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,originTime:'',originLandmark:this.props.initialLandmark?this.props.initialLandmark:''},
-                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,destinationTime:'',destinationLandmark:''},
+                originData:{originLat:this.props.initLat?this.props.initLat:null,originLng:this.props.initLng?this.props.initLng:null,originPlace:null,isValid:false,departureTime:'',originLandmark:this.props.initialLandmark?this.props.initialLandmark:''},
+                destinationData:{destinationLat:null,destinationLng:null,destinationPlace:null,isValid:false,arrivalTime:'',destinationLandmark:''},
                 accessModeData:{},
                 accessInfoIn:{
-                    travelTime:{
-                        name:'travelTime',
-                        label:'How much time does the whole trip take?',
-                        elementType:'select',
-                        elementConfig:{
-                           options:[
-                            {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                               {value:'<5min',displayValue:'<5 min'},
-                               {value:'5-15min',displayValue:'5 - 15 min'},
-                               {value:'15-30min',displayValue:'15 - 30 min'},
-                               {value:'30-60min',displayValue:'30 - 60 min'},
-                               {value:'>1hour',displayValue:'> 1 hour'}
-                           ]
-                        },
-                        value:'',
-                        show:true,
-                        validation:{
-                            required:true
-                        },
-                        valid:false,
-                        touched:false,
-                        optional:true
-                    },
+                    // travelTime:{
+                    //     name:'travelTime',
+                    //     label:'How much time does the whole trip take?',
+                    //     elementType:'select',
+                    //     elementConfig:{
+                    //        options:[
+                    //         {value:'',displayValue:"Choose Here", selected:true, disabled:true},
+                    //            {value:'<5min',displayValue:'<5 min'},
+                    //            {value:'5-15min',displayValue:'5 - 15 min'},
+                    //            {value:'15-30min',displayValue:'15 - 30 min'},
+                    //            {value:'30-60min',displayValue:'30 - 60 min'},
+                    //            {value:'>1hour',displayValue:'> 1 hour'}
+                    //        ]
+                    //     },
+                    //     value:'',
+                    //     show:true,
+                    //     validation:{
+                    //         required:true
+                    //     },
+                    //     valid:false,
+                    //     touched:false,
+                    //     optional:true
+                    // },
                     travelDistance:{
                         name:'travelDistance',
                         label:'How long is the whole trip?',
@@ -243,7 +243,7 @@ class Trip extends Component{
             // console.log(validArr)
             if(valid){
                 const data={memberID:this.props.match.params.id1};
-                updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn["travelTime"].value
+                // updatedData.originDestination[0].travelTime=this.state.tripInformation.accessInfoIn["travelTime"].value
                 updatedData.originDestination[0].travelDistance=this.state.tripInformation.accessInfoIn["travelDistance"].value
                 updatedData.originDestination[0].fare=this.state.tripInformation.accessInfoIn["fare"].value
                 delete updatedData.originDestination[0].isValid
@@ -259,7 +259,7 @@ class Trip extends Component{
                              ).then(response=>{
 
                              })
-                             console.log(updatedData.accessModeData.mode)
+                            //  console.log(updatedData.accessModeData.mode)
                              updatedData.accessModeData.mode.forEach((element,index) => {
                                 delete element.isValid;
                                 Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
@@ -342,7 +342,8 @@ class Trip extends Component{
         if(originOrDestination==="Origin"){
             const originDataCopy={...tripInformationCopy.originData}
             originDataCopy.originPlace=place;
-            originDataCopy.originTime=time;
+            console.log(time)
+            originDataCopy.departureTime=time;
             tripInformationCopy.originData=originDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
             })
@@ -350,7 +351,7 @@ class Trip extends Component{
         if(originOrDestination==="Destination"){
             const destinationDataCopy={...tripInformationCopy.destinationData}
             destinationDataCopy.destinationPlace=place;
-            destinationDataCopy.destinationTime=time;
+            destinationDataCopy.arrivalTime=time;
             tripInformationCopy.destinationData=destinationDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
             })

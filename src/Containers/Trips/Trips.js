@@ -105,9 +105,9 @@ class Trips extends Component{
                     return (
                         collegeIdNo===item.collegeURL  )
                 })
-                console.log(collegeArr)
+                // console.log(collegeArr)
                 if(collegeArr.length===1){
-                    console.log("working")
+                    // console.log("working")
                     this.setState({constraintField:collegeArr[0].constrainField})
                 }
             }
