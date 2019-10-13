@@ -17,6 +17,7 @@ import TripScreenshot5 from "../../assets/screenshots/trip5.png";
 import TripScreenshot6 from "../../assets/screenshots/trip6.png";
 import TripScreenshot7 from "../../assets/screenshots/trip7.png";
 
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 import classes from "./Wiki.css";
 
 class Wiki extends Component {
@@ -272,9 +273,11 @@ class Wiki extends Component {
           <h4> Privacy Policy:</h4>
           <p>
             The details of our privacy policy is available{" "}
-            <span className={classes.ImageLink} to="/privacypolicy">
+            <Link
+            to="/privacypolicy"
+            >
               here
-            </span>
+            </Link>
             .
           </p>
 
@@ -323,10 +326,10 @@ class Wiki extends Component {
             {" "}
             <b>Back-end:</b> Ishan Rai
           </p>
-          <p>
+          {/* <p>
             {" "}
             <b>Literature review:</b> Paras Singh Rajput, Parag Mittal
-          </p>
+          </p> */}
           <p>
             {" "}
             <b>Design:</b> Piyush Anand, Paras Singh Rajput

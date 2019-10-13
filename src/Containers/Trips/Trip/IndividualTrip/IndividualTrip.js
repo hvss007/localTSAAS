@@ -227,7 +227,7 @@ class Trip extends Component{
             const dataCopy={...this.state.tripInformation};
             const originDestinationArray=[{...dataCopy.originData,...dataCopy.destinationData}];
             const updatedData={originDestination:originDestinationArray,accessModeData:dataCopy.accessModeData}
-            console.log(originDestinationArray)
+            // console.log(originDestinationArray)
             let valid=originDestinationArray[0].destinationPlace&&originDestinationArray[0].destinationLandmark?true:false
             let statement=''
             if(whichButton==='addTrip'){
@@ -342,7 +342,7 @@ class Trip extends Component{
         if(originOrDestination==="Origin"){
             const originDataCopy={...tripInformationCopy.originData}
             originDataCopy.originPlace=place;
-            console.log(time)
+            // console.log(time)
             originDataCopy.departureTime=time;
             tripInformationCopy.originData=originDataCopy;
             this.setState({tripInformation:tripInformationCopy},()=>{
