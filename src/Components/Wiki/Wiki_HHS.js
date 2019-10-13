@@ -8,7 +8,7 @@ import MemberScreenshot1 from "../../assets/screenshots/member1.png";
 import MemberScreenshot2 from "../../assets/screenshots/member2.png";
 import MemberScreenshot3 from "../../assets/screenshots/member3.png";
 // import MemberScreenshot4 from "../../assets/screenshots/member4.png";
-import MemberScreenshot5 from "../../assets/screenshots/member5.png";
+// import MemberScreenshot5 from "../../assets/screenshots/member5.png";
 import TripScreenshot1 from "../../assets/screenshots/trip1.png";
 import TripScreenshot2 from "../../assets/screenshots/trip2.png";
 import TripScreenshot3 from "../../assets/screenshots/trip3.png";
@@ -16,8 +16,9 @@ import TripScreenshot4 from "../../assets/screenshots/trip4.png";
 import TripScreenshot5 from "../../assets/screenshots/trip5.png";
 import TripScreenshot6 from "../../assets/screenshots/trip6.png";
 import TripScreenshot7 from "../../assets/screenshots/trip7.png";
+import ImageDialogs from "./ImageDialogs";
 
-import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import classes from "./Wiki.css";
 
 class Wiki extends Component {
@@ -105,21 +106,20 @@ class Wiki extends Component {
               <ul>
                 <li>
                   Enter number of cars, scooter/motorcycles and bicycles.{" "}
-                  <span
-                    className={classes.ImageLink}
-                    onClick={() => this.onClickHandler(FamilyScreenshot1)}
-                    to="/"
-                  >
-                    See an example.
+                  <span className={classes.ImageLink}>
+                    <ImageDialogs
+                      image={FamilyScreenshot1}
+                      name="See an example."
+                    />
                   </span>
                 </li>
                 <li>
                   Enter monthly income of the family.{" "}
-                  <span
-                    className={classes.ImageLink}
-                    onClick={() => this.onClickHandler(FamilyScreenshot2)}
-                  >
-                    See an example.
+                  <span className={classes.ImageLink}>
+                    <ImageDialogs
+                      image={FamilyScreenshot2}
+                      name="See an example."
+                    />
                   </span>
                 </li>
                 <li>
@@ -127,11 +127,11 @@ class Wiki extends Component {
                   district, enter initials of nearest landmark and select one
                   item from drop down landmarks. Finally drag the marker closest
                   to your permanent address.{" "}
-                  <span
-                    className={classes.ImageLink}
-                    onClick={() => this.onClickHandler(FamilyScreenshot3)}
-                  >
-                    See an example.
+                  <span className={classes.ImageLink}>
+                    <ImageDialogs
+                      image={FamilyScreenshot3}
+                      name="See an example."
+                    />
                   </span>
                 </li>
                 <li>
@@ -149,107 +149,110 @@ class Wiki extends Component {
               <li>
                 Enter gender, age, educational qualification, maritial status,
                 monthly income and principal source of income.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(MemberScreenshot1)}
-                >
-                  See an example.
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={MemberScreenshot1}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
                 Enter number of sim cards, mobile phone usages while
                 driving/traveling, etc.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(MemberScreenshot2)}
-                >
-                  See an example.
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={MemberScreenshot2}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
                 Enter information about two-wheeler and four-wheeler licensing,
                 etc.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(MemberScreenshot5)}
-                >
-                  See an example.
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={MemberScreenshot3}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
                 Enter if you are respondent, head of family and whether if you
                 stay at home for the whole day and click on submit.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(MemberScreenshot3)}
-                >
-                  See an example.
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={MemberScreenshot3}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
-              If the member stay at the home, a new member page will reappear; else you will be sent to trip page.
+                If the member stay at the home, a new member page will reappear;
+                else you will be sent to trip page.
               </li>
             </ul>
             <li>Trip page:</li>
             <ul>
               <li>
-                Enter the state and district in which a trip is made, and click on proceed. If the trip is outside the study region, a new member page will appear. {" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(TripScreenshot1)}
-                >
-                  See an example.
+                Enter the state and district in which a trip is made, and click
+                on proceed. If the trip is outside the study region, a new
+                member page will appear.{" "}
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={TripScreenshot1}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
                 Enter the landmark nearest to your origin location. This will
                 show a map with a marker. Drag the marker nearest to your origin
                 location and click 'Ok'.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(TripScreenshot2)}
-                >
-                  See an example.
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={TripScreenshot2}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
                 Enter the type of origin and approximate departure time.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(TripScreenshot3)}
-                >
-                  See an example.
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={TripScreenshot3}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
                 Similar to origin, enter the landmark nearest to your
                 destination, adjust the marker, click on 'Ok', select type of
                 destination type and appeoximate arrival time.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(TripScreenshot4)}
-                >
-                  See an example.
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={TripScreenshot4}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
                 Enter the travel modes (vehicle/walk) in the order which the
                 member has used them.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(TripScreenshot5)}
-                >
-                  See an example.
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={TripScreenshot5}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
-                Select the travel cost and travel distance ranges
-                for the whole trip. After that, click on 'Add Trip'.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(TripScreenshot6)}
-                >
-                  See an example.
+                Select the travel cost and travel distance ranges for the whole
+                trip. After that, click on 'Add Trip'.{" "}
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={TripScreenshot6}
+                    name="See an example."
+                  />
                 </span>
               </li>
               <li>
@@ -258,13 +261,14 @@ class Wiki extends Component {
                 departure time.
               </li>
               <li>
-                Click on 'Remove trip' to remove a trip. Click on 'Proceed'
-                if all trips of the current member are entered. This process will be repeated for all members.{" "}
-                <span
-                  className={classes.ImageLink}
-                  onClick={() => this.onClickHandler(TripScreenshot7)}
-                >
-                  See an example.
+                Click on 'Remove trip' to remove a trip. Click on 'Proceed' if
+                all trips of the current member are entered. This process will
+                be repeated for all members.{" "}
+                <span className={classes.ImageLink}>
+                  <ImageDialogs
+                    image={TripScreenshot7}
+                    name="See an example."
+                  />
                 </span>
               </li>
             </ul>
@@ -273,12 +277,7 @@ class Wiki extends Component {
           <h4> Privacy Policy:</h4>
           <p>
             The details of our privacy policy is available{" "}
-            <Link
-            to="/privacypolicy"
-            >
-              here
-            </Link>
-            .
+            <Link to="/privacypolicy">here</Link>.
           </p>
 
           <h4> Simulation Model:</h4>
@@ -320,11 +319,17 @@ class Wiki extends Component {
           <h4>Team Members:</h4>
           <ul>
             <li>
-            <b>Front-end:</b> Harsh Vardhan
+              <b>Front-end:</b> Harsh Vardhan
             </li>
-            <li><b>Back-end:</b> Ishan Rai</li>
-            <li><b>Design:</b> Piyush Anand</li>
-            <li><b>Mentor / Supervisor:</b> Dr. Amit Agarwal{" "}</li>
+            <li>
+              <b>Back-end:</b> Ishan Rai
+            </li>
+            <li>
+              <b>Design:</b> Piyush Anand
+            </li>
+            <li>
+              <b>Mentor / Supervisor:</b> Dr. Amit Agarwal{" "}
+            </li>
           </ul>
           {/* <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
                 <Toolbar  drawerToggleClicked={this.SideDrawerToggleHandler}></Toolbar> */}
