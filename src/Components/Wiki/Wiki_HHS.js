@@ -318,27 +318,14 @@ class Wiki extends Component {
             and/or would like to contribute.
           </p>
           <h4>Team Members:</h4>
-          <p>
-            {" "}
+          <ul>
+            <li>
             <b>Front-end:</b> Harsh Vardhan
-          </p>
-          <p>
-            {" "}
-            <b>Back-end:</b> Ishan Rai
-          </p>
-          {/* <p>
-            {" "}
-            <b>Literature review:</b> Paras Singh Rajput, Parag Mittal
-          </p> */}
-          <p>
-            {" "}
-            <b>Design:</b> Piyush Anand, Paras Singh Rajput
-          </p>
-          <p>
-            {" "}
-            <b>Mentor / Supervisor:</b> Dr. Amit Agarwal{" "}
-          </p>
-
+            </li>
+            <li><b>Back-end:</b> Ishan Rai</li>
+            <li><b>Design:</b> Piyush Anand</li>
+            <li><b>Mentor / Supervisor:</b> Dr. Amit Agarwal{" "}</li>
+          </ul>
           {/* <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
                 <Toolbar  drawerToggleClicked={this.SideDrawerToggleHandler}></Toolbar> */}
         </div>

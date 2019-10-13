@@ -5,6 +5,13 @@ import Aux from "../../Hoc/Aux";
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import classes from "./Wiki.css";
 
+import PTS1 from "../../assets/screenshots/pts_1.png";
+import PTS2 from "../../assets/screenshots/pts_2.png";
+import PTS3 from "../../assets/screenshots/pts_3.png";
+import PTS4 from "../../assets/screenshots/pts_4.png";
+import PTS5 from "../../assets/screenshots/pts_5.png";
+import PTS6 from "../../assets/screenshots/pts_6.png";
+
 class Wiki extends Component {
   state = {
     show: false,
@@ -27,9 +34,9 @@ class Wiki extends Component {
         <div className={classes.Wiki}>
           <h4>Aim:</h4>
           <p>
-          The aim of this survey is to collect information about the public transport usage in a city 
+          The aim of this survey is to collect information about the public transport usage and/or satisfaction with given public transport station in a city 
           without asking any personal information (e.g. Name, Phone numbers, etc.) and locations of 
-          the users.The purpose of the survey is to understand the travel behaviour and user preferences.
+          the users. The purpose of the survey is to understand the travel behaviour and user preferences.
           </p>
 
           <p>The most common questions asked in Public Transport surveys are about:
@@ -40,15 +47,14 @@ class Wiki extends Component {
             <li>Trip purpose</li>
             <li>Age of the respondent</li>
             <li>Occupation of the respondents</li>
+            <li>Users' preferences</li>
           </ul>
           </p>
     
           <p>
             The collected data will be utilized to:
             <ul>
-            <li>Determine travel pattern of the passengers</li>
             <li>Estimate the efficiency of the existing transport services</li>
-            <li>Development of a planning model to forecast the traffic, to test various policies etc.</li>
             <li>Adopt policies/strategies which appeals to the need of the transport users or potential users</li>
             <li>Monitor pre and post implementation effect of initiatives</li>
             </ul>
@@ -70,26 +76,26 @@ class Wiki extends Component {
             the information required to differentiate the trip profiles and trip patterns in minimum time, 
             however without asking any personal information. The source code is hosted on GitHub as 
             front-end and back-end.
-            
-            
-            
-            
-          </p>
-
-          <h4> Data Collection: </h4>
-          <p>
-            {" "}
-            Information about purpose of the trip, travel mode used, travel time and cost incurred etc. 
-            on a typical day over a 24-hour period is recorded using this questionnaire. Further, detailed 
-            information of each screen is provided:{" "}
           </p>
       <ul>
           <li>
               Personal information:
           <ul>
-                <li>Enter gender, age, educational qualification, profession and monthly income.{" "}</li>
-                <li>Enter information about light vehicle driving licensing.{" "}</li>
-                <li>Enter number of vehicles in the household.{" "}</li>
+                <li>Enter gender, age, educational qualification, profession and monthly income.{" "}<span
+                    className={classes.ImageLink}
+                    onClick={() => this.onClickHandler(PTS1)}
+                    to="/"
+                  >
+                    See an example.
+                  </span></li>
+                <li>Enter information about vehicle driving licensing.{" "}</li>
+                <li>Enter number of vehicles in the household.{" "}<span
+                    className={classes.ImageLink}
+                    onClick={() => this.onClickHandler(PTS2)}
+                    to="/"
+                  >
+                    See an example.
+                  </span></li>
           </ul>
             </li>
            
@@ -98,7 +104,15 @@ class Wiki extends Component {
           <ul>
 
               <li>Enter the name of metro station.{" "}</li>
-              <li>Select the trip purpose.{" "}</li>
+              <li>Select the trip purpose.{" "}
+              <span
+                    className={classes.ImageLink}
+                    onClick={() => this.onClickHandler(PTS3)}
+                    to="/"
+                  >
+                    See an example.
+                  </span>
+                  </li>
               <li>
                Select origin location from the map. Enter the landmark
                nearest to your origin location.This will show a map with a marker. 
@@ -109,14 +123,36 @@ class Wiki extends Component {
                 nearest to your destination location.This will show a map with a marker. 
                 Drag the marker nearest to your destination location and click 'Ok'.{" "}
               </li>
-              <li>Select travel time and travel cost for the whole trip.</li>
-              <li>Check the mode used for accessing and egressing the metro station from the checkbox.</li>
+              <li>Enter travel time and travel cost for the whole trip.{" "}<span
+                    className={classes.ImageLink}
+                    onClick={() => this.onClickHandler(PTS4)}
+                    to="/"
+                  >
+                    See an example.
+                  </span></li>
+              <li>Check the mode used for accessing and egressing the metro station from the checkbox.{" "}<span
+                    className={classes.ImageLink}
+                    onClick={() => this.onClickHandler(PTS5)}
+                    to="/"
+                  >
+                    See an example.
+                  </span></li>
               <li> Enter the travel frequency.</li>
               <li> Click on submit button.</li>
-              
           </ul>
             </li>
-            
+          <li>
+          Rating page
+          <ul>
+            <li>Rate various attributes on the page.{" "}<span
+                    className={classes.ImageLink}
+                    onClick={() => this.onClickHandler(PTS6)}
+                    to="/"
+                  >
+                    See an example.
+                  </span></li>
+          </ul>
+          </li>
             
         </ul>
 
@@ -128,65 +164,15 @@ class Wiki extends Component {
             </Link>
             .
           </p>
-
-          <h4> Simulation Model:</h4>
-          <p>
-            The collected data will be used to synthesize a multi-agent
-            transport simulation model (
-            <a
-              href="https://www.matsim.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              MATSim
-            </a>
-            ). This data will also be used to calibrate and validate the model.
-            Afterwards, the model can be used to test various policies in a
-            city. Some examples of the policies are: alteration/re-circulation
-            in the existing network, need of a new transit line or new
-            infrastructure, impacts of a new bus/metro line, optimal locations
-            of smart parking systems, environmental impacts of the travel
-            choices, sustainable transport modes, impact of land-use on trip
-            profiles, etc. Please see the{" "}
-            <a
-              href="https://www.matsim.org/gallery/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Gallery
-            </a>{" "}
-            for various scenarios world-wide.
-          </p>
-
-          <h4>Future Scope:</h4>
-          <p>
-            TSaaS is looking forward to transform the current program into a
-            more robust traffic data gathering platform by introducing other
-            traffic surveys. Please contact us if you have any suggestions
-            and/or would like to contribute.
-          </p>
           <h4>Team Members:</h4>
-          <p>
-            {" "}
-            <b>Front-end:</b> Harsh Vardhan
-          </p>
-          <p>
-            {" "}
-            <b>Back-end:</b> Ishan Rai
-          </p>
-          <p>
-            {" "}
-            <b>Literature review:</b> Paras Singh Rajput, Parag Mittal
-          </p>
-          <p>
-            {" "}
-            <b>Design:</b> Piyush Anand, Paras Singh Rajput
-          </p>
-          <p>
-            {" "}
-            <b>Mentor / Supervisor:</b> Dr. Amit Agarwal{" "}
-          </p>
-
+          <ul>
+            <li>
+            <b>Front-end:</b> Siddharth Varshney
+            </li>
+            <li><b>Back-end:</b> Ishan Rai</li>
+            <li><b>Design:</b> Piyush Anand</li>
+            <li><b>Mentor / Supervisor:</b> Dr. Amit Agarwal{" "}</li>
+          </ul>
           {/* <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
                 <Toolbar  drawerToggleClicked={this.SideDrawerToggleHandler}></Toolbar> */}
         </div>

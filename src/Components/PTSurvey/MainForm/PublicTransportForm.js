@@ -308,32 +308,6 @@ function PersonalInformation(props) {
           <hr />
         </div>
         <div className={classes.divStyle}>
-          <FormControl component="fieldset" className={classes.formControl}>
-            <FormLabel component="legend" className={classes.labelStyle}>
-              Light motor vehicle driving license
-            </FormLabel>
-            <RadioGroup
-              aria-label="license"
-              name="licence"
-              className={classes.group}
-              value={license}
-              onChange={handleLicense}
-            >
-              <FormControlLabel
-                value="yes"
-                control={<Radio color="primary" />}
-                label="Yes"
-              />
-              <FormControlLabel
-                value="no"
-                control={<Radio color="primary" />}
-                label="No"
-              />
-            </RadioGroup>
-          </FormControl>
-          <hr />
-        </div>
-        <div className={classes.divStyle}>
           <Typography className={classes.labelStyle}>
             Educational Qualification
           </Typography>
@@ -416,6 +390,32 @@ function PersonalInformation(props) {
               <option value="30000-60000">30000-60000</option>
               <option value=">60000">more than 60000</option>
             </Select>
+          </FormControl>
+          <hr />
+        </div>
+        <div className={classes.divStyle}>
+          <FormControl component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend" className={classes.labelStyle}>
+              Light motor vehicle driving license
+            </FormLabel>
+            <RadioGroup
+              aria-label="license"
+              name="licence"
+              className={classes.group}
+              value={license}
+              onChange={handleLicense}
+            >
+              <FormControlLabel
+                value="yes"
+                control={<Radio color="primary" />}
+                label="Yes"
+              />
+              <FormControlLabel
+                value="no"
+                control={<Radio color="primary" />}
+                label="No"
+              />
+            </RadioGroup>
           </FormControl>
           <hr />
         </div>
