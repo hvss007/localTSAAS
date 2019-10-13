@@ -9,8 +9,8 @@ import Input from '../../Components/Input/Input';
 import axios from 'axios'
 import HostName from '../../assets/globalvaribles/GlobalVariables'
 import Aux from '../../Hoc/Aux'
-import Backdrop from '../../Hoc/Backdrop/Backdrop1'
-import Alert from '../../Components/Alert/Alert'
+// import Backdrop from '../../Hoc/Backdrop/Backdrop1'
+// import Alert from '../../Components/Alert/Alert'
 // import SingleDesktopMap from './DesktopMap/SingleDesktopMap';
 class Trips extends Component{
     constructor(props){
