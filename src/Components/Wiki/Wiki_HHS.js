@@ -41,7 +41,7 @@ class Wiki extends Component {
         <div className={classes.Wiki}>
           <h4>Aim:</h4>
           <p>
-            The aim of this project is to build a tool to collect the trip
+            The aim of this survey is to build a tool to collect the trip
             diaries conveniently without asking any personal information and
             locations of the users. A typical trip diary attempts to answer the
             following questions:
@@ -177,7 +177,7 @@ class Wiki extends Component {
               </li>
               <li>
                 Enter if you are respondent, head of family and whether if you
-                stay at home for the whole day and click on submit.
+                stay at home for the whole day and click on submit.{" "}
                 <span
                   className={classes.ImageLink}
                   onClick={() => this.onClickHandler(MemberScreenshot3)}
@@ -192,7 +192,7 @@ class Wiki extends Component {
             <li>Trip page:</li>
             <ul>
               <li>
-                Enter the state and district in which a trip is made.{" "}
+                Enter the state and district in which a trip is made, and click on proceed. If the trip is outside the study region, a new member page will appear. {" "}
                 <span
                   className={classes.ImageLink}
                   onClick={() => this.onClickHandler(TripScreenshot1)}
@@ -212,7 +212,7 @@ class Wiki extends Component {
                 </span>
               </li>
               <li>
-                Enter the type of origin and appeoximate departure time.{" "}
+                Enter the type of origin and approximate departure time.{" "}
                 <span
                   className={classes.ImageLink}
                   onClick={() => this.onClickHandler(TripScreenshot3)}
@@ -233,7 +233,7 @@ class Wiki extends Component {
               </li>
               <li>
                 Enter the travel modes (vehicle/walk) in the order which the
-                member has used them.
+                member has used them.{" "}
                 <span
                   className={classes.ImageLink}
                   onClick={() => this.onClickHandler(TripScreenshot5)}
@@ -242,8 +242,8 @@ class Wiki extends Component {
                 </span>
               </li>
               <li>
-                Select the travel time, travel cost and travel distance ranges
-                for the whole trip. Click on 'Add Trip'.
+                Select the travel cost and travel distance ranges
+                for the whole trip. After that, click on 'Add Trip'.{" "}
                 <span
                   className={classes.ImageLink}
                   onClick={() => this.onClickHandler(TripScreenshot6)}
@@ -257,9 +257,8 @@ class Wiki extends Component {
                 departure time.
               </li>
               <li>
-                Click on 'Remove trip' to remove a trip. Click on 'Add Member'
-                if all trips of the current member are entered. Click on 'Finish
-                Survey' only if information of all members are entered.{" "}
+                Click on 'Remove trip' to remove a trip. Click on 'Proceed'
+                if all trips of the current member are entered. This process will be repeated for all members.{" "}
                 <span
                   className={classes.ImageLink}
                   onClick={() => this.onClickHandler(TripScreenshot7)}

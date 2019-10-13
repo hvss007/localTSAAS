@@ -7,7 +7,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import WikiHss from "./Wiki_HSS";
+import WikiHhs from "./Wiki_HHS";
 import WikiPts from "./Wiki_PTS";
 
 function TabPanel(props) {
@@ -43,12 +43,12 @@ function a11yProps(index) {
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    margin: 20,
-    padding: 20
+    margin: 10,
+    padding: 10
   },
   header: {
     textAlign: "center",
-    fontSize: 40
+    fontSize: 30
   }
 }));
 
@@ -87,7 +87,7 @@ function Wiki() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <WikiHss />
+          <WikiHhs />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <WikiPts />
