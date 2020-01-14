@@ -508,18 +508,25 @@ class Member extends Component{
     buttonClickHandler=(id)=>{
         if(id===1){
             // const familyId=this.props.familyId
-            var time=new Date().toLocaleTimeString()                                
-            const url=this.props.match.url;
-            const fam=url.split('/')
-            const surveyId=fam[3]  
-               // this.setState({surveyID:hhsId})
-                      
-            axios.patch(HostName+'responseTime/'+surveyId,{
-                                // surveyStartTimeID:hhsId,
-                                surveyEndTime:time,
-                            //    surveyID:hhsId           
-                            })
-            this.props.history.push({pathname:'/finishsurvey'})    
+            //var time=new Date().toLocaleTimeString()                                
+            
+           
+            Axios.get("http://worldtimeapi.org/api/timezone/Asia/Kolkata.txt").then(data=>{
+                        var time=data.data.split("datetime:")[1].split("T")[1].slice(0,8)
+                        const url=this.props.match.url;
+                        const fam=url.split('/')
+                        const surveyId=fam[3]  
+                        // this.setState({surveyID:hhsId})
+                        axios.patch(HostName+'responseTime/'+surveyId,{
+                                            // surveyStartTimeID:hhsId,
+                                            surveyEndTime:time,
+                                        //    surveyID:hhsId           
+                                        })
+                        this.props.history.push({pathname:'/finishsurvey'})
+                    })
+            
+            
+                
         }
         else if(id===2){
             const memberCopy={...this.state.member};
@@ -607,14 +614,18 @@ class Member extends Component{
                         axios.get(HostName+"family/"+familyID+"/")
                     .then((response)=>{
                         if(response.data[0].currentCount===response.data[0].noOfMembers){
-                            var time=new Date().toLocaleTimeString()                                
-                            const url=this.props.match.url;
-                            const fam=url.split('/')
-                            const surveyId=fam[3]                                        
-                            axios.patch(HostName+'responseTime/'+surveyId,{
-                                                surveyEndTime:time,
-                                            })
-                            this.props.history.push({pathname:'/finishsurvey'})
+                            //var time=new Date().toLocaleTimeString()                                
+                            Axios.get("http://worldtimeapi.org/api/timezone/Asia/Kolkata.txt").then(data=>{
+                                var time=data.data.split("datetime:")[1].split("T")[1].slice(0,8)
+                                const url=this.props.match.url;
+                                const fam=url.split('/')
+                                const surveyId=fam[3]                                        
+                                axios.patch(HostName+'responseTime/'+surveyId,{
+                                                    surveyEndTime:time,
+                                                })
+                                this.props.history.push({pathname:'/finishsurvey'})
+                            })
+                            
                         }
                         else{
                             const memberCopy={...this.state.member};

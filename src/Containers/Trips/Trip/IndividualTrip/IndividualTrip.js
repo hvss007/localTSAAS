@@ -169,32 +169,37 @@ class Trip extends Component{
                         Axios.post(HostName+"mode/",{tripID:response.data.tripID,...element,modeIndex:index+1}
                         ).then(response=>{
                             this.props.history.push({pathname:'/finishsurvey'})
-                            var time=new Date().toLocaleTimeString()                                
-                            const url=this.props.match.url;
-                            const fam=url.split('/')
-                            const surveyId=fam[3]                
-                            Axios.patch(HostName+'responseTime/'+surveyId,{
-                                surveyEndTime:time,
+                            //var time=new Date().toLocaleTimeString()                                
+                            Axios.get("http://worldtimeapi.org/api/timezone/Asia/Kolkata.txt").then(data=>{
+                                var time=data.data.split("datetime:")[1].split("T")[1].slice(0,8)
+                                const url=this.props.match.url;
+                                const fam=url.split('/')
+                                const surveyId=fam[3]                
+                                Axios.patch(HostName+'responseTime/'+surveyId,{
+                                    surveyEndTime:time,
+                                })    
                             })
+                            
                         })    
                      });
                 }) 
         }
         else{
             
-                            var time=new Date().toLocaleTimeString()                                
-                            const url=this.props.match.url;
-                            const fam=url.split('/')
-                            const surveyId=fam[3]                
+                            //var time=new Date().toLocaleTimeString()                                
+                            Axios.get("http://worldtimeapi.org/api/timezone/Asia/Kolkata.txt").then(data=>{
+                                var time=data.data.split("datetime:")[1].split("T")[1].slice(0,8)
+                                const url=this.props.match.url;
+                                const fam=url.split('/')
+                                const surveyId=fam[3]                
+                                Axios.patch(HostName+'responseTime/'+surveyId,{
+                                
+                                    surveyEndTime:time,
+                                        
+                                })
+                                this.props.history.push({pathname:'/finishsurvey'})
+                    })
                             
-                            
-                            Axios.patch(HostName+'responseTime/'+surveyId,{
-                            
-                                surveyEndTime:time,
-                                      
-                            })
-            this.props.history.push({pathname:'/finishsurvey'})
-            
         }
     }
     nextButtonCustomDialogBoxHandler=(updatedData,data)=>{

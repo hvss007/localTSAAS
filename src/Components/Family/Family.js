@@ -215,16 +215,22 @@ class Family extends Component{
                 })
                 if(collegeArr.length===1){
                     this.setState({collegeID:collegeArr[0].collegeID})
-                    var time=new Date().toLocaleTimeString()
+                    // var time=new Date().toLocaleTimeString()
                     axios.defaults.xsrfCookieName = 'csrftoken'
                     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-                    const url=this.props.match.url;
-                    const fam=url.split('/')
-                    const surveyID=fam[3]
-                    this.setState({surveyID:surveyID})
-                    Axios.patch(HostName+'responseTime/'+surveyID,{
-                        surveyStartTime:time,
+                    Axios.get("http://worldtimeapi.org/api/timezone/Asia/Kolkata.txt").then(data=>{
+                        var time=data.data.split("datetime:")[1].split("T")[1].slice(0,8)
+                        const url=this.props.match.url;
+                        const fam=url.split('/')
+                        const surveyID=fam[3]
+                        this.setState({surveyID:surveyID})
+                        Axios.patch(HostName+'responseTime/'+surveyID,{
+                            surveyStartTime:time,
+                        })
                     })
+                    
+
+                    
                 }
             }
         )
