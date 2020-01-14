@@ -34,7 +34,7 @@ class Members extends Component{
                         this.setState({currentCount:response.data[0].currentCount+1})
                         if(response.data[0].currentCount===response.data[0].noOfMembers){
                            // var time=new Date().toLocaleTimeString()                                
-                           Axios.get("http://worldtimeapi.org/api/timezone/Asia/Kolkata.txt").then(data=>{
+                           axios.get("http://worldtimeapi.org/api/timezone/Asia/Kolkata.txt").then(data=>{
                             var time=data.data.split("datetime:")[1].split("T")[1].slice(0,8)
                             const url=this.props.match.url;
                             const fam=url.split('/')
