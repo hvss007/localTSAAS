@@ -87,6 +87,10 @@ class Trips extends Component{
         window.addEventListener('popstate', function (event){
             window.history.pushState(null, document.title,  window.location.href);
         });
+        // console.log((this.props.match.params.id1))
+        // axios.patch(HostName+'members/'+this.props.match.params.id1,{
+        //     district:this.state.tripLocation.nameOfDistrict.value
+        // }) 
     }
     mapShowHandler=(searchText)=>{
         this.setState({setMapSearchText:searchText})
@@ -187,11 +191,19 @@ class Trips extends Component{
         if(this.state.matched!==null){
             if(this.state.matched){
                 this.setState({showTrips:true})
+                
+                axios.patch(HostName+'members/'+this.props.match.params.id1,{
+                    district:this.state.tripLocation.nameOfDistrict.value
+                }) 
             }
-           else{
+            else{
                if(window.confirm("The trip made by this member is outside of survey zone,please proceed")){
+                axios.patch(HostName+'members/'+this.props.match.params.id1,{
+                    district:this.state.tripLocation.nameOfDistrict.value
+                }) 
                 this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
-               }
+               
+            }
                else{
 
 
