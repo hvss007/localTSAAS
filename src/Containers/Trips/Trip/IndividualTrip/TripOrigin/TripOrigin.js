@@ -102,8 +102,7 @@ class TripOrigin extends Component{
         if(!this.props.disabled){
         this.setState({src:src,title:value},()=>{
         this.props.originDataHandler(this.state.title,this.props.originOrDestination,this.state.time);
-        });}
-        
+        });}    
     }
      originClicked=()=>{
         if(window.innerWidth>0){

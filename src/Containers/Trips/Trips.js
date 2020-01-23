@@ -189,24 +189,25 @@ class Trips extends Component{
     constraintFieldHandler=()=>{
         
         if(this.state.matched!==null){
+            const distData={
+                memberID:this.props.match.params.id1,
+                district:this.state.tripLocation.nameOfDistrict.value
+            }
+            
             if(this.state.matched){
-                this.setState({showTrips:true})
+                this.setState({showTrips:true},()=>{
+                //     axios.post(HostName+'member-district/',distData)
+                // .then(response=>{
+                //     console.log("df")
+                // })
+                })   
                 
-                axios.patch(HostName+'members/'+this.props.match.params.id1,{
-                    district:this.state.tripLocation.nameOfDistrict.value
-                }) 
             }
             else{
                if(window.confirm("The trip made by this member is outside of survey zone,please proceed")){
-                axios.patch(HostName+'members/'+this.props.match.params.id1,{
-                    district:this.state.tripLocation.nameOfDistrict.value
-                }) 
-                this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                
-               
+                axios.post(HostName+'member-district/',distData).then((response)=>this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                ) 
             }
                else{
-
-
                }
                // "The trip made by this member is outside of survey zone,please proceed"
            }
