@@ -4,8 +4,10 @@ import Aux from '../../Hoc/Aux';
 import axios from 'axios'
 import classes from './Members.css';
 import {withRouter} from 'react-router-dom';
-import HostName from '../../assets/globalvaribles/GlobalVariables'
+import Global from '../../assets/globalvaribles/GlobalVariables'
 import FinishSurvey from '../FinishSurvey/FinishSurvey'
+var HostName=Global.hostName
+
 class Members extends Component{
     state={
         percent:null,

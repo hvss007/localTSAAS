@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import Axios from 'axios';
 import PTHome from './PTHome';
-import HostName from '../../assets/globalvaribles/GlobalVariables';
+import Global from '../../assets/globalvaribles/GlobalVariables';
+var HostName=Global.hostName
 class StartSurvey extends Component{
     state={
         showSideDrawer:false,

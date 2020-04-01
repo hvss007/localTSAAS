@@ -4,13 +4,13 @@ import RatingStars from "./../../RatingStars/RatingStars";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import HostName from "./../../../assets/globalvaribles/GlobalVariables";
+import Global from "./../../../assets/globalvaribles/GlobalVariables";
 import Button from "@material-ui/core/Button";
 
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import TextField from "@material-ui/core/TextField";
-
+var HostName=Global.hostName
 const useStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(2, 30),

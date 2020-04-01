@@ -7,13 +7,13 @@ import styles from './ParentHome.css'
 // import HomePage from '../../assets/icons/parentHome.png';
 // import Background from '../../assets/icons/homebackground.png';
 import TsaasLogo from '../../assets/icons/tsaaslogo.png';
-import HostName from '../../assets/globalvaribles/GlobalVariables'
+import Global from '../../assets/globalvaribles/GlobalVariables'
 import Cards from './ParentHomeCards'
 import Axios from 'axios'
 import HHS from '../../assets/icons/hhs-mobile.png'
 import PTS from '../../assets/icons/pts-mobile.png'
 import RDAC from '../../assets/icons/rdac-mobile.png'
-
+var HostName=Global.hostName
 export default class ParentHome extends Component{
     constructor(props){
         super(props)

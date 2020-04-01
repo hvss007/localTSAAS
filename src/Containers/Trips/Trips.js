@@ -7,8 +7,9 @@ import fs from '../../assets/jsonfile/stateAndDistricts.json'
 import {withRouter} from 'react-router-dom';
 import Input from '../../Components/Input/Input';
 import axios from 'axios'
-import HostName from '../../assets/globalvaribles/GlobalVariables'
+import Global from '../../assets/globalvaribles/GlobalVariables'
 import Aux from '../../Hoc/Aux'
+var HostName=Global.HostName
 // import Backdrop from '../../Hoc/Backdrop/Backdrop1'
 // import Alert from '../../Components/Alert/Alert'
 // import SingleDesktopMap from './DesktopMap/SingleDesktopMap';
@@ -76,7 +77,7 @@ class Trips extends Component{
         showTrips:false,
         showButton:true,
         familyId:null,
-        constraintField:'',
+        constraintField:null,
         matched:null,
         showCustomConfirmBox:false,
         // message:

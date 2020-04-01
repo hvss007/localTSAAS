@@ -6,10 +6,12 @@ import axios from 'axios';
 import MemberSubmitButton from './MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
 import fs from '../../../assets/jsonfile/stateAndDistricts.json'
-import HostName from '../../../assets/globalvaribles/GlobalVariables'
+import Global from '../../../assets/globalvaribles/GlobalVariables'
 import Backdrop from '../../../Hoc/Backdrop/Backdrop1'
 import Alert from '../../Alert/Alert'
 import Aux from '../../../Hoc/Aux'
+var HostName=Global.hostName
+var globalOptional=Global.optional
 class Member extends Component{
     constructor(props){
         super(props);
@@ -44,7 +46,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             age:{
                 name:'age',
@@ -68,7 +70,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             educationalQualification:{
                 name:'educationalQualification',
@@ -92,7 +94,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             maritialStatus:{
                 name:'maritialStatus',
@@ -116,7 +118,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             monthlyIncome:{
                 name:'monthlyIncome',
@@ -142,7 +144,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             principalSourceofIncome:{
                 name:'principalSourceofIncome',
@@ -167,7 +169,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
              simCards:{
                 name:'simCards',
@@ -185,7 +187,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             }, 
             
              dataWhileDriving:{
@@ -207,7 +209,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             bluetooth:{
                 name:'bluetooth',
@@ -228,7 +230,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             wifi:{
                 name:'wifi',
@@ -249,7 +251,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             twoWheelerLicense:{
                 name:'twoWheelerLicense',
@@ -269,7 +271,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             fourWheelerLicense:{
                 name:'fourWheelerLicense',
@@ -289,7 +291,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },           
             differentlyAbled:{
                 name:'differentlyAbled',
@@ -309,7 +311,7 @@ class Member extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             householdHead:{
                 name:'householdHead',
@@ -329,7 +331,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             respondent:{
                 name:'respondent',
@@ -349,7 +351,7 @@ class Member extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             stayAtHome:{
                 name:'stayAtHome',

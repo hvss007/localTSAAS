@@ -10,7 +10,7 @@ import ContactUs from "../../Components/ContactUs/ContactUs";
 import FinishSurvey from "../../Components/FinishSurvey/FinishSurvey";
 import Wiki from "../../Components/Wiki/Wiki";
 import RAHome from "../../Components/roadAccidents/AccidentsHome";
-
+import IsochroneMap from '../../Components/Isochrones/IsochroneMaps';
 // import PersonalInformation from "../../Components/PTSurvey/PersonalInformation/PersonalInformation";
 // import TravelInformation from "../../Components/PTSurvey/TravelInformation/TravelInformation";
 import PTHome from "../../Components/PTSurvey/PThm";
@@ -60,6 +60,7 @@ class Survey extends Component {
           <Route path="/privacypolicy" exact component={PrivacyPolicy} />
           <Route path="/contact" exact component={ContactUs} />
           <Route path="/wiki" exact component={Wiki} />
+          <Route path="/isochrones" exact component={IsochroneMap}/>
           {/* household survey */}
           <Route path="/hhs" exact component={StartSurvey} />
           <Route path="/hhs/:id" exact component={StartSurvey} />

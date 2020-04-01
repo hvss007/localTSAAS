@@ -1,0 +1,18 @@
+.MapContainer{
+    width:75%;
+    height:100vh;
+}
+.LegendContainer{
+    width: 20%;
+    background:white;
+    position:absolute;
+    right:0;
+    top:0;
+}
+.LegendItemContainer{
+    width:80%;
+    align-items: center;
+    display:flex;
+    margin: auto;
+    justify-content: space-evenly;
+}

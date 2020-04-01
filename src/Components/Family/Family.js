@@ -10,10 +10,12 @@ import BuildControls from './BuildControls/BuildControls';
 import MainMaps from '../../Containers/MainMaps/MainMaps'
 import fs from '../../assets/jsonfile/stateAndDistricts.json'
 import Aux from '../../Hoc/Aux';
-import HostName from '../../assets/globalvaribles/GlobalVariables';
+import Global from '../../assets/globalvaribles/GlobalVariables';
 import Backdrop from '../../Hoc/Backdrop/Backdrop1'
 import Alert from '../Alert/Alert';
 import Axios from 'axios';
+var HostName=Global.hostName
+var globalOptional=Global.optional
 class Family extends Component{
     constructor(props){
         super(props);
@@ -51,7 +53,7 @@ class Family extends Component{
                 show:true,
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             country:{
                 name:'country',
@@ -71,7 +73,7 @@ class Family extends Component{
                 },
                 valid:false,
                 touched:false,
-                optional:true
+                optional:globalOptional
             },
             
             homeState:{
@@ -214,6 +216,7 @@ class Family extends Component{
                         collegeIdNo===item.collegeURL  )
                 })
                 if(collegeArr.length===1){
+                    var date=this.parseDate();
                     this.setState({collegeID:collegeArr[0].collegeID})
                     var time=new Date().toLocaleTimeString()
                     axios.defaults.xsrfCookieName = 'csrftoken'
@@ -223,12 +226,25 @@ class Family extends Component{
                     const surveyID=fam[3]
                     this.setState({surveyID:surveyID})
                     Axios.patch(HostName+'responseTime/'+surveyID,{
-                        surveyStartTime:time,
+                        surveyStartTime:date,
                     })
                 }
             }
         )
     }
+    parseDate=()=> {
+        
+        let date = new Date();
+
+        // In case its IOS, parse the fulldate parts and re-create the date object.
+        if(Number.isNaN(date.getMonth())) {
+        let arr = date.split(/[- :]/);
+        date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+        }
+        return date;
+    }
+      
+      
     hideModalBackdrop=(value)=>{
         this.setState({show:value})
     }

@@ -6,10 +6,12 @@ import Input from '../../../../Components/Input/Input'
 import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
 // import Rupee from '../../../../assets/icons/rupee.png'
 import {withRouter} from 'react-router-dom';
-import HostName from '../../../../assets/globalvaribles/GlobalVariables';
+import Global from '../../../../assets/globalvaribles/GlobalVariables';
 import Aux from '../../../../Hoc/Aux'
 import Backdrop from '../../../../Hoc/Backdrop/Backdrop1' 
 import Alert from'../../../../Components/Alert/Alert'
+var HostName=Global.hostName
+var globalOptional=Global.optional
 class Trip extends Component{
     state={
         tripInformation:{
@@ -38,7 +40,7 @@ class Trip extends Component{
                     //     },
                     //     valid:false,
                     //     touched:false,
-                    //     optional:true
+                    //     optional:globalOptional
                     // },
                     travelDistance:{
                         name:'travelDistance',
@@ -61,7 +63,7 @@ class Trip extends Component{
                         },
                         valid:false,
                         touched:false,
-                        optional:true
+                        optional:globalOptional
                     },
                     fare:{
                         name:'fare',
@@ -85,7 +87,7 @@ class Trip extends Component{
                         },
                         valid:false,
                         touched:false,
-                        optional:true
+                        optional:globalOptional
                     }
                 }              
             },

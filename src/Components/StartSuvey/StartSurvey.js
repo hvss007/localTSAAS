@@ -2,8 +2,9 @@ import React,{Component} from 'react';
 import Axios from 'axios';
 import StartSurveySub from './StartSurveySub';
 // import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
-import HostName from '../../assets/globalvaribles/GlobalVariables';
+import Global from '../../assets/globalvaribles/GlobalVariables';
 // require('dotenv').config();
+var HostName=Global.hostName
 class StartSurvey extends Component{
     state={
         showSideDrawer:false,

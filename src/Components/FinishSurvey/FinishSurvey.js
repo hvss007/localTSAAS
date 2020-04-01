@@ -6,9 +6,10 @@ import classes from '../StartSuvey/StartSurvey.css';
 import MobileHomePage from '../../assets/icons/mobile.png'
 import Background from '../../assets/icons/thanksbackground.png';
 import axios from 'axios';
-import HostName from '../../assets/globalvaribles/GlobalVariables';
+import Global from '../../assets/globalvaribles/GlobalVariables';
 import {withRouter} from 'react-router-dom';
 import Aux from '../../Hoc/Aux'
+var HostName=Global.hostName
 class FinishSurvey extends Component{
     constructor(props){
         super(props);
