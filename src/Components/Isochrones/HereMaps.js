@@ -174,12 +174,21 @@ class  HereMaps extends Component {
     }
 
     changeTransparency=(value)=>{
-       
-        this.state.isolinePolygonArray.forEach(el=>{
+            console.log("transparency")
+           this.state.isolinePolygonArray.forEach(el=>{
             var style={...el.getStyle()};
             var color=el.getStyle().fillColor;
-            var strColor=color.replace(",1)",","+value/100+")");
-            style.fillColor=strColor
+            //var strColor=color.replace(",1)",","+value/100+")");
+     
+     
+            var col=color.split(',')
+            var colstr="";
+            col[col.length-1]=""+this.state.transparency/100+")"
+        // console.log(col)
+            colstr=col.join()
+     
+     
+            style.fillColor=colstr
             el.setStyle({...style})
         })    
     }
@@ -243,14 +252,20 @@ class  HereMaps extends Component {
       onResult1 = (result,color,zIndex)=> {
         
         //var sys='rgba('+Math.floor(255*Math.random())+','+Math.floor(255*Math.random()) + ',' +Math.floor(255*Math.random()) +',0.4)'
+        var col=color.split(',')
+        var colstr="";
+        col[col.length-1]=""+this.state.transparency/100+")"
+        // console.log(col)
+        colstr=col.join()
         var customStyle = {
           // strokeColor: 'red',
-          fillColor: color,
+          fillColor: colstr,
           // fillColor:'red',
           lineWidth: 1,
           lineCap: 'square',
           lineJoin: 'bevel',
         };
+        // console.log(color)
         // var center = new window.H.geo.Point(
         //     result.response.center.latitude,
         //     result.response.center.longitude)
