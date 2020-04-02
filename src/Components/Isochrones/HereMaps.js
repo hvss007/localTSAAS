@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classes from './HereMaps.css'
+import {Slider,Typography} from '@material-ui/core'
 import axios from 'axios'
 class  HereMaps extends Component {
     constructor(props) {
@@ -41,7 +42,8 @@ class  HereMaps extends Component {
             zoom: props.zoom,
             theme:props.theme,
             style: props.style,
-            isolinePolygonArray:[]
+            isolinePolygonArray:[],
+            transparency:100
         }
         //this.addMarkersToMap=this.addMarkersToMap.bind(this)
     }
@@ -171,6 +173,24 @@ class  HereMaps extends Component {
       }, false);
     }
 
+    changeTransparency=(value)=>{
+       
+        this.state.isolinePolygonArray.forEach(el=>{
+            var style={...el.getStyle()};
+            var color=el.getStyle().fillColor;
+            var strColor=color.replace(",1)",","+value/100+")");
+            style.fillColor=strColor
+            el.setStyle({...style})
+        })    
+    }
+    handleChange = (event, newValue) => {
+        // setValue(newValue);
+        this.setState({transparency:newValue},()=>{
+            this.changeTransparency(newValue)
+        })
+        
+        // console.log(newValue)
+      };
     getPois=(pois,url)=>{
       // console.log("run")
       var bboxCont=this.map.getViewBounds()
@@ -249,6 +269,9 @@ class  HereMaps extends Component {
 
         isolinePolygon = new window.H.map.Polygon(linestring,{style:customStyle});
         isolinePolygon.setZIndex(zIndex)
+        var isolinePolygonArrayCopy=[...this.state.isolinePolygonArray];
+        isolinePolygonArrayCopy.push(isolinePolygon);
+        this.setState({isolinePolygonArray:isolinePolygonArrayCopy})
         this.map.addObject(isolinePolygon)
       };
        getisoline=(position,title)=>{
@@ -282,9 +305,17 @@ class  HereMaps extends Component {
         return (
             <div className={classes.MapContainer}>
             <div id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height: '100%', background: 'black'}} />
-                <div className={classes.LegendContainer}>
-                    <h3 style={{textAlign:'center'}}>Legend</h3>
+                <div  className={classes.LegendContainer}>
+                    <h3  style={{textAlign:'center'}}>Legend</h3>
                     {legend}
+                    <div className={classes.LegendItemContainer}>
+                        <Typography id="disabled-slider" gutterBottom>
+                            Transparency
+                        </Typography>
+                        {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
+                        <Slider defaultValue={100}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} />
+                    </div>
+                    
                 </div> 
             {/* <input type="text" value={this.props.value} onChange={()=>{
                 let text=this.props.inputChange;
