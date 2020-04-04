@@ -89,7 +89,7 @@ class  HereMaps extends Component {
           var configArrayCopy=[];
           if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3){
             var timeBinsStringArray=nextProps.timeBins.split(',');
-              console.log(timeBinsStringArray);
+              // console.log(timeBinsStringArray);
               timeBinsStringArray.forEach((el,index)=>{
                   configArrayCopy.push({time:parseInt(el),color:this.colorsArray[index]});    
                 })
@@ -98,7 +98,7 @@ class  HereMaps extends Component {
         }
       }
       if(this.props.pois!==nextProps.pois){
-        console.log(this.map.getObjects())
+        // console.log(this.map.getObjects())
         this.map.removeObjects(this.map.getObjects())
         // var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+this.state.center.lat+','+this.state.center.lng+';r=150000&cat='
         var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&cat='
@@ -174,7 +174,7 @@ class  HereMaps extends Component {
     }
 
     changeTransparency=(value)=>{
-            console.log("transparency")
+            // console.log("transparency")
            this.state.isolinePolygonArray.forEach(el=>{
             var style={...el.getStyle()};
             var color=el.getStyle().fillColor;
@@ -227,7 +227,7 @@ class  HereMaps extends Component {
             
         }
         else{
-          console.log("run2")
+          // console.log("run2")
           alert("no more results")
           Response.data.results.items.forEach(element => {
             this.getisoline(element.position,element.title)

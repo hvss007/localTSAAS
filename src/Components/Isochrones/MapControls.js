@@ -30,7 +30,7 @@ export default class MapControls extends Component{
         return(
             <div className={classes.ControlsContainer}>
                 <div className={classes.Heading}>
-                    <h2>Map Controls</h2>
+                    <h2>Configuration</h2>
                 </div>
                 <div className={classes.FormControls}>
                     <div className={classes.CityInput}>
@@ -38,20 +38,20 @@ export default class MapControls extends Component{
                         <button onClick={this.props.cityEnteredHandler}>Fetch city map</button>    
                     </div>
                     <div className={classes.Pois}>
-                        <InputLabel id='selectMode'> Select Mode</InputLabel>
+                        <InputLabel id='selectMode'> Select Travel Mode</InputLabel>
                         <Select name='modes' onChange={event=>this.props.inputHandler(event)} labelId='selectMode' id='selectm' value={this.props.mode}>
                                 {/* {menuItems} */}
                                 <MenuItem value="pedestrian">Walk</MenuItem>
                                 <MenuItem value="car">Car</MenuItem>
                                 <MenuItem value="publicTransport">PT</MenuItem>
-                                <MenuItem value="carHOV">Car HOV</MenuItem>
-                                <MenuItem value="truck">Truck</MenuItem>
+                                {/* <MenuItem value="carHOV">Car HOV</MenuItem> */}
+                                {/* <MenuItem value="truck">Truck</MenuItem> */}
                                 <MenuItem value="bicycle">Bicycle</MenuItem>
-                                <MenuItem value="publicTransport">PT</MenuItem>
+                                {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                         </Select>
                     </div>
                     <div className={classes.Pois}>
-                        <InputLabel id='selectModeTransition'> Select Mode Preference</InputLabel>
+                        <InputLabel id='selectModeTransition'> Select Route Preference</InputLabel>
                         <Select name='modePreference' onChange={event=>this.props.inputHandler(event)} labelId='selectModeTransition' id='selectmr'  value={this.props.modePreference}>
                                 {/* {menuItems} */}
                                 <MenuItem value="fastest">Fastest</MenuItem>
@@ -59,7 +59,7 @@ export default class MapControls extends Component{
                         </Select>
                     </div>
                     <div className={classes.Pois}>
-                        <InputLabel id='selectTrafficState'> Select Mode State</InputLabel>
+                        <InputLabel id='selectTrafficState'> Select Traffic conditions on Roads</InputLabel>
                         <Select name='modeState' onChange={event=>this.props.inputHandler(event)} labelId='selectTrafficState' id='selectmr' value={this.props.modeState}>
                                 {/* {menuItems} */}
                                 <MenuItem value="enabled">Enabled</MenuItem>
@@ -68,7 +68,7 @@ export default class MapControls extends Component{
                         </Select>
                     </div>
                     <div className={classes.Pois}>
-                        <InputLabel id='enterTimeBins'> Enter Time Bins Values</InputLabel>
+                        <InputLabel id='enterTimeBins'> Enter 'Comma-Seperated' Time Bins Values (min)</InputLabel>
                         {/* <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelId='selectPois' id='selectp' value={this.props.pois}>
                                 {menuItems}     
                         </Select> */}
@@ -82,6 +82,7 @@ export default class MapControls extends Component{
                     </div>
                     
                     <div className={classes.Pois}>
+                    <InputLabel id='selectPois'> Click to load more data</InputLabel>
                         <button onClick={this.props.fetchHandler}>Fetch more data</button>
                     </div>
                     
