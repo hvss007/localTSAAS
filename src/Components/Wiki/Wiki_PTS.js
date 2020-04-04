@@ -76,7 +76,7 @@ class Wiki extends Component {
             <b>
               <i>TSaaS</i>
             </b>{' '}
-            (Traffic Survey as a Service) serves as an inventory of travel
+            (Travel Survey as a Service) serves as an inventory of travel
             information. The state-of-the-art techniques such as pen-paper
             surveys are not only time and resource-intensive, but prone to
             various errors. Some of the advanced techniques force users to

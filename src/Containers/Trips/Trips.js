@@ -205,7 +205,7 @@ class Trips extends Component{
                 
             }
             else{
-               if(window.confirm("The trip made by this member is outside of survey zone,please proceed")){
+               if(window.confirm("The trip made by this member is outside the study area. Please click 'Ok' to proceed.")){
                 axios.post(HostName+'member-district/',distData).then((response)=>this.props.history.push({pathname:this.stringSubtract(this.props.match.url,(this.props.match.params.id1+'/trip-info'))})                ) 
             }
                else{

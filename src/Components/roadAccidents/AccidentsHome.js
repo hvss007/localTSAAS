@@ -51,7 +51,7 @@ const RAHome = props => {
           <div className={classes.ImgTextWrapper}>
             <img alt={"TSaaS"} src={TsaasLogo}></img>
             <div className={classes.LogoText}>
-              <p>Traffic Survey</p>
+              <p>Travel Survey</p>
               <p>as a Service</p>
             </div>
           </div>
