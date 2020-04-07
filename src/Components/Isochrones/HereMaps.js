@@ -5,7 +5,17 @@ import axios from 'axios'
 class  HereMaps extends Component {
     constructor(props) {
         super(props);
-        this.colorsArray=['rgb(255,0,0)','rgb(255,255,0)','rgb(0,255,0)'],
+        this.colorsArray=['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
+        '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+        '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
+        '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+        '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
+        '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+        '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
+        '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+        '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
+        '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF']
+        //this.colorsArray=['rgb(255,0,0)','rgb(255,255,0)','rgb(0,255,0)'],
         //this.configArray=[{time:30,color:'rgba(255,0,0,.4)'},{time:15,color:'rgba(255,255,0,0.5)'},{time:5,color:'rgba(0,255,0,0.6)'}]
         this.platform = null;
         this.map = null;
@@ -87,13 +97,14 @@ class  HereMaps extends Component {
       }
       if(this.props.timeBins!==nextProps.timeBins){
           var configArrayCopy=[];
-          if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3){
+          if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3&&nextProps.timeBins[nextProps.timeBins.length-1]!==","){
             var timeBinsStringArray=nextProps.timeBins.split(',');
               console.log(timeBinsStringArray);
               timeBinsStringArray.forEach((el,index)=>{
-                  configArrayCopy.push({time:parseInt(el),color:this.colorsArray[index]});    
+                  configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index])});    
                 })
             configArrayCopy.reverse();
+            
             this.setState({configArray:configArrayCopy})
         }
       }
@@ -308,6 +319,22 @@ class  HereMaps extends Component {
             this.onResult1(result,el.color,index)},function(e){console.log(e)})
          })
         }
+    changeHextorgba=(color)=>{
+      var rgb=[]
+      var hex = color.substr(1).split('');
+      var i=0;
+      var x=0;
+      var hexStr;
+      while (i < 3) {
+        hexStr = hex[x] + hex[x + 1];
+        rgb[i] = parseInt(hexStr, 16);
+        i += 1;
+        x = i * 2;
+    }
+      rgb.push(1);
+      var rgbaStr='rgba('+rgb.join()+')'
+      return rgbaStr
+    }    
     render() {
         const legend=this.state.configArray.map(el=>{
             return(
