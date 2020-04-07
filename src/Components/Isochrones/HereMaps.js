@@ -56,7 +56,8 @@ class  HereMaps extends Component {
             theme:props.theme,
             style: props.style,
             isolinePolygonArray:[],
-            transparency:100
+            transparency:100,
+            query:''
         }
         //this.addMarkersToMap=this.addMarkersToMap.bind(this)
     }
@@ -325,8 +326,30 @@ class  HereMaps extends Component {
         }
       selectedOption=(value)=>{
         var query=value.split("- ")
-        console.log(query)
-        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+","+this.state.center.lng+'&q='+query[1] +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
+        //console.log(query)
+        this.setState({query:query[1]})
+        
+      }
+
+      fetchOnSameMap=()=>{
+        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+","+this.state.center.lng+'&q='+this.state.query+'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
+        .then(Response=>{
+          
+          if(Response.data.results.length>0){
+            var posArray=Response.data.results.filter(el=>{
+              return el.position
+            })
+            console.log(posArray)
+            posArray.forEach(element => {
+              this.getisoline(element.position,element.title)
+            }) 
+          }
+        })
+      }
+      fetchOnDiffMap=()=>{
+        //this.setState({isolinePolygonArray:[]})
+        this.map.removeObjects(this.map.getObjects())
+        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+","+this.state.center.lng+'&q='+this.state.query+'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
         .then(Response=>{
           
           if(Response.data.results.length>0){
@@ -380,8 +403,8 @@ class  HereMaps extends Component {
                 <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
                     <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
                     <div className={classes.ButtonsContainer}>
-                        <Button style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Same Map</Button>
-                        <Button style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
+                        <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Same Map</Button>
+                        <Button onClick={this.fetchOnDiffMap}style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
                       </div>    
                         <Typography id="disabled-slider" gutterBottom>
                             Transparency
