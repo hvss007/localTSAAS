@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import classes from './MapControls.css'
 import {InputLabel,Select,MenuItem,TextField} from '@material-ui/core'
-import AutoComplete from './AutoComplete'
+// import AutoComplete from './AutoComplete'
+import Button from '@material-ui/core/Button';
 export default class MapControls extends Component{
     // componentWillReceiveProps(nextProps){
     //     if
@@ -36,7 +37,8 @@ export default class MapControls extends Component{
                 <div className={classes.FormControls}>
                     <div className={classes.CityInput}>
                         <input type='text' name="city" defaultValue="New Delhi" onChange={(event)=>this.props.inputHandler(event)}/> 
-                        <button onClick={this.props.cityEnteredHandler}>Fetch city map</button>    
+                        <Button style={{fontSize:'12px',padding:'3px',borderRadius:'0px',backgroundColor:'#449DD1'}} color="primary" onClick={this.props.cityEnteredHandler} variant="contained"  component="span">Fetch City Map</Button>   
+                        {/* <button onClick={this.props.cityEnteredHandler}>Fetch city map</button>     */}
                     </div>
                     <div className={classes.Pois}>
                         <InputLabel id='selectMode'> Select Travel Mode</InputLabel>
@@ -84,7 +86,8 @@ export default class MapControls extends Component{
                     
                     <div className={classes.Pois}>
                     <InputLabel id='selectPois'> Click to load more data</InputLabel>
-                        <button onClick={this.props.fetchHandler}>Fetch more data</button>
+                    <Button style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" onClick={this.props.fetchHandler} component="span">Fetch More data</Button>
+                        {/* <button style={{padding:'7px',backgroundColor: 'aqua',border:'none'}} onClick={this.props.fetchHandler}>Fetch more data</button> */}
                     </div>
                     
                 </div>

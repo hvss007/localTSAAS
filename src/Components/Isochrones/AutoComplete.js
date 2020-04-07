@@ -90,13 +90,6 @@ export default class App extends React.Component {
      * @return {Nothing} No value is returned
      */
     onSelect(val){
-        // var jf=this.state.autocompleteData.findIndex((item)=>{
-        //     console.log(item.label)
-        //     return item.label===val
-        // })
-
-        // console.log(jf)
-        
         if(this.state.responseArray.length>=0){
             const newArr=this.state.responseArray.filter(item=>{
                 return item.vicinity

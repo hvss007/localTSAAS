@@ -4,6 +4,7 @@ import classes from './HereMaps.css'
 import {Slider,Typography} from '@material-ui/core'
 import axios from 'axios'
 import AutoComplete from './AutoComplete'
+import Button from '@material-ui/core/Button';
 class  HereMaps extends Component {
     constructor(props) {
         super(props);
@@ -368,19 +369,27 @@ class  HereMaps extends Component {
             <div className={classes.MapContainer}>
             <div id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height: '100%', background: 'black'}} />
                 <div  className={classes.LegendContainer}>
-                    <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
-                    <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
+                    
                     <h3  style={{textAlign:'center'}}>Legend</h3>
                     {legend}
-                    <div className={classes.LegendItemContainer}>
+                    
+                    
+                </div>
+                <div className={classes.MapLeftControls}>
+                <div className={classes.MapLeftControlsIn}>
+                <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
+                    <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
+                    <div className={classes.ButtonsContainer}>
+                        <Button style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Same Map</Button>
+                        <Button style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
+                      </div>    
                         <Typography id="disabled-slider" gutterBottom>
                             Transparency
                         </Typography>
                         {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
-                        <Slider defaultValue={100}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} />
+                        <Slider defaultValue={50}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} />
                     </div>
-                    
-                </div> 
+                  </div> 
             {/* <input type="text" value={this.props.value} onChange={()=>{
                 let text=this.props.inputChange;
                 ()=>this.req();                

@@ -10,9 +10,31 @@
     top:0;
 }
 .LegendItemContainer{
-    width:80%;
+    width:70%;
     align-items: center;
     display:flex;
     margin: auto;
     justify-content: space-evenly;
+}
+.MapLeftControlsIn{
+    width:73%;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: space-evenly;
+}
+.MapLeftControls{
+    width: 25%;
+    background: white;
+    position: absolute;
+    left: 0;
+    bottom: 32vh;
+}
+.ButtonsContainer{
+    margin-top:12px;
+    margin-bottom:12px;
+    width:100%;
+    display:flex;
+    justify-content: space-between;
 }
