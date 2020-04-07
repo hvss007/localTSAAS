@@ -1,7 +1,9 @@
+import Axios from 'axios'
 import React, { Component } from 'react';
 import classes from './HereMaps.css'
 import {Slider,Typography} from '@material-ui/core'
 import axios from 'axios'
+import AutoComplete from './AutoComplete'
 class  HereMaps extends Component {
     constructor(props) {
         super(props);
@@ -300,6 +302,7 @@ class  HereMaps extends Component {
         this.setState({isolinePolygonArray:isolinePolygonArrayCopy})
         this.map.addObject(isolinePolygon)
       };
+
        getisoline=(position,title)=>{
          var router=this.platform.getRoutingService()
         var placeMarker=new window.H.map.Marker({lat:position[0],lng:position[1]})
@@ -319,18 +322,35 @@ class  HereMaps extends Component {
             this.onResult1(result,el.color,index)},function(e){console.log(e)})
          })
         }
-    changeHextorgba=(color)=>{
-      var rgb=[]
-      var hex = color.substr(1).split('');
-      var i=0;
-      var x=0;
-      var hexStr;
-      while (i < 3) {
-        hexStr = hex[x] + hex[x + 1];
-        rgb[i] = parseInt(hexStr, 16);
-        i += 1;
-        x = i * 2;
-    }
+      selectedOption=(value)=>{
+        var query=value.split("- ")
+        console.log(query)
+        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+","+this.state.center.lng+'&q='+query[1] +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
+        .then(Response=>{
+          
+          if(Response.data.results.length>0){
+            var posArray=Response.data.results.filter(el=>{
+              return el.position
+            })
+            console.log(posArray)
+            posArray.forEach(element => {
+              this.getisoline(element.position,element.title)
+            }) 
+          }
+        })
+      }
+      changeHextorgba=(color)=>{
+          var rgb=[]
+          var hex = color.substr(1).split('');
+          var i=0;
+          var x=0;
+          var hexStr;
+          while (i < 3) {
+            hexStr = hex[x] + hex[x + 1];
+            rgb[i] = parseInt(hexStr, 16);
+            i += 1;
+            x = i * 2;
+        }
       rgb.push(1);
       var rgbaStr='rgba('+rgb.join()+')'
       return rgbaStr
@@ -348,6 +368,8 @@ class  HereMaps extends Component {
             <div className={classes.MapContainer}>
             <div id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height: '100%', background: 'black'}} />
                 <div  className={classes.LegendContainer}>
+                    <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
+                    <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
                     <h3  style={{textAlign:'center'}}>Legend</h3>
                     {legend}
                     <div className={classes.LegendItemContainer}>

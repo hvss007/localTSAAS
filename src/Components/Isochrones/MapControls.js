@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './MapControls.css'
 import {InputLabel,Select,MenuItem,TextField} from '@material-ui/core'
+import AutoComplete from './AutoComplete'
 export default class MapControls extends Component{
     // componentWillReceiveProps(nextProps){
     //     if
