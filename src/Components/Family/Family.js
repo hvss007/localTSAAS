@@ -218,7 +218,7 @@ class Family extends Component{
                 if(collegeArr.length===1){
                     var date=this.parseDate();
                     this.setState({collegeID:collegeArr[0].collegeID})
-                    var time=new Date().toLocaleTimeString()
+                    // new Date().toLocaleTimeString()
                     axios.defaults.xsrfCookieName = 'csrftoken'
                     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                     const url=this.props.match.url;

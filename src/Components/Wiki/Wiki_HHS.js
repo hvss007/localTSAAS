@@ -75,7 +75,7 @@ class Wiki extends Component {
             <b>
               <i>TSaaS</i>
             </b>{" "}
-            (Traffic Survey as a Service) serves as an inventory of daily trip
+            (Travel Survey as a Service) serves as an inventory of daily trip
             diaries. The state-of-the-art techniques such as pen-paper surveys
             are not only time and resource-intensive, but prone to various
             errors. Some of the advanced techniques force users to install the
@@ -312,8 +312,8 @@ class Wiki extends Component {
           <h4>Future Scope:</h4>
           <p>
             TSaaS is looking forward to transform the current program into a
-            more robust traffic data gathering platform by introducing other
-            traffic surveys. Please contact us if you have any suggestions
+            more robust travel data gathering platform by introducing other
+            travel surveys. Please contact us if you have any suggestions
             and/or would like to contribute.
           </p>
           <h4>Team Members:</h4>
