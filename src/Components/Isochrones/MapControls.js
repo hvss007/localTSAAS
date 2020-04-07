@@ -26,7 +26,6 @@ export default class MapControls extends Component{
             'toilet-rest-area',
             "hospital-health-care-facility"]
         const menuItems=suggestionsArray.map(element=>{
-            //console.log(element)
             return <MenuItem value={element}>{element}</MenuItem>
         })
         return(
@@ -46,10 +45,10 @@ export default class MapControls extends Component{
                                 {/* {menuItems} */}
                                 <MenuItem value="pedestrian">Walk</MenuItem>
                                 <MenuItem value="car">Car</MenuItem>
-                                <MenuItem value="publicTransport">PT</MenuItem>
+                                {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                                 {/* <MenuItem value="carHOV">Car HOV</MenuItem> */}
                                 {/* <MenuItem value="truck">Truck</MenuItem> */}
-                                <MenuItem value="bicycle">Bicycle</MenuItem>
+                                {/* <MenuItem value="bicycle">Bicycle</MenuItem> */}
                                 {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                         </Select>
                     </div>
@@ -78,7 +77,7 @@ export default class MapControls extends Component{
                         <TextField name='timeBins' id=""  onChange={event=>this.props.inputHandler(event)} labelId="enterTimeBins" id='selecttb' value={this.props.timeBins}/>
                     </div>
                     <div className={classes.Pois}>
-                        <InputLabel id='selectPois'> Select Positions of interest</InputLabel>
+                        <InputLabel id='selectPois'> Select Point of interest from the list</InputLabel>
                         <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelId='selectPois' id='selectp' value={this.props.pois}>
                                 {menuItems}     
                         </Select>

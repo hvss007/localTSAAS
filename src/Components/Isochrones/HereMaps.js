@@ -67,8 +67,7 @@ class  HereMaps extends Component {
 
         var layer = this.platform.createDefaultLayers();
         var container = document.getElementById('here-map');
-        // console.log(layer)
-        this.map = new window.H.Map(container, layer.satellite.traffic, {
+        this.map = new window.H.Map(container, layer.terrain.traffic, {
             center: this.state.center,
             zoom: this.state.zoom,
           })
@@ -81,9 +80,7 @@ class  HereMaps extends Component {
         this.ui = new window.H.ui.UI.createDefault(this.map, layer)
         this.addMarkersToMap(this.map,this.behavior);
         // this.req();  
-      // console.log(bboxCont.getTopLeft())
       // var bbox=''+bboxCont.getTopLeft().lat+','+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+''
-      // console.log(bbox) 
         // var placeMarker=new window.H.map.Marker(...bboxCont.getBottomRight)
         // placeMarker.draggable=true;
         // this.map.addObject(placeMarker);
@@ -103,7 +100,6 @@ class  HereMaps extends Component {
           var configArrayCopy=[];
           if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3&&nextProps.timeBins[nextProps.timeBins.length-1]!==","){
             var timeBinsStringArray=nextProps.timeBins.split(',');
-              // console.log(timeBinsStringArray);
               timeBinsStringArray.forEach((el,index)=>{
                   configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index])});    
                 })
@@ -113,7 +109,6 @@ class  HereMaps extends Component {
         }
       }
       if(this.props.pois!==nextProps.pois){
-        // console.log(this.map.getObjects())
         this.map.removeObjects(this.map.getObjects())
         // var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+this.state.center.lat+','+this.state.center.lng+';r=150000&cat='
         var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&cat='
@@ -130,7 +125,6 @@ class  HereMaps extends Component {
         // var x= event.nativeEvent.offsetX;
         // var y= event.nativeEvent.offsetY
        // var coord=map.screenToGeo(x,y)
-        // console.log(coord);        
     }
     changeTheme(theme, style) {
         var tiles = this.platform.getMapTileService({'type': 'base'});
@@ -189,7 +183,6 @@ class  HereMaps extends Component {
     }
 
     changeTransparency=(value)=>{
-            // console.log("transparency")
            this.state.isolinePolygonArray.forEach(el=>{
             var style={...el.getStyle()};
             var color=el.getStyle().fillColor;
@@ -199,7 +192,6 @@ class  HereMaps extends Component {
             var col=color.split(',')
             var colstr="";
             col[col.length-1]=""+this.state.transparency/100+")"
-        // console.log(col)
             colstr=col.join()
      
      
@@ -213,10 +205,8 @@ class  HereMaps extends Component {
             this.changeTransparency(newValue)
         })
         
-        // console.log(newValue)
       };
     getPois=(pois,url)=>{
-      // console.log("run")
       var bboxCont=this.map.getViewBounds()
       var bbox=''+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+','+bboxCont.getTopLeft().lat+''
       //axios.get('https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+bbox+'&cat='+pois)
@@ -224,7 +214,6 @@ class  HereMaps extends Component {
       axios.get(url+pois,{headers:{'X-Map-Viewport':bbox}})
       .then(Response=>{
         if(Response.data.next||Response.data.results.next){
-          console.log("run1")
           if(Response.data.results){
             this.setState({nextUrl:Response.data.results.next})  
             Response.data.results.items.forEach(element => {
@@ -242,7 +231,6 @@ class  HereMaps extends Component {
             
         }
         else{
-          // console.log("run2")
           alert("no more results")
           Response.data.results.items.forEach(element => {
             this.getisoline(element.position,element.title)
@@ -270,7 +258,6 @@ class  HereMaps extends Component {
         var col=color.split(',')
         var colstr="";
         col[col.length-1]=""+this.state.transparency/100+")"
-        // console.log(col)
         colstr=col.join()
         var customStyle = {
           // strokeColor: 'red',
@@ -280,7 +267,6 @@ class  HereMaps extends Component {
           lineCap: 'square',
           lineJoin: 'bevel',
         };
-        // console.log(color)
         // var center = new window.H.geo.Point(
         //     result.response.center.latitude,
         //     result.response.center.longitude)
@@ -400,10 +386,10 @@ class  HereMaps extends Component {
                 </div>
                 <div className={classes.MapLeftControls}>
                 <div className={classes.MapLeftControlsIn}>
-                <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
+                <h3  style={{textAlign:'center'}}>Location Search</h3>
                     <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
-                    <div className={classes.ButtonsContainer}>
-                        <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Same Map</Button>
+                    <div className={classes.ButtonsContainer }>
+                        <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Current Map</Button>
                         <Button onClick={this.fetchOnDiffMap}style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
                       </div>    
                         <Typography id="disabled-slider" gutterBottom>
