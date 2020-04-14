@@ -32,7 +32,6 @@ export default class App extends React.Component {
      */
     retrieveDataAsynchronously(searchText){
         // let _this = this;
-        //console.log(process.env)
         Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.props.lat+","+this.props.lng+'&q='+this.state.value +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
         .then(Response=>{
           let ResponseArrayResponse=Response.data.results;
@@ -57,7 +56,6 @@ export default class App extends React.Component {
             });
           }
           else{
-            // console.log(ResponseArrayResponse)
           }
         },error=>{
             alert("Unable to  connect to geocoding service")
@@ -91,10 +89,11 @@ export default class App extends React.Component {
      */
     onSelect(val){
         if(this.state.responseArray.length>=0){
-            const newArr=this.state.responseArray.filter(item=>{
+            // const newArr=
+            this.state.responseArray.filter(item=>{
                 return item.vicinity
             })
-            let arr=newArr[val[0]-1].position
+            // let arr=newArr[val[0]-1].position
         this.setState({
             value: val
             
@@ -139,7 +138,7 @@ export default class App extends React.Component {
                     value={this.state.value}
                     onChange={this.onChange}
                     onSelect={this.onSelect}
-                    inputProps={{ placeholder: 'Enter the nearest landmark here.'}}
+                    inputProps={{ placeholder: 'Enter the search term here.'}}
                 />
             </div>
         );

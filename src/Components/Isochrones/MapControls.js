@@ -27,6 +27,7 @@ export default class MapControls extends Component{
         })
     }
     render(){
+<<<<<<< HEAD
         
         
         // const suggestionsArray=[
@@ -49,6 +50,26 @@ export default class MapControls extends Component{
         const menuItems=this.state.suggestionsArray.map(element=>{
             console.log(element)
             return <MenuItem value={element.code?element.code:element.id}>{element.title}</MenuItem>
+=======
+        const suggestionsArray=[
+            "restaurant",
+            "coffee-tea",
+            'snacks-fast-food',
+            'going-out',
+            'sights-museums',
+            "airport",
+            'accommodation',
+            'shopping',
+            'leisure-outdoor',
+            'administrative-areas-buildings',
+            'natural-geographical',
+            'petrol-station',
+            'atm-bank-exchange',
+            'toilet-rest-area',
+            "hospital-health-care-facility"]
+        const menuItems=suggestionsArray.map(element=>{
+            return <MenuItem value={element}>{element}</MenuItem>
+>>>>>>> 99927558b6f03668a436ac3a9a48aafeaa0675e2
         })
         return(
             <div className={classes.ControlsContainer}>
@@ -67,10 +88,10 @@ export default class MapControls extends Component{
                                 {/* {menuItems} */}
                                 <MenuItem value="pedestrian">Walk</MenuItem>
                                 <MenuItem value="car">Car</MenuItem>
-                                <MenuItem value="publicTransport">PT</MenuItem>
+                                {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                                 {/* <MenuItem value="carHOV">Car HOV</MenuItem> */}
                                 {/* <MenuItem value="truck">Truck</MenuItem> */}
-                                <MenuItem value="bicycle">Bicycle</MenuItem>
+                                {/* <MenuItem value="bicycle">Bicycle</MenuItem> */}
                                 {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                         </Select>
                     </div>
@@ -104,7 +125,7 @@ export default class MapControls extends Component{
                         variant="contained" color="primary" 
                         onClick={()=>{this.categoriesHandler()}} component="span">Request Available Categories</Button>
                     <div className={classes.Pois}>
-                        <InputLabel id='selectPois'> Select Positions of interest</InputLabel>
+                        <InputLabel id='selectPois'> Select Point of interest from the list</InputLabel>
                         <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelId='selectPois' id='selectp' value={this.props.pois}>
                                 {menuItems}     
                         </Select>

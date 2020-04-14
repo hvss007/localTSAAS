@@ -60,7 +60,7 @@ class Survey extends Component {
           <Route path="/privacypolicy" exact component={PrivacyPolicy} />
           <Route path="/contact" exact component={ContactUs} />
           <Route path="/wiki" exact component={Wiki} />
-          <Route path="/isochrones" exact component={IsochroneMap}/>
+          <Route path="/access" exact component={IsochroneMap}/>
           {/* household survey */}
           <Route path="/hhs" exact component={StartSurvey} />
           <Route path="/hhs/:id" exact component={StartSurvey} />

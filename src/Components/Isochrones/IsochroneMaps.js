@@ -20,12 +20,10 @@ class MAps extends Component {
     this.onChange = this.onChange.bind(this);
 }
 inputHandler=(event)=>{
-  //console.log(event.target)
   var inputCopy=this.state[[event.target.name]]
   inputCopy=event.target.value
   this.setState({[[event.target.name]]:inputCopy})
   //this.setState({value:event.target.value});
-  //console.log(this.state.value);
   //return this.state.value;
 }
 // textHandler=(event)=>{
