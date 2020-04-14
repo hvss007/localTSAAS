@@ -3,31 +3,52 @@ import classes from './MapControls.css'
 import {InputLabel,Select,MenuItem,TextField} from '@material-ui/core'
 // import AutoComplete from './AutoComplete'
 import Button from '@material-ui/core/Button';
+import {primaryCategories} from './assets/categories'
+import Axios from 'axios'
 export default class MapControls extends Component{
-    // componentWillReceiveProps(nextProps){
-    //     if
-    // }
-   
+    constructor(props) {
+        super(props);
+    this.state={
+        suggestionsArray:[...primaryCategories]}
+    }
+    categoriesHandler=()=>{
+        Axios.get("https://places.ls.hereapi.com/places/v1/categories/places?at=28.7041,77.1025&apiKey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE+")
+        .then(Response=>{
+            const catArray=[]
+            
+            Response.data.items.forEach((el)=>{
+                catArray.push({id:el.id,title:el.title,icon:el.icon})
+            })
+
+            this.setState({suggestionsArray:catArray})
+        })
+        .catch(e=>{
+            console.log(e)
+        })
+    }
     render(){
-        const suggestionsArray=[
-            "restaurant",
-            "coffee-tea",
-            'snacks-fast-food',
-            'going-out',
-            'sights-museums',
-            "airport",
-            'accommodation',
-            'shopping',
-            'leisure-outdoor',
-            'administrative-areas-buildings',
-            'natural-geographical',
-            'petrol-station',
-            'atm-bank-exchange',
-            'toilet-rest-area',
-            "hospital-health-care-facility"]
-        const menuItems=suggestionsArray.map(element=>{
-            //console.log(element)
-            return <MenuItem value={element}>{element}</MenuItem>
+        
+        
+        // const suggestionsArray=[
+        //     "restaurant",
+        //     "coffee-tea",
+        //     'snacks-fast-food',
+        //     'going-out',
+        //     'sights-museums',
+        //     "airport",
+        //     'accommodation',
+        //     'shopping',
+        //     'leisure-outdoor',
+        //     'administrative-areas-buildings',
+        //     'natural-geographical',
+        //     'petrol-station',
+        //     'atm-bank-exchange',
+        //     'toilet-rest-area',
+        //     "hospital-health-care-facility"]
+
+        const menuItems=this.state.suggestionsArray.map(element=>{
+            console.log(element)
+            return <MenuItem value={element.code?element.code:element.id}>{element.title}</MenuItem>
         })
         return(
             <div className={classes.ControlsContainer}>
@@ -53,6 +74,7 @@ export default class MapControls extends Component{
                                 {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                         </Select>
                     </div>
+                    
                     <div className={classes.Pois}>
                         <InputLabel id='selectModeTransition'> Select Route Preference</InputLabel>
                         <Select name='modePreference' onChange={event=>this.props.inputHandler(event)} labelId='selectModeTransition' id='selectmr'  value={this.props.modePreference}>
@@ -77,6 +99,10 @@ export default class MapControls extends Component{
                         </Select> */}
                         <TextField name='timeBins' id=""  onChange={event=>this.props.inputHandler(event)} labelId="enterTimeBins" id='selecttb' value={this.props.timeBins}/>
                     </div>
+                    <Button 
+                        style={{fontSize:'12px',backgroundColor:'#449DD1'}}
+                        variant="contained" color="primary" 
+                        onClick={()=>{this.categoriesHandler()}} component="span">Request Available Categories</Button>
                     <div className={classes.Pois}>
                         <InputLabel id='selectPois'> Select Positions of interest</InputLabel>
                         <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelId='selectPois' id='selectp' value={this.props.pois}>
@@ -84,11 +110,14 @@ export default class MapControls extends Component{
                         </Select>
                     </div>
                     
-                    <div className={classes.Pois}>
+                     {/* <div className={classes.Pois}>
                     <InputLabel id='selectPois'> Click to load more data</InputLabel>
-                    <Button style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" onClick={this.props.fetchHandler} component="span">Fetch More data</Button>
+                    <Button 
+                        style={{fontSize:'12px',backgroundColor:'#449DD1'}}
+                        variant="contained" color="primary" 
+                        onClick={this.props.fetchHandler} component="span">Fetch More data</Button>
                         {/* <button style={{padding:'7px',backgroundColor: 'aqua',border:'none'}} onClick={this.props.fetchHandler}>Fetch more data</button> */}
-                    </div>
+                     {/* </div>  */} 
                     
                 </div>
                 

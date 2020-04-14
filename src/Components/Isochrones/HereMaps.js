@@ -5,19 +5,11 @@ import {Slider,Typography} from '@material-ui/core'
 import axios from 'axios'
 import AutoComplete from './AutoComplete'
 import Button from '@material-ui/core/Button';
+import colorsArray from './assets/colors'
 class  HereMaps extends Component {
     constructor(props) {
         super(props);
-        this.colorsArray=['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
-        '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
-        '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
-        '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
-        '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
-        '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
-        '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
-        '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
-        '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
-        '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF']
+        this.colorsArray=[...colorsArray]
         //this.colorsArray=['rgb(255,0,0)','rgb(255,255,0)','rgb(0,255,0)'],
         //this.configArray=[{time:30,color:'rgba(255,0,0,.4)'},{time:15,color:'rgba(255,255,0,0.5)'},{time:5,color:'rgba(0,255,0,0.6)'}]
         this.platform = null;
@@ -56,7 +48,7 @@ class  HereMaps extends Component {
             theme:props.theme,
             style: props.style,
             isolinePolygonArray:[],
-            transparency:100,
+            transparency:50,
             query:''
         }
         //this.addMarkersToMap=this.addMarkersToMap.bind(this)
@@ -116,7 +108,9 @@ class  HereMaps extends Component {
         // console.log(this.map.getObjects())
         this.map.removeObjects(this.map.getObjects())
         // var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+this.state.center.lat+','+this.state.center.lng+';r=150000&cat='
-        var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&cat='
+        //var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&cat='
+        var url="https://browse.search.hereapi.com/v1/browse?apikey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE&at="+this.state.center.lat+","+this.state.center.lng+"&categories="
+        // var url="https://places.ls.hereapi.com/places/v1/discover/explore?at="+this.state.center.lat+","+this.state.center.lng+"&apiKey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE&cat="
         this.getPois(nextProps.pois,url)
       }
       if(this.props.updatedFetchCount!==nextProps.updatedFetchCount){
@@ -221,34 +215,38 @@ class  HereMaps extends Component {
       var bbox=''+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+','+bboxCont.getTopLeft().lat+''
       //axios.get('https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+bbox+'&cat='+pois)
       
-      axios.get(url+pois,{headers:{'X-Map-Viewport':bbox}})
+      axios.get(url+pois+"&limit=50",)
       .then(Response=>{
-        if(Response.data.next||Response.data.results.next){
-          console.log("run1")
-          if(Response.data.results){
-            this.setState({nextUrl:Response.data.results.next})  
-            Response.data.results.items.forEach(element => {
-              this.getisoline(element.position,element.title)
-            })
-          }
-          else if(Response.data.next||Response.data.previous){
+        // if(Response.data.next||Response.data.results.next){
+        //   console.log("run1")
+        //   if(Response.data.results){
+        //     this.setState({nextUrl:Response.data.results.next})  
+        //     Response.data.results.items.forEach(element => {
+        //       this.getisoline(element.position,element.title)
+        //     })
+        //   }
+        //   else if(Response.data.next||Response.data.previous){
             
-            this.setState({nextUrl:Response.data.next})  
-            Response.data.items.forEach(element => {
-              this.getisoline(element.position,element.title)
-            })
-          }
-          //this.setState({nextUrl:Response.data.results.next})
+        //     this.setState({nextUrl:Response.data.next})  
+        //     Response.data.items.forEach(element => {
+        //       this.getisoline(element.position,element.title)
+        //     })
+        //   }
+        //   //this.setState({nextUrl:Response.data.results.next})
             
-        }
-        else{
-          // console.log("run2")
-          alert("no more results")
-          Response.data.results.items.forEach(element => {
-            this.getisoline(element.position,element.title)
-          }) 
-        }
-        
+        // }
+        // else{
+          
+        //   alert("no more results")
+        //   Response.data.results.items.forEach(element => {
+        //     this.getisoline(element.position,element.title)
+        //   }) 
+        // }
+        console.log(Response.data.items)
+        Response.data.items.forEach(element => {
+              let pos=[element.position.lat,element.position.lng]  
+              this.getisoline(pos,element.title)
+              })
         ;
       })
       .catch(e=>{
@@ -332,12 +330,12 @@ class  HereMaps extends Component {
       }
 
       fetchOnSameMap=()=>{
-        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+","+this.state.center.lng+'&q='+this.state.query+'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
+        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+","+this.state.center.lng+'&q='+this.state.query+'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE+"&size=100")
         .then(Response=>{
           
           if(Response.data.results.length>0){
             var posArray=Response.data.results.filter(el=>{
-              return el.position
+              return el.position&&el.category==="public-transport"
             })
             console.log(posArray)
             posArray.forEach(element => {
@@ -400,12 +398,12 @@ class  HereMaps extends Component {
                 </div>
                 <div className={classes.MapLeftControls}>
                 <div className={classes.MapLeftControlsIn}>
-                <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
+                {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
                     <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
                     <div className={classes.ButtonsContainer}>
                         <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Same Map</Button>
                         <Button onClick={this.fetchOnDiffMap}style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
-                      </div>    
+                      </div>     */}
                         <Typography id="disabled-slider" gutterBottom>
                             Transparency
                         </Typography>
