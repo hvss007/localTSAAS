@@ -27,7 +27,6 @@ export default class MapControls extends Component{
         })
     }
     render(){
-<<<<<<< HEAD
         
         
         // const suggestionsArray=[
@@ -50,26 +49,6 @@ export default class MapControls extends Component{
         const menuItems=this.state.suggestionsArray.map(element=>{
             console.log(element)
             return <MenuItem value={element.code?element.code:element.id}>{element.title}</MenuItem>
-=======
-        const suggestionsArray=[
-            "restaurant",
-            "coffee-tea",
-            'snacks-fast-food',
-            'going-out',
-            'sights-museums',
-            "airport",
-            'accommodation',
-            'shopping',
-            'leisure-outdoor',
-            'administrative-areas-buildings',
-            'natural-geographical',
-            'petrol-station',
-            'atm-bank-exchange',
-            'toilet-rest-area',
-            "hospital-health-care-facility"]
-        const menuItems=suggestionsArray.map(element=>{
-            return <MenuItem value={element}>{element}</MenuItem>
->>>>>>> 99927558b6f03668a436ac3a9a48aafeaa0675e2
         })
         return(
             <div className={classes.ControlsContainer}>

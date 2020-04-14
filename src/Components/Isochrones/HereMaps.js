@@ -207,7 +207,6 @@ class  HereMaps extends Component {
       
       axios.get(url+pois+"&limit=50",)
       .then(Response=>{
-<<<<<<< HEAD
         // if(Response.data.next||Response.data.results.next){
         //   console.log("run1")
         //   if(Response.data.results){
@@ -217,16 +216,6 @@ class  HereMaps extends Component {
         //     })
         //   }
         //   else if(Response.data.next||Response.data.previous){
-=======
-        if(Response.data.next||Response.data.results.next){
-          if(Response.data.results){
-            this.setState({nextUrl:Response.data.results.next})  
-            Response.data.results.items.forEach(element => {
-              this.getisoline(element.position,element.title)
-            })
-          }
-          else if(Response.data.next||Response.data.previous){
->>>>>>> 99927558b6f03668a436ac3a9a48aafeaa0675e2
             
         //     this.setState({nextUrl:Response.data.next})  
         //     Response.data.items.forEach(element => {
@@ -235,7 +224,6 @@ class  HereMaps extends Component {
         //   }
         //   //this.setState({nextUrl:Response.data.results.next})
             
-<<<<<<< HEAD
         // }
         // else{
           
@@ -249,16 +237,6 @@ class  HereMaps extends Component {
               let pos=[element.position.lat,element.position.lng]  
               this.getisoline(pos,element.title)
               })
-=======
-        }
-        else{
-          alert("no more results")
-          Response.data.results.items.forEach(element => {
-            this.getisoline(element.position,element.title)
-          }) 
-        }
-        
->>>>>>> 99927558b6f03668a436ac3a9a48aafeaa0675e2
         ;
       })
       .catch(e=>{
@@ -408,11 +386,7 @@ class  HereMaps extends Component {
                 </div>
                 <div className={classes.MapLeftControls}>
                 <div className={classes.MapLeftControlsIn}>
-<<<<<<< HEAD
                 {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
-=======
-                <h3  style={{textAlign:'center'}}>Location Search</h3>
->>>>>>> 99927558b6f03668a436ac3a9a48aafeaa0675e2
                     <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
                     <div className={classes.ButtonsContainer }>
                         <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Current Map</Button>
