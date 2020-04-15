@@ -185,6 +185,7 @@ class  HereMaps extends Component {
            this.state.isolinePolygonArray.forEach(el=>{
             var style={...el.getStyle()};
             var color=el.getStyle().fillColor;
+            var strokeCol=el.getStyle().strokeColor
             //var strColor=color.replace(",1)",","+value/100+")");
      
      
@@ -192,9 +193,10 @@ class  HereMaps extends Component {
             var colstr="";
             col[col.length-1]=""+this.state.transparency/100+")"
             colstr=col.join()
-     
+            
      
             style.fillColor=colstr
+            style.strokeColor=colstr
             el.setStyle({...style})
         })    
     }
@@ -265,7 +267,7 @@ class  HereMaps extends Component {
         col[col.length-1]=""+this.state.transparency/100+")"
         colstr=col.join()
         var customStyle = {
-          // strokeColor: 'red',
+          strokeColor: colstr,
           fillColor: colstr,
           // fillColor:'red',
           lineWidth: 1,
