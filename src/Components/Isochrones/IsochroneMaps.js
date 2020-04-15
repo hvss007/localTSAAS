@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-// import ThemeSelector from './ThemeSelector';
-//import './App.css';
+import classes from './IsochroneMaps.css';
 import HereMaps from './HereMaps';
 import MapControls from './MapControls'
-// import Axios from 'axios'
 class MAps extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +11,6 @@ class MAps extends Component {
         theme: 'normal.day',
         lat:"28.7041",
         lng:"77.1025",
-        //timeBins:"",
         value:null,secPois:'',
         timeBins:"",
       }
@@ -22,15 +19,8 @@ class MAps extends Component {
 inputHandler=(event)=>{
   var inputCopy=this.state[[event.target.name]]
   inputCopy=event.target.value
-  this.setState({[[event.target.name]]:inputCopy})
-  //this.setState({value:event.target.value});
-  //return this.state.value;
+  this.setState({[[event.target.name]]:inputCopy}) 
 }
-// textHandler=(event)=>{
-//     var timeCopy={...this.state.timeBins};
-//     timeCopy=event.target.value;
-//     this.setState({timeBins:timeCopy});
-// }
 fetchHandler=()=>{
   this.setState({updatedFetchCount:this.state.updatedFetchCount+1})
 }
@@ -48,9 +38,6 @@ getCityCoordinates=(platform)=>{
 onResult = (result)=> {
   var locations = result.Response.View[0].Result,
       position
-      // marker;
-  
-      // Add a marker for each location found   
     position = {
       lat: locations[0].Location.DisplayPosition.Latitude,
       lng: locations[0].Location.DisplayPosition.Longitude
@@ -70,7 +57,7 @@ onChange(evt) {
   render() {
     return (
       
-      <div style={{width:'100%',display:"flex"}}>
+      <div className={classes.MainContainer}>
         <MapControls fetchHandler={this.fetchHandler} pois={this.state.pois} secPois={this.state.secPois} mode={this.state.modes} modePreference={this.state.modePreference} timeBins={this.state.timeBins} modeState={this.state.modeState} cityEnteredHandler={this.cityEnteredHandler} inputHandler={this.inputHandler}></MapControls>
         <HereMaps
           pois={this.state.pois}

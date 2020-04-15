@@ -104,13 +104,13 @@ class  HereMaps extends Component {
         this.map.removeObjects(this.map.getObjects())
         // var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+this.state.center.lat+','+this.state.center.lng+';r=150000&cat='
         //var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&cat='
-        var url="https://browse.search.hereapi.com/v1/browse?apikey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE&at="+this.state.center.lat+","+this.state.center.lng+"&categories="
-        // var url="https://places.ls.hereapi.com/places/v1/discover/explore?at="+this.state.center.lat+","+this.state.center.lng+"&apiKey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE&cat="
+        var url="https://browse.search.hereapi.com/v1/browse?apikey="+process.env.REACT_APP_PLACES_API_KEY+"&at="+this.state.markerX+","+this.state.markerY+"&categories="
+        // var url="https://places.ls.hereapi.com/places/v1/discover/explore?at="+this.state.center.lat+","+this.state.center.lng+"&apiKey="+process.env.REACT_APP_PLACES_API_KEY+"&cat="
         this.getPois(nextProps.pois,url)
       }
       if(this.props.secPois!==nextProps.secPois){
         this.map.removeObjects(this.map.getObjects())
-        var url="https://browse.search.hereapi.com/v1/browse?apikey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE&at="+this.state.center.lat+","+this.state.center.lng+"&categories="
+        var url="https://browse.search.hereapi.com/v1/browse?apikey="+process.env.REACT_APP_PLACES_API_KEY+"&at="+this.state.markerX+","+this.state.markerY+"&categories="
         this.getPois(nextProps.secPois,url)
       }
       if(this.props.updatedFetchCount!==nextProps.updatedFetchCount){
@@ -164,8 +164,6 @@ class  HereMaps extends Component {
         }
       }, false);
     
-      // Listen to the drag event and move the position of the marker
-      // as necessary
        map.addEventListener('drag',(ev)=> {
         var target = ev.target,
             pointer = ev.currentPointer;
@@ -173,10 +171,6 @@ class  HereMaps extends Component {
           target.setPosition(map.screenToGeo(pointer.viewportX, pointer.viewportY));
           var crd=map.screenToGeo(pointer.viewportX, pointer.viewportY)
           this.setState({markerX:crd.lat,markerY:crd.lng})  
-          // var routingParamsCopy={...this.state.routingParams}
-          // routingParamsCopy.start="geo!"+String(crd.lat)+","+String(crd.lng)
-          // this.setState({routingParams:routingParamsCopy})
-          //console.log(routingParamsCopy.start)
         }
       }, false);
     }
@@ -186,15 +180,10 @@ class  HereMaps extends Component {
             var style={...el.getStyle()};
             var color=el.getStyle().fillColor;
             var strokeCol=el.getStyle().strokeColor
-            //var strColor=color.replace(",1)",","+value/100+")");
-     
-     
             var col=color.split(',')
             var colstr="";
             col[col.length-1]=""+this.state.transparency/100+")"
             colstr=col.join()
-            
-     
             style.fillColor=colstr
             style.strokeColor=colstr
             el.setStyle({...style})
@@ -205,7 +194,6 @@ class  HereMaps extends Component {
         this.setState({transparency:newValue},()=>{
             this.changeTransparency(newValue)
         })
-        
       };
     getPois=(pois,url)=>{
       var bboxCont=this.map.getViewBounds()
@@ -260,8 +248,6 @@ class  HereMaps extends Component {
     };
      
       onResult1 = (result,color,zIndex)=> {
-        
-        //var sys='rgba('+Math.floor(255*Math.random())+','+Math.floor(255*Math.random()) + ',' +Math.floor(255*Math.random()) +',0.4)'
         var col=color.split(',')
         var colstr="";
         col[col.length-1]=""+this.state.transparency/100+")"
@@ -269,27 +255,19 @@ class  HereMaps extends Component {
         var customStyle = {
           strokeColor: colstr,
           fillColor: colstr,
-          // fillColor:'red',
           lineWidth: 1,
           lineCap: 'square',
           lineJoin: 'bevel',
         };
-        // var center = new window.H.geo.Point(
-        //     result.response.center.latitude,
-        //     result.response.center.longitude)
           var isolineCoords = result.response.isoline[0].component[0].shape,
           linestring = new window.H.geo.LineString(),
           isolinePolygon
           //isolineCenter;
         
-        
-        
-        
         // Add the returned isoline coordinates to a linestring:
         isolineCoords.forEach((coords)=> {
         linestring.pushLatLngAlt.apply(linestring, coords.split(','));
       });
-
         isolinePolygon = new window.H.map.Polygon(linestring,{style:customStyle});
         isolinePolygon.setZIndex(zIndex)
         var isolinePolygonArrayCopy=[...this.state.isolinePolygonArray];
@@ -325,9 +303,8 @@ class  HereMaps extends Component {
       }
 
       fetchOnSameMap=()=>{
-        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+","+this.state.center.lng+'&q='+this.state.query+'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE+"&size=100")
+        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.markerX+","+this.state.markerY+'&q='+this.state.query+'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE+"&size=100")
         .then(Response=>{
-          
           if(Response.data.results.length>0){
             var posArray=Response.data.results.filter(el=>{
               return el.position&&el.category==="public-transport"
@@ -340,11 +317,9 @@ class  HereMaps extends Component {
         })
       }
       fetchOnDiffMap=()=>{
-        //this.setState({isolinePolygonArray:[]})
         this.map.removeObjects(this.map.getObjects())
-        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.center.lat+","+this.state.center.lng+'&q='+this.state.query+'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
-        .then(Response=>{
-          
+        Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.markerX+","+this.state.markerY+'&q='+this.state.query+'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
+        .then(Response=>{    
           if(Response.data.results.length>0){
             var posArray=Response.data.results.filter(el=>{
               return el.position

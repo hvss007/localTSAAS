@@ -1,5 +1,5 @@
 .MapContainer{
-    width:75%;
+    width:70%;
     height:100vh;
 }
 .LegendContainer{
@@ -17,7 +17,7 @@
     justify-content: space-evenly;
 }
 .MapLeftControlsIn{
-    width:73%;
+    width:83%;
     align-items: center;
     display:flex;
     flex-direction: column;
@@ -25,7 +25,7 @@
     justify-content: space-evenly;
 }
 .MapLeftControls{
-    width: 25%;
+    width: 30%;
     background: white;
     position: absolute;
     left: 0;
@@ -37,4 +37,20 @@
     width:100%;
     display:flex;
     justify-content: space-between;
+}
+@media(max-width:780px){
+    .MapContainer{
+        width:100%;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .LegendContainer{
+        position: relative;
+        width: 100%;
+    }
+    .MapLeftControls{
+        position: relative;
+        width: 100%;
+        bottom: unset;
+    }
 }

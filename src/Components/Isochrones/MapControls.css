@@ -1,9 +1,11 @@
 .ControlsContainer{
-    width:25%;
+    width:30%;
     height:100vh;
     display:flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
+    padding: 2%;
 }
 .Heading{
     width:100%;
@@ -14,6 +16,7 @@
 .FormControls{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 .CityInput{
     margin:10px 0;
@@ -32,5 +35,11 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
+    margin:10px 0;
+}
+@media(max-width:780px){
+    .ControlsContainer{
+        width: 100%;
+        height: unset;
+    }
 }

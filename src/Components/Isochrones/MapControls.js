@@ -110,10 +110,10 @@ export default class MapControls extends Component{
                         </Select> */}
                         <TextField name='timeBins' id=""  onChange={event=>this.props.inputHandler(event)} labelId="enterTimeBins" id='selecttb' value={this.props.timeBins}/>
                     </div>
-                    <Button 
+                    {/* <Button 
                         style={{fontSize:'12px',backgroundColor:'#449DD1'}}
                         variant="contained" color="primary" 
-                        onClick={()=>{this.categoriesHandler()}} component="span">Request Available Categories</Button>
+                        onClick={()=>{this.categoriesHandler()}} component="span">Request Available Categories</Button> */}
                     <div className={classes.Pois}>
                         <InputLabel id='selectPois'> Select Primary Category</InputLabel>
                         <Select name='pois' 
