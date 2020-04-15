@@ -108,6 +108,11 @@ class  HereMaps extends Component {
         // var url="https://places.ls.hereapi.com/places/v1/discover/explore?at="+this.state.center.lat+","+this.state.center.lng+"&apiKey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE&cat="
         this.getPois(nextProps.pois,url)
       }
+      if(this.props.secPois!==nextProps.secPois){
+        this.map.removeObjects(this.map.getObjects())
+        var url="https://browse.search.hereapi.com/v1/browse?apikey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE&at="+this.state.center.lat+","+this.state.center.lng+"&categories="
+        this.getPois(nextProps.secPois,url)
+      }
       if(this.props.updatedFetchCount!==nextProps.updatedFetchCount){
         this.getPois('',this.state.nextUrl)
       }
@@ -232,7 +237,7 @@ class  HereMaps extends Component {
         //     this.getisoline(element.position,element.title)
         //   }) 
         // }
-        console.log(Response.data.items)
+        //console.log(Response.data.items)
         Response.data.items.forEach(element => {
               let pos=[element.position.lat,element.position.lng]  
               this.getisoline(pos,element.title)

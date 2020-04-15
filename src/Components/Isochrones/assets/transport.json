@@ -1,0 +1,211 @@
+[{
+    "Code": "400-4000-4580",
+    "Title": "Public Sports Airport",
+    "Description": "A designated area that serves various aspects of aviation related sports, including gliders, recreational aircraft and model airplanes."
+  },
+  {
+    "Code": "400-4000-4581",
+    "Title": "Airport",
+    "Description": "A designated area for the landing and takeoff of aircraft, as well as the loading and unloading of cargo and passengers."
+  },
+  {
+    "Code": "400-4000-4582",
+    "Title": "Airport Terminal",
+    "Description": "A facility where passengers are allowed to board and disembark from aircraft. Airport terminals are generally comprised of various establishments, such as retail stores and restaurants. These places share common services such as parking or utilities."
+  },
+  {
+    "Code": "400-4100-0035",
+    "Title": "Train Station",
+    "Description": "A hub for travelers who are travelling between stops along a railway network."
+  },
+  {
+    "Code": "400-4100-0036",
+    "Title": "Bus Station",
+    "Description": "A facility that serves as a hub for inter-city bus service."
+  },
+  {
+    "Code": "400-4100-0037",
+    "Title": "Underground Train-Subway",
+    "Description": "A facility that provides access to an underground rail transit system."
+  },
+  {
+    "Code": "400-4100-0038",
+    "Title": "Commuter Rail Station",
+    "Description": "A facility that provides access to regional or intra-city rail transportation service."
+  },
+  {
+    "Code": "400-4100-0039",
+    "Title": "Commuter Train",
+    "Description": "A facility that provides access to above-ground rail transit systems."
+  },
+  {
+    "Code": "400-4100-0040",
+    "Title": "Public Transit Access",
+    "Description": "An entrance or exit to public transit service."
+  },
+  {
+    "Code": "400-4100-0041",
+    "Title": "Transportation Service",
+    "Description": "An establishment that provides charter air travel, limousine or taxi services."
+  },
+  {
+    "Code": "400-4100-0042",
+    "Title": "Bus Stop",
+    "Description": "Location offering access to intercity and urban public transit lines, including trolley buses."
+  },
+  {
+    "Code": "400-4100-0043",
+    "Title": "Local Transit",
+    "Description": "A facility that provides access to regional, intra-city or local transportation through the use of buses, subways and elevated trains. These places are generally run by local governments or commercial services."
+  },
+  {
+    "Code": "400-4100-0044",
+    "Title": "Ferry Terminal",
+    "Description": "A terminal that provides ferry services for transporting passengers and automotive vehicles by water."
+  },
+  {
+    "Code": "400-4100-0045",
+    "Title": "Boat Ferry",
+    "Description": "A terminal that provides access to boat ferry services."
+  },
+  {
+    "Code": "400-4100-0046",
+    "Title": "Rail Ferry",
+    "Description": "A terminal that provides access to rail ferry services."
+  },
+  {
+    "Code": "400-4100-0047",
+    "Title": "Taxi Stand",
+    "Description": "A designated queuing, loading and unloading area for taxis. Places in this category are usually in city centers and buildings with a high volume of pedestrians."
+  },
+  {
+    "Code": "400-4100-0226",
+    "Title": "Highway Exit",
+    "Description": "A marked ramp or spur providing egress from a motorway."
+  },
+  {
+    "Code": "400-4100-0326",
+    "Title": "Tollbooth",
+    "Description": "A structure along a motorway or thoroughfare where a fee is paid in exchange for roadway usage. Tollbooths include areas where an automobile must physically stop to pay a fee."
+  },
+  {
+    "Code": "400-4100-0337",
+    "Title": "Lightrail",
+    "Description": "This includes rail trolleys and streetcar lines, AKA Tram in Europe."
+  },
+  {
+    "Code": "400-4100-0338",
+    "Title": "Water Transit",
+    "Description": "Boat systems that provide transit service within an urban area. It is used in Ped routing only and doesn't support vehicle routing."
+  },
+  {
+    "Code": "400-4100-0339",
+    "Title": "Monorail",
+    "Description": "Rail systems that operate on a single beam. Monorail operation is distinct from other trasnsportation types or traffic."
+  },
+  {
+    "Code": "400-4100-0340",
+    "Title": "Aerial Tramway",
+    "Description": "Passenger vehicles suspended from a system of aerial cables and propelled by separate cables attached to the vehicle suspension system. The cable system is powered by engines or motors at a central location not on board the vehicle (for example, teleferic)."
+  },
+  {
+    "Code": "400-4100-0341",
+    "Title": "Bus Rapid Transit",
+    "Description": "These bus systems come in a variety of forms, from dedicated bus ways that have their own right-of-way, to bus services that utilize HOV lanes and dedicated freeway lanes, to limited-stop buses on pre-existing routes."
+  },
+  {
+    "Code": "400-4100-0342",
+    "Title": "Inclined Rail",
+    "Description": "Special tramway type of vehicles operating up and down slopes on rails via a cable mechanism so that passenger seats remain horizontal while the undercarriage (truck) is angled parallel to the slope. It is often referred to as funicular."
+  },
+  {
+    "Code": "400-4100-0347",
+    "Title": "Bicycle Sharing Location",
+    "Description": "A designated area that provides self-service docking stations for bicycles."
+  },
+  {
+    "Code": "400-4100-0348",
+    "Title": "Bicycle Parking",
+    "Description": "A designated area for parking bicycles."
+  },
+  {
+    "Code": "400-4200-0048",
+    "Title": "Weigh Station",
+    "Description": "A facility adjacent to a roadway that provides weight services to ensure vehicles are compliant with relevant laws and regulations (weight, logs, and so on)."
+  },
+  {
+    "Code": "400-4200-0049",
+    "Title": "Cargo Center",
+    "Description": "A facility where cargo is transferred between different modes of transportation. For example, ship-to-rail, ship-to-truck, air-to-truck and other modes of transportation."
+  },
+  {
+    "Code": "400-4200-0050",
+    "Title": "Rail Yard",
+    "Description": "A hub for freight trains where cargo is transferred."
+  },
+  {
+    "Code": "400-4200-0051",
+    "Title": "Seaport-Harbour",
+    "Description": "A port where cargo ships dock to transfer cargo/freight."
+  },
+  {
+    "Code": "400-4200-0052",
+    "Title": "Airport Cargo",
+    "Description": "An airport facility where cargo/freight is transferred."
+  },
+  {
+    "Code": "400-4200-0240",
+    "Title": "Couriers",
+    "Description": "A facility that provides air, land, or combined mode courier and express delivery services. This includes local messenger/delivery services, but excludes government managed package and parcel delivery services."
+  },
+  {
+    "Code": "400-4200-0241",
+    "Title": "Cargo Transportation",
+    "Description": "A facility that provides logistical support services, but does not fit into any other Transport (400-4200-xxxx) categories. For example, freight forwarders, marine shipping agents and customs brokers."
+  },
+  {
+    "Code": "400-4200-0311",
+    "Title": "Delivery Entrance",
+    "Description": "A designated building or parking lot entrance that is specifically designated for deliveries."
+  },
+  {
+    "Code": "400-4200-0312",
+    "Title": "Loading Dock",
+    "Description": "A designated area where deliverers can load or unload cargo/freight."
+  },
+  {
+    "Code": "400-4200-0313",
+    "Title": "Loading Zone",
+    "Description": "A designated area where delivery vehicles may park for a limited time to load or unload cargo/freight."
+  },
+  {
+    "Code": "400-4300-0000",
+    "Title": "Rest Area",
+    "Description": "An establishment along a motorway (controlled access road) that provides restrooms and parking. This is a base-level category that should be used for all places that do not fit other categories defined for Rest Area (400-4300-xxxx)."
+  },
+  {
+    "Code": "400-4300-0199",
+    "Title": "Complete Rest Area",
+    "Description": "A rest area that provides restroom facilities, parking, snacks, an open space, and is usually along a major highway."
+  },
+  {
+    "Code": "400-4300-0200",
+    "Title": "Parking and Restroom Only Rest Area",
+    "Description": "An area that provides both parking and restrooms."
+  },
+  {
+    "Code": "400-4300-0201",
+    "Title": "Parking Only Rest Area",
+    "Description": "An area that provides only parking. This type of Place does not provide any facilities such as restaurant, petrol station or restrooms."
+  },
+  {
+    "Code": "400-4300-0202",
+    "Title": "Motorway Service Rest Area",
+    "Description": "An area located adjacent to a motorway where motorists can refuel, rest and buy refreshments."
+  },
+  {
+    "Code": "400-4300-0308",
+    "Title": "Scenic Overlook Rest Area",
+    "Description": "An area located along a roadway that provides a place for drivers to observe the scenery. Scenic overlooks generally have regional importance."
+  }]
+  

@@ -1,0 +1,356 @@
+[{
+    "Code": "800-8000-0000",
+    "Title": "Hospital or Health Care Facility",
+    "Description": "An institution or facility that provides medical or surgical treatment for the sick or injured. Places range from small clinics and doctor's offices to urgent care centers and large hospitals containing elaborate emergency rooms and trauma centers. This is a base-level category that should be used for all places that do not fit other categories defined forHospital or Health Care Facility (800-8000-xxxx)."
+  },
+  {
+    "Code": "800-8000-0154",
+    "Title": "Dentist-Dental Office",
+    "Description": "A health care facility that provides dental services. Services generally include cleanings, exams, cosmetic dentistry, dentures, braces, and other related services."
+  },
+  {
+    "Code": "800-8000-0155",
+    "Title": "Family-General Practice Physicians",
+    "Description": "A health care facility office that provides medical services to individual persons or families. Services generally include medical advice, treatment of specific or acute illnesses, preventive care and other related medical services."
+  },
+  {
+    "Code": "800-8000-0156",
+    "Title": "Psychiatric Institute",
+    "Description": "A health care facility that provides care and treatment of patients affected with acute or chronic mental illness."
+  },
+  {
+    "Code": "800-8000-0157",
+    "Title": "Nursing Home",
+    "Description": "A health care facility that provides full-time care and medical treatment for the elderly, chronically ill, or other individuals who are unable to take care of themselves."
+  },
+  {
+    "Code": "800-8000-0158",
+    "Title": "Medical Services-Clinics",
+    "Description": "A health care facility that provides general medical services that are not directly associated or connected with a medical hospital. Some places may specialize in particular conditions or areas of medicine."
+  },
+  {
+    "Code": "800-8000-0159",
+    "Title": "Hospital",
+    "Description": "An institution or facility that provides medical or surgical treatment for the sick or injured. Some places may include elaborate emergency rooms and trauma centers."
+  },
+  {
+    "Code": "800-8000-0161",
+    "Title": "Optical",
+    "Description": "A health care facility that sells eyeglasses, lenses, and other optical instruments, and employs an optician."
+  },
+  {
+    "Code": "800-8000-0162",
+    "Title": "Veterinarian",
+    "Description": "A health care facility that practices veterinary medicine or surgery. Services generally include the prevention, cure, or alleviation of disease and injury to animals, especially domestic animals. This category includes all named veterinary locations, animal hospitals, and emergency veterinary services."
+  },
+  {
+    "Code": "800-8000-0325",
+    "Title": "Hospital Emergency Room",
+    "Description": "A health care facility that provides emergency medical treatment for people. Places in this category may be part of a larger hospital facility or a stand-alone facility."
+  },
+  {
+    "Code": "800-8000-0340",
+    "Title": "Therapist",
+    "Description": "A health care facility that offers a specific type of therapy service, such as a psychologist, psychoanalyst, psychotherapist, psychiatrist or counselor."
+  },
+  {
+    "Code": "800-8000-0341",
+    "Title": "Chiropractor",
+    "Description": "A health care facility that provides treatment for bodily disorders through the manipulation of the spine and other body parts."
+  },
+  {
+    "Code": "800-8000-0367",
+    "Title": "Blood Bank",
+    "Description": "A medical service where blood is collected from donors, typed, separated into components, stored, and prepared for transfusion into recipients."
+  },
+  {
+    "Code": "800-8100-0000",
+    "Title": "Government or Community Facility",
+    "Description": "A Place where government employees work and government services are provided. This is a base-level category that should be used for all places that do not fit other categories defined for Government or Community Facility (800-8100-xxxx)."
+  },
+  {
+    "Code": "800-8100-0163",
+    "Title": "City Hall",
+    "Description": "A government building that houses the seat of an incorporated government for a town, borough, city, county, or other municipality."
+  },
+  {
+    "Code": "800-8100-0164",
+    "Title": "Embassy",
+    "Description": "A government building that houses diplomatic representatives of foreign countries."
+  },
+  {
+    "Code": "800-8100-0165",
+    "Title": "Military Base",
+    "Description": "A government facility that facilitates military training and operations, and shelters military equipment and personnel. Military bases are directly owned and operated by the military. For example, the Army, Navy, Air Force, Marine, Coast Guard."
+  },
+  {
+    "Code": "800-8100-0168",
+    "Title": "County Council",
+    "Description": "A government building where an elected administrative body governs the respective county."
+  },
+  {
+    "Code": "800-8100-0169",
+    "Title": "Civic-Community Center",
+    "Description": "A government building that provides space to the public for community events, special events, seasonal programs, organized classes, as well as a general space for rent."
+  },
+  {
+    "Code": "800-8100-0170",
+    "Title": "Court House",
+    "Description": "A government building that serves as the home for the local court of law."
+  },
+  {
+    "Code": "800-8100-0171",
+    "Title": "Government Office",
+    "Description": "A government building that often includes federal offices, municipality offices, state offices, provincial offices, ministries, and other governmental departments. Examples include the Department of Finance or the Ministry of Agriculture and Water."
+  },
+  {
+    "Code": "800-8100-0172",
+    "Title": "Border Crossing",
+    "Description": "A controlled junction where travellers or goods are inspected upon entry or exit of an area or region. Border crossings are generally located between two countries."
+  },
+  {
+    "Code": "800-8200-0000",
+    "Title": "Education Facility",
+    "Description": "An institution that provides basic/elementary or secondary education. This is a base-level category that should be used for all places that do not fit other categories defined for Education Facility (800-8200-xxxx)."
+  },
+  {
+    "Code": "800-8200-0173",
+    "Title": "Higher Education",
+    "Description": "An institution that provides post-secondary, tertiary or third level education. Higher education includes educational institutions that serve students beyond secondary education, such as a college, university, technical institution or trade school."
+  },
+  {
+    "Code": "800-8200-0174",
+    "Title": "School",
+    "Description": "An institution that provides basic elementary or secondary education to children and teenagers."
+  },
+  {
+    "Code": "800-8200-0295",
+    "Title": "Training and Development",
+    "Description": "An institution or business that provides education and training, such as development courses, second languages, presentation skills, technical skills and other related education services."
+  },
+  {
+    "Code": "800-8200-0360",
+    "Title": "Coaching Institute",
+    "Description": "A training center where individuals are \"coached\" on various topics. For example, preparation for competitive exams, preparation for government jobs or preparation for admission into reputed universities."
+  },
+  {
+    "Code": "800-8200-0361",
+    "Title": "Fine Arts",
+    "Description": "A training center where individuals learn an aspect of fine arts, such as painting, photography, tap dance, ballet and more."
+  },
+  {
+    "Code": "800-8200-0362",
+    "Title": "Language Studies",
+    "Description": "A training center where individuals learn a particular language, such as German, Spanish, English and others."
+  },
+  {
+    "Code": "800-8300-0000",
+    "Title": "Other Library",
+    "Description": "A facility that offers books, periodicals, audio, video and other material for public use (but not sale). Material can be used on-premise or borrowed for an extended period. This is a base-level category that should be used for all places that do not fit other categories defined for Library (800-8300-xxxx)."
+  },
+  {
+    "Code": "800-8300-0175",
+    "Title": "Library",
+    "Description": "A place in which literary, musical, artistic, or reference materials are kept for use and circulation, but are not for sale."
+  },
+  {
+    "Code": "800-8400-0000",
+    "Title": "Event Spaces",
+    "Description": "A facility that provides space for large events such as trade shows, trade fairs, or conventions. This is a base-level category that should be used for all places that do not fit other categories defined for Fair-Convention Facility (800-8400-xxxx)."
+  },
+  {
+    "Code": "800-8400-0139",
+    "Title": "Banquet Hall",
+    "Description": "An establishment that offers short-term rental of a room or building for the purposes of hosting a party, banquet, reception or other social event. Banquet halls are frequently co-located in other establishments, such as clubs, hotels and restaurants."
+  },
+  {
+    "Code": "800-8400-0176",
+    "Title": "Convention-Exhibition Center",
+    "Description": "A facility that provides space for large events such as trade shows, trade fairs, or conventions."
+  },
+  {
+    "Code": "800-8500-0000",
+    "Title": "Parking",
+    "Description": "An area used to park motor vehicles. This is a base-level category that should be used for all places that do not fit other categories defined for Parking Facility (800-8500-xxxx)."
+  },
+  {
+    "Code": "800-8500-0177",
+    "Title": "Parking Garage-Parking House",
+    "Description": "A designated parking area that is covered or enclosed. Fees may apply."
+  },
+  {
+    "Code": "800-8500-0178",
+    "Title": "Parking Lot",
+    "Description": "A designated parking area that is not covered or enclosed. Fees may apply."
+  },
+  {
+    "Code": "800-8500-0179",
+    "Title": "Park and Ride",
+    "Description": "A designated parking area where commuters can park their vehicles to join a carpool, bus or other form of transportation. Fees generally do not apply."
+  },
+  {
+    "Code": "800-8500-0200",
+    "Title": "Motorcycle, Moped and Scooter Parking",
+    "Description": "A designated parking area that is specifically for motorcycles, mopeds or scooters."
+  },
+  {
+    "Code": "800-8500-0315",
+    "Title": "Cellphone Parking Lot",
+    "Description": "A designated parking area for individuals who need to make mobile phone calls without posing a risk to other motorists on the road."
+  },
+  {
+    "Code": "800-8600-0000",
+    "Title": "Sports Facility-Venue",
+    "Description": "A facility where sporting events are held. This is a base-level category that should be used for all places that do not fit other categories defined for Sports Facility-Venue (800-8600-xxxx)."
+  },
+  {
+    "Code": "800-8600-0180",
+    "Title": "Sports Complex-Stadium",
+    "Description": "A facility that provides multi-use indoor or outdoor arenas where sporting events are played and viewed."
+  },
+  {
+    "Code": "800-8600-0181",
+    "Title": "Ice Skating Rink",
+    "Description": "A facility that provides a surface where all types of ice skating are played."
+  },
+  {
+    "Code": "800-8600-0182",
+    "Title": "Swimming Pool",
+    "Description": "A facility that provides a tank or basin filled with water for swimming."
+  },
+  {
+    "Code": "800-8600-0183",
+    "Title": "Tennis Court",
+    "Description": "A facility that provides a court upon which tennis is played."
+  },
+  {
+    "Code": "800-8600-0184",
+    "Title": "Bowling Center",
+    "Description": "An indoor facility containing alleys or lanes designed for bowling."
+  },
+  {
+    "Code": "800-8600-0185",
+    "Title": "Indoor Ski",
+    "Description": "A facility that provides an indoor area designed for ski activities."
+  },
+  {
+    "Code": "800-8600-0186",
+    "Title": "Hockey",
+    "Description": "A facility that provides a rink used to play hockey and has markings on the playing surface to determine it as such."
+  },
+  {
+    "Code": "800-8600-0187",
+    "Title": "Racquetball Court",
+    "Description": "A facility that provides a court designed for playing racquetball."
+  },
+  {
+    "Code": "800-8600-0188",
+    "Title": "Shooting Range",
+    "Description": "A facility that provides an enclosed firing range with targets for firearm practice."
+  },
+  {
+    "Code": "800-8600-0189",
+    "Title": "Soccer Club",
+    "Description": "A facility that provides a field used to play soccer."
+  },
+  {
+    "Code": "800-8600-0190",
+    "Title": "Squash Court",
+    "Description": "A facility that provides an indoor court used to play squash."
+  },
+  {
+    "Code": "800-8600-0191",
+    "Title": "Fitness-Health Club",
+    "Description": "A facility that offers classes, instruction and equipment for exercising and physical conditioning. Membership fees are generally required."
+  },
+  {
+    "Code": "800-8600-0192",
+    "Title": "Indoor Sports",
+    "Description": "A facility that provides an area designed to play a variety of indoor sports, such as basketball, volleyball, cricket, gymnastics, table tennis, handball and other sports."
+  },
+  {
+    "Code": "800-8600-0193",
+    "Title": "Golf Course",
+    "Description": "An area ground or course upon which golf is played. Course usually contain 9 or 18 holes. These places may be public or private. Membership fees may apply."
+  },
+  {
+    "Code": "800-8600-0194",
+    "Title": "Golf Practice Range",
+    "Description": "A area that intended for practicing long golf shots with balls provided by the facility. Fees generally apply."
+  },
+  {
+    "Code": "800-8600-0195",
+    "Title": "Race Track",
+    "Description": "A facility that provides a dirt, grass or paved track designed for racing animals (horses or greyhounds), vehicles, or athletes. Race tracks often feature grandstands or concourses."
+  },
+  {
+    "Code": "800-8600-0196",
+    "Title": "Sporting Instruction and Camps",
+    "Description": "A facility that provides instruction and training for a particular sport. This also includes camps that provide recreational activities or sports."
+  },
+  {
+    "Code": "800-8600-0197",
+    "Title": "Sports Activities",
+    "Description": "A facility or designated area that where recreational or amateur sports are played."
+  },
+  {
+    "Code": "800-8600-0199",
+    "Title": "Basketball",
+    "Description": "A facility designed specifically for playing basketball."
+  },
+  {
+    "Code": "800-8600-0200",
+    "Title": "Badminton",
+    "Description": "A facility designed specifically for playing badminton."
+  },
+  {
+    "Code": "800-8600-0314",
+    "Title": "Rugby",
+    "Description": "A facility designed specifically for playing rugby."
+  },
+  {
+    "Code": "800-8600-0316",
+    "Title": "Diving Center",
+    "Description": "A facility that provides classes, instruction and equipment for learning or practicing scuba diving. Often these facilities are located near to natural bodies of water where diving occurs, or they may contain indoor pools designed for training."
+  },
+  {
+    "Code": "800-8600-0376",
+    "Title": "Bike Park",
+    "Description": "A facility that provides trails maintained for mountain bike riding."
+  },
+  {
+    "Code": "800-8600-0377",
+    "Title": "BMX Track",
+    "Description": "A facility designed specifically for racing a BMX bicycle."
+  },
+  {
+    "Code": "800-8600-0381",
+    "Title": "Running Track",
+    "Description": "Common features of running tracks are: an artificial surface (usually rubberized), which is usually built to a specific length and lane width."
+  },
+  {
+    "Code": "800-8700-0000",
+    "Title": "Facilities",
+    "Description": "A structure designed or built to serve a specific function, activity, or service. This is a base-level category that should be used for all places that do not fit other categories defined for Facilities (800-8700-xxxx)."
+  },
+  {
+    "Code": "800-8700-0166",
+    "Title": "Cemetery",
+    "Description": "A designated area containing graves, tombs, or funeral urns. This category includes churchyards, burial grounds and graveyards."
+  },
+  {
+    "Code": "800-8700-0167",
+    "Title": "Crematorium",
+    "Description": "A facility where human remains are incinerated."
+  },
+  {
+    "Code": "800-8700-0198",
+    "Title": "Public Restroom-Toilets",
+    "Description": "A room or public building that contains lavatories and washing facilities."
+  },
+  {
+    "Code": "800-8700-0296",
+    "Title": "Clubhouse",
+    "Description": "A facility that provides social or recreational activities. Clubhouses are often found at apartment complexes, golf courses and other social clubs."
+  }]
+  

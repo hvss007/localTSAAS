@@ -1,0 +1,106 @@
+[{
+    "Code": "300-3000-0000",
+    "Title": "Landmark-Attraction",
+    "Description": "A designated area of special interest to tourists. This is a base-level category that should be used for all places that do not fit other categories defined for Landmark-Attraction (300-3000-xxxx)."
+  },
+  {
+    "Code": "300-3000-0023",
+    "Title": "Tourist Attraction",
+    "Description": "A landmark or attraction that is regionally known, is of special interest to tourists, and does not meet the criteria for another more specific category. Examples of tourist attractions include the Eiffel Tower or Golden Gate Bridge."
+  },
+  {
+    "Code": "300-3000-0024",
+    "Title": "Gallery",
+    "Description": "A landmark or attraction that provides works of art."
+  },
+  {
+    "Code": "300-3000-0025",
+    "Title": "Historical Monument",
+    "Description": "A landmark or attraction with important historical or cultural value. For example, Machu Picchu, the Pyramids at Giza, Stonehenge, the Colosseum, Parthenon and Taj Mahal."
+  },
+  {
+    "Code": "300-3000-0065",
+    "Title": "Winery",
+    "Description": "A landmark or attraction that makes or provides wine. Some places may also provide public tours or wine tastings."
+  },
+  {
+    "Code": "300-3000-0232",
+    "Title": "Named Intersection-Chowk",
+    "Description": "A landmark or attraction that are known by a specific name and often used while giving directions. Examples include Haight & Ashbury, Clark & Addison, or Hollywood & Vine."
+  },
+  {
+    "Code": "300-3000-0350",
+    "Title": "Brewery",
+    "Description": "An establishment where beer is produced. This includes conglomerate breweries and microbreweries."
+  },
+  {
+    "Code": "300-3000-0351",
+    "Title": "Distillery",
+    "Description": "A establishment where the distillation of alcohol takes place. Some places offer public or private tours, and products for sale."
+  },
+  {
+    "Code": "300-3100-0000",
+    "Title": "Museum",
+    "Description": "An establishment dedicated to the preservation and exhibition of artistic, historical, or scientific artifacts. This is a base-level category that should be used for all places that do not fit other categories defined for Museum (300-3100-xxxx)."
+  },
+  {
+    "Code": "300-3100-0026",
+    "Title": "Science Museum",
+    "Description": "A museum dedicated to showing artifacts and exhibits of scientific interest."
+  },
+  {
+    "Code": "300-3100-0027",
+    "Title": "Children's Museum",
+    "Description": "A museum dedicated to showing artifacts and exhibits of interest to children."
+  },
+  {
+    "Code": "300-3100-0028",
+    "Title": "History Museum",
+    "Description": "A museum dedicated to showing artifacts and exhibits of historical nature."
+  },
+  {
+    "Code": "300-3100-0029",
+    "Title": "Art Museum",
+    "Description": "A museum dedicated to showing artifacts and exhibits of art."
+  },
+  {
+    "Code": "300-3200-0000",
+    "Title": "Religious Place",
+    "Description": "An establishment of special religious significance or where religious services are held. This is a base-level category that should be used for all places that do not fit other categories defined for Religious Place (300-3200-xxxx)."
+  },
+  {
+    "Code": "300-3200-0030",
+    "Title": "Church",
+    "Description": "A religious place of worship for the Christian faith."
+  },
+  {
+    "Code": "300-3200-0031",
+    "Title": "Temple",
+    "Description": "A religious place of worship dedicated to religious or spiritual activities. Places in this category may apply to Hinduism, Buddhism, Taoism, Sikh, Jain, Ayyavazhi and other faiths."
+  },
+  {
+    "Code": "300-3200-0032",
+    "Title": "Synagogue",
+    "Description": "A religious place of worship for the Jewish faith."
+  },
+  {
+    "Code": "300-3200-0033",
+    "Title": "Ashram",
+    "Description": "A hermitage, monastic community, or other place of religious retreat for Hindus."
+  },
+  {
+    "Code": "300-3200-0034",
+    "Title": "Mosque",
+    "Description": "A religious place of worship for the Islamic faith."
+  },
+  {
+    "Code": "300-3200-0309",
+    "Title": "Other Place of Worship",
+    "Description": "A Place of Worship that does not fit into other defined Religious Place categories (300-3200-xxxx)."
+  },
+  {
+    "Code": "300-3200-0375",
+    "Title": "Gurdwara",
+    "Description": "A religious place of worship for the Sikh faith."
+  }]
+  

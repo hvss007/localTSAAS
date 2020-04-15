@@ -5,11 +5,25 @@ import {InputLabel,Select,MenuItem,TextField} from '@material-ui/core'
 import Button from '@material-ui/core/Button';
 import {primaryCategories} from './assets/categories'
 import Axios from 'axios'
+
+import eatAndDrink from './assets/eatAndDrink.json'
+import goingOut from './assets/goingOut.json'
+import accommodations from './assets/accommodations.json'
+import shopping from './assets/shopping.json'
+import facilities from './assets/facilities.json'
+import areas from './assets/areasAndBuildings.json'
+import business from './assets/businessAndServices.json'
+import nature from './assets/naturalAndGeographical.json'
+import transport from './assets/transport.json'
+import sights from './assets/sightsAndMuseums.json'
+import leisure from './assets/leisureAndOutdoor.json'
 export default class MapControls extends Component{
     constructor(props) {
         super(props);
     this.state={
-        suggestionsArray:[...primaryCategories]}
+        suggestionsArray:[...primaryCategories],
+        secArr:[]}
+    this.importsObj={eatAndDrink,goingOut,accommodations,shopping,facilities,areas,business,nature,transport,sights,leisure}
     }
     categoriesHandler=()=>{
         Axios.get("https://places.ls.hereapi.com/places/v1/categories/places?at=28.7041,77.1025&apiKey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE+")
@@ -26,29 +40,26 @@ export default class MapControls extends Component{
             console.log(e)
         })
     }
-    render(){
-        
-        
-        // const suggestionsArray=[
-        //     "restaurant",
-        //     "coffee-tea",
-        //     'snacks-fast-food',
-        //     'going-out',
-        //     'sights-museums',
-        //     "airport",
-        //     'accommodation',
-        //     'shopping',
-        //     'leisure-outdoor',
-        //     'administrative-areas-buildings',
-        //     'natural-geographical',
-        //     'petrol-station',
-        //     'atm-bank-exchange',
-        //     'toilet-rest-area',
-        //     "hospital-health-care-facility"]
-
-        const menuItems=this.state.suggestionsArray.map(element=>{
-            console.log(element)
+    newCategoriesHandler=(val)=>{
+        const req_arr=primaryCategories.filter(el=>{
+            return el.code==val 
+        })
+        //this.setState({suggestionsArray:eval(req_arr.arr)})
+        console.log()
+        console.log(this.importsObj[req_arr[0].arr])
+        const newArr=this.importsObj[req_arr[0].arr]
+        this.setState({secArr:newArr})
+    }
+    render(){   
+       const  menuItems=this.state.suggestionsArray.map(element=>{
+            // console.log(element)
+            // console.log(eatAndDrink)
             return <MenuItem value={element.code?element.code:element.id}>{element.title}</MenuItem>
+        })
+        const  menuItems1=this.state.secArr.map(element=>{
+            // console.log(element)
+            // console.log(eatAndDrink)
+            return <MenuItem value={element.Code}>{element.Title}</MenuItem>
         })
         return(
             <div className={classes.ControlsContainer}>
@@ -104,12 +115,28 @@ export default class MapControls extends Component{
                         variant="contained" color="primary" 
                         onClick={()=>{this.categoriesHandler()}} component="span">Request Available Categories</Button>
                     <div className={classes.Pois}>
-                        <InputLabel id='selectPois'> Select Point of interest from the list</InputLabel>
-                        <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelId='selectPois' id='selectp' value={this.props.pois}>
+                        <InputLabel id='selectPois'> Select Primary Category</InputLabel>
+                        <Select name='pois' 
+                            onChange={event=>{
+                                this.props.inputHandler(event)
+                                this.newCategoriesHandler(event.target.value)
+                                
+                            }} 
+                            labelId='selectPois' id='selectp' value={this.props.pois}>
                                 {menuItems}     
                         </Select>
                     </div>
-                    
+                    {this.state.secArr.length>0?
+                    <div className={classes.Pois}>
+                        <InputLabel id='selectSecPois'> Select secondary category</InputLabel>
+                        <Select name='secPois' 
+                            onChange={event=>{
+                                this.props.inputHandler(event)
+                            }} 
+                            labelId='selectSecPois' id='selectp' value={this.props.secPois}>
+                                {menuItems1}     
+                        </Select>
+                    </div>:null}
                      {/* <div className={classes.Pois}>
                     <InputLabel id='selectPois'> Click to load more data</InputLabel>
                     <Button 

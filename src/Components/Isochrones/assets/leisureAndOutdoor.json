@@ -1,0 +1,121 @@
+[{
+    "Code": "550-5510-0000",
+    "Title": "Outdoor-Recreation",
+    "Description": "Public land preserved and maintained for recreational use. This is a base-level category that should be used for all places that do not fit other categories defined for Park-Recreation (550-5510-xxxx)."
+  },
+  {
+    "Code": "550-5510-0202",
+    "Title": "Park-Recreation Area",
+    "Description": "A protected area preserved and maintained for public enjoyment including fairgrounds."
+  },
+  {
+    "Code": "550-5510-0203",
+    "Title": "Sports Field",
+    "Description": "A sporting activity area that is accessible to the public."
+  },
+  {
+    "Code": "550-5510-0204",
+    "Title": "Garden",
+    "Description": "A designated area containing plants, flowers, trees or other vegetation. This includes private and public gardens. Common examples include conservatories and botanical gardens."
+  },
+  {
+    "Code": "550-5510-0205",
+    "Title": "Beach",
+    "Description": "A coastal area preserved and maintained for public enjoyment that is adjacent to lakes, oceans, rivers and connecting bay/harbors."
+  },
+  {
+    "Code": "550-5510-0206",
+    "Title": "Recreation Center",
+    "Description": "A designated area that is open to the public for the purposes of social, educational, or cultural activities, in addition to amateur individual and team sports."
+  },
+  {
+    "Code": "550-5510-0227",
+    "Title": "Ski Lift",
+    "Description": "A designated area at a ski resort that provides access to the top of the mountain."
+  },
+  {
+    "Code": "550-5510-0242",
+    "Title": "Scenic Point",
+    "Description": "A designated area providing access to scenic viewpoints. Scenic points generally are located along scenic roadways and have regional significance."
+  },
+  {
+    "Code": "550-5510-0358",
+    "Title": "Off Road Trailhead",
+    "Description": "A designated point where an off-road vehicle trail begins. The off-road trailhead may contain restrooms, maps, signposts and informational centers."
+  },
+  {
+    "Code": "550-5510-0359",
+    "Title": "Trailhead",
+    "Description": "A designated point where a trail begins. The trailhead may contain restrooms, maps, signposts and informational centers."
+  },
+  {
+    "Code": "550-5510-0374",
+    "Title": "Off-Road Vehicle Area",
+    "Description": "A designated area or trail for driving off-road vehicles (4WD, ATVs, etc)."
+  },
+  {
+    "Code": "550-5510-0378",
+    "Title": "Campsite",
+    "Description": "A designated area where people can camp using tents or camper vans for overnight stays in the outdoors."
+  },
+  {
+    "Code": "550-5510-0379",
+    "Title": "Outdoor Service",
+    "Description": "An establishment or designated area that provides amenities specific to outdoor activities."
+  },
+  {
+    "Code": "550-5510-0380",
+    "Title": "Ranger Station",
+    "Description": "A Ranger Station is a building within a park or other outdoor recreation area which is usually public and affiliated with the park where it is located."
+  },
+  {
+    "Code": "550-5510-0387",
+    "Title": "Bicycle Service",
+    "Description": "An outdoor location that offers bicycle repairs and maintenance as a self-service."
+  },
+  {
+    "Code": "550-5520-0000",
+    "Title": "Leisure",
+    "Description": "An establishment that provides rides or other entertainment. This is a base-level category that should be used for all places that do not fit other categories defined forAmusement or Holiday Park (550-5520-xxxx)."
+  },
+  {
+    "Code": "550-5520-0207",
+    "Title": "Amusement Park",
+    "Description": "An establishment that provides a park containing rides or other entertainment. Certain amusement parks may be theme-based. For example, Disney World, Sea World or Six Flags."
+  },
+  {
+    "Code": "550-5520-0208",
+    "Title": "Zoo",
+    "Description": "An establishment where animals are exhibited in cages or large enclosures for the public."
+  },
+  {
+    "Code": "550-5520-0209",
+    "Title": "Wild Animal Park",
+    "Description": "An establishment where wild animals are exhibited in an open environment for the public."
+  },
+  {
+    "Code": "550-5520-0210",
+    "Title": "Wildlife Refuge",
+    "Description": "An establishment where animals are exhibited in their natural environment for the public."
+  },
+  {
+    "Code": "550-5520-0211",
+    "Title": "Aquarium",
+    "Description": "An establishment where fish and other aquatic life are exhibited."
+  },
+  {
+    "Code": "550-5520-0212",
+    "Title": "Ski Resort",
+    "Description": "An establishment that offers downhill skiing, snowboarding and other winter sports. Ski resorts generally include multiple ski lifts, lodging facilities and other related amenities. Ski resorts are often nationally or regionally recognized."
+  },
+  {
+    "Code": "550-5520-0228",
+    "Title": "Animal Park",
+    "Description": "An establishment where various species of animals are exhibited for the public. Examples of animal parks include zoos, aquariums, wild animal parks or wildlife refuges."
+  },
+  {
+    "Code": "550-5520-0357",
+    "Title": "Water Park",
+    "Description": "An establishment that provides access to recreational water areas. Water parks generally include water slides, splash pads, spray grounds (water playgrounds), lazy rivers or other related amenities."
+  }]
+  

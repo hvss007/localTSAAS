@@ -1,0 +1,66 @@
+[{
+    "Code": "350-3500-0233",
+    "Title": "Body of Water",
+    "Description": "A natural and geographical feature of the earth's surface that is covered with water, such as a lake, river, stream or ocean."
+  },
+  {
+    "Code": "350-3500-0234",
+    "Title": "Reservoir",
+    "Description": "A body of water, such as a man-made pond or lake, that is used for the retention and regulation of water."
+  },
+  {
+    "Code": "350-3500-0235",
+    "Title": "Waterfall",
+    "Description": "A body of water where a flow of water, such as a mountain stream or river, falls over a steep incline or vertical drop."
+  },
+  {
+    "Code": "350-3500-0300",
+    "Title": "Bay-Harbor",
+    "Description": "A coastal body of water where ships can safely anchor."
+  },
+  {
+    "Code": "350-3500-0302",
+    "Title": "River",
+    "Description": "A body of water, usually containing fresh water, that generally flows through land and empties into an ocean, lake, river or other body of water."
+  },
+  {
+    "Code": "350-3500-0303",
+    "Title": "Canal",
+    "Description": "An artificial waterway constructed for shipping, irrigation or recreational usage."
+  },
+  {
+    "Code": "350-3500-0304",
+    "Title": "Lake",
+    "Description": "A large body of water that may contain fresh water or salt water. A lake is larger than a pond and must be regionally recognized. Lakes are generally separated from the ocean by land."
+  },
+  {
+    "Code": "350-3510-0236",
+    "Title": "Mountain or Hill",
+    "Description": "A natural and geographical feature that is higher than the surrounding land. Places in this category must be regionally recognized."
+  },
+  {
+    "Code": "350-3510-0237",
+    "Title": "Mountain Passes",
+    "Description": "A route through a mountain range or over a ridge. Mountain passes must be regionally recognized."
+  },
+  {
+    "Code": "350-3510-0238",
+    "Title": "Mountain Peaks",
+    "Description": "A summit or top of a mountain. Mountain peaks must be regionally recognized."
+  },
+  {
+    "Code": "350-3520-0224",
+    "Title": "Undersea Feature",
+    "Description": "A natural or artificial feature that is below sea level. For example, coral reef barrier, ship wreck and more. Places in this category must be regionally recognized."
+  },
+  {
+    "Code": "350-3522-0239",
+    "Title": "Forest, Heath or Other Vegetation",
+    "Description": "A dense growth of trees, open uncultivated land or other large masses of vegetation."
+  },
+  {
+    "Code": "350-3550-0336",
+    "Title": "Natural and Geographical",
+    "Description": "A feature not classified as a Body of Water (350-3500), Mountain or Hill (350-3510), Undersea Feature (350-3520), or Forest, Heath or Other Vegetation (350-3522)."
+  }]
+  

@@ -1,0 +1,516 @@
+[{
+    "Code": "700-7000-0107",
+    "Title": "Bank",
+    "Description": "A business that specializes in the maintenance, lending, exchange, or issuance of money. Places in this category commonly include central banks, consumer banks and credit unions."
+  },
+  {
+    "Code": "700-7010-0108",
+    "Title": "ATM",
+    "Description": "A computer terminal that provides the ability to deposit, withdraw, or transfer funds without the assistance of a bank teller."
+  },
+  {
+    "Code": "700-7050-0109",
+    "Title": "Money Transferring Service",
+    "Description": "A business that provides or receives electronic money transfers."
+  },
+  {
+    "Code": "700-7050-0110",
+    "Title": "Check Cashing Service-Currency Exchange",
+    "Description": "A business that provides and charges for check cashing services or foreign currency exchange."
+  },
+  {
+    "Code": "700-7100-0000",
+    "Title": "Communication-Media",
+    "Description": "A business that provides communication services, with the exception of telephone communications. This is a base-level category that should be used for all places that do not fit other categories defined for Communication-Media (700-7100-xxxx) categories.| |700-7100-0134|Telephone Service|A business that provides telephone communications services.|"
+  },
+  {
+    "Code": "700-7200-0000",
+    "Title": "Commercial Services",
+    "Description": "A business that provides a service or product for use by other businesses. This is a base-level category that should be used for all places that do not fit other categories defined for Commercial Services (700-7200-xxxx)."
+  },
+  {
+    "Code": "700-7200-0252",
+    "Title": "Advertising-Marketing, PR and Market Research",
+    "Description": "A business that provides advertising, marketing, public relations, and market research services to other businesses and to the public as a whole."
+  },
+  {
+    "Code": "700-7200-0253",
+    "Title": "Catering and Other Food Services",
+    "Description": "A business that provides a single event-based food service or other food services including house-to-house bakery products, lunch wagons, and so on."
+  },
+  {
+    "Code": "700-7200-0254",
+    "Title": "Construction",
+    "Description": "A business that is engaged in the building of something, typically a large structure."
+  },
+  {
+    "Code": "700-7200-0255",
+    "Title": "Customer Care-Service Center",
+    "Description": "A business that provides customer care before, during, and after purchasing a product or service."
+  },
+  {
+    "Code": "700-7200-0256",
+    "Title": "Engineering and Scientific Services",
+    "Description": "A business that is engaged in applying physical and chemical laws and principles of engineering and science in the design, development, and utilization of machines, materials, instruments, structures, processes, and systems."
+  },
+  {
+    "Code": "700-7200-0257",
+    "Title": "Farming",
+    "Description": "A business that provides support services for lands devoted to the practice of producing and managing fibers, fuel, and food (for example, produce, grains, fish farming or livestock)."
+  },
+  {
+    "Code": "700-7200-0258",
+    "Title": "Food Production",
+    "Description": "A business that is engaged in the production of food."
+  },
+  {
+    "Code": "700-7200-0259",
+    "Title": "Human Resources and Recruiting Services",
+    "Description": "A business that provides advice and services to businesses and other organizations in the fields of human resources and recruiting."
+  },
+  {
+    "Code": "700-7200-0260",
+    "Title": "Investigation Services",
+    "Description": "A business that provides private investigation and detective services."
+  },
+  {
+    "Code": "700-7200-0261",
+    "Title": "IT and Office Equipment Services",
+    "Description": "A business that provides information technology services, as well as other office equipment. Services generally include computer service, networking, software development, training, and other related services."
+  },
+  {
+    "Code": "700-7200-0262",
+    "Title": "Landscaping Services",
+    "Description": "A business that provides landscape and garden project planning, construction and landscape management, and maintenance and gardening. Services generally include planning, design, implementation, as well as care and maintenance."
+  },
+  {
+    "Code": "700-7200-0263",
+    "Title": "Locksmiths and Security Systems Services",
+    "Description": "A business that provides a variety of services designed to prevent and detect intrusion or unauthorized access to a building or area. Services generally include lock production, installation, repair, key replacement, or security system design, implementation and monitoring."
+  },
+  {
+    "Code": "700-7200-0264",
+    "Title": "Management and Consulting Services",
+    "Description": "A business that is engaged in providing management or consulting services to other businesses."
+  },
+  {
+    "Code": "700-7200-0265",
+    "Title": "Manufacturing",
+    "Description": "A business that is engaged in making something into a finished product using raw materials, especially on a large industrial scale."
+  },
+  {
+    "Code": "700-7200-0266",
+    "Title": "Mining",
+    "Description": "A business that is engaged in the extraction of valuable minerals or other geological materials from the earth. Also included are mining support services."
+  },
+  {
+    "Code": "700-7200-0267",
+    "Title": "Modeling Agencies",
+    "Description": "A business that provides representation for fashion models, to work in the fashion industry."
+  },
+  {
+    "Code": "700-7200-0268",
+    "Title": "Motorcycle Service and Maintenance",
+    "Description": "A business that provides a service for the maintenance and repair of motorcycles."
+  },
+  {
+    "Code": "700-7200-0269",
+    "Title": "Organizations and Societies",
+    "Description": "A business that is engaged in promoting business, and non-business, organizations and the interests of their members."
+  },
+  {
+    "Code": "700-7200-0270",
+    "Title": "Entertainment and Recreation",
+    "Description": "A business that provides services to produce or organize live performances and shows in the performing arts, spectator sports, or related industries (for example, actors and actresses, singers, dancers, musical groups, artists, athletes, and freelance entertainers)."
+  },
+  {
+    "Code": "700-7200-0271",
+    "Title": "Finance and Insurance",
+    "Description": "A business that provides trust, fiduciary, and custody services to others, public finance and establishments acting as agents (for example, brokers) in selling annuities and insurance policies."
+  },
+  {
+    "Code": "700-7200-0272",
+    "Title": "Healthcare and Healthcare Support Services",
+    "Description": "A business that provides healthcare and healthcare support services not covered by other Hospital or Health Care Facility categories (for example, dietician, speech therapist)."
+  },
+  {
+    "Code": "700-7200-0274",
+    "Title": "Rental and Leasing",
+    "Description": "A business that provides rental and leasing services not covered by other categories (for example, boat rentals, medical equipment rental, and so on)."
+  },
+  {
+    "Code": "700-7200-0275",
+    "Title": "Repair and Maintenance Services",
+    "Description": "A business that provides repair and maintenance of commercial and industrial machinery/equipment in addition to goods not covered by other categories. This excludes businesses that provide repair services for commercial goods."
+  },
+  {
+    "Code": "700-7200-0276",
+    "Title": "Printing and Publishing",
+    "Description": "A business that provides the printing and publishing of products, such as books, journals, or software."
+  },
+  {
+    "Code": "700-7200-0277",
+    "Title": "Specialty Trade Contractors",
+    "Description": "A business or person limited and specialized to a specific segment or trade for new contacts, additions, alterations, maintenance, or repairs."
+  },
+  {
+    "Code": "700-7200-0278",
+    "Title": "Towing Service",
+    "Description": "A business that provides towing light or heavy motor vehicles, including boats, both local and long distance. These establishments may provide incidental services, such as storage and emergency road repair services."
+  },
+  {
+    "Code": "700-7200-0279",
+    "Title": "Translation and Interpretation Services",
+    "Description": "A business that translates written material and speech from one language to another, and could also provide sign language services."
+  },
+  {
+    "Code": "700-7200-0324",
+    "Title": "Apartment Rental-Flat Rental",
+    "Description": "A business that specializes in the marketing, brokering, and media outlets for the rental of apartments and flats by the public."
+  },
+  {
+    "Code": "700-7200-0328",
+    "Title": "B2B Sales and Services",
+    "Description": "A business that sells products and services to other businesses. These types of places generally include manufacturers and wholesalers."
+  },
+  {
+    "Code": "700-7200-0329",
+    "Title": "B2B Restaurant Services",
+    "Description": "A business that specializes in sales and services to restaurants and the restaurant industry, such as wholesale kitchen appliance stores and restaurant food suppliers."
+  },
+  {
+    "Code": "700-7200-0330",
+    "Title": "Aviation",
+    "Description": "A business that repairs, maintains or sells airplanes, and related parts and accessories."
+  },
+  {
+    "Code": "700-7200-0342",
+    "Title": "Interior and Exterior Design",
+    "Description": "A business that provides interior and exterior decoration services."
+  },
+  {
+    "Code": "700-7200-0344",
+    "Title": "Property Management",
+    "Description": "A business that operates and manages real property."
+  },
+  {
+    "Code": "700-7200-0345",
+    "Title": "Financial Investment Firm",
+    "Description": "A business that invests capital for the purposes of appreciation, dividends or interest earnings."
+  },
+  {
+    "Code": "700-7250-0136",
+    "Title": "Business Facility",
+    "Description": "A business establishment that employs people in and around the city in which it is located."
+  },
+  {
+    "Code": "700-7300-0111",
+    "Title": "Police Station",
+    "Description": "The office or headquarters of a local police force."
+  },
+  {
+    "Code": "700-7300-0112",
+    "Title": "Police Services-Security",
+    "Description": "An organization that provides security services, such event security, campus security, mall security or campus police."
+  },
+  {
+    "Code": "700-7300-0113",
+    "Title": "Fire Department",
+    "Description": "A local or municipal authority in charge of preventing and fighting fires. Staff may include full-time employees or volunteers."
+  },
+  {
+    "Code": "700-7300-0280",
+    "Title": "Ambulance Services",
+    "Description": "A licensed service provider of ground or air transportation for injured or sick people. Organizations that provide these services use specially designed and equipped vehicles and equipment, as well as trained personnel who are licensed or certified as required by law."
+  },
+  {
+    "Code": "700-7400-0000",
+    "Title": "Consumer Services",
+    "Description": "An organization that provides consumer services for a variety of products used by the public. This is a base-level category that should be used for all places that do not fit other categories defined for Consumer Services (700-7400-xxxx)."
+  },
+  {
+    "Code": "700-7400-0133",
+    "Title": "Travel Agent-Ticketing",
+    "Description": "A business that sells travel arrangements and itineraries for travelers. Services may include air accommodations and ground transportation. This category includes travel advisors, travel insurance brokers, travel agents, and more."
+  },
+  {
+    "Code": "700-7400-0137",
+    "Title": "Dry Cleaning and Laundry",
+    "Description": "A business that provides professional dry cleaning or laundry services."
+  },
+  {
+    "Code": "700-7400-0138",
+    "Title": "Attorney",
+    "Description": "A business that provides legal representation or counsel with respect to legal matters."
+  },
+  {
+    "Code": "700-7400-0140",
+    "Title": "Boating",
+    "Description": "A business that sells boating and water sport equipment. Some establishments may also provide other services including repair, maintenance or rental."
+  },
+  {
+    "Code": "700-7400-0141",
+    "Title": "Business Service",
+    "Description": "A retail or business establishment that provides professional services to other businesses, such as printing, photocopying, graphic design and advertising."
+  },
+  {
+    "Code": "700-7400-0142",
+    "Title": "Funeral Director",
+    "Description": "A business that provides burial or cremation services, and also assists in funeral rites. Funeral directors might also be known as morticians or undertakers."
+  },
+  {
+    "Code": "700-7400-0143",
+    "Title": "Mover",
+    "Description": "A business that provides services for transporting household or office goods from one location to another."
+  },
+  {
+    "Code": "700-7400-0144",
+    "Title": "Photography",
+    "Description": "A business that provides professional photography services, the development of photos, or photographic supplies."
+  },
+  {
+    "Code": "700-7400-0145",
+    "Title": "Real Estate Services",
+    "Description": "A business or person licensed to buy, sell, or broker real estate loans or services, and act as an intermediary on behalf of other individuals or businesses during property transactions (e.g., real estate agent, broker, realtor, buyer's agent, etc.)."
+  },
+  {
+    "Code": "700-7400-0146",
+    "Title": "Repair Service",
+    "Description": "A business that provides repair service for various types of consumer goods. Most repair service businesses specialize in specific types of repair, such as electronics or shoes. This category excludes auto service."
+  },
+  {
+    "Code": "700-7400-0147",
+    "Title": "Social Service",
+    "Description": "A business that provides services to assist disadvantaged people and advance human welfare. Social services includes both private and government funded institutions."
+  },
+  {
+    "Code": "700-7400-0148",
+    "Title": "Storage",
+    "Description": "A business that provides long-term or short-term storage services."
+  },
+  {
+    "Code": "700-7400-0149",
+    "Title": "Tailor and Alteration",
+    "Description": "A business that makes, mends, or alters garments."
+  },
+  {
+    "Code": "700-7400-0150",
+    "Title": "Tax Service",
+    "Description": "A business that provides tax preparation and filing services."
+  },
+  {
+    "Code": "700-7400-0151",
+    "Title": "Utilities",
+    "Description": "A business that provides public utilities, such as water, electric or other service. Places may be privately or government funded."
+  },
+  {
+    "Code": "700-7400-0152",
+    "Title": "Waste and Sanitary",
+    "Description": "A business that provides the transfer, disposal, holding, cleaning, or treatment of solid waste material. Places may be privately or government funded."
+  },
+  {
+    "Code": "700-7400-0281",
+    "Title": "Bicycle Service and Maintenance",
+    "Description": "A business that provides bicycle repair and maintenance services."
+  },
+  {
+    "Code": "700-7400-0282",
+    "Title": "Bill Payment Service",
+    "Description": "A business that provides bill payment services."
+  },
+  {
+    "Code": "700-7400-0283",
+    "Title": "Body Piercing and Tattoos",
+    "Description": "A business that provides body piercing or tattoo services."
+  },
+  {
+    "Code": "700-7400-0284",
+    "Title": "Wedding Services and Bridal Studio",
+    "Description": "A business that sells or rents bridal gowns or provides bridal services. Some businesses may sell wedding products or other related services."
+  },
+  {
+    "Code": "700-7400-0285",
+    "Title": "Internet Cafe",
+    "Description": "A business that provides public access to the Internet. Access fees may apply. Some businesses may provide computers, or food and beverage service."
+  },
+  {
+    "Code": "700-7400-0286",
+    "Title": "Kindergarten and Childcare",
+    "Description": "A business that provides day care of infants or children. Some businesses may offer educational programs. Other childcare businesses may include nanny, au pair, and other baby sitting services."
+  },
+  {
+    "Code": "700-7400-0287",
+    "Title": "Maid Services",
+    "Description": "A business that provides cleaning services, including live-in domestic help and periodic maid service."
+  },
+  {
+    "Code": "700-7400-0288",
+    "Title": "Marriage and Match Making Services",
+    "Description": "A business that provides dating or relationship services for individuals seeking romantic partnerships or friendships."
+  },
+  {
+    "Code": "700-7400-0289",
+    "Title": "Public Administration",
+    "Description": "A business that provides public administration services not covered by other specialized categories, such as Police Service and Fire Department."
+  },
+  {
+    "Code": "700-7400-0292",
+    "Title": "Wellness Center and Services",
+    "Description": "A business that provides a variety of services for the purpose of improving health, beauty and relaxation. Typical services might include personal care treatments such as acupuncture, massages, or Chinese medicine."
+  },
+  {
+    "Code": "700-7400-0293",
+    "Title": "Pet Care",
+    "Description": "A business that provides specialized pet care services, such as boarding, grooming, sitting, walking, and training. This category excludes veterinary services."
+  },
+  {
+    "Code": "700-7400-0327",
+    "Title": "Legal Services",
+    "Description": "A business that provides specialized legal services, such as notary public, divorce assistance, mediation services, and paralegal services."
+  },
+  {
+    "Code": "700-7400-0343",
+    "Title": "Tanning Salon",
+    "Description": "A business that provides cosmetic tanning services."
+  },
+  {
+    "Code": "700-7400-0352",
+    "Title": "Recycling Center",
+    "Description": "A business that accepts, treats and processes waste material for reuse."
+  },
+  {
+    "Code": "700-7400-0365",
+    "Title": "Electrical",
+    "Description": "A repair service where a consumer can take electrical items for repair."
+  },
+  {
+    "Code": "700-7400-0366",
+    "Title": "Plumbing",
+    "Description": "A repair service where a consumer can take plumbing items in for repair, or book an appointment with a plumber to visit the premises."
+  },
+  {
+    "Code": "700-7450-0114",
+    "Title": "Post Office",
+    "Description": "An office or station that receives, sorts, dispatches and delivers mail to a specific area or region. This includes local branch or national offices. Some locations may also sell postage and provide other delivery-related services."
+  },
+  {
+    "Code": "700-7460-0115",
+    "Title": "Tourist Information",
+    "Description": "A business that provides a variety of information for visiting tourists, such as event schedules, lodging/accommodations, restaurants, attractions and more. Tourist information may also include chambers-of-commerce, as well as convention and visitor bureaus."
+  },
+  {
+    "Code": "700-7600-0000",
+    "Title": "Fueling Station",
+    "Description": "A business that sells fuel for vehicles. This is a base-level category that should be used for all places that do not fit other categories defined for Fueling Station (700-7600-xxxx)."
+  },
+  {
+    "Code": "700-7600-0116",
+    "Title": "Petrol-Gasoline Station",
+    "Description": "A business that sells fuel, oil, and other motoring supplies."
+  },
+  {
+    "Code": "700-7600-0322",
+    "Title": "EV Charging Station",
+    "Description": "A charging station that provides recharging services for electric vehicles. Fees may apply."
+  },
+  {
+    "Code": "700-7600-0444",
+    "Title": "Hydrogen Fuel Station",
+    "Description": "A fuel station which specifically provides Hydrogen (H2) fuel for vehicles."
+  },
+  {
+    "Code": "700-7800-0118",
+    "Title": "Automobile Dealership-New Cars",
+    "Description": "A business that sells new automobiles."
+  },
+  {
+    "Code": "700-7800-0119",
+    "Title": "Automobile Dealership-Used Cars",
+    "Description": "A business that sells previously-owned automobiles."
+  },
+  {
+    "Code": "700-7800-0120",
+    "Title": "Motorcycle Dealership",
+    "Description": "A business that sells motorcycles."
+  },
+  {
+    "Code": "700-7850-0000",
+    "Title": "Car Repair-Service",
+    "Description": "A business that provides automotive repair services. This is a base-level category that should be used for all places that do not fit other categories defined for Car Repair-Service (700-7850-xxxx)."
+  },
+  {
+    "Code": "700-7850-0121",
+    "Title": "Car Wash-Detailing",
+    "Description": "A business that provides automobile cleaning services. Some businesses may provide exterior detailing, interior detailing, or both."
+  },
+  {
+    "Code": "700-7850-0122",
+    "Title": "Car Repair",
+    "Description": "A business that provides automotive repair services, usually as part of a major chain."
+  },
+  {
+    "Code": "700-7850-0123",
+    "Title": "Auto Parts",
+    "Description": "A business that sells parts and accessories for automobiles. Auto dealerships that sell auto parts as a sub-service are not applicable."
+  },
+  {
+    "Code": "700-7850-0124",
+    "Title": "Emission Testing",
+    "Description": "A business that provides emission testing services."
+  },
+  {
+    "Code": "700-7850-0125",
+    "Title": "Tire Repair",
+    "Description": "A business that sells automobile tires and related services."
+  },
+  {
+    "Code": "700-7850-0126",
+    "Title": "Truck Repair",
+    "Description": "A business that provides repair services for trucks and tractor trailers. Usually as part of a major chain."
+  },
+  {
+    "Code": "700-7850-0127",
+    "Title": "Van Repair",
+    "Description": "A business that provides repair services for vans. Usually as part of a major chain."
+  },
+  {
+    "Code": "700-7850-0128",
+    "Title": "Road Assistance",
+    "Description": "A business that provides roadside assistance to motorists that have suffered mechanical failure. Some businesses also service bicyclists."
+  },
+  {
+    "Code": "700-7850-0129",
+    "Title": "Automobile Club",
+    "Description": "A business that provides emergency road services, travel-related services, and other membership services, such as travel insurance, lodging, car repair, and car rental."
+  },
+  {
+    "Code": "700-7851-0117",
+    "Title": "Rental Car Agency",
+    "Description": "A business that rents or leases automobiles."
+  },
+  {
+    "Code": "700-7900-0000",
+    "Title": "Truck-Semi Dealer-Services",
+    "Description": "A business that sells or services trucks and tractor trailers. This is a base-level category that should be used for all places that do not fit other categories defined for Truck-Semi Dealers-Service (700-7900-xxxx)."
+  },
+  {
+    "Code": "700-7900-0130",
+    "Title": "Truck Dealership",
+    "Description": "A trucking dealership that sells new heavy trucks/lorries."
+  },
+  {
+    "Code": "700-7900-0131",
+    "Title": "Truck Parking",
+    "Description": "A designated area for parking heavy trucks/lorries. Some areas may also provide other services, such as restaurants, restrooms, or warehouse stores. The Place record should reflect the name of the associated facility."
+  },
+  {
+    "Code": "700-7900-0132",
+    "Title": "Truck Stop-Plaza",
+    "Description": "A business that provides fuel for heavy trucks. Some areas may also provide other services, such as restaurants, service facilities, sleeping and shower facilities."
+  },
+  {
+    "Code": "700-7900-0323",
+    "Title": "Truck Wash",
+    "Description": "A business that provides cleaning services for trucks, semis and tractor trailers. Some businesses may offer external detailing, internal detailing or both."
+  }]
+  

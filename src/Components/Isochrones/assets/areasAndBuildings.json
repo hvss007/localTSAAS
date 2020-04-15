@@ -1,0 +1,51 @@
+[{
+    "Code": "800-8700-0298",
+    "Title": "Registration Office",
+    "Description": "A facility engaged in various types of registrations, such as vehicles, houses and companies."
+  },
+  {
+    "Code": "900-9200-0000",
+    "Title": "Outdoor Area-Complex",
+    "Description": "An establishment or area located outdoors. This is a base-level category that should be used for all places that do not fit other categories defined for Outdoor Area-Complex (900-9200-xxxx)."
+  },
+  {
+    "Code": "900-9200-0218",
+    "Title": "Industrial Zone",
+    "Description": "A non-residential area that is dedicated to manufacturing, industrial activities or storage facilities. This also includes business parks containing service industries."
+  },
+  {
+    "Code": "900-9200-0219",
+    "Title": "Marina",
+    "Description": "A designated area that offers docking and other services for small boats, yachts, or pleasure craft."
+  },
+  {
+    "Code": "900-9200-0220",
+    "Title": "RV Parks",
+    "Description": "A designated area that provides camping facilities for recreational vehicles."
+  },
+  {
+    "Code": "900-9200-0299",
+    "Title": "Collective Community",
+    "Description": "A facility that provides an area for members to hold a common social, political, religious or spiritual events. For example, kibbutz, dojos, moshavs, agricultural communes, eco villages, art communities, convents, monasteries and housing cooperatives."
+  },
+  {
+    "Code": "900-9200-0301",
+    "Title": "Island",
+    "Description": "A natural and geographical feature of land that is entirely separated by water from the mainland."
+  },
+  {
+    "Code": "900-9200-0386",
+    "Title": "Meeting Point",
+    "Description": "A designated place where people can gather or must report to during an emergency (for example, tsunami, earthquake, fire, and so on)."
+  },
+  {
+    "Code": "900-9300-0000",
+    "Title": "Building",
+    "Description": "This is a plot of land that has a street number assigned to it. This is a base-level category that should be used for all places that do not fit other categories defined for Building (900-9300-xxxx)."
+  },
+  {
+    "Code": "900-9300-0221",
+    "Title": "Residential Area-Building",
+    "Description": "A building designated specifically for residential use."
+  }
+]

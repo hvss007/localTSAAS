@@ -1,0 +1,51 @@
+[{
+    "Code": "500-5000-0000",
+    "Title": "Hotel or Motel",
+    "Description": "A business that provides lodging or temporary living quarters. This is a base-level category that should be used for all places that do not fit other categories defined for Hotel-Motel (500-5000-xxxx)."
+  },
+  {
+    "Code": "500-5000-0053",
+    "Title": "Hotel",
+    "Description": "An establishment that provides short-term or extended stay lodging. Places in this category may also provide other services and amenities, such as meals, entertainment, dry cleaning and various other personal services."
+  },
+  {
+    "Code": "500-5000-0054",
+    "Title": "Motel",
+    "Description": "An establishment that provides lodging to the public. These places usually have rooms that are accessible from a parking area."
+  },
+  {
+    "Code": "500-5100-0000",
+    "Title": "Lodging",
+    "Description": "A business that provides lodging to the public generally without room service. This is a base-level category that should be used for all places that do not fit other categories defined for Lodging (500-5100-xxxx)."
+  },
+  {
+    "Code": "500-5100-0055",
+    "Title": "Hostel",
+    "Description": "An establishment that provides an inexpensive lodging place for travelers. Lodging arrangements are usually in dormitory settings where a guest can rent a bed or bunk bed. Guests often share amenities with other guests."
+  },
+  {
+    "Code": "500-5100-0056",
+    "Title": "Campground",
+    "Description": "An establishment that provides a designated area for short-term camping. These places generally serve tent, trailer or recreation vehicle (RV) camping."
+  },
+  {
+    "Code": "500-5100-0057",
+    "Title": "Guest House",
+    "Description": "An establishment that provides lodging in an adjacent building next to the main structure. Guest houses are generally a small house or cottage."
+  },
+  {
+    "Code": "500-5100-0058",
+    "Title": "Bed and Breakfast",
+    "Description": "An establishment that provides lodging and breakfast at an inclusive price. Bed and Breakfasts are typically private homes that contain a limited number of bedrooms."
+  },
+  {
+    "Code": "500-5100-0059",
+    "Title": "Holiday Park",
+    "Description": "An establishment that provides rental cottages or rooms. Resorts generally provide various recreational facilities, such as bowling, restaurants, swimming or mini golf."
+  },
+  {
+    "Code": "500-5100-0060",
+    "Title": "Short-Time Motel",
+    "Description": "An establishment that provides lodging designed for romantic encounters, or short rests, but usually not requiring an overnight stay."
+  }]
+  

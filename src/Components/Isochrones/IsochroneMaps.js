@@ -14,7 +14,7 @@ class MAps extends Component {
         lat:"28.7041",
         lng:"77.1025",
         //timeBins:"",
-        value:null,
+        value:null,secPois:'',
         timeBins:"",
       }
     this.onChange = this.onChange.bind(this);
@@ -71,9 +71,10 @@ onChange(evt) {
     return (
       
       <div style={{width:'100%',display:"flex"}}>
-        <MapControls fetchHandler={this.fetchHandler} pois={this.state.pois} mode={this.state.modes} modePreference={this.state.modePreference} timeBins={this.state.timeBins} modeState={this.state.modeState} cityEnteredHandler={this.cityEnteredHandler} inputHandler={this.inputHandler}></MapControls>
+        <MapControls fetchHandler={this.fetchHandler} pois={this.state.pois} secPois={this.state.secPois} mode={this.state.modes} modePreference={this.state.modePreference} timeBins={this.state.timeBins} modeState={this.state.modeState} cityEnteredHandler={this.cityEnteredHandler} inputHandler={this.inputHandler}></MapControls>
         <HereMaps
           pois={this.state.pois}
+          secPois={this.state.secPois}
           app_id={process.env.REACT_APP_PLACES_API_ID}
           app_code={process.env.REACT_APP_PLACES_APP_CODE}
           lat={this.state.lat}

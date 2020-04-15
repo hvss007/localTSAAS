@@ -1,0 +1,91 @@
+[{
+    "Code": "200-2000-0000",
+    "Title": "Nightlife-Entertainment",
+    "Description": "An establishment that provides evening entertainment and usually serves alcoholic beverages. This is a base-level category that should be used for all places that do not fit other categories defined forNightlife-Entertainment (200-2000-xxxx)."
+  },
+  {
+    "Code": "200-2000-0011",
+    "Title": "Bar or Pub",
+    "Description": "An establishment that sells alcoholic beverages, such as a public house, sports bar, wine bar or grill. Some places may also serve food or light meals."
+  },
+  {
+    "Code": "200-2000-0012",
+    "Title": "Night Club",
+    "Description": "An establishment that provides evening entertainment, such as a dance club or lounge. Most places are generally open late."
+  },
+  {
+    "Code": "200-2000-0013",
+    "Title": "Dancing",
+    "Description": "An establishment that provides dancing facilities, such as a dance hall, dance studio or other locations containing dance floors."
+  },
+  {
+    "Code": "200-2000-0014",
+    "Title": "Karaoke",
+    "Description": "An establishment that provides karaoke entertainment."
+  },
+  {
+    "Code": "200-2000-0015",
+    "Title": "Live Entertainment-Music",
+    "Description": "An establishment that provides live entertainment acts, such as a comedy club, piano bar or music hall."
+  },
+  {
+    "Code": "200-2000-0016",
+    "Title": "Billiards-Pool Hall",
+    "Description": "An establishment that provides billiards or pool tables."
+  },
+  {
+    "Code": "200-2000-0017",
+    "Title": "Video Arcade-Game Room",
+    "Description": "An establishment that provides video games, pinball machines and other games."
+  },
+  {
+    "Code": "200-2000-0018",
+    "Title": "Jazz Club",
+    "Description": "An establishment that offers live jazz music in a club setting."
+  },
+  {
+    "Code": "200-2000-0019",
+    "Title": "Beer Garden",
+    "Description": "An outdoor area (in most cases) that serves primarily beer, but also provides food and entertainment. They may be attached adjacent to pubs and are usually seasonal."
+  },
+  {
+    "Code": "200-2000-0306",
+    "Title": "Adult Entertainment",
+    "Description": "An establishment that provides live adult entertainment or other types of adult entertainment."
+  },
+  {
+    "Code": "200-2000-0368",
+    "Title": "Cocktail Lounge",
+    "Description": "An establishment where cocktails are served."
+  },
+  {
+    "Code": "200-2100-0019",
+    "Title": "Cinema",
+    "Description": "An establishment that shows movies through screen projection, such as a movie theatre, movie theatre complex or outdoor movie theatre."
+  },
+  {
+    "Code": "200-2200-0000",
+    "Title": "Theatre, Music and Culture",
+    "Description": "An establishment where various types of performing arts are presented. This is a base-level category that should be used for all places that do not fit other categories defined for Theatre, Music and Culture (200-2200-xxxx)."
+  },
+  {
+    "Code": "200-2200-0020",
+    "Title": "Performing Arts",
+    "Description": "An establishment where various types of performing arts are presented."
+  },
+  {
+    "Code": "200-2300-0000",
+    "Title": "Gambling-Lottery-Betting",
+    "Description": "An establishment that provides gambling entertainment. This is a base-level category that should be used for all places that do not fit other categories defined for Gambling-Lottery-Betting (200-2300-xxxx)."
+  },
+  {
+    "Code": "200-2300-0021",
+    "Title": "Casino",
+    "Description": "An establishment that provides a variety of legal gaming services, such as a casino, riverboat casino or card room."
+  },
+  {
+    "Code": "200-2300-0022",
+    "Title": "Lottery Booth",
+    "Description": "An establishment where lottery tickets are purchased."
+  }]
+  
