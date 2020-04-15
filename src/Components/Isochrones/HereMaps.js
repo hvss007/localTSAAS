@@ -84,9 +84,10 @@ class  HereMaps extends Component {
         this.map.setCenter( centerCopy,true)
         this.map.setZoom(this.state.zoom,true)
         //this.map.removeObject(this.state.placeMarker)  
-        this.setState({center:centerCopy},()=>{
+        this.setState({center:centerCopy,markerX:centerCopy.lat,markerY:centerCopy.lng},()=>{
           this.addMarkersToMap(this.map,this.behavior)
         })
+        
       }
       if(this.props.timeBins!==nextProps.timeBins){
           var configArrayCopy=[];
