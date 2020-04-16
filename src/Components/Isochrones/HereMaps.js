@@ -49,8 +49,10 @@ class  HereMaps extends Component {
             style: props.style,
             isolinePolygonArray:[],
             transparency:50,
-            query:''
+            query:'',
+            boundingBox:null
         }
+
         //this.addMarkersToMap=this.addMarkersToMap.bind(this)
     }
 
@@ -76,6 +78,11 @@ class  HereMaps extends Component {
         // var placeMarker=new window.H.map.Marker(...bboxCont.getBottomRight)
         // placeMarker.draggable=true;
         // this.map.addObject(placeMarker);
+        var bbox=this.map.getViewBounds()
+        
+        // var bbox=this.platform.getBoundingBox()
+         this.setState({boundingBox:bbox})
+        // this.calculateRoute()
     }
 
     componentWillReceiveProps(nextProps){
@@ -168,6 +175,10 @@ class  HereMaps extends Component {
           var crd=map.screenToGeo(pointer.viewportX, pointer.viewportY)
           this.setState({markerX:crd.lat,markerY:crd.lng})  
         }
+        var bbox=this.map.getViewBounds()
+        
+        // var bbox=this.platform.getBoundingBox()
+         this.setState({boundingBox:bbox})
       }, false);
     }
 
@@ -196,7 +207,7 @@ class  HereMaps extends Component {
       var bbox=''+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+','+bboxCont.getTopLeft().lat+''
       //axios.get('https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+bbox+'&cat='+pois)
       
-      axios.get(url+pois+"&limit="+this.props.noOfPoints,)
+      axios.get(url+pois+"&limit="+(this.props.noOfPoints?this.props.noOfPoints:50),)
       .then(Response=>{
         // if(Response.data.next||Response.data.results.next){
         //   console.log("run1")
@@ -346,7 +357,26 @@ class  HereMaps extends Component {
       rgb.push(1);
       var rgbaStr='rgba('+rgb.join()+')'
       return rgbaStr
-    }    
+      }
+
+      calculateRoute=()=>{
+      //   var router = this.platform.getRoutingService(),
+      //   routeRequestParams = {
+      //   mode: 'fastest;car',
+      //   representation: 'display',
+      //   routeattributes: 'waypoints,summary,shape,legs',
+      //   maneuverattributes: 'direction,action',
+      //   waypoint0: '52.5160,13.3779', // Brandenburg Gate
+      //   waypoint1: '52.5206,13.3862'  // Friedrichstraße Railway Station
+      // };
+
+
+      // router.calculateRoute(
+      //   routeRequestParams,
+      //   onSuccess,
+      //   onError
+      // );
+      }
     render() {
         const legend=this.state.configArray.map(el=>{
             return(
@@ -356,6 +386,7 @@ class  HereMaps extends Component {
                 </div>
             )
         })
+        const bbox=this.state.boundingBox
         return (
             <div className={classes.MapContainer}>
             <div id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height: '100%', background: 'black'}} />
@@ -371,18 +402,28 @@ class  HereMaps extends Component {
                 </div>
                 <div className={classes.MapLeftControls}>
                 <div className={classes.MapLeftControlsIn}>
-                {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
-                    <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
-                    <div className={classes.ButtonsContainer }>
-                        <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Current Map</Button>
-                        <Button onClick={this.fetchOnDiffMap}style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
-                      </div>     */}
-                        <Typography id="disabled-slider" gutterBottom>
-                            Transparency
-                        </Typography>
-                        {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
-                        <Slider defaultValue={50}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} />
-                    </div>
+                        {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
+                        <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
+                        <div className={classes.ButtonsContainer }>
+                          <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Current Map</Button>
+                          <Button onClick={this.fetchOnDiffMap}style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
+                        </div>     */}
+                          <Typography id="disabled-slider" gutterBottom>
+                              Transparency
+                          </Typography>
+                          {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
+                          <Slider defaultValue={50}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} />
+                      </div>
+                      <div className={classes.BoundingBox}>
+                            <p>{bbox?bbox.getTop().toFixed(5):null}</p>
+                          <div className={classes.BoundingBoxIn}>
+                            <p>{bbox?bbox.getLeft().toFixed(5):null}</p>  
+                            <p>{bbox?bbox.getRight().toFixed(5):null}</p>
+                          </div>
+                          
+                          <p>{bbox?bbox.getBottom().toFixed(5):null}</p>
+                      </div>  
+                      
                   </div> 
             {/* <input type="text" value={this.props.value} onChange={()=>{
                 let text=this.props.inputChange;

@@ -29,8 +29,9 @@
     background: white;
     position: absolute;
     left: 0;
-    bottom: 10vh;
+    bottom: 4vh;
 }
+
 .ButtonsContainer{
     margin-top:12px;
     margin-bottom:12px;
@@ -42,6 +43,25 @@
     display: flex;
     justify-content: center;
     width: 100%;
+}
+.BoundingBox{
+    width:100%;
+    background-color: rgba(200,200,200,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 1em;
+}
+.BoundingBoxIn{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.BoundingBox>p{
+    margin:0
 }
 @media(max-width:780px){
     .MapContainer{
