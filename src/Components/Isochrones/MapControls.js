@@ -42,11 +42,9 @@ export default class MapControls extends Component{
     }
     newCategoriesHandler=(val)=>{
         const req_arr=primaryCategories.filter(el=>{
-            return el.code==val 
+            return el.code===val 
         })
         //this.setState({suggestionsArray:eval(req_arr.arr)})
-        console.log()
-        console.log(this.importsObj[req_arr[0].arr])
         const newArr=this.importsObj[req_arr[0].arr]
         this.setState({secArr:newArr})
     }
@@ -54,12 +52,12 @@ export default class MapControls extends Component{
        const  menuItems=this.state.suggestionsArray.map(element=>{
             // console.log(element)
             // console.log(eatAndDrink)
-            return <MenuItem value={element.code?element.code:element.id}>{element.title}</MenuItem>
+            return <MenuItem key={element.title} value={element.code?element.code:element.id}>{element.title}</MenuItem>
         })
         const  menuItems1=this.state.secArr.map(element=>{
             // console.log(element)
             // console.log(eatAndDrink)
-            return <MenuItem value={element.Code}>{element.Title}</MenuItem>
+            return <MenuItem key={element.Title} value={element.Code}>{element.Title}</MenuItem>
         })
         return(
             <div className={classes.ControlsContainer}>
@@ -74,13 +72,13 @@ export default class MapControls extends Component{
                     </div>
                     <div className={classes.Pois}>
                         <InputLabel id='selectMode'> Select Travel Mode</InputLabel>
-                        <Select name='modes' onChange={event=>this.props.inputHandler(event)} labelId='selectMode' id='selectm' value={this.props.mode}>
+                        <Select name='modes' onChange={event=>this.props.inputHandler(event)} labelid='selectMode' id='selectm' value={this.props.mode}>
                                 {/* {menuItems} */}
                                 <MenuItem value="pedestrian">Walk</MenuItem>
                                 <MenuItem value="car">Car</MenuItem>
-                                {/* <MenuItem value="publicTransport">PT</MenuItem> */}
-                                {/* <MenuItem value="carHOV">Car HOV</MenuItem> */}
-                                {/* <MenuItem value="truck">Truck</MenuItem> */}
+                                <MenuItem value="publicTransport">PT</MenuItem>
+                                <MenuItem value="carHOV">Car HOV</MenuItem>
+                                <MenuItem value="truck">Truck</MenuItem>
                                 {/* <MenuItem value="bicycle">Bicycle</MenuItem> */}
                                 {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                         </Select>
@@ -88,7 +86,7 @@ export default class MapControls extends Component{
                     
                     <div className={classes.Pois}>
                         <InputLabel id='selectModeTransition'> Select Route Preference</InputLabel>
-                        <Select name='modePreference' onChange={event=>this.props.inputHandler(event)} labelId='selectModeTransition' id='selectmr'  value={this.props.modePreference}>
+                        <Select name='modePreference' onChange={event=>this.props.inputHandler(event)} labelid='selectModeTransition' id='selectmr'  value={this.props.modePreference}>
                                 {/* {menuItems} */}
                                 <MenuItem value="fastest">Fastest</MenuItem>
                                 <MenuItem value="shortest">Shortest</MenuItem> 
@@ -96,7 +94,7 @@ export default class MapControls extends Component{
                     </div>
                     <div className={classes.Pois}>
                         <InputLabel id='selectTrafficState'> Select Traffic conditions on Roads</InputLabel>
-                        <Select name='modeState' onChange={event=>this.props.inputHandler(event)} labelId='selectTrafficState' id='selectmr' value={this.props.modeState}>
+                        <Select name='modeState' onChange={event=>this.props.inputHandler(event)} labelid='selectTrafficState' id='selectmr' value={this.props.modeState}>
                                 {/* {menuItems} */}
                                 <MenuItem value="enabled">Enabled</MenuItem>
                                 <MenuItem value="disabled">Disabled</MenuItem>
@@ -111,10 +109,10 @@ export default class MapControls extends Component{
                     </div> 
                     <div className={classes.Pois}>
                         <InputLabel id='enterTimeBins'> Enter 'Comma-Seperated' Time Bins Values (min)</InputLabel>
-                        {/* <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelId='selectPois' id='selectp' value={this.props.pois}>
+                        {/* <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelid='selectPois' id='selectp' value={this.props.pois}>
                                 {menuItems}     
                         </Select> */}
-                        <TextField name='timeBins' id=""  onChange={event=>this.props.inputHandler(event)} labelId="enterTimeBins" id='selecttb' value={this.props.timeBins}/>
+                        <TextField name='timeBins'  onChange={event=>this.props.inputHandler(event)} labelid="enterTimeBins" id='selecttb' value={this.props.timeBins}/>
                     </div>
                     {/* <Button 
                         style={{fontSize:'12px',backgroundColor:'#449DD1'}}
@@ -128,7 +126,7 @@ export default class MapControls extends Component{
                                 this.newCategoriesHandler(event.target.value)
                                 
                             }} 
-                            labelId='selectPois' id='selectp' value={this.props.pois}>
+                            labelid='selectPois' id='selectp' value={this.props.pois}>
                                 {menuItems}     
                         </Select>
                     </div>
@@ -139,11 +137,17 @@ export default class MapControls extends Component{
                             onChange={event=>{
                                 this.props.inputHandler(event)
                             }} 
-                            labelId='selectSecPois' id='selectp' value={this.props.secPois}>
+                            labelid='selectSecPois' id='selectp' value={this.props.secPois}>
                                 {menuItems1}     
                         </Select>
                     </div>:null}
-                          
+                    <div className={classes.Pois}>
+                        <Typography id="disabled-slider" gutterBottom>
+                              Transparency
+                          </Typography>
+                          {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
+                          <Slider defaultValue={50}  onChange={this.props.transparencyChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} />
+                        </div>      
 
                     {/*           <Typography id="disabled-slider" gutterBottom>
                             Transparency

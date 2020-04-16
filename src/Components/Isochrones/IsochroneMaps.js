@@ -13,16 +13,18 @@ class MAps extends Component {
         lng:"77.1025",
         value:null,secPois:'',
         timeBins:"",
-        noOfPoints:""
+        noOfPoints:"",
+        transparency:50
       }
     this.onChange = this.onChange.bind(this);
 }
 nosHandleChange = (event, newValue) => {
   // setValue(newValue);
-  this.setState({noOfPoints:newValue},()=>{
-      
-  })
+  this.setState({noOfPoints:newValue})
 };
+transparencyChange=(event, newValue)=>{
+  this.setState({transparency:newValue})
+}
 inputHandler=(event)=>{
   var inputCopy=this.state[[event.target.name]]
   inputCopy=event.target.value
@@ -65,7 +67,7 @@ onChange(evt) {
     return (
       
       <div className={classes.MainContainer}>
-        <MapControls nosHandleChange={this.nosHandleChange} fetchHandler={this.fetchHandler} pois={this.state.pois} secPois={this.state.secPois} mode={this.state.modes} modePreference={this.state.modePreference} timeBins={this.state.timeBins} modeState={this.state.modeState} cityEnteredHandler={this.cityEnteredHandler} inputHandler={this.inputHandler}></MapControls>
+        <MapControls nosHandleChange={this.nosHandleChange} transparencyChange={this.transparencyChange} fetchHandler={this.fetchHandler} pois={this.state.pois} secPois={this.state.secPois} mode={this.state.modes} modePreference={this.state.modePreference} timeBins={this.state.timeBins} modeState={this.state.modeState} cityEnteredHandler={this.cityEnteredHandler} inputHandler={this.inputHandler}></MapControls>
         <HereMaps
           noOfPoints={this.state.noOfPoints}
           pois={this.state.pois}
@@ -81,6 +83,7 @@ onChange(evt) {
           modePreference={this.state.modePreference}
           theme={ this.state.theme}
           timeBins={this.state.timeBins}
+          transparency={this.state.transparency}
           inputChange={(event)=>this.inputHandler(event)}
         ></HereMaps>
         {/* <ThemeSelector changeTheme={ this.onChange } /> */}

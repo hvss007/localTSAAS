@@ -1,9 +1,9 @@
 import Axios from 'axios'
 import React, { Component } from 'react';
 import classes from './HereMaps.css'
-import {Slider,Typography} from '@material-ui/core'
+// import {Slider,Typography} from '@material-ui/core'
 import axios from 'axios'
-import AutoComplete from './AutoComplete'
+// import AutoComplete from './AutoComplete'
 import Button from '@material-ui/core/Button';
 import colorsArray from './assets/colors'
 class  HereMaps extends Component {
@@ -48,7 +48,7 @@ class  HereMaps extends Component {
             theme:props.theme,
             style: props.style,
             isolinePolygonArray:[],
-            transparency:50,
+            transparency:props.transparency,
             query:'',
             boundingBox:null
         }
@@ -86,6 +86,11 @@ class  HereMaps extends Component {
     }
 
     componentWillReceiveProps(nextProps){
+      if(this.props.transparency!==nextProps.transparency){
+        this.setState({transparency:nextProps.transparency},()=>{
+          this.changeTransparency(nextProps.transparency)
+      })
+      }
       if(this.props.lat!==nextProps.lat){
         var centerCopy={lat:nextProps.lat,lng:nextProps.lng}
         this.map.setCenter( centerCopy,true)
@@ -108,17 +113,16 @@ class  HereMaps extends Component {
             this.setState({configArray:configArrayCopy})
         }
       }
+      var url="https://browse.search.hereapi.com/v1/browse?apikey="+process.env.REACT_APP_PLACES_API_KEY+"&at="+this.state.markerX+","+this.state.markerY+"&categories="
       if(this.props.pois!==nextProps.pois){
         this.map.removeObjects(this.map.getObjects())
         // var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+this.state.center.lat+','+this.state.center.lng+';r=150000&cat='
         //var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&cat='
-        var url="https://browse.search.hereapi.com/v1/browse?apikey="+process.env.REACT_APP_PLACES_API_KEY+"&at="+this.state.markerX+","+this.state.markerY+"&categories="
         // var url="https://places.ls.hereapi.com/places/v1/discover/explore?at="+this.state.center.lat+","+this.state.center.lng+"&apiKey="+process.env.REACT_APP_PLACES_API_KEY+"&cat="
         this.getPois(nextProps.pois,url)
       }
       if(this.props.secPois!==nextProps.secPois){
         this.map.removeObjects(this.map.getObjects())
-        var url="https://browse.search.hereapi.com/v1/browse?apikey="+process.env.REACT_APP_PLACES_API_KEY+"&at="+this.state.markerX+","+this.state.markerY+"&categories="
         this.getPois(nextProps.secPois,url)
       }
       if(this.props.updatedFetchCount!==nextProps.updatedFetchCount){
@@ -186,7 +190,7 @@ class  HereMaps extends Component {
            this.state.isolinePolygonArray.forEach(el=>{
             var style={...el.getStyle()};
             var color=el.getStyle().fillColor;
-            var strokeCol=el.getStyle().strokeColor
+            // var strokeCol=el.getStyle().strokeColor
             var col=color.split(',')
             var colstr="";
             col[col.length-1]=""+this.state.transparency/100+")"
@@ -203,8 +207,8 @@ class  HereMaps extends Component {
         })
       };
     getPois=(pois,url)=>{
-      var bboxCont=this.map.getViewBounds()
-      var bbox=''+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+','+bboxCont.getTopLeft().lat+''
+      // var bboxCont=this.map.getViewBounds()
+      // var bbox=''+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+','+bboxCont.getTopLeft().lat+''
       //axios.get('https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+bbox+'&cat='+pois)
       
       axios.get(url+pois+"&limit="+(this.props.noOfPoints?this.props.noOfPoints:50),)
@@ -394,25 +398,22 @@ class  HereMaps extends Component {
                     
                     <h3  style={{textAlign:'center'}}>Legend</h3>
                     {legend}
-                    <div className={classes.RefreshButtonContainer}>
-                    <Button onClick={this.refreshMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Refresh Map</Button>
-                    </div>
-                    
-                    
                 </div>
                 <div className={classes.MapLeftControls}>
                 <div className={classes.MapLeftControlsIn}>
+                    <div className={classes.RefreshButtonContainer}>
+                      <Button onClick={this.refreshMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Refresh Map</Button>
+                    </div>
                         {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
                         <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
                         <div className={classes.ButtonsContainer }>
                           <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Current Map</Button>
                           <Button onClick={this.fetchOnDiffMap}style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
                         </div>     */}
-                          <Typography id="disabled-slider" gutterBottom>
+                          {/* <Typography id="disabled-slider" gutterBottom>
                               Transparency
-                          </Typography>
-                          {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
-                          <Slider defaultValue={50}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} />
+                          </Typography> */}
+                          {/* <Slider defaultValue={50}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} /> */}
                       </div>
                       <div className={classes.BoundingBox}>
                             <p>{bbox?bbox.getTop().toFixed(5):null}</p>
