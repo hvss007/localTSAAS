@@ -152,14 +152,9 @@ class  HereMaps extends Component {
           behavior.disable();
         }
       }, false);
-    
-    
-      // re-enable the default draggability of the underlying map
-      // when dragging has completed
       map.addEventListener('dragend',(ev)=> {
         var target = ev.target;
         // this.getisoline()
-        
         if (target instanceof window.mapsjs.map.Marker) {
           behavior.enable();
         }
@@ -332,6 +327,10 @@ class  HereMaps extends Component {
           }
         })
       }
+      refreshMap=()=>{
+        this.map.removeObjects(this.map.getObjects())
+        // this.addMarkersToMap(this.map,this.behaviour)
+      }
       changeHextorgba=(color)=>{
           var rgb=[]
           var hex = color.substr(1).split('');
@@ -364,6 +363,9 @@ class  HereMaps extends Component {
                     
                     <h3  style={{textAlign:'center'}}>Legend</h3>
                     {legend}
+                    <div className={classes.RefreshButtonContainer}>
+                    <Button onClick={this.refreshMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Refresh Map</Button>
+                    </div>
                     
                     
                 </div>

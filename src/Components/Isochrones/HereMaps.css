@@ -29,7 +29,7 @@
     background: white;
     position: absolute;
     left: 0;
-    bottom: 22vh;
+    bottom: 10vh;
 }
 .ButtonsContainer{
     margin-top:12px;
@@ -37,6 +37,11 @@
     width:100%;
     display:flex;
     justify-content: space-between;
+}
+.RefreshButtonContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 @media(max-width:780px){
     .MapContainer{
