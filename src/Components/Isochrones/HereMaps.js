@@ -201,7 +201,7 @@ class  HereMaps extends Component {
       var bbox=''+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+','+bboxCont.getTopLeft().lat+''
       //axios.get('https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+bbox+'&cat='+pois)
       
-      axios.get(url+pois+"&limit=50",)
+      axios.get(url+pois+"&limit="+this.props.noOfPoints,)
       .then(Response=>{
         // if(Response.data.next||Response.data.results.next){
         //   console.log("run1")

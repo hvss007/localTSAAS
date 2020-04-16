@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './MapControls.css'
-import {InputLabel,Select,MenuItem,TextField} from '@material-ui/core'
+import {Slider,Typography,InputLabel,Select,MenuItem,TextField} from '@material-ui/core'
 // import AutoComplete from './AutoComplete'
 import Button from '@material-ui/core/Button';
 import {primaryCategories} from './assets/categories'
@@ -104,6 +104,12 @@ export default class MapControls extends Component{
                         </Select>
                     </div>
                     <div className={classes.Pois}>
+                        <Typography id="disabled-slider" gutterBottom>
+                            Select no of points
+                        </Typography>
+                        <Slider name="noOfPoints" defaultValue={50}  onChange={this.props.nosHandleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={1} marks min={0} max={100} /> 
+                    </div> 
+                    <div className={classes.Pois}>
                         <InputLabel id='enterTimeBins'> Enter 'Comma-Seperated' Time Bins Values (min)</InputLabel>
                         {/* <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelId='selectPois' id='selectp' value={this.props.pois}>
                                 {menuItems}     
@@ -137,6 +143,13 @@ export default class MapControls extends Component{
                                 {menuItems1}     
                         </Select>
                     </div>:null}
+                          
+
+                    {/*           <Typography id="disabled-slider" gutterBottom>
+                            Transparency
+                        </Typography>
+                        {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
+                     
                      {/* <div className={classes.Pois}>
                     <InputLabel id='selectPois'> Click to load more data</InputLabel>
                     <Button 
