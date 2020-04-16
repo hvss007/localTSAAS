@@ -14,7 +14,8 @@ class MAps extends Component {
         value:null,secPois:'',
         timeBins:"",
         noOfPoints:"",
-        transparency:50
+        transparency:50,
+        boundingBox:null
       }
     this.onChange = this.onChange.bind(this);
 }
@@ -32,6 +33,9 @@ inputHandler=(event)=>{
 }
 fetchHandler=()=>{
   this.setState({updatedFetchCount:this.state.updatedFetchCount+1})
+}
+boundingBoxHandler=(bbox)=>{
+  this.setState({boundingBox:bbox})
 }
 cityEnteredHandler=()=>{
   var platform=new window.H.service.Platform({app_id:process.env.REACT_APP_PLACES_API_ID,app_code:process.env.REACT_APP_PLACES_APP_CODE })
@@ -67,7 +71,7 @@ onChange(evt) {
     return (
       
       <div className={classes.MainContainer}>
-        <MapControls nosHandleChange={this.nosHandleChange} transparencyChange={this.transparencyChange} fetchHandler={this.fetchHandler} pois={this.state.pois} secPois={this.state.secPois} mode={this.state.modes} modePreference={this.state.modePreference} timeBins={this.state.timeBins} modeState={this.state.modeState} cityEnteredHandler={this.cityEnteredHandler} inputHandler={this.inputHandler}></MapControls>
+        <MapControls bbox={this.state.boundingBox} nosHandleChange={this.nosHandleChange} transparencyChange={this.transparencyChange} fetchHandler={this.fetchHandler} pois={this.state.pois} secPois={this.state.secPois} mode={this.state.modes} modePreference={this.state.modePreference} timeBins={this.state.timeBins} modeState={this.state.modeState} cityEnteredHandler={this.cityEnteredHandler} inputHandler={this.inputHandler}></MapControls>
         <HereMaps
           noOfPoints={this.state.noOfPoints}
           pois={this.state.pois}
@@ -85,6 +89,7 @@ onChange(evt) {
           timeBins={this.state.timeBins}
           transparency={this.state.transparency}
           inputChange={(event)=>this.inputHandler(event)}
+          boundingBoxHandler={this.boundingBoxHandler}
         ></HereMaps>
         {/* <ThemeSelector changeTheme={ this.onChange } /> */}
       </div>

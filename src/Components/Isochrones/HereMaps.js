@@ -65,7 +65,10 @@ class  HereMaps extends Component {
             center: this.state.center,
             zoom: this.state.zoom,
           })
-        
+       
+       
+      // var bbox=this.platform.getBoundingBox()
+       
         
         var events = new window.H.mapevents.MapEvents(this.map);
         // eslint-disable-next-line
@@ -79,7 +82,7 @@ class  HereMaps extends Component {
         // placeMarker.draggable=true;
         // this.map.addObject(placeMarker);
         var bbox=this.map.getViewBounds()
-        
+        this.props.boundingBoxHandler(bbox)
         // var bbox=this.platform.getBoundingBox()
          this.setState({boundingBox:bbox})
         // this.calculateRoute()
@@ -98,7 +101,15 @@ class  HereMaps extends Component {
         //this.map.removeObject(this.state.placeMarker)  
         this.setState({center:centerCopy,markerX:centerCopy.lat,markerY:centerCopy.lng},()=>{
           this.addMarkersToMap(this.map,this.behavior)
+        
         })
+        setTimeout(()=>{
+          var bbox=this.map.getViewBounds()
+          this.props.boundingBoxHandler(bbox)
+      // var bbox=this.platform.getBoundingBox()
+      //  this.setState({boundingBox:bbox}) 
+        },500)
+        
         
       }
       if(this.props.timeBins!==nextProps.timeBins){
@@ -149,7 +160,8 @@ class  HereMaps extends Component {
         this.map.setBaseLayer(layer);
     }
     addMarkersToMap(map,behavior){
-        var placeMarker=new window.H.map.Marker({lat:this.state.center.lat, lng:this.state.center.lng})
+      
+      var placeMarker=new window.H.map.Marker({lat:this.state.center.lat, lng:this.state.center.lng})
         placeMarker.draggable=true;
         map.addObject(placeMarker);
         this.setState({placeMarker:placeMarker})
@@ -180,9 +192,9 @@ class  HereMaps extends Component {
           this.setState({markerX:crd.lat,markerY:crd.lng})  
         }
         var bbox=this.map.getViewBounds()
-        
+        this.props.boundingBoxHandler(bbox)
         // var bbox=this.platform.getBoundingBox()
-         this.setState({boundingBox:bbox})
+        //  this.setState({boundingBox:bbox})
       }, false);
     }
 
@@ -415,7 +427,7 @@ class  HereMaps extends Component {
                           </Typography> */}
                           {/* <Slider defaultValue={50}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} /> */}
                       </div>
-                      <div className={classes.BoundingBox}>
+                      {/* <div className={classes.BoundingBox}>
                             <p>{bbox?bbox.getTop().toFixed(5):null}</p>
                           <div className={classes.BoundingBoxIn}>
                             <p>{bbox?bbox.getLeft().toFixed(5):null}</p>  
@@ -423,7 +435,7 @@ class  HereMaps extends Component {
                           </div>
                           
                           <p>{bbox?bbox.getBottom().toFixed(5):null}</p>
-                      </div>  
+                      </div>   */}
                       
                   </div> 
             {/* <input type="text" value={this.props.value} onChange={()=>{

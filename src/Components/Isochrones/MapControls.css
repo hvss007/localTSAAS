@@ -43,3 +43,22 @@
         height: unset;
     }
 }
+.BoundingBox{
+    width:100%;
+    background-color: rgba(200,200,200,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 1em;
+}
+.BoundingBoxIn{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.BoundingBox>p{
+    margin:0
+}

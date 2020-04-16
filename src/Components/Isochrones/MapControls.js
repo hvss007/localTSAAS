@@ -70,6 +70,15 @@ export default class MapControls extends Component{
                         <Button style={{fontSize:'12px',padding:'3px',borderRadius:'0px',backgroundColor:'#449DD1'}} color="primary" onClick={this.props.cityEnteredHandler} variant="contained"  component="span">Fetch City Map</Button>   
                         {/* <button onClick={this.props.cityEnteredHandler}>Fetch city map</button>     */}
                     </div>
+                    <div className={classes.BoundingBox}>
+                            <p>{this.props.bbox?this.props.bbox.getTop().toFixed(5):null}</p>
+                          <div className={classes.BoundingBoxIn}>
+                            <p>{this.props.bbox?this.props.bbox.getLeft().toFixed(5):null}</p>  
+                            <p>{this.props.bbox?this.props.bbox.getRight().toFixed(5):null}</p>
+                          </div>
+                          
+                          <p>{this.props.bbox?this.props.bbox.getBottom().toFixed(5):null}</p>
+                      </div>  
                     <div className={classes.Pois}>
                         <InputLabel id='selectMode'> Select Travel Mode</InputLabel>
                         <Select name='modes' onChange={event=>this.props.inputHandler(event)} labelid='selectMode' id='selectm' value={this.props.mode}>
