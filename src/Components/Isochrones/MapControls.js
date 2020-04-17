@@ -117,7 +117,7 @@ export default class MapControls extends Component{
                         <Slider name="noOfPoints" defaultValue={50}  onChange={this.props.nosHandleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={1} marks min={0} max={100} /> 
                     </div> 
                     <div className={classes.Pois}>
-                        <InputLabel id='enterTimeBins'> Enter 'Comma-Seperated' Time Bins Values (min)</InputLabel>
+                        <InputLabel id='enterTimeBins'> Enter 'Comma-Seperated' Time Bins (min) in ascending order</InputLabel>
                         {/* <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelid='selectPois' id='selectp' value={this.props.pois}>
                                 {menuItems}     
                         </Select> */}
