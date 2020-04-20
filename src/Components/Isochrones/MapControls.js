@@ -25,6 +25,14 @@ export default class MapControls extends Component{
         secArr:[]}
     this.importsObj={eatAndDrink,goingOut,accommodations,shopping,facilities,areas,business,nature,transport,sights,leisure}
     }
+    pickHex=(color1, color2, weight)=> {
+        var w1 = weight;
+        var w2 = 1 - w1;
+        var rgb = [Math.round(color1[0] * w1 + color2[0] * w2),
+            Math.round(color1[1] * w1 + color2[1] * w2),
+            Math.round(color1[2] * w1 + color2[2] * w2)];
+        return rgb;}
+    
     categoriesHandler=()=>{
         Axios.get("https://places.ls.hereapi.com/places/v1/categories/places?at=28.7041,77.1025&apiKey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE+")
         .then(Response=>{
@@ -49,6 +57,7 @@ export default class MapControls extends Component{
         this.setState({secArr:newArr})
     }
     render(){   
+        
        const  menuItems=this.state.suggestionsArray.map(element=>{
             // console.log(element)
             // console.log(eatAndDrink)
@@ -85,9 +94,9 @@ export default class MapControls extends Component{
                                 {/* {menuItems} */}
                                 <MenuItem value="pedestrian">Walk</MenuItem>
                                 <MenuItem value="car">Car</MenuItem>
-                                <MenuItem value="publicTransport">PT</MenuItem>
-                                <MenuItem value="carHOV">Car HOV</MenuItem>
-                                <MenuItem value="truck">Truck</MenuItem>
+                                {/* <MenuItem value="publicTransport">PT</MenuItem> */}
+                                {/* <MenuItem value="carHOV">Car HOV</MenuItem> */}
+                                {/* <MenuItem value="truck">Truck</MenuItem> */}
                                 {/* <MenuItem value="bicycle">Bicycle</MenuItem> */}
                                 {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                         </Select>

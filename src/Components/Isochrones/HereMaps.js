@@ -274,37 +274,10 @@ class  HereMaps extends Component {
         this.setState({lat:position.lat,lng:position.lng})
     };
      
-      onResult1 = (result,color,zIndex)=> {
-        var col=color.split(',')
-        var colstr="";
-        col[col.length-1]=""+this.state.transparency/100+")"
-        colstr=col.join()
-        var customStyle = {
-          strokeColor: colstr,
-          fillColor: colstr,
-          lineWidth: 1,
-          lineCap: 'square',
-          lineJoin: 'bevel',
-        };
-          var isolineCoords = result.response.isoline[0].component[0].shape,
-          linestring = new window.H.geo.LineString(),
-          isolinePolygon
-          //isolineCenter;
-        
-        // Add the returned isoline coordinates to a linestring:
-        isolineCoords.forEach((coords)=> {
-        linestring.pushLatLngAlt.apply(linestring, coords.split(','));
-      });
-        isolinePolygon = new window.H.map.Polygon(linestring,{style:customStyle});
-        isolinePolygon.setZIndex(zIndex)
-        var isolinePolygonArrayCopy=[...this.state.isolinePolygonArray];
-        isolinePolygonArrayCopy.push(isolinePolygon);
-        this.setState({isolinePolygonArray:isolinePolygonArrayCopy})
-        this.map.addObject(isolinePolygon)
-      };
+      
 
-       getisoline=(position,title)=>{
-         var router=this.platform.getRoutingService()
+      getisoline=(position,title)=>{
+        var router=this.platform.getRoutingService()
         var placeMarker=new window.H.map.Marker({lat:position[0],lng:position[1]})
         placeMarker.setData(title)
         placeMarker.addEventListener('tap',(evt)=>{
@@ -317,11 +290,42 @@ class  HereMaps extends Component {
         var modeParams=''+this.props.modePreference+';'+this.props.mode+';traffic:'+this.props.modeState
         var rp=this.state.routingParams
         var start='geo!'+position[0]+','+position[1]
-         this.state.configArray.forEach((el,index)=>{
+        this.state.configArray.forEach((el,index)=>{
           router.calculateIsoline({mode:modeParams,start:start,range:(el.time*60),rangetype:rp.rangetype},(result)=> {
             this.onResult1(result,el.color,index)},function(e){console.log(e)})
          })
         }
+        onResult1 = (result,color,zIndex)=> {
+          var col=color.split(',')
+          var colstr="";
+          col[col.length-1]=""+this.state.transparency/100+")"
+          colstr=col.join()
+          var customStyle = {
+            strokeColor: colstr,
+            fillColor: colstr,
+            lineWidth: 1,
+            lineCap: 'square',
+            lineJoin: 'bevel',
+          };
+            var isolineCoords = result.response.isoline[0].component[0].shape,
+            linestring = new window.H.geo.LineString(),
+            isolinePolygon
+            //isolineCenter;
+          
+          // Add the returned isoline coordinates to a linestring:
+          isolineCoords.forEach((coords)=> {
+          linestring.pushLatLngAlt.apply(linestring, coords.split(','));
+        });
+          isolinePolygon = new window.H.map.Polygon(linestring,{style:customStyle});
+          isolinePolygon.setZIndex(zIndex)
+          var isolinePolygonArrayCopy=[...this.state.isolinePolygonArray];
+          isolinePolygonArrayCopy.push(isolinePolygon);
+          this.setState({isolinePolygonArray:isolinePolygonArrayCopy})
+          this.map.addObject(isolinePolygon)
+        };
+
+
+
       selectedOption=(value)=>{
         var query=value.split("- ")
         //console.log(query)
@@ -406,10 +410,10 @@ class  HereMaps extends Component {
                 </div>
             )
         })
-        const bbox=this.state.boundingBox
+        // const bbox=this.state.boundingBox
         return (
             <div className={classes.MapContainer}>
-            <div id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height: '100%', background: 'black'}} />
+            <div className={classes.Heremap} id="here-map" onClick={(event)=>this.changeCoordinate(event,this.map)} style={{width: '100%', height: '100%', background: 'black'}} />
                 <div  className={classes.LegendContainer}>
                     
                     <h3  style={{textAlign:'center'}}>Legend</h3>
