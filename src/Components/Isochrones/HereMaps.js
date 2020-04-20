@@ -10,8 +10,9 @@ class  HereMaps extends Component {
     constructor(props) {
         super(props);
         this.colorsArray=[...colorsArray]
-        //this.colorsArray=['rgb(255,0,0)','rgb(255,255,0)','rgb(0,255,0)'],
-        //this.configArray=[{time:30,color:'rgba(255,0,0,.4)'},{time:15,color:'rgba(255,255,0,0.5)'},{time:5,color:'rgba(0,255,0,0.6)'}]
+      
+  //     this.colorsArray=['rgb(255,0,0)','rgb(255,255,0)','rgb(0,255,0)'],
+   //    this.configArray=[{time:30,color:'rgba(255,0,0,.4)'},{time:15,color:'rgba(255,255,0,0.5)'},{time:5,color:'rgba(0,255,0,0.6)'}]
         this.platform = null;
         this.map = null;
         // this.imp={
@@ -24,7 +25,7 @@ class  HereMaps extends Component {
         //   style: props.style,
         // }
         this.state = {
-            configArray:[{time:30,color:'rgba(255,0,0,1)'},{time:15,color:'rgba(255,255,0,1)'},{time:5,color:'rgba(0,255,0,1)'}],
+            configArray:[],//{time:30,color:'rgba(255,0,0,1)'},{time:15,color:'rgba(255,255,0,1)'},{time:5,color:'rgba(0,255,0,1)'}],
             nextUrl:'', 
             app_id: props.app_id,
             app_code: props.app_code,
@@ -116,8 +117,11 @@ class  HereMaps extends Component {
           var configArrayCopy=[];
           if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3&&nextProps.timeBins[nextProps.timeBins.length-1]!==","){
             var timeBinsStringArray=nextProps.timeBins.split(',');
+            var i=0;
+            var x=Math.floor(29/(timeBinsStringArray.length-1));
               timeBinsStringArray.forEach((el,index)=>{
-                  configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index])});    
+                  configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[i*x])});   
+                  i++; 
                 })
             configArrayCopy.reverse();
             
