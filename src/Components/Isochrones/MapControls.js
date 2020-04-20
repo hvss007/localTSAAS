@@ -85,9 +85,9 @@ export default class MapControls extends Component{
                                 {/* {menuItems} */}
                                 <MenuItem value="pedestrian">Walk</MenuItem>
                                 <MenuItem value="car">Car</MenuItem>
-                                <MenuItem value="publicTransport">PT</MenuItem>
-                                <MenuItem value="carHOV">Car HOV</MenuItem>
-                                <MenuItem value="truck">Truck</MenuItem>
+                                {/* <MenuItem value="publicTransport">PT</MenuItem> */}
+                                {/* <MenuItem value="carHOV">Car HOV</MenuItem> */}
+                                {/* <MenuItem value="truck">Truck</MenuItem> */}
                                 {/* <MenuItem value="bicycle">Bicycle</MenuItem> */}
                                 {/* <MenuItem value="publicTransport">PT</MenuItem> */}
                         </Select>
