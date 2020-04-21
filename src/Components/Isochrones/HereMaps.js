@@ -117,13 +117,10 @@ class  HereMaps extends Component {
           var configArrayCopy=[];
           if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3&&nextProps.timeBins[nextProps.timeBins.length-1]!==","){
             var timeBinsStringArray=nextProps.timeBins.split(',');
-            var x=Math.floor( (this.colorsArray.length-1)/(timeBinsStringArray.length-1) );
-            console.log(x)
-            console.log(this.colorsArray.length)
-              timeBinsStringArray.forEach((el,index)=>{
-                  console.log(index*x)
-                  configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])}); 
-                  console.log("color"+this.colorsArray[index*x])  
+            var x =  1 / (timeBinsStringArray.length-1);
+            timeBinsStringArray.forEach((el,index)=>{               
+                  configArrayCopy.push({time:parseInt(el), color:this.calculateRGB(index*x)}); 
+                  // configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])}); 
                 })
             configArrayCopy.reverse();
             
@@ -379,10 +376,21 @@ class  HereMaps extends Component {
             rgb[i] = parseInt(hexStr, 16);
             i += 1;
             x = i * 2;
+            console.log(rgb[i])
         }
       rgb.push(1);
       var rgbaStr='rgba('+rgb.join()+')'
       return rgbaStr
+      }
+
+      calculateRGB=(n)=>{
+        var rgb =[]
+        var R = parseInt(Math.min(255, 2*255*n))
+        var G = parseInt(Math.min(255, 2*255*(1-n)))
+        var B = 0
+        rgb = [R, G, B]
+        rgb.push(1) // corresponding to alpha
+        return 'rgba('+rgb.join()+')'
       }
 
       calculateRoute=()=>{
