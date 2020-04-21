@@ -10,8 +10,9 @@ class  HereMaps extends Component {
     constructor(props) {
         super(props);
         this.colorsArray=[...colorsArray]
-        //this.colorsArray=['rgb(255,0,0)','rgb(255,255,0)','rgb(0,255,0)'],
-        //this.configArray=[{time:30,color:'rgba(255,0,0,.4)'},{time:15,color:'rgba(255,255,0,0.5)'},{time:5,color:'rgba(0,255,0,0.6)'}]
+      
+  //     this.colorsArray=['rgb(255,0,0)','rgb(255,255,0)','rgb(0,255,0)'],
+   //    this.configArray=[{time:30,color:'rgba(255,0,0,.4)'},{time:15,color:'rgba(255,255,0,0.5)'},{time:5,color:'rgba(0,255,0,0.6)'}]
         this.platform = null;
         this.map = null;
         // this.imp={
@@ -116,8 +117,10 @@ class  HereMaps extends Component {
           var configArrayCopy=[];
           if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3&&nextProps.timeBins[nextProps.timeBins.length-1]!==","){
             var timeBinsStringArray=nextProps.timeBins.split(',');
-              timeBinsStringArray.forEach((el,index)=>{
-                  configArrayCopy.push({time:parseInt(el,10),color:this.changeHextorgba(this.colorsArray[index])});    
+            var x =  1 / (timeBinsStringArray.length-1);
+            timeBinsStringArray.forEach((el,index)=>{               
+                  configArrayCopy.push({time:parseInt(el), color:this.calculateRGB(index*x)}); 
+                  // configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])}); 
                 })
             configArrayCopy.reverse();
             
@@ -373,10 +376,21 @@ class  HereMaps extends Component {
             rgb[i] = parseInt(hexStr, 16);
             i += 1;
             x = i * 2;
+            console.log(rgb[i])
         }
       rgb.push(1);
       var rgbaStr='rgba('+rgb.join()+')'
       return rgbaStr
+      }
+
+      calculateRGB=(n)=>{
+        var rgb =[]
+        var R = parseInt(Math.min(255, 2*255*n))
+        var G = parseInt(Math.min(255, 2*255*(1-n)))
+        var B = 0
+        rgb = [R, G, B]
+        rgb.push(1) // corresponding to alpha
+        return 'rgba('+rgb.join()+')'
       }
 
       calculateRoute=()=>{
