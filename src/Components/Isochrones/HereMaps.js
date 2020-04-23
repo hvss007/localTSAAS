@@ -148,7 +148,7 @@ class HereMaps extends Component {
         var timeBinsStringArray=nextProps.timeBins.split(',');
         var x =  1 / (timeBinsStringArray.length-1);
         timeBinsStringArray.forEach((el,index)=>{               
-              configArrayCopy.push({time:parseInt(el), color:this.calculateRGB(index*x)}); 
+              configArrayCopy.push({time:parseInt(el,10), color:this.calculateRGB(index*x)}); 
               // configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])}); 
             })
         configArrayCopy.reverse();
@@ -474,9 +474,10 @@ class HereMaps extends Component {
     var arr = [];
     this.state.isolinePolygonData.forEach((el) => {
       var locations = [];
-      var tempArr = [];
+      // var tempArr = [];
 
-      tempArr = this.state.isolinePolygonArray
+      // tempArr = 
+      this.state.isolinePolygonArray
         .filter((item) => {
           // if( el.title===item.getData().title){
           //   return item.getGeometry()
@@ -501,8 +502,8 @@ class HereMaps extends Component {
 
   calculateRGB=(n)=>{
     var rgb =[]
-    var R = parseInt(Math.min(255, 2*255*n))
-    var G = parseInt(Math.min(255, 2*255*(1-n)))
+    var R = parseInt(Math.min(255, 2*255*n),10)
+    var G = parseInt(Math.min(255, 2*255*(1-n)),10)
     var B = 0
     rgb = [R, G, B]
     rgb.push(1) // corresponding to alpha
@@ -578,13 +579,18 @@ class HereMaps extends Component {
                 Refresh Map
               </Button>
             </div>
-            <a
+            <div className={classes.RefreshButtonContainer}>
+            <Button
               style={{ fontSize: "12px", backgroundColor: "#449DD1" }}
               onClick={() => this.downloadMap()}
+              variant="contained"
+                color="primary"
+                component="span"
               id="downloadAnchorElem"
             >
-              Download
-            </a>
+              Export Data
+            </Button>
+            </div>
             {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
                         <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
                         <div className={classes.ButtonsContainer }>
