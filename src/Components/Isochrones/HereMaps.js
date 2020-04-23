@@ -367,7 +367,7 @@ class HereMaps extends Component {
           rangetype: rp.rangetype,
         },
         (result) => {
-          this.onResult1(result, el.color, index, position, title);
+          this.onResult1(result, el.color, index, position, title,el.time);
         },
         function (e) {
           console.log(e);
@@ -375,7 +375,7 @@ class HereMaps extends Component {
       );
     });
   };
-  onResult1 = (result, color, zIndex, position, title) => {
+  onResult1 = (result, color, zIndex, position, title,timeBin) => {
     var col = color.split(",");
     var colstr = "";
     col[col.length - 1] = "" + this.state.transparency / 100 + ")";
@@ -399,7 +399,7 @@ class HereMaps extends Component {
     isolinePolygon = new window.H.map.Polygon(linestring, {
       style: customStyle,
     });
-    isolinePolygon.setData({ title, position });
+    isolinePolygon.setData({ title, position,timeBin });
 
     isolinePolygon.setZIndex(zIndex);
 
@@ -466,9 +466,9 @@ class HereMaps extends Component {
     });
   };
   refreshMap = () => {
-    // this.map.removeObjects(this.map.getObjects())
+     this.map.removeObjects(this.map.getObjects())
     // this.addMarkersToMap(this.map,this.behaviour)
-    this.downloadMap();
+    // this.downloadMap();
   };
   downloadMap = () => {
     var arr = [];
@@ -495,7 +495,7 @@ class HereMaps extends Component {
       "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arr));
     var dlAnchorElem = document.getElementById("downloadAnchorElem");
     dlAnchorElem.setAttribute("href", dataStr);
-    dlAnchorElem.setAttribute("download", "data.json");
+    dlAnchorElem.setAttribute("download", "data.geoJson");
     dlAnchorElem.click();
   };
 
