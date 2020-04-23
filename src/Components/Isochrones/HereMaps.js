@@ -119,25 +119,45 @@ class HereMaps extends Component {
         //  this.setState({boundingBox:bbox})
       }, 500);
     }
-    if (this.props.timeBins !== nextProps.timeBins) {
-      var configArrayCopy = [];
-      if (
-        nextProps.timeBins.search(",") !== -1 &&
-        nextProps.timeBins.length >= 3 &&
-        nextProps.timeBins[nextProps.timeBins.length - 1] !== ","
-      ) {
-        var timeBinsStringArray = nextProps.timeBins.split(",");
-        timeBinsStringArray.forEach((el, index) => {
-          configArrayCopy.push({
-            time: parseInt(el, 10),
-            color: this.changeHextorgba(this.colorsArray[index]),
-          });
-        });
-        configArrayCopy.reverse();
+    // if (this.props.timeBins !== nextProps.timeBins) {
+    //   var configArrayCopy = [];
+    //   if (
+    //     nextProps.timeBins.search(",") !== -1 &&
+    //     nextProps.timeBins.length >= 3 &&
+    //     nextProps.timeBins[nextProps.timeBins.length - 1] !== ","
+    //   ) {
+    //     var timeBinsStringArray = nextProps.timeBins.split(",");
+    //     timeBinsStringArray.forEach((el, index) => {
+    //       configArrayCopy.push({
+    //         time: parseInt(el, 10),
+    //         color: this.changeHextorgba(this.colorsArray[index]),
+    //       });
+    //     });
+    //     configArrayCopy.reverse();
 
-        this.setState({ configArray: configArrayCopy });
-      }
+    //     this.setState({ configArray: configArrayCopy });
+    //   }
+    // }
+    
+    
+
+  
+  if(this.props.timeBins!==nextProps.timeBins){
+      var configArrayCopy=[];
+      if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3&&nextProps.timeBins[nextProps.timeBins.length-1]!==","){
+        var timeBinsStringArray=nextProps.timeBins.split(',');
+        var x =  1 / (timeBinsStringArray.length-1);
+        timeBinsStringArray.forEach((el,index)=>{               
+              configArrayCopy.push({time:parseInt(el), color:this.calculateRGB(index*x)}); 
+              // configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])}); 
+            })
+        configArrayCopy.reverse();
+        
+        this.setState({configArray:configArrayCopy})
     }
+  }
+
+
     var url =
       "https://browse.search.hereapi.com/v1/browse?apikey=" +
       process.env.REACT_APP_PLACES_API_KEY +
@@ -466,9 +486,10 @@ class HereMaps extends Component {
         .forEach((elm) => {
           locations.push(elm.getGeometry().getExterior().getLatLngAltArray());
         });
+      
 
       arr.push({ el, locations });
-    });
+      });
     JSON.stringify(arr);
     var dataStr =
       "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arr));
@@ -477,6 +498,16 @@ class HereMaps extends Component {
     dlAnchorElem.setAttribute("download", "data.json");
     dlAnchorElem.click();
   };
+
+  calculateRGB=(n)=>{
+    var rgb =[]
+    var R = parseInt(Math.min(255, 2*255*n))
+    var G = parseInt(Math.min(255, 2*255*(1-n)))
+    var B = 0
+    rgb = [R, G, B]
+    rgb.push(1) // corresponding to alpha
+    return 'rgba('+rgb.join()+')'
+  }
   changeHextorgba = (color) => {
     var rgb = [];
     var hex = color.substr(1).split("");
