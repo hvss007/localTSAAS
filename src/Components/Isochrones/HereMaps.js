@@ -404,33 +404,15 @@ class HereMaps extends Component {
     this.setState({ query: query[1] });
   };
   refreshMap = () => {
-    // console.log(this.state.isolinePolygonArray[0])
     this.map.removeObjects(this.map.getObjects());
     this.setState({ isolinePolygonArray: [], isolinePolygonData: [] });
-    // this.addMarkersToMap(this.map,this.behaviour)
-    // this.downloadMap();
   };
   downloadMap = () => {
     var arr = [];
-    this.state.isolinePolygonData.forEach((el) => {
-      var locations = [];
-      // var tempArr = [];
-
-      // tempArr =
-      this.state.isolinePolygonArray
-        .filter((item) => {
-          // if( el.title===item.getData().title){
-          //   return item.getGeometry()
-          // }
-          return el.title === item.getData().title;
-        })
-        .forEach((elm) => {
-          locations.push(elm.getGeometry().getExterior().getLatLngAltArray());
-        });
-
-      arr.push({ el, locations });
+    this.state.isolinePolygonArray.forEach((el) => {
+      arr.push(el.toGeoJSON());
     });
-    JSON.stringify(arr);
+
     var dataStr =
       "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arr));
     var dlAnchorElem = document.getElementById("downloadAnchorElem");
@@ -486,42 +468,16 @@ class HereMaps extends Component {
               </Button>
             </div>
             <div className={classes.RefreshButtonContainer}>
-              <Button
+              <a
                 style={{ fontSize: "12px", backgroundColor: "#449DD1" }}
                 onClick={() => this.downloadMap()}
-                variant="contained"
-                color="primary"
-                component="span"
                 id="downloadAnchorElem"
               >
-                Export Data
-              </Button>
+                Download
+              </a>
             </div>
-            {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
-                        <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
-                        <div className={classes.ButtonsContainer }>
-                          <Button onClick={this.fetchOnSameMap} style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Current Map</Button>
-                          <Button onClick={this.fetchOnDiffMap}style={{fontSize:'12px',backgroundColor:'#449DD1'}}variant="contained" color="primary" component="span">Fetch on Diff Map</Button>
-                        </div>     */}
-            {/* <Typography id="disabled-slider" gutterBottom>
-                              Transparency
-                          </Typography> */}
-            {/* <Slider defaultValue={50}  onChange={this.handleChange} aria-labelledby="discrete-slider" valueLabelDisplay="auto" step={10} marks min={0} max={100} /> */}
           </div>
-          {/* <div className={classes.BoundingBox}>
-                            <p>{bbox?bbox.getTop().toFixed(5):null}</p>
-                          <div className={classes.BoundingBoxIn}>
-                            <p>{bbox?bbox.getLeft().toFixed(5):null}</p>  
-                            <p>{bbox?bbox.getRight().toFixed(5):null}</p>
-                          </div>
-                          
-                          <p>{bbox?bbox.getBottom().toFixed(5):null}</p>
-                      </div>   */}
         </div>
-        {/* <input type="text" value={this.props.value} onChange={()=>{
-                let text=this.props.inputChange;
-                ()=>this.req();                
-                }}></input> */}
       </div>
     );
   }
