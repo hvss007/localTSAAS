@@ -466,8 +466,10 @@ class HereMaps extends Component {
     });
   };
   refreshMap = () => {
+    // console.log(this.state.isolinePolygonArray[0])
      this.map.removeObjects(this.map.getObjects())
-    // this.addMarkersToMap(this.map,this.behaviour)
+      this.setState({isolinePolygonArray:[],isolinePolygonData:[]})
+     // this.addMarkersToMap(this.map,this.behaviour)
     // this.downloadMap();
   };
   downloadMap = () => {
