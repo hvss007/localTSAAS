@@ -38,7 +38,7 @@ boundingBoxHandler=(bbox)=>{
   this.setState({boundingBox:bbox})
 }
 cityEnteredHandler=()=>{
-  var platform=new window.H.service.Platform({app_id:process.env.REACT_APP_PLACES_API_ID,app_code:process.env.REACT_APP_PLACES_APP_CODE })
+  var platform=new window.H.service.Platform({apikey:process.env.REACT_APP_PLACES_API_KEY })
   this.getCityCoordinates(platform)
 }
 getCityCoordinates=(platform)=>{
@@ -78,6 +78,7 @@ onChange(evt) {
           secPois={this.state.secPois}
           app_id={process.env.REACT_APP_PLACES_API_ID}
           app_code={process.env.REACT_APP_PLACES_APP_CODE}
+          apikey={process.env.REACT_APP_PLACES_API_KEY}
           lat={this.state.lat}
           lng={this.state.lng}
           zoom="12"

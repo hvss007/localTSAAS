@@ -27,8 +27,7 @@ class HereMaps extends Component {
         { time: 5, color: "rgba(0,255,0,1)" },
       ],
       nextUrl: "",
-      app_id: props.app_id,
-      app_code: props.app_code,
+      apikey: props.apikey,
       center: {
         lat: props.lat,
         lng: props.lng,
@@ -63,12 +62,10 @@ class HereMaps extends Component {
 
     var layer = this.platform.createDefaultLayers();
     var container = document.getElementById("here-map");
-    this.map = new window.H.Map(container, layer.terrain.traffic, {
+    this.map = new window.H.Map(container, layer.vector.normal.map, {
       center: this.state.center,
       zoom: this.state.zoom,
     });
-
-    // var bbox=this.platform.getBoundingBox()
 
     var events = new window.H.mapevents.MapEvents(this.map);
     // eslint-disable-next-line
@@ -81,11 +78,10 @@ class HereMaps extends Component {
     // var placeMarker=new window.H.map.Marker(...bboxCont.getBottomRight)
     // placeMarker.draggable=true;
     // this.map.addObject(placeMarker);
-    var bbox = this.map.getViewBounds();
+    var bbox = this.map.getViewModel().getLookAtData().bounds.getBoundingBox();
     this.props.boundingBoxHandler(bbox);
-    // var bbox=this.platform.getBoundingBox()
+
     this.setState({ boundingBox: bbox });
-    // this.calculateRoute()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -110,29 +106,37 @@ class HereMaps extends Component {
         }
       );
       setTimeout(() => {
-        var bbox = this.map.getViewBounds();
+        var bbox = this.map
+          .getViewModel()
+          .getLookAtData()
+          .bounds.getBoundingBox();
         this.props.boundingBoxHandler(bbox);
-        // var bbox=this.platform.getBoundingBox()
-        //  this.setState({boundingBox:bbox})
-      }, 500);
+
+        this.setState({ boundingBox: bbox });
+      }, 300);
     }
 
-  if(this.props.timeBins!==nextProps.timeBins){
-      var configArrayCopy=[];
-      if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3&&nextProps.timeBins[nextProps.timeBins.length-1]!==","){
-        var timeBinsStringArray=nextProps.timeBins.split(',');
-        var x =  1 / (timeBinsStringArray.length-1);
-        timeBinsStringArray.forEach((el,index)=>{               
-              configArrayCopy.push({time:parseInt(el,10), color:this.calculateRGB(index*x)}); 
-              // configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])}); 
-            })
+    if (this.props.timeBins !== nextProps.timeBins) {
+      var configArrayCopy = [];
+      if (
+        nextProps.timeBins.search(",") !== -1 &&
+        nextProps.timeBins.length >= 3 &&
+        nextProps.timeBins[nextProps.timeBins.length - 1] !== ","
+      ) {
+        var timeBinsStringArray = nextProps.timeBins.split(",");
+        var x = 1 / (timeBinsStringArray.length - 1);
+        timeBinsStringArray.forEach((el, index) => {
+          configArrayCopy.push({
+            time: parseInt(el, 10),
+            color: this.calculateRGB(index * x),
+          });
+          // configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])});
+        });
         configArrayCopy.reverse();
-        
-        this.setState({configArray:configArrayCopy})
+
+        this.setState({ configArray: configArrayCopy });
+      }
     }
-  }
-
-
     var url =
       "https://browse.search.hereapi.com/v1/browse?apikey=" +
       process.env.REACT_APP_PLACES_API_KEY +
@@ -189,8 +193,14 @@ class HereMaps extends Component {
     map.addEventListener(
       "dragstart",
       (ev) => {
-        var target = ev.target;
+        var target = ev.target,
+          pointer = ev.currentPointer;
         if (target instanceof window.H.map.Marker) {
+          var targetPosition = map.geoToScreen(target.getGeometry());
+          target["offset"] = new window.H.math.Point(
+            pointer.viewportX - targetPosition.x,
+            pointer.viewportY - targetPosition.y
+          );
           behavior.disable();
         }
       },
@@ -201,7 +211,7 @@ class HereMaps extends Component {
       (ev) => {
         var target = ev.target;
         // this.getisoline()
-        if (target instanceof window.mapsjs.map.Marker) {
+        if (target instanceof window.H.map.Marker) {
           behavior.enable();
         }
       },
@@ -213,17 +223,23 @@ class HereMaps extends Component {
       (ev) => {
         var target = ev.target,
           pointer = ev.currentPointer;
-        if (target instanceof window.mapsjs.map.Marker) {
-          target.setPosition(
-            map.screenToGeo(pointer.viewportX, pointer.viewportY)
+        if (target instanceof window.H.map.Marker) {
+          target.setGeometry(
+            map.screenToGeo(
+              pointer.viewportX - target["offset"].x,
+              pointer.viewportY - target["offset"].y
+            )
           );
           var crd = map.screenToGeo(pointer.viewportX, pointer.viewportY);
           this.setState({ markerX: crd.lat, markerY: crd.lng });
         }
-        var bbox = this.map.getViewBounds();
+        var bbox = this.map
+          .getViewModel()
+          .getLookAtData()
+          .bounds.getBoundingBox();
         this.props.boundingBoxHandler(bbox);
-        // var bbox=this.platform.getBoundingBox()
-        //  this.setState({boundingBox:bbox})
+
+        this.setState({ boundingBox: bbox });
       },
       false
     );
@@ -342,7 +358,7 @@ class HereMaps extends Component {
           rangetype: rp.rangetype,
         },
         (result) => {
-          this.onResult1(result, el.color, index, position, title,el.time);
+          this.onResult1(result, el.color, index, position, title, el.time);
         },
         function (e) {
           console.log(e);
@@ -350,7 +366,7 @@ class HereMaps extends Component {
       );
     });
   };
-  onResult1 = (result, color, zIndex, position, title,timeBin) => {
+  onResult1 = (result, color, zIndex, position, title, timeBin) => {
     var col = color.split(",");
     var colstr = "";
     col[col.length - 1] = "" + this.state.transparency / 100 + ")";
@@ -373,7 +389,7 @@ class HereMaps extends Component {
     isolinePolygon = new window.H.map.Polygon(linestring, {
       style: customStyle,
     });
-    isolinePolygon.setData({ title, position,timeBin });
+    isolinePolygon.setData({ title, position, timeBin });
 
     isolinePolygon.setZIndex(zIndex);
 
@@ -389,9 +405,9 @@ class HereMaps extends Component {
   };
   refreshMap = () => {
     // console.log(this.state.isolinePolygonArray[0])
-     this.map.removeObjects(this.map.getObjects())
-      this.setState({isolinePolygonArray:[],isolinePolygonData:[]})
-     // this.addMarkersToMap(this.map,this.behaviour)
+    this.map.removeObjects(this.map.getObjects());
+    this.setState({ isolinePolygonArray: [], isolinePolygonData: [] });
+    // this.addMarkersToMap(this.map,this.behaviour)
     // this.downloadMap();
   };
   downloadMap = () => {
@@ -400,7 +416,7 @@ class HereMaps extends Component {
       var locations = [];
       // var tempArr = [];
 
-      // tempArr = 
+      // tempArr =
       this.state.isolinePolygonArray
         .filter((item) => {
           // if( el.title===item.getData().title){
@@ -411,10 +427,9 @@ class HereMaps extends Component {
         .forEach((elm) => {
           locations.push(elm.getGeometry().getExterior().getLatLngAltArray());
         });
-      
 
       arr.push({ el, locations });
-      });
+    });
     JSON.stringify(arr);
     var dataStr =
       "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arr));
@@ -424,15 +439,15 @@ class HereMaps extends Component {
     dlAnchorElem.click();
   };
 
-  calculateRGB=(n)=>{
-    var rgb =[]
-    var R = parseInt(Math.min(255, 2*255*n),10)
-    var G = parseInt(Math.min(255, 2*255*(1-n)),10)
-    var B = 0
-    rgb = [R, G, B]
-    rgb.push(1) // corresponding to alpha
-    return 'rgba('+rgb.join()+')'
-  }
+  calculateRGB = (n) => {
+    var rgb = [];
+    var R = parseInt(Math.min(255, 2 * 255 * n), 10);
+    var G = parseInt(Math.min(255, 2 * 255 * (1 - n)), 10);
+    var B = 0;
+    rgb = [R, G, B];
+    rgb.push(1); // corresponding to alpha
+    return "rgba(" + rgb.join() + ")";
+  };
   render() {
     const legend = this.state.configArray.map((el) => {
       return (
@@ -471,16 +486,16 @@ class HereMaps extends Component {
               </Button>
             </div>
             <div className={classes.RefreshButtonContainer}>
-            <Button
-              style={{ fontSize: "12px", backgroundColor: "#449DD1" }}
-              onClick={() => this.downloadMap()}
-              variant="contained"
+              <Button
+                style={{ fontSize: "12px", backgroundColor: "#449DD1" }}
+                onClick={() => this.downloadMap()}
+                variant="contained"
                 color="primary"
                 component="span"
-              id="downloadAnchorElem"
-            >
-              Export Data
-            </Button>
+                id="downloadAnchorElem"
+              >
+                Export Data
+              </Button>
             </div>
             {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
                         <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
