@@ -41,7 +41,7 @@
 }
 .RefreshButtonContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
   padding: 0.5em;
 }

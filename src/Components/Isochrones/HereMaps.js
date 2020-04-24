@@ -11,15 +11,6 @@ class HereMaps extends Component {
     //this.configArray=[{time:30,color:'rgba(255,0,0,.4)'},{time:15,color:'rgba(255,255,0,0.5)'},{time:5,color:'rgba(0,255,0,0.6)'}]
     this.platform = null;
     this.map = null;
-    // this.imp={
-    //   useCIT:true,
-    //   app_id: props.app_id,
-    //   app_code:props.app_code,
-    //   useHTTPS:true,
-    //   zoom: props.zoom,
-    //   theme:props.theme,
-    //   style: props.style,
-    // }
     this.state = {
       configArray: [
         { time: 30, color: "rgba(255,0,0,1)" },
@@ -38,9 +29,6 @@ class HereMaps extends Component {
         rangetype: "time",
       },
       mode: "",
-      // citySelect:{
-      //   searchText:'New Delhi'
-      // },
       placeMarker: null,
       markerX: props.lat,
       markerY: props.lng,
@@ -53,8 +41,6 @@ class HereMaps extends Component {
       boundingBox: null,
       isolinePolygonData: [],
     };
-
-    //this.addMarkersToMap=this.addMarkersToMap.bind(this)
   }
 
   componentDidMount() {
@@ -251,10 +237,7 @@ class HereMaps extends Component {
     });
   };
   getPois = (pois, url) => {
-    // var bboxCont=this.map.getViewBounds()
-    // var bbox=''+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+','+bboxCont.getTopLeft().lat+''
     //axios.get('https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+bbox+'&cat='+pois)
-
     axios
       .get(
         url +
@@ -414,19 +397,36 @@ class HereMaps extends Component {
     const handleTextFiles = (content) => {
       var lineData = content.split("\n");
       const objArr = [];
+      const latArr=[],lngArr=[]
       lineData.forEach((el) => {
-        var [title, lat, lng, extra] = el.split("\t");
-        var locObj = { title, position: [ lat, lng ], extra };
-        objArr.push(locObj);
-      });
-      
-      objArr.forEach(el=>{
-        var lat=el.position[0]
-        var t=parseFloat(lat)
-        if(t){
-          this.getisoline(el.position,el.title)
+        var [title, latStr, lngStr, extra] = el.split("\t");
+        var lat = parseFloat(latStr);
+        var lng = parseFloat(lngStr);
+
+        if(lat){
+          var locObj = { title, position: [lat, lng], extra };
+          latArr.push(lat)
+          lngArr.push(lng)
+          objArr.push(locObj);
         }
-      })
+      });
+      var lngMin=Math.min(...lngArr)
+      var latMin=Math.min(...latArr)
+      var latMax=Math.max(...latArr)
+      var lngMax=Math.max(...lngArr)
+      var center={
+        lng:(lngMin+lngMax)/2,
+        lat:(latMin+latMax)/2
+      }
+      this.map.setCenter(center, true);
+
+      objArr.forEach((el) => {
+        var lat = el.position[0];
+        var t = parseFloat(lat);
+        if (t) {
+          this.getisoline(el.position, el.title);
+        }
+      });
     };
     var file = e.target.files[0];
     if (file) {
@@ -490,15 +490,6 @@ class HereMaps extends Component {
               >
                 Refresh Map
               </Button>
-            </div>
-            <div className={classes.RefreshButtonContainer}>
-              <input
-                onChange={(e) => this.handleFiles(e)}
-                type="file"
-                id="inputFile"
-              ></input>
-            </div>
-            <div className={classes.RefreshButtonContainer}>
               <a
                 className={classes.AnchorStyle}
                 style={{ fontSize: "12px", backgroundColor: "#449DD1" }}
@@ -506,8 +497,15 @@ class HereMaps extends Component {
                 id="downloadAnchorElem"
                 accept=".txt"
               >
-                Download
+                Export
               </a>
+            </div>
+            <div className={classes.RefreshButtonContainer}>
+              <input
+                onChange={(e) => this.handleFiles(e)}
+                type="file"
+                id="inputFile"
+              ></input>
             </div>
           </div>
         </div>
