@@ -1,88 +1,108 @@
-.MapContainer{
-    width:70%;
-    height:100vh;
+.MapContainer {
+  width: 70%;
+  height: 100vh;
 }
-.LegendContainer{
-    width: 20%;
-    background:white;
-    position:absolute;
-    right:0;
-    top:0;
+.LegendContainer {
+  width: 20%;
+  background: white;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
-.LegendItemContainer{
-    width:70%;
-    align-items: center;
-    display:flex;
-    margin: auto;
-    justify-content: space-evenly;
+.LegendItemContainer {
+  width: 70%;
+  align-items: center;
+  display: flex;
+  margin: auto;
+  justify-content: space-evenly;
 }
-.MapLeftControlsIn{
-    width:83%;
-    align-items: center;
-    display:flex;
-    flex-direction: column;
-    margin: auto;
-    justify-content: space-evenly;
+.MapLeftControlsIn {
+  width: 83%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: space-evenly;
 }
-.MapLeftControls{
-    width: 30%;
-    background: white;
-    position: absolute;
-    left: 0;
-    bottom: 4vh;
+.MapLeftControls {
+  width: 30%;
+  background: white;
+  position: absolute;
+  left: 0;
+  bottom: 4vh;
 }
 
-.ButtonsContainer{
-    margin-top:12px;
-    margin-bottom:12px;
-    width:100%;
-    display:flex;
-    justify-content: space-between;
+.ButtonsContainer {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.RefreshButtonContainer{
-    display: flex;
-    justify-content: center;
+.RefreshButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5em;
+}
+.BoundingBox {
+  width: 100%;
+  background-color: rgba(200, 200, 200, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 1em;
+}
+.BoundingBoxIn {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.BoundingBox > p {
+  margin: 0;
+}
+@media (max-width: 780px) {
+  .MapContainer {
     width: 100%;
-    padding: 0.5em;
-}
-.BoundingBox{
-    width:100%;
-    background-color: rgba(200,200,200,0.5);
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column-reverse;
+    height: unset;
     box-sizing: border-box;
-    padding: 1em;
-}
-.BoundingBoxIn{
+    padding: 2%;
+  }
+  .LegendContainer {
+    position: relative;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;   
+  }
+  .MapLeftControls {
+    position: relative;
+    width: 100%;
+    bottom: unset;
+  }
+  .Heremap {
+    height: 80vh !important;
+  }
 }
-.BoundingBox>p{
-    margin:0
+.AnchorStyle {
+  font-size: 12px;
+  background-color: rgb(68, 157, 209);
+  padding: 6px 24px;
+  /* font-size: 0.875rem; */
+  min-width: 64px;
+  box-sizing: border-box;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.75;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  color: white;
 }
-@media(max-width:780px){
-    .MapContainer{
-        width:100%;
-        display: flex;
-        flex-direction: column-reverse;
-        height: unset;
-        box-sizing: border-box;
-        padding: 2%;
-    }
-    .LegendContainer{
-        position: relative;
-        width: 100%;
-    }
-    .MapLeftControls{
-        position: relative;
-        width: 100%;
-        bottom: unset;
-    }
-    .Heremap{
-        height:80vh !important
-    }
-    
+.AnchorStyle:hover {
+  cursor: pointer;
 }

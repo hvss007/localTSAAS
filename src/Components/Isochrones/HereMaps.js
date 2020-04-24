@@ -59,28 +59,18 @@ class HereMaps extends Component {
 
   componentDidMount() {
     this.platform = new window.H.service.Platform(this.state);
-
     var layer = this.platform.createDefaultLayers();
     var container = document.getElementById("here-map");
     this.map = new window.H.Map(container, layer.vector.normal.map, {
       center: this.state.center,
       zoom: this.state.zoom,
     });
-
     var events = new window.H.mapevents.MapEvents(this.map);
-    // eslint-disable-next-line
     this.behavior = new window.H.mapevents.Behavior(events);
-    // eslint-disable-next-line
     this.ui = new window.H.ui.UI.createDefault(this.map, layer);
     this.addMarkersToMap(this.map, this.behavior);
-    // this.req();
-    // var bbox=''+bboxCont.getTopLeft().lat+','+bboxCont.getTopLeft().lng+','+bboxCont.getBottomRight().lat+','+bboxCont.getBottomRight().lng+''
-    // var placeMarker=new window.H.map.Marker(...bboxCont.getBottomRight)
-    // placeMarker.draggable=true;
-    // this.map.addObject(placeMarker);
     var bbox = this.map.getViewModel().getLookAtData().bounds.getBoundingBox();
     this.props.boundingBoxHandler(bbox);
-
     this.setState({ boundingBox: bbox });
   }
 
@@ -166,11 +156,6 @@ class HereMaps extends Component {
     //   this.setState({mode:nextProps.mode})
     // }
   }
-  changeCoordinate = (event, map) => {
-    // var x= event.nativeEvent.offsetX;
-    // var y= event.nativeEvent.offsetY
-    // var coord=map.screenToGeo(x,y)
-  };
   changeTheme(theme, style) {
     var tiles = this.platform.getMapTileService({ type: "base" });
     var layer = tiles.createTileLayer("maptile", theme, 256, "png", {
@@ -284,7 +269,7 @@ class HereMaps extends Component {
         //     this.setState({nextUrl:Response.data.results.next})
         //     Response.data.results.items.forEach(element => {
         //       this.getisoline(element.position,element.title)
-        //     })
+        //    u })
         //   }
         //   else if(Response.data.next||Response.data.previous){
 
@@ -412,13 +397,53 @@ class HereMaps extends Component {
     this.state.isolinePolygonArray.forEach((el) => {
       arr.push(el.toGeoJSON());
     });
-
-    var dataStr =
-      "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arr));
+    var data = JSON.stringify(arr);
+    var newStr = data.substring(1, data.length - 1);
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(newStr);
     var dlAnchorElem = document.getElementById("downloadAnchorElem");
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "data.geoJson");
     dlAnchorElem.click();
+  };
+  uploadFiles = () => {
+    const inputElement = document.getElementById("inputFile");
+    inputElement.addEventListener("change", this.handleFiles, false);
+  };
+
+  handleFiles = (e) => {
+    const handleTextFiles = (content) => {
+      var lineData = content.split("\n");
+      const objArr = [];
+      lineData.forEach((el) => {
+        var [title, lat, lng, extra] = el.split("\t");
+        var locObj = { title, position: [ lat, lng ], extra };
+        objArr.push(locObj);
+      });
+      
+      objArr.forEach(el=>{
+        var lat=el.position[0]
+        var t=parseFloat(lat)
+        if(t){
+          this.getisoline(el.position,el.title)
+        }
+      })
+    };
+    var file = e.target.files[0];
+    if (file) {
+      var f = new FileReader();
+      f.onload = function (e) {
+        var fileType = file.type;
+        // var contents = e.target.result;
+        switch (fileType) {
+          case "text/plain":
+            handleTextFiles(e.target.result);
+            break;
+          default:
+            console.log(e.target.result);
+        }
+      };
+      f.readAsText(file);
+    }
   };
 
   calculateRGB = (n) => {
@@ -447,7 +472,6 @@ class HereMaps extends Component {
         <div
           className={classes.Heremap}
           id="here-map"
-          onClick={(event) => this.changeCoordinate(event, this.map)}
           style={{ width: "100%", height: "100%", background: "black" }}
         />
         <div className={classes.LegendContainer}>
@@ -468,10 +492,19 @@ class HereMaps extends Component {
               </Button>
             </div>
             <div className={classes.RefreshButtonContainer}>
+              <input
+                onChange={(e) => this.handleFiles(e)}
+                type="file"
+                id="inputFile"
+              ></input>
+            </div>
+            <div className={classes.RefreshButtonContainer}>
               <a
+                className={classes.AnchorStyle}
                 style={{ fontSize: "12px", backgroundColor: "#449DD1" }}
                 onClick={() => this.downloadMap()}
                 id="downloadAnchorElem"
+                accept=".txt"
               >
                 Download
               </a>
