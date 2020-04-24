@@ -1,9 +1,6 @@
-import Axios from "axios";
 import React, { Component } from "react";
 import classes from "./HereMaps.css";
-// import {Slider,Typography} from '@material-ui/core'
 import axios from "axios";
-// import AutoComplete from './AutoComplete'
 import Button from "@material-ui/core/Button";
 import colorsArray from "./assets/colors";
 class HereMaps extends Component {
@@ -119,36 +116,14 @@ class HereMaps extends Component {
         //  this.setState({boundingBox:bbox})
       }, 500);
     }
-    // if (this.props.timeBins !== nextProps.timeBins) {
-    //   var configArrayCopy = [];
-    //   if (
-    //     nextProps.timeBins.search(",") !== -1 &&
-    //     nextProps.timeBins.length >= 3 &&
-    //     nextProps.timeBins[nextProps.timeBins.length - 1] !== ","
-    //   ) {
-    //     var timeBinsStringArray = nextProps.timeBins.split(",");
-    //     timeBinsStringArray.forEach((el, index) => {
-    //       configArrayCopy.push({
-    //         time: parseInt(el, 10),
-    //         color: this.changeHextorgba(this.colorsArray[index]),
-    //       });
-    //     });
-    //     configArrayCopy.reverse();
 
-    //     this.setState({ configArray: configArrayCopy });
-    //   }
-    // }
-    
-    
-
-  
   if(this.props.timeBins!==nextProps.timeBins){
       var configArrayCopy=[];
       if(nextProps.timeBins.search(",")!==-1&&nextProps.timeBins.length>=3&&nextProps.timeBins[nextProps.timeBins.length-1]!==","){
         var timeBinsStringArray=nextProps.timeBins.split(',');
         var x =  1 / (timeBinsStringArray.length-1);
         timeBinsStringArray.forEach((el,index)=>{               
-              configArrayCopy.push({time:parseInt(el), color:this.calculateRGB(index*x)}); 
+              configArrayCopy.push({time:parseInt(el,10), color:this.calculateRGB(index*x)}); 
               // configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])}); 
             })
         configArrayCopy.reverse();
@@ -391,7 +366,6 @@ class HereMaps extends Component {
       linestring = new window.H.geo.LineString(),
       isolinePolygon;
     //isolineCenter;
-    // console.log(isolineCoords);
     // Add the returned isoline coordinates to a linestring:
     isolineCoords.forEach((coords) => {
       linestring.pushLatLngAlt.apply(linestring, coords.split(","));
@@ -411,59 +385,7 @@ class HereMaps extends Component {
 
   selectedOption = (value) => {
     var query = value.split("- ");
-    //console.log(query)
     this.setState({ query: query[1] });
-  };
-
-  fetchOnSameMap = () => {
-    Axios.get(
-      "https://places.cit.api.here.com/places/v1/autosuggest?at=" +
-        this.state.markerX +
-        "," +
-        this.state.markerY +
-        "&q=" +
-        this.state.query +
-        "&app_id=" +
-        process.env.REACT_APP_PLACES_API_ID +
-        "&app_code=" +
-        process.env.REACT_APP_PLACES_APP_CODE +
-        "&size=100"
-    ).then((Response) => {
-      if (Response.data.results.length > 0) {
-        var posArray = Response.data.results.filter((el) => {
-          return el.position && el.category === "public-transport";
-        });
-        console.log(posArray);
-        posArray.forEach((element) => {
-          this.getisoline(element.position, element.title);
-        });
-      }
-    });
-  };
-  fetchOnDiffMap = () => {
-    this.map.removeObjects(this.map.getObjects());
-    Axios.get(
-      "https://places.cit.api.here.com/places/v1/autosuggest?at=" +
-        this.state.markerX +
-        "," +
-        this.state.markerY +
-        "&q=" +
-        this.state.query +
-        "&app_id=" +
-        process.env.REACT_APP_PLACES_API_ID +
-        "&app_code=" +
-        process.env.REACT_APP_PLACES_APP_CODE
-    ).then((Response) => {
-      if (Response.data.results.length > 0) {
-        var posArray = Response.data.results.filter((el) => {
-          return el.position;
-        });
-        console.log(posArray);
-        posArray.forEach((element) => {
-          this.getisoline(element.position, element.title);
-        });
-      }
-    });
   };
   refreshMap = () => {
     // console.log(this.state.isolinePolygonArray[0])
@@ -476,9 +398,10 @@ class HereMaps extends Component {
     var arr = [];
     this.state.isolinePolygonData.forEach((el) => {
       var locations = [];
-      var tempArr = [];
+      // var tempArr = [];
 
-      tempArr = this.state.isolinePolygonArray
+      // tempArr = 
+      this.state.isolinePolygonArray
         .filter((item) => {
           // if( el.title===item.getData().title){
           //   return item.getGeometry()
@@ -503,46 +426,13 @@ class HereMaps extends Component {
 
   calculateRGB=(n)=>{
     var rgb =[]
-    var R = parseInt(Math.min(255, 2*255*n))
-    var G = parseInt(Math.min(255, 2*255*(1-n)))
+    var R = parseInt(Math.min(255, 2*255*n),10)
+    var G = parseInt(Math.min(255, 2*255*(1-n)),10)
     var B = 0
     rgb = [R, G, B]
     rgb.push(1) // corresponding to alpha
     return 'rgba('+rgb.join()+')'
   }
-  changeHextorgba = (color) => {
-    var rgb = [];
-    var hex = color.substr(1).split("");
-    var i = 0;
-    var x = 0;
-    var hexStr;
-    while (i < 3) {
-      hexStr = hex[x] + hex[x + 1];
-      rgb[i] = parseInt(hexStr, 16);
-      i += 1;
-      x = i * 2;
-    }
-    rgb.push(1);
-    var rgbaStr = "rgba(" + rgb.join() + ")";
-    return rgbaStr;
-  };
-
-  calculateRoute = () => {
-    //   var router = this.platform.getRoutingService(),
-    //   routeRequestParams = {
-    //   mode: 'fastest;car',
-    //   representation: 'display',
-    //   routeattributes: 'waypoints,summary,shape,legs',
-    //   maneuverattributes: 'direction,action',
-    //   waypoint0: '52.5160,13.3779', // Brandenburg Gate
-    //   waypoint1: '52.5206,13.3862'  // Friedrichstraße Railway Station
-    // };
-    // router.calculateRoute(
-    //   routeRequestParams,
-    //   onSuccess,
-    //   onError
-    // );
-  };
   render() {
     const legend = this.state.configArray.map((el) => {
       return (
@@ -580,13 +470,18 @@ class HereMaps extends Component {
                 Refresh Map
               </Button>
             </div>
-            <a
+            <div className={classes.RefreshButtonContainer}>
+            <Button
               style={{ fontSize: "12px", backgroundColor: "#449DD1" }}
               onClick={() => this.downloadMap()}
+              variant="contained"
+                color="primary"
+                component="span"
               id="downloadAnchorElem"
             >
-              Download
-            </a>
+              Export Data
+            </Button>
+            </div>
             {/* <h3  style={{textAlign:'center'}}>Search for reqd position</h3>
                         <AutoComplete lat={this.state.center.lat} lng={this.state.center.lng} selectedOption={this.selectedOption}/>
                         <div className={classes.ButtonsContainer }>
