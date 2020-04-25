@@ -301,19 +301,19 @@ export default class MapControls extends Component {
 
           {this.state.optionSelector === "0" ? (
             <div className={classes.pois}>
-              <FormLabel component="legend">Points From</FormLabel>
+              <FormLabel component="legend">Select Source of Facilities</FormLabel>
               <RadioGroup
-                aria-label="Points From"
-                name="points from"
+                aria-label="Select Source of Facilities"
+                name="Select Source of Facilities"
                 value={this.state.optionSelector}
                 onChange={this.optionSelectorHandler}
               >
                 <FormControlLabel
                   value="1"
                   control={<Radio />}
-                  label="Categories"
+                  label="Predefined Categories"
                 />
-                <FormControlLabel value="2" control={<Radio />} label="File" />
+                <FormControlLabel value="2" control={<Radio />} label="Upload a File (txt, csv, geojson)" />
                 {/* <FormControlLabel
                 value="other"
                 control={<Radio />}
