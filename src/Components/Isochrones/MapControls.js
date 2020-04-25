@@ -12,7 +12,7 @@ import {
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-// import AutoComplete from './AutoComplete'
+import AutoComplete from './AutoComplete'
 import Button from "@material-ui/core/Button";
 import { primaryCategories } from "./assets/categories";
 import Axios from "axios";
@@ -314,6 +314,7 @@ export default class MapControls extends Component {
                   label="Categories"
                 />
                 <FormControlLabel value="2" control={<Radio />} label="File" />
+                <FormControlLabel value="3" control={<Radio />} label="Custom Search" />
                 {/* <FormControlLabel
                 value="other"
                 control={<Radio />}
@@ -393,6 +394,12 @@ export default class MapControls extends Component {
               </Select>
             </div>
           ) : null}
+          {this.state.optionSelector==="3"?<div className={classes.Pois}>
+          <InputLabel >
+              Custom Search
+            </InputLabel>
+                    <AutoComplete lat={this.props.searchLat} lng={this.props.searchLng} selectedOption={this.props.selectedOption}/>
+          </div>:null}
           <div className={classes.Pois}>
             <InputLabel id="enterTimeBins">
               {" "}

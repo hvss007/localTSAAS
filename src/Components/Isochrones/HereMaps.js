@@ -62,9 +62,14 @@ class HereMaps extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if(this.props.searchValue!==nextProps.searchValue){
+      this.refreshMap()
+      nextProps.searchPosArr.forEach(el=>{
+        this.getisoline(el.position,el.title)
+      })
+    }
     if(this.props.fileInput!==nextProps.fileInput){
       const {objArr,latArr,lngArr}=nextProps.fileInput
-      
        this.prepareIsochroneFromFiles(objArr,latArr,lngArr)
     }
     if (this.props.transparency !== nextProps.transparency) {
@@ -75,7 +80,8 @@ class HereMaps extends Component {
     if (this.props.lat !== nextProps.lat) {
       var centerCopy = { lat: nextProps.lat, lng: nextProps.lng };
       this.map.setCenter(centerCopy, true);
-      this.map.setZoom(this.state.zoom, true);
+
+      // this.map.setZoom(this.state.zoom, true);
       //this.map.removeObject(this.state.placeMarker)
       this.setState(
         {
@@ -84,6 +90,7 @@ class HereMaps extends Component {
           markerY: centerCopy.lng,
         },
         () => {
+          this.props.coordHandler(nextProps.lat,nextProps.lng)
           this.addMarkersToMap(this.map, this.behavior);
         }
       );
@@ -158,7 +165,9 @@ class HereMaps extends Component {
     });
     placeMarker.draggable = true;
     map.addObject(placeMarker);
-    this.setState({ placeMarker: placeMarker });
+    this.setState({ placeMarker: placeMarker },()=>{
+      // this.props.coordHandler()
+    });
     this.dragEventHandler(map, behavior);
   }
 
@@ -204,7 +213,9 @@ class HereMaps extends Component {
             )
           );
           var crd = map.screenToGeo(pointer.viewportX, pointer.viewportY);
-          this.setState({ markerX: crd.lat, markerY: crd.lng });
+          this.setState({ markerX: crd.lat, markerY: crd.lng },()=>{
+            this.props.coordHandler(crd.lat,crd.lng)
+          });
         }
         var bbox = this.map
           .getViewModel()

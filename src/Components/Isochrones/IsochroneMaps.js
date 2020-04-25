@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./IsochroneMaps.css";
 import HereMaps from "./HereMaps";
 import MapControls from "./MapControls";
+import Axios from 'axios'
 class MAps extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,10 @@ class MAps extends Component {
       transparency: 50,
       boundingBox: null,
       fileInput: null,
+      searchLat:"28.7041",
+      searchLng:"77.1025",
+      searchPosArr:[],
+      searchValue:""
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -44,6 +49,24 @@ class MAps extends Component {
   fetchHandler = () => {
     this.setState({ updatedFetchCount: this.state.updatedFetchCount + 1 });
   };
+  selectedOption=(value)=>{
+    var query=value.split("- ")
+    console.log(query)
+    Axios.get('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.state.searchLat+","+this.state.searchLng+'&q='+query[1] +'&app_id='+process.env.REACT_APP_PLACES_API_ID+'&app_code='+process.env.REACT_APP_PLACES_APP_CODE)
+    .then(Response=>{
+
+      if(Response.data.results.length>0){
+        var posArray=Response.data.results.filter(el=>{
+          return el.position
+        })
+        console.log(posArray)
+        this.setState({searchValue:query,searchPosArr:posArray})
+        // posArray.forEach(element => {
+        //   this.getisoline(element.position,element.title)
+        // }) 
+      }
+    })
+  }
   boundingBoxHandler = (bbox) => {
     this.setState({ boundingBox: bbox });
   };
@@ -61,6 +84,9 @@ class MAps extends Component {
       alert(e);
     });
   };
+  coordHandler=(lat,lng)=>{
+    this.setState({searchLat:lat,searchLng:lng})
+  }
   onResult = (result) => {
     var locations = result.Response.View[0].Result,
       position;
@@ -83,6 +109,7 @@ class MAps extends Component {
     return (
       <div className={classes.MainContainer}>
         <MapControls
+        selectedOption={this.selectedOption}
           handleFileInput={this.handleFileInput}
           bbox={this.state.boundingBox}
           nosHandleChange={this.nosHandleChange}
@@ -96,8 +123,12 @@ class MAps extends Component {
           modeState={this.state.modeState}
           cityEnteredHandler={this.cityEnteredHandler}
           inputHandler={this.inputHandler}
+          searchLat={this.state.searchLat}
+          searchLng={this.state.searchLng}
         ></MapControls>
         <HereMaps
+        coordHandler={this.coordHandler}
+          searchPosArr={this.state.searchPosArr}
           noOfPoints={this.state.noOfPoints}
           pois={this.state.pois}
           secPois={this.state.secPois}
@@ -117,6 +148,7 @@ class MAps extends Component {
           inputChange={(event) => this.inputHandler(event)}
           boundingBoxHandler={this.boundingBoxHandler}
           fileInput={this.state.fileInput}
+          searchValue={this.state.searchValue}
         ></HereMaps>
         {/* <ThemeSelector changeTheme={ this.onChange } /> */}
       </div>
