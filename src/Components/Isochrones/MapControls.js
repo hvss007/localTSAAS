@@ -345,7 +345,7 @@ export default class MapControls extends Component {
                   style={{ display: "none" }}
                 />
               </Button>
-              <h6 style={{color:'grey',fontWeight:400,margin:'2px',width:'100%'}}>*Data must have title,lat,long in the title/dictionaries. Please adapt to it.</h6>
+              <h6 style={{color:'grey',fontWeight:400,margin:'2px',width:'100%'}}>*File must be in csv, txt or geojson format and contain lat, long in the header/ dictionaries.</h6>
             </div>
           ) : null}
           {/* <Button 
@@ -355,7 +355,7 @@ export default class MapControls extends Component {
           {this.state.optionSelector === "1" ? (
             <div className={classes.Pois}>
               <Typography id="disabled-slider" gutterBottom>
-                Select no of points
+                Select number of points to be loaded
               </Typography>
               <Slider
                 name="noOfPoints"

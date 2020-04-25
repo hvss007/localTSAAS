@@ -469,7 +469,7 @@ class HereMaps extends Component {
                 onClick={() => this.downloadMap()}
                 id="downloadAnchorElem"
               >
-                Export
+                Export Data
               </a>
             </div>
           </div>
