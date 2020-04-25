@@ -62,6 +62,11 @@ class HereMaps extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if(this.props.fileInput!==nextProps.fileInput){
+      const {objArr,latArr,lngArr}=nextProps.fileInput
+      
+       this.prepareIsochroneFromFiles(objArr,latArr,lngArr)
+    }
     if (this.props.transparency !== nextProps.transparency) {
       this.setState({ transparency: nextProps.transparency }, () => {
         this.changeTransparency(nextProps.transparency);
@@ -385,128 +390,26 @@ class HereMaps extends Component {
     dlAnchorElem.setAttribute("download", "data.geo.json");
     dlAnchorElem.click();
   };
-  uploadFiles = () => {
-    const inputElement = document.getElementById("inputFile");
-    inputElement.addEventListener("change", this.handleFiles, false);
-  };
-
-  handleFiles = (e) => {
-    const handleTextFiles = (content,delimiter) => {
-      var lineData = content.split("\n");
-      const objArr = [];
-      const latArr = [],
-        lngArr = [];
-      lineData.forEach((el) => {
-        var [title, latStr, lngStr, extra] = el.split(delimiter);
-        var lat = parseFloat(latStr);
-        var lng = parseFloat(lngStr);
-
-        if (lat) {
-          var locObj = { title, position: [lat, lng], extra };
-          latArr.push(lat);
-          lngArr.push(lng);
-          objArr.push(locObj);
-        }
-      });
-      prepareIsochroneFromFiles(objArr,latArr,lngArr)
-    };
-    const prepareIsochroneFromFiles=(objArr,latArr,lngArr)=>{
-      var lngMin = Math.min(...lngArr);
-      var latMin = Math.min(...latArr);
-      var latMax = Math.max(...latArr);
-      var lngMax = Math.max(...lngArr);
-      // var center = {
-      //   lng: (lngMin + lngMax) / 2,
-      //   lat: (latMin + latMax) / 2,
-      // };
-      var setbox = new window.H.geo.Rect(latMax,lngMin,latMin,lngMax);
-      this.map.getViewModel().setLookAtData({
-        bounds: setbox
-      });
-      this.props.boundingBoxHandler(setbox);
-      this.setState({ boundingBox: setbox});
-      objArr.forEach((el) => {
-        this.getisoline(el.position, el.title);
-      });
-    }
-    const handleJSONFile = (objArr) => {
-      var latArr=[]
-      var lngArr=[]
-      objArr.forEach(({position})=>{
-        latArr.push(position[0])
-        lngArr.push(position[1])
-      })
-      prepareIsochroneFromFiles(objArr,latArr,lngArr)
-    };
-    // const handleCSVFiles=(content)=>{
-    //   var lineData = content.split("\n");
-    //   console.log(lineData)
-    //   const objArr = [];
-    //   const latArr = [],
-    //     lngArr = [];
-    //   lineData.forEach((el) => {
-    //     var [title, latStr, lngStr, extra] = el.split(",");
-    //     var lat = parseFloat(latStr);
-    //     var lng = parseFloat(lngStr);
-        
-      
-    //     if (lat) {
-    //       var locObj = { title, position: [lat, lng], extra };
-    //       latArr.push(lat);
-    //       lngArr.push(lng);
-    //       objArr.push(locObj);
-    //     }
-    //     console.log(objArr)
-    //   });
-    //   // prepareIsochroneFromFiles(objArr,latArr,lngArr)
-    // }
-    var file = e.target.files[0];
-    if (file) {
-      var fileType = file.type;
-      var f = new FileReader();
-
-      switch (fileType) {
-        case "text/plain": {
-          f.onload = (e) => {
-            handleTextFiles(e.target.result,"\t");
-          };
-          f.readAsText(file);
-          break;
-        }
-        case "application/json":
-          f.onload = (e) => {
-            if (file.name.includes(".geo")) {
-              console.log(JSON.parse(e.target.result));
-              var objarr = [];
-              JSON.parse(e.target.result).features.forEach(
-                ({ geometry, properties }) => {
-                  var obj = {
-                    title: properties.title,
-                    position: [...geometry.coordinates],
-                  };
-                  objarr.push(obj);
-                }
-              );
-              handleJSONFile(objarr);
-            } else {
-              handleJSONFile(JSON.parse(e.target.result));
-            }
-          };
-          f.readAsText(file);
-          break;
-          case "text/csv":
-            f.onload = (e) => {
-              handleTextFiles(e.target.result,",");
-            };
-            f.readAsText(file);
-            break;
-        default:
-          console.log(fileType);
-          break;
-      }
-    }
-  };
-
+  
+  prepareIsochroneFromFiles=(objArr,latArr,lngArr)=>{
+    var lngMin = Math.min(...lngArr);
+    var latMin = Math.min(...latArr);
+    var latMax = Math.max(...latArr);
+    var lngMax = Math.max(...lngArr);
+    // var center = {
+    //   lng: (lngMin + lngMax) / 2,
+    //   lat: (latMin + latMax) / 2,
+    // };
+    var setbox = new window.H.geo.Rect(latMax,lngMin,latMin,lngMax);
+    this.map.getViewModel().setLookAtData({
+      bounds: setbox
+    });
+    this.props.boundingBoxHandler(setbox);
+    this.setState({ boundingBox: setbox});
+    objArr.forEach((el) => {
+      this.getisoline(el.position, el.title);
+    });
+  }
   calculateRGB = (n) => {
     var rgb = [];
     var R = parseInt(Math.min(255, 2 * 255 * n), 10);
@@ -559,13 +462,6 @@ class HereMaps extends Component {
               >
                 Export
               </a>
-            </div>
-            <div className={classes.RefreshButtonContainer}>
-              <input
-                onChange={(e) => this.handleFiles(e)}
-                type="file"
-                id="inputFile"
-              ></input>
             </div>
           </div>
         </div>
