@@ -12,7 +12,7 @@ import {
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-import AutoComplete from './AutoComplete'
+import AutoComplete from "./AutoComplete";
 import Button from "@material-ui/core/Button";
 import { primaryCategories } from "./assets/categories";
 import Axios from "axios";
@@ -301,20 +301,30 @@ export default class MapControls extends Component {
 
           {this.state.optionSelector === "0" ? (
             <div className={classes.pois}>
-              <FormLabel component="legend">Points From</FormLabel>
+              <FormLabel component="legend">
+                Select Source of Facilities
+              </FormLabel>
               <RadioGroup
-                aria-label="Points From"
-                name="points from"
+                aria-label="Select Source of Facilities"
+                name="Select Source of Facilities"
                 value={this.state.optionSelector}
                 onChange={this.optionSelectorHandler}
               >
                 <FormControlLabel
                   value="1"
                   control={<Radio />}
-                  label="Categories"
+                  label="Predefined Categories"
                 />
-                <FormControlLabel value="2" control={<Radio />} label="File" />
-                <FormControlLabel value="3" control={<Radio />} label="Custom Search" />
+                <FormControlLabel
+                  value="2"
+                  control={<Radio />}
+                  label="Upload a File (txt, csv, geojson)"
+                />
+                <FormControlLabel
+                  value="3"
+                  control={<Radio />}
+                  label="Custom Search"
+                />
                 {/* <FormControlLabel
                 value="other"
                 control={<Radio />}
@@ -332,7 +342,12 @@ export default class MapControls extends Component {
               ></input> */}
               <Button variant="contained" component="label">
                 Upload File
-                <input onChange={(e) => this.handleFiles(e)} type="file" id="inputFile" style={{ display: "none" }} />
+                <input
+                  onChange={(e) => this.handleFiles(e)}
+                  type="file"
+                  id="inputFile"
+                  style={{ display: "none" }}
+                />
               </Button>
             </div>
           ) : null}
@@ -394,12 +409,16 @@ export default class MapControls extends Component {
               </Select>
             </div>
           ) : null}
-          {this.state.optionSelector==="3"?<div className={classes.Pois}>
-          <InputLabel >
-              Custom Search
-            </InputLabel>
-                    <AutoComplete lat={this.props.searchLat} lng={this.props.searchLng} selectedOption={this.props.selectedOption}/>
-          </div>:null}
+          {this.state.optionSelector === "3" ? (
+            <div className={classes.Pois}>
+              <InputLabel>Custom Search</InputLabel>
+              <AutoComplete
+                lat={this.props.searchLat}
+                lng={this.props.searchLng}
+                selectedOption={this.props.selectedOption}
+              />
+            </div>
+          ) : null}
           <div className={classes.Pois}>
             <InputLabel id="enterTimeBins">
               {" "}
