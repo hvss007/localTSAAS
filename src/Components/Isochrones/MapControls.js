@@ -66,10 +66,10 @@ export default class MapControls extends Component {
     return rgb;
   };
 
-  uploadFiles = () => {
-    const inputElement = document.getElementById("inputFile");
-    inputElement.addEventListener("change", this.handleFiles, false);
-  };
+  // uploadFiles = () => {
+  //   const inputElement = document.getElementById("inputFile");
+  //   inputElement.addEventListener("change", this.handleFiles, false);
+  // };
   handleFiles = (e) => {
     const handleTextFiles = (content, delimiter) => {
       var lineData = content.split("\n");
@@ -88,7 +88,6 @@ export default class MapControls extends Component {
           objArr.push(locObj);
         }
       });
-      //   prepareIsochroneFromFiles(objArr,latArr,lngArr)
       this.props.handleFileInput({ objArr, latArr, lngArr });
     };
 
@@ -99,7 +98,6 @@ export default class MapControls extends Component {
         latArr.push(position[0]);
         lngArr.push(position[1]);
       });
-      //   prepareIsochroneFromFiles(objArr,latArr,lngArr)
       this.props.handleFileInput({ objArr, latArr, lngArr });
     };
     var file = e.target.files[0];
@@ -154,11 +152,9 @@ export default class MapControls extends Component {
     )
       .then((Response) => {
         const catArray = [];
-
         Response.data.items.forEach((el) => {
           catArray.push({ id: el.id, title: el.title, icon: el.icon });
-        });
-
+        }); 
         this.setState({ suggestionsArray: catArray });
       })
       .catch((e) => {
@@ -340,7 +336,7 @@ export default class MapControls extends Component {
                 type="file"
                 id="inputFile"
               ></input> */}
-              <Button variant="contained" component="label">
+              <Button style={{alignSelf:"center"}} variant="contained" component="label">
                 Upload File
                 <input
                   onChange={(e) => this.handleFiles(e)}
@@ -349,6 +345,7 @@ export default class MapControls extends Component {
                   style={{ display: "none" }}
                 />
               </Button>
+              <h6 style={{color:'grey',fontWeight:400,margin:'2px',width:'100%'}}>*Data must have title,lat,long in the title/dictionaries. Please adapt to it.</h6>
             </div>
           ) : null}
           {/* <Button 

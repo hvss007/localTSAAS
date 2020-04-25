@@ -394,12 +394,11 @@ class HereMaps extends Component {
       arr.push(el.toGeoJSON());
     });
     var data = JSON.stringify(arr);
-    var newStr = data.substring(1, data.length - 1);
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(newStr);
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
     var dlAnchorElem = document.getElementById("downloadAnchorElem");
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "data.geo.json");
-    dlAnchorElem.click();
+    // dlAnchorElem.click();
   };
   
   prepareIsochroneFromFiles=(objArr,latArr,lngArr)=>{
@@ -469,7 +468,6 @@ class HereMaps extends Component {
                 style={{ fontSize: "12px", backgroundColor: "#449DD1" }}
                 onClick={() => this.downloadMap()}
                 id="downloadAnchorElem"
-                accept=".txt"
               >
                 Export
               </a>
