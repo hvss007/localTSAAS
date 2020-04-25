@@ -146,13 +146,6 @@ class HereMaps extends Component {
       this.getPois("", this.state.nextUrl);
     }
   }
-  changeTheme(theme, style) {
-    var tiles = this.platform.getMapTileService({ type: "base" });
-    var layer = tiles.createTileLayer("maptile", theme, 256, "png", {
-      style: style,
-    });
-    this.map.setBaseLayer(layer);
-  }
   addMarkersToMap(map, behavior) {
     var placeMarker = new window.H.map.Marker({
       lat: this.state.center.lat,
@@ -242,7 +235,6 @@ class HereMaps extends Component {
     });
   };
   getPois = (pois, url) => {
-    //axios.get('https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+bbox+'&cat='+pois)
     axios
       .get(
         url +
@@ -251,32 +243,6 @@ class HereMaps extends Component {
           (this.props.noOfPoints ? this.props.noOfPoints : 50)
       )
       .then((Response) => {
-        // if(Response.data.next||Response.data.results.next){
-        //   console.log("run1")
-        //   if(Response.data.results){
-        //     this.setState({nextUrl:Response.data.results.next})
-        //     Response.data.results.items.forEach(element => {
-        //       this.getisoline(element.position,element.title)
-        //    u })
-        //   }
-        //   else if(Response.data.next||Response.data.previous){
-
-        //     this.setState({nextUrl:Response.data.next})
-        //     Response.data.items.forEach(element => {
-        //       this.getisoline(element.position,element.title)
-        //     })
-        //   }
-        //   //this.setState({nextUrl:Response.data.results.next})
-
-        // }
-        // else{
-
-        //   alert("no more results")
-        //   Response.data.results.items.forEach(element => {
-        //     this.getisoline(element.position,element.title)
-        //   })
-        // }
-        //console.log(Response.data.items)
         Response.data.items.forEach((element) => {
           let pos = [element.position.lat, element.position.lng];
           this.getisoline(pos, element.title);

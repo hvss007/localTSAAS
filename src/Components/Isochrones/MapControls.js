@@ -15,7 +15,6 @@ import {
 import AutoComplete from "./AutoComplete";
 import Button from "@material-ui/core/Button";
 import { primaryCategories } from "./assets/categories";
-import Axios from "axios";
 
 import eatAndDrink from "./assets/eatAndDrink.json";
 import goingOut from "./assets/goingOut.json";
@@ -51,17 +50,6 @@ export default class MapControls extends Component {
     };
   }
   displayHandler = () => {};
-
-  pickHex = (color1, color2, weight) => {
-    var w1 = weight;
-    var w2 = 1 - w1;
-    var rgb = [
-      Math.round(color1[0] * w1 + color2[0] * w2),
-      Math.round(color1[1] * w1 + color2[1] * w2),
-      Math.round(color1[2] * w1 + color2[2] * w2),
-    ];
-    return rgb;
-  };
 
   handleFiles = (e) => {
     const handleTextFiles = (content, delimiter) => {
@@ -138,21 +126,6 @@ export default class MapControls extends Component {
           break;
       }
     }
-  };
-  categoriesHandler = () => {
-    Axios.get(
-      "https://places.ls.hereapi.com/places/v1/categories/places?at=28.7041,77.1025&apiKey="+process.env.REACT_APP_PLACES_API_KEY
-    )
-      .then((Response) => {
-        const catArray = [];
-        Response.data.items.forEach((el) => {
-          catArray.push({ id: el.id, title: el.title, icon: el.icon });
-        }); 
-        this.setState({ suggestionsArray: catArray });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
   };
   newCategoriesHandler = (val) => {
     const req_arr = primaryCategories.filter((el) => {
