@@ -42,6 +42,10 @@
         "Thrissur",
         "Wayanad"
     ],
+    "Ladakh":[
+        "Leh",
+        "Kargil"
+    ],
     "Jammu and Kashmir": [
         "Anantnag",
         "Bandipore",
@@ -50,12 +54,12 @@
         "Doda",
         "Ganderbal",
         "Jammu",
-        "Kargil",
         "Kathua",
         "Kishtwar",
         "Kulgam",
         "Kupwara",
-        "Leh",
+        "Mirpur",
+        "Muzaffarabad",
         "Poonch",
         "Pulwama",
         "Rajouri",
