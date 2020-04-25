@@ -52,9 +52,12 @@ class HereMaps extends Component {
     this.behavior = new window.H.mapevents.Behavior(events);
     this.ui = new window.H.ui.UI.createDefault(this.map, layer);
     this.addMarkersToMap(this.map, this.behavior);
-    var bbox = this.map.getViewModel().getLookAtData().bounds.getBoundingBox();
+    setTimeout(()=>{
+      var bbox = this.map.getViewModel().getLookAtData().bounds.getBoundingBox();
     this.props.boundingBoxHandler(bbox);
     this.setState({ boundingBox: bbox });
+    },500)
+    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -416,7 +419,13 @@ class HereMaps extends Component {
         lat: (latMin + latMax) / 2,
       };
       // console.log(JSON.stringify(objArr))
+      
       this.map.setCenter(center, true);
+      setTimeout(()=>{
+        var bbox = this.map.getViewModel().getLookAtData().bounds.getBoundingBox();
+      this.props.boundingBoxHandler(bbox);
+      this.setState({ boundingBox: bbox });
+      },500)
       objArr.forEach((el) => {
         this.getisoline(el.position, el.title);
       });
