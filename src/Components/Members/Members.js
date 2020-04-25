@@ -116,7 +116,6 @@ class Members extends Component{
         </Member>:<FinishSurvey/>}
         </div>
         </div>
-        {/* </div> */}
         </div>
         </Aux>
     )

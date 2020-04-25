@@ -184,8 +184,6 @@ class Wiki extends Component {
               <b>Mentor / Supervisor:</b> Dr. Amit Agarwal{' '}
             </li>
           </ul>
-          {/* <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
-                <Toolbar  drawerToggleClicked={this.SideDrawerToggleHandler}></Toolbar> */}
         </div>
       </Aux>
     );

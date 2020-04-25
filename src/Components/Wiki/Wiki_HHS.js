@@ -7,8 +7,6 @@ import FamilyScreenshot3 from "../../assets/screenshots/family3.png";
 import MemberScreenshot1 from "../../assets/screenshots/member1.png";
 import MemberScreenshot2 from "../../assets/screenshots/member2.png";
 import MemberScreenshot3 from "../../assets/screenshots/member3.png";
-// import MemberScreenshot4 from "../../assets/screenshots/member4.png";
-// import MemberScreenshot5 from "../../assets/screenshots/member5.png";
 import TripScreenshot1 from "../../assets/screenshots/trip1.png";
 import TripScreenshot2 from "../../assets/screenshots/trip2.png";
 import TripScreenshot3 from "../../assets/screenshots/trip3.png";
@@ -141,9 +139,6 @@ class Wiki extends Component {
                 <li>Click on submit button.</li>
               </ul>
             </li>
-            {/* <div> <span className={classes.ImageLink}><img style={{width:'250px'}} alt={"family_screenshot1"} src={FamilyScreenshot1}></img></span><p>Family page</p></div>
-                    <div> <span className={classes.ImageLink}><img style={{width:'250px'}} alt={"family_screenshot2"} src={FamilyScreenshot2}></img></span><p>Family page contd.</p></div>
-                    <div> <span className={classes.ImageLink}><img style={{width:'250px'}} alt={"family_screenshot3"} src={FamilyScreenshot3}></img></span><p>Family page contd.</p></div> */}
             <li>Member page:</li>
             <ul>
               <li>
@@ -331,8 +326,6 @@ class Wiki extends Component {
               <b>Mentor / Supervisor:</b> Dr. Amit Agarwal{" "}
             </li>
           </ul>
-          {/* <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
-                <Toolbar  drawerToggleClicked={this.SideDrawerToggleHandler}></Toolbar> */}
         </div>
       </Aux>
     );

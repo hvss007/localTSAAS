@@ -1,9 +1,8 @@
 import React,{Component} from 'react';
 import Axios from 'axios';
 import StartSurveySub from './StartSurveySub';
-// import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy'
 import Global from '../../assets/globalvaribles/GlobalVariables';
-// require('dotenv').config();
+
 var HostName=Global.hostName
 class StartSurvey extends Component{
     state={
@@ -31,7 +30,7 @@ class StartSurvey extends Component{
                         (item.surveyTypeID===survId)
                         );
                })
-            //    console.log(collegeArr);
+            
                if(collegeArr.length===1){
                    this.setState({displayComponent:true,
                     collegeName:collegeArr[0].collegeName,
@@ -57,9 +56,9 @@ class StartSurvey extends Component{
         Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         Axios.post(HostName+"survey/",{surveyType:'hhs'}).then(response=>{
             const surveyID=response.data.surveyID
-            // console.log()
+            
             if(this.props.match.url.split('/').length===2){
-                // this.props.history.push({pathname:"/demo/hhs"+surveyID+"/family"})
+                
                 this.props.history.push({pathname:this.props.match.url+"/demo/"+surveyID+"/family"})
             }
             else{
@@ -71,7 +70,6 @@ class StartSurvey extends Component{
     
     render(){    
         let showElement;
-        // console.log(this.props.match.url.split('/'))
         if(this.props.match.url==='/hhs'){
             showElement=<StartSurveySub 
             collegeURL={"demo"} 
