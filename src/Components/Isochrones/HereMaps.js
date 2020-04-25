@@ -55,7 +55,9 @@ class HereMaps extends Component {
     setTimeout(()=>{
       var bbox = this.map.getViewModel().getLookAtData().bounds.getBoundingBox();
     this.props.boundingBoxHandler(bbox);
-    this.setState({ boundingBox: bbox });
+    var initialDiffX=Math.abs(bbox.getLeft()-bbox.getRight())
+    var initialDiffY=Math.abs(bbox.getTop()-bbox.getBottom())
+    this.setState({ boundingBox: bbox,initialDiffX,initialDiffY });
     },500)
     
   }
@@ -414,18 +416,16 @@ class HereMaps extends Component {
       var latMin = Math.min(...latArr);
       var latMax = Math.max(...latArr);
       var lngMax = Math.max(...lngArr);
-      var center = {
-        lng: (lngMin + lngMax) / 2,
-        lat: (latMin + latMax) / 2,
-      };
-      // console.log(JSON.stringify(objArr))
-      
-      this.map.setCenter(center, true);
-      setTimeout(()=>{
-        var bbox = this.map.getViewModel().getLookAtData().bounds.getBoundingBox();
-      this.props.boundingBoxHandler(bbox);
-      this.setState({ boundingBox: bbox });
-      },500)
+      // var center = {
+      //   lng: (lngMin + lngMax) / 2,
+      //   lat: (latMin + latMax) / 2,
+      // };
+      var setbox = new window.H.geo.Rect(latMax,lngMin,latMin,lngMax);
+      this.map.getViewModel().setLookAtData({
+        bounds: setbox
+      });
+      this.props.boundingBoxHandler(setbox);
+      this.setState({ boundingBox: setbox});
       objArr.forEach((el) => {
         this.getisoline(el.position, el.title);
       });

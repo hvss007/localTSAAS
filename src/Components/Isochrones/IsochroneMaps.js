@@ -81,7 +81,7 @@ onChange(evt) {
           apikey={process.env.REACT_APP_PLACES_API_KEY}
           lat={this.state.lat}
           lng={this.state.lng}
-          zoom="12"
+          zoom="10"
           updatedFetchCount={this.state.updatedFetchCount}
           mode={this.state.modes}
           modeState={this.state.modeState}
