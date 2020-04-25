@@ -81,8 +81,6 @@ class HereMaps extends Component {
       var centerCopy = { lat: nextProps.lat, lng: nextProps.lng };
       this.map.setCenter(centerCopy, true);
 
-      // this.map.setZoom(this.state.zoom, true);
-      //this.map.removeObject(this.state.placeMarker)
       this.setState(
         {
           center: centerCopy,
@@ -119,7 +117,7 @@ class HereMaps extends Component {
             time: parseInt(el, 10),
             color: this.calculateRGB(index * x),
           });
-          // configArrayCopy.push({time:parseInt(el),color:this.changeHextorgba(this.colorsArray[index*x])});
+         
         });
         configArrayCopy.reverse();
 
@@ -147,9 +145,6 @@ class HereMaps extends Component {
     if (this.props.updatedFetchCount !== nextProps.updatedFetchCount) {
       this.getPois("", this.state.nextUrl);
     }
-    // if(this.props.mode!==nextProps.mode){
-    //   this.setState({mode:nextProps.mode})
-    // }
   }
   changeTheme(theme, style) {
     var tiles = this.platform.getMapTileService({ type: "base" });
@@ -166,7 +161,6 @@ class HereMaps extends Component {
     placeMarker.draggable = true;
     map.addObject(placeMarker);
     this.setState({ placeMarker: placeMarker },()=>{
-      // this.props.coordHandler()
     });
     this.dragEventHandler(map, behavior);
   }
@@ -192,7 +186,6 @@ class HereMaps extends Component {
       "dragend",
       (ev) => {
         var target = ev.target;
-        // this.getisoline()
         if (target instanceof window.H.map.Marker) {
           behavior.enable();
         }
@@ -244,7 +237,6 @@ class HereMaps extends Component {
     });
   };
   handleChange = (event, newValue) => {
-    // setValue(newValue);
     this.setState({ transparency: newValue }, () => {
       this.changeTransparency(newValue);
     });
@@ -398,7 +390,6 @@ class HereMaps extends Component {
     var dlAnchorElem = document.getElementById("downloadAnchorElem");
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "data.geo.json");
-    // dlAnchorElem.click();
   };
   
   prepareIsochroneFromFiles=(objArr,latArr,lngArr)=>{
@@ -406,10 +397,6 @@ class HereMaps extends Component {
     var latMin = Math.min(...latArr);
     var latMax = Math.max(...latArr);
     var lngMax = Math.max(...lngArr);
-    // var center = {
-    //   lng: (lngMin + lngMax) / 2,
-    //   lat: (latMin + latMax) / 2,
-    // };
     var setbox = new window.H.geo.Rect(latMax,lngMin,latMin,lngMax);
     this.map.getViewModel().setLookAtData({
       bounds: setbox

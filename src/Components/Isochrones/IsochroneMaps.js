@@ -35,7 +35,6 @@ class MAps extends Component {
     this.setState({ fileInput: obj });
   };
   nosHandleChange = (event, newValue) => {
-    // setValue(newValue);
     this.setState({ noOfPoints: newValue });
   };
   transparencyChange = (event, newValue) => {
@@ -61,9 +60,6 @@ class MAps extends Component {
         })
         console.log(posArray)
         this.setState({searchValue:query,searchPosArr:posArray})
-        // posArray.forEach(element => {
-        //   this.getisoline(element.position,element.title)
-        // }) 
       }
     })
   }
@@ -150,7 +146,6 @@ class MAps extends Component {
           fileInput={this.state.fileInput}
           searchValue={this.state.searchValue}
         ></HereMaps>
-        {/* <ThemeSelector changeTheme={ this.onChange } /> */}
       </div>
     );
   }

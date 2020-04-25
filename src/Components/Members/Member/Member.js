@@ -192,7 +192,7 @@ class Member extends Component{
             
              dataWhileDriving:{
                 name:'dataWhileDrivning',
-                label:'Does the member call or use mobile-data while driving/traveling?',
+                label:'Does the member call or use mobile internet while driving/traveling?',
                 elementType:'input',
                 elementConfig:{
                     type:'radio',

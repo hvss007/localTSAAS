@@ -50,9 +50,6 @@ export default class MapControls extends Component {
       leisure,
     };
   }
-  //   componentDidMount(){
-  //       this.uploadFiles()
-  //   }
   displayHandler = () => {};
 
   pickHex = (color1, color2, weight) => {
@@ -66,10 +63,6 @@ export default class MapControls extends Component {
     return rgb;
   };
 
-  // uploadFiles = () => {
-  //   const inputElement = document.getElementById("inputFile");
-  //   inputElement.addEventListener("change", this.handleFiles, false);
-  // };
   handleFiles = (e) => {
     const handleTextFiles = (content, delimiter) => {
       var lineData = content.split("\n");
@@ -148,7 +141,7 @@ export default class MapControls extends Component {
   };
   categoriesHandler = () => {
     Axios.get(
-      "https://places.ls.hereapi.com/places/v1/categories/places?at=28.7041,77.1025&apiKey=vBo8JW0978Qk77E-K2Jp3W9aB_4JyNesVps4r66ipNE+"
+      "https://places.ls.hereapi.com/places/v1/categories/places?at=28.7041,77.1025&apiKey="+process.env.REACT_APP_PLACES_API_KEY
     )
       .then((Response) => {
         const catArray = [];
@@ -165,7 +158,7 @@ export default class MapControls extends Component {
     const req_arr = primaryCategories.filter((el) => {
       return el.code === val;
     });
-    //this.setState({suggestionsArray:eval(req_arr.arr)})
+    
     const newArr = this.importsObj[req_arr[0].arr];
     this.setState({ secArr: newArr });
   };
@@ -174,8 +167,6 @@ export default class MapControls extends Component {
   };
   render() {
     const menuItems = this.state.suggestionsArray.map((element) => {
-      // console.log(element)
-      // console.log(eatAndDrink)
       return (
         <MenuItem
           key={element.title}
@@ -186,8 +177,6 @@ export default class MapControls extends Component {
       );
     });
     const menuItems1 = this.state.secArr.map((element) => {
-      // console.log(element)
-      // console.log(eatAndDrink)
       return (
         <MenuItem key={element.Title} value={element.Code}>
           {element.Title}
@@ -221,7 +210,6 @@ export default class MapControls extends Component {
             >
               Fetch City Map
             </Button>
-            {/* <button onClick={this.props.cityEnteredHandler}>Fetch city map</button>     */}
           </div>
           <div className={classes.BoundingBox}>
             <p>
@@ -321,21 +309,11 @@ export default class MapControls extends Component {
                   control={<Radio />}
                   label="Custom Search"
                 />
-                {/* <FormControlLabel
-                value="other"
-                control={<Radio />}
-                label="Other"
-              /> */}
               </RadioGroup>
             </div>
           ) : null}
           {this.state.optionSelector === "2" ? (
             <div className={classes.pois}>
-              {/* <input
-                onChange={(e) => this.handleFiles(e)}
-                type="file"
-                id="inputFile"
-              ></input> */}
               <Button style={{alignSelf:"center"}} variant="contained" component="label">
                 Upload File
                 <input
@@ -348,10 +326,6 @@ export default class MapControls extends Component {
               <h6 style={{color:'grey',fontWeight:400,margin:'2px',width:'100%'}}>*File must be in csv, txt or geojson format and contain lat, long in the header/ dictionaries.</h6>
             </div>
           ) : null}
-          {/* <Button 
-                        style={{fontSize:'12px',backgroundColor:'#449DD1'}}
-                        variant="contained" color="primary" 
-                        onClick={()=>{this.categoriesHandler()}} component="span">Request Available Categories</Button> */}
           {this.state.optionSelector === "1" ? (
             <div className={classes.Pois}>
               <Typography id="disabled-slider" gutterBottom>
@@ -421,9 +395,6 @@ export default class MapControls extends Component {
               {" "}
               Enter 'Comma-Seperated' Time Bins (min) in ascending order
             </InputLabel>
-            {/* <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelid='selectPois' id='selectp' value={this.props.pois}>
-                                {menuItems}     
-                        </Select> */}
             <TextField
               name="timeBins"
               onChange={(event) => this.props.inputHandler(event)}
@@ -436,7 +407,6 @@ export default class MapControls extends Component {
             <Typography id="disabled-slider" gutterBottom>
               Transparency
             </Typography>
-            {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
             <Slider
               defaultValue={50}
               onChange={this.props.transparencyChange}
@@ -448,20 +418,6 @@ export default class MapControls extends Component {
               max={100}
             />
           </div>
-
-          {/*           <Typography id="disabled-slider" gutterBottom>
-                            Transparency
-                        </Typography>
-                        {/* <Slider  value={this.state.transparency}  onChange={this.handleChange}  aria-labelledby="continuous-slider" /> */}
-
-          {/* <div className={classes.Pois}>
-                    <InputLabel id='selectPois'> Click to load more data</InputLabel>
-                    <Button 
-                        style={{fontSize:'12px',backgroundColor:'#449DD1'}}
-                        variant="contained" color="primary" 
-                        onClick={this.props.fetchHandler} component="span">Fetch More data</Button>
-                        {/* <button style={{padding:'7px',backgroundColor: 'aqua',border:'none'}} onClick={this.props.fetchHandler}>Fetch more data</button> */}
-          {/* </div>  */}
         </div>
       </div>
     );
