@@ -7,8 +7,6 @@ class HereMaps extends Component {
   constructor(props) {
     super(props);
     this.colorsArray = [...colorsArray];
-    //this.colorsArray=['rgb(255,0,0)','rgb(255,255,0)','rgb(0,255,0)'],
-    //this.configArray=[{time:30,color:'rgba(255,0,0,.4)'},{time:15,color:'rgba(255,255,0,0.5)'},{time:5,color:'rgba(0,255,0,0.6)'}]
     this.platform = null;
     this.map = null;
     this.state = {
@@ -25,7 +23,6 @@ class HereMaps extends Component {
       },
       routingParams: {
         mode: "fastest;car;traffic:enabled",
-        // start: 'geo!28.7,77.1',
         rangetype: "time",
       },
       mode: "",
@@ -124,10 +121,6 @@ class HereMaps extends Component {
     if (this.props.pois !== nextProps.pois) {
       this.map.removeObjects(this.map.getObjects());
       this.setState({ isolinePolygonArray: [], isolinePolygonData: [] });
-
-      // var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&in='+this.state.center.lat+','+this.state.center.lng+';r=150000&cat='
-      //var url='https://places.sit.ls.hereapi.com/places/v1/discover/explore?app_id='+this.props.app_id+'&app_code='+this.props.app_code+'&cat='
-      // var url="https://places.ls.hereapi.com/places/v1/discover/explore?at="+this.state.center.lat+","+this.state.center.lng+"&apiKey="+process.env.REACT_APP_PLACES_API_KEY+"&cat="
       this.getPois(nextProps.pois, url);
     }
     if (this.props.secPois !== nextProps.secPois) {
@@ -385,7 +378,7 @@ class HereMaps extends Component {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(newStr);
     var dlAnchorElem = document.getElementById("downloadAnchorElem");
     dlAnchorElem.setAttribute("href", dataStr);
-    dlAnchorElem.setAttribute("download", "data.geoJson");
+    dlAnchorElem.setAttribute("download", "data.geo.json");
     dlAnchorElem.click();
   };
   uploadFiles = () => {
@@ -397,52 +390,84 @@ class HereMaps extends Component {
     const handleTextFiles = (content) => {
       var lineData = content.split("\n");
       const objArr = [];
-      const latArr=[],lngArr=[]
+      const latArr = [],
+        lngArr = [];
       lineData.forEach((el) => {
         var [title, latStr, lngStr, extra] = el.split("\t");
         var lat = parseFloat(latStr);
         var lng = parseFloat(lngStr);
 
-        if(lat){
+        if (lat) {
           var locObj = { title, position: [lat, lng], extra };
-          latArr.push(lat)
-          lngArr.push(lng)
+          latArr.push(lat);
+          lngArr.push(lng);
           objArr.push(locObj);
         }
       });
-      var lngMin=Math.min(...lngArr)
-      var latMin=Math.min(...latArr)
-      var latMax=Math.max(...latArr)
-      var lngMax=Math.max(...lngArr)
-      var center={
-        lng:(lngMin+lngMax)/2,
-        lat:(latMin+latMax)/2
-      }
+      prepareIsochroneFromFiles(objArr,latArr,lngArr)
+    };
+    const prepareIsochroneFromFiles=(objArr,latArr,lngArr)=>{
+      var lngMin = Math.min(...lngArr);
+      var latMin = Math.min(...latArr);
+      var latMax = Math.max(...latArr);
+      var lngMax = Math.max(...lngArr);
+      var center = {
+        lng: (lngMin + lngMax) / 2,
+        lat: (latMin + latMax) / 2,
+      };
+      // console.log(JSON.stringify(objArr))
       this.map.setCenter(center, true);
-
       objArr.forEach((el) => {
-        var lat = el.position[0];
-        var t = parseFloat(lat);
-        if (t) {
-          this.getisoline(el.position, el.title);
-        }
+        this.getisoline(el.position, el.title);
       });
+    }
+    const handleJSONFile = (objArr) => {
+      var latArr=[]
+      var lngArr=[]
+      objArr.forEach(({position})=>{
+        latArr.push(position[0])
+        lngArr.push(position[1])
+      })
+      prepareIsochroneFromFiles(objArr,latArr,lngArr)
     };
     var file = e.target.files[0];
     if (file) {
+      var fileType = file.type;
       var f = new FileReader();
-      f.onload = function (e) {
-        var fileType = file.type;
-        // var contents = e.target.result;
-        switch (fileType) {
-          case "text/plain":
+
+      switch (fileType) {
+        case "text/plain": {
+          f.onload = (e) => {
             handleTextFiles(e.target.result);
-            break;
-          default:
-            console.log(e.target.result);
+          };
+          f.readAsText(file);
+          break;
         }
-      };
-      f.readAsText(file);
+        case "application/json":
+          f.onload = (e) => {
+            if (file.name.includes(".geo")) {
+              console.log(JSON.parse(e.target.result));
+              var objarr = [];
+              JSON.parse(e.target.result).features.forEach(
+                ({ geometry, properties }) => {
+                  var obj = {
+                    title: properties.title,
+                    position: [...geometry.coordinates],
+                  };
+                  objarr.push(obj);
+                }
+              );
+              handleJSONFile(objarr);
+            } else {
+              handleJSONFile(JSON.parse(e.target.result));
+            }
+          };
+          f.readAsText(file);
+          break;
+        default:
+          console.log(fileType);
+          break;
+      }
     }
   };
 
