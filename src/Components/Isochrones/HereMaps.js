@@ -58,8 +58,7 @@ class HereMaps extends Component {
     var initialDiffX=Math.abs(bbox.getLeft()-bbox.getRight())
     var initialDiffY=Math.abs(bbox.getTop()-bbox.getBottom())
     this.setState({ boundingBox: bbox,initialDiffX,initialDiffY });
-    },500)
-    
+    },500)    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -392,13 +391,13 @@ class HereMaps extends Component {
   };
 
   handleFiles = (e) => {
-    const handleTextFiles = (content) => {
+    const handleTextFiles = (content,delimiter) => {
       var lineData = content.split("\n");
       const objArr = [];
       const latArr = [],
         lngArr = [];
       lineData.forEach((el) => {
-        var [title, latStr, lngStr, extra] = el.split("\t");
+        var [title, latStr, lngStr, extra] = el.split(delimiter);
         var lat = parseFloat(latStr);
         var lng = parseFloat(lngStr);
 
@@ -439,6 +438,28 @@ class HereMaps extends Component {
       })
       prepareIsochroneFromFiles(objArr,latArr,lngArr)
     };
+    // const handleCSVFiles=(content)=>{
+    //   var lineData = content.split("\n");
+    //   console.log(lineData)
+    //   const objArr = [];
+    //   const latArr = [],
+    //     lngArr = [];
+    //   lineData.forEach((el) => {
+    //     var [title, latStr, lngStr, extra] = el.split(",");
+    //     var lat = parseFloat(latStr);
+    //     var lng = parseFloat(lngStr);
+        
+      
+    //     if (lat) {
+    //       var locObj = { title, position: [lat, lng], extra };
+    //       latArr.push(lat);
+    //       lngArr.push(lng);
+    //       objArr.push(locObj);
+    //     }
+    //     console.log(objArr)
+    //   });
+    //   // prepareIsochroneFromFiles(objArr,latArr,lngArr)
+    // }
     var file = e.target.files[0];
     if (file) {
       var fileType = file.type;
@@ -447,7 +468,7 @@ class HereMaps extends Component {
       switch (fileType) {
         case "text/plain": {
           f.onload = (e) => {
-            handleTextFiles(e.target.result);
+            handleTextFiles(e.target.result,"\t");
           };
           f.readAsText(file);
           break;
@@ -473,6 +494,12 @@ class HereMaps extends Component {
           };
           f.readAsText(file);
           break;
+          case "text/csv":
+            f.onload = (e) => {
+              handleTextFiles(e.target.result,",");
+            };
+            f.readAsText(file);
+            break;
         default:
           console.log(fileType);
           break;
@@ -500,7 +527,6 @@ class HereMaps extends Component {
         </div>
       );
     });
-    // const bbox=this.state.boundingBox
     return (
       <div className={classes.MapContainer}>
         <div
