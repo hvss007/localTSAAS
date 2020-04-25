@@ -7,8 +7,7 @@ class TripOriginMap extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          app_id: process.env.REACT_APP_PLACES_API_ID,
-          app_code: process.env.REACT_APP_PLACES_APP_CODE,
+          apikey:process.env.REACT_APP_PLACES_API_KEY,
           useCIT:true,
           useHTTPS:true,
             center: {
@@ -37,8 +36,7 @@ class TripOriginMap extends Component{
         this.platform = new window.H.service.Platform(this.state);
         this.layer = this.platform.createDefaultLayers();
         this.container = document.getElementById('originmap'+this.props.ifj);
-        
-          this.map = new window.H.Map(this.container, this.layer.normal.map, {
+          this.map = new window.H.Map(this.container, this.layer.vector.normal.map, {
             center: this.state.center,
             zoom: this.state.zoom,
           })
@@ -101,8 +99,7 @@ class TripOriginMap extends Component{
                       }, function(e) {
                         alert(e);
                       });
-                    }) 
-        
+                    })         
         }
         else{}
     }
@@ -194,8 +191,14 @@ class TripOriginMap extends Component{
       if(!this.props.disabled)
       {
       map.addEventListener('dragstart', function(ev) {
-        var target = ev.target;
+        var target = ev.target,
+        pointer = ev.currentPointer;
         if (target instanceof window.H.map.Marker) {
+          var targetPosition = map.geoToScreen(target.getGeometry());
+          target["offset"] = new window.H.math.Point(
+            pointer.viewportX - targetPosition.x,
+            pointer.viewportY - targetPosition.y
+          );
           behavior.disable();
         }
       }, false);
@@ -203,7 +206,7 @@ class TripOriginMap extends Component{
       // when dragging has completed
       map.addEventListener('dragend', function(ev) {
         var target = ev.target;
-        if (target instanceof window.mapsjs.map.Marker) {
+        if (target instanceof window.H.map.Marker) {
           behavior.enable();
         }
       }, false);
@@ -212,8 +215,14 @@ class TripOriginMap extends Component{
      map.addEventListener('drag', (ev)=> {
         var target = ev.target,
             pointer = ev.currentPointer;
-        if (target instanceof window.mapsjs.map.Marker) {
-          target.setPosition(map.screenToGeo(pointer.viewportX, pointer.viewportY));
+        if (target instanceof window.H.map.Marker) {
+          target.setGeometry(
+            map.screenToGeo(
+              pointer.viewportX - target["offset"].x,
+              pointer.viewportY - target["offset"].y
+            )
+          );
+          // target.setPosition(map.screenToGeo(pointer.viewportX, pointer.viewportY));
           let loc=map.screenToGeo(pointer.viewportX, pointer.viewportY);
           let x=loc.lat;
           let y=loc.lng;

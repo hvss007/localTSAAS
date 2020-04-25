@@ -38,8 +38,7 @@ onChange(evt) {
         <HereMaps
           markerLocationText={this.props.markerLocationText}
           mapLocation={this.props.mapLocation}
-          app_id={process.env.REACT_APP_PLACES_API_ID}
-          app_code={process.env.REACT_APP_PLACES_APP_CODE}
+          apikey={process.env.REACT_APP_PLACES_API_KEY}
           lat={this.state.lat}
           lng={this.state.lng}
           markerLocationLat={this.props.lat}

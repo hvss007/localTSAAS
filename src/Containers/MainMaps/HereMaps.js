@@ -6,8 +6,7 @@ class  HereMaps extends Component {
         super(props);
         this.imp={
           useCIT:true,
-          app_id: props.app_id,
-          app_code:props.app_code,
+          apikey:props.apikey,
           useHTTPS:true
         }
         this.count=0;
@@ -137,7 +136,7 @@ class  HereMaps extends Component {
         if(this.state.dataLoaded&&this.state.count===0){
           this.layer = this.platform.createDefaultLayers();
           this.container = document.getElementById('here-map');
-          this.map = new window.H.Map(this.container, this.layer.normal.map, {
+          this.map = new window.H.Map(this.container,this.layer.vector.normal.map, {
             center: this.state.center,
             zoom: this.state.zoom,
           })
@@ -177,7 +176,7 @@ class  HereMaps extends Component {
         }
     }
     addMarkersToMap=(position,behavior)=>{
-      var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng})
+      var placeMarker=new window.H.map.Marker({lat:position.lat, lng:position.lng},{volatility: true})
         this.setState({placeMarker:placeMarker});
         placeMarker.draggable=true;
         let map=this.map;
@@ -189,8 +188,11 @@ class  HereMaps extends Component {
 
     dragEventHandler=(map,behavior)=>{
       map.addEventListener('dragstart', function(ev) {
-        var target = ev.target;
+        var target = ev.target,
+        pointer = ev.currentPointer;
         if (target instanceof window.H.map.Marker) {
+          var targetPosition = map.geoToScreen(target.getGeometry());
+          target['offset'] = new window.H.math.Point(pointer.viewportX - targetPosition.x, pointer.viewportY - targetPosition.y);
           behavior.disable();
         }
       }, false);
@@ -198,7 +200,7 @@ class  HereMaps extends Component {
       // when dragging has completed
       map.addEventListener('dragend', function(ev) {
         var target = ev.target;
-        if (target instanceof window.mapsjs.map.Marker) {
+        if (target instanceof window.H.map.Marker) {
           behavior.enable();
         }
       }, false);
@@ -207,8 +209,9 @@ class  HereMaps extends Component {
        map.addEventListener('drag', (ev)=> {
         var target = ev.target,
             pointer = ev.currentPointer;
-        if (target instanceof window.mapsjs.map.Marker) {
-          target.setPosition(map.screenToGeo(pointer.viewportX, pointer.viewportY));
+        if (target instanceof window.H.map.Marker) {
+          target.setGeometry(map.screenToGeo(pointer.viewportX - target['offset'].x, pointer.viewportY - target['offset'].y));
+          // target.setPosition(map.screenToGeo(pointer.viewportX, pointer.viewportY));
           let loc=map.screenToGeo(pointer.viewportX, pointer.viewportY);
           let x=loc.lat;
           let y=loc.lng;
