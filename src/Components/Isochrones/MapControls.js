@@ -34,7 +34,7 @@ export default class MapControls extends Component {
     this.state = {
       suggestionsArray: [...primaryCategories],
       secArr: [],
-      optionSelector:"0"
+      optionSelector: "0",
     };
     this.importsObj = {
       eatAndDrink,
@@ -53,9 +53,7 @@ export default class MapControls extends Component {
   //   componentDidMount(){
   //       this.uploadFiles()
   //   }
-  displayHandler=()=>{
-
-  }
+  displayHandler = () => {};
 
   pickHex = (color1, color2, weight) => {
     var w1 = weight;
@@ -175,9 +173,9 @@ export default class MapControls extends Component {
     const newArr = this.importsObj[req_arr[0].arr];
     this.setState({ secArr: newArr });
   };
-  optionSelectorHandler=(event)=>{
-    this.setState({optionSelector:event.target.value})
-  }
+  optionSelectorHandler = (event) => {
+    this.setState({ optionSelector: event.target.value });
+  };
   render() {
     const menuItems = this.state.suggestionsArray.map((element) => {
       // console.log(element)
@@ -301,85 +299,81 @@ export default class MapControls extends Component {
             </Select>
           </div>
 
-          <div className={classes.Pois}>
-            <InputLabel id="enterTimeBins">
-              {" "}
-              Enter 'Comma-Seperated' Time Bins (min) in ascending order
-            </InputLabel>
-            {/* <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelid='selectPois' id='selectp' value={this.props.pois}>
-                                {menuItems}     
-                        </Select> */}
-            <TextField
-              name="timeBins"
-              onChange={(event) => this.props.inputHandler(event)}
-              labelid="enterTimeBins"
-              id="selecttb"
-              value={this.props.timeBins}
-            />
-          </div>
-          {this.state.optionSelector==="0"?<div className={classes.pois}>
-            <FormLabel component="legend">Points From</FormLabel>
-            <RadioGroup
-              aria-label="Points From"
-              name="points from"
-              value={this.state.optionSelector}
-              onChange={this.optionSelectorHandler}
-            >
-              <FormControlLabel
-                value="1"
-                control={<Radio />}
-                label="Categories"
-              />
-              <FormControlLabel value="2" control={<Radio />} label="File" />
-              {/* <FormControlLabel
+          {this.state.optionSelector === "0" ? (
+            <div className={classes.pois}>
+              <FormLabel component="legend">Points From</FormLabel>
+              <RadioGroup
+                aria-label="Points From"
+                name="points from"
+                value={this.state.optionSelector}
+                onChange={this.optionSelectorHandler}
+              >
+                <FormControlLabel
+                  value="1"
+                  control={<Radio />}
+                  label="Categories"
+                />
+                <FormControlLabel value="2" control={<Radio />} label="File" />
+                {/* <FormControlLabel
                 value="other"
                 control={<Radio />}
                 label="Other"
               /> */}
-            </RadioGroup>
-          </div>:null}
-          {this.state.optionSelector==="2"?<div className={classes.pois}>
-            <input
-              onChange={(e) => this.handleFiles(e)}
-              type="file"
-              id="inputFile"
-            ></input>
-          </div>:null}
+              </RadioGroup>
+            </div>
+          ) : null}
+          {this.state.optionSelector === "2" ? (
+            <div className={classes.pois}>
+              {/* <input
+                onChange={(e) => this.handleFiles(e)}
+                type="file"
+                id="inputFile"
+              ></input> */}
+              <Button variant="contained" component="label">
+                Upload File
+                <input onChange={(e) => this.handleFiles(e)} type="file" id="inputFile" style={{ display: "none" }} />
+              </Button>
+            </div>
+          ) : null}
           {/* <Button 
                         style={{fontSize:'12px',backgroundColor:'#449DD1'}}
                         variant="contained" color="primary" 
                         onClick={()=>{this.categoriesHandler()}} component="span">Request Available Categories</Button> */}
-          {this.state.optionSelector==="1"?<div className={classes.Pois}>
-            <Typography id="disabled-slider" gutterBottom>
-              Select no of points
-            </Typography>
-            <Slider
-              name="noOfPoints"
-              defaultValue={50}
-              onChange={this.props.nosHandleChange}
-              aria-labelledby="discrete-slider"
-              valueLabelDisplay="auto"
-              step={1}
-              marks
-              min={0}
-              max={100}
-            />
-          </div>:null}
-          {this.state.optionSelector==="1"?<div className={classes.Pois}>
-            <InputLabel id="selectPois"> Select Primary Category</InputLabel>
-            <Select
-              name="pois"
-              onChange={(event) => {
-                this.props.inputHandler(event);
-                this.newCategoriesHandler(event.target.value);
-              }}
-              labelid="selectPois"
-              id="selectp"
-              value={this.props.pois}
-            >
-              {menuItems}
-            </Select>
-          </div>:null}
+          {this.state.optionSelector === "1" ? (
+            <div className={classes.Pois}>
+              <Typography id="disabled-slider" gutterBottom>
+                Select no of points
+              </Typography>
+              <Slider
+                name="noOfPoints"
+                defaultValue={50}
+                onChange={this.props.nosHandleChange}
+                aria-labelledby="discrete-slider"
+                valueLabelDisplay="auto"
+                step={1}
+                marks
+                min={0}
+                max={100}
+              />
+            </div>
+          ) : null}
+          {this.state.optionSelector === "1" ? (
+            <div className={classes.Pois}>
+              <InputLabel id="selectPois"> Select Primary Category</InputLabel>
+              <Select
+                name="pois"
+                onChange={(event) => {
+                  this.props.inputHandler(event);
+                  this.newCategoriesHandler(event.target.value);
+                }}
+                labelid="selectPois"
+                id="selectp"
+                value={this.props.pois}
+              >
+                {menuItems}
+              </Select>
+            </div>
+          ) : null}
           {this.state.secArr.length > 0 ? (
             <div className={classes.Pois}>
               <InputLabel id="selectSecPois">
@@ -399,6 +393,22 @@ export default class MapControls extends Component {
               </Select>
             </div>
           ) : null}
+          <div className={classes.Pois}>
+            <InputLabel id="enterTimeBins">
+              {" "}
+              Enter 'Comma-Seperated' Time Bins (min) in ascending order
+            </InputLabel>
+            {/* <Select name='pois' onChange={event=>this.props.inputHandler(event)} labelid='selectPois' id='selectp' value={this.props.pois}>
+                                {menuItems}     
+                        </Select> */}
+            <TextField
+              name="timeBins"
+              onChange={(event) => this.props.inputHandler(event)}
+              labelid="enterTimeBins"
+              id="selecttb"
+              value={this.props.timeBins}
+            />
+          </div>
           <div className={classes.Pois}>
             <Typography id="disabled-slider" gutterBottom>
               Transparency
