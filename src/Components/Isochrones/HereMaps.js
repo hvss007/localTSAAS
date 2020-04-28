@@ -351,8 +351,11 @@ class HereMaps extends Component {
     this.state.isolinePolygonArray.forEach((el) => {
       arr.push(el.toGeoJSON());
     });
-    var data = JSON.stringify(arr);
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
+    var reqStr={
+      "type": "FeatureCollection",
+      "features": [...arr]
+    }
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(reqStr));
     var dlAnchorElem = document.getElementById("downloadAnchorElem");
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "data.geo.json");
