@@ -37,6 +37,7 @@ class HereMaps extends Component {
       query: "",
       boundingBox: null,
       isolinePolygonData: [],
+      geoPointsArr:[]
     };
   }
 
@@ -134,11 +135,11 @@ class HereMaps extends Component {
       "&categories=";
     if (this.props.pois !== nextProps.pois) {
       this.map.removeObjects(this.map.getObjects());
-      this.setState({ isolinePolygonArray: [], isolinePolygonData: [] });
+      this.setState({ isolinePolygonArray: [], isolinePolygonData: [],geoPointsArr:[] });
       this.getPois(nextProps.pois, url);
     }
     if (this.props.secPois !== nextProps.secPois) {
-      this.setState({ isolinePolygonArray: [], isolinePolygonData: [] });
+      this.setState({ isolinePolygonArray: [], isolinePolygonData: [],geoPointsArr:[] });
       this.map.removeObjects(this.map.getObjects());
       this.getPois(nextProps.secPois, url);
     }
@@ -243,10 +244,14 @@ class HereMaps extends Component {
           (this.props.noOfPoints ? this.props.noOfPoints : 50)
       )
       .then((Response) => {
+        var posArr=[]
         Response.data.items.forEach((element) => {
+          
+          posArr.push(new window.H.geo.Point(element.position.lat, element.position.lng))
           let pos = [element.position.lat, element.position.lng];
           this.getisoline(pos, element.title);
         });
+        this.setState({geoPointsArr:posArr})
       })
       .catch((e) => {
         console.log(e);
@@ -344,15 +349,32 @@ class HereMaps extends Component {
   };
   refreshMap = () => {
     this.map.removeObjects(this.map.getObjects());
-    this.setState({ isolinePolygonArray: [], isolinePolygonData: [] });
+    this.setState({ isolinePolygonArray: [], isolinePolygonData: [],geoPointsArr:[]});
   };
   downloadMap = () => {
-    var arr = [];
+    var arr = [],pointsArr=[];
+    
     this.state.isolinePolygonArray.forEach((el) => {
       arr.push(el.toGeoJSON());
     });
-    var data = JSON.stringify(arr);
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
+    this.state.geoPointsArr.forEach(el=>{
+      
+      
+      var format={
+        "type": "Feature",
+        "properties": {
+
+        },
+        "geometry": {
+          ...el.toGeoJSON()
+        }}
+        pointsArr.push(format)
+    })
+    var reqStr={
+      "type": "FeatureCollection",
+      "features": [...arr,...pointsArr]
+    }
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(reqStr));
     var dlAnchorElem = document.getElementById("downloadAnchorElem");
     dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "data.geo.json");
