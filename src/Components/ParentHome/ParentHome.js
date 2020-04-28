@@ -34,9 +34,6 @@ export default class ParentHome extends Component{
             return{showSideDrawer:!prevState.showSideDrawer}
         })
     }
-    // submitClickedHandler=()=>{
-    //     this.props.history.push({pathname:"/hhs"})
-    // }
 
     onClickHandler=(url)=>{
         this.props.history.push({pathname:"/"+url})
@@ -45,7 +42,6 @@ export default class ParentHome extends Component{
         Axios.defaults.xsrfCookieName = 'csrftoken'
         Axios.defaults.xsrfHeaderName = 'X-CSRFToken'
         Axios.get(HostName+"surveyType").then(response=>{
-            // const surveyTypeCopy=[...this.state.surveyType]
             
             this.setState({surveyType:[...response.data]})
         })
@@ -59,11 +55,6 @@ export default class ParentHome extends Component{
         const cards=this.state.surveyType.map((item,index)=>{
         return <Cards src={imgArray[item.surveyTypeID-1]} clicked={this.onClickHandler} key={index} name={item.surveyFormat} url={item.surveyURL} ></Cards>
     })
-        // const buttonClasses=[classes.StartSurveyButton,classes.StartSurveyButtonBorder]
-        // const mobileBackgroundStyle={background:'url('+MobileHomePage+')',backgroundRepeat:'no-repeat',backgroundSize:'contain',backgroundPosition:'45% 0%'}
-        // const backgroundElement =window.innerWidth<=500? <div style={{...mobileBackgroundStyle}} className={classes.FirstImageWrapper}></div>:null
-        // const background =window.innerWidth>=500?{ 
-        //     backgroundImage:'url('+HomePage+'),url('+Background+')',backgroundRepeat:'no-repeat',backgroundSize:'contain,cover',backgroundPosition:'80% 40%,0% 40%'}:null
     return(
         <div  className={classes.StartSurvey} >
             

@@ -4,9 +4,7 @@ import classes from './Family.css';
 import axios from 'axios';
 import MemberSubmitButton from '../Members/Member/MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
-// import ProgressBar from '../ProgressBar/ProgressBar';
 import BuildControls from './BuildControls/BuildControls';
-// import Family1 from '../../assets/icons/family.png';
 import MainMaps from '../../Containers/MainMaps/MainMaps'
 import fs from '../../assets/jsonfile/stateAndDistricts.json'
 import Aux from '../../Hoc/Aux';
@@ -142,7 +140,7 @@ class Family extends Component{
         },
         qAnswered:0,
         autoCompleteShow:true,
-       //copied from members
+       
         landmarkString:"",
         autoCompleteArr:[],
         query:"",
@@ -197,7 +195,7 @@ class Family extends Component{
             
         }
         this.setState({autoCompleteArr:displayUniqueArr},()=>{
-            // console.log(this.state.autoCompleteArr,"ugvytyryfrccyf")
+            
         });
         
     }
@@ -218,7 +216,6 @@ class Family extends Component{
                 if(collegeArr.length===1){
                     var date=this.parseDate();
                     this.setState({collegeID:collegeArr[0].collegeID})
-                    // new Date().toLocaleTimeString()
                     axios.defaults.xsrfCookieName = 'csrftoken'
                     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
                     const url=this.props.match.url;

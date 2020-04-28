@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import Toolbar from '../StartSuvey/Navigation/Toolbar/Toolbar';
-// import SideDrawer from '../StartSuvey/SideDrawer/SideDrawer';
 import classes from './PrivacyPolicy.css';
 class  PrivacyPolicy extends Component{
     state={
@@ -39,11 +37,7 @@ class  PrivacyPolicy extends Component{
                 Third party content and links to third party websites
                 </h3>
                 <p>We have used “HereMaps” API services and the privacy of users are taken into consideration and no such personal information are taken through these maps without user permission. </p>
-                {/* <SideDrawer open={this.state.showSideDrawer} closed={this.SideDrawerClosedHandler}></SideDrawer>
-                <Toolbar  drawerToggleClicked={this.SideDrawerToggleHandler}></Toolbar> */}
 
-
-                
             </div>
         )
     }
