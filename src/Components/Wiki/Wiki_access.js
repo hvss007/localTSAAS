@@ -5,14 +5,6 @@ import Aux from '../../Hoc/Aux';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import classes from './Wiki.css';
 
-import PTS1 from '../../assets/screenshots/pts_1.png';
-import PTS2 from '../../assets/screenshots/pts_2.png';
-import PTS3 from '../../assets/screenshots/pts_3.png';
-import PTS4 from '../../assets/screenshots/pts_4.png';
-import PTS5 from '../../assets/screenshots/pts_5.png';
-import PTS6 from '../../assets/screenshots/pts_6.png';
-import ImageDialogs from './ImageDialogs';
-
 class Wiki extends Component {
   state = {
     show: false,
