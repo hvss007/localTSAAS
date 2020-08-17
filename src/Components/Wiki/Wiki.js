@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import WikiHhs from "./Wiki_HHS";
 import WikiPts from "./Wiki_PTS";
+import WikiAccess from "./Wiki_access";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -79,6 +80,7 @@ function Wiki() {
         >
           <Tab label="Household Survey" {...a11yProps(0)} />
           <Tab label="Public Transport Survey" {...a11yProps(1)} />
+          <Tab label="Accessibility Analysis" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -91,6 +93,9 @@ function Wiki() {
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <WikiPts />
+        </TabPanel>
+        <TabPanel value={value} index={2} dir={theme.direction}>
+          <WikiAccess />
         </TabPanel>
       </SwipeableViews>
     </div>
