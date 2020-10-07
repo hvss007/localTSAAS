@@ -209,11 +209,11 @@ function PersonalInformation(props) {
     axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
     axios.get(HostName + "college/").then(Response => {
-      console.log(Response);
+      // console.log(Response);
       const collArray = Response.data.filter(item => {
         return colURL === item.collegeURL;
       });
-      console.log(collArray);
+      // console.log(collArray);
       const collegeID = collArray[0].collegeID;
 
       axios

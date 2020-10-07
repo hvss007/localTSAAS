@@ -435,7 +435,15 @@ class Family extends Component{
         
         {this.state.showMap?
         <div style={{flex:'2'}} >
-        <MainMaps mapCenter={this.mapCenterHandler} markerLocationText={this.state.markerLocationText} dropdownArrayHandler={this.dropdownArrayHandler} mapLocation={this.state.setMapSearchText} lat={this.state.lat} lng={this.state.lng} dragLatHandler={this.dragLatHandler} markerQuery={this.state.query} searchText={this.state.landmarkString}  autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
+        <MainMaps mapCenter={this.mapCenterHandler} 
+        markerLocationText={this.state.markerLocationText} 
+        dropdownArrayHandler={this.dropdownArrayHandler} 
+        mapLocation={this.state.setMapSearchText} 
+        lat={this.state.lat} lng={this.state.lng} 
+        dragLatHandler={this.dragLatHandler} 
+        markerQuery={this.state.query} 
+        searchText={this.state.landmarkString}  
+        autocompleteArrayHandler={this.autocompleteArrayHandler}></MainMaps>
         </div>:null}
         <div className={classes.FamilyWrapper}>
         <div className={classes.Family}>

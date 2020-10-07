@@ -1,7 +1,7 @@
 
 import React,{Component} from 'react';
 import Input from '../Input/Input';
-import classes from "../Members/Member/Member.css"
+import classes from "./AQI.css"
 import axios from 'axios';
 import MemberSubmitButton from '../Members/Member/MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
@@ -16,6 +16,70 @@ class AQIPSMain extends Component{
         super(props);
         this.state={
         member:{
+            airPollutionMajorProb:{
+                name:'airPollutionMajorProb',
+                label:'Do  you  see  air  pollution as  a major problem  in  your  area  of  residence  or office/ school/ college?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        {value:'yes',displayValue:'Yes'},
+                        {value:'no',displayValue:'No'},
+                        {value:'dontknow',displayValue:'Don\'t know'},
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:globalOptional
+            },
+            airPollutionAdverseHealthEffect:{
+                name:'airPollutionAdverseHealthEffect',
+                label:'Do  you  know that air pollution can cause adverse health effects?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        {value:'yes',displayValue:'Yes'},
+                        {value:'no',displayValue:'No'},
+                        {value:'dontknow',displayValue:'Don\'t know'},
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:globalOptional
+            },
+            aqiInfo:{
+                name:'aqiInfo',
+                label:'Do  you  know air quality index (AQI) or levels?',
+                elementType:'input',
+                elementConfig:{
+                    type:'radio',
+                    options:[
+                        {value:'yes',displayValue:'Yes'},
+                        {value:'no',displayValue:'No'},
+                        // {value:'dontknow',displayValue:'Don\'t know'},
+                    ]
+                },
+                value:'',
+                validation:{
+                    required:true
+                },
+                show:true,
+                valid:false,
+                touched:false,
+                optional:globalOptional
+            },
+            
             gender:{
                 name:'gender',
                 label:'Gender',
@@ -264,6 +328,11 @@ class AQIPSMain extends Component{
             const post={
                 surveyID: this.state.surveyID,
                 collegeID: this.state.collegeID,
+                
+                airPollutionMajorProb:member.airPollutionMajorProb.value,
+                airPollutionAdverseHealthEffect: member.airPollutionAdverseHealthEffect.value,
+                aqiInfo:member.aqiInfo.value,
+
                 gender:member.gender.value,
                 age:member.age.value,
                 educationalQualification:member.educationalQualification.value,
@@ -303,6 +372,16 @@ class AQIPSMain extends Component{
         <Aux>
             <div className={classes.MemberData} >
             <form className={classes.CustomForm} >
+            <div className={classes.Heading}><span>
+                </span><p>Air Quality Perception Survey</p></div>
+            <div className={classes.ParaText}><span>
+                </span><p>You may have noticed that Air Pollution in Delhi is getting worse 
+                    day by day. We are conducting this survey to determine 
+                    how air pollution impacts changing the commuter's 
+                    behavior in terms of air quality, travel cost and travel time. 
+                    This survey will assist the commuters in reducing their air pollution exposure.</p></div>
+                <div className={classes.Heading}><span>
+                </span><p>A: Information seeking and engagement</p></div>
             {memberformArray.map((memFormElement)=>{return(
                 memFormElement.config.show?
                 <Input 
