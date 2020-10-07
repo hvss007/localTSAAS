@@ -12,8 +12,9 @@ import Cards from './ParentHomeCards'
 import Axios from 'axios'
 import HHS from '../../assets/icons/hhs-mobile.png'
 import PTS from '../../assets/icons/pts-mobile.png'
-import RDAC from '../../assets/icons/rdac-mobile.png'
 import ACCESS from '../../assets/icons/access-mobile.png'
+import RDAC from '../../assets/icons/rdac-mobile.png'
+import AQI from '../../assets/icons/aqips-mobile.png'
 
 var HostName=Global.hostName
 export default class ParentHome extends Component{
@@ -51,7 +52,7 @@ export default class ParentHome extends Component{
     render()
     
     {   
-        const imgArray=[HHS,PTS,ACCESS,RDAC]
+        const imgArray=[HHS,PTS,ACCESS,RDAC,AQI]
         const cards=this.state.surveyType.map((item,index)=>{
         return <Cards src={imgArray[item.surveyTypeID-1]} clicked={this.onClickHandler} key={index} name={item.surveyFormat} url={item.surveyURL} ></Cards>
     })

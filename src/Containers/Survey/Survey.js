@@ -10,13 +10,14 @@ import ContactUs from "../../Components/ContactUs/ContactUs";
 import FinishSurvey from "../../Components/FinishSurvey/FinishSurvey";
 import Wiki from "../../Components/Wiki/Wiki";
 import RAHome from "../../Components/roadAccidents/AccidentsHome";
+import AQIHome from "../../Components/aqi/AQIHome";
 import IsochroneMap from '../../Components/Isochrones/IsochroneMaps';
 // import PersonalInformation from "../../Components/PTSurvey/PersonalInformation/PersonalInformation";
 // import TravelInformation from "../../Components/PTSurvey/TravelInformation/TravelInformation";
 import PTHome from "../../Components/PTSurvey/PThm";
 import RatingForm from "../../Components/PTSurvey/RatingForm/RatingForm";
 import PublicTransportForm from "../../Components/PTSurvey/MainForm/PublicTransportForm";
-
+import AQIPSMain from "../../Components/aqi/AQIPSMain";
 class Survey extends Component {
   render() {
     return (
@@ -35,6 +36,11 @@ class Survey extends Component {
           
           {/* Road accident */}
           <Route path="/rdac" exact component={RAHome} />
+
+           {/* AQI */}
+           <Route path="/aqips" exact component={AQIHome} />
+           <Route path="/aqips/:id" exact component={AQIHome} />
+           <Route path="/aqips/:id/:id/aqips-main" exact component={AQIPSMain} />
           
           {/* pt survey */}
           <Route path="/pts" exact component={PTHome} />

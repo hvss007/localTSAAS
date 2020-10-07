@@ -57,8 +57,7 @@ const RAHome = props => {
           </div>
           <p style={{ margin: "4px auto 4px" }}>
             {/* Please take few minutes to complete the road accident record. Your few minutes will help us to get information to improve the black spot and prevent further accidents. Personal information and location are neither asked nor tracked. */}
-            We are working on an survey form to enter the information of a road
-            accidents.
+            We are working on an survey form to collect the data related to awareness about the Air Quality Index.
           </p>
           <div className={classes.StartSurveyButtonContainer}>
             <button

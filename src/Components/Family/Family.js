@@ -11,7 +11,7 @@ import Aux from '../../Hoc/Aux';
 import Global from '../../assets/globalvaribles/GlobalVariables';
 import Backdrop from '../../Hoc/Backdrop/Backdrop1'
 import Alert from '../Alert/Alert';
-import Axios from 'axios';
+
 var HostName=Global.hostName
 var globalOptional=Global.optional
 class Family extends Component{
@@ -222,7 +222,7 @@ class Family extends Component{
                     const fam=url.split('/')
                     const surveyID=fam[3]
                     this.setState({surveyID:surveyID})
-                    Axios.patch(HostName+'responseTime/'+surveyID,{
+                    axios.patch(HostName+'responseTime/'+surveyID,{
                         surveyStartTime:date,
                     })
                 }
