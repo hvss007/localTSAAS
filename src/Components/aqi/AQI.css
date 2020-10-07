@@ -23,6 +23,9 @@
     display:block
 }
 
+.AQIMainWrapper{
+    display: flex;
+}
 .CustomForm{
     padding: 10px;
     background-color: #ffffff;

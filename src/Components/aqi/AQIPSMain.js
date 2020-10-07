@@ -1,249 +1,176 @@
 
 import React,{Component} from 'react';
-import Input from '../Input/Input';
-import classes from "./AQI.css"
 import axios from 'axios';
-import MemberSubmitButton from '../Members/Member/MemberSubmitButton';
 import {withRouter} from 'react-router-dom';
 import Global from '../../assets/globalvaribles/GlobalVariables'
-// import Backdrop from '../../Hoc/Backdrop/Backdrop1'
-// import Alert from '../Alert/Alert'
-import Aux from '../../Hoc/Aux'
+import { makeStyles } from "@material-ui/core/styles";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import TextField from "@material-ui/core/TextField";
+import Radio from "@material-ui/core/Radio";
+import Grid from "@material-ui/core/Grid";
+import Checkbox from "@material-ui/core/Checkbox";
+import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import Select from "@material-ui/core/Select";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import Typography from "@material-ui/core/Typography";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 var HostName=Global.hostName
 var globalOptional=Global.optional
-class AQIPSMain extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-        member:{
-            airPollutionMajorProb:{
-                name:'airPollutionMajorProb',
-                label:'Do  you  see  air  pollution as  a major problem  in  your  area  of  residence  or office/ school/ college?',
-                elementType:'input',
-                elementConfig:{
-                    type:'radio',
-                    options:[
-                        {value:'yes',displayValue:'Yes'},
-                        {value:'no',displayValue:'No'},
-                        {value:'dontknow',displayValue:'Don\'t know'},
-                    ]
-                },
-                value:'',
-                validation:{
-                    required:true
-                },
-                show:true,
-                valid:false,
-                touched:false,
-                optional:globalOptional
-            },
-            airPollutionAdverseHealthEffect:{
-                name:'airPollutionAdverseHealthEffect',
-                label:'Do  you  know that air pollution can cause adverse health effects?',
-                elementType:'input',
-                elementConfig:{
-                    type:'radio',
-                    options:[
-                        {value:'yes',displayValue:'Yes'},
-                        {value:'no',displayValue:'No'},
-                        {value:'dontknow',displayValue:'Don\'t know'},
-                    ]
-                },
-                value:'',
-                validation:{
-                    required:true
-                },
-                show:true,
-                valid:false,
-                touched:false,
-                optional:globalOptional
-            },
-            aqiInfo:{
-                name:'aqiInfo',
-                label:'Do  you  know air quality index (AQI) or levels?',
-                elementType:'input',
-                elementConfig:{
-                    type:'radio',
-                    options:[
-                        {value:'yes',displayValue:'Yes'},
-                        {value:'no',displayValue:'No'},
-                        // {value:'dontknow',displayValue:'Don\'t know'},
-                    ]
-                },
-                value:'',
-                validation:{
-                    required:true
-                },
-                show:true,
-                valid:false,
-                touched:false,
-                optional:globalOptional
-            },
-            
-            gender:{
-                name:'gender',
-                label:'Gender',
-                elementType:'select',
-                elementConfig:{
-                   options:[
-                    {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                       {value:'male',displayValue:'Male'},
-                       {value:'female',displayValue:'Female'},
-                       {value:'other',displayValue:'Other'
-                       }
-                   ]
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:globalOptional
-            },
-            age:{
-                name:'age',
-                label:'Age',
-                elementType:'select',
-                elementConfig:{
-                    options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'<4',displayValue:'Below 4'},
-                        {value:'4-18',displayValue:'4  - 18'},
-                        {value:'18-25',displayValue:'18 - 25'},
-                        {value:'25-40',displayValue:'25 - 40'},
-                        {value:'40-60',displayValue:'40 - 60'},
-                        {value:'>60',displayValue:'Above 60'}
-                    ]
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:globalOptional
-            },
-            educationalQualification:{
-                name:'educationalQualification',
-                label:'Educational Qualification',
-                elementType:'select',
-                elementConfig:{
-                    options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'notApplicable',displayValue:'Not applicable'},
-                        {value:'primary',displayValue:'Primary'},
-                        {value:'passX',displayValue:'10th Pass'},
-                        {value:'passXII',displayValue:'12th Pass'},
-                        {value:'undergraduate',displayValue:'Undergraduate'},
-                        {value:'postgraduate',displayValue:'Postgraduate'}
-                    ] 
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:globalOptional
-            },
-            maritialStatus:{
-                name:'maritialStatus',
-                label:'Maritial Status',
-                elementType:'select',
-                elementConfig:{
-                   type:'text',
-                   options:[
-                    {value:'',displayValue:"Choose Here", selected:true, disabled:true},    
-                   {value:'married',displayValue:'Married'},
-                   {value:'single',displayValue:'Single'},
-                   {value:'engaged',displayValue:'Engaged'},
-                   {value:'widow/widower',displayValue:'Widow/Widower'},
-                   {value:'other',displayValue:"other"}
-                ]
-                },
-                value:'',
-                show:true,
-                validation:{
-                    required:true
-                },
-                valid:false,
-                touched:false,
-                optional:globalOptional
-            },
-            monthlyIncome:{
-                name:'monthlyIncome',
-                label:'Monthly Income',
-                elementType:'select',
-                elementConfig:{
-                    options:[
-                        {value:'',displayValue:"Choose Here", selected:true, disabled:true},
-                        {value:'nil',displayValue:'Nil'},
-                        {value:'<5000',displayValue:'Below 5,000'},
-                        {value:'5000-10000',displayValue:'5,000 - 10,000'},
-                        {value:'10000-50000',displayValue:'10,000 - 50,000'},
-                        {value:'50000-1lakh',displayValue:'50,000 - 1 lakh'},
-                        {value:'1lakh-2lakh',displayValue:'1 lakh - 2 lakh'},
-                        {value:'2lakh-5lakh',displayValue:'2 lakh - 5 lakh'},                        
-                        {value:'>5lakh',displayValue:'Above 5 lakh'}
-                    ]
-                },
-                value:'',
-                validation:{
-                    required:true
-                },
-                show:true,
-                valid:false,
-                touched:false,
-                optional:globalOptional
-            }
-        },
-        qAnswered:0,
-        show:false,
-        message:'',
-        autoCompleteShow:true,
-        showButton:true
-        }
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      justifyContent: "center",
+      textAlign: "center",
+      display: "flex",
+      margin: "2vh 20vw 2vh 20vw",
+      "@media (max-width:1024px)": {
+        margin: "2vh 5vw 2vh 5vw"
+      },
+      borderRadius: 8,
+      padding: "1vw",
+      backgroundColor: "#e1f5fe"
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 240
+    },
+    group: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center"
+    },
+    labelStyle: {
+      fontFamily: "Julius Sans One",
+      fontSize: "24px",
+      "@media (max-width:480px)": {
+        fontSize: "20px"
+      },
+      color: "#410373",
+      textTransform: "uppercase"
+    },
+    formHeader: {
+      color: "#000",
+      margin: "1vw",
+      fontSize: "2vw",
+      "@media (max-width:360px)": {
+        fontSize: "24px"
+      },
+      "@media (max-width:1024px)": {
+        fontSize: "24px"
+      },
+      fontWeight: "bold"
+    },
+    paraText: {
+        color: "darkblue",
+        fontSize: "18px"
+    },
+    button: {
+      justifyContent: "center",
+      margin: "0 15vw 2vh 15vw",
+      textAlign: "center"
+    },
+    checkboxes: {
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center"
+    },
+    divStyle: {
+      margin: "0 10px 0 10px"
+    },
+    heading: {
+      fontSize: "1.3rem",
+      flexBasis: "33.33%",
+      flexShrink: 0
+    },
+    secondaryHeading: {
+      fontSize: "1.3rem",
+      color: theme.palette.text.secondary
+    },
+    locationBox: {
+      justifyContent: "center",
+      borderRadius: 8
+    },
+    locationExpand: {
+      margin: "2vh 10vh 2vh 10vh",
+      backgroundColor: "#bbdefb",
+      borderRadius: 8
+    }
+  }));
+
+  function AQIPSMain(props) {
+    const [expanded, setExpanded] = React.useState(false);
+  
+    const handleChange = panel => (event, isExpanded) => {
+      setExpanded(isExpanded ? panel : false);
+    };
+  
+    const inputLabel = React.useRef(null);
+    const [labelWidth, setLabelWidth] = React.useState(0);
+  
+    const url = props.match.url;
+    const colURL = url.split("/")[2];
+    const surveyID = url.split("/")[3];
+  
+    React.useEffect(() => {
+      setLabelWidth(inputLabel.current.offsetWidth);
+  
+      const surveyStartTime = parseDate();
+      axios.patch(HostName + "responseTime/" + surveyID, {
+        surveyStartTime: surveyStartTime
+      });
+    }, []);
+  
+    const classes = useStyles();
+  
+    //Personal Info
+    const [age, setAge] = React.useState();
+    const [gender, setGender] = React.useState("");
+    const [qualification, setQualification] = React.useState("");
+    const [income, setIncome] = React.useState("");
+    const [marStatus, setMaritalStatus] = React.useState("");
+    const [profess, setProfession] = React.useState("");
+    const [comment, setComment] = React.useState("");
+  
+    function handleAge(event) {
+      setAge(event.target.value);
+    }
+  
+    function handleGender(event) {
+      setGender(event.target.value);
     }
 
-
-    componentDidMount(){
-        // this.setState({familyId:this.props.familyId})
-        window.history.pushState(null, document.title, window.location.href);
-        window.addEventListener('popstate', function (event){
-            window.history.pushState(null, document.title,  window.location.href);
-        });      
-        axios.get(HostName+"college/").then(
-            Response=>{
-                const collegeIdNo=this.props.match.url.split('/')[2]
-                const collegeArr= Response.data.filter(item=>{
-                    return (
-                        collegeIdNo===item.collegeURL  )
-                })
-                if(collegeArr.length===1){
-                    var date=this.parseDate();
-                    this.setState({collegeID:collegeArr[0].collegeID})
-                    axios.defaults.xsrfCookieName = 'csrftoken'
-                    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-                    const url=this.props.match.url;
-                    const fam=url.split('/')
-                    const surveyID=fam[3]
-                    this.setState({surveyID:surveyID})
-                    axios.patch(HostName+'responseTime/'+surveyID,{
-                        surveyStartTime:date,
-                    })
-                }
-            }
-        )
+    function handleQualification(event) {
+      setQualification(event.target.value);
+    }
+  
+    function handleIncome(event) {
+      setIncome(event.target.value);
+    }
+  
+    function handleMaritalStatus(event) {
+      setMaritalStatus(event.target.value);
     }
 
-    parseDate=()=> {
-        
+    function handleProfession(event) {
+        setProfession(event.target.value);
+    }
+
+    function handleComment(event){
+        setComment(event.target.value);
+    }
+
+    function parseDate() {
         let date = new Date();
-
         // In case its IOS, parse the fulldate parts and re-create the date object.
         if(Number.isNaN(date.getMonth())) {
         let arr = date.split(/[- :]/);
@@ -251,160 +178,319 @@ class AQIPSMain extends Component{
         }
         return date;
     }
-
-    inputChangeHandler=(event,inputIdentifier)=>{
-        const memberUpdated={...this.state.member};
-        const updatedInputElement={...memberUpdated[inputIdentifier]} ;
-        updatedInputElement.value=event.target.value;
-        updatedInputElement.valid=this.validityHandler(updatedInputElement.value,updatedInputElement.validation);
-        updatedInputElement.touched=true;
-        memberUpdated[inputIdentifier]=updatedInputElement; 
-        this.setState( {member:memberUpdated}, ()=>{
-            // this.progressHandler()
-            
-            if(inputIdentifier==="age" && updatedInputElement.valid){
-
-                if (updatedInputElement.value === "<4") {
-                    const newMemberUpdated = {...this.state.member};
-                    //update education
-                    const update_educationalQualification={...newMemberUpdated["educationalQualification"]};
-                    update_educationalQualification.value="notApplicable";
-                    newMemberUpdated["educationalQualification"]=update_educationalQualification;
-
-                    //maritial status
-                    const update_maritalStatus={...newMemberUpdated["maritialStatus"]} ;
-                    update_maritalStatus.value="single";
-                    newMemberUpdated["maritialStatus"]=update_maritalStatus;
-                    
-                    //monthlyIncome
-                    const update_monthlyIncome={...newMemberUpdated["monthlyIncome"]} ;
-                    update_monthlyIncome.value="nil";
-                    newMemberUpdated["monthlyIncome"]=update_monthlyIncome;
-
-                    this.setState({member:newMemberUpdated});
-                }
-            }
-
+  
+    function handleSubmit() {
+      axios.defaults.xsrfCookieName = "csrftoken";
+      axios.defaults.xsrfHeaderName = "X-CSRFToken";
+  
+      axios.get(HostName + "college/").then(Response => {
+        const collArray = Response.data.filter(item => {
+          return colURL === item.collegeURL;
         });
-    }
-    onFocusHandler=()=>{
-        this.setState({autoCompleteShow:true})
-    }
-    onBlurHandler=()=>{
-        this.setState({autoCompleteShow:false})
-    }
-    hideModalBackdrop=(value)=>{
-        this.setState({show:value})
-    }
-    progressHandler=()=>{
-        var arr=Object.keys(this.state.member);
-        var noOfTrue=0;
-        var objLen=arr.length;
-        for(let i=0;i<objLen;i++){
-         if(this.state.member[arr[i]].valid&&!this.state.member[arr[i]].optional){
-             noOfTrue++;
-         }
-        }
-        this.props.percentFind(noOfTrue);
-        this.setState({qAnswered:noOfTrue});
-    } 
-    validityHandler=(value,rules)=>{
-        let isValid=true;
-        if(rules.required&&isValid){
-            isValid=value.trim() !=='';
-        }
-
-        if(rules.notLess&&isValid){
-            isValid=(parseInt(value,10)>=0);
-        }
-        if(rules.length&&isValid){
-            isValid=value.length===rules.length;
-        }
-        return isValid;
-    }
-    submitButtonHandler=(event)=>{
-        event.preventDefault();
-            const member=this.state.member;
-            const post={
-                surveyID: this.state.surveyID,
-                collegeID: this.state.collegeID,
-                
-                airPollutionMajorProb:member.airPollutionMajorProb.value,
-                airPollutionAdverseHealthEffect: member.airPollutionAdverseHealthEffect.value,
-                aqiInfo:member.aqiInfo.value,
-
-                gender:member.gender.value,
-                age:member.age.value,
-                educationalQualification:member.educationalQualification.value,
-                monthlyIncome:member.monthlyIncome.value,
-                maritialStatus:member.maritialStatus.value,
-            }           
+        const collegeID = collArray[0].collegeID;
+  
+        axios.post(HostName + "aqips/", {
+            surveyID: surveyID,
+            collegeID: collegeID,
+  
+            age: age,
+            gender: gender,
+            educationalQualification: qualification,
+            monthlyIncome: income,
+            maritialStatus: marStatus,
+            profession: profess,
+            comment: comment
             
-            axios.defaults.xsrfCookieName = 'csrftoken'
-            axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-            axios.post(HostName+"aqips/",post)
-                .then(
-                    this.props.history.push({pathname:"/finishsurvey"})
-                )
-                .catch(err => 
-                    console.error(err)
-                    );
-                
-            var time = this.parseDate();
-            const url = this.props.match.url;
-            const survId = url.split("/")[3];
+          })
+          .then(Response => {
+            console.log(Response);
+            props.history.push({pathname:"/finishsurvey"});
 
-            axios.patch(HostName + "responseTime/" + survId, {
-                surveyEndTime: time
-            });
-            
+              var time = parseDate();
+              const url = props.match.url;
+              const survId = url.split("/")[3];
+
+              axios.patch(HostName + "responseTime/" + survId, {
+                  surveyEndTime: time
+              });
+          });
+          
+      });
     }
-    render(){
-    let memberformArray=[];
-    for (let key in this.state.member){
-        memberformArray.push(
-            {
-               id:key,
-               config:this.state.member[key]     
-        })
-    }
-    return(
-        <Aux>
-            <div className={classes.MemberData} >
-            <form className={classes.CustomForm} >
-            <div className={classes.Heading}><span>
-                </span><p>Air Quality Perception Survey</p></div>
-            <div className={classes.ParaText}><span>
-                </span><p>You may have noticed that Air Pollution in Delhi is getting worse 
-                    day by day. We are conducting this survey to determine 
-                    how air pollution impacts changing the commuter's 
-                    behavior in terms of air quality, travel cost and travel time. 
-                    This survey will assist the commuters in reducing their air pollution exposure.</p></div>
-                <div className={classes.Heading}><span>
-                </span><p>A: Information seeking and engagement</p></div>
-            {memberformArray.map((memFormElement)=>{return(
-                memFormElement.config.show?
-                <Input 
-                    autoCompleteShow={this.state.autoCompleteShow}
-                    key={memFormElement.id}
-                    label={memFormElement.config.label}
-                    name={memFormElement.config.name}
-                    elementType={memFormElement.config.elementType}
-                    elementconfig={memFormElement.config.elementConfig}
-                    value={memFormElement.config.value}
-                    invalid={!memFormElement.config.valid}
-                    touched={memFormElement.config.touched}
-                    changed={(event)=>this.inputChangeHandler(event,memFormElement.id)}
-                    onFocusHandler={this.onFocusHandler}
-                    blurred={this.onBlurHandler}
-                    itemClicked={this.itemClickedHandler}
-                >    
-                </Input>:null
-            )})}
-            <MemberSubmitButton clicked={this.submitButtonHandler} ></MemberSubmitButton>
-            </form>
-            </div>
-        </Aux>
-    )}
-}
+  
+      return (
+          <Card className={classes.root}>
+              <FormGroup>
+                  <FormLabel component="legend" className={classes.formHeader}>
+                      Air Quality Perception Survey
+            <hr />
+                  </FormLabel>
+                  <div className={classes.paraText}><span>
+                  </span><p>You may have noticed that Air Pollution in Delhi is getting worse
+                  day by day. We are conducting this survey to determine
+                  how air pollution impacts changing the commuter's
+                  behavior in terms of air quality, travel cost and travel time.
+                This survey will assist the commuters in reducing their air pollution exposure.</p>
+
+                      <br></br>
+
+                      <p>Please answer all questions in Sections A to F.</p>
+                  </div>
+
+                  <FormLabel component="legend" className={classes.formHeader}>
+                      A:  Information Seeking and Engagement
+            <hr />
+                  </FormLabel>
+
+
+
+                  <FormLabel component="legend" className={classes.formHeader}>
+                      B:  Trip Information
+            <hr />
+                  </FormLabel>
+
+
+
+                  <FormLabel component="legend" className={classes.formHeader}>
+                      C:  Willingness to Change/ Adapt
+            <hr />
+                  </FormLabel>
+
+
+
+                  <FormLabel component="legend" className={classes.formHeader}>
+                      D:  Impact of Air Pollution Exposure
+            <hr />
+                  </FormLabel>
+
+
+                  <FormLabel component="legend" className={classes.formHeader}>
+                      E:  Prevention/ Self-protective action 
+            <hr />
+                  </FormLabel>
+
+
+
+                  <FormLabel component="legend" className={classes.formHeader}>
+                      F: Socioeconomic Characteristics
+            <hr />
+                  </FormLabel>
+                  <div className={classes.divStyle}>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <FormLabel component="legend" className={classes.labelStyle}>
+                              Gender
+              </FormLabel>
+                          <RadioGroup
+                              aria-label="gender"
+                              name="gender"
+                              className={classes.group}
+                              value={gender}
+                              onChange={handleGender}
+                          >
+                              <FormControlLabel
+                                  value="female"
+                                  control={<Radio color="primary" />}
+                                  label="Female"
+                              />
+                              <FormControlLabel
+                                  value="male"
+                                  control={<Radio color="primary" />}
+                                  label="Male"
+                              />
+                              <FormControlLabel
+                                  value="other"
+                                  control={<Radio color="primary" />}
+                                  label="Other"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>
+                          Age
+            </Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                              Age category
+              </InputLabel>
+                          <Select
+                              native
+                              value={age}
+                              onChange={handleAge}
+                              input={
+                                  <OutlinedInput
+                                      name="age"
+                                      labelWidth={labelWidth}
+                                      id="outlined-qualification-native-simple"
+                                  />
+                              }
+                          >
+                               <option value="" />
+                              <option value="below4">Below 4 years</option>
+                              <option value="4_18">4 - 18 years</option>
+                              <option value="18_25">18 - 25 years</option>
+                              <option value="25_40">25 - 40 years</option>
+                              <option value="40_60">40 - 60 years</option>
+                              <option value="above60">Above 60 years</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>
+                          Educational Qualification
+            </Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                              Educational qualification
+              </InputLabel>
+                          <Select
+                              native
+                              value={qualification}
+                              onChange={handleQualification}
+                              input={
+                                  <OutlinedInput
+                                      name="qualification"
+                                      labelWidth={labelWidth}
+                                      id="outlined-qualification-native-simple"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="primary">Up to primary school</option>
+                              <option value="secondary">Up to secondary school</option>
+                              <option value="senior_secondary">Up to senior secondary school</option>
+                              <option value="graduation">Graduation</option>
+                              <option value="post_graduation">Post graduation and higher</option>
+                              <option value="professionalCourses">Professional courses and other</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>Marital Status</Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                              Marital status
+              </InputLabel>
+                          <Select
+                              native
+                              value={marStatus}
+                              onChange={handleMaritalStatus}
+                              input={
+                                  <OutlinedInput
+                                      name="marStatus"
+                                      labelWidth={labelWidth}
+                                      id="outlined-income-native-simple"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="single">Single</option>
+                              <option value="married">Married</option>
+                              <option value="Divorced">Divorced/ Widowed</option>
+                              <option value="noMention">Prefer not to mention</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>Profession</Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                              Profession
+              </InputLabel>
+                          <Select
+                              native
+                              value={profess}
+                              onChange={handleProfession}
+                              input={
+                                  <OutlinedInput
+                                      name="profess"
+                                      labelWidth={labelWidth}
+                                      id="outlined-income-native-simple"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="student">Student</option>
+                              <option value="business">Business/ self-employed/ consultant</option>
+                              <option value="govtEmployee">Govt. employee</option>
+                              <option value="privEmployee">Private employee/ Salaried worker</option>
+                              <option value="ngo">NGO/ Volunteer</option>
+                              <option value="retired">Retired</option>
+                              <option value="jobseeker">Jobseeker</option>
+                              <option value="driver">Driver (taxi/ auto-rickshaw/ goods vehicle, etc.)</option>
+                              <option value="housewife">House Wife</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>
+                          Average Monthly Income
+            </Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                              Average monthly income (INR)
+              </InputLabel>
+                          <Select
+                              native
+                              value={income}
+                              onChange={handleIncome}
+                              input={
+                                  <OutlinedInput
+                                      name="income"
+                                      labelWidth={labelWidth}
+                                      id="outlined-income-native-simple"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="<10000">less than 10,000</option>
+                              <option value="10000-30000">10,000 - 30,000</option>
+                              <option value="30000-50000">30,000 - 50,000</option>
+                              <option value="50000-80000">50,000 - 80,000</option>
+                              <option value="80000-100000">80,000 - 1,00,000</option>
+                              <option value=">100000">more than 1,00,000</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+                  <div>
+          <FormControl component="fieldset" className={classes.formControl}>
+            <FormLabel component="legend" className={classes.labelStyle}>
+              Any other crisp comment/ feedback?
+            </FormLabel>
+            <TextField
+              required
+              id="outlined-required"
+              label="comment"
+              margin="normal"
+              variant="outlined"
+              value={comment}
+              onChange={handleComment}
+            />
+          </FormControl>
+
+          <hr />
+        </div>
+                  <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                      onClick={handleSubmit}
+                      size="large"
+                  >
+                      Submit
+          </Button>
+                  {/* </a> */}
+              </FormGroup>
+          </Card>
+      );
+  }
 export default withRouter(AQIPSMain);

@@ -5,6 +5,7 @@ const tripAccessIn=(props)=>{
     if(props.invalid&&props.touched){
         tripAccessInputClasses.push(classes.Invalid)
     }
+    console.log("here")
     return (
         <div className={classes.TripAccessIn}>
             <label name={props.displayValue}>{props.displayValue}{props.src?<span><img style={{width:'11px'}} alt={""} src={props.src}></img></span>:null} ?</label>
