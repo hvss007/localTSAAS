@@ -132,7 +132,17 @@ const useStyles = makeStyles(theme => ({
   
     const classes = useStyles();
   
-    //Personal Info
+    // (1) define here..
+    // Part A
+    const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
+    const [airPollutionAdverseHealthEffect, setAirPollutionAdverseHealthEffect] = React.useState("");
+    const [airQualityLevel, setAirQualityLevel] = React.useState("");
+    const [UnderstandAbove, setUnderstandAbove] = React.useState("");
+    const [airQualityLevelBad, setAirQualityLevelBad] = React.useState("");
+    const [checkingAirQualityLevel, setCheckingAirQualityLevel] = React.useState("");
+    const [fequentlyAirQualityLevel, setFequentlyAirQualityLevel] = React.useState("");
+
+    // Part F
     const [age, setAge] = React.useState();
     const [gender, setGender] = React.useState("");
     const [qualification, setQualification] = React.useState("");
@@ -141,6 +151,36 @@ const useStyles = makeStyles(theme => ({
     const [profess, setProfession] = React.useState("");
     const [comment, setComment] = React.useState("");
   
+
+    // (2) create functions
+    function handleAirPollutionMajorProblem(event){
+      setAirPollutionMajorProblem(event.target.value);
+    }
+
+    function handleAirPollutionAdverseHealthEffect(event){
+      setAirPollutionAdverseHealthEffect(event.target.value);
+    }
+
+    function handleAirQualityLevel(event){
+      setAirQualityLevel(event.target.value);
+    }
+
+    function handleUnderstandAbove(event){
+      setUnderstandAbove(event.target.value);
+    }
+
+    function handleairQualityLevelBad(event){
+      setAirQualityLevelBad(event.target.value);
+    }
+
+    function hanndlecheckingAirQualityLevel(event){
+      setCheckingAirQualityLevel(event.target.value);
+    }
+
+    function handlefequentlyAirQualityLevel(event){
+      setFequentlyAirQualityLevel(event.target.value);
+    }
+
     function handleAge(event) {
       setAge(event.target.value);
     }
@@ -192,7 +232,17 @@ const useStyles = makeStyles(theme => ({
         axios.post(HostName + "aqips/", {
             surveyID: surveyID,
             collegeID: collegeID,
-  
+
+            // (4) post to server
+            // Part A
+            airPollutionMajorProb: airPollutionMajorProb,
+            airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
+            airQualityLevel: airQualityLevel,
+            UnderstandAbove: UnderstandAbove,
+            airQualityLevelBad: airQualityLevelBad,
+            checkingAirQualityLevel: checkingAirQualityLevel,
+            fequentlyAirQualityLevel: fequentlyAirQualityLevel,
+
             age: age,
             gender: gender,
             educationalQualification: qualification,
@@ -236,13 +286,179 @@ const useStyles = makeStyles(theme => ({
 
                       <p>Please answer all questions in Sections A to F.</p>
                   </div>
-
+                  {/* (3) create front-end question*/}
                   <FormLabel component="legend" className={classes.formHeader}>
                       A:  Information Seeking and Engagement
             <hr />
                   </FormLabel>
 
+                  <div className={classes.divStyle}>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <FormLabel component="legend" className={classes.labelStyle}>
+                          Do  you  see  air  pollution  has  a major problem  in  your  area  of  residence  or office/ school/ college?
+              </FormLabel>
+                          <RadioGroup
+                              aria-label="airPollutionMajorProb"
+                              name="airPollutionMajorProb"
+                              className={classes.group}
+                              value={airPollutionMajorProb}
+                              onChange={handleAirPollutionMajorProblem}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
 
+
+                  <div className={classes.divStyle}>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <FormLabel component="legend" className={classes.labelStyle}>
+                          Do you know that air pollution can cause adverse health effects?
+              </FormLabel>
+                          <RadioGroup
+                              aria-label="airPollutionAdverseHealthEffect"
+                              name="airPollutionAdverseHealthEffect"
+                              className={classes.group}
+                              value={airPollutionAdverseHealthEffect}
+                              onChange={handleAirPollutionAdverseHealthEffect}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  <div className={classes.divStyle}>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <FormLabel component="legend" className={classes.labelStyle}>
+                          Do you know Air Quality levels?
+              </FormLabel>
+                          <RadioGroup
+                              aria-label="airQualityLevel"
+                              name="airQualityLevel"
+                              className={classes.group}
+                              value={airQualityLevel}
+                              onChange={handleAirQualityLevel}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  {/*  TODO add AQI related images here. */}
+
+                  <div className={classes.divStyle}>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <FormLabel component="legend" className={classes.labelStyle}>
+                          Can you understand the above?
+              </FormLabel>
+                          <RadioGroup
+                              aria-label="UnderstandAbove"
+                              name="UnderstandAbove"
+                              className={classes.group}
+                              value={UnderstandAbove}
+                              onChange={handleUnderstandAbove}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+
+
+
+                   <div className={classes.divStyle}>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <FormLabel component="legend" className={classes.labelStyle}>
+                          According to you from which air quality level you feel considered bad?
+              </FormLabel>
+                          <RadioGroup
+                              aria-label="airQualityLevelBad"
+                              name="airQualityLevelBad"
+                              className={classes.group}
+                              value={airQualityLevelBad}
+                              onChange={handleairQualityLevelBad}
+                          >
+                              <FormControlLabel
+                                  value="Good(0-50)"
+                                  control={<Radio color="primary" />}
+                                  label="Good(0-50)"
+                              />
+                              <FormControlLabel
+                                  value="Satisfactory(51-100)"
+                                  control={<Radio color="primary" />}
+                                  label="Satisfactory(51-100)"
+                              />
+                                <FormControlLabel
+                                  value="Moderate(101-200)"
+                                  control={<Radio color="primary" />}
+                                  label="Moderate(101-200)"
+                              />
+                                <FormControlLabel
+                                  value="Poor(201-300)"
+                                  control={<Radio color="primary" />}
+                                  label="Poor(201-300)"
+                              />
+                                <FormControlLabel
+                                  value="Very Poor(301-400)"
+                                  control={<Radio color="primary" />}
+                                  label="Very Poor(301-400)"
+                              />
+                              <FormControlLabel
+                                  value="Severe(401-500)"
+                                  control={<Radio color="primary" />}
+                                  label="Severe(401-500)"
+                              />
+                              <FormControlLabel
+                                  value="I don't look at Air Quality level"
+                                  control={<Radio color="primary" />}
+                                  label="I don't look at Air Quality level"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
 
                   <FormLabel component="legend" className={classes.formHeader}>
                       B:  Trip Information
