@@ -1,5 +1,6 @@
 
-import React,{Component} from 'react';
+// import React,{Component} from 'react';
+import React from 'react';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import Global from '../../assets/globalvaribles/GlobalVariables'
@@ -28,7 +29,7 @@ import Typography from "@material-ui/core/Typography";
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 
 import aqImpact from "../../assets/icons/aqi/aq_impact.jpg"
 
@@ -126,9 +127,9 @@ const useStyles = makeStyles(theme => ({
   function AQIPSMain(props) {
     const [expanded, setExpanded] = React.useState(false);
   
-    const handleChange = panel => (event, isExpanded) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+    // const handleChange = panel => (event, isExpanded) => {
+    //   setExpanded(isExpanded ? panel : false);
+    // };
   
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -158,6 +159,9 @@ const useStyles = makeStyles(theme => ({
     const [checkingAirQualityLevel, setCheckingAirQualityLevel] = React.useState("");
     const [fequentlyAirQualityLevel, setFequentlyAirQualityLevel] = React.useState("");
 
+    // Part B
+    const[tripsPerDay, setTripsPerDay] = React.useState("");
+
     // Part F
     const [age, setAge] = React.useState();
     const [gender, setGender] = React.useState("");
@@ -169,6 +173,7 @@ const useStyles = makeStyles(theme => ({
   
 
     // (2) create functions
+    //Part A
     function handleAirPollutionMajorProblem(event){
       setAirPollutionMajorProblem(event.target.value);
     }
@@ -189,14 +194,21 @@ const useStyles = makeStyles(theme => ({
       setAirQualityLevelBad(event.target.value);
     }
 
-    function hanndlecheckingAirQualityLevel(event){
+    function handleCheckingAirQualityLevel(event){
       setCheckingAirQualityLevel(event.target.value);
     }
 
-    function handlefequentlyAirQualityLevel(event){
+    function handleFequentlyAirQualityLevel(event){
       setFequentlyAirQualityLevel(event.target.value);
     }
 
+    // Part B
+    function handleTripsPerDay(event){
+        setTripsPerDay(event.target.value);
+    }
+
+
+    // Part F
     function handleAge(event) {
       setAge(event.target.value);
     }
@@ -258,7 +270,9 @@ const useStyles = makeStyles(theme => ({
             airQualityLevelBad: airQualityLevelBad,
             checkingAirQualityLevel: checkingAirQualityLevel,
             fequentlyAirQualityLevel: fequentlyAirQualityLevel,
-
+// 
+            tripsPerDay: tripsPerDay,
+// 
             age: age,
             gender: gender,
             educationalQualification: qualification,
@@ -287,7 +301,7 @@ const useStyles = makeStyles(theme => ({
       return (
           <Card className={classes.root}>
               <FormGroup>
-                  <Typography  component="legend" className={classes.formHeader}>
+                  <Typography  className={classes.formHeader}>
                       Air Quality Perception Survey
             <hr />
                   </Typography >
@@ -303,16 +317,16 @@ const useStyles = makeStyles(theme => ({
                       <p>Please answer all questions in Sections A to F.</p>
                   </Typography >
                   {/* (3) create front-end question*/}
-                  <Typography  component="legend" className={classes.formHeader}>
+                  <Typography className={classes.formHeader}>
                       A:  Information Seeking and Engagement
             <hr />
                   </Typography >
 
                   <div className={classes.divStyle}>
-                      <FormControl component="fieldset" className={classes.formControl}>
-                          <FormLabel component="legend" className={classes.labelStyle}>
+                  <Typography className={classes.labelStyle}>
                           Do  you  see  air  pollution  as  a major problem  in  your  area  of  residence  or office/ school/ college?
-              </FormLabel>
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
                               aria-label="airPollutionMajorProb"
                               name="airPollutionMajorProb"
@@ -337,10 +351,10 @@ const useStyles = makeStyles(theme => ({
 
 
                   <div className={classes.divStyle}>
-                      <FormControl component="fieldset" className={classes.formControl}>
-                          <FormLabel component="legend" className={classes.labelStyle}>
+                  <Typography className={classes.labelStyle}>
                           Do you know that air pollution can cause adverse health effects?
-              </FormLabel>
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
                               aria-label="airPollutionAdverseHealthEffect"
                               name="airPollutionAdverseHealthEffect"
@@ -364,10 +378,10 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
                   <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Are you aware of the Air Quality Index (AQI) or level and understand it?
+              </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
-                          <FormLabel component="legend" className={classes.labelStyle}>
-                          Do you already know about Air Quality Index (AQI)/ levels?
-              </FormLabel>
                           <RadioGroup
                               aria-label="airQualityLevel"
                               name="airQualityLevel"
@@ -376,14 +390,19 @@ const useStyles = makeStyles(theme => ({
                               onChange={handleAirQualityLevel}
                           >
                               <FormControlLabel
-                                  value="yes"
+                                  value="awareUnderstand"
                                   control={<Radio color="primary" />}
-                                  label="Yes"
+                                  label="Aware and understand it"
                               />
                               <FormControlLabel
-                                  value="no"
+                                  value="AwareNoUnderstand"
                                   control={<Radio color="primary" />}
-                                  label="No"
+                                  label="Aware but do not understand"
+                              />
+                              <FormControlLabel
+                                  value="notAware"
+                                  control={<Radio color="primary" />}
+                                  label="Not aware"
                               />
                           </RadioGroup>
                       </FormControl>
@@ -393,10 +412,10 @@ const useStyles = makeStyles(theme => ({
                   {/*  TODO add AQI related images here. */}
 
                   <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Can you understand the Air Quality Index / level with the above example?
+                </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
-                          <FormLabel component="legend" className={classes.labelStyle}>
-                          Can you understand the above?
-              </FormLabel>
                           <RadioGroup
                               aria-label="UnderstandAbove"
                               name="UnderstandAbove"
@@ -419,75 +438,142 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-
-
-
-
-
                    <div className={classes.divStyle}>
-                      <FormControl component="fieldset" className={classes.formControl}>
-                          <FormLabel component="legend" className={classes.labelStyle}>
-                          According to you from which air quality level you feel considered bad?
-              </FormLabel>
-                          <RadioGroup
-                              aria-label="airQualityLevelBad"
-                              name="airQualityLevelBad"
-                              className={classes.group}
+                   <Typography className={classes.labelStyle}>
+                          According to you from which Air Quality Index / level you feel considered bad?
+                        </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-airQualityLevelBad">
+                              AQI perception
+                         </InputLabel>    
+                         <Select
+                              native
                               value={airQualityLevelBad}
                               onChange={handleairQualityLevelBad}
+                              input={
+                                  <OutlinedInput
+                                      name="airQualityLevelBad"
+                                      labelWidth={labelWidth}
+                                      id="outlined-airQualityLevelBad"
+                                  />
+                              }
                           >
-                              <FormControlLabel
-                                  value="Good(0-50)"
-                                  control={<Radio color="primary" />}
-                                  label="Good(0-50)"
-                              />
-                              <FormControlLabel
-                                  value="Satisfactory(51-100)"
-                                  control={<Radio color="primary" />}
-                                  label="Satisfactory(51-100)"
-                              />
-                                <FormControlLabel
-                                  value="Moderate(101-200)"
-                                  control={<Radio color="primary" />}
-                                  label="Moderate(101-200)"
-                              />
-                                <FormControlLabel
-                                  value="Poor(201-300)"
-                                  control={<Radio color="primary" />}
-                                  label="Poor(201-300)"
-                              />
-                                <FormControlLabel
-                                  value="Very Poor(301-400)"
-                                  control={<Radio color="primary" />}
-                                  label="Very Poor(301-400)"
-                              />
-                              <FormControlLabel
-                                  value="Severe(401-500)"
-                                  control={<Radio color="primary" />}
-                                  label="Severe(401-500)"
-                              />
-                              <FormControlLabel
-                                  value="I don't look at Air Quality level"
-                                  control={<Radio color="primary" />}
-                                  label="I don't look at Air Quality level"
-                              />
-                          </RadioGroup>
+                              <option value="" />
+                              <option value="good">Good (0 - 50)</option>
+                              <option value="Satisfactory">Satisfactory (51 - 100)</option>
+                              <option value="Moderate">Moderate (101 - 200)</option>
+                              <option value="Poor">Poor (201 - 300)</option>
+                              <option value="VeryPoor">Very poor (301 - 400)</option>
+                              <option value="Severe">Severe (401 - 500)</option>
+                              <option value="IDontLookAQI">I don't look at Air Quality Index or level</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Which information source do you use for checking the Air Quality Index / level?
+                    </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-checkingAirQualityLevel">
+                              Source of AQI
+                         </InputLabel>    
+                         <Select
+                              native
+                              value={checkingAirQualityLevel}
+                              onChange={handleCheckingAirQualityLevel}
+                              input={
+                                  <OutlinedInput
+                                      name="checkingAirQualityLevel"
+                                      labelWidth={labelWidth}
+                                      id="outlined-checkingAirQualityLevel"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="websiet">Website</option>
+                              <option value="mobileApp">Mobile App</option>
+                              <option value="newspaper">Newspaper</option>
+                              <option value="radio">Radio (FM)</option>
+                              <option value="other">other</option>
+                              <option value="IDontCheckAQI">I don't check at Air Quality Index or level</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          How frequently do you look on Air Quality Index / level?
+              </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-fequentlyAirQualityLevel">
+                              Frequency
+                         </InputLabel>
+                         <Select
+                              native
+                              value={fequentlyAirQualityLevel}
+                              onChange={handleFequentlyAirQualityLevel}
+                              input={
+                                  <OutlinedInput
+                                      name="fequentlyAirQualityLevel"
+                                      labelWidth={labelWidth}
+                                      id="outlined-fequentlyAirQualityLevel"
+                                  />
+                              }
+                          >
+                                <option value="" />
+                              <option value="daily">Daily</option>
+                              <option value="2_4PerWeek">2 - 4 times per week</option>
+                              <option value="OnceAWeek">Once a week</option>
+                              <option value="OnceAMonth">Once a month</option>
+                              <option value="IDontLookAQI">I don't look at Air Quality Index / level</option>
+                          </Select>
                       </FormControl>
                       <hr />
                   </div>
 
                   <Typography  component="legend" className={classes.formHeader}>
                       B:  Trip Information
-            <hr />
                   </Typography >
+                  <hr />
+
+                  
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>How many trips do you make in a Day?</Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-tripsPerDaySimple">
+                              Trips per day
+                          </InputLabel>
+                          <Select
+                              native
+                              value={tripsPerDay}
+                              onChange={handleTripsPerDay}
+                              input={
+                                  <OutlinedInput
+                                      name="tripsPerDay"
+                                      labelWidth={labelWidth}
+                                      id="outlined-tripsPerDaySimple"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="<2">up to 2</option>
+                              <option value="3_4">3 - 4</option>
+                              <option value="5orMorethan">5 or more</option>
+                              <option value="IdontTravel">I do not travel</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
 
 
-
-                  <Typography  component="legend" className={classes.formHeader}>
+                  <Typography  className={classes.formHeader}>
                       C:  Willingness to Change/ Adapt
             <hr />
                   </Typography >
-            <hr/>
+            
                   <div style={{ display:'flex', justifyContent:'center' }}>
                   <Card className={classes.imgroot}>
                   <CardActionArea>
@@ -504,30 +590,30 @@ const useStyles = makeStyles(theme => ({
                   </CardActionArea>
                   </Card>
                   </div>
-                  
-            <hr/>
-                  <Typography  component="legend" className={classes.formHeader}>
+            
+                  <Typography  className={classes.formHeader}>
+                  <hr/>
                       D:  Impact of Air Pollution Exposure
             <hr />
                   </Typography >
 
 
-                  <Typography  component="legend" className={classes.formHeader}>
+                  <Typography className={classes.formHeader}>
                       E:  Prevention/ Self-protective action 
             <hr />
                   </Typography >
 
 
 
-                  <Typography  component="legend" className={classes.formHeader}>
+                  <Typography   className={classes.formHeader}>
                       F: Socioeconomic Characteristics
             <hr />
                   </Typography >
                   <div className={classes.divStyle}>
                       <FormControl component="fieldset" className={classes.formControl}>
-                          <FormLabel component="legend" className={classes.labelStyle}>
+                          <Typography  className={classes.labelStyle}>
                               Gender
-              </FormLabel>
+              </Typography>
                           <RadioGroup
                               aria-label="gender"
                               name="gender"
@@ -560,7 +646,7 @@ const useStyles = makeStyles(theme => ({
                           Age
             </Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
-                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                          <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                               Age category
               </InputLabel>
                           <Select
@@ -571,7 +657,7 @@ const useStyles = makeStyles(theme => ({
                                   <OutlinedInput
                                       name="age"
                                       labelWidth={labelWidth}
-                                      id="outlined-qualification-native-simple"
+                                      id="outlined-age-native-simple"
                                   />
                               }
                           >
@@ -593,7 +679,7 @@ const useStyles = makeStyles(theme => ({
                           Educational Qualification
             </Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
-                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                          <InputLabel ref={inputLabel} htmlFor="outlined-qualification-native-simple">
                               Educational qualification
               </InputLabel>
                           <Select
@@ -622,7 +708,7 @@ const useStyles = makeStyles(theme => ({
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>Marital Status</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
-                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                          <InputLabel ref={inputLabel} htmlFor="outlined-marital-native-simple">
                               Marital status
               </InputLabel>
                           <Select
@@ -633,7 +719,7 @@ const useStyles = makeStyles(theme => ({
                                   <OutlinedInput
                                       name="marStatus"
                                       labelWidth={labelWidth}
-                                      id="outlined-income-native-simple"
+                                      id="outlined-marital-native-simple"
                                   />
                               }
                           >
@@ -649,7 +735,7 @@ const useStyles = makeStyles(theme => ({
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>Profession</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
-                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                          <InputLabel ref={inputLabel} htmlFor="outlined-profession-native-simple">
                               Profession
               </InputLabel>
                           <Select
@@ -660,7 +746,7 @@ const useStyles = makeStyles(theme => ({
                                   <OutlinedInput
                                       name="profess"
                                       labelWidth={labelWidth}
-                                      id="outlined-income-native-simple"
+                                      id="outlined-profession-native-simple"
                                   />
                               }
                           >
@@ -683,7 +769,7 @@ const useStyles = makeStyles(theme => ({
                           Average Monthly Income
             </Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
-                          <InputLabel ref={inputLabel} htmlFor="outlined-image-native-simple">
+                          <InputLabel ref={inputLabel} htmlFor="outlined-income-native-simple">
                               Average monthly income (INR)
               </InputLabel>
                           <Select
@@ -711,9 +797,9 @@ const useStyles = makeStyles(theme => ({
                   </div>
                   <div>
           <FormControl component="fieldset" className={classes.formControl}>
-            <FormLabel component="legend" className={classes.labelStyle}>
+            <Typography className={classes.labelStyle}>
               Any other crisp comment/ feedback?
-            </FormLabel>
+            </Typography>
             <TextField
               required
               id="outlined-required"
