@@ -8,7 +8,7 @@ import {withRouter} from 'react-router-dom';
 import Input from '../../Components/Input/Input';
 import axios from 'axios'
 import Global from '../../assets/globalvaribles/GlobalVariables'
-import Aux from '../../Hoc/Aux'
+import Aux from '../../Hoc/AuxFile'
 var HostName=Global.HostName
 // import Backdrop from '../../Hoc/Backdrop/Backdrop1'
 // import Alert from '../../Components/Alert/Alert'

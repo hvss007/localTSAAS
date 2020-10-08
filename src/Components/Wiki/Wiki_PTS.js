@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Backdrop from '../../Hoc/Backdrop/Backdrop1';
-import Aux from '../../Hoc/Aux';
+import Aux from '../../Hoc/AuxFile';
 
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import classes from './Wiki.css';

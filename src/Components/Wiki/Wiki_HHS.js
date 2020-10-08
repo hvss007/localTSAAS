@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Backdrop from "../../Hoc/Backdrop/Backdrop1";
-import Aux from "../../Hoc/Aux";
+import Aux from "../../Hoc/AuxFile";
 import FamilyScreenshot1 from "../../assets/screenshots/family1.png";
 import FamilyScreenshot2 from "../../assets/screenshots/family2.png";
 import FamilyScreenshot3 from "../../assets/screenshots/family3.png";

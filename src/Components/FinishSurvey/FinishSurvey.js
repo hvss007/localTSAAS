@@ -8,7 +8,7 @@ import Background from '../../assets/icons/thanksbackground.png';
 import axios from 'axios';
 import Global from '../../assets/globalvaribles/GlobalVariables';
 import {withRouter} from 'react-router-dom';
-import Aux from '../../Hoc/Aux'
+import Aux from '../../Hoc/AuxFile'
 var HostName=Global.hostName
 class FinishSurvey extends Component{
     constructor(props){

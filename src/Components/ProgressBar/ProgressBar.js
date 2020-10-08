@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './ProgressBar.css';
-import Aux from '../../Hoc/Aux';
+import Aux from '../../Hoc/AuxFile';
 class ProgressBar extends Component{
     // var width;
     // setTimeout(( )=>{

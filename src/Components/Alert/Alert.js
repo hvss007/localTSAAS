@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Alert.css'
-import Aux from '../../Hoc/Aux'
+import Aux from '../../Hoc/AuxFile'
 const alert=(props)=>{
     return(
         <div className={classes.Alert}>

@@ -9,7 +9,7 @@ import fs from '../../../assets/jsonfile/stateAndDistricts.json'
 import Global from '../../../assets/globalvaribles/GlobalVariables'
 import Backdrop from '../../../Hoc/Backdrop/Backdrop1'
 import Alert from '../../Alert/Alert'
-import Aux from '../../../Hoc/Aux'
+import Aux from '../../../Hoc/AuxFile'
 var HostName=Global.hostName
 var globalOptional=Global.optional
 class Member extends Component{

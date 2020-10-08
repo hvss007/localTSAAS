@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './MemberSubmitButton.css';
-import Aux from '../../../Hoc/Aux'
+import Aux from '../../../Hoc/AuxFile'
 const memberSubmitButton=function(props){
   const buttonClasses=[classes.MemberSubmitButton,classes.MemberSubmitButtonBorder];
   return(

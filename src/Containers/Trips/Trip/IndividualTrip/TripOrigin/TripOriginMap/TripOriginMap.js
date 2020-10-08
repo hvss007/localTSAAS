@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './TripOriginMap.css';
 import FinalBackdrop from '../../../../../../Hoc/FinalBackdrop/FinalBackdrop';
-import Aux from '../../../../../../Hoc/Aux';
+import Aux from '../../../../../../Hoc/AuxFile';
 import Map from '../../../../../../assets/icons/map.png';
 class TripOriginMap extends Component{
     constructor(props) {

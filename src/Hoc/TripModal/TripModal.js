@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './TripModal.css'
-import Aux from '../Aux';
+import Aux from '../AuxFile';
 import FinalBackdrop from '../FinalBackdrop/FinalBackdrop';
 //import tripAccessIn from '../../Containers/Trips/Trip/Individual Trip/TripAcessAndMode/TripAcess/TripAccessIn/TripAccessIn';
 const TripModal=(props)=>{

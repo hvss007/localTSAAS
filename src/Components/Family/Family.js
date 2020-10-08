@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 import BuildControls from './BuildControls/BuildControls';
 import MainMaps from '../../Containers/MainMaps/MainMaps'
 import fs from '../../assets/jsonfile/stateAndDistricts.json'
-import Aux from '../../Hoc/Aux';
+import Aux from '../../Hoc/AuxFile';
 import Global from '../../assets/globalvaribles/GlobalVariables';
 import Backdrop from '../../Hoc/Backdrop/Backdrop1'
 import Alert from '../Alert/Alert';

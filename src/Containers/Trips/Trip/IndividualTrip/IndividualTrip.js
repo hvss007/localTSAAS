@@ -7,7 +7,7 @@ import TripAcessAndMode from './TripAcessAndMode/TripAcessAndMode';
 // import Rupee from '../../../../assets/icons/rupee.png'
 import {withRouter} from 'react-router-dom';
 import Global from '../../../../assets/globalvaribles/GlobalVariables';
-import Aux from '../../../../Hoc/Aux'
+import Aux from '../../../../Hoc/AuxFile'
 import Backdrop from '../../../../Hoc/Backdrop/Backdrop1' 
 import Alert from'../../../../Components/Alert/Alert'
 var HostName=Global.hostName

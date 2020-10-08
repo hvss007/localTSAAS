@@ -4,7 +4,7 @@ import TripAccess from './TripAcess/TripAccess';
 import Walk from '../../../../../assets/icons/modeIcons/Walk.png';
 // import TripModal from '../../../../../Hoc/TripModal/TripModal';
 //import CommentModal from '../../../../../Hoc/CommentModal/CommentModal';
-import Aux from '../../../../../Hoc/Aux';
+import Aux from '../../../../../Hoc/AuxFile';
 class TripAcessAndMode extends Component{
     state={
         // access:[{idi:1,showAdd:true,value:'',modeType:"access",inValue:{travelTime:'',travelDistance:'',fare:''},isValid:false}],

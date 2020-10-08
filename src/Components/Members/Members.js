@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import Member from './Member/Member';
-import Aux from '../../Hoc/Aux';
+import Aux from '../../Hoc/AuxFile';
 import axios from 'axios'
 import classes from './Members.css';
 import {withRouter} from 'react-router-dom';
