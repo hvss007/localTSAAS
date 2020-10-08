@@ -15,7 +15,7 @@ import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+// import FormLabel from "@material-ui/core/FormLabel";
 import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -125,7 +125,7 @@ const useStyles = makeStyles(theme => ({
   }));
 
   function AQIPSMain(props) {
-    const [expanded, setExpanded] = React.useState(false);
+    // const [expanded, setExpanded] = React.useState(false);
   
     // const handleChange = panel => (event, isExpanded) => {
     //   setExpanded(isExpanded ? panel : false);
@@ -153,7 +153,7 @@ const useStyles = makeStyles(theme => ({
     // Part A
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
     const [airPollutionAdverseHealthEffect, setAirPollutionAdverseHealthEffect] = React.useState("");
-    const [airQualityLevel, setAirQualityLevel] = React.useState("");
+    const [aqiUnderstanding, setAqiUnderstanding] = React.useState("");
     const [UnderstandAbove, setUnderstandAbove] = React.useState("");
     const [airQualityLevelBad, setAirQualityLevelBad] = React.useState("");
     const [checkingAirQualityLevel, setCheckingAirQualityLevel] = React.useState("");
@@ -182,8 +182,8 @@ const useStyles = makeStyles(theme => ({
       setAirPollutionAdverseHealthEffect(event.target.value);
     }
 
-    function handleAirQualityLevel(event){
-      setAirQualityLevel(event.target.value);
+    function handleAqiUnderstanding(event){
+      setAqiUnderstanding(event.target.value);
     }
 
     function handleUnderstandAbove(event){
@@ -265,7 +265,7 @@ const useStyles = makeStyles(theme => ({
             // Part A
             airPollutionMajorProb: airPollutionMajorProb,
             airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
-            airQualityLevel: airQualityLevel,
+            aqiUnderstanding: aqiUnderstanding,
             UnderstandAbove: UnderstandAbove,
             airQualityLevelBad: airQualityLevelBad,
             checkingAirQualityLevel: checkingAirQualityLevel,
@@ -383,11 +383,11 @@ const useStyles = makeStyles(theme => ({
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
-                              aria-label="airQualityLevel"
-                              name="airQualityLevel"
+                              aria-label="aqiUnderstanding"
+                              name="aqiUnderstanding"
                               className={classes.group}
-                              value={airQualityLevel}
-                              onChange={handleAirQualityLevel}
+                              value={aqiUnderstanding}
+                              onChange={handleAqiUnderstanding}
                           >
                               <FormControlLabel
                                   value="awareUnderstand"
