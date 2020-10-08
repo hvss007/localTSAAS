@@ -8,8 +8,8 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
-import Grid from "@material-ui/core/Grid";
-import Checkbox from "@material-ui/core/Checkbox";
+// import Grid from "@material-ui/core/Grid";
+// import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -19,12 +19,21 @@ import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+// import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+// import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import Image from 'material-ui-image'
+// import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+
+import aqImpact from "../../assets/icons/aqi/aq_impact.jpg"
+
 var HostName=Global.hostName
-var globalOptional=Global.optional
+// var globalOptional=Global.optional
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -38,6 +47,13 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 8,
       padding: "1vw",
       backgroundColor: "#e1f5fe"
+    },
+    imgroot: {
+        maxWidth: 450,
+        textAlign: 'left',
+    },
+    imgmedia: {
+        height: 260,
     },
     formControl: {
       margin: theme.spacing(1),
@@ -55,7 +71,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: "20px"
       },
       color: "#410373",
-      textTransform: "uppercase"
+    //   textTransform: "uppercase"
     },
     formHeader: {
       color: "#000",
@@ -271,11 +287,11 @@ const useStyles = makeStyles(theme => ({
       return (
           <Card className={classes.root}>
               <FormGroup>
-                  <FormLabel component="legend" className={classes.formHeader}>
+                  <Typography  component="legend" className={classes.formHeader}>
                       Air Quality Perception Survey
             <hr />
-                  </FormLabel>
-                  <div className={classes.paraText}><span>
+                  </Typography >
+                  <Typography  className={classes.paraText}><span>
                   </span><p>You may have noticed that Air Pollution in Delhi is getting worse
                   day by day. We are conducting this survey to determine
                   how air pollution impacts changing the commuter's
@@ -285,17 +301,17 @@ const useStyles = makeStyles(theme => ({
                       <br></br>
 
                       <p>Please answer all questions in Sections A to F.</p>
-                  </div>
+                  </Typography >
                   {/* (3) create front-end question*/}
-                  <FormLabel component="legend" className={classes.formHeader}>
+                  <Typography  component="legend" className={classes.formHeader}>
                       A:  Information Seeking and Engagement
             <hr />
-                  </FormLabel>
+                  </Typography >
 
                   <div className={classes.divStyle}>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <FormLabel component="legend" className={classes.labelStyle}>
-                          Do  you  see  air  pollution  has  a major problem  in  your  area  of  residence  or office/ school/ college?
+                          Do  you  see  air  pollution  as  a major problem  in  your  area  of  residence  or office/ school/ college?
               </FormLabel>
                           <RadioGroup
                               aria-label="airPollutionMajorProb"
@@ -350,7 +366,7 @@ const useStyles = makeStyles(theme => ({
                   <div className={classes.divStyle}>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <FormLabel component="legend" className={classes.labelStyle}>
-                          Do you know Air Quality levels?
+                          Do you already know about Air Quality Index (AQI)/ levels?
               </FormLabel>
                           <RadioGroup
                               aria-label="airQualityLevel"
@@ -460,37 +476,53 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-                  <FormLabel component="legend" className={classes.formHeader}>
+                  <Typography  component="legend" className={classes.formHeader}>
                       B:  Trip Information
             <hr />
-                  </FormLabel>
+                  </Typography >
 
 
 
-                  <FormLabel component="legend" className={classes.formHeader}>
+                  <Typography  component="legend" className={classes.formHeader}>
                       C:  Willingness to Change/ Adapt
             <hr />
-                  </FormLabel>
-
-
-
-                  <FormLabel component="legend" className={classes.formHeader}>
+                  </Typography >
+            <hr/>
+                  <div style={{ display:'flex', justifyContent:'center' }}>
+                  <Card className={classes.imgroot}>
+                  <CardActionArea>
+                      <CardMedia
+                          className={classes.imgmedia}
+                          image={aqImpact}
+                          title="Health Effects of Air Pollution"
+                      />
+                  <CardContent>
+                      <Typography variant="body2" color="textSecondary" component="p">
+                          Image Source: https://www.gov.uk/government/publications/health-matters-air-pollution/health-matters-air-pollution
+                      </Typography>
+                  </CardContent>
+                  </CardActionArea>
+                  </Card>
+                  </div>
+                  
+            <hr/>
+                  <Typography  component="legend" className={classes.formHeader}>
                       D:  Impact of Air Pollution Exposure
             <hr />
-                  </FormLabel>
+                  </Typography >
 
 
-                  <FormLabel component="legend" className={classes.formHeader}>
+                  <Typography  component="legend" className={classes.formHeader}>
                       E:  Prevention/ Self-protective action 
             <hr />
-                  </FormLabel>
+                  </Typography >
 
 
 
-                  <FormLabel component="legend" className={classes.formHeader}>
+                  <Typography  component="legend" className={classes.formHeader}>
                       F: Socioeconomic Characteristics
             <hr />
-                  </FormLabel>
+                  </Typography >
                   <div className={classes.divStyle}>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <FormLabel component="legend" className={classes.labelStyle}>
