@@ -28,13 +28,13 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 
 // import images
-import img1 from "./form_images/good.jpg";
-import img2 from "./form_images/satisfactory.jpg";
-import img3 from "./form_images/moderate.jpg";
-import img4 from "./form_images/Poor.jpg";
-import img5 from "./form_images/Very Poor.jpg";
-import img6 from "./form_images/severe.jpg";
-import img7 from "./form_images/table.jpeg";
+import img1 from "../../assets/icons/aqi/form_images/good.jpg";
+import img2 from "../../assets/icons/aqi/form_images/satisfactory.jpg";
+import img3 from "../../assets/icons/aqi/form_images/moderate.jpg";
+import img4 from "../../assets/icons/aqi/form_images/Poor.jpg";
+import img5 from "../../assets/icons/aqi/form_images/Very Poor.jpg";
+import img6 from "../../assets/icons/aqi/form_images/severe.jpg";
+import img7 from "../../assets/icons/aqi/form_images/table.png";
 // import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 // import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 // import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -590,33 +590,6 @@ const useStyles = makeStyles(theme => ({
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Are you aware of the Air Quality Index (AQI) or level and understand it?
-                              <div className={imgStyles().root}>
-                              <div>
-                                <GridList cellHeight={180} className={imgStyles().gridList}>
-                                  <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                                  </GridListTile>
-                                  {tileData.map((tile) => (
-                                    <GridListTile key={tile.img}>
-                                      <img src={tile.img} alt={tile.title} />
-                                      <GridListTileBar
-                                        title={tile.title}
-
-                                      />
-                                    </GridListTile>
-                                  ))}
-                                </GridList>
-                                </div>
-                                <div>
-                                <GridList cellHeight={190} className={useStyles().gridList} cols={1}>
-                                {tableData.map((tile) => (
-                                  <GridListTile key={tile.img} cols={tile.cols || 1}>
-                                  <img src={tile.img} alt={tile.title} />
-                                  </GridListTile>
-                                ))}
-                                </GridList>
-                                </div>
-                              </div>
-
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -644,6 +617,35 @@ const useStyles = makeStyles(theme => ({
                           </RadioGroup>
                       </FormControl>
                       <hr />
+                  </div>
+
+                  <div className={imgStyles().root}>
+                      <div>
+                          <GridList cellHeight={180} className={imgStyles().gridList}>
+                              <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                              </GridListTile>
+                              {tileData.map((tile) => (
+                                  <GridListTile key={tile.img}>
+                                      <img src={tile.img} alt={tile.title} />
+                                      <GridListTileBar
+                                          title={tile.title}
+
+                                      />
+                                  </GridListTile>
+                              ))}
+                          </GridList>
+                          <hr/>
+                      </div>
+                      <div>
+                          <GridList cellHeight={190} className={useStyles().gridList} cols={1}>
+                              {tableData.map((tile) => (
+                                  <GridListTile key={tile.img} cols={tile.cols || 1}>
+                                      <img src={tile.img} alt={tile.title} />
+                                  </GridListTile>
+                              ))}
+                          </GridList>
+                      </div>
+                      <hr/>
                   </div>
 
                   {/*  TODO add AQI related images here. */}
@@ -733,7 +735,7 @@ const useStyles = makeStyles(theme => ({
                               <option value="mobileApp">Mobile App</option>
                               <option value="newspaper">Newspaper</option>
                               <option value="radio">Radio (FM)</option>
-                              <option value="other">other</option>
+                              <option value="other">Other</option>
                               <option value="IDontCheckAQI">I don't check at Air Quality Index (AQI) or level</option>
                           </Select>
                       </FormControl>
