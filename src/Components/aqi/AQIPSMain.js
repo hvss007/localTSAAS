@@ -10,7 +10,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
 // import Grid from "@material-ui/core/Grid";
-// import Checkbox from "@material-ui/core/Checkbox";
+import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -357,16 +357,24 @@ const useStyles = makeStyles(theme => ({
         setPerceiveAQIWork(event.target.value);
     }
 
-    function handleHealthEffect(event) {
-        setHealthEffect(event.target.value);
+    const handleHealthEffect = name => event => {
+        if (healthEffect === "") {
+            setHealthEffect(name);
+        } else {
+            setHealthEffect(healthEffect.concat("&").concat(name));
+        }
     }
 
     function handleFamilyHealthEffect(event) {
         setFamilyHealthEffect(event.target.value);
     }
 
-    function handleTravelHealthEffect(event) {
-        setTravelHealthEffect(event.target.value)
+    const handleTravelHealthEffect = name => event => {
+        if(travelHealthEffect === ""){
+            setTravelHealthEffect(name);
+        } else {
+            setTravelHealthEffect(travelHealthEffect.concat("&").concat(name));
+        }
     }
 
     function handlePsychologyEffect(event) {
@@ -647,8 +655,6 @@ const useStyles = makeStyles(theme => ({
                       </div>
                       <hr/>
                   </div>
-
-                  {/*  TODO add AQI related images here. */}
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
@@ -1234,44 +1240,149 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-
-                              {/* TODO need to convert it to multiple choices */}
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>
                       How air pollution is affecting you? Please select all applicable.
                       </Typography>
-                      <FormControl variant="outlined" className={classes.formControl}>
-                          <InputLabel ref={inputLabel} htmlFor="outlined-healthEffect">
-                          Impact on health
-                        </InputLabel>
-                          <Select
-                              native
-                              value={healthEffect}
-                              onChange={handleHealthEffect}
-                              input={
-                                  <OutlinedInput
-                                      name="healthEffect"
-                                      labelWidth={labelWidth}
-                                      id="outlined-healthEffect"
+                      
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          
+                      <div className={classes.checkboxes}>
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.BreathlessnessHavingMoreDifficultyInBreathing}
+                                      onChange={handleHealthEffect("BreathlessnessHavingMoreDifficultyInBreathing")}
+                                      value="BreathlessnessHavingMoreDifficultyInBreathing"
+                                      color="primary"
                                   />
                               }
-                          >
-                              <option value="" />
-                              <option value="Breathlessness/HavingMoreDifficultyInBreathing">Breathlessness/ difficulty in breathing</option>
-                              <option value="DoingLessOutdoorActivities">Doing less outdoor activities</option>
-                              <option value="DoingMoreToLookAfterMySkin">Doing more to look after my skin</option>
-                              <option value="DoingMoreToStayHealthy">Doing more to stay healthy</option>
-                              {/* <option value="FeelingDepressed">Feeling depressed</option> */}
-                              <option value="MotorBikeSharing">Irritation to eyes/ nose/ throat</option>
-                              <option value="SkinProblems">Skin problems</option>
-                              <option value="BodyAllergies">Body allergies</option>
-                              <option value="WantingToMoveToOtherLessPollutedPlaces">Wanting to move to other less polluted places</option>
-                              <option value="AsthmaIncidences">Asthma incidences</option>
-                              <option value="PoorVisibility">Poor visibility</option>
-                              <option value="WorryingAboutTheLivingEnvironmentForChildren">Worrying about the living environment for children</option>
-                              <option value="NotAffectedAtAll">Not affected at all</option>
-                          </Select>
-                      </FormControl>
+                              label="Breathlessness/ difficulty in breathing"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.DoingLessOutdoorActivities}
+                                      onChange={handleHealthEffect("DoingLessOutdoorActivities")}
+                                      value="DoingLessOutdoorActivities"
+                                      color="primary"
+                                  />
+                              }
+                              label="Doing less outdoor activities"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.DoingMoreToLookAfterMySkin}
+                                      onChange={handleHealthEffect("DoingMoreToLookAfterMySkin")}
+                                      value="DoingMoreToLookAfterMySkin"
+                                      color="primary"
+                                  />
+                              }
+                              label="Doing more to look after my skin"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.DoingMoreToStayHealthy}
+                                      onChange={handleHealthEffect("DoingMoreToStayHealthy")}
+                                      value="DoingMoreToStayHealthy"
+                                      color="primary"
+                                  />
+                              }
+                              label="Doing more to stay healthy"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.irritationToEyes}
+                                      onChange={handleHealthEffect("irritationToEyes")}
+                                      value="irritationToEyes"
+                                      color="primary"
+                                  />
+                              }
+                              label="Irritation to eyes/ nose/ throat"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.SkinProblems}
+                                      onChange={handleHealthEffect("SkinProblems")}
+                                      value="SkinProblems"
+                                      color="primary"
+                                  />
+                              }
+                              label="Skin problems"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.BodyAllergies}
+                                      onChange={handleHealthEffect("BodyAllergies")}
+                                      value="BodyAllergies"
+                                      color="primary"
+                                  />
+                              }
+                              label="Body allergies"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.WantingToMoveToOtherLessPollutedPlaces}
+                                      onChange={handleHealthEffect("WantingToMoveToOtherLessPollutedPlaces")}
+                                      value="WantingToMoveToOtherLessPollutedPlaces"
+                                      color="primary"
+                                  />
+                              }
+                              label="Wanting to move to other less polluted places"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.AsthmaIncidences}
+                                      onChange={handleHealthEffect("AsthmaIncidences")}
+                                      value="AsthmaIncidences"
+                                      color="primary"
+                                  />
+                              }
+                              label="Asthma incidences"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.PoorVisibility}
+                                      onChange={handleHealthEffect("PoorVisibility")}
+                                      value="PoorVisibility"
+                                      color="primary"
+                                  />
+                              }
+                              label="Poor visibility"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.WorryingAboutTheLivingEnvironmentForChildren}
+                                      onChange={handleHealthEffect("WorryingAboutTheLivingEnvironmentForChildren")}
+                                      value="WorryingAboutTheLivingEnvironmentForChildren"
+                                      color="primary"
+                                  />
+                              }
+                              label="Worrying about the living environment for children"
+                          />
+                           <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={healthEffect.NotAffectedAtAll}
+                                      onChange={handleHealthEffect("NotAffectedAtAll")}
+                                      value="NotAffectedAtAll"
+                                      color="primary"
+                                  />
+                              }
+                              label="Not affected at all"
+                          />
+                        </div>
+                        </FormControl>
+                      
                       <hr />
                   </div>
 
@@ -1324,31 +1435,87 @@ const useStyles = makeStyles(theme => ({
                    <Typography className={classes.labelStyle}>
                           After or during your travel, do you feel any of these? Please select all applicable.
                         </Typography>
-                      <FormControl component="outlined" className={classes.formControl}>
-                      <InputLabel ref={inputLabel} htmlFor="outlined-travelHealthEffect">
-                              Travel health effect
-                         </InputLabel>
-                         <Select
-                              native
-                              value={travelHealthEffect}
-                              onChange={handleTravelHealthEffect}
-                              input={
-                                  <OutlinedInput
-                                      name="travelHealthEffect"
-                                      labelWidth={labelWidth}
-                                      id="outlined-travelHealthEffect"
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          
+                      <div className={classes.checkboxes}>
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={travelHealthEffect.Sneezing}
+                                      onChange={handleTravelHealthEffect("Sneezing")}
+                                      value="Sneezing"
+                                      color="primary"
                                   />
                               }
-                          >
-                              <option value="" />
-                              <option value="Sneezing">Sneezing</option>
-                              <option value="RunnyNose">Runny nose</option>
-                              <option value="EyeIrritation">Eye irritation</option>
-                              <option value="ShortnessOfBreath">Shortness of breath</option>
-                              <option value="ReducedLungFunctioning">Reduced lung functioning</option>
-                              <option value="Other">Other</option>
-                              <option value="None">None</option>
-                          </Select>
+                              label="Sneezing"
+                          />
+                           <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={travelHealthEffect.Sneezing}
+                                      onChange={handleTravelHealthEffect("Sneezing")}
+                                      value="Sneezing"
+                                      color="primary"
+                                  />
+                              }
+                              label="Sneezing"
+                          />
+                           <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={travelHealthEffect.RunnyNose}
+                                      onChange={handleTravelHealthEffect("RunnyNose")}
+                                      value="RunnyNose"
+                                      color="primary"
+                                  />
+                              }
+                              label="Runny nose"
+                          />
+                           <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={travelHealthEffect.EyeIrritation}
+                                      onChange={handleTravelHealthEffect("EyeIrritation")}
+                                      value="EyeIrritation"
+                                      color="primary"
+                                  />
+                              }
+                              label="Eye irritation"
+                          />
+                           <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={travelHealthEffect.ReducedLungFunctioning}
+                                      onChange={handleTravelHealthEffect("ReducedLungFunctioning")}
+                                      value="ReducedLungFunctioning"
+                                      color="primary"
+                                  />
+                              }
+                              label="Reduced lung functioning"
+                          />
+                           <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={travelHealthEffect.Other}
+                                      onChange={handleTravelHealthEffect("Other")}
+                                      value="Other"
+                                      color="primary"
+                                  />
+                              }
+                              label="Other"
+                          />
+                             <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={travelHealthEffect.None}
+                                      onChange={handleTravelHealthEffect("None")}
+                                      value="None"
+                                      color="primary"
+                                  />
+                              }
+                              label="None"
+                          />
+                        </div>
                       </FormControl>
                       <hr />
                   </div>
