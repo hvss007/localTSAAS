@@ -780,7 +780,7 @@ const useStyles = makeStyles(theme => ({
 
 
                   <div className={classes.divStyle}>
-                      <Typography className={classes.labelStyle}>How many trips do you make in a Day?</Typography>
+                      <Typography className={classes.labelStyle}>How many trips do you make in a day?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-tripsPerDaySimple">
                               Trips per day
@@ -812,7 +812,7 @@ const useStyles = makeStyles(theme => ({
                       <Typography className={classes.labelStyle}>What is the purpose of the trip?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-purposeTrip">
-                              Purpose of trip
+                              Trip purpose
               </InputLabel>
                           <Select
                               native
@@ -827,16 +827,16 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                               <option value="" />
-                              <option value="school_primary">School - (Primary Trip)</option>
-                              <option value="College_University">College/University - (Primary Trip)</option>
-                              <option value="office">Office – (Primary trip)</option>
-                              <option value="front_line">Front Line Worker (health, Police) – (Primary trip)</option>
+                              <option value="school_primary">School - (Primary trip)</option>
+                              <option value="College_University">College/ University - (Primary trip)</option>
+                              <option value="office">Office/ work – (Primary trip)</option>
+                              <option value="front_line">Frontline worker (health, Police) – (Primary trip)</option>
                               <option value="retailer">Retailer - (Secondary trip)</option>
                               <option value="shopping">Shopping - (Secondary trip)</option>
-                              <option value="super_market">Super Markert - (Secondary trip)</option>
-                              <option value="gym">Gym - (Secondary trip)</option>
-                              <option value="sports">Sports - (Secondary trip)</option>
+                              <option value="super_market">Super-markert - (Secondary trip)</option>
+                              <option value="gym">Gym / sports - (Secondary trip)</option>
                               <option value="leisure">Leisure - (Secondary trip)</option>
+                              <option value="other">other</option>
                           </Select>
                       </FormControl>
                       <hr />
@@ -848,7 +848,7 @@ const useStyles = makeStyles(theme => ({
                       <Typography className={classes.labelStyle}>Which main mode of transport do you use for commuting the Primary trip (work or education)?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-primaryTrip">
-                          Mode for primary trip
+                          Travel mode for primary trip
                         </InputLabel>
                           <Select
                               native
@@ -864,12 +864,12 @@ const useStyles = makeStyles(theme => ({
                           >
                               <option value="" />
                               <option value="Car">Car</option>
-                              <option value="CarSharing">Car Sharing(OLA, Uber, Other Taxi)</option>
+                              <option value="CarSharing">Car Sharing (OLA, Uber, taxi, other)</option>
                               <option value="Bus">Bus</option>
                               <option value="Metro">Metro</option>
-                              <option value="TwoWheeler">Two Wheeler(2-W)</option>
-                              <option value="MotorBikeSharing">Motor Bike Sharing</option>
-                              <option value="AutoRickshaw">Auto-Rickshaws(3-W)</option>
+                              <option value="TwoWheeler">Two Wheeler (2-W)</option>
+                              <option value="MotorBikeSharing">Motorbike/ scooter Sharing</option>
+                              <option value="AutoRickshaw">Auto-Rickshaws (3-W)</option>
                               <option value="Bicycle">Bicycle</option>
                               <option value="Walk">Walk</option>
 
@@ -883,7 +883,7 @@ const useStyles = makeStyles(theme => ({
                       <Typography className={classes.labelStyle}>Which mode of transport do you use for commuting the Secondary Trip (Shopping or Gym)?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-secondaryTrip">
-                          Mode for secondary trip
+                          Travel mode for secondary trip
                         </InputLabel>
                           <Select
                               native
@@ -899,12 +899,12 @@ const useStyles = makeStyles(theme => ({
                           >
                               <option value="" />
                               <option value="Car">Car</option>
-                              <option value="CarSharing">Car Sharing(OLA, Uber, Other Taxi)</option>
+                              <option value="CarSharing">Car Sharing (OLA, Uber, taxi, Zoom, other rental)</option>
                               <option value="Bus">Bus</option>
                               <option value="Metro">Metro</option>
-                              <option value="TwoWheeler">Two Wheeler(2-W)</option>
-                              <option value="MotorBikeSharing">Motor Bike Sharing</option>
-                              <option value="AutoRickshaw">Auto-Rickshaws(3-W)</option>
+                              <option value="TwoWheeler">Two Wheeler (2-W)</option>
+                              <option value="MotorBikeSharing">Motorbike/ scooter Sharing (or rental)</option>
+                              <option value="AutoRickshaw">Auto-Rickshaws (3-W)</option>
                               <option value="Bicycle">Bicycle</option>
                               <option value="Walk">Walk</option>
 
@@ -917,11 +917,11 @@ const useStyles = makeStyles(theme => ({
 
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
-                          At which air quality level would you avoid traveling?
+                          At which Air Quality Index (AQI) or level, would you avoid traveling?
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-avoidTrip">
-                              Avoid traveling
+                              AQI to avoid traveling
                          </InputLabel>
                          <Select
                               native
@@ -956,7 +956,7 @@ const useStyles = makeStyles(theme => ({
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-changeInChoice">
-                              Change in choice
+                              Impact on the travel choice
                          </InputLabel>
                          <Select
                               native
@@ -985,7 +985,7 @@ const useStyles = makeStyles(theme => ({
 
                    <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Would you change the travel choice in winter, when air pollution is high?
+                          Would you change the travel choice in winter season, when air pollution is high?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1014,7 +1014,7 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Due to air pollution, have you ever changed your leisure/ Social/ Sports activities?
+                          Due to air pollution, have you ever changed your leisure/ social/ sports activities?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1042,7 +1042,7 @@ const useStyles = makeStyles(theme => ({
 
                   <Typography  className={classes.formHeader}>
                       C:  Willingness to Change/ Adapt
-            <hr />
+                    <hr />
                   </Typography >
 
                   <div style={{ display:'flex', justifyContent:'center' }}>
@@ -1066,7 +1066,7 @@ const useStyles = makeStyles(theme => ({
                   <div className={classes.divStyle}>
                   <hr />
                   <Typography className={classes.labelStyle}>
-                          What type of information would you like?
+                          What type of information would you like to receive?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1079,17 +1079,17 @@ const useStyles = makeStyles(theme => ({
                               <FormControlLabel
                                   value="RelatedToTheAirPollutionLevel"
                                   control={<Radio color="primary" />}
-                                  label="Related to the air pollution level"
+                                  label="Air Quality Index (AQI) or level only"
                               />
                               <FormControlLabel
                                   value="RelatedToTravelModeInformation"
                                   control={<Radio color="primary" />}
-                                  label="Related to travel mode information"
+                                  label="Air pollution exposure for each travel mode"
                               />
                               <FormControlLabel
                                   value="RelatedToTravelTimeInformation"
                                   control={<Radio color="primary" />}
-                                  label="Related to travel time information"
+                                  label="Travel time and air pollution exposure on various routes and travel modes"
                               />
                                <FormControlLabel
                                   value="other"
@@ -1104,7 +1104,7 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Do you avoid walking and cycling in bad Air Quality?
+                          Do you avoid walking and cycling in poor Air Quality?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1133,7 +1133,7 @@ const useStyles = makeStyles(theme => ({
 
                        <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Do you prefer to work from home when Air Quality is bad?
+                          Do you prefer to work from home when Air Quality is poor?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1170,11 +1170,11 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
-                          To what extent do you perceive the air quality in your neighborhood (where you reside) as?
+                          How would you rate air quality close to your residence/ home?
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-perceiveAQIHome">
-                              Perceive Air Quality at reside
+                              AQI at residence
                          </InputLabel>
                          <Select
                               native
@@ -1204,11 +1204,11 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
-                          To what extent do you perceive the neighborhood's air quality where you frequently travel for work or study?
+                   How would you rate air quality close to your office/ workplace/ school/ college?
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-perceiveAQIWork">
-                              Perceive Air Quality at work
+                              AQI at workplace or school
                          </InputLabel>
                          <Select
                               native
@@ -1235,14 +1235,14 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
-
+                              {/* TODO need to convert it to multiple choices */}
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>
-                      In which of the following ways are you affected by air pollution? Please select all applicable.
+                      How air pollution is affecting you? Please select all applicable.
                       </Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-healthEffect">
-                          Health effect
+                          Impact on health
                         </InputLabel>
                           <Select
                               native
@@ -1257,14 +1257,14 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                               <option value="" />
-                              <option value="Breathlessness/HavingMoreDifficultyInBreathing">Breathlessness/having more difficulty in breathing</option>
+                              <option value="Breathlessness/HavingMoreDifficultyInBreathing">Breathlessness/ difficulty in breathing</option>
                               <option value="DoingLessOutdoorActivities">Doing less outdoor activities</option>
                               <option value="DoingMoreToLookAfterMySkin">Doing more to look after my skin</option>
                               <option value="DoingMoreToStayHealthy">Doing more to stay healthy</option>
-                              <option value="FeelingDepressed">Feeling depressed</option>
-                              <option value="MotorBikeSharing">Irritation to eyes/nose/throat</option>
+                              {/* <option value="FeelingDepressed">Feeling depressed</option> */}
+                              <option value="MotorBikeSharing">Irritation to eyes/ nose/ throat</option>
                               <option value="SkinProblems">Skin problems</option>
-                              <option value="BodyAllergies">Body Allergies</option>
+                              <option value="BodyAllergies">Body allergies</option>
                               <option value="WantingToMoveToOtherLessPollutedPlaces">Wanting to move to other less polluted places</option>
                               <option value="AsthmaIncidences">Asthma incidences</option>
                               <option value="PoorVisibility">Poor visibility</option>
@@ -1319,10 +1319,10 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
-
+                            {/* TODO need to convert it to multiple choices */}
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
-                          After or during your travel, do you feel any of these?
+                          After or during your travel, do you feel any of these? Please select all applicable.
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-travelHealthEffect">
@@ -1342,10 +1342,10 @@ const useStyles = makeStyles(theme => ({
                           >
                               <option value="" />
                               <option value="Sneezing">Sneezing</option>
-                              <option value="RunnyNose">Runny Nose</option>
-                              <option value="EyeIrritation">Eye Irritation</option>
-                              <option value="ShortnessOfBreath">Shortness Of Breath (201 - 300)</option>
-                              <option value="ReducedLungFunctioning">Reduced Lung Functioning</option>
+                              <option value="RunnyNose">Runny nose</option>
+                              <option value="EyeIrritation">Eye irritation</option>
+                              <option value="ShortnessOfBreath">Shortness of breath</option>
+                              <option value="ReducedLungFunctioning">Reduced lung functioning</option>
                               <option value="Other">Other</option>
                               <option value="None">None</option>
                           </Select>
@@ -1354,10 +1354,10 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
-
+                {/* TODO need to convert it to multiple choices */}
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Do you feel any of the following psychology impact due to air pollution?
+                          Do you feel any of the following psychological impact due to air pollution?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1388,6 +1388,16 @@ const useStyles = makeStyles(theme => ({
                                   label="Frustation"
                               />
                               <FormControlLabel
+                                  value="angry"
+                                  control={<Radio color="primary" />}
+                                  label="Angry"
+                              />
+                              <FormControlLabel
+                                  value="depression"
+                                  control={<Radio color="primary" />}
+                                  label="Depression"
+                              />
+                              <FormControlLabel
                                   value="none"
                                   control={<Radio color="primary" />}
                                   label="None"
@@ -1405,11 +1415,11 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
-                          Do you use Mask to protect from air pollution?
+                          Do you use mask to protect yourself from air pollution?
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-maskAirPollution">
-                              Use Mask
+                              Use of mask
                          </InputLabel>
                          <Select
                               native
@@ -1424,11 +1434,11 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                               <option value="" />
-                              <option value="IUsedMaskBeforeCOVID-19">I used Mask before COVID-19 (0 - 50)</option>
-                              <option value="IUsedMaskafterCOVID-19">I used Mask after COVID-19</option>
-                              <option value="IUseMaskBecauseOfAirPollution">I use Mask because of air pollution</option>
-                              <option value="IUseMaskBecauseOfSkin_OtherHealthIssues">I use Mask because of Skin/other health issues</option>
-                              <option value="IDontUsedMask">I don't used Mask (301 - 400)</option>
+                              <option value="IUsedMaskBeforeCOVID-19">I used mask before COVID-19</option>
+                              <option value="IUsedMaskafterCOVID-19">I started using mask since inception of COVID-19</option>
+                              <option value="IUseMaskBecauseOfAirPollution">I use mask because of air pollution</option>
+                              <option value="IUseMaskBecauseOfSkin_OtherHealthIssues">I use mask because of skin/other health issues</option>
+                              <option value="IDontUsedMask">I don't use mask</option>
 
                           </Select>
                       </FormControl>
@@ -1438,7 +1448,7 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Do you use Air Filter/Air Conditioner with a purifier at home?
+                          Do you use air-filter/ air-conditioner at home?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1461,7 +1471,7 @@ const useStyles = makeStyles(theme => ({
                               <FormControlLabel
                                   value="no,DoNotPlanToBuy"
                                   control={<Radio color="primary" />}
-                                  label="No, do not plan to buy"
+                                  label="No, no plan to buy"
                               />
                           </RadioGroup>
                       </FormControl>
@@ -1472,7 +1482,7 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Do you miss school or work during high pollution?
+                          Do you or your child miss work or school during high pollution days?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1500,7 +1510,7 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Do you Close the windows of the car during bad air pollution?
+                          Do you close the windows of the car during bad air pollution?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1520,6 +1530,11 @@ const useStyles = makeStyles(theme => ({
                                   control={<Radio color="primary" />}
                                   label="No"
                               />
+                              <FormControlLabel
+                                  value="noCar"
+                                  control={<Radio color="primary" />}
+                                  label="I don't have/ use car"
+                              />
                           </RadioGroup>
                       </FormControl>
                       <hr />
@@ -1529,7 +1544,7 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                         Due to high air pollution, do you avoid physical outdoor exercise?
+                         Due to high air pollution, do you avoid/ skip physical outdoor exercise?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1548,6 +1563,11 @@ const useStyles = makeStyles(theme => ({
                                   value="no"
                                   control={<Radio color="primary" />}
                                   label="No"
+                              />
+                              <FormControlLabel
+                                  value="IDontExercise"
+                                  control={<Radio color="primary" />}
+                                  label="I don't do outdoor exercise"
                               />
                           </RadioGroup>
                       </FormControl>
