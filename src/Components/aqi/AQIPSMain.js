@@ -104,9 +104,9 @@ const useStyles = makeStyles(theme => ({
     },
     labelStyle: {
       fontFamily: "Julius Sans One",
-      fontSize: "24px",
+      fontSize: "22px",
       "@media (max-width:480px)": {
-        fontSize: "20px"
+        fontSize: "18px"
       },
       color: "#410373",
     //   textTransform: "uppercase"
@@ -116,16 +116,17 @@ const useStyles = makeStyles(theme => ({
       margin: "1vw",
       fontSize: "2vw",
       "@media (max-width:360px)": {
-        fontSize: "24px"
+        fontSize: "22px"
       },
       "@media (max-width:1024px)": {
-        fontSize: "24px"
+        fontSize: "22px"
       },
       fontWeight: "bold"
     },
     paraText: {
         color: "darkblue",
-        fontSize: "18px"
+        fontSize: "16px",
+        margin: "0vh 7vw 0vh 7vw"
     },
     button: {
       justifyContent: "center",
@@ -1262,9 +1263,9 @@ const useStyles = makeStyles(theme => ({
                       <Typography className={classes.labelStyle}>
                       How air pollution is affecting you? Please select all applicable.
                       </Typography>
-                      
+
                       <FormControl component="fieldset" className={classes.formControl}>
-                          
+
                       <div className={classes.checkboxes}>
                           <FormControlLabel
                               control={
@@ -1400,7 +1401,7 @@ const useStyles = makeStyles(theme => ({
                           />
                         </div>
                         </FormControl>
-                      
+
                       <hr />
                   </div>
 
@@ -1452,7 +1453,7 @@ const useStyles = makeStyles(theme => ({
                           After or during your travel, do you feel any of these? Please select all applicable.
                         </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
-                          
+
                       <div className={classes.checkboxes}>
                           <FormControlLabel
                               control={
@@ -1541,7 +1542,7 @@ const useStyles = makeStyles(theme => ({
                           Is any infant/ children/ older persons in your family is getting affected due to air pollution?
                         </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
-                          
+
                       <div className={classes.checkboxes}>
                           <FormControlLabel
                               control={
@@ -1554,7 +1555,7 @@ const useStyles = makeStyles(theme => ({
                               }
                               label="Yes, infant"
                           />
-                          
+
                           <FormControlLabel
                               control={
                                   <Checkbox
@@ -1566,7 +1567,7 @@ const useStyles = makeStyles(theme => ({
                               }
                               label="Yes, older people"
                           />
-                          
+
                           <FormControlLabel
                               control={
                                   <Checkbox
@@ -1578,7 +1579,7 @@ const useStyles = makeStyles(theme => ({
                               }
                               label="None"
                           />
-                           
+
                         </div>
                       </FormControl>
                       <hr />
@@ -1589,7 +1590,7 @@ const useStyles = makeStyles(theme => ({
                           Do you feel any of the following psychological impact due to air pollution?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
-                          
+
                       <div className={classes.checkboxes}>
                               <FormControlLabel
                               control={
