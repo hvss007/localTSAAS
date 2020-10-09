@@ -20,6 +20,21 @@ import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
+import {Grid, GridList, GridListTile} from '@material-ui/core';
+
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
+
+// import images
+import img1 from "./form_images/good.jpg";
+import img2 from "./form_images/satisfactory.jpg";
+import img3 from "./form_images/moderate.jpg";
+import img4 from "./form_images/Poor.jpg";
+import img5 from "./form_images/Very Poor.jpg";
+import img6 from "./form_images/severe.jpg";
+import img7 from "./form_images/table.jpeg";
 // import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 // import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 // import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -35,6 +50,28 @@ import aqImpact from "../../assets/icons/aqi/aq_impact.jpg"
 
 var HostName=Global.hostName
 // var globalOptional=Global.optional
+
+const imgStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: '#e1f5fe',
+    margin: "2vh 20vw 2vh 20vw",
+    "@media (max-width:1024px)": {
+      margin: "2vh 10vw 2vh 10vw"
+    }
+  },
+  gridList: {
+    width: 500,
+    height: 560,
+  },
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
+  },
+}));
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -126,29 +163,29 @@ const useStyles = makeStyles(theme => ({
 
   function AQIPSMain(props) {
     // const [expanded, setExpanded] = React.useState(false);
-  
+
     // const handleChange = panel => (event, isExpanded) => {
     //   setExpanded(isExpanded ? panel : false);
     // };
-  
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
-  
+
     const url = props.match.url;
     const colURL = url.split("/")[2];
     const surveyID = url.split("/")[3];
-  
+
     React.useEffect(() => {
       setLabelWidth(inputLabel.current.offsetWidth);
-  
+
       const surveyStartTime = parseDate();
       axios.patch(HostName + "responseTime/" + surveyID, {
         surveyStartTime: surveyStartTime
       });
     }, []);
-  
+
     const classes = useStyles();
-  
+
     // (1) define here..
     // Part A
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
@@ -198,7 +235,40 @@ const useStyles = makeStyles(theme => ({
     const [marStatus, setMaritalStatus] = React.useState("");
     const [profess, setProfession] = React.useState("");
     const [comment, setComment] = React.useState("");
-  
+    const tileData = [
+      {
+        img : img1,
+        title : "Good (0-50)"
+      },
+      {
+        img : img2,
+        title : "Satisfactory (51-100)"
+      },
+      {
+        img : img3,
+        title : "Moderate (101-200)"
+      },
+      {
+        img : img4,
+        title : "Poor (201-300)"
+      },
+      {
+        img : img5,
+        title : "Very Poor (301-400)"
+      },
+      {
+        img : img6,
+        title : "Severe (401-500)"
+      }
+    ]
+
+    const tableData = [
+      {
+        img : img7,
+        title : "AQI Table"
+      }
+    ]
+
 
     // (2) create functions
     //Part A
@@ -323,13 +393,13 @@ const useStyles = makeStyles(theme => ({
 
     function handleOutdoorActivity(event) {
         setOutdoorActivity(event.target.value)
-    }  
+    }
 
     // Part F
     function handleAge(event) {
       setAge(event.target.value);
     }
-  
+
     function handleGender(event) {
       setGender(event.target.value);
     }
@@ -337,11 +407,11 @@ const useStyles = makeStyles(theme => ({
     function handleQualification(event) {
       setQualification(event.target.value);
     }
-  
+
     function handleIncome(event) {
       setIncome(event.target.value);
     }
-  
+
     function handleMaritalStatus(event) {
       setMaritalStatus(event.target.value);
     }
@@ -363,17 +433,17 @@ const useStyles = makeStyles(theme => ({
         }
         return date;
     }
-  
+
     function handleSubmit() {
       axios.defaults.xsrfCookieName = "csrftoken";
       axios.defaults.xsrfHeaderName = "X-CSRFToken";
-  
+
       axios.get(HostName + "college/").then(Response => {
         const collArray = Response.data.filter(item => {
           return colURL === item.collegeURL;
         });
         const collegeID = collArray[0].collegeID;
-  
+
         axios.post(HostName + "aqips/", {
             surveyID: surveyID,
             collegeID: collegeID,
@@ -420,7 +490,7 @@ const useStyles = makeStyles(theme => ({
             maritialStatus: marStatus,
             profession: profess,
             comment: comment
-            
+
           })
           .then(Response => {
             console.log(Response);
@@ -434,10 +504,10 @@ const useStyles = makeStyles(theme => ({
                   surveyEndTime: time
               });
           });
-          
+
       });
     }
-  
+
       return (
           <Card className={classes.root}>
               <FormGroup>
@@ -520,6 +590,33 @@ const useStyles = makeStyles(theme => ({
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Are you aware of the Air Quality Index (AQI) or level and understand it?
+                              <div className={imgStyles().root}>
+                              <div>
+                                <GridList cellHeight={180} className={imgStyles().gridList}>
+                                  <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                                  </GridListTile>
+                                  {tileData.map((tile) => (
+                                    <GridListTile key={tile.img}>
+                                      <img src={tile.img} alt={tile.title} />
+                                      <GridListTileBar
+                                        title={tile.title}
+
+                                      />
+                                    </GridListTile>
+                                  ))}
+                                </GridList>
+                                </div>
+                                <div>
+                                <GridList cellHeight={190} className={useStyles().gridList} cols={1}>
+                                {tableData.map((tile) => (
+                                  <GridListTile key={tile.img} cols={tile.cols || 1}>
+                                  <img src={tile.img} alt={tile.title} />
+                                  </GridListTile>
+                                ))}
+                                </GridList>
+                                </div>
+                              </div>
+
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -585,7 +682,7 @@ const useStyles = makeStyles(theme => ({
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-airQualityLevelBad">
                                AQI perception
-                         </InputLabel>    
+                         </InputLabel>
                          <Select
                               native
                               value={airQualityLevelBad}
@@ -618,7 +715,7 @@ const useStyles = makeStyles(theme => ({
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-checkingAirQualityLevel">
                               Source of AQI
-                         </InputLabel>    
+                         </InputLabel>
                          <Select
                               native
                               value={checkingAirQualityLevel}
@@ -679,7 +776,7 @@ const useStyles = makeStyles(theme => ({
                   </Typography >
                   <hr />
 
-                  
+
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>How many trips do you make in a Day?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
@@ -707,7 +804,7 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-                    
+
 
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>What is the purpose of the trip?</Typography>
@@ -823,7 +920,7 @@ const useStyles = makeStyles(theme => ({
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-avoidTrip">
                               Avoid traveling
-                         </InputLabel>    
+                         </InputLabel>
                          <Select
                               native
                               value={avoidTrip}
@@ -857,8 +954,8 @@ const useStyles = makeStyles(theme => ({
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-changeInChoice">
-                              Change in choice 
-                         </InputLabel>    
+                              Change in choice
+                         </InputLabel>
                          <Select
                               native
                               value={changeInChoice}
@@ -945,7 +1042,7 @@ const useStyles = makeStyles(theme => ({
                       C:  Willingness to Change/ Adapt
             <hr />
                   </Typography >
-            
+
                   <div style={{ display:'flex', justifyContent:'center' }}>
                   <Card className={classes.imgroot}>
                   <CardActionArea>
@@ -962,7 +1059,7 @@ const useStyles = makeStyles(theme => ({
                   </CardActionArea>
                   </Card>
                   </div>
-            
+
 
                   <div className={classes.divStyle}>
                   <hr />
@@ -996,7 +1093,7 @@ const useStyles = makeStyles(theme => ({
                                   value="other"
                                   control={<Radio color="primary" />}
                                   label="Other"
-                              /> 
+                              />
                           </RadioGroup>
                       </FormControl>
                       <hr />
@@ -1062,7 +1159,7 @@ const useStyles = makeStyles(theme => ({
 
 
                   <Typography  className={classes.formHeader}>
-                  
+
                       D:  Impact of Air Pollution Exposure
             <hr />
                   </Typography >
@@ -1076,7 +1173,7 @@ const useStyles = makeStyles(theme => ({
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-perceiveAQIHome">
                               Perceive Air Quality at reside
-                         </InputLabel>    
+                         </InputLabel>
                          <Select
                               native
                               value={perceiveAQIHome}
@@ -1110,7 +1207,7 @@ const useStyles = makeStyles(theme => ({
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-perceiveAQIWork">
                               Perceive Air Quality at work
-                         </InputLabel>    
+                         </InputLabel>
                          <Select
                               native
                               value={perceiveAQIWork}
@@ -1228,7 +1325,7 @@ const useStyles = makeStyles(theme => ({
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-travelHealthEffect">
                               Travel health effect
-                         </InputLabel>    
+                         </InputLabel>
                          <Select
                               native
                               value={travelHealthEffect}
@@ -1298,9 +1395,9 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-                  
+
                   <Typography className={classes.formHeader}>
-                      E:  Prevention/ Self-protective action 
+                      E:  Prevention/ Self-protective action
             <hr />
                   </Typography >
 
@@ -1311,7 +1408,7 @@ const useStyles = makeStyles(theme => ({
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-maskAirPollution">
                               Use Mask
-                         </InputLabel>    
+                         </InputLabel>
                          <Select
                               native
                               value={maskAirPollution}
@@ -1330,7 +1427,7 @@ const useStyles = makeStyles(theme => ({
                               <option value="IUseMaskBecauseOfAirPollution">I use Mask because of air pollution</option>
                               <option value="IUseMaskBecauseOfSkin_OtherHealthIssues">I use Mask because of Skin/other health issues</option>
                               <option value="IDontUsedMask">I don't used Mask (301 - 400)</option>
-                            
+
                           </Select>
                       </FormControl>
                       <hr />
@@ -1524,7 +1621,7 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-                  
+
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>
                           Educational Qualification
