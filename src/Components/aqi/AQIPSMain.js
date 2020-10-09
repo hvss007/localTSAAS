@@ -126,7 +126,7 @@ const useStyles = makeStyles(theme => ({
     paraText: {
         color: "darkblue",
         fontSize: "16px",
-        margin: "0vh 7vw 0vh 7vw"
+        padding: "0vh 7vw 0vh 7vw"
     },
     button: {
       justifyContent: "center",
