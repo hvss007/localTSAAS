@@ -161,6 +161,34 @@ const useStyles = makeStyles(theme => ({
 
     // Part B
     const[tripsPerDay, setTripsPerDay] = React.useState("");
+    const [purposeTrip, setPurposeTrip] = React.useState("");
+    const [primaryTrip, setPrimaryTrip] = React.useState("");
+    const [secondaryTrip, setSecondaryTrip] = React.useState("");
+    const [avoidTrip, setAvoidTrip] = React.useState("");
+    const [changeInChoice, setChangeInChoice] = React.useState("");
+    const [choiceInWinter, setChoiceInWinter] = React.useState("");
+    const [changeInActivity, setChangeInActivity] = React.useState("");
+
+    // Part C
+    const [informationRequired, setInformationRequired] = React.useState("");
+    const [avoidWalk, setAvoidWalk] = React.useState("");
+    const [preferWFH, setPreferWFH] = React.useState("");
+
+    // Part D
+    const [perceiveAQIHome, setPerceiveAQIHome] = React.useState("");
+    const [perceiveAQIWork, setPerceiveAQIWork] = React.useState("");
+    const [healthEffect, setHealthEffect] = React.useState("");
+    const [familyHealthEffect, setFamilyHealthEffect] = React.useState("");
+    const [travelHealthEffect, setTravelHealthEffect] = React.useState("");
+    const [psychologyEffect, setPsychologyEffect] = React.useState("");
+
+    // Part E
+    const [maskAirPollution, setMaskAirPollution] = React.useState("");
+    const [airFilter, setAirFilter] = React.useState("");
+    const [missSchool, setMissSchool] = React.useState("");
+    const [closeWindow, setCloseWindow] = React.useState("");
+    const [outdoorActivity, setOutdoorActivity] = React.useState("");
+
 
     // Part F
     const [age, setAge] = React.useState();
@@ -207,6 +235,95 @@ const useStyles = makeStyles(theme => ({
         setTripsPerDay(event.target.value);
     }
 
+    function handlePurposeTrip(event) {
+        setPurposeTrip(event.target.value);
+    }
+
+    function handlePrimaryTrip(event) {
+        setPrimaryTrip(event.target.value);
+    }
+
+    function handleSecondaryTrip(event) {
+        setSecondaryTrip(event.target.value);
+    }
+
+    function handleAvoidTrip(event) {
+        setAvoidTrip(event.target.value);
+    }
+
+    function handleChangeInChoice(event) {
+        setChangeInChoice(event.target.value);
+    }
+
+    function handleChoiceInWinter(event) {
+        setChoiceInWinter(event.target.value);
+    }
+
+    function handleChangeInActivity(event) {
+        setChangeInActivity(event.target.value);
+    }
+
+    // Part C
+
+    function handleInformationRequired(event) {
+        setInformationRequired(event.target.value);
+    }
+
+    function handleAvoidWalk(event) {
+        setAvoidWalk(event.target.value);
+    }
+
+    function handlePreferWFH(event) {
+        setPreferWFH(event.target.value);
+    }
+
+    // Part D
+
+    function handlePerceiveAQIHome(event) {
+        setPerceiveAQIHome(event.target.value);
+    }
+
+    function handlePerceiveAQIWork(event) {
+        setPerceiveAQIWork(event.target.value);
+    }
+
+    function handleHealthEffect(event) {
+        setHealthEffect(event.target.value);
+    }
+
+    function handleFamilyHealthEffect(event) {
+        setFamilyHealthEffect(event.target.value);
+    }
+
+    function handleTravelHealthEffect(event) {
+        setTravelHealthEffect(event.target.value)
+    }
+
+    function handlePsychologyEffect(event) {
+        setPsychologyEffect(event.target.value)
+    }
+
+    // Part E
+
+    function handleMaskAirPollution(event) {
+        setMaskAirPollution(event.target.value)
+    }
+
+    function handleAirFilter(event) {
+        setAirFilter(event.target.value)
+    }
+
+    function handleMissSchool(event) {
+        setMissSchool(event.target.value)
+    }
+
+    function handleCloseWindow(event) {
+        setCloseWindow(event.target.value)
+    }
+
+    function handleOutdoorActivity(event) {
+        setOutdoorActivity(event.target.value)
+    }  
 
     // Part F
     function handleAge(event) {
@@ -270,9 +387,32 @@ const useStyles = makeStyles(theme => ({
             airQualityLevelBad: airQualityLevelBad,
             checkingAirQualityLevel: checkingAirQualityLevel,
             fequentlyAirQualityLevel: fequentlyAirQualityLevel,
-// 
-            tripsPerDay: tripsPerDay,
-// 
+            // Part B
+            purposeTrip: purposeTrip,
+            primaryTrip: primaryTrip,
+            secondaryTrip: secondaryTrip,
+            avoidTrip: avoidTrip,
+            changeInChoice: changeInChoice,
+            choiceInWinter: choiceInWinter,
+            changeInActivity: changeInActivity,
+            // Part C
+            informationRequired: informationRequired,
+            avoidWalk: avoidWalk,
+            preferWFH: preferWFH,
+            // Part D
+            perceiveAQIHome: perceiveAQIHome,
+            perceiveAQIWork: perceiveAQIWork,
+            healthEffect: healthEffect,
+            familyHealthEffect: familyHealthEffect,
+            travelHealthEffect: travelHealthEffect,
+            psychologyEffect: psychologyEffect,
+            // Part E
+            maskAirPollution: maskAirPollution,
+            airFilter: airFilter,
+            missSchool: missSchool,
+            closeWindow: closeWindow,
+            outdoorActivity: outdoorActivity,
+            // Part F
             age: age,
             gender: gender,
             educationalQualification: qualification,
@@ -413,7 +553,7 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Can you understand the Air Quality Index / level with the above example?
+                          Can you understand the Air Quality Index (AQI) or level with the above example?
                 </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -440,11 +580,11 @@ const useStyles = makeStyles(theme => ({
 
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
-                          According to you from which Air Quality Index / level you feel considered bad?
+                          According to you from which Air Quality Index (AQI) or level you feel considered bad?
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-airQualityLevelBad">
-                              AQI perception
+                               AQI perception
                          </InputLabel>    
                          <Select
                               native
@@ -465,7 +605,7 @@ const useStyles = makeStyles(theme => ({
                               <option value="Poor">Poor (201 - 300)</option>
                               <option value="VeryPoor">Very poor (301 - 400)</option>
                               <option value="Severe">Severe (401 - 500)</option>
-                              <option value="IDontLookAQI">I don't look at Air Quality Index or level</option>
+                              <option value="IDontLookAQI">I don't look at Air Quality Index (AQI) or level</option>
                           </Select>
                       </FormControl>
                       <hr />
@@ -497,7 +637,7 @@ const useStyles = makeStyles(theme => ({
                               <option value="newspaper">Newspaper</option>
                               <option value="radio">Radio (FM)</option>
                               <option value="other">other</option>
-                              <option value="IDontCheckAQI">I don't check at Air Quality Index or level</option>
+                              <option value="IDontCheckAQI">I don't check at Air Quality Index (AQI) or level</option>
                           </Select>
                       </FormControl>
                       <hr />
@@ -567,6 +707,238 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
+                    
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>What is the purpose of the trip?</Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-purposeTrip">
+                              Purpose of trip
+              </InputLabel>
+                          <Select
+                              native
+                              value={purposeTrip}
+                              onChange={handlePurposeTrip}
+                              input={
+                                  <OutlinedInput
+                                      name="purposeTrip"
+                                      labelWidth={labelWidth}
+                                      id="outlined-purposeTrip"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="school_primary">School - (Primary Trip)</option>
+                              <option value="College_University">College/University - (Primary Trip)</option>
+                              <option value="office">Office – (Primary trip)</option>
+                              <option value="front_line">Front Line Worker (health, Police) – (Primary trip)</option>
+                              <option value="retailer">Retailer - (Secondary trip)</option>
+                              <option value="shopping">Shopping - (Secondary trip)</option>
+                              <option value="super_market">Super Markert - (Secondary trip)</option>
+                              <option value="gym">Gym - (Secondary trip)</option>
+                              <option value="sports">Sports - (Secondary trip)</option>
+                              <option value="leisure">Leisure - (Secondary trip)</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>Which main mode of transport do you use for commuting the Primary trip (work or education)?</Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-primaryTrip">
+                          Mode for primary trip
+                        </InputLabel>
+                          <Select
+                              native
+                              value={primaryTrip}
+                              onChange={handlePrimaryTrip}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryTrip"
+                                      labelWidth={labelWidth}
+                                      id="outlined-primaryTrip"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="Car">Car</option>
+                              <option value="CarSharing">Car Sharing(OLA, Uber, Other Taxi)</option>
+                              <option value="Bus">Bus</option>
+                              <option value="Metro">Metro</option>
+                              <option value="TwoWheeler">Two Wheeler(2-W)</option>
+                              <option value="MotorBikeSharing">Motor Bike Sharing</option>
+                              <option value="AutoRickshaw">Auto-Rickshaws(3-W)</option>
+                              <option value="Bicycle">Bicycle</option>
+                              <option value="Walk">Walk</option>
+
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>Which mode of transport do you use for commuting the Secondary Trip (Shopping or Gym)?</Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-secondaryTrip">
+                          Mode for secondary trip
+                        </InputLabel>
+                          <Select
+                              native
+                              value={secondaryTrip}
+                              onChange={handleSecondaryTrip}
+                              input={
+                                  <OutlinedInput
+                                      name="secondaryTrip"
+                                      labelWidth={labelWidth}
+                                      id="outlined-secondaryTrip"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="Car">Car</option>
+                              <option value="CarSharing">Car Sharing(OLA, Uber, Other Taxi)</option>
+                              <option value="Bus">Bus</option>
+                              <option value="Metro">Metro</option>
+                              <option value="TwoWheeler">Two Wheeler(2-W)</option>
+                              <option value="MotorBikeSharing">Motor Bike Sharing</option>
+                              <option value="AutoRickshaw">Auto-Rickshaws(3-W)</option>
+                              <option value="Bicycle">Bicycle</option>
+                              <option value="Walk">Walk</option>
+
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                   <div className={classes.divStyle}>
+                   <Typography className={classes.labelStyle}>
+                          At which air quality level would you avoid traveling?
+                        </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-avoidTrip">
+                              Avoid traveling
+                         </InputLabel>    
+                         <Select
+                              native
+                              value={avoidTrip}
+                              onChange={handleAvoidTrip}
+                              input={
+                                  <OutlinedInput
+                                      name="avoidTrip"
+                                      labelWidth={labelWidth}
+                                      id="outlined-avoidTrip"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="good">Good (0 - 50)</option>
+                              <option value="Satisfactory">Satisfactory (51 - 100)</option>
+                              <option value="Moderate">Moderate (101 - 200)</option>
+                              <option value="Poor">Poor (201 - 300)</option>
+                              <option value="VeryPoor">Very poor (301 - 400)</option>
+                              <option value="Severe">Severe (401 - 500)</option>
+                              <option value="NotTravelingAtAll">Not traveling at all</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                  <div className={classes.divStyle}>
+                   <Typography className={classes.labelStyle}>
+                         How is air quality affecting your choice?
+                        </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-changeInChoice">
+                              Change in choice 
+                         </InputLabel>    
+                         <Select
+                              native
+                              value={changeInChoice}
+                              onChange={handleChangeInChoice}
+                              input={
+                                  <OutlinedInput
+                                      name="changeInChoice"
+                                      labelWidth={labelWidth}
+                                      id="outlined-changeInChoice"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="ChangeOfTravelTime">Change of travel time</option>
+                              <option value="ChangeOfTravelMode">Change of travel mode</option>
+                              <option value="ChangeOfTravelRoute">Change of travel route</option>
+                              <option value="NotTravelingAtAll">Not traveling at all</option>
+                              <option value="NoEffect">No effect</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                   <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Would you change the travel choice in winter, when air pollution is high?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="choiceInWinter"
+                              name="choiceInWinter"
+                              className={classes.group}
+                              value={choiceInWinter}
+                              onChange={handleChoiceInWinter}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Due to air pollution, have you ever changed your leisure/ Social/ Sports activities?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="changeInActivity"
+                              name="changeInActivity"
+                              className={classes.group}
+                              value={changeInActivity}
+                              onChange={handleChangeInActivity}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
 
 
                   <Typography  className={classes.formHeader}>
@@ -591,18 +963,497 @@ const useStyles = makeStyles(theme => ({
                   </Card>
                   </div>
             
+
+                  <div className={classes.divStyle}>
+                  <hr />
+                  <Typography className={classes.labelStyle}>
+                          What type of information would you like?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="informationRequired"
+                              name="informationRequired"
+                              className={classes.group}
+                              value={informationRequired}
+                              onChange={handleInformationRequired}
+                          >
+                              <FormControlLabel
+                                  value="RelatedToTheAirPollutionLevel"
+                                  control={<Radio color="primary" />}
+                                  label="Related to the air pollution level"
+                              />
+                              <FormControlLabel
+                                  value="RelatedToTravelModeInformation"
+                                  control={<Radio color="primary" />}
+                                  label="Related to travel mode information"
+                              />
+                              <FormControlLabel
+                                  value="RelatedToTravelTimeInformation"
+                                  control={<Radio color="primary" />}
+                                  label="Related to travel time information"
+                              />
+                               <FormControlLabel
+                                  value="other"
+                                  control={<Radio color="primary" />}
+                                  label="Other"
+                              /> 
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Do you avoid walking and cycling in bad Air Quality?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="avoidWalk"
+                              name="avoidWalk"
+                              className={classes.group}
+                              value={avoidWalk}
+                              onChange={handleAvoidWalk}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                       <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Do you prefer to work from home when Air Quality is bad?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="preferWFH"
+                              name="preferWFH"
+                              className={classes.group}
+                              value={preferWFH}
+                              onChange={handlePreferWFH}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
                   <Typography  className={classes.formHeader}>
-                  <hr/>
+                  
                       D:  Impact of Air Pollution Exposure
             <hr />
                   </Typography >
 
 
+
+                  <div className={classes.divStyle}>
+                   <Typography className={classes.labelStyle}>
+                          To what extent do you perceive the air quality in your neighborhood (where you reside) as?
+                        </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-perceiveAQIHome">
+                              Perceive Air Quality at reside
+                         </InputLabel>    
+                         <Select
+                              native
+                              value={perceiveAQIHome}
+                              onChange={handlePerceiveAQIHome}
+                              input={
+                                  <OutlinedInput
+                                      name="perceiveAQIHome"
+                                      labelWidth={labelWidth}
+                                      id="outlined-perceiveAQIHome"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="good">Good (0 - 50)</option>
+                              <option value="Satisfactory">Satisfactory (51 - 100)</option>
+                              <option value="Moderate">Moderate (101 - 200)</option>
+                              <option value="Poor">Poor (201 - 300)</option>
+                              <option value="VeryPoor">Very poor (301 - 400)</option>
+                              <option value="Severe">Severe (401 - 500)</option>
+                        </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                  <div className={classes.divStyle}>
+                   <Typography className={classes.labelStyle}>
+                          To what extent do you perceive the neighborhood's air quality where you frequently travel for work or study?
+                        </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-perceiveAQIWork">
+                              Perceive Air Quality at work
+                         </InputLabel>    
+                         <Select
+                              native
+                              value={perceiveAQIWork}
+                              onChange={handlePerceiveAQIWork}
+                              input={
+                                  <OutlinedInput
+                                      name="perceiveAQIWork"
+                                      labelWidth={labelWidth}
+                                      id="outlined-perceiveAQIWork"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="good">Good (0 - 50)</option>
+                              <option value="Satisfactory">Satisfactory (51 - 100)</option>
+                              <option value="Moderate">Moderate (101 - 200)</option>
+                              <option value="Poor">Poor (201 - 300)</option>
+                              <option value="VeryPoor">Very poor (301 - 400)</option>
+                              <option value="Severe">Severe (401 - 500)</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>
+                      In which of the following ways are you affected by air pollution? Please select all applicable.
+                      </Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-healthEffect">
+                          Health effect
+                        </InputLabel>
+                          <Select
+                              native
+                              value={healthEffect}
+                              onChange={handleHealthEffect}
+                              input={
+                                  <OutlinedInput
+                                      name="healthEffect"
+                                      labelWidth={labelWidth}
+                                      id="outlined-healthEffect"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="Breathlessness/HavingMoreDifficultyInBreathing">Breathlessness/having more difficulty in breathing</option>
+                              <option value="DoingLessOutdoorActivities">Doing less outdoor activities</option>
+                              <option value="DoingMoreToLookAfterMySkin">Doing more to look after my skin</option>
+                              <option value="DoingMoreToStayHealthy">Doing more to stay healthy</option>
+                              <option value="FeelingDepressed">Feeling depressed</option>
+                              <option value="MotorBikeSharing">Irritation to eyes/nose/throat</option>
+                              <option value="SkinProblems">Skin problems</option>
+                              <option value="BodyAllergies">Body Allergies</option>
+                              <option value="WantingToMoveToOtherLessPollutedPlaces">Wanting to move to other less polluted places</option>
+                              <option value="AsthmaIncidences">Asthma incidences</option>
+                              <option value="PoorVisibility">Poor visibility</option>
+                              <option value="WorryingAboutTheLivingEnvironmentForChildren">Worrying about the living environment for children</option>
+                              <option value="NotAffectedAtAll">Not affected at all</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          In your view, has air pollution ever affected you or your family member or your friend's health?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="familyHealthEffect"
+                              name="aqiUnderstanding"
+                              className={classes.group}
+                              value={familyHealthEffect}
+                              onChange={handleFamilyHealthEffect}
+                          >
+                              <FormControlLabel
+                                  value="always"
+                                  control={<Radio color="primary" />}
+                                  label="Always"
+                              />
+                              <FormControlLabel
+                                  value="often"
+                                  control={<Radio color="primary" />}
+                                  label="Often"
+                              />
+                              <FormControlLabel
+                                  value="sometimes"
+                                  control={<Radio color="primary" />}
+                                  label="Sometimes"
+                              />
+                              <FormControlLabel
+                                  value="rarely"
+                                  control={<Radio color="primary" />}
+                                  label="Rarely"
+                              />
+                              <FormControlLabel
+                                  value="never"
+                                  control={<Radio color="primary" />}
+                                  label="Never"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                   <div className={classes.divStyle}>
+                   <Typography className={classes.labelStyle}>
+                          After or during your travel, do you feel any of these?
+                        </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-travelHealthEffect">
+                              Travel health effect
+                         </InputLabel>    
+                         <Select
+                              native
+                              value={travelHealthEffect}
+                              onChange={handleTravelHealthEffect}
+                              input={
+                                  <OutlinedInput
+                                      name="travelHealthEffect"
+                                      labelWidth={labelWidth}
+                                      id="outlined-travelHealthEffect"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="Sneezing">Sneezing</option>
+                              <option value="RunnyNose">Runny Nose</option>
+                              <option value="EyeIrritation">Eye Irritation</option>
+                              <option value="ShortnessOfBreath">Shortness Of Breath (201 - 300)</option>
+                              <option value="ReducedLungFunctioning">Reduced Lung Functioning</option>
+                              <option value="Other">Other</option>
+                              <option value="None">None</option>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Do you feel any of the following psychology impact due to air pollution?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="psychologyEffect"
+                              name="psychologyEffect"
+                              className={classes.group}
+                              value={psychologyEffect}
+                              onChange={handlePsychologyEffect}
+                          >
+                              <FormControlLabel
+                                  value="aggressiveness"
+                                  control={<Radio color="primary" />}
+                                  label="Aggressiveness"
+                              />
+                              <FormControlLabel
+                                  value="anxiety"
+                                  control={<Radio color="primary" />}
+                                  label="Anxiety"
+                              />
+                              <FormControlLabel
+                                  value="stress"
+                                  control={<Radio color="primary" />}
+                                  label="Stress"
+                              />
+                              <FormControlLabel
+                                  value="frustation"
+                                  control={<Radio color="primary" />}
+                                  label="Frustation"
+                              />
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  
                   <Typography className={classes.formHeader}>
                       E:  Prevention/ Self-protective action 
             <hr />
                   </Typography >
 
+                  <div className={classes.divStyle}>
+                   <Typography className={classes.labelStyle}>
+                          Do you use Mask to protect from air pollution?
+                        </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                      <InputLabel ref={inputLabel} htmlFor="outlined-maskAirPollution">
+                              Use Mask
+                         </InputLabel>    
+                         <Select
+                              native
+                              value={maskAirPollution}
+                              onChange={handleMaskAirPollution}
+                              input={
+                                  <OutlinedInput
+                                      name="maskAirPollution"
+                                      labelWidth={labelWidth}
+                                      id="outlined-maskAirPollution"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              <option value="IUsedMaskBeforeCOVID-19">I used Mask before COVID-19 (0 - 50)</option>
+                              <option value="IUsedMaskafterCOVID-19">I used Mask after COVID-19</option>
+                              <option value="IUseMaskBecauseOfAirPollution">I use Mask because of air pollution</option>
+                              <option value="IUseMaskBecauseOfSkin_OtherHealthIssues">I use Mask because of Skin/other health issues</option>
+                              <option value="IDontUsedMask">I don't used Mask (301 - 400)</option>
+                            
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Do you use Air Filter/Air Conditioner with a purifier at home?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="airFilter"
+                              name="airFilter"
+                              className={classes.group}
+                              value={airFilter}
+                              onChange={handleAirFilter}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no,butPlanToBuy"
+                                  control={<Radio color="primary" />}
+                                  label="No, but plan to buy"
+                              />
+                              <FormControlLabel
+                                  value="no,DoNotPlanToBuy"
+                                  control={<Radio color="primary" />}
+                                  label="No, do not plan to buy"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Do you miss school or work during high pollution?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="missSchool"
+                              name="missSchool"
+                              className={classes.group}
+                              value={missSchool}
+                              onChange={handleMissSchool}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                          Do you Close the windows of the car during bad air pollution?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="closeWindow"
+                              name="closeWindow"
+                              className={classes.group}
+                              value={closeWindow}
+                              onChange={handleCloseWindow}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                         Due to high air pollution, do you avoid physical outdoor exercise?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="outdoorActivity"
+                              name="outdoorActivity"
+                              className={classes.group}
+                              value={outdoorActivity}
+                              onChange={handleOutdoorActivity}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
 
 
                   <Typography   className={classes.formHeader}>
