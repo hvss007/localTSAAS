@@ -20,12 +20,12 @@ import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
-import {Grid, GridList, GridListTile} from '@material-ui/core';
+import {GridList, GridListTile} from '@material-ui/core';
 
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+// import ListSubheader from '@material-ui/core/ListSubheader';
+// import IconButton from '@material-ui/core/IconButton';
+// import InfoIcon from '@material-ui/icons/Info';
 
 // import images
 import img1 from "../../assets/icons/aqi/form_images/good.jpg";
@@ -217,13 +217,14 @@ const useStyles = makeStyles(theme => ({
     const [healthEffect, setHealthEffect] = React.useState("");
     const [familyHealthEffect, setFamilyHealthEffect] = React.useState("");
     const [travelHealthEffect, setTravelHealthEffect] = React.useState("");
+    const [sensitiveGroupEffect, setSensitiveGroupEffect] = React.useState("");
     const [psychologyEffect, setPsychologyEffect] = React.useState("");
 
     // Part E
     const [maskAirPollution, setMaskAirPollution] = React.useState("");
     const [airFilter, setAirFilter] = React.useState("");
     const [missSchool, setMissSchool] = React.useState("");
-    const [closeWindow, setCloseWindow] = React.useState("");
+    // const [closeWindow, setCloseWindow] = React.useState("");
     const [outdoorActivity, setOutdoorActivity] = React.useState("");
 
 
@@ -265,7 +266,7 @@ const useStyles = makeStyles(theme => ({
     const tableData = [
       {
         img : img7,
-        title : "AQI Table"
+        title : "Air Quality Index"
       }
     ]
 
@@ -377,8 +378,16 @@ const useStyles = makeStyles(theme => ({
         }
     }
 
+    const handleSensitiveGroupEffect = name => event => {
+        if(sensitiveGroupEffect === ""){
+            setSensitiveGroupEffect(name);
+        } else {
+            setSensitiveGroupEffect(sensitiveGroupEffect.concat("&").concat(name));
+        }
+    }
+
     const handlePsychologyEffect = name => event => {
-        if (psychologyEffect ==+ "") {
+        if (psychologyEffect === "") {
             setPsychologyEffect(name);
         } else  {
             setPsychologyEffect(psychologyEffect.concat("&").concat(name));
@@ -399,9 +408,9 @@ const useStyles = makeStyles(theme => ({
         setMissSchool(event.target.value)
     }
 
-    function handleCloseWindow(event) {
-        setCloseWindow(event.target.value)
-    }
+    // function handleCloseWindow(event) {
+    //     setCloseWindow(event.target.value)
+    // }
 
     function handleOutdoorActivity(event) {
         setOutdoorActivity(event.target.value)
@@ -470,6 +479,7 @@ const useStyles = makeStyles(theme => ({
             checkingAirQualityLevel: checkingAirQualityLevel,
             fequentlyAirQualityLevel: fequentlyAirQualityLevel,
             // Part B
+            tripsPerDay: tripsPerDay,
             purposeTrip: purposeTrip,
             primaryTrip: primaryTrip,
             secondaryTrip: secondaryTrip,
@@ -487,12 +497,13 @@ const useStyles = makeStyles(theme => ({
             healthEffect: healthEffect,
             familyHealthEffect: familyHealthEffect,
             travelHealthEffect: travelHealthEffect,
+            sensitiveGroupEffect: sensitiveGroupEffect,
             psychologyEffect: psychologyEffect,
             // Part E
             maskAirPollution: maskAirPollution,
             airFilter: airFilter,
             missSchool: missSchool,
-            closeWindow: closeWindow,
+            // closeWindow: closeWindow,
             outdoorActivity: outdoorActivity,
             // Part F
             age: age,
@@ -808,7 +819,7 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                               <option value="" />
-                              <option value="<2">up to 2</option>
+                              <option value="below2">up to 2</option>
                               <option value="3_4">3 - 4</option>
                               <option value="5orMorethan">5 or more</option>
                               <option value="IdontTravel">I do not travel</option>
@@ -1523,6 +1534,54 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
                   <div className={classes.divStyle}>
+                   <Typography className={classes.labelStyle}>
+                          Is any infant/ children/ older persons in your family is getting affected due to air pollution?
+                        </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          
+                      <div className={classes.checkboxes}>
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={sensitiveGroupEffect.yesInfant}
+                                      onChange={handleSensitiveGroupEffect("YesInfact")}
+                                      value="YesInfant"
+                                      color="primary"
+                                  />
+                              }
+                              label="Yes, infant"
+                          />
+                          
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={sensitiveGroupEffect.YesSeniorCitizen}
+                                      onChange={handleSensitiveGroupEffect("YesSeniorCitizen")}
+                                      value="YesSeniorCitizen"
+                                      color="primary"
+                                  />
+                              }
+                              label="Yes, older people"
+                          />
+                          
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={sensitiveGroupEffect.None}
+                                      onChange={handleSensitiveGroupEffect("None")}
+                                      value="None"
+                                      color="primary"
+                                  />
+                              }
+                              label="None"
+                          />
+                           
+                        </div>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you feel any of the following psychological impact due to air pollution?
               </Typography>
@@ -1712,7 +1771,7 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
-                  <div className={classes.divStyle}>
+                  {/* <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you close the windows of the car during bad air pollution?
               </Typography>
@@ -1742,7 +1801,7 @@ const useStyles = makeStyles(theme => ({
                           </RadioGroup>
                       </FormControl>
                       <hr />
-                  </div>
+                  </div> */}
 
 
 
