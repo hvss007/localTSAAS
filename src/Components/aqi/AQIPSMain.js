@@ -191,7 +191,7 @@ const useStyles = makeStyles(theme => ({
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
     const [airPollutionAdverseHealthEffect, setAirPollutionAdverseHealthEffect] = React.useState("");
     const [aqiUnderstanding, setAqiUnderstanding] = React.useState("");
-    const [UnderstandAbove, setUnderstandAbove] = React.useState("");
+    // const [UnderstandAbove, setUnderstandAbove] = React.useState("");
     const [airQualityLevelBad, setAirQualityLevelBad] = React.useState("");
     const [checkingAirQualityLevel, setCheckingAirQualityLevel] = React.useState("");
     const [fequentlyAirQualityLevel, setFequentlyAirQualityLevel] = React.useState("");
@@ -285,9 +285,9 @@ const useStyles = makeStyles(theme => ({
       setAqiUnderstanding(event.target.value);
     }
 
-    function handleUnderstandAbove(event){
-      setUnderstandAbove(event.target.value);
-    }
+    // function handleUnderstandAbove(event){
+    //   setUnderstandAbove(event.target.value);
+    // }
 
     function handleairQualityLevelBad(event){
       setAirQualityLevelBad(event.target.value);
@@ -474,7 +474,7 @@ const useStyles = makeStyles(theme => ({
             airPollutionMajorProb: airPollutionMajorProb,
             airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
             aqiUnderstanding: aqiUnderstanding,
-            UnderstandAbove: UnderstandAbove,
+            // UnderstandAbove: UnderstandAbove,
             airQualityLevelBad: airQualityLevelBad,
             checkingAirQualityLevel: checkingAirQualityLevel,
             fequentlyAirQualityLevel: fequentlyAirQualityLevel,
@@ -642,6 +642,9 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
+                  <Typography  className={classes.paraText}><span>
+                  </span><p> Here is an example to distinguish the Air Quality Index (AQI). The AQI value is specified by the Central Pollution Control Board, Delhi.</p>
+                  </Typography >
                   <div className={imgStyles().root}>
                       <div>
                           <GridList cellHeight={180} className={imgStyles().gridList}>
@@ -660,7 +663,7 @@ const useStyles = makeStyles(theme => ({
                           <hr/>
                       </div>
                       <div>
-                          <GridList cellHeight={190} className={useStyles().gridList} cols={1}>
+                          <GridList cellHeight={190} className={classes.gridList} cols={1}>
                               {tableData.map((tile) => (
                                   <GridListTile key={tile.img} cols={tile.cols || 1}>
                                       <img src={tile.img} alt={tile.title} />
@@ -671,7 +674,7 @@ const useStyles = makeStyles(theme => ({
                       <hr/>
                   </div>
 
-                  <div className={classes.divStyle}>
+                  {/* <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Can you understand the Air Quality Index (AQI) or level with the above example?
                 </Typography>
@@ -696,7 +699,7 @@ const useStyles = makeStyles(theme => ({
                           </RadioGroup>
                       </FormControl>
                       <hr />
-                  </div>
+                  </div> */}
 
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
