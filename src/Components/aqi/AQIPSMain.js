@@ -377,8 +377,12 @@ const useStyles = makeStyles(theme => ({
         }
     }
 
-    function handlePsychologyEffect(event) {
-        setPsychologyEffect(event.target.value)
+    const handlePsychologyEffect = name => event => {
+        if (psychologyEffect ==+ "") {
+            setPsychologyEffect(name);
+        } else  {
+            setPsychologyEffect(psychologyEffect.concat("&").concat(name));
+        }
     }
 
     // Part E
@@ -1429,8 +1433,6 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-
-                            {/* TODO need to convert it to multiple choices */}
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                           After or during your travel, do you feel any of these? Please select all applicable.
@@ -1520,56 +1522,91 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-
-                {/* TODO need to convert it to multiple choices */}
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you feel any of the following psychological impact due to air pollution?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
-                          <RadioGroup
-                              aria-label="psychologyEffect"
-                              name="psychologyEffect"
-                              className={classes.group}
-                              value={psychologyEffect}
-                              onChange={handlePsychologyEffect}
-                          >
+                          
+                      <div className={classes.checkboxes}>
                               <FormControlLabel
-                                  value="aggressiveness"
-                                  control={<Radio color="primary" />}
-                                  label="Aggressiveness"
-                              />
-                              <FormControlLabel
-                                  value="anxiety"
-                                  control={<Radio color="primary" />}
-                                  label="Anxiety"
-                              />
-                              <FormControlLabel
-                                  value="stress"
-                                  control={<Radio color="primary" />}
-                                  label="Stress"
-                              />
-                              <FormControlLabel
-                                  value="frustation"
-                                  control={<Radio color="primary" />}
-                                  label="Frustation"
-                              />
-                              <FormControlLabel
-                                  value="angry"
-                                  control={<Radio color="primary" />}
-                                  label="Angry"
-                              />
-                              <FormControlLabel
-                                  value="depression"
-                                  control={<Radio color="primary" />}
-                                  label="Depression"
-                              />
-                              <FormControlLabel
-                                  value="none"
-                                  control={<Radio color="primary" />}
-                                  label="None"
-                              />
-                          </RadioGroup>
+                              control={
+                                  <Checkbox
+                                      checked={psychologyEffect.aggressiveness}
+                                      onChange={handlePsychologyEffect("aggressiveness")}
+                                      value="aggressiveness"
+                                      color="primary"
+                                  />
+                              }
+                              label="Aggressiveness"
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={psychologyEffect.anxiety}
+                                      onChange={handlePsychologyEffect("anxiety")}
+                                      value="anxiety"
+                                      color="primary"
+                                  />
+                              }
+                              label="Anxiety"
+                          />
+                            <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={psychologyEffect.stress}
+                                      onChange={handlePsychologyEffect("stress")}
+                                      value="stress"
+                                      color="primary"
+                                  />
+                              }
+                              label="Stress"
+                          />
+                             <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={psychologyEffect.frustation}
+                                      onChange={handlePsychologyEffect("frustation")}
+                                      value="frustation"
+                                      color="primary"
+                                  />
+                              }
+                              label="Frustation"
+                          />
+                             <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={psychologyEffect.angry}
+                                      onChange={handlePsychologyEffect("angry")}
+                                      value="angry"
+                                      color="primary"
+                                  />
+                              }
+                              label="Angry"
+                          />
+                             <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={psychologyEffect.depression}
+                                      onChange={handlePsychologyEffect("depression")}
+                                      value="depression"
+                                      color="primary"
+                                  />
+                              }
+                              label="Depression"
+                          />
+                             <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={psychologyEffect.None}
+                                      onChange={handlePsychologyEffect("None")}
+                                      value="None"
+                                      color="primary"
+                                  />
+                              }
+                              label="None"
+                          />
+                          </div>
                       </FormControl>
                       <hr />
                   </div>
