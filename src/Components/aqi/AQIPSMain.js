@@ -1,4 +1,3 @@
-
 // import React,{Component} from 'react';
 import React from 'react';
 import axios from 'axios';
@@ -9,8 +8,9 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
-// import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
+// import Grid from "@material-ui/core/Grid";
+// import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -20,21 +20,6 @@ import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
-import {GridList, GridListTile} from '@material-ui/core';
-
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-// import ListSubheader from '@material-ui/core/ListSubheader';
-// import IconButton from '@material-ui/core/IconButton';
-// import InfoIcon from '@material-ui/icons/Info';
-
-// import images
-import img1 from "../../assets/icons/aqi/form_images/good.jpg";
-import img2 from "../../assets/icons/aqi/form_images/satisfactory.jpg";
-import img3 from "../../assets/icons/aqi/form_images/moderate.jpg";
-import img4 from "../../assets/icons/aqi/form_images/Poor.jpg";
-import img5 from "../../assets/icons/aqi/form_images/Very Poor.jpg";
-import img6 from "../../assets/icons/aqi/form_images/severe.jpg";
-import img7 from "../../assets/icons/aqi/form_images/table.png";
 // import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 // import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 // import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -45,34 +30,100 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 // import CardActions from '@material-ui/core/CardActions';
-
 import aqImpact from "../../assets/icons/aqi/aq_impact.jpg"
+import { render } from 'react-dom';
+import Gallery from 'react-grid-gallery';
+import img1 from "../../assets/icons/aqi/form_images/good.jpg";
+import img2 from "../../assets/icons/aqi/form_images/satisfactory.jpg";
+import img3 from "../../assets/icons/aqi/form_images/moderate.jpg";
+import img4 from "../../assets/icons/aqi/form_images/Poor.jpg";
+import img5 from "../../assets/icons/aqi/form_images/Very Poor.jpg";
+import img6 from "../../assets/icons/aqi/form_images/severe.jpg";
+import img7 from "../../assets/icons/aqi/form_images/table_left.png";
+import img8 from "../../assets/icons/aqi/form_images/table_right.png";
+const IMAGES1 =
+[{
+        thumbnail: img1,
+        thumbnailWidth: 300,
+        thumbnailHeight: 212,
+        tags: [{value: "Good (0-50)", title: "Good (0-50)"}]
+},
+{
+        thumbnail: img2,
+        thumbnailWidth: 300,
+        thumbnailHeight: 212,
+        tags: [{value: "Satisfactory (0-50)", title: "Satisfactory (51-100)"}]
+},
+{
+        thumbnail: img3,
+        thumbnailWidth: 300,
+        thumbnailHeight: 212,
+        tags: [{value: "Moderate (101-200)", title: "Moderate (101-200)"}]
+},
+{
+        thumbnail: img4,
+        thumbnailWidth: 300,
+        thumbnailHeight: 212,
+        tags: [{value: "Poor (201-300)", title: "Poor (201-300)"}]
+},
+{
+        thumbnail: img5,
+        thumbnailWidth: 300,
+        thumbnailHeight: 212,
+        tags: [{value: "Very Poor (301-400)", title: "Very Poor (301-400)"}]
+},
+
+{
+        thumbnail: img6,
+        thumbnailWidth: 300,
+        thumbnailHeight: 212,
+        tags: [{value: "Severe (401-500)", title: "Severe (401-500)"}]
+}
+// {
+//         thumbnail: img7,
+//         thumbnailWidth: 300,
+//         thumbnailHeight: 212,
+//         caption: "After Rain (Jeshu John - designerspics.com)"
+// },
+// {
+//         thumbnail: img8,
+//         thumbnailWidth: 140,
+//         thumbnailHeight: 212,
+//         caption: "After Rain (Jeshu John - designerspics.com)"
+// }
+]
+const IMAGES3 =
+[{
+        thumbnail: img7,
+        thumbnailWidth: 160,
+        thumbnailHeight: 212,
+        caption: "After Rain (Jeshu John - designerspics.com)"
+},
+{
+        thumbnail: img8,
+        thumbnailWidth: 100,
+        thumbnailHeight: 212,
+        caption: "After Rain (Jeshu John - designerspics.com)"
+}
+// {
+//         src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
+//         thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
+//         thumbnailWidth: 320,
+//         thumbnailHeight: 212,
+//         tags: [{value: "Ocean", title: "Ocean"}, {value: "People", title: "People"}],
+//         caption: "Boats (Jeshu John - designerspics.com)"
+// },
+//
+// {
+//         src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
+//         thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
+//         thumbnailWidth: 320,
+//         thumbnailHeight: 212
+// }
+]
 
 var HostName=Global.hostName
 // var globalOptional=Global.optional
-
-const imgStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: '#e1f5fe',
-    margin: "2vh 20vw 2vh 20vw",
-    "@media (max-width:1024px)": {
-      margin: "2vh 10vw 2vh 10vw"
-    }
-  },
-  gridList: {
-    width: 500,
-    height: 560,
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
-}));
-
-
 const useStyles = makeStyles(theme => ({
     root: {
       justifyContent: "center",
@@ -92,6 +143,7 @@ const useStyles = makeStyles(theme => ({
     },
     imgmedia: {
         height: 260,
+        marginTop: "-2vh"
     },
     formControl: {
       margin: theme.spacing(1),
@@ -104,9 +156,9 @@ const useStyles = makeStyles(theme => ({
     },
     labelStyle: {
       fontFamily: "Julius Sans One",
-      fontSize: "22px",
+      fontSize: "24px",
       "@media (max-width:480px)": {
-        fontSize: "18px"
+        fontSize: "20px"
       },
       color: "#410373",
     //   textTransform: "uppercase"
@@ -116,17 +168,16 @@ const useStyles = makeStyles(theme => ({
       margin: "1vw",
       fontSize: "2vw",
       "@media (max-width:360px)": {
-        fontSize: "22px"
+        fontSize: "24px"
       },
       "@media (max-width:1024px)": {
-        fontSize: "22px"
+        fontSize: "24px"
       },
       fontWeight: "bold"
     },
     paraText: {
         color: "darkblue",
-        fontSize: "16px",
-        padding: "0vh 7vw 0vh 7vw"
+        fontSize: "18px"
     },
     button: {
       justifyContent: "center",
@@ -160,24 +211,45 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: "#bbdefb",
       borderRadius: 8
     }
-  }));
+    // img2: {
+    //   marginLeft: "auto",
+    //   marginRight: "auto",
+    //   width: "50%",
+    //   justifyContent: "center",
+    //   "@media (max-width:480px)": {
+    //     marginLeft: "auto",
+    //     marginRight: "auto",
+    //     width: "110%"}
+    //   },
+    //   img1: {
+    //     marginLeft: "auto",
+    //     marginRight: "auto",
+    //     width: "80%",
+    //     justifyContent: "center"
+    //   }
+    }));
 
   function AQIPSMain(props) {
     // const [expanded, setExpanded] = React.useState(false);
+
 
     // const handleChange = panel => (event, isExpanded) => {
     //   setExpanded(isExpanded ? panel : false);
     // };
 
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
+
 
     const url = props.match.url;
     const colURL = url.split("/")[2];
     const surveyID = url.split("/")[3];
 
+
     React.useEffect(() => {
       setLabelWidth(inputLabel.current.offsetWidth);
+
 
       const surveyStartTime = parseDate();
       axios.patch(HostName + "responseTime/" + surveyID, {
@@ -185,18 +257,19 @@ const useStyles = makeStyles(theme => ({
       });
     }, []);
 
+
     const classes = useStyles();
+
 
     // (1) define here..
     // Part A
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
     const [airPollutionAdverseHealthEffect, setAirPollutionAdverseHealthEffect] = React.useState("");
     const [aqiUnderstanding, setAqiUnderstanding] = React.useState("");
-    // const [UnderstandAbove, setUnderstandAbove] = React.useState("");
+    const [UnderstandAbove, setUnderstandAbove] = React.useState("");
     const [airQualityLevelBad, setAirQualityLevelBad] = React.useState("");
     const [checkingAirQualityLevel, setCheckingAirQualityLevel] = React.useState("");
     const [fequentlyAirQualityLevel, setFequentlyAirQualityLevel] = React.useState("");
-
     // Part B
     const[tripsPerDay, setTripsPerDay] = React.useState("");
     const [purposeTrip, setPurposeTrip] = React.useState("");
@@ -206,12 +279,10 @@ const useStyles = makeStyles(theme => ({
     const [changeInChoice, setChangeInChoice] = React.useState("");
     const [choiceInWinter, setChoiceInWinter] = React.useState("");
     const [changeInActivity, setChangeInActivity] = React.useState("");
-
     // Part C
     const [informationRequired, setInformationRequired] = React.useState("");
     const [avoidWalk, setAvoidWalk] = React.useState("");
     const [preferWFH, setPreferWFH] = React.useState("");
-
     // Part D
     const [perceiveAQIHome, setPerceiveAQIHome] = React.useState("");
     const [perceiveAQIWork, setPerceiveAQIWork] = React.useState("");
@@ -220,15 +291,12 @@ const useStyles = makeStyles(theme => ({
     const [travelHealthEffect, setTravelHealthEffect] = React.useState("");
     const [sensitiveGroupEffect, setSensitiveGroupEffect] = React.useState("");
     const [psychologyEffect, setPsychologyEffect] = React.useState("");
-
     // Part E
     const [maskAirPollution, setMaskAirPollution] = React.useState("");
     const [airFilter, setAirFilter] = React.useState("");
     const [missSchool, setMissSchool] = React.useState("");
-    // const [closeWindow, setCloseWindow] = React.useState("");
+    const [closeWindow, setCloseWindow] = React.useState("");
     const [outdoorActivity, setOutdoorActivity] = React.useState("");
-
-
     // Part F
     const [age, setAge] = React.useState();
     const [gender, setGender] = React.useState("");
@@ -237,128 +305,72 @@ const useStyles = makeStyles(theme => ({
     const [marStatus, setMaritalStatus] = React.useState("");
     const [profess, setProfession] = React.useState("");
     const [comment, setComment] = React.useState("");
-    const tileData = [
-      {
-        img : img1,
-        title : "Good (0-50)"
-      },
-      {
-        img : img2,
-        title : "Satisfactory (51-100)"
-      },
-      {
-        img : img3,
-        title : "Moderate (101-200)"
-      },
-      {
-        img : img4,
-        title : "Poor (201-300)"
-      },
-      {
-        img : img5,
-        title : "Very Poor (301-400)"
-      },
-      {
-        img : img6,
-        title : "Severe (401-500)"
-      }
-    ]
-
-    const tableData = [
-      {
-        img : img7,
-        title : "Air Quality Index"
-      }
-    ]
-
 
     // (2) create functions
     //Part A
     function handleAirPollutionMajorProblem(event){
       setAirPollutionMajorProblem(event.target.value);
     }
-
     function handleAirPollutionAdverseHealthEffect(event){
       setAirPollutionAdverseHealthEffect(event.target.value);
     }
-
     function handleAqiUnderstanding(event){
       setAqiUnderstanding(event.target.value);
     }
-
     // function handleUnderstandAbove(event){
     //   setUnderstandAbove(event.target.value);
     // }
-
     function handleairQualityLevelBad(event){
       setAirQualityLevelBad(event.target.value);
     }
-
     function handleCheckingAirQualityLevel(event){
       setCheckingAirQualityLevel(event.target.value);
     }
-
     function handleFequentlyAirQualityLevel(event){
       setFequentlyAirQualityLevel(event.target.value);
     }
-
     // Part B
     function handleTripsPerDay(event){
         setTripsPerDay(event.target.value);
     }
-
     function handlePurposeTrip(event) {
         setPurposeTrip(event.target.value);
     }
-
     function handlePrimaryTrip(event) {
         setPrimaryTrip(event.target.value);
     }
-
     function handleSecondaryTrip(event) {
         setSecondaryTrip(event.target.value);
     }
-
     function handleAvoidTrip(event) {
         setAvoidTrip(event.target.value);
     }
-
     function handleChangeInChoice(event) {
         setChangeInChoice(event.target.value);
     }
-
     function handleChoiceInWinter(event) {
         setChoiceInWinter(event.target.value);
     }
-
     function handleChangeInActivity(event) {
         setChangeInActivity(event.target.value);
     }
-
     // Part C
-
     function handleInformationRequired(event) {
         setInformationRequired(event.target.value);
     }
-
     function handleAvoidWalk(event) {
         setAvoidWalk(event.target.value);
     }
-
     function handlePreferWFH(event) {
         setPreferWFH(event.target.value);
     }
-
     // Part D
-
     function handlePerceiveAQIHome(event) {
         setPerceiveAQIHome(event.target.value);
     }
-
     function handlePerceiveAQIWork(event) {
         setPerceiveAQIWork(event.target.value);
     }
-
     const handleHealthEffect = name => event => {
         if (healthEffect === "") {
             setHealthEffect(name);
@@ -366,11 +378,9 @@ const useStyles = makeStyles(theme => ({
             setHealthEffect(healthEffect.concat("&").concat(name));
         }
     }
-
     function handleFamilyHealthEffect(event) {
         setFamilyHealthEffect(event.target.value);
     }
-
     const handleTravelHealthEffect = name => event => {
         if(travelHealthEffect === ""){
             setTravelHealthEffect(name);
@@ -378,7 +388,6 @@ const useStyles = makeStyles(theme => ({
             setTravelHealthEffect(travelHealthEffect.concat("&").concat(name));
         }
     }
-
     const handleSensitiveGroupEffect = name => event => {
         if(sensitiveGroupEffect === ""){
             setSensitiveGroupEffect(name);
@@ -386,7 +395,6 @@ const useStyles = makeStyles(theme => ({
             setSensitiveGroupEffect(sensitiveGroupEffect.concat("&").concat(name));
         }
     }
-
     const handlePsychologyEffect = name => event => {
         if (psychologyEffect === "") {
             setPsychologyEffect(name);
@@ -394,58 +402,44 @@ const useStyles = makeStyles(theme => ({
             setPsychologyEffect(psychologyEffect.concat("&").concat(name));
         }
     }
-
     // Part E
-
     function handleMaskAirPollution(event) {
         setMaskAirPollution(event.target.value)
     }
-
     function handleAirFilter(event) {
         setAirFilter(event.target.value)
     }
-
     function handleMissSchool(event) {
         setMissSchool(event.target.value)
     }
-
     // function handleCloseWindow(event) {
     //     setCloseWindow(event.target.value)
     // }
-
     function handleOutdoorActivity(event) {
         setOutdoorActivity(event.target.value)
     }
-
     // Part F
     function handleAge(event) {
       setAge(event.target.value);
     }
-
     function handleGender(event) {
       setGender(event.target.value);
     }
-
     function handleQualification(event) {
       setQualification(event.target.value);
     }
-
     function handleIncome(event) {
       setIncome(event.target.value);
     }
-
     function handleMaritalStatus(event) {
       setMaritalStatus(event.target.value);
     }
-
     function handleProfession(event) {
         setProfession(event.target.value);
     }
-
     function handleComment(event){
         setComment(event.target.value);
     }
-
     function parseDate() {
         let date = new Date();
         // In case its IOS, parse the fulldate parts and re-create the date object.
@@ -456,9 +450,11 @@ const useStyles = makeStyles(theme => ({
         return date;
     }
 
+
     function handleSubmit() {
       axios.defaults.xsrfCookieName = "csrftoken";
       axios.defaults.xsrfHeaderName = "X-CSRFToken";
+
 
       axios.get(HostName + "college/").then(Response => {
         const collArray = Response.data.filter(item => {
@@ -466,21 +462,20 @@ const useStyles = makeStyles(theme => ({
         });
         const collegeID = collArray[0].collegeID;
 
+
         axios.post(HostName + "aqips/", {
             surveyID: surveyID,
             collegeID: collegeID,
-
             // (4) post to server
             // Part A
             airPollutionMajorProb: airPollutionMajorProb,
             airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
             aqiUnderstanding: aqiUnderstanding,
-            // UnderstandAbove: UnderstandAbove,
+            UnderstandAbove: UnderstandAbove,
             airQualityLevelBad: airQualityLevelBad,
             checkingAirQualityLevel: checkingAirQualityLevel,
             fequentlyAirQualityLevel: fequentlyAirQualityLevel,
             // Part B
-            tripsPerDay: tripsPerDay,
             purposeTrip: purposeTrip,
             primaryTrip: primaryTrip,
             secondaryTrip: secondaryTrip,
@@ -504,7 +499,7 @@ const useStyles = makeStyles(theme => ({
             maskAirPollution: maskAirPollution,
             airFilter: airFilter,
             missSchool: missSchool,
-            // closeWindow: closeWindow,
+            closeWindow: closeWindow,
             outdoorActivity: outdoorActivity,
             // Part F
             age: age,
@@ -515,22 +510,21 @@ const useStyles = makeStyles(theme => ({
             profession: profess,
             comment: comment
 
+
           })
           .then(Response => {
             console.log(Response);
             props.history.push({pathname:"/finishsurvey"});
-
               var time = parseDate();
               const url = props.match.url;
               const survId = url.split("/")[3];
-
               axios.patch(HostName + "responseTime/" + survId, {
                   surveyEndTime: time
               });
           });
-
       });
     }
+
 
       return (
           <Card className={classes.root}>
@@ -545,9 +539,7 @@ const useStyles = makeStyles(theme => ({
                   how air pollution impacts changing the commuter's
                   behavior in terms of air quality, travel cost and travel time.
                 This survey will assist the commuters in reducing their air pollution exposure.</p>
-
                       <br></br>
-
                       <p>Please answer all questions in Sections A to F.</p>
                   </Typography >
                   {/* (3) create front-end question*/}
@@ -555,7 +547,6 @@ const useStyles = makeStyles(theme => ({
                       A:  Information Seeking and Engagement
             <hr />
                   </Typography >
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do  you  see  air  pollution  as  a major problem  in  your  area  of  residence  or office/ school/ college?
@@ -582,8 +573,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you know that air pollution can cause adverse health effects?
@@ -610,11 +599,10 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Are you aware of the Air Quality Index (AQI) or level and understand it?
-              </Typography>
+                          </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
                               aria-label="aqiUnderstanding"
@@ -646,61 +634,15 @@ const useStyles = makeStyles(theme => ({
                   <Typography  className={classes.paraText}><span>
                   </span><p> Here is an example to distinguish the Air Quality Index (AQI). The AQI value is specified by the Central Pollution Control Board, Delhi.</p>
                   </Typography >
-                  <div className={imgStyles().root}>
-                      <div>
-                          <GridList cellHeight={180} className={imgStyles().gridList}>
-                              <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                              </GridListTile>
-                              {tileData.map((tile) => (
-                                  <GridListTile key={tile.img}>
-                                      <img src={tile.img} alt={tile.title} />
-                                      <GridListTileBar
-                                          title={tile.title}
-
-                                      />
-                                  </GridListTile>
-                              ))}
-                          </GridList>
-                          <hr/>
-                      </div>
-                      <div>
-                          <GridList cellHeight={190} className={classes.gridList} cols={1}>
-                              {tableData.map((tile) => (
-                                  <GridListTile key={tile.img} cols={tile.cols || 1}>
-                                      <img src={tile.img} alt={tile.title} />
-                                  </GridListTile>
-                              ))}
-                          </GridList>
-                      </div>
-                      <hr/>
+                  <div style={{marginLeft: "auto", marginRight: "auto", width: "80%", justifyContent: "center"}}>
+                  <Gallery enableImageSelection={false} margin={0} enableLightbox={false} images={IMAGES1}/>
+                  </div>
+                  <div style={{marginLeft: "auto", marginRight: "auto", width: "39%", justifyContent: "center", "@media (max-width:480px)": {marginLeft: "auto", marginRight: "auto", width: "130%", justifyContent: "center"}}}>
+                  <Gallery enableImageSelection={false} margin={0} enableLightbox={false} images={IMAGES3}/>
                   </div>
 
-                  {/* <div className={classes.divStyle}>
-                  <Typography className={classes.labelStyle}>
-                          Can you understand the Air Quality Index (AQI) or level with the above example?
-                </Typography>
-                      <FormControl component="fieldset" className={classes.formControl}>
-                          <RadioGroup
-                              aria-label="UnderstandAbove"
-                              name="UnderstandAbove"
-                              className={classes.group}
-                              value={UnderstandAbove}
-                              onChange={handleUnderstandAbove}
-                          >
-                              <FormControlLabel
-                                  value="yes"
-                                  control={<Radio color="primary" />}
-                                  label="Yes"
-                              />
-                              <FormControlLabel
-                                  value="no"
-                                  control={<Radio color="primary" />}
-                                  label="No"
-                              />
-                          </RadioGroup>
-                      </FormControl>
-                      <hr />
-                  </div> */}
+
+                  {/*  TODO add AQI related images here. */}
 
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
@@ -709,7 +651,7 @@ const useStyles = makeStyles(theme => ({
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-airQualityLevelBad">
                                AQI perception
-                         </InputLabel>
+                               </InputLabel>
                          <Select
                               native
                               value={airQualityLevelBad}
@@ -734,7 +676,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Which information source do you use for checking the Air Quality Index / level?
@@ -760,13 +701,12 @@ const useStyles = makeStyles(theme => ({
                               <option value="mobileApp">Mobile App</option>
                               <option value="newspaper">Newspaper</option>
                               <option value="radio">Radio (FM)</option>
-                              <option value="other">Other</option>
+                              <option value="other">other</option>
                               <option value="IDontCheckAQI">I don't check at Air Quality Index (AQI) or level</option>
                           </Select>
                       </FormControl>
                       <hr />
                   </div>
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           How frequently do you look on Air Quality Index / level?
@@ -797,15 +737,15 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
                   <Typography  component="legend" className={classes.formHeader}>
                       B:  Trip Information
                   </Typography >
                   <hr />
 
 
+
                   <div className={classes.divStyle}>
-                      <Typography className={classes.labelStyle}>How many trips do you make in a day?</Typography>
+                      <Typography className={classes.labelStyle}>How many trips do you make in a Day?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-tripsPerDaySimple">
                               Trips per day
@@ -823,7 +763,7 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                               <option value="" />
-                              <option value="below2">up to 2</option>
+                              <option value="<2">up to 2</option>
                               <option value="3_4">3 - 4</option>
                               <option value="5orMorethan">5 or more</option>
                               <option value="IdontTravel">I do not travel</option>
@@ -833,11 +773,12 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
+
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>What is the purpose of the trip?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-purposeTrip">
-                              Trip purpose
+                              Purpose of trip
               </InputLabel>
                           <Select
                               native
@@ -852,28 +793,25 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                               <option value="" />
-                              <option value="school_primary">School - (Primary trip)</option>
-                              <option value="College_University">College/ University - (Primary trip)</option>
-                              <option value="office">Office/ work – (Primary trip)</option>
-                              <option value="front_line">Frontline worker (health, Police) – (Primary trip)</option>
+                              <option value="school_primary">School - (Primary Trip)</option>
+                              <option value="College_University">College/University - (Primary Trip)</option>
+                              <option value="office">Office – (Primary trip)</option>
+                              <option value="front_line">Front Line Worker (health, Police) – (Primary trip)</option>
                               <option value="retailer">Retailer - (Secondary trip)</option>
                               <option value="shopping">Shopping - (Secondary trip)</option>
-                              <option value="super_market">Super-markert - (Secondary trip)</option>
-                              <option value="gym">Gym / sports - (Secondary trip)</option>
+                              <option value="super_market">Super Markert - (Secondary trip)</option>
+                              <option value="gym">Gym - (Secondary trip)</option>
+                              <option value="sports">Sports - (Secondary trip)</option>
                               <option value="leisure">Leisure - (Secondary trip)</option>
-                              <option value="other">other</option>
                           </Select>
                       </FormControl>
                       <hr />
                   </div>
-
-
-
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>Which main mode of transport do you use for commuting the Primary trip (work or education)?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-primaryTrip">
-                          Travel mode for primary trip
+                          Mode for primary trip
                         </InputLabel>
                           <Select
                               native
@@ -889,26 +827,23 @@ const useStyles = makeStyles(theme => ({
                           >
                               <option value="" />
                               <option value="Car">Car</option>
-                              <option value="CarSharing">Car Sharing (OLA, Uber, taxi, other)</option>
+                              <option value="CarSharing">Car Sharing(OLA, Uber, Other Taxi)</option>
                               <option value="Bus">Bus</option>
                               <option value="Metro">Metro</option>
-                              <option value="TwoWheeler">Two Wheeler (2-W)</option>
-                              <option value="MotorBikeSharing">Motorbike/ scooter Sharing</option>
-                              <option value="AutoRickshaw">Auto-Rickshaws (3-W)</option>
+                              <option value="TwoWheeler">Two Wheeler(2-W)</option>
+                              <option value="MotorBikeSharing">Motor Bike Sharing</option>
+                              <option value="AutoRickshaw">Auto-Rickshaws(3-W)</option>
                               <option value="Bicycle">Bicycle</option>
                               <option value="Walk">Walk</option>
-
                           </Select>
                       </FormControl>
                       <hr />
                   </div>
-
-
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>Which mode of transport do you use for commuting the Secondary Trip (Shopping or Gym)?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-secondaryTrip">
-                          Travel mode for secondary trip
+                          Mode for secondary trip
                         </InputLabel>
                           <Select
                               native
@@ -924,29 +859,25 @@ const useStyles = makeStyles(theme => ({
                           >
                               <option value="" />
                               <option value="Car">Car</option>
-                              <option value="CarSharing">Car Sharing (OLA, Uber, taxi, Zoom, other rental)</option>
+                              <option value="CarSharing">Car Sharing(OLA, Uber, Other Taxi)</option>
                               <option value="Bus">Bus</option>
                               <option value="Metro">Metro</option>
-                              <option value="TwoWheeler">Two Wheeler (2-W)</option>
-                              <option value="MotorBikeSharing">Motorbike/ scooter Sharing (or rental)</option>
-                              <option value="AutoRickshaw">Auto-Rickshaws (3-W)</option>
+                              <option value="TwoWheeler">Two Wheeler(2-W)</option>
+                              <option value="MotorBikeSharing">Motor Bike Sharing</option>
+                              <option value="AutoRickshaw">Auto-Rickshaws(3-W)</option>
                               <option value="Bicycle">Bicycle</option>
                               <option value="Walk">Walk</option>
-
                           </Select>
                       </FormControl>
                       <hr />
                   </div>
-
-
-
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                           At which Air Quality Index (AQI) or level, would you avoid traveling?
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-avoidTrip">
-                              AQI to avoid traveling
+                              Avoid traveling
                          </InputLabel>
                          <Select
                               native
@@ -972,16 +903,13 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
-
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                          How is air quality affecting your choice?
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-changeInChoice">
-                              Impact on the travel choice
+                              Change in choice
                          </InputLabel>
                          <Select
                               native
@@ -1005,12 +933,9 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
-
                    <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Would you change the travel choice in winter season, when air pollution is high?
+                          Would you change the travel choice in winter, when air pollution is high?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1034,9 +959,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Due to air pollution, have you ever changed your leisure/ social/ sports activities?
@@ -1063,12 +985,11 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
                   <Typography  className={classes.formHeader}>
                       C:  Willingness to Change/ Adapt
-                    <hr />
+            <hr />
                   </Typography >
+
 
                   <div style={{ display:'flex', justifyContent:'center' }}>
                   <Card className={classes.imgroot}>
@@ -1088,48 +1009,47 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
+
                   <div className={classes.divStyle}>
                   <hr />
                   <Typography className={classes.labelStyle}>
-                          What type of information would you like to receive?
+                          What type of information would you like?
               </Typography>
-                      <FormControl component="fieldset" className={classes.formControl}>
-                          <RadioGroup
-                              aria-label="informationRequired"
-                              name="informationRequired"
-                              className={classes.group}
-                              value={informationRequired}
-                              onChange={handleInformationRequired}
-                          >
-                              <FormControlLabel
-                                  value="RelatedToTheAirPollutionLevel"
-                                  control={<Radio color="primary" />}
-                                  label="Air Quality Index (AQI) or level only"
-                              />
-                              <FormControlLabel
-                                  value="RelatedToTravelModeInformation"
-                                  control={<Radio color="primary" />}
-                                  label="Air pollution exposure for each travel mode"
-                              />
-                              <FormControlLabel
-                                  value="RelatedToTravelTimeInformation"
-                                  control={<Radio color="primary" />}
-                                  label="Travel time and air pollution exposure on various routes and travel modes"
-                              />
-                               <FormControlLabel
-                                  value="other"
-                                  control={<Radio color="primary" />}
-                                  label="Other"
-                              />
-                          </RadioGroup>
-                      </FormControl>
+              <FormControl component="fieldset" className={classes.formControl}>
+                  <RadioGroup
+                      aria-label="informationRequired"
+                      name="informationRequired"
+                      className={classes.group}
+                      value={informationRequired}
+                      onChange={handleInformationRequired}
+                  >
+                      <FormControlLabel
+                          value="RelatedToTheAirPollutionLevel"
+                          control={<Radio color="primary" />}
+                          label="Air Quality Index (AQI) or level only"
+                      />
+                      <FormControlLabel
+                          value="RelatedToTravelModeInformation"
+                          control={<Radio color="primary" />}
+                          label="Air pollution exposure for each travel mode"
+                      />
+                      <FormControlLabel
+                          value="RelatedToTravelTimeInformation"
+                          control={<Radio color="primary" />}
+                          label="Travel time and air pollution exposure on various routes and travel modes"
+                      />
+                       <FormControlLabel
+                          value="other"
+                          control={<Radio color="primary" />}
+                          label="Other"
+                      />
+                  </RadioGroup>
+              </FormControl>
                       <hr />
                   </div>
-
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                          Do you avoid walking and cycling in poor Air Quality?
+                          Do you avoid walking and cycling in bad Air Quality?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <RadioGroup
@@ -1153,9 +1073,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
-
                        <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you prefer to work from home when Air Quality is poor?
@@ -1184,15 +1101,10 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
-
                   <Typography  className={classes.formHeader}>
-
                       D:  Impact of Air Pollution Exposure
             <hr />
                   </Typography >
-
-
-
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                           How would you rate air quality close to your residence/ home?
@@ -1224,9 +1136,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
-
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                    How would you rate air quality close to your office/ workplace/ school/ college?
@@ -1258,13 +1167,14 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>
                       How air pollution is affecting you? Please select all applicable.
                       </Typography>
 
+
                       <FormControl component="fieldset" className={classes.formControl}>
+
 
                       <div className={classes.checkboxes}>
                           <FormControlLabel
@@ -1402,9 +1312,9 @@ const useStyles = makeStyles(theme => ({
                         </div>
                         </FormControl>
 
+
                       <hr />
                   </div>
-
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
@@ -1447,12 +1357,12 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                           After or during your travel, do you feel any of these? Please select all applicable.
                         </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
+
 
                       <div className={classes.checkboxes}>
                           <FormControlLabel
@@ -1464,17 +1374,17 @@ const useStyles = makeStyles(theme => ({
                                       color="primary"
                                   />
                               }
-                              label="Sneezing"
-                          />
-                           <FormControlLabel
-                              control={
-                                  <Checkbox
-                                      checked={travelHealthEffect.Sneezing}
-                                      onChange={handleTravelHealthEffect("Sneezing")}
-                                      value="Sneezing"
-                                      color="primary"
-                                  />
-                              }
+                          //     label="Sneezing"
+                          // />
+                          //  <FormControlLabel
+                          //     control={
+                          //         <Checkbox
+                          //             checked={travelHealthEffect.Sneezing}
+                          //             onChange={handleTravelHealthEffect("Sneezing")}
+                          //             value="Sneezing"
+                          //             color="primary"
+                          //         />
+                          //     }
                               label="Sneezing"
                           />
                            <FormControlLabel
@@ -1536,12 +1446,12 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                           Is any infant/ children/ older persons in your family is getting affected due to air pollution?
                         </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
+
 
                       <div className={classes.checkboxes}>
                           <FormControlLabel
@@ -1556,6 +1466,7 @@ const useStyles = makeStyles(theme => ({
                               label="Yes, infant"
                           />
 
+
                           <FormControlLabel
                               control={
                                   <Checkbox
@@ -1567,6 +1478,7 @@ const useStyles = makeStyles(theme => ({
                               }
                               label="Yes, older people"
                           />
+
 
                           <FormControlLabel
                               control={
@@ -1580,16 +1492,17 @@ const useStyles = makeStyles(theme => ({
                               label="None"
                           />
 
+
                         </div>
                       </FormControl>
                       <hr />
                   </div>
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you feel any of the following psychological impact due to air pollution?
               </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
+
 
                       <div className={classes.checkboxes}>
                               <FormControlLabel
@@ -1675,11 +1588,11 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
+
                   <Typography className={classes.formHeader}>
                       E:  Prevention/ Self-protective action
             <hr />
                   </Typography >
-
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                           Do you use mask to protect yourself from air pollution?
@@ -1706,13 +1619,10 @@ const useStyles = makeStyles(theme => ({
                               <option value="IUseMaskBecauseOfAirPollution">I use mask because of air pollution</option>
                               <option value="IUseMaskBecauseOfSkin_OtherHealthIssues">I use mask because of skin/other health issues</option>
                               <option value="IDontUsedMask">I don't use mask</option>
-
                           </Select>
                       </FormControl>
                       <hr />
                   </div>
-
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you use air-filter/ air-conditioner at home?
@@ -1744,9 +1654,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you or your child miss work or school during high pollution days?
@@ -1773,8 +1680,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
                   {/* <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do you close the windows of the car during bad air pollution?
@@ -1806,9 +1711,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div> */}
-
-
-
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                          Due to high air pollution, do you avoid/ skip physical outdoor exercise?
@@ -1840,8 +1742,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
                   <Typography   className={classes.formHeader}>
                       F: Socioeconomic Characteristics
             <hr />
@@ -1877,7 +1777,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>
                           Age
@@ -1909,8 +1808,6 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
-
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>
                           Educational Qualification
@@ -2047,7 +1944,6 @@ const useStyles = makeStyles(theme => ({
               onChange={handleComment}
             />
           </FormControl>
-
           <hr />
         </div>
                   <Button
