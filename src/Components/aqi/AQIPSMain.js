@@ -242,11 +242,8 @@ const useStyles = makeStyles(theme => ({
 
     const delhiJson = delhiZones;
     const districts = Object.keys(delhiJson).sort();
-    var tehsils = [];
     
     React.useEffect(() => {
-
-        // console.log(this.delhiJson['New Delhi']);
         setLabelWidth(inputLabel.current.offsetWidth);
         const surveyStartTime = parseDate();
         axios.patch(HostName + "responseTime/" + surveyID, {
@@ -260,7 +257,6 @@ const useStyles = makeStyles(theme => ({
 
     // (1) define here..
     // Part A
-    const [homeDistrict, setHomeDistrict] = React.useState([]);
     const [homeTehsil, setHomeTehsil] = React.useState([]);
 
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
@@ -271,6 +267,7 @@ const useStyles = makeStyles(theme => ({
     const [checkingAirQualityLevel, setCheckingAirQualityLevel] = React.useState("");
     const [fequentlyAirQualityLevel, setFequentlyAirQualityLevel] = React.useState("");
     // Part B
+    const [destinationTehsil, setDestinationTehsil] = React.useState([]);
     const[tripsPerDay, setTripsPerDay] = React.useState("");
     const [purposeTrip, setPurposeTrip] = React.useState("");
     const [primaryTrip, setPrimaryTrip] = React.useState("");
@@ -308,25 +305,7 @@ const useStyles = makeStyles(theme => ({
 
     // (2) create functions
     //Part A
-    function handleHomeDistrict(event){
-        setHomeDistrict(event.target.value);
-        // console.log(event.target.value);
-        // console.log(delhiZones[event.target.value]);
-        tehsils = Object.values(delhiZones[event.target.value]);
-        // // Object.values(delhiZones[event.target.value]).map(item => {
-        // //     let dataObj={value:item,displayValue:item};
-        // //     this.tehsils.push(dataObj)
-        // // });
-        console.log(tehsils);
-        // console.log(typeof districts);
-        // console.log(typeof tehsils);
-    }
-
-    function getTehsils({district}){
-        console.log(district);
-        return Object.values(delhiZones[district]);
-    }
-
+    
     function handleHomeTehsil(event){
         setHomeTehsil(event.target.value);
     }
@@ -353,6 +332,10 @@ const useStyles = makeStyles(theme => ({
       setFequentlyAirQualityLevel(event.target.value);
     }
     // Part B
+    function handleDestinationTehsil(event){
+        setDestinationTehsil(event.target.value);
+    }
+
     function handleTripsPerDay(event){
         setTripsPerDay(event.target.value);
     }
@@ -491,7 +474,6 @@ const useStyles = makeStyles(theme => ({
             collegeID: collegeID,
             // (4) post to server
             // Part A
-            homeDistrict: homeDistrict,
             homeTehsil: homeTehsil,
             airPollutionMajorProb: airPollutionMajorProb,
             airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
@@ -501,6 +483,8 @@ const useStyles = makeStyles(theme => ({
             checkingAirQualityLevel: checkingAirQualityLevel,
             fequentlyAirQualityLevel: fequentlyAirQualityLevel,
             // Part B
+            destinationTehsil: destinationTehsil,
+            tripsPerDay: tripsPerDay,
             purposeTrip: purposeTrip,
             primaryTrip: primaryTrip,
             secondaryTrip: secondaryTrip,
@@ -578,7 +562,7 @@ const useStyles = makeStyles(theme => ({
                       <Typography className={classes.labelStyle}>
                           Please select the District and Tehsil of your residence.
                     </Typography>
-                      <FormControl component="outlined" className={classes.formControl}>
+                      {/* <FormControl component="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-homeDistrict">
                               District
                          </InputLabel>
@@ -602,14 +586,13 @@ const useStyles = makeStyles(theme => ({
                         </Select>
                       </FormControl>
                   </div>
-
-                  <div className={classes.divStyle}>
+                  <div className={classes.divStyle}> */}
                       <FormControl component="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-homeTehsil">
                               Tehsil (Sub-division)
                          </InputLabel>
                           <Select
-                            //   native
+                              native
                               value={homeTehsil}
                                 onChange={handleHomeTehsil}
                               input={
@@ -620,20 +603,18 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              {/* <MenuItem key={1} value={homeDistrict}>
-                                  {homeDistrict}
-                              </MenuItem> */}
-                              {/* <ConsoleLog> {tehsils} </ConsoleLog> */}
-                              {getTehsils({homeDistrict}).map((item, i) => (
-                                  <MenuItem key={i} value={item}>
-                                      {item}
-                                  </MenuItem>
+                              <option value="" />
+                              {districts.map((item, i) => (
+                                  <optgroup label={item}>
+                                      {Object.values(delhiZones[item]).map((item2, i) => (
+                                       <option value={item2}> {item2} </option>   
+                                      ) )}
+                                  </optgroup>
                               ))}
                         </Select>
                       </FormControl>
                       <hr />
                   </div>
-
 
 
                   <div className={classes.divStyle}>
@@ -830,7 +811,7 @@ const useStyles = makeStyles(theme => ({
                       B:  Trip Information
                   </Typography >
                   <hr />
-
+                
 
 
                   <div className={classes.divStyle}>
@@ -896,6 +877,8 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
+
+
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>Which main mode of transport do you use for commuting the Primary trip (work or education)?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
@@ -929,6 +912,40 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>
+                          Please select the District and Tehsil of your primary trip (most usual destination)
+                    </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-destinationTehsil">
+                              Tehsil (Sub-division)
+                         </InputLabel>
+                          <Select
+                              native
+                              value={destinationTehsil}
+                                onChange={handleDestinationTehsil}
+                              input={
+                                  <OutlinedInput
+                                      name="destinationTehsil"
+                                      labelWidth={labelWidth}
+                                      id="outlined-destinationTehsil"
+                                  />
+                              }
+                          >
+                              <option value="" />
+                              {districts.map((item, i) => (
+                                  <optgroup label={item}>
+                                      {Object.values(delhiZones[item]).map((item2, i) => (
+                                       <option value={item2}> {item2} </option>   
+                                      ) )}
+                                  </optgroup>
+                              ))}
+                        </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>Which mode of transport do you use for commuting the Secondary Trip (Shopping or Gym)?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
