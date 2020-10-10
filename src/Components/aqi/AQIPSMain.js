@@ -310,21 +310,25 @@ const useStyles = makeStyles(theme => ({
     //Part A
     function handleHomeDistrict(event){
         setHomeDistrict(event.target.value);
-        console.log(event.target.value);
-        console.log(delhiZones[event.target.value]);
+        // console.log(event.target.value);
+        // console.log(delhiZones[event.target.value]);
         tehsils = Object.values(delhiZones[event.target.value]);
-        // Object.values(delhiZones[event.target.value]).map(item => {
-        //     let dataObj={value:item,displayValue:item};
-        //     this.tehsils.push(dataObj)
-        // });
+        // // Object.values(delhiZones[event.target.value]).map(item => {
+        // //     let dataObj={value:item,displayValue:item};
+        // //     this.tehsils.push(dataObj)
+        // // });
         console.log(tehsils);
-        console.log(typeof districts);
-        console.log(typeof tehsils);
+        // console.log(typeof districts);
+        // console.log(typeof tehsils);
+    }
+
+    function getTehsils({district}){
+        console.log(district);
+        return Object.values(delhiZones[district]);
     }
 
     function handleHomeTehsil(event){
         setHomeTehsil(event.target.value);
-        // console.log(event.target.value);
     }
 
     function handleAirPollutionMajorProblem(event){
@@ -619,8 +623,8 @@ const useStyles = makeStyles(theme => ({
                               {/* <MenuItem key={1} value={homeDistrict}>
                                   {homeDistrict}
                               </MenuItem> */}
-                              {/* <ConsoleLog>{ tehsils }</ConsoleLog> */}
-                              {tehsils.map((item, i) => (
+                              {/* <ConsoleLog> {tehsils} </ConsoleLog> */}
+                              {getTehsils({homeDistrict}).map((item, i) => (
                                   <MenuItem key={i} value={item}>
                                       {item}
                                   </MenuItem>
