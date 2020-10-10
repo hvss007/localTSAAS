@@ -1,0 +1,57 @@
+{
+        "New Delhi": [
+        "Chanakyapuri",  
+        "Delhi Cantonment", 
+        "Vasant Vihar"
+        ],
+        "North Delhi": [
+        "Model Town", 
+        "Narela",
+        "Alipur"
+        ],
+        "North West Delhi": [
+        "Rohini",
+        "Kanjhawala",
+        "Saraswati Vihar"
+        ],
+        "West Delhi": [
+        "Patel Nagar",
+        "Punjabi Bagh",
+        "Rajouri Garden"
+        ],
+        "South West Delhi": [
+        "Dwarka",
+        "Najafgarh",
+        "Kapashera"
+        ],
+        "South Delhi": [
+        "Saket",
+        "Hauz Khas",
+        "Mehrauli"
+        ],
+        "South East Delhi": [
+        "Lajpat Nagar",
+        "Kalkaji",
+        "Sarita Vihar"
+        ],
+        "Central Delhi": [
+        "Karol Bagh",
+        "Kotwali",
+        "Civil Line"
+        ],
+        "North East Delhi": [
+        "Seelampur",
+        "Yamuna Vihar",
+        "Karawal Nagar"
+        ],
+        "Shahdara": [
+        "Shahdara",
+        "Seemapuri",
+        "Vivek Vihar"
+        ],
+        "East Delhi": [
+        "Gandhi Nagar",
+        "Preet Vihar",
+        "Mayur Vihar"
+        ]
+}

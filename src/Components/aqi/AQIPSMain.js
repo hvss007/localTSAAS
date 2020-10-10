@@ -30,7 +30,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 // import CardActions from '@material-ui/core/CardActions';
-import aqImpact from "../../assets/icons/aqi/aq_impact.jpg"
+import aqImpact from "../../assets/icons/aqi/aq_impact.jpg";
+import MenuItem from "@material-ui/core/MenuItem";
+import delhiZones from "../../assets/jsonfile/DelhiDistrictSubDistrict.json"
 import { render } from 'react-dom';
 import Gallery from 'react-grid-gallery';
 import img1 from "../../assets/icons/aqi/form_images/good.jpg";
@@ -142,8 +144,7 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'left',
     },
     imgmedia: {
-        height: 260,
-        marginTop: "-2vh"
+        height: 260
     },
     formControl: {
       margin: theme.spacing(1),
@@ -230,14 +231,7 @@ const useStyles = makeStyles(theme => ({
     }));
 
   function AQIPSMain(props) {
-    // const [expanded, setExpanded] = React.useState(false);
-
-
-    // const handleChange = panel => (event, isExpanded) => {
-    //   setExpanded(isExpanded ? panel : false);
-    // };
-
-
+    
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
 
@@ -246,15 +240,18 @@ const useStyles = makeStyles(theme => ({
     const colURL = url.split("/")[2];
     const surveyID = url.split("/")[3];
 
-
+    const delhiJson = delhiZones;
+    const districts = Object.keys(delhiJson).sort();
+    var tehsils = [];
+    
     React.useEffect(() => {
-      setLabelWidth(inputLabel.current.offsetWidth);
 
-
-      const surveyStartTime = parseDate();
-      axios.patch(HostName + "responseTime/" + surveyID, {
-        surveyStartTime: surveyStartTime
-      });
+        // console.log(this.delhiJson['New Delhi']);
+        setLabelWidth(inputLabel.current.offsetWidth);
+        const surveyStartTime = parseDate();
+        axios.patch(HostName + "responseTime/" + surveyID, {
+            surveyStartTime: surveyStartTime
+        });
     }, []);
 
 
@@ -263,6 +260,9 @@ const useStyles = makeStyles(theme => ({
 
     // (1) define here..
     // Part A
+    const [homeDistrict, setHomeDistrict] = React.useState([]);
+    const [homeTehsil, setHomeTehsil] = React.useState([]);
+
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
     const [airPollutionAdverseHealthEffect, setAirPollutionAdverseHealthEffect] = React.useState("");
     const [aqiUnderstanding, setAqiUnderstanding] = React.useState("");
@@ -308,6 +308,25 @@ const useStyles = makeStyles(theme => ({
 
     // (2) create functions
     //Part A
+    function handleHomeDistrict(event){
+        setHomeDistrict(event.target.value);
+        console.log(event.target.value);
+        console.log(delhiZones[event.target.value]);
+        tehsils = Object.values(delhiZones[event.target.value]);
+        // Object.values(delhiZones[event.target.value]).map(item => {
+        //     let dataObj={value:item,displayValue:item};
+        //     this.tehsils.push(dataObj)
+        // });
+        console.log(tehsils);
+        console.log(typeof districts);
+        console.log(typeof tehsils);
+    }
+
+    function handleHomeTehsil(event){
+        setHomeTehsil(event.target.value);
+        // console.log(event.target.value);
+    }
+
     function handleAirPollutionMajorProblem(event){
       setAirPollutionMajorProblem(event.target.value);
     }
@@ -468,6 +487,8 @@ const useStyles = makeStyles(theme => ({
             collegeID: collegeID,
             // (4) post to server
             // Part A
+            homeDistrict: homeDistrict,
+            homeTehsil: homeTehsil,
             airPollutionMajorProb: airPollutionMajorProb,
             airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
             aqiUnderstanding: aqiUnderstanding,
@@ -545,8 +566,72 @@ const useStyles = makeStyles(theme => ({
                   {/* (3) create front-end question*/}
                   <Typography className={classes.formHeader}>
                       A:  Information Seeking and Engagement
-            <hr />
+                    <hr />
                   </Typography >
+
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>
+                          Please select the District and Tehsil of your residence.
+                    </Typography>
+                      <FormControl component="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-homeDistrict">
+                              District
+                         </InputLabel>
+                          <Select
+                            //   native
+                              value={homeDistrict}
+                                onChange={handleHomeDistrict}
+                              input={
+                                  <OutlinedInput
+                                      name="homeDistrict"
+                                      labelWidth={labelWidth}
+                                      id="outlined-homeDistrict"
+                                  />
+                              }
+                          >
+                              {districts.map((item, i) => (
+                                  <MenuItem key={i} value={item}>
+                                      {item}
+                                  </MenuItem>
+                              ))}
+                        </Select>
+                      </FormControl>
+                  </div>
+
+                  <div className={classes.divStyle}>
+                      <FormControl component="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-homeTehsil">
+                              Tehsil (Sub-division)
+                         </InputLabel>
+                          <Select
+                            //   native
+                              value={homeTehsil}
+                                onChange={handleHomeTehsil}
+                              input={
+                                  <OutlinedInput
+                                      name="homeTehsil"
+                                      labelWidth={labelWidth}
+                                      id="outlined-homeTehsil"
+                                  />
+                              }
+                          >
+                              {/* <MenuItem key={1} value={homeDistrict}>
+                                  {homeDistrict}
+                              </MenuItem> */}
+                              {/* <ConsoleLog>{ tehsils }</ConsoleLog> */}
+                              {tehsils.map((item, i) => (
+                                  <MenuItem key={i} value={item}>
+                                      {item}
+                                  </MenuItem>
+                              ))}
+                        </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+
+
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                           Do  you  see  air  pollution  as  a major problem  in  your  area  of  residence  or office/ school/ college?
@@ -653,7 +738,7 @@ const useStyles = makeStyles(theme => ({
                                AQI perception
                                </InputLabel>
                          <Select
-                              native
+                            //   native
                               value={airQualityLevelBad}
                               onChange={handleairQualityLevelBad}
                               input={
@@ -664,14 +749,14 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="good">Good (0 - 50)</option>
-                              <option value="Satisfactory">Satisfactory (51 - 100)</option>
-                              <option value="Moderate">Moderate (101 - 200)</option>
-                              <option value="Poor">Poor (201 - 300)</option>
-                              <option value="VeryPoor">Very poor (301 - 400)</option>
-                              <option value="Severe">Severe (401 - 500)</option>
-                              <option value="IDontLookAQI">I don't look at Air Quality Index (AQI) or level</option>
+                              {/* <MenuItem value="" /> */}
+                              <MenuItem value="good">Good (0 - 50)</MenuItem>
+                              <MenuItem value="Satisfactory">Satisfactory (51 - 100)</MenuItem>
+                              <MenuItem value="Moderate">Moderate (101 - 200)</MenuItem>
+                              <MenuItem value="Poor">Poor (201 - 300)</MenuItem>
+                              <MenuItem value="VeryPoor">Very poor (301 - 400)</MenuItem>
+                              <MenuItem value="Severe">Severe (401 - 500)</MenuItem>
+                              <MenuItem value="IDontLookAQI">I don't look at Air Quality Index (AQI) or level</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -685,7 +770,7 @@ const useStyles = makeStyles(theme => ({
                               Source of AQI
                          </InputLabel>
                          <Select
-                              native
+                            //   native
                               value={checkingAirQualityLevel}
                               onChange={handleCheckingAirQualityLevel}
                               input={
@@ -696,13 +781,13 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="websiet">Website</option>
-                              <option value="mobileApp">Mobile App</option>
-                              <option value="newspaper">Newspaper</option>
-                              <option value="radio">Radio (FM)</option>
-                              <option value="other">other</option>
-                              <option value="IDontCheckAQI">I don't check at Air Quality Index (AQI) or level</option>
+                              {/* <MenuItem value="" /> */}
+                              <MenuItem value="websiet">Website</MenuItem>
+                              <MenuItem value="mobileApp">Mobile App</MenuItem>
+                              <MenuItem value="newspaper">Newspaper</MenuItem>
+                              <MenuItem value="radio">Radio (FM)</MenuItem>
+                              <MenuItem value="other">Other</MenuItem>
+                              <MenuItem value="IDontCheckAQI">I don't check at Air Quality Index (AQI) or level</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -716,7 +801,7 @@ const useStyles = makeStyles(theme => ({
                               Frequency
                          </InputLabel>
                          <Select
-                              native
+                              // native
                               value={fequentlyAirQualityLevel}
                               onChange={handleFequentlyAirQualityLevel}
                               input={
@@ -727,12 +812,12 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                                <option value="" />
-                              <option value="daily">Daily</option>
-                              <option value="2_4PerWeek">2 - 4 times per week</option>
-                              <option value="OnceAWeek">Once a week</option>
-                              <option value="OnceAMonth">Once a month</option>
-                              <option value="IDontLookAQI">I don't look at Air Quality Index / level</option>
+                                {/* <MenuItem value="" /> */}
+                              <MenuItem value="daily">Daily</MenuItem>
+                              <MenuItem value="2_4PerWeek">2 - 4 times per week</MenuItem>
+                              <MenuItem value="OnceAWeek">Once a week</MenuItem>
+                              <MenuItem value="OnceAMonth">Once a month</MenuItem>
+                              <MenuItem value="IDontLookAQI">I don't look at Air Quality Index / level</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -751,7 +836,7 @@ const useStyles = makeStyles(theme => ({
                               Trips per day
                           </InputLabel>
                           <Select
-                              native
+                              // native
                               value={tripsPerDay}
                               onChange={handleTripsPerDay}
                               input={
@@ -762,11 +847,11 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="<2">up to 2</option>
-                              <option value="3_4">3 - 4</option>
-                              <option value="5orMorethan">5 or more</option>
-                              <option value="IdontTravel">I do not travel</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="below2">up to 2</MenuItem>
+                              <MenuItem value="3_4">3 - 4</MenuItem>
+                              <MenuItem value="5orMorethan">5 or more</MenuItem>
+                              <MenuItem value="IdontTravel">I do not travel</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -781,7 +866,7 @@ const useStyles = makeStyles(theme => ({
                               Purpose of trip
               </InputLabel>
                           <Select
-                              native
+                              // native
                               value={purposeTrip}
                               onChange={handlePurposeTrip}
                               input={
@@ -792,17 +877,17 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="school_primary">School - (Primary Trip)</option>
-                              <option value="College_University">College/University - (Primary Trip)</option>
-                              <option value="office">Office – (Primary trip)</option>
-                              <option value="front_line">Front Line Worker (health, Police) – (Primary trip)</option>
-                              <option value="retailer">Retailer - (Secondary trip)</option>
-                              <option value="shopping">Shopping - (Secondary trip)</option>
-                              <option value="super_market">Super Markert - (Secondary trip)</option>
-                              <option value="gym">Gym - (Secondary trip)</option>
-                              <option value="sports">Sports - (Secondary trip)</option>
-                              <option value="leisure">Leisure - (Secondary trip)</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="school_primary">School - (Primary trip)</MenuItem>
+                              <MenuItem value="College_University">College/ University - (Primary trip)</MenuItem>
+                              <MenuItem value="office">Office/ work – (Primary trip)</MenuItem>
+                              <MenuItem value="front_line">Frontline worker (health, Police) – (Primary trip)</MenuItem>
+                              <MenuItem value="retailer">Retailer - (Secondary trip)</MenuItem>
+                              <MenuItem value="shopping">Shopping - (Secondary trip)</MenuItem>
+                              <MenuItem value="super_market">Super-markert - (Secondary trip)</MenuItem>
+                              <MenuItem value="gym">Gym / sports - (Secondary trip)</MenuItem>
+                              <MenuItem value="leisure">Leisure - (Secondary trip)</MenuItem>
+                              <MenuItem value="other">other</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -814,7 +899,7 @@ const useStyles = makeStyles(theme => ({
                           Mode for primary trip
                         </InputLabel>
                           <Select
-                              native
+                              // native
                               value={primaryTrip}
                               onChange={handlePrimaryTrip}
                               input={
@@ -825,16 +910,17 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="Car">Car</option>
-                              <option value="CarSharing">Car Sharing(OLA, Uber, Other Taxi)</option>
-                              <option value="Bus">Bus</option>
-                              <option value="Metro">Metro</option>
-                              <option value="TwoWheeler">Two Wheeler(2-W)</option>
-                              <option value="MotorBikeSharing">Motor Bike Sharing</option>
-                              <option value="AutoRickshaw">Auto-Rickshaws(3-W)</option>
-                              <option value="Bicycle">Bicycle</option>
-                              <option value="Walk">Walk</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car Sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="TwoWheeler">Two Wheeler (2-W)</MenuItem>
+                              <MenuItem value="MotorBikeSharing">Motorbike/ scooter Sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto-Rickshaws (3-W)</MenuItem>
+                              <MenuItem value="Bicycle">Bicycle</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+
                           </Select>
                       </FormControl>
                       <hr />
@@ -846,7 +932,7 @@ const useStyles = makeStyles(theme => ({
                           Mode for secondary trip
                         </InputLabel>
                           <Select
-                              native
+                              // native
                               value={secondaryTrip}
                               onChange={handleSecondaryTrip}
                               input={
@@ -857,16 +943,17 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="Car">Car</option>
-                              <option value="CarSharing">Car Sharing(OLA, Uber, Other Taxi)</option>
-                              <option value="Bus">Bus</option>
-                              <option value="Metro">Metro</option>
-                              <option value="TwoWheeler">Two Wheeler(2-W)</option>
-                              <option value="MotorBikeSharing">Motor Bike Sharing</option>
-                              <option value="AutoRickshaw">Auto-Rickshaws(3-W)</option>
-                              <option value="Bicycle">Bicycle</option>
-                              <option value="Walk">Walk</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car Sharing (OLA, Uber, taxi, Zoom, other rental)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="TwoWheeler">Two Wheeler (2-W)</MenuItem>
+                              <MenuItem value="MotorBikeSharing">Motorbike/ scooter Sharing (or rental)</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto-Rickshaws (3-W)</MenuItem>
+                              <MenuItem value="Bicycle">Bicycle</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+
                           </Select>
                       </FormControl>
                       <hr />
@@ -880,7 +967,7 @@ const useStyles = makeStyles(theme => ({
                               Avoid traveling
                          </InputLabel>
                          <Select
-                              native
+                              // native
                               value={avoidTrip}
                               onChange={handleAvoidTrip}
                               input={
@@ -891,14 +978,14 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="good">Good (0 - 50)</option>
-                              <option value="Satisfactory">Satisfactory (51 - 100)</option>
-                              <option value="Moderate">Moderate (101 - 200)</option>
-                              <option value="Poor">Poor (201 - 300)</option>
-                              <option value="VeryPoor">Very poor (301 - 400)</option>
-                              <option value="Severe">Severe (401 - 500)</option>
-                              <option value="NotTravelingAtAll">Not traveling at all</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="good">Good (0 - 50)</MenuItem>
+                              <MenuItem value="Satisfactory">Satisfactory (51 - 100)</MenuItem>
+                              <MenuItem value="Moderate">Moderate (101 - 200)</MenuItem>
+                              <MenuItem value="Poor">Poor (201 - 300)</MenuItem>
+                              <MenuItem value="VeryPoor">Very poor (301 - 400)</MenuItem>
+                              <MenuItem value="Severe">Severe (401 - 500)</MenuItem>
+                              <MenuItem value="NotTravelingAtAll">Not traveling at all</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -912,7 +999,7 @@ const useStyles = makeStyles(theme => ({
                               Change in choice
                          </InputLabel>
                          <Select
-                              native
+                              // native
                               value={changeInChoice}
                               onChange={handleChangeInChoice}
                               input={
@@ -923,12 +1010,12 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="ChangeOfTravelTime">Change of travel time</option>
-                              <option value="ChangeOfTravelMode">Change of travel mode</option>
-                              <option value="ChangeOfTravelRoute">Change of travel route</option>
-                              <option value="NotTravelingAtAll">Not traveling at all</option>
-                              <option value="NoEffect">No effect</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="ChangeOfTravelTime">Change of travel time</MenuItem>
+                              <MenuItem value="ChangeOfTravelMode">Change of travel mode</MenuItem>
+                              <MenuItem value="ChangeOfTravelRoute">Change of travel route</MenuItem>
+                              <MenuItem value="NotTravelingAtAll">Not traveling at all</MenuItem>
+                              <MenuItem value="NoEffect">No effect</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -1114,7 +1201,7 @@ const useStyles = makeStyles(theme => ({
                               AQI at residence
                          </InputLabel>
                          <Select
-                              native
+                              // native
                               value={perceiveAQIHome}
                               onChange={handlePerceiveAQIHome}
                               input={
@@ -1125,13 +1212,13 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="good">Good (0 - 50)</option>
-                              <option value="Satisfactory">Satisfactory (51 - 100)</option>
-                              <option value="Moderate">Moderate (101 - 200)</option>
-                              <option value="Poor">Poor (201 - 300)</option>
-                              <option value="VeryPoor">Very poor (301 - 400)</option>
-                              <option value="Severe">Severe (401 - 500)</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="good">Good (0 - 50)</MenuItem>
+                              <MenuItem value="Satisfactory">Satisfactory (51 - 100)</MenuItem>
+                              <MenuItem value="Moderate">Moderate (101 - 200)</MenuItem>
+                              <MenuItem value="Poor">Poor (201 - 300)</MenuItem>
+                              <MenuItem value="VeryPoor">Very poor (301 - 400)</MenuItem>
+                              <MenuItem value="Severe">Severe (401 - 500)</MenuItem>
                         </Select>
                       </FormControl>
                       <hr />
@@ -1145,7 +1232,7 @@ const useStyles = makeStyles(theme => ({
                               AQI at workplace or school
                          </InputLabel>
                          <Select
-                              native
+                              // native
                               value={perceiveAQIWork}
                               onChange={handlePerceiveAQIWork}
                               input={
@@ -1156,13 +1243,13 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="good">Good (0 - 50)</option>
-                              <option value="Satisfactory">Satisfactory (51 - 100)</option>
-                              <option value="Moderate">Moderate (101 - 200)</option>
-                              <option value="Poor">Poor (201 - 300)</option>
-                              <option value="VeryPoor">Very poor (301 - 400)</option>
-                              <option value="Severe">Severe (401 - 500)</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="good">Good (0 - 50)</MenuItem>
+                              <MenuItem value="Satisfactory">Satisfactory (51 - 100)</MenuItem>
+                              <MenuItem value="Moderate">Moderate (101 - 200)</MenuItem>
+                              <MenuItem value="Poor">Poor (201 - 300)</MenuItem>
+                              <MenuItem value="VeryPoor">Very poor (301 - 400)</MenuItem>
+                              <MenuItem value="Severe">Severe (401 - 500)</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -1602,7 +1689,7 @@ const useStyles = makeStyles(theme => ({
                               Use of mask
                          </InputLabel>
                          <Select
-                              native
+                              // native
                               value={maskAirPollution}
                               onChange={handleMaskAirPollution}
                               input={
@@ -1613,12 +1700,13 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="IUsedMaskBeforeCOVID-19">I used mask before COVID-19</option>
-                              <option value="IUsedMaskafterCOVID-19">I started using mask since inception of COVID-19</option>
-                              <option value="IUseMaskBecauseOfAirPollution">I use mask because of air pollution</option>
-                              <option value="IUseMaskBecauseOfSkin_OtherHealthIssues">I use mask because of skin/other health issues</option>
-                              <option value="IDontUsedMask">I don't use mask</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="IUsedMaskBeforeCOVID-19">I used mask before COVID-19</MenuItem>
+                              <MenuItem value="IUsedMaskafterCOVID-19">I started using mask since inception of COVID-19</MenuItem>
+                              <MenuItem value="IUseMaskBecauseOfAirPollution">I use mask because of air pollution</MenuItem>
+                              <MenuItem value="IUseMaskBecauseOfSkin_OtherHealthIssues">I use mask because of skin/other health issues</MenuItem>
+                              <MenuItem value="IDontUsedMask">I don't use mask</MenuItem>
+
                           </Select>
                       </FormControl>
                       <hr />
@@ -1786,7 +1874,7 @@ const useStyles = makeStyles(theme => ({
                               Age category
               </InputLabel>
                           <Select
-                              native
+                              // native
                               value={age}
                               onChange={handleAge}
                               input={
@@ -1797,13 +1885,13 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                               <option value="" />
-                              <option value="below4">Below 4 years</option>
-                              <option value="4_18">4 - 18 years</option>
-                              <option value="18_25">18 - 25 years</option>
-                              <option value="25_40">25 - 40 years</option>
-                              <option value="40_60">40 - 60 years</option>
-                              <option value="above60">Above 60 years</option>
+                                {/* <MenuItem value="" /> */}
+                              <MenuItem value="below4">Below 4 years</MenuItem>
+                              <MenuItem value="4_18">4 - 18 years</MenuItem>
+                              <MenuItem value="18_25">18 - 25 years</MenuItem>
+                              <MenuItem value="25_40">25 - 40 years</MenuItem>
+                              <MenuItem value="40_60">40 - 60 years</MenuItem>
+                              <MenuItem value="above60">Above 60 years</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -1817,7 +1905,7 @@ const useStyles = makeStyles(theme => ({
                               Educational qualification
               </InputLabel>
                           <Select
-                              native
+                              // native
                               value={qualification}
                               onChange={handleQualification}
                               input={
@@ -1828,13 +1916,13 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="primary">Up to primary school</option>
-                              <option value="secondary">Up to secondary school</option>
-                              <option value="senior_secondary">Up to senior secondary school</option>
-                              <option value="graduation">Graduation</option>
-                              <option value="post_graduation">Post graduation and higher</option>
-                              <option value="professionalCourses">Professional courses and other</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="primary">Up to primary school</MenuItem>
+                              <MenuItem value="secondary">Up to secondary school</MenuItem>
+                              <MenuItem value="senior_secondary">Up to senior secondary school</MenuItem>
+                              <MenuItem value="graduation">Graduation</MenuItem>
+                              <MenuItem value="post_graduation">Post graduation and higher</MenuItem>
+                              <MenuItem value="professionalCourses">Professional courses and other</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -1846,7 +1934,7 @@ const useStyles = makeStyles(theme => ({
                               Marital status
               </InputLabel>
                           <Select
-                              native
+                              // native
                               value={marStatus}
                               onChange={handleMaritalStatus}
                               input={
@@ -1857,11 +1945,11 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="single">Single</option>
-                              <option value="married">Married</option>
-                              <option value="Divorced">Divorced/ Widowed</option>
-                              <option value="noMention">Prefer not to mention</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="single">Single</MenuItem>
+                              <MenuItem value="married">Married</MenuItem>
+                              <MenuItem value="Divorced">Divorced/ Widowed</MenuItem>
+                              <MenuItem value="noMention">Prefer not to mention</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -1873,7 +1961,7 @@ const useStyles = makeStyles(theme => ({
                               Profession
               </InputLabel>
                           <Select
-                              native
+                              // native
                               value={profess}
                               onChange={handleProfession}
                               input={
@@ -1884,16 +1972,16 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="student">Student</option>
-                              <option value="business">Business/ self-employed/ consultant</option>
-                              <option value="govtEmployee">Govt. employee</option>
-                              <option value="privEmployee">Private employee/ Salaried worker</option>
-                              <option value="ngo">NGO/ Volunteer</option>
-                              <option value="retired">Retired</option>
-                              <option value="jobseeker">Jobseeker</option>
-                              <option value="driver">Driver (taxi/ auto-rickshaw/ goods vehicle, etc.)</option>
-                              <option value="housewife">House Wife</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="student">Student</MenuItem>
+                              <MenuItem value="business">Business/ self-employed/ consultant</MenuItem>
+                              <MenuItem value="govtEmployee">Govt. employee</MenuItem>
+                              <MenuItem value="privEmployee">Private employee/ Salaried worker</MenuItem>
+                              <MenuItem value="ngo">NGO/ Volunteer</MenuItem>
+                              <MenuItem value="retired">Retired</MenuItem>
+                              <MenuItem value="jobseeker">Jobseeker</MenuItem>
+                              <MenuItem value="driver">Driver (taxi/ auto-rickshaw/ goods vehicle, etc.)</MenuItem>
+                              <MenuItem value="housewife">House Wife</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -1907,7 +1995,7 @@ const useStyles = makeStyles(theme => ({
                               Average monthly income (INR)
               </InputLabel>
                           <Select
-                              native
+                              // native
                               value={income}
                               onChange={handleIncome}
                               input={
@@ -1918,13 +2006,13 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                              <option value="" />
-                              <option value="<10000">less than 10,000</option>
-                              <option value="10000-30000">10,000 - 30,000</option>
-                              <option value="30000-50000">30,000 - 50,000</option>
-                              <option value="50000-80000">50,000 - 80,000</option>
-                              <option value="80000-100000">80,000 - 1,00,000</option>
-                              <option value=">100000">more than 1,00,000</option>
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="<10000">less than 10,000</MenuItem>
+                              <MenuItem value="10000-30000">10,000 - 30,000</MenuItem>
+                              <MenuItem value="30000-50000">30,000 - 50,000</MenuItem>
+                              <MenuItem value="50000-80000">50,000 - 80,000</MenuItem>
+                              <MenuItem value="80000-100000">80,000 - 1,00,000</MenuItem>
+                              <MenuItem value=">100000">more than 1,00,000</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
