@@ -451,37 +451,39 @@ const useStyles = makeStyles(theme => ({
 
         if(mode === 'Car/Car Sharing'){
             setCarPrefValue(e.target.value);
-            rows[0].qualityValue = carPref;
+            // rows[0].qualityValue = carPref; // TODO it cannot be carPref, it's null.
+            rows[0].qualityValue = e.target.value;
         }
 
         if(mode === 'Bus'){
             setBusPref(e.target.value);
-            rows[1].qualityValue = busPref;
+            rows[1].qualityValue = e.target.value;
+            console.log(rows[1]);
         }
 
         if(mode === 'Metro'){
             setMetroPref(e.target.value);
-            rows[2].qualityValue = metroPref;
+            rows[2].qualityValue = e.target.value;
         }
 
         if(mode === "2W/2W-Sharing"){
             setTwoWheelerPref(e.target.value);
-            rows[3].qualityValue = twoWheelerPref;
+            rows[3].qualityValue = e.target.value;
         }
 
         if(mode === "3W"){
             setThreeWheelerPref(e.target.value);
-            rows[4].qualityValue = threeWheelerPref;
+            rows[4].qualityValue = e.target.value;
         }
 
         if(mode === "Bicycle"){
             setBicyclePref(e.target.value);
-            rows[5].qualityValue = bicyclePref;
+            rows[5].qualityValue = e.target.value;
         }   
 
         if(mode === "Walk"){
             setWalkPref(e.target.value);
-            rows[6].qualityValue = walkPref;
+            rows[6].qualityValue = e.target.value;
         }
 
     }
@@ -1117,6 +1119,7 @@ const useStyles = makeStyles(theme => ({
                   <Typography className={classes.labelStyle}>
                     Select the current level of preferences (1 as least to 5 as highly preferred) for your trip to primary activities (to work/ school/ college) TODO: make grid?]? 
                     </Typography>
+
                     <hr/>
                   </div>
 
@@ -1133,8 +1136,9 @@ const useStyles = makeStyles(theme => ({
                     <FormControl component="fieldset" className={classes.formControl}>
                         <Paper>
                             <Table className={classes.table} aria-label="simple table">
-                                <TableHead>
-                                <TableRow>
+                                <TableBody>
+                                {/* <TableHead>
+                               <TableRow>
                                     <TableCell>Travel Mode/<br/>Air Quality Level</TableCell>
                                     <TableCell align="right">Good<br/>(0-50)</TableCell>
                                     <TableCell align="right">Satisfactory<br/>(51-100)</TableCell>
@@ -1143,20 +1147,31 @@ const useStyles = makeStyles(theme => ({
                                     <TableCell align="right">Very Poor<br/>(301-400)</TableCell>
                                     <TableCell align="right">Severe<br/>(401-500)</TableCell>
                                 </TableRow>
-                                </TableHead>
-                                <TableBody>
+                                </TableHead> */}
                                 {rows.map((row) => (
                                     <TableRow key={row.mode}>
                                         <TableCell component="th" scope="row">
                                             {row.mode}
                                         </TableCell>
+                                        
                                         <TableCell align="right">
+                                            {/* TODO: replace carPref by the mode specific preferences constants*/}
+                                            <RadioGroup name="quality-radio" value={carPref} className={classes.group} onChange={(e) => handleModePref(row.mode,e)}>
+                                                <FormControlLabel value="Good" control={<Radio color="primary" />} label="Good" />
+                                                <FormControlLabel value="Satisfactory" control={<Radio color="primary" />} label="Satisfactory" />
+                                                <FormControlLabel value="Moderate" control={<Radio color="primary" />} label="Moderate" />
+                                                <FormControlLabel value="Poor" control={<Radio color="primary" />} label="Poor" />
+                                                <FormControlLabel value="Very poor" control={<Radio color="primary" />} label="Very poor" />
+                                                <FormControlLabel value="Severe" control={<Radio color="primary" />} label="Severe" />
+                                            </RadioGroup>
+                                        </TableCell>
+
+                                        {/* <TableCell align="right">                                        
                                             <Radio
                                                 checked={row.qualityValue === '1'}
                                                 onChange={(e) => handleModePref(row.mode,e)}
                                                 value="1"
                                                 name="quality-radio"
-                                                mode= {row.mode}
                                             />
                                         </TableCell>
                                         <TableCell align="right">
@@ -1198,7 +1213,7 @@ const useStyles = makeStyles(theme => ({
                                                 value="6"
                                                 name="quality-radio"
                                             />
-                                        </TableCell>
+                                        </TableCell> */}
                                     </TableRow>
                                 ))}
                                 </TableBody>
