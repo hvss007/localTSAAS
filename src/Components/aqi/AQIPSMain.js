@@ -43,7 +43,7 @@ const IMAGES1 =
         thumbnail: img2,
         thumbnailWidth: 300,
         thumbnailHeight: 212,
-        tags: [{value: "Satisfactory (0-50)", title: "Satisfactory (51-100)"}]
+        tags: [{value: "Satisfactory (51-100)", title: "Satisfactory (51-100)"}]
 },
 {
         thumbnail: img3,
@@ -131,7 +131,7 @@ const useStyles = makeStyles(theme => ({
       margin: "1vw",
       fontSize: "2vw",
       "@media (max-width:360px)": {
-        fontSize: "24px"
+        fontSize: "22px"
       },
       "@media (max-width:1024px)": {
         fontSize: "24px"
@@ -140,7 +140,11 @@ const useStyles = makeStyles(theme => ({
     },
     paraText: {
         color: "darkblue",
-        fontSize: "18px"
+        fontSize: "18px",
+        margin: "1vw",
+        "@media (max-width:480px)": {
+            fontSize: "16px"
+          },
     },
     button: {
       justifyContent: "center",
