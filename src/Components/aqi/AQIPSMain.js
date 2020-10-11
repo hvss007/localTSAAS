@@ -95,7 +95,7 @@ const useStyles = makeStyles(theme => ({
       display: "flex",
       margin: "2vh 20vw 2vh 20vw",
       "@media (max-width:1024px)": {
-        margin: "2vh 5vw 2vh 5vw"
+        margin: "1vh 2vw 2vh 1vw"
       },
       borderRadius: 8,
       padding: "1vw",
@@ -181,7 +181,7 @@ const useStyles = makeStyles(theme => ({
     }));
 
   function AQIPSMain(props) {
-    
+
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
 
@@ -192,7 +192,7 @@ const useStyles = makeStyles(theme => ({
 
     const delhiJson = delhiZones;
     const districts = Object.keys(delhiJson).sort();
-    
+
     React.useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
         const surveyStartTime = parseDate();
@@ -254,7 +254,7 @@ const useStyles = makeStyles(theme => ({
 
     // (2) create functions
     //Part A
-    
+
     function handleHomeTehsil(event){
         setHomeTehsil(event.target.value);
     }
@@ -556,7 +556,7 @@ const useStyles = makeStyles(theme => ({
                               {districts.map((item, i) => (
                                   <optgroup label={item}>
                                       {Object.values(delhiZones[item]).map((item2, i) => (
-                                       <option value={item2}> {item2} </option>   
+                                       <option value={item2}> {item2} </option>
                                       ) )}
                                   </optgroup>
                               ))}
@@ -760,7 +760,7 @@ const useStyles = makeStyles(theme => ({
                       B:  Trip Information
                   </Typography >
                   <hr />
-                
+
 
 
                   <div className={classes.divStyle}>
@@ -886,7 +886,7 @@ const useStyles = makeStyles(theme => ({
                               {districts.map((item, i) => (
                                   <optgroup label={item}>
                                       {Object.values(delhiZones[item]).map((item2, i) => (
-                                       <option value={item2}> {item2} </option>   
+                                       <option value={item2}> {item2} </option>
                                       ) )}
                                   </optgroup>
                               ))}
