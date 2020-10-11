@@ -1,4 +1,3 @@
-// import React,{Component} from 'react';
 import React from 'react';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
@@ -9,31 +8,20 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
 import Checkbox from "@material-ui/core/Checkbox";
-// import Grid from "@material-ui/core/Grid";
-// import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
-// import FormLabel from "@material-ui/core/FormLabel";
 import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
-// import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-// import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-// import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import Image from 'material-ui-image'
-// import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardActions from '@material-ui/core/CardActions';
 import aqImpact from "../../assets/icons/aqi/aq_impact.jpg";
 import MenuItem from "@material-ui/core/MenuItem";
 import delhiZones from "../../assets/jsonfile/DelhiDistrictSubDistrict.json"
-import { render } from 'react-dom';
 import Gallery from 'react-grid-gallery';
 import img1 from "../../assets/icons/aqi/form_images/good.jpg";
 import img2 from "../../assets/icons/aqi/form_images/satisfactory.jpg";
@@ -43,6 +31,7 @@ import img5 from "../../assets/icons/aqi/form_images/Very Poor.jpg";
 import img6 from "../../assets/icons/aqi/form_images/severe.jpg";
 import img7 from "../../assets/icons/aqi/form_images/table_left.png";
 import img8 from "../../assets/icons/aqi/form_images/table_right.png";
+
 const IMAGES1 =
 [{
         thumbnail: img1,
@@ -81,18 +70,6 @@ const IMAGES1 =
         thumbnailHeight: 212,
         tags: [{value: "Severe (401-500)", title: "Severe (401-500)"}]
 }
-// {
-//         thumbnail: img7,
-//         thumbnailWidth: 300,
-//         thumbnailHeight: 212,
-//         caption: "After Rain (Jeshu John - designerspics.com)"
-// },
-// {
-//         thumbnail: img8,
-//         thumbnailWidth: 140,
-//         thumbnailHeight: 212,
-//         caption: "After Rain (Jeshu John - designerspics.com)"
-// }
 ]
 const IMAGES3 =
 [{
@@ -107,21 +84,6 @@ const IMAGES3 =
         thumbnailHeight: 212,
         caption: "After Rain (Jeshu John - designerspics.com)"
 }
-// {
-//         src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-//         thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-//         thumbnailWidth: 320,
-//         thumbnailHeight: 212,
-//         tags: [{value: "Ocean", title: "Ocean"}, {value: "People", title: "People"}],
-//         caption: "Boats (Jeshu John - designerspics.com)"
-// },
-//
-// {
-//         src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-//         thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-//         thumbnailWidth: 320,
-//         thumbnailHeight: 212
-// }
 ]
 
 var HostName=Global.hostName
@@ -212,22 +174,6 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: "#bbdefb",
       borderRadius: 8
     }
-    // img2: {
-    //   marginLeft: "auto",
-    //   marginRight: "auto",
-    //   width: "50%",
-    //   justifyContent: "center",
-    //   "@media (max-width:480px)": {
-    //     marginLeft: "auto",
-    //     marginRight: "auto",
-    //     width: "110%"}
-    //   },
-    //   img1: {
-    //     marginLeft: "auto",
-    //     marginRight: "auto",
-    //     width: "80%",
-    //     justifyContent: "center"
-    //   }
     }));
 
   function AQIPSMain(props) {
@@ -258,11 +204,10 @@ const useStyles = makeStyles(theme => ({
     // (1) define here..
     // Part A
     const [homeTehsil, setHomeTehsil] = React.useState([]);
-
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
     const [airPollutionAdverseHealthEffect, setAirPollutionAdverseHealthEffect] = React.useState("");
     const [aqiUnderstanding, setAqiUnderstanding] = React.useState("");
-    const [UnderstandAbove, setUnderstandAbove] = React.useState("");
+    // const [UnderstandAbove, setUnderstandAbove] = React.useState("");
     const [airQualityLevelBad, setAirQualityLevelBad] = React.useState("");
     const [checkingAirQualityLevel, setCheckingAirQualityLevel] = React.useState("");
     const [fequentlyAirQualityLevel, setFequentlyAirQualityLevel] = React.useState("");
@@ -292,7 +237,7 @@ const useStyles = makeStyles(theme => ({
     const [maskAirPollution, setMaskAirPollution] = React.useState("");
     const [airFilter, setAirFilter] = React.useState("");
     const [missSchool, setMissSchool] = React.useState("");
-    const [closeWindow, setCloseWindow] = React.useState("");
+    // const [closeWindow, setCloseWindow] = React.useState("");
     const [outdoorActivity, setOutdoorActivity] = React.useState("");
     // Part F
     const [age, setAge] = React.useState();
@@ -478,7 +423,7 @@ const useStyles = makeStyles(theme => ({
             airPollutionMajorProb: airPollutionMajorProb,
             airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
             aqiUnderstanding: aqiUnderstanding,
-            UnderstandAbove: UnderstandAbove,
+            // UnderstandAbove: UnderstandAbove,
             airQualityLevelBad: airQualityLevelBad,
             checkingAirQualityLevel: checkingAirQualityLevel,
             fequentlyAirQualityLevel: fequentlyAirQualityLevel,
@@ -508,7 +453,7 @@ const useStyles = makeStyles(theme => ({
             maskAirPollution: maskAirPollution,
             airFilter: airFilter,
             missSchool: missSchool,
-            closeWindow: closeWindow,
+            // closeWindow: closeWindow,
             outdoorActivity: outdoorActivity,
             // Part F
             age: age,
