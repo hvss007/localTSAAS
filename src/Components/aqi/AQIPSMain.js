@@ -26,6 +26,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import RadioButtonGroup  from '@material-ui/core/RadioGroup'
 import Paper from '@material-ui/core/Paper';
 import delhiZones from "../../assets/jsonfile/DelhiDistrictSubDistrict.json"
 import Gallery from 'react-grid-gallery';
@@ -440,40 +441,45 @@ const useStyles = makeStyles(theme => ({
     const [threeWheelerPref, setThreeWheelerPref] = React.useState(rows[4].qualityValue);
     const [bicyclePref, setBicyclePref] = React.useState(rows[5].qualityValue);
     const [walkPref, setWalkPref] = React.useState(rows[6].qualityValue);
+    
+    const ConsoleLog = ({ children }) => {
+        console.log(children);
+        return false;
+    };
 
+    const handleModePref = (mode, e) => {
 
-    const handleModePref = (e) => {
-        if(e.target.mode === 'Car/Car Sharing'){
+        if(mode === 'Car/Car Sharing'){
             setCarPrefValue(e.target.value);
             rows[0].qualityValue = carPref;
         }
 
-        if(e.target.mode === 'Bus'){
+        if(mode === 'Bus'){
             setBusPref(e.target.value);
             rows[1].qualityValue = busPref;
         }
 
-        if(e.target.mode === 'Metro'){
+        if(mode === 'Metro'){
             setMetroPref(e.target.value);
             rows[2].qualityValue = metroPref;
         }
 
-        if(e.target.mode === "2W/2W-Sharing"){
+        if(mode === "2W/2W-Sharing"){
             setTwoWheelerPref(e.target.value);
             rows[3].qualityValue = twoWheelerPref;
         }
 
-        if(e.target.mode === "3W"){
+        if(mode === "3W"){
             setThreeWheelerPref(e.target.value);
             rows[4].qualityValue = threeWheelerPref;
         }
 
-        if(e.target.mode === "Bicycle"){
+        if(mode === "Bicycle"){
             setBicyclePref(e.target.value);
             rows[5].qualityValue = bicyclePref;
         }   
 
-        if(e.target.mode === "Walk"){
+        if(mode === "Walk"){
             setWalkPref(e.target.value);
             rows[6].qualityValue = walkPref;
         }
@@ -1109,7 +1115,7 @@ const useStyles = makeStyles(theme => ({
                   
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the current level of preferences (least-highest) for your trip to primary activities (to work/ school/ college) TODO: make grid?]? 
+                    Select the current level of preferences (1 as least to 5 as highly preferred) for your trip to primary activities (to work/ school/ college) TODO: make grid?]? 
                     </Typography>
                     <hr/>
                   </div>
@@ -1147,7 +1153,7 @@ const useStyles = makeStyles(theme => ({
                                         <TableCell align="right">
                                             <Radio
                                                 checked={row.qualityValue === '1'}
-                                                onChange={handleModePref}
+                                                onChange={(e) => handleModePref(row.mode,e)}
                                                 value="1"
                                                 name="quality-radio"
                                                 mode= {row.mode}
@@ -1156,7 +1162,7 @@ const useStyles = makeStyles(theme => ({
                                         <TableCell align="right">
                                             <Radio
                                                 checked={row.qualityValue === '2'}
-                                                onChange={handleModePref}
+                                                onChange={(e) => handleModePref(row.mode,e)}
                                                 value="2"
                                                 name="quality-radio"
                                             />
@@ -1164,7 +1170,7 @@ const useStyles = makeStyles(theme => ({
                                         <TableCell align="right">
                                             <Radio
                                                 checked={row.qualityValue === '3'}
-                                                onChange={handleModePref}
+                                                onChange={(e) => handleModePref(row.mode,e)}
                                                 value="3"
                                                 name="quality-radio"
                                             />
@@ -1172,7 +1178,7 @@ const useStyles = makeStyles(theme => ({
                                         <TableCell align="right">
                                             <Radio
                                                 checked={row.qualityValue === '4'}
-                                                onChange={handleModePref}
+                                                onChange={(e) => handleModePref(row.mode,e)}
                                                 value="4"
                                                 name="quality-radio"
                                             />
@@ -1180,7 +1186,7 @@ const useStyles = makeStyles(theme => ({
                                         <TableCell align="right">
                                             <Radio
                                                 checked={row.qualityValue === '5'}
-                                                onChange={handleModePref}
+                                                onChange={(e) => handleModePref(row.mode,e)}
                                                 value="5"
                                                 name="quality-radio"
                                             />
@@ -1188,7 +1194,7 @@ const useStyles = makeStyles(theme => ({
                                         <TableCell align="right">
                                             <Radio
                                                 checked={row.qualityValue === '6'}
-                                                onChange={handleModePref}
+                                                onChange={(e) => handleModePref(row.mode,e)}
                                                 value="6"
                                                 name="quality-radio"
                                             />
