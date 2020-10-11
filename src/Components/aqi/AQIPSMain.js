@@ -21,6 +21,12 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import aqImpact from "../../assets/icons/aqi/aq_impact.jpg";
 import MenuItem from "@material-ui/core/MenuItem";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import delhiZones from "../../assets/jsonfile/DelhiDistrictSubDistrict.json"
 import Gallery from 'react-grid-gallery';
 import img1 from "../../assets/icons/aqi/form_images/good.jpg";
@@ -177,6 +183,9 @@ const useStyles = makeStyles(theme => ({
       margin: "2vh 10vh 2vh 10vh",
       backgroundColor: "#bbdefb",
       borderRadius: 8
+    },
+    table: {
+        minWidth: 650,
     }
     }));
 
@@ -409,6 +418,67 @@ const useStyles = makeStyles(theme => ({
         return date;
     }
 
+    // Air Quality vs Travel mode table
+    function createData(mode, qualityValue) {
+        return { mode, qualityValue };
+    }
+
+    const rows = [
+        createData('Car/Car Sharing',null),
+        createData('Bus',null),
+        createData('Metro',null),
+        createData('2W/2W-Sharing',null),
+        createData('3W',null),
+        createData('Bicycle',null),
+        createData('Walk',null),
+    ];
+
+    const [carPref, setCarPrefValue] = React.useState(rows[0].qualityValue);
+    const [busPref, setBusPref] = React.useState(rows[1].qualityValue);
+    const [metroPref, setMetroPref] = React.useState(rows[2].qualityValue);
+    const [twoWheelerPref, setTwoWheelerPref] = React.useState(rows[3].qualityValue);
+    const [threeWheelerPref, setThreeWheelerPref] = React.useState(rows[4].qualityValue);
+    const [bicyclePref, setBicyclePref] = React.useState(rows[5].qualityValue);
+    const [walkPref, setWalkPref] = React.useState(rows[6].qualityValue);
+
+
+    const handleModePref = (e) => {
+        if(e.target.mode === 'Car/Car Sharing'){
+            setCarPrefValue(e.target.value);
+            rows[0].qualityValue = carPref;
+        }
+
+        if(e.target.mode === 'Bus'){
+            setBusPref(e.target.value);
+            rows[1].qualityValue = busPref;
+        }
+
+        if(e.target.mode === 'Metro'){
+            setMetroPref(e.target.value);
+            rows[2].qualityValue = metroPref;
+        }
+
+        if(e.target.mode === "2W/2W-Sharing"){
+            setTwoWheelerPref(e.target.value);
+            rows[3].qualityValue = twoWheelerPref;
+        }
+
+        if(e.target.mode === "3W"){
+            setThreeWheelerPref(e.target.value);
+            rows[4].qualityValue = threeWheelerPref;
+        }
+
+        if(e.target.mode === "Bicycle"){
+            setBicyclePref(e.target.value);
+            rows[5].qualityValue = bicyclePref;
+        }   
+
+        if(e.target.mode === "Walk"){
+            setWalkPref(e.target.value);
+            rows[6].qualityValue = walkPref;
+        }
+
+    }
 
     function handleSubmit() {
       axios.defaults.xsrfCookieName = "csrftoken";
@@ -1050,7 +1120,87 @@ const useStyles = makeStyles(theme => ({
                     </Typography>
                     <hr/>
                   </div>
-
+                <div className={classes.divStyle}>
+                    <Typography className={classes.labelStyle}>
+                        Which Travel Mode do you choose for a different level of Air Quality i.e.
+                    </Typography>
+                    <FormControl component="fieldset" className={classes.formControl}>
+                        <Paper>
+                            <Table className={classes.table} aria-label="simple table">
+                                <TableHead>
+                                <TableRow>
+                                    <TableCell>Travel Mode/<br/>Air Quality Level</TableCell>
+                                    <TableCell align="right">Good<br/>(0-50)</TableCell>
+                                    <TableCell align="right">Satisfactory<br/>(51-100)</TableCell>
+                                    <TableCell align="right">Moderate<br/>(101-200)</TableCell>
+                                    <TableCell align="right">Poor<br/>(201-300)</TableCell>
+                                    <TableCell align="right">Very Poor<br/>(301-400)</TableCell>
+                                    <TableCell align="right">Severe<br/>(401-500)</TableCell>
+                                </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {rows.map((row) => (
+                                    <TableRow key={row.mode}>
+                                        <TableCell component="th" scope="row">
+                                            {row.mode}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Radio
+                                                checked={row.qualityValue === '1'}
+                                                onChange={handleModePref}
+                                                value="1"
+                                                name="quality-radio"
+                                                mode= {row.mode}
+                                            />
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Radio
+                                                checked={row.qualityValue === '2'}
+                                                onChange={handleModePref}
+                                                value="2"
+                                                name="quality-radio"
+                                            />
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Radio
+                                                checked={row.qualityValue === '3'}
+                                                onChange={handleModePref}
+                                                value="3"
+                                                name="quality-radio"
+                                            />
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Radio
+                                                checked={row.qualityValue === '4'}
+                                                onChange={handleModePref}
+                                                value="4"
+                                                name="quality-radio"
+                                            />
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Radio
+                                                checked={row.qualityValue === '5'}
+                                                onChange={handleModePref}
+                                                value="5"
+                                                name="quality-radio"
+                                            />
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Radio
+                                                checked={row.qualityValue === '6'}
+                                                onChange={handleModePref}
+                                                value="6"
+                                                name="quality-radio"
+                                            />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                                </TableBody>
+                            </Table>
+                        </Paper>
+                    </FormControl>
+                    <hr />
+                </div>
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
                     Which of the following are applicable to you for the information about the air pollution exposure during your trip? 
