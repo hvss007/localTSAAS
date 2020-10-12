@@ -595,6 +595,11 @@ const useStyles = makeStyles(theme => ({
                                   control={<Radio color="primary" />}
                                   label="No"
                               />
+                              <FormControlLabel
+                                  value="IDontKnow"
+                                  control={<Radio color="primary" />}
+                                  label="I don't know"
+                              />
                           </RadioGroup>
                       </FormControl>
                       <hr />
@@ -865,8 +870,7 @@ const useStyles = makeStyles(theme => ({
                               <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
                               <MenuItem value="MotorBikeSharing">Motorbike/ scooter Sharing</MenuItem>
                               <MenuItem value="AutoRickshaw">Auto-rickshaw (3W)/ tuk-tuk/ E-rickshaw</MenuItem>
-                              <MenuItem value="Bicycle">Bicycle bicycle sharing</MenuItem>
-                              <MenuItem value="Bicycle">Bicycle sharing</MenuItem>
+                              <MenuItem value="Bicycle">Bicycle / bicycle sharing</MenuItem>
                               <MenuItem value="Walk">Walk</MenuItem>
 
                           </Select>
@@ -936,8 +940,7 @@ const useStyles = makeStyles(theme => ({
                               <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
                               <MenuItem value="MotorBikeSharing">Motorbike/ scooter Sharing</MenuItem>
                               <MenuItem value="AutoRickshaw">Auto-rickshaw (3W)/ tuk-tuk/ E-rickshaw</MenuItem>
-                              <MenuItem value="Bicycle">Bicycle bicycle sharing</MenuItem>
-                              <MenuItem value="Bicycle">Bicycle sharing</MenuItem>
+                              <MenuItem value="Bicycle">Bicycle/ bicycle sharing</MenuItem>
                               <MenuItem value="Walk">Walk</MenuItem>
 
                           </Select>
@@ -1053,10 +1056,21 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Which of the following are applicable to you for the information about the air pollution exposure during your trip? 
+                    There are no effect of air pollution exposure on my travel choices because 
                     </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <div className={classes.checkboxes}>
+                          <FormControlLabel
+                                  control={
+                                      <Checkbox
+                                          checked={captivity.IDontCareAboutAirPollution}
+                                          onChange={handleCaptivity("IAlreadyChangeChoiceBasedOnAirPollutionExposure")}
+                                          value="IAlreadyChangeChoiceBasedOnAirPollutionExposure"
+                                          color="primary"
+                                      />
+                                  }
+                                  label="I already change my travel choice based on air pollution exposure"
+                              />
                               <FormControlLabel
                                   control={
                                       <Checkbox
@@ -1072,13 +1086,24 @@ const useStyles = makeStyles(theme => ({
                               <FormControlLabel
                                   control={
                                       <Checkbox
-                                          checked={captivity.IWantToSwitchButIDontHaveInformation}
-                                          onChange={handleCaptivity("IWantToSwitchButIDontHaveInformation")}
-                                          value="IWantToSwitchButIDontHaveInformation"
+                                          checked={captivity.IWantToSwitchButIDontKnowHowCanIReduceExposure}
+                                          onChange={handleCaptivity("IWantToSwitchButIDontKnowHowCanIReduceExposure")}
+                                          value="IWantToSwitchButIDontKnowHowCanIReduceExposure"
                                           color="primary"
                                       />
                                   }
-                                  label="I want to switch but I don't have information"
+                                  label="I want to switch but I don't know how can I reduce the exposure"
+                              />
+                              <FormControlLabel
+                                  control={
+                                      <Checkbox
+                                          checked={captivity.IDidntKnowIfExposureToAirPollutionCanBeReduced}
+                                          onChange={handleCaptivity("IDidntKnowIfExposureToAirPollutionCanBeReduced")}
+                                          value="IDidntKnowIfExposureToAirPollutionCanBeReduced"
+                                          color="primary"
+                                      />
+                                  }
+                                  label="I didn't know if exposure to air pollution can be reduced"
                               />
                               <FormControlLabel
                                   control={
@@ -1090,6 +1115,17 @@ const useStyles = makeStyles(theme => ({
                                       />
                                   }
                                   label="I do not care about air pollution"
+                              />
+                              <FormControlLabel
+                                  control={
+                                      <Checkbox
+                                          checked={captivity.other}
+                                          onChange={handleCaptivity("other")}
+                                          value="other"
+                                          color="primary"
+                                      />
+                                  }
+                                  label="Other"
                               />
                           </div>
                       </FormControl>
