@@ -257,6 +257,20 @@ const useStyles = makeStyles(theme => ({
     const [secondaryComfortPreferenceAQIAPI, setSecondaryComfortPreferenceAQIAPI] = React.useState("");
     const [secondaryAQIPreferenceAQIAPI, setSecondaryAQIPreferenceAQIAPI] = React.useState("");
 
+    const [primaryModeGoodAQIAPI, setPrimaryModeGoodAQIAPI] = React.useState("");
+    const [primaryModeSatisfactoryAQIAPI, setPrimaryModeSatisfactoryAQIAPI] = React.useState("");
+    const [primaryModeModerateAQIAPI, setPrimaryModeModerateAQIAPI] = React.useState("");
+    const [primaryModePoorAQIAPI, setPrimaryModePoorAQIAPI] = React.useState("");
+    const [primaryModeVeryPoorAQIAPI, setPrimaryModeVeryPoorAQIAPI] = React.useState("");
+    const [primaryModeSevereAQIAPI, setPrimaryModeSevereAQIAPI] = React.useState("");
+
+    const [secondaryModeGoodAQIAPI, setSecondaryModeGoodAQIAPI] = React.useState("");
+    const [secondaryModeSatisfactoryAQIAPI, setSecondaryModeSatisfactoryAQIAPI] = React.useState("");
+    const [secondaryModeModerateAQIAPI, setSecondaryModeModerateAQIAPI] = React.useState("");
+    const [secondaryModePoorAQIAPI, setSecondaryModePoorAQIAPI] = React.useState("");
+    const [secondaryModeVeryPoorAQIAPI, setSecondaryModeVeryPoorAQIAPI] = React.useState("");
+    const [secondaryModeSevereAQIAPI, setSecondaryModeSevereAQIAPI] = React.useState("");
+    
     // const [preferWFH, setPreferWFH] = React.useState("");
     // Part D
     const [perceiveAQIHome, setPerceiveAQIHome] = React.useState("");
@@ -347,7 +361,7 @@ const useStyles = makeStyles(theme => ({
         setPrimaryDepartureTimePreference(event.target.value);
     }
     function handlePrimaryComfortPreference(event){
-        setSecondaryComfortPreference(event.target.value);
+        setPrimaryComfortPreference(event.target.value);
     }
     function handlePrimaryAQIPreference(event){
         setPrimaryAQIPreference(event.target.value);
@@ -393,7 +407,7 @@ const useStyles = makeStyles(theme => ({
         setPrimaryDepartureTimePreferenceAQIAPI(event.target.value);
     }
     function handlePrimaryComfortPreferenceAQIAPI(event){
-        setSecondaryComfortPreferenceAQIAPI(event.target.value);
+        setPrimaryComfortPreferenceAQIAPI(event.target.value);
     }
     function handlePrimaryAQIPreferenceAQIAPI(event){
         setPrimaryAQIPreferenceAQIAPI(event.target.value);
@@ -413,6 +427,44 @@ const useStyles = makeStyles(theme => ({
     }
     function handleSecondaryAQIPreferenceAQIAPI(event){
         setSecondaryAQIPreferenceAQIAPI(event.target.value);
+    }
+
+    function handlePrimaryModeGoodAQIAPI(event){
+        setPrimaryModeGoodAQIAPI(event.target.value);
+    }
+    function handlePrimaryModeSatisfactoryAQIAPI(event){
+        setPrimaryModeSatisfactoryAQIAPI(event.target.value);
+    }
+    function handlePrimaryModeModerateAQIAPI(event){
+        setPrimaryModeModerateAQIAPI(event.target.value);
+    }
+    function handlePrimaryModePoorAQIAPI(event){
+        setPrimaryModePoorAQIAPI(event.target.value);
+    }
+    function handlePrimaryModeVeryPoorAQIAPI(event){
+        setPrimaryModeVeryPoorAQIAPI(event.target.value);
+    }
+    function handlePrimaryModeSevereAQIAPI(event){
+        setPrimaryModeSevereAQIAPI(event.target.value);
+    }
+
+    function handleSecondaryModeGoodAQIAPI(event){
+        setSecondaryModeGoodAQIAPI(event.target.value);
+    }
+    function handleSecondaryModeSatisfactoryAQIAPI(event){
+        setSecondaryModeSatisfactoryAQIAPI(event.target.value);
+    }
+    function handleSecondaryModeModerateAQIAPI(event){
+        setSecondaryModeModerateAQIAPI(event.target.value);
+    }
+    function handleSecondaryModePoorAQIAPI(event){
+        setSecondaryModePoorAQIAPI(event.target.value);
+    }
+    function handleSecondaryModeVeryPoorAQIAPI(event){
+        setSecondaryModeVeryPoorAQIAPI(event.target.value);
+    }
+    function handleSecondaryModeSevereAQIAPI(event){
+        setSecondaryModeSevereAQIAPI(event.target.value);
     }
 
     // function handlePreferWFH(event) {
@@ -549,7 +601,8 @@ const useStyles = makeStyles(theme => ({
             avoidWalk: avoidWalk,
             primaryActTripPreferenceAQIAPI: primaryTravelTimePreferenceAQIAPI.concat("&").concat(primaryTravelCostPreferenceAQIAPI).concat("&").concat(primaryDepartureTimePreferenceAQIAPI).concat("&").concat(primaryComfortPreferenceAQIAPI).concat("&").concat(primaryAQIPreferenceAQIAPI),
             secondaryActTripPreferenceAQIAPI: secondaryTravelTimePreferenceAQIAPI.concat("&").concat(secondaryTravelCostPreferenceAQIAPI).concat("&").concat(secondaryDepartureTimePreferenceAQIAPI).concat("&").concat(secondaryComfortPreferenceAQIAPI).concat("&").concat(secondaryAQIPreferenceAQIAPI),
-            
+            primaryModeAQIAPI: primaryModeGoodAQIAPI.concat("&").concat(primaryModeSatisfactoryAQIAPI).concat("&").concat(primaryModeModerateAQIAPI).concat("&").concat(primaryModePoorAQIAPI).concat("&").concat(primaryModeVeryPoorAQIAPI).concat("&").concat(primaryModeSevereAQIAPI),
+            secondaryModeAQIAPI: secondaryModeGoodAQIAPI.concat("&").concat(secondaryModeSatisfactoryAQIAPI).concat("&").concat(secondaryModeModerateAQIAPI).concat("&").concat(secondaryModePoorAQIAPI).concat("&").concat(secondaryModeVeryPoorAQIAPI).concat("&").concat(secondaryModeSevereAQIAPI),
             // preferWFH: preferWFH,
             // Part D
             perceiveAQIHome: perceiveAQIHome,
@@ -1110,7 +1163,7 @@ const useStyles = makeStyles(theme => ({
                   </div>
                    <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
-                          At which Air Quality Index (AQI) or level, would you start changing your travel choices [TODO: make grid?]?
+                          At which Air Quality Index (AQI) or level, would you start changing your travel choices?
                         </Typography>
                       <FormControl component="outlined" className={classes.formControl}>
                       <InputLabel ref={inputLabel} htmlFor="outlined-avoidTrip">
@@ -1354,11 +1407,11 @@ const useStyles = makeStyles(theme => ({
                           <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <RadioGroup
-                              aria-label="secondaryAQIPreference"
-                              name="secondaryAQIPreference"
+                              aria-label="primaryAQIPreference"
+                              name="primaryAQIPreference"
                               className={classes.group}
-                              value={secondaryAQIPreference}
-                              onChange={handleSecondaryAQIPreference}
+                              value={primaryAQIPreference}
+                              onChange={handlePrimaryAQIPreference}
                           >
                               <FormControlLabel
                                   value="none"
@@ -1394,137 +1447,6 @@ const useStyles = makeStyles(theme => ({
                           </FormControl>
                           </Grid>
                       </Grid>
-                      {/*<Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
-                              <Typography className={classes.paraText}>
-                                  Travel time
-                                </Typography>
-                          </Grid>
-                          <Grid item xs={9}>
-                        <FormControl variant="outlined" className={classes.formControl}>
-                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-                              Preference
-                        </InputLabel>
-                          <Select
-                              value={primaryTravelTimePreference} 
-                              onChange={handlePrimaryTravelTimePreference}
-                              input={
-                                  <OutlinedInput
-                                      name="primaryTravelTimePreference"
-                                      labelWidth={labelWidth}
-                                      id="outlined-age-native-simple"
-                                  />
-                              }
-                          >
-                            <MenuItem value="none">None</MenuItem>
-                              <MenuItem value="1">1</MenuItem>
-                              <MenuItem value="2">2</MenuItem>
-                              <MenuItem value="3">3</MenuItem>
-                              <MenuItem value="3">4</MenuItem>
-                              <MenuItem value="5">5</MenuItem>
-                          </Select>
-                          </FormControl>
-                          </Grid>
-                      </Grid>
-
-                      <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
-                              <Typography className={classes.paraText}>
-                                  Travel cost
-                                </Typography>
-                          </Grid>
-                          <Grid item xs={9}>
-                        <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-                              Preference
-                        </InputLabel>
-                          <Select
-                              value={primaryTravelCostPreference} 
-                              onChange={handlePrimaryTravelCostPreference}
-                              input={
-                                  <OutlinedInput
-                                      name="primaryTravelCostPreference"
-                                      labelWidth={labelWidth}
-                                      id="outlined-age-native-simple"
-                                  />
-                              }
-                          >
-                                <MenuItem value="none">None</MenuItem>
-                              <MenuItem value="1">1</MenuItem>
-                              <MenuItem value="2">2</MenuItem>
-                              <MenuItem value="3">3</MenuItem>
-                              <MenuItem value="3">4</MenuItem>
-                              <MenuItem value="5">5</MenuItem>
-                          </Select>
-                          </FormControl>
-                          </Grid>
-                      </Grid>
-
-                      <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
-                              <Typography className={classes.paraText}>
-                                  Departure time
-                                </Typography>
-                          </Grid>
-                          <Grid item xs={9}>
-                        <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-                              Preference
-                        </InputLabel>
-                          <Select
-                              value={primaryDepartureTimePreference} 
-                              onChange={handlePrimaryDepartureTimePreference}
-                              input={
-                                  <OutlinedInput
-                                      name="primaryDepartureTimePreference"
-                                      labelWidth={labelWidth}
-                                      id="outlined-age-native-simple"
-                                  />
-                              }
-                          >
-                                <MenuItem value="none">None</MenuItem>
-                              <MenuItem value="1">1</MenuItem>
-                              <MenuItem value="2">2</MenuItem>
-                              <MenuItem value="3">3</MenuItem>
-                              <MenuItem value="3">4</MenuItem>
-                              <MenuItem value="5">5</MenuItem>
-                          </Select>
-                          </FormControl>
-                          </Grid>
-                      </Grid>
-                      <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
-                              <Typography className={classes.paraText}>
-                                  Air pollution exposure
-                                </Typography>
-                          </Grid>
-                          <Grid item xs={9}>
-                        <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-                              Preference
-                        </InputLabel>
-                          <Select
-                              value={primaryAQIPreference} 
-                              onChange={handlePrimaryAQIPreference}
-                              input={
-                                  <OutlinedInput
-                                      name="primaryAQIPreference"
-                                      labelWidth={labelWidth}
-                                      id="outlined-age-native-simple"
-                                  />
-                              }
-                          >
-                                <MenuItem value="none">None</MenuItem>
-                              <MenuItem value="1">1</MenuItem>
-                              <MenuItem value="2">2</MenuItem>
-                              <MenuItem value="3">3</MenuItem>
-                              <MenuItem value="3">4</MenuItem>
-                              <MenuItem value="5">5</MenuItem>
-                          </Select>
-                          </FormControl>
-                          </Grid>
-                      </Grid> */}
-
                     <hr/>
                   </div>
 
@@ -2822,11 +2744,11 @@ const useStyles = makeStyles(theme => ({
                           <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <RadioGroup
-                              aria-label="secondaryAQIPreferenceAQIAPI"
-                              name="secondaryAQIPreferenceAQIAPI"
+                              aria-label="primaryAQIPreferenceAQIAPI"
+                              name="primaryAQIPreferenceAQIAPI"
                               className={classes.group}
-                              value={secondaryAQIPreferenceAQIAPI}
-                              onChange={handleSecondaryAQIPreferenceAQIAPI}
+                              value={primaryAQIPreferenceAQIAPI}
+                              onChange={handlePrimaryAQIPreferenceAQIAPI}
                           >
                               <FormControlLabel
                                   value="none"
@@ -3123,15 +3045,451 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Which travel mode would you choose for your trip to primary activities (to work/ school/ college) [TODO: make grid?]? 
+                    Which travel mode would you choose for your trip to primary activities (to work/ school/ college)? 
                     </Typography>
+                    <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Good (0-50)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                         Travel mode
+                        </InputLabel>
+                          <Select
+                              value={primaryModeGoodAQIAPI} 
+                              onChange={handlePrimaryModeGoodAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryModeGoodAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                              <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Satisfactory (51-100)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        Travel mode
+                        </InputLabel>
+                          <Select
+                              value={primaryModeSatisfactoryAQIAPI} 
+                              onChange={handlePrimaryModeSatisfactoryAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryModeSatisfactoryAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Moderate (101-200)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        Travel mode
+                        </InputLabel>
+                          <Select
+                              value={primaryModeModerateAQIAPI} 
+                              onChange={handlePrimaryModeModerateAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryModeModerateAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Poor (201-300)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        Travel mode
+                        </InputLabel>
+                          <Select
+                              value={primaryModePoorAQIAPI} 
+                              onChange={handlePrimaryModePoorAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryModePoorAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Very poor (301-400)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        Travel mode
+                        </InputLabel>
+                          <Select
+                              value={primaryModeVeryPoorAQIAPI} 
+                              onChange={handlePrimaryModeVeryPoorAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryModeVeryPoorAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Severe (401-500)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                              Travel mode
+                        </InputLabel>
+                          <Select
+                              value={primaryModeSevereAQIAPI} 
+                              onChange={handlePrimaryModeSevereAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryModeSevereAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
                     <hr/>
                   </div>
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                  Which travel mode would you choose for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)  [TODO: make grid?]? 
+                  Which travel mode would you choose for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)? 
                     </Typography>
+                    <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Good (0-50)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                         Travel mode
+                        </InputLabel>
+                          <Select
+                              value={secondaryModeGoodAQIAPI} 
+                              onChange={handleSecondaryModeGoodAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="secondaryModeGoodAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                              <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Satisfactory (51-100)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        Travel mode
+                        </InputLabel>
+                          <Select
+                              value={secondaryModeSatisfactoryAQIAPI} 
+                              onChange={handleSecondaryModeSatisfactoryAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="secondaryModeSatisfactoryAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Moderate (101-200)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        Travel mode
+                        </InputLabel>
+                          <Select
+                              value={secondaryModeModerateAQIAPI} 
+                              onChange={handleSecondaryModeModerateAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="secondaryModeModerateAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Poor (201-300)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        Travel mode
+                        </InputLabel>
+                          <Select
+                              value={secondaryModePoorAQIAPI} 
+                              onChange={handleSecondaryModePoorAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="secondaryModePoorAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Very poor (301-400)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        Travel mode
+                        </InputLabel>
+                          <Select
+                              value={secondaryModeVeryPoorAQIAPI} 
+                              onChange={handleSecondaryModeVeryPoorAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="secondaryModeVeryPoorAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Severe (401-500)
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                              Travel mode
+                        </InputLabel>
+                          <Select
+                              value={secondaryModeSevereAQIAPI} 
+                              onChange={handleSecondaryModeSevereAQIAPI}
+                              input={
+                                  <OutlinedInput
+                                      name="secondaryModeSevereAQIAPI"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                <MenuItem value="Car">Car</MenuItem>
+                              <MenuItem value="CarSharing">Car sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Bus">Bus</MenuItem>
+                              <MenuItem value="Metro">Metro</MenuItem>
+                              <MenuItem value="CommuterTrain">Commuter (local) train</MenuItem>
+                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
+                              <MenuItem value="TwoWheelerSharing">Motorbike/ scooter sharing</MenuItem>
+                              <MenuItem value="AutoRickshaw">Auto rickshay/ E-rickshaw</MenuItem>
+                              <MenuItem value="bicycle">Bicycle/ bisycle sharing</MenuItem>
+                              <MenuItem value="Walk">Walk</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
                     <hr/>
                   </div>
 
