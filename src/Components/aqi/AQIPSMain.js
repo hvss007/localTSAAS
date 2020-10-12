@@ -208,16 +208,15 @@ const useStyles = makeStyles(theme => ({
 
     // (1) define here..
     // Part A
-    const [homeTehsil, setHomeTehsil] = React.useState([]);
+    const [homeTehsil, setHomeTehsil] = React.useState("");
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
     const [airPollutionAdverseHealthEffect, setAirPollutionAdverseHealthEffect] = React.useState("");
     const [aqiUnderstanding, setAqiUnderstanding] = React.useState("");
-    // const [UnderstandAbove, setUnderstandAbove] = React.useState("");
     const [airQualityLevelBad, setAirQualityLevelBad] = React.useState("");
     const [checkingAirQualityLevel, setCheckingAirQualityLevel] = React.useState("");
     const [fequentlyAirQualityLevel, setFequentlyAirQualityLevel] = React.useState("");
     // Part B
-    const [destinationTehsil, setDestinationTehsil] = React.useState([]);
+    const [destinationTehsil, setDestinationTehsil] = React.useState("");
     const[tripsPerDay, setTripsPerDay] = React.useState("");
     const [purposeTrip, setPurposeTrip] = React.useState("");
     const [primaryTrip, setPrimaryTrip] = React.useState("");
@@ -241,7 +240,7 @@ const useStyles = makeStyles(theme => ({
 
 
     const [reasonNotToChangeChoices, setReasonNotToChangeChoices] = React.useState("");
-    // Part C
+    // Part E
     const [informationRequired, setInformationRequired] = React.useState("");
     const [avoidWalk, setAvoidWalk] = React.useState("");
     //grid-pref
@@ -272,7 +271,7 @@ const useStyles = makeStyles(theme => ({
     const [secondaryModeSevereAQIAPI, setSecondaryModeSevereAQIAPI] = React.useState("");
     
     // const [preferWFH, setPreferWFH] = React.useState("");
-    // Part D
+    // Part C
     const [perceiveAQIHome, setPerceiveAQIHome] = React.useState("");
     const [perceiveAQIWork, setPerceiveAQIWork] = React.useState("");
     const [healthEffect, setHealthEffect] = React.useState("");
@@ -280,7 +279,7 @@ const useStyles = makeStyles(theme => ({
     const [travelHealthEffect, setTravelHealthEffect] = React.useState("");
     const [sensitiveGroupEffect, setSensitiveGroupEffect] = React.useState("");
     const [psychologyEffect, setPsychologyEffect] = React.useState("");
-    // Part E
+    // Part D
     const [maskAirPollution, setMaskAirPollution] = React.useState("");
     const [airFilter, setAirFilter] = React.useState("");
     const [missSchool, setMissSchool] = React.useState("");
@@ -390,7 +389,7 @@ const useStyles = makeStyles(theme => ({
             setReasonNotToChangeChoices(reasonNotToChangeChoices.concat("&").concat(name));
         }
     }
-    // Part C
+    // Part E
     function handleInformationRequired(event) {
         setInformationRequired(event.target.value);
     }
@@ -470,7 +469,7 @@ const useStyles = makeStyles(theme => ({
     // function handlePreferWFH(event) {
     //     setPreferWFH(event.target.value);
     // }
-    // Part D
+    // Part C
     function handlePerceiveAQIHome(event) {
         setPerceiveAQIHome(event.target.value);
     }
@@ -508,7 +507,7 @@ const useStyles = makeStyles(theme => ({
             setPsychologyEffect(psychologyEffect.concat("&").concat(name));
         }
     }
-    // Part E
+    // Part D
     function handleMaskAirPollution(event) {
         setMaskAirPollution(event.target.value)
     }
@@ -578,7 +577,6 @@ const useStyles = makeStyles(theme => ({
             airPollutionMajorProb: airPollutionMajorProb,
             airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
             aqiUnderstanding: aqiUnderstanding,
-            // UnderstandAbove: UnderstandAbove,
             airQualityLevelBad: airQualityLevelBad,
             checkingAirQualityLevel: checkingAirQualityLevel,
             fequentlyAirQualityLevel: fequentlyAirQualityLevel,
@@ -596,7 +594,7 @@ const useStyles = makeStyles(theme => ({
             secondaryActTripPreference: secondaryTravelTimePreference.concat("&").concat(secondaryTravelCostPreference).concat("&").concat(secondaryDepartureTimePreference).concat("&").concat(secondaryComfortPreference).concat("&").concat(secondaryAQIPreference),
             reasonNotToChangeChoices: reasonNotToChangeChoices,
             // choiceInWinter: choiceInWinter,
-            // Part C
+            // Part E
             informationRequired: informationRequired,
             avoidWalk: avoidWalk,
             primaryActTripPreferenceAQIAPI: primaryTravelTimePreferenceAQIAPI.concat("&").concat(primaryTravelCostPreferenceAQIAPI).concat("&").concat(primaryDepartureTimePreferenceAQIAPI).concat("&").concat(primaryComfortPreferenceAQIAPI).concat("&").concat(primaryAQIPreferenceAQIAPI),
@@ -604,7 +602,7 @@ const useStyles = makeStyles(theme => ({
             primaryModeAQIAPI: primaryModeGoodAQIAPI.concat("&").concat(primaryModeSatisfactoryAQIAPI).concat("&").concat(primaryModeModerateAQIAPI).concat("&").concat(primaryModePoorAQIAPI).concat("&").concat(primaryModeVeryPoorAQIAPI).concat("&").concat(primaryModeSevereAQIAPI),
             secondaryModeAQIAPI: secondaryModeGoodAQIAPI.concat("&").concat(secondaryModeSatisfactoryAQIAPI).concat("&").concat(secondaryModeModerateAQIAPI).concat("&").concat(secondaryModePoorAQIAPI).concat("&").concat(secondaryModeVeryPoorAQIAPI).concat("&").concat(secondaryModeSevereAQIAPI),
             // preferWFH: preferWFH,
-            // Part D
+            // Part C
             perceiveAQIHome: perceiveAQIHome,
             perceiveAQIWork: perceiveAQIWork,
             healthEffect: healthEffect,
@@ -612,7 +610,7 @@ const useStyles = makeStyles(theme => ({
             travelHealthEffect: travelHealthEffect,
             sensitiveGroupEffect: sensitiveGroupEffect,
             psychologyEffect: psychologyEffect,
-            // Part E
+            // Part D
             maskAirPollution: maskAirPollution,
             airFilter: airFilter,
             missSchool: missSchool,
@@ -626,8 +624,6 @@ const useStyles = makeStyles(theme => ({
             maritialStatus: marStatus,
             profession: profess,
             comment: comment
-
-
           })
           .then(Response => {
             console.log(Response);
@@ -702,7 +698,7 @@ const useStyles = makeStyles(theme => ({
                           <Select
                               native
                               value={homeTehsil}
-                                onChange={handleHomeTehsil}
+                            onChange={handleHomeTehsil}
                               input={
                                   <OutlinedInput
                                       name="homeTehsil"
