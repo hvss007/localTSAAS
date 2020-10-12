@@ -7,6 +7,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
+import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
@@ -224,7 +225,20 @@ const useStyles = makeStyles(theme => ({
     const [avoidTrip, setAvoidTrip] = React.useState("");
     const [impactOnPrimaryActs, setImpactOnPrimaryActs] = React.useState("");
     const [impactOnSecondaryActs, setImpactOnSecondaryActs] = React.useState("");
-    const [captivity, setCaptivity] = React.useState("");
+
+    //grid-pref
+    const [primaryTravelTimePreference, setPrimaryTravelTimePreference] = React.useState("");
+    const [primaryTravelCostPreference, setPrimaryTravelCostPreference] = React.useState("");
+    const [primaryDepartureTimePreference, setPrimaryDepartureTimePreference] = React.useState("");
+    const [primaryAQIPreference, setPrimaryAQIPreference] = React.useState("");
+
+    const [secondaryTravelTimePreference, setSecondaryTravelTimePreference] = React.useState("");
+    const [secondaryTravelCostPreference, setSecondaryTravelCostPreference] = React.useState("");
+    const [secondaryDepartureTimePreference, setSecondaryDepartureTimePreference] = React.useState("");
+    const [secondaryAQIPreference, setSecondaryAQIPreference] = React.useState("");
+
+
+    const [reasonNotToChangeChoices, setReasonNotToChangeChoices] = React.useState("");
     // Part C
     const [informationRequired, setInformationRequired] = React.useState("");
     const [avoidWalk, setAvoidWalk] = React.useState("");
@@ -306,11 +320,40 @@ const useStyles = makeStyles(theme => ({
     function handleImpactOnSecondaryActs(event) {
         setImpactOnSecondaryActs(event.target.value);
     }
-    const handleCaptivity = name => event => {
+
+    //grid-pref
+    function handlePrimaryTravelTimePreference(event){
+        setPrimaryTravelTimePreference(event.target.value);
+    }
+    function handlePrimaryTravelCostPreference(event){
+        setPrimaryTravelCostPreference(event.target.value);
+    }
+    function handlePrimaryDepartureTimePreference(event){
+        setPrimaryDepartureTimePreference(event.target.value);
+    }
+    function handlePrimaryAQIPreference(event){
+        setPrimaryAQIPreference(event.target.value);
+    }
+
+    function handleSecondaryTravelTimePreference(event){
+        setSecondaryTravelTimePreference(event.target.value);
+    }
+    function handleSecondaryTravelCostPreference(event){
+        setSecondaryTravelCostPreference(event.target.value);
+    }
+    function handleSecondaryDepartureTimePreference(event){
+        setSecondaryDepartureTimePreference(event.target.value);
+    }
+    function handleSecondaryAQIPreference(event){
+        setSecondaryAQIPreference(event.target.value);
+    }
+    
+
+    const handleReasonNotToChangeChoices = name => event => {
         if (healthEffect === "") {
-            setCaptivity(name);
+            setReasonNotToChangeChoices(name);
         } else {
-            setCaptivity(captivity.concat("&").concat(name));
+            setReasonNotToChangeChoices(reasonNotToChangeChoices.concat("&").concat(name));
         }
     }
     // Part C
@@ -444,7 +487,10 @@ const useStyles = makeStyles(theme => ({
             avoidTrip: avoidTrip,
             impactOnPrimaryActs: impactOnPrimaryActs,
             impactOnSecondaryActs: impactOnSecondaryActs,
-            captivity: captivity,
+            //grid-pref
+            primaryActTripPreference: primaryTravelTimePreference.concat("&").concat(primaryTravelCostPreference).concat("&").concat(primaryDepartureTimePreference).concat("&").concat(primaryAQIPreference),
+            secondaryActTripPreference: secondaryTravelTimePreference.concat("&").concat(secondaryTravelCostPreference).concat("&").concat(secondaryDepartureTimePreference).concat("&").concat(secondaryAQIPreference),
+            reasonNotToChangeChoices: reasonNotToChangeChoices,
             // choiceInWinter: choiceInWinter,
             // Part C
             informationRequired: informationRequired,
@@ -1042,15 +1088,350 @@ const useStyles = makeStyles(theme => ({
                   
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the current level of preferences (least-highest) for your trip to primary activities (to work/ school/ college) TODO: make grid?]? 
+                    Select the current level of preferences (1 as least and 5 as highest) for your trip to primary activities (to work/ school/ college)? 
                     </Typography>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                              Preference
+                        </InputLabel>
+                          <Select
+                              value={primaryTravelTimePreference} 
+                              onChange={handlePrimaryTravelTimePreference}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryTravelTimePreference"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                {/* <MenuItem value="" /> */}
+                            <MenuItem value="none">None</MenuItem>
+                              <MenuItem value="1">1</MenuItem>
+                              <MenuItem value="2">2</MenuItem>
+                              <MenuItem value="3">3</MenuItem>
+                              <MenuItem value="3">4</MenuItem>
+                              <MenuItem value="5">5</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel cost
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                              Preference
+                        </InputLabel>
+                          <Select
+                              value={primaryTravelCostPreference} 
+                              onChange={handlePrimaryTravelCostPreference}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryTravelCostPreference"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                {/* <MenuItem value="" /> */}
+                                <MenuItem value="none">None</MenuItem>
+                              <MenuItem value="1">1</MenuItem>
+                              <MenuItem value="2">2</MenuItem>
+                              <MenuItem value="3">3</MenuItem>
+                              <MenuItem value="3">4</MenuItem>
+                              <MenuItem value="5">5</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Departure time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                              Preference
+                        </InputLabel>
+                          <Select
+                              value={primaryDepartureTimePreference} 
+                              onChange={handlePrimaryDepartureTimePreference}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryDepartureTimePreference"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                {/* <MenuItem value="" /> */}
+                                <MenuItem value="none">None</MenuItem>
+                              <MenuItem value="1">1</MenuItem>
+                              <MenuItem value="2">2</MenuItem>
+                              <MenuItem value="3">3</MenuItem>
+                              <MenuItem value="3">4</MenuItem>
+                              <MenuItem value="5">5</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+                      <Grid container spacing={1}>
+                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Air pollution exposure
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                              Preference
+                        </InputLabel>
+                          <Select
+                              value={primaryAQIPreference} 
+                              onChange={handlePrimaryAQIPreference}
+                              input={
+                                  <OutlinedInput
+                                      name="primaryAQIPreference"
+                                      labelWidth={labelWidth}
+                                      id="outlined-age-native-simple"
+                                  />
+                              }
+                          >
+                                {/* <MenuItem value="" /> */}
+                                <MenuItem value="none">None</MenuItem>
+                              <MenuItem value="1">1</MenuItem>
+                              <MenuItem value="2">2</MenuItem>
+                              <MenuItem value="3">3</MenuItem>
+                              <MenuItem value="3">4</MenuItem>
+                              <MenuItem value="5">5</MenuItem>
+                          </Select>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
                     <hr/>
                   </div>
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the current level of preferences (least-highest) for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping) [TODO: make grid?]? 
+                    Select the current level of preferences (1 as least and 5 as highest) for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)? 
                     </Typography>
+                    <Grid container spacing={1}>
+                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryTravelTimePreference"
+                              name="secondaryTravelTimePreference"
+                              className={classes.group}
+                              value={secondaryTravelTimePreference}
+                              onChange={handleSecondaryTravelTimePreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel cost
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryTravelCostPreference"
+                              name="secondaryTravelCostPreference"
+                              className={classes.group}
+                              value={secondaryTravelCostPreference}
+                              onChange={handleSecondaryTravelCostPreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                              Departure time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryDepartureTimePreference"
+                              name="secondaryDepartureTimePreference"
+                              className={classes.group}
+                              value={secondaryDepartureTimePreference}
+                              onChange={handleSecondaryDepartureTimePreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Air pollution exposure
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryAQIPreference"
+                              name="secondaryAQIPreference"
+                              className={classes.group}
+                              value={secondaryAQIPreference}
+                              onChange={handleSecondaryAQIPreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
                     <hr/>
                   </div>
 
@@ -1063,8 +1444,8 @@ const useStyles = makeStyles(theme => ({
                           <FormControlLabel
                                   control={
                                       <Checkbox
-                                          checked={captivity.IDontCareAboutAirPollution}
-                                          onChange={handleCaptivity("IAlreadyChangeChoiceBasedOnAirPollutionExposure")}
+                                          checked={reasonNotToChangeChoices.IDontCareAboutAirPollution}
+                                          onChange={handleReasonNotToChangeChoices("IAlreadyChangeChoiceBasedOnAirPollutionExposure")}
                                           value="IAlreadyChangeChoiceBasedOnAirPollutionExposure"
                                           color="primary"
                                       />
@@ -1074,8 +1455,8 @@ const useStyles = makeStyles(theme => ({
                               <FormControlLabel
                                   control={
                                       <Checkbox
-                                          checked={captivity.IDoNotKnowAboutHarmfulEffectAirPollution}
-                                          onChange={handleCaptivity("IDoNotKnowAboutHarmfulEffectAirPollution")}
+                                          checked={reasonNotToChangeChoices.IDoNotKnowAboutHarmfulEffectAirPollution}
+                                          onChange={handleReasonNotToChangeChoices("IDoNotKnowAboutHarmfulEffectAirPollution")}
                                           value="IDoNotKnowAboutHarmfulEffectAirPollution"
                                           color="primary"
                                       />
@@ -1086,8 +1467,8 @@ const useStyles = makeStyles(theme => ({
                               <FormControlLabel
                                   control={
                                       <Checkbox
-                                          checked={captivity.IWantToSwitchButIDontKnowHowCanIReduceExposure}
-                                          onChange={handleCaptivity("IWantToSwitchButIDontKnowHowCanIReduceExposure")}
+                                          checked={reasonNotToChangeChoices.IWantToSwitchButIDontKnowHowCanIReduceExposure}
+                                          onChange={handleReasonNotToChangeChoices("IWantToSwitchButIDontKnowHowCanIReduceExposure")}
                                           value="IWantToSwitchButIDontKnowHowCanIReduceExposure"
                                           color="primary"
                                       />
@@ -1097,8 +1478,8 @@ const useStyles = makeStyles(theme => ({
                               <FormControlLabel
                                   control={
                                       <Checkbox
-                                          checked={captivity.IDidntKnowIfExposureToAirPollutionCanBeReduced}
-                                          onChange={handleCaptivity("IDidntKnowIfExposureToAirPollutionCanBeReduced")}
+                                          checked={reasonNotToChangeChoices.IDidntKnowIfExposureToAirPollutionCanBeReduced}
+                                          onChange={handleReasonNotToChangeChoices("IDidntKnowIfExposureToAirPollutionCanBeReduced")}
                                           value="IDidntKnowIfExposureToAirPollutionCanBeReduced"
                                           color="primary"
                                       />
@@ -1108,8 +1489,8 @@ const useStyles = makeStyles(theme => ({
                               <FormControlLabel
                                   control={
                                       <Checkbox
-                                          checked={captivity.IDontCareAboutAirPollution}
-                                          onChange={handleCaptivity("IDontCareAboutAirPollution")}
+                                          checked={reasonNotToChangeChoices.IDontCareAboutAirPollution}
+                                          onChange={handleReasonNotToChangeChoices("IDontCareAboutAirPollution")}
                                           value="IDontCareAboutAirPollution"
                                           color="primary"
                                       />
@@ -1119,8 +1500,8 @@ const useStyles = makeStyles(theme => ({
                               <FormControlLabel
                                   control={
                                       <Checkbox
-                                          checked={captivity.other}
-                                          onChange={handleCaptivity("other")}
+                                          checked={reasonNotToChangeChoices.other}
+                                          onChange={handleReasonNotToChangeChoices("other")}
                                           value="other"
                                           color="primary"
                                       />
