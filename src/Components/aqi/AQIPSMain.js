@@ -230,11 +230,13 @@ const useStyles = makeStyles(theme => ({
     const [primaryTravelTimePreference, setPrimaryTravelTimePreference] = React.useState("");
     const [primaryTravelCostPreference, setPrimaryTravelCostPreference] = React.useState("");
     const [primaryDepartureTimePreference, setPrimaryDepartureTimePreference] = React.useState("");
+    const [primaryComfortPreference, setPrimaryComfortPreference] = React.useState("");
     const [primaryAQIPreference, setPrimaryAQIPreference] = React.useState("");
 
     const [secondaryTravelTimePreference, setSecondaryTravelTimePreference] = React.useState("");
     const [secondaryTravelCostPreference, setSecondaryTravelCostPreference] = React.useState("");
     const [secondaryDepartureTimePreference, setSecondaryDepartureTimePreference] = React.useState("");
+    const [secondaryComfortPreference, setSecondaryComfortPreference] = React.useState("");
     const [secondaryAQIPreference, setSecondaryAQIPreference] = React.useState("");
 
 
@@ -242,6 +244,19 @@ const useStyles = makeStyles(theme => ({
     // Part C
     const [informationRequired, setInformationRequired] = React.useState("");
     const [avoidWalk, setAvoidWalk] = React.useState("");
+    //grid-pref
+    const [primaryTravelTimePreferenceAQIAPI, setPrimaryTravelTimePreferenceAQIAPI] = React.useState("");
+    const [primaryTravelCostPreferenceAQIAPI, setPrimaryTravelCostPreferenceAQIAPI] = React.useState("");
+    const [primaryDepartureTimePreferenceAQIAPI, setPrimaryDepartureTimePreferenceAQIAPI] = React.useState("");
+    const [primaryComfortPreferenceAQIAPI, setPrimaryComfortPreferenceAQIAPI] = React.useState("");
+    const [primaryAQIPreferenceAQIAPI, setPrimaryAQIPreferenceAQIAPI] = React.useState("");
+
+    const [secondaryTravelTimePreferenceAQIAPI, setSecondaryTravelTimePreferenceAQIAPI] = React.useState("");
+    const [secondaryTravelCostPreferenceAQIAPI, setSecondaryTravelCostPreferenceAQIAPI] = React.useState("");
+    const [secondaryDepartureTimePreferenceAQIAPI, setSecondaryDepartureTimePreferenceAQIAPI] = React.useState("");
+    const [secondaryComfortPreferenceAQIAPI, setSecondaryComfortPreferenceAQIAPI] = React.useState("");
+    const [secondaryAQIPreferenceAQIAPI, setSecondaryAQIPreferenceAQIAPI] = React.useState("");
+
     // const [preferWFH, setPreferWFH] = React.useState("");
     // Part D
     const [perceiveAQIHome, setPerceiveAQIHome] = React.useState("");
@@ -331,6 +346,9 @@ const useStyles = makeStyles(theme => ({
     function handlePrimaryDepartureTimePreference(event){
         setPrimaryDepartureTimePreference(event.target.value);
     }
+    function handlePrimaryComfortPreference(event){
+        setSecondaryComfortPreference(event.target.value);
+    }
     function handlePrimaryAQIPreference(event){
         setPrimaryAQIPreference(event.target.value);
     }
@@ -344,10 +362,12 @@ const useStyles = makeStyles(theme => ({
     function handleSecondaryDepartureTimePreference(event){
         setSecondaryDepartureTimePreference(event.target.value);
     }
+    function handleSecondaryComfortPreference(event){
+        setSecondaryComfortPreference(event.target.value);
+    }
     function handleSecondaryAQIPreference(event){
         setSecondaryAQIPreference(event.target.value);
     }
-    
 
     const handleReasonNotToChangeChoices = name => event => {
         if (healthEffect === "") {
@@ -363,6 +383,38 @@ const useStyles = makeStyles(theme => ({
     function handleAvoidWalk(event) {
         setAvoidWalk(event.target.value);
     }
+    function handlePrimaryTravelTimePreferenceAQIAPI(event){
+        setPrimaryTravelTimePreferenceAQIAPI(event.target.value);
+    }
+    function handlePrimaryTravelCostPreferenceAQIAPI(event){
+        setPrimaryTravelCostPreferenceAQIAPI(event.target.value);
+    }
+    function handlePrimaryDepartureTimePreferenceAQIAPI(event){
+        setPrimaryDepartureTimePreferenceAQIAPI(event.target.value);
+    }
+    function handlePrimaryComfortPreferenceAQIAPI(event){
+        setSecondaryComfortPreferenceAQIAPI(event.target.value);
+    }
+    function handlePrimaryAQIPreferenceAQIAPI(event){
+        setPrimaryAQIPreferenceAQIAPI(event.target.value);
+    }
+
+    function handleSecondaryTravelTimePreferenceAQIAPI(event){
+        setSecondaryTravelTimePreferenceAQIAPI(event.target.value);
+    }
+    function handleSecondaryTravelCostPreferenceAQIAPI(event){
+        setSecondaryTravelCostPreferenceAQIAPI(event.target.value);
+    }
+    function handleSecondaryDepartureTimePreferenceAQIAPI(event){
+        setSecondaryDepartureTimePreferenceAQIAPI(event.target.value);
+    }
+    function handleSecondaryComfortPreferenceAQIAPI(event){
+        setSecondaryComfortPreferenceAQIAPI(event.target.value);
+    }
+    function handleSecondaryAQIPreferenceAQIAPI(event){
+        setSecondaryAQIPreferenceAQIAPI(event.target.value);
+    }
+
     // function handlePreferWFH(event) {
     //     setPreferWFH(event.target.value);
     // }
@@ -488,13 +540,16 @@ const useStyles = makeStyles(theme => ({
             impactOnPrimaryActs: impactOnPrimaryActs,
             impactOnSecondaryActs: impactOnSecondaryActs,
             //grid-pref
-            primaryActTripPreference: primaryTravelTimePreference.concat("&").concat(primaryTravelCostPreference).concat("&").concat(primaryDepartureTimePreference).concat("&").concat(primaryAQIPreference),
-            secondaryActTripPreference: secondaryTravelTimePreference.concat("&").concat(secondaryTravelCostPreference).concat("&").concat(secondaryDepartureTimePreference).concat("&").concat(secondaryAQIPreference),
+            primaryActTripPreference: primaryTravelTimePreference.concat("&").concat(primaryTravelCostPreference).concat("&").concat(primaryDepartureTimePreference).concat("&").concat(primaryComfortPreference).concat("&").concat(primaryAQIPreference),
+            secondaryActTripPreference: secondaryTravelTimePreference.concat("&").concat(secondaryTravelCostPreference).concat("&").concat(secondaryDepartureTimePreference).concat("&").concat(secondaryComfortPreference).concat("&").concat(secondaryAQIPreference),
             reasonNotToChangeChoices: reasonNotToChangeChoices,
             // choiceInWinter: choiceInWinter,
             // Part C
             informationRequired: informationRequired,
             avoidWalk: avoidWalk,
+            primaryActTripPreferenceAQIAPI: primaryTravelTimePreferenceAQIAPI.concat("&").concat(primaryTravelCostPreferenceAQIAPI).concat("&").concat(primaryDepartureTimePreferenceAQIAPI).concat("&").concat(primaryComfortPreferenceAQIAPI).concat("&").concat(primaryAQIPreferenceAQIAPI),
+            secondaryActTripPreferenceAQIAPI: secondaryTravelTimePreferenceAQIAPI.concat("&").concat(secondaryTravelCostPreferenceAQIAPI).concat("&").concat(secondaryDepartureTimePreferenceAQIAPI).concat("&").concat(secondaryComfortPreferenceAQIAPI).concat("&").concat(secondaryAQIPreferenceAQIAPI),
+            
             // preferWFH: preferWFH,
             // Part D
             perceiveAQIHome: perceiveAQIHome,
@@ -909,13 +964,13 @@ const useStyles = makeStyles(theme => ({
                           >
                                {/* <MenuItem value="" /> */}
                               <MenuItem value="Car">Car</MenuItem>
-                              <MenuItem value="CarSharing">Car Sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Car Sharing">Car Sharing (OLA, Uber, taxi, other)</MenuItem>
                               <MenuItem value="Bus">Bus</MenuItem>
                               <MenuItem value="Metro">Metro</MenuItem>
                               <MenuItem value="Commuter">Commuter (local) train</MenuItem>
-                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
-                              <MenuItem value="MotorBikeSharing">Motorbike/ scooter Sharing</MenuItem>
-                              <MenuItem value="AutoRickshaw">Auto-rickshaw (3W)/ tuk-tuk/ E-rickshaw</MenuItem>
+                              <MenuItem value="Two Wheeler">Two wheeler</MenuItem>
+                              <MenuItem value="Motorbike Sharing">Motorbike/ scooter Sharing</MenuItem>
+                              <MenuItem value="Auto Rickshaw">Auto-rickshaw (3W)/ tuk-tuk/ E-rickshaw</MenuItem>
                               <MenuItem value="Bicycle">Bicycle / bicycle sharing</MenuItem>
                               <MenuItem value="Walk">Walk</MenuItem>
 
@@ -979,13 +1034,13 @@ const useStyles = makeStyles(theme => ({
                           >
                                {/* <MenuItem value="" /> */}
                                <MenuItem value="Car">Car</MenuItem>
-                              <MenuItem value="CarSharing">Car Sharing (OLA, Uber, taxi, other)</MenuItem>
+                              <MenuItem value="Car Sharing">Car Sharing (OLA, Uber, taxi, other)</MenuItem>
                               <MenuItem value="Bus">Bus</MenuItem>
                               <MenuItem value="Metro">Metro</MenuItem>
                               <MenuItem value="Commuter">Commuter (local) train</MenuItem>
-                              <MenuItem value="TwoWheeler">Two wheeler</MenuItem>
-                              <MenuItem value="MotorBikeSharing">Motorbike/ scooter Sharing</MenuItem>
-                              <MenuItem value="AutoRickshaw">Auto-rickshaw (3W)/ tuk-tuk/ E-rickshaw</MenuItem>
+                              <MenuItem value="Two Wheeler">Two wheeler</MenuItem>
+                              <MenuItem value="Motorbike Sharing">Motorbike/ scooter Sharing</MenuItem>
+                              <MenuItem value="Auto Rickshaw">Auto-rickshaw (3W)/ tuk-tuk/ E-rickshaw</MenuItem>
                               <MenuItem value="Bicycle">Bicycle/ bicycle sharing</MenuItem>
                               <MenuItem value="Walk">Walk</MenuItem>
 
@@ -1088,18 +1143,266 @@ const useStyles = makeStyles(theme => ({
                   
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the current level of preferences (1 as least and 5 as highest) for your trip to primary activities (to work/ school/ college)? 
+                            Select the current level of preferences (1 as least and 5 as highest) for selecting '{primaryTrip}' for your trip to primary activities (to work/ school/ college)? 
                     </Typography>
-
-                      <Grid container spacing={1}>
-                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                    <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
                               <Typography className={classes.paraText}>
                                   Travel time
                                 </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                        <RadioGroup
+                              aria-label="primaryTravelTimePreference"
+                              name="primaryTravelTimePreference"
+                              className={classes.group}
+                              value={primaryTravelTimePreference}
+                              onChange={handlePrimaryTravelTimePreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel cost
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="primaryTravelCostPreference"
+                              name="primaryTravelCostPreference"
+                              className={classes.group}
+                              value={primaryTravelCostPreference}
+                              onChange={handlePrimaryTravelCostPreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                              Departure time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="primaryDepartureTimePreference"
+                              name="primaryDepartureTimePreference"
+                              className={classes.group}
+                              value={primaryDepartureTimePreference}
+                              onChange={handlePrimaryDepartureTimePreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Comfort/ convenience
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="primaryComfortPreference"
+                              name="primaryComfortPreference"
+                              className={classes.group}
+                              value={primaryComfortPreference}
+                              onChange={handlePrimaryComfortPreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Air pollution exposure
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryAQIPreference"
+                              name="secondaryAQIPreference"
+                              className={classes.group}
+                              value={secondaryAQIPreference}
+                              onChange={handleSecondaryAQIPreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+                      {/*<Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                               Preference
                         </InputLabel>
                           <Select
@@ -1113,7 +1416,6 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                                {/* <MenuItem value="" /> */}
                             <MenuItem value="none">None</MenuItem>
                               <MenuItem value="1">1</MenuItem>
                               <MenuItem value="2">2</MenuItem>
@@ -1126,12 +1428,12 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
                               <Typography className={classes.paraText}>
                                   Travel cost
                                 </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                               Preference
@@ -1147,7 +1449,6 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                                {/* <MenuItem value="" /> */}
                                 <MenuItem value="none">None</MenuItem>
                               <MenuItem value="1">1</MenuItem>
                               <MenuItem value="2">2</MenuItem>
@@ -1160,12 +1461,12 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
                               <Typography className={classes.paraText}>
                                   Departure time
                                 </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                               Preference
@@ -1181,7 +1482,6 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                                {/* <MenuItem value="" /> */}
                                 <MenuItem value="none">None</MenuItem>
                               <MenuItem value="1">1</MenuItem>
                               <MenuItem value="2">2</MenuItem>
@@ -1193,12 +1493,12 @@ const useStyles = makeStyles(theme => ({
                           </Grid>
                       </Grid>
                       <Grid container spacing={1}>
-                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
                               <Typography className={classes.paraText}>
                                   Air pollution exposure
                                 </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                               Preference
@@ -1214,7 +1514,6 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                           >
-                                {/* <MenuItem value="" /> */}
                                 <MenuItem value="none">None</MenuItem>
                               <MenuItem value="1">1</MenuItem>
                               <MenuItem value="2">2</MenuItem>
@@ -1224,22 +1523,22 @@ const useStyles = makeStyles(theme => ({
                           </Select>
                           </FormControl>
                           </Grid>
-                      </Grid>
+                      </Grid> */}
 
                     <hr/>
                   </div>
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the current level of preferences (1 as least and 5 as highest) for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)? 
+                    Select the current level of preferences (1 as least and 5 as highest) for selecting '{secondaryTrip}' for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)? 
                     </Typography>
                     <Grid container spacing={1}>
-                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
                               <Typography className={classes.paraText}>
                                   Travel time
                                 </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <RadioGroup
                               aria-label="secondaryTravelTimePreference"
@@ -1284,12 +1583,12 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
                               <Typography className={classes.paraText}>
                                   Travel cost
                                 </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <RadioGroup
                               aria-label="secondaryTravelCostPreference"
@@ -1334,12 +1633,12 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
                               <Typography className={classes.paraText}>
                               Departure time
                                 </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <RadioGroup
                               aria-label="secondaryDepartureTimePreference"
@@ -1384,12 +1683,62 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={6} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Comfort/ convenience
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryComfortPreference"
+                              name="secondaryComfortPreference"
+                              className={classes.group}
+                              value={secondaryComfortPreference}
+                              onChange={handleSecondaryComfortPreference}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
                               <Typography className={classes.paraText}>
                                   Air pollution exposure
                                 </Typography>
                           </Grid>
-                          <Grid item xs={6}>
+                          <Grid item xs={9}>
                         <FormControl variant="outlined" className={classes.formControl}>
                         <RadioGroup
                               aria-label="secondaryAQIPreference"
@@ -2250,6 +2599,11 @@ const useStyles = makeStyles(theme => ({
                                   control={<Radio color="primary" />}
                                   label="No"
                               />
+                              <FormControlLabel
+                              value="IDontKnow"
+                              control={<Radio color="primary"/>}
+                              label="I dont know"
+                              />
                           </RadioGroup>
                       </FormControl>
                       <hr />
@@ -2257,15 +2611,513 @@ const useStyles = makeStyles(theme => ({
                        
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the level of preferences (least-highest) for your trip to primary activities (to work/ school/ college) if air quality information and alternatives are available [TODO: make grid?]? 
+                    Select the level of preferences (1 as least and 5 as highest) for your trip to primary activities (to work/ school/ college) if air quality information and alternatives are available? 
                     </Typography>
+                    <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="primaryTravelTimePreferenceAQIAPI"
+                              name="primaryTravelTimePreferenceAQIAPI"
+                              className={classes.group}
+                              value={primaryTravelTimePreferenceAQIAPI}
+                              onChange={handlePrimaryTravelTimePreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel cost
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="primaryTravelCostPreferenceAQIAPI"
+                              name="primaryTravelCostPreferenceAQIAPI"
+                              className={classes.group}
+                              value={primaryTravelCostPreferenceAQIAPI}
+                              onChange={handlePrimaryTravelCostPreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                              Departure time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="primaryDepartureTimePreferenceAQIAPI"
+                              name="primaryDepartureTimePreferenceAQIAPI"
+                              className={classes.group}
+                              value={primaryDepartureTimePreferenceAQIAPI}
+                              onChange={handlePrimaryDepartureTimePreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Comfort/ convenience
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="primaryComfortPreferenceAQIAPI"
+                              name="primaryComfortPreferenceAQIAPI"
+                              className={classes.group}
+                              value={primaryComfortPreferenceAQIAPI}
+                              onChange={handlePrimaryComfortPreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Air pollution exposure
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryAQIPreferenceAQIAPI"
+                              name="secondaryAQIPreferenceAQIAPI"
+                              className={classes.group}
+                              value={secondaryAQIPreferenceAQIAPI}
+                              onChange={handleSecondaryAQIPreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
                     <hr/>
                   </div>
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the current level of preferences (least-highest) for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)  if air quality information and alternatives are available [TODO: make grid?]? 
+                    Select the current level of preferences (1 as least and 5 as highest) for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)  if air quality information and alternatives are available? 
                     </Typography>
+                    <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryTravelTimePreferenceAQIAPI"
+                              name="secondaryTravelTimePreferenceAQIAPI"
+                              className={classes.group}
+                              value={secondaryTravelTimePreferenceAQIAPI}
+                              onChange={handleSecondaryTravelTimePreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Travel cost
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryTravelCostPreferenceAQIAPI"
+                              name="secondaryTravelCostPreferenceAQIAPI"
+                              className={classes.group}
+                              value={secondaryTravelCostPreferenceAQIAPI}
+                              onChange={handleSecondaryTravelCostPreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                              Departure time
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryDepartureTimePreferenceAQIAPI"
+                              name="secondaryDepartureTimePreferenceAQIAPI"
+                              className={classes.group}
+                              value={secondaryDepartureTimePreferenceAQIAPI}
+                              onChange={handleSecondaryDepartureTimePreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Comfort/ convenience
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryComfortPreferenceAQIAPI"
+                              name="secondaryComfortPreferenceAQIAPI"
+                              className={classes.group}
+                              value={secondaryComfortPreferenceAQIAPI}
+                              onChange={handleSecondaryComfortPreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
+
+                      <Grid container spacing={1}>
+                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                              <Typography className={classes.paraText}>
+                                  Air pollution exposure
+                                </Typography>
+                          </Grid>
+                          <Grid item xs={9}>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                        <RadioGroup
+                              aria-label="secondaryAQIPreferenceAQIAPI"
+                              name="secondaryAQIPreferenceAQIAPI"
+                              className={classes.group}
+                              value={secondaryAQIPreferenceAQIAPI}
+                              onChange={handleSecondaryAQIPreferenceAQIAPI}
+                          >
+                              <FormControlLabel
+                                  value="none"
+                                  control={<Radio color="primary" />}
+                                  label="None"
+                              />
+                              <FormControlLabel
+                                  value="1"
+                                  control={<Radio color="primary" />}
+                                  label="1"
+                              />
+                              <FormControlLabel
+                                  value="2"
+                                  control={<Radio color="primary" />}
+                                  label="2"
+                              />
+                              <FormControlLabel
+                                  value="3"
+                                  control={<Radio color="primary" />}
+                                  label="3"
+                              />
+                              <FormControlLabel
+                                  value="4"
+                                  control={<Radio color="primary" />}
+                                  label="4"
+                              />
+                              <FormControlLabel
+                                  value="5"
+                                  control={<Radio color="primary" />}
+                                  label="5"
+                              />
+                          </RadioGroup>
+                          </FormControl>
+                          </Grid>
+                      </Grid>
                     <hr/>
                   </div>
 
