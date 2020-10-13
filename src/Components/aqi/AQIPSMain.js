@@ -17,12 +17,16 @@ import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
+import Divider from '@material-ui/core/Divider';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import aqImpact from "../../assets/icons/aqi/aq_impact.jpg";
 import MenuItem from "@material-ui/core/MenuItem";
 import delhiZones from "../../assets/jsonfile/DelhiDistrictSubDistrict.json"
+// import PropTypes from 'prop-types';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
 import Gallery from 'react-grid-gallery';
 import img1 from "../../assets/icons/aqi/form_images/good.jpg";
 import img2 from "../../assets/icons/aqi/form_images/satisfactory.jpg";
@@ -35,30 +39,35 @@ import img8 from "../../assets/icons/aqi/form_images/table_right.png";
 
 const IMAGES1 =
 [{
+        src: img1,
         thumbnail: img1,
         thumbnailWidth: 300,
         thumbnailHeight: 212,
         tags: [{value: "Good (0-50)", title: "Good (0-50)"}]
 },
 {
+        src: img2,
         thumbnail: img2,
         thumbnailWidth: 300,
         thumbnailHeight: 212,
         tags: [{value: "Satisfactory (51-100)", title: "Satisfactory (51-100)"}]
 },
 {
+        src: img3,
         thumbnail: img3,
         thumbnailWidth: 300,
         thumbnailHeight: 212,
         tags: [{value: "Moderate (101-200)", title: "Moderate (101-200)"}]
 },
 {
+        src: img4,
         thumbnail: img4,
         thumbnailWidth: 300,
         thumbnailHeight: 212,
         tags: [{value: "Poor (201-300)", title: "Poor (201-300)"}]
 },
 {
+        src: img5,
         thumbnail: img5,
         thumbnailWidth: 300,
         thumbnailHeight: 212,
@@ -66,6 +75,7 @@ const IMAGES1 =
 },
 
 {
+        src: img6,
         thumbnail: img6,
         thumbnailWidth: 300,
         thumbnailHeight: 212,
@@ -74,12 +84,14 @@ const IMAGES1 =
 ]
 const IMAGES3 =
 [{
+        src: img7,
         thumbnail: img7,
         thumbnailWidth: 160,
         thumbnailHeight: 212,
         caption: "After Rain (Jeshu John - designerspics.com)"
 },
 {
+        src: img8,
         thumbnail: img8,
         thumbnailWidth: 100,
         thumbnailHeight: 212,
@@ -269,7 +281,7 @@ const useStyles = makeStyles(theme => ({
     const [secondaryModePoorAQIAPI, setSecondaryModePoorAQIAPI] = React.useState("");
     const [secondaryModeVeryPoorAQIAPI, setSecondaryModeVeryPoorAQIAPI] = React.useState("");
     const [secondaryModeSevereAQIAPI, setSecondaryModeSevereAQIAPI] = React.useState("");
-    
+
     // const [preferWFH, setPreferWFH] = React.useState("");
     // Part C
     const [perceiveAQIHome, setPerceiveAQIHome] = React.useState("");
@@ -642,11 +654,11 @@ const useStyles = makeStyles(theme => ({
       return (
           <Card className={classes.root}>
               <FormGroup>
-                  <Typography  className={classes.formHeader}>
+                  <Typography component="span" className={classes.formHeader}>
                       Air Quality Perception Survey
-            <hr />
+            <Divider />
                   </Typography >
-                  <Typography  className={classes.paraText}><span>
+                  <Typography component="span" className={classes.paraText}><span>
                   </span><p>You may have noticed that Air Pollution in Delhi is getting worse
                   day by day. We are conducting this survey to determine
                   how air pollution impacts changing the commuter's
@@ -658,7 +670,7 @@ const useStyles = makeStyles(theme => ({
                   {/* (3) create front-end question*/}
                   <Typography className={classes.formHeader}>
                       A:  Information Seeking and Engagement
-                    <hr />
+                    <Divider />
                   </Typography >
 
 
@@ -817,13 +829,13 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-                  <Typography  className={classes.paraText}><span>
+                  <Typography component="span" className={classes.paraText}><span>
                   </span><p> Here is an example to distinguish the Air Quality Index (AQI). The AQI value is specified by the Central Pollution Control Board (CPCB), Delhi.</p>
                   </Typography >
-                  <div style={{marginLeft: "auto", marginRight: "auto", width: "80%", justifyContent: "center"}}>
+                  <div style={{marginLeft: "auto", marginRight: "auto", width: "85%", justifyContent: "center"}}>
                   <Gallery enableImageSelection={false} margin={0} enableLightbox={false} images={IMAGES1}/>
                   </div>
-                  <div style={{marginLeft: "auto", marginRight: "auto", width: "39%", justifyContent: "center", "@media (max-width:480px)": {marginLeft: "auto", marginRight: "auto", width: "130%", justifyContent: "center"}}}>
+                  <div style={{marginLeft: "auto", marginRight: "auto", width: "45%", justifyContent: "center"}}>
                   <Gallery enableImageSelection={false} margin={0} enableLightbox={false} images={IMAGES3}/>
                   </div>
 
@@ -1189,13 +1201,13 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-                  
+
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                            Select the current level of preferences (1 as least and 5 as highest) for selecting '{primaryTrip}' for your trip to primary activities (to work/ school/ college)? 
+                            Select the current level of preferences (1 as least and 5 as highest) for selecting '{primaryTrip}' for your trip to primary activities (to work/ school/ college)?
                     </Typography>
-                    <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                    <Grid spacing={1} alignItems="baseline" justify="space-around">
+                          <Grid item xs={3}>
                               <Typography className={classes.paraText}>
                                   Travel time
                                 </Typography>
@@ -1245,7 +1257,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Travel cost
                                 </Typography>
@@ -1295,7 +1307,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                               Departure time
                                 </Typography>
@@ -1345,7 +1357,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Comfort/ convenience
                                 </Typography>
@@ -1395,7 +1407,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Air pollution exposure
                                 </Typography>
@@ -1448,10 +1460,10 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the current level of preferences (1 as least and 5 as highest) for selecting '{secondaryTrip}' for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)? 
+                    Select the current level of preferences (1 as least and 5 as highest) for selecting '{secondaryTrip}' for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)?
                     </Typography>
                     <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Travel time
                                 </Typography>
@@ -1501,7 +1513,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Travel cost
                                 </Typography>
@@ -1551,7 +1563,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                               Departure time
                                 </Typography>
@@ -1601,7 +1613,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Comfort/ convenience
                                 </Typography>
@@ -1651,7 +1663,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Air pollution exposure
                                 </Typography>
@@ -1704,7 +1716,7 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    There are no effect of air pollution exposure on my travel choices because 
+                    There are no effect of air pollution exposure on my travel choices because
                     </Typography>
                       <FormControl component="fieldset" className={classes.formControl}>
                           <div className={classes.checkboxes}>
@@ -1730,7 +1742,7 @@ const useStyles = makeStyles(theme => ({
                                   }
                                   label="I do not know about the harmful effect of air pollution."
                               />
-                              
+
                               <FormControlLabel
                                   control={
                                       <Checkbox
@@ -1780,11 +1792,11 @@ const useStyles = makeStyles(theme => ({
 
                     <hr/>
                   </div>
-                  
+
 
                   <Typography  className={classes.formHeader}>
                       C:  Impact of Air Pollution Exposure
-            <hr />
+            <hr/>
                   </Typography >
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
@@ -2431,7 +2443,7 @@ const useStyles = makeStyles(theme => ({
 
                   <Typography className={classes.paraText}>
                           Air pollution can have short-term and long-term adverse effect on your health. Some of these can be reduced or avoided by changing the travel mode, travel route, departure time, etc.
-                          To help in decision making of an individual traveler, information about the exposure of air pollution can be provided. 
+                          To help in decision making of an individual traveler, information about the exposure of air pollution can be provided.
                           Please answer the following questions considering if such information is available to you.
                 </Typography>
                   <div style={{ display:'flex', justifyContent:'center' }}>
@@ -2526,13 +2538,13 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-                       
+
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the level of preferences (1 as least and 5 as highest) for your trip to primary activities (to work/ school/ college) if air quality information and alternatives are available? 
+                    Select the level of preferences (1 as least and 5 as highest) for your trip to primary activities (to work/ school/ college) if air quality information and alternatives are available?
                     </Typography>
                     <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Travel time
                                 </Typography>
@@ -2582,7 +2594,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Travel cost
                                 </Typography>
@@ -2632,7 +2644,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                               Departure time
                                 </Typography>
@@ -2682,7 +2694,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Comfort/ convenience
                                 </Typography>
@@ -2732,7 +2744,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Air pollution exposure
                                 </Typography>
@@ -2785,10 +2797,10 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Select the current level of preferences (1 as least and 5 as highest) for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)  if air quality information and alternatives are available? 
+                    Select the current level of preferences (1 as least and 5 as highest) for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)  if air quality information and alternatives are available?
                     </Typography>
                     <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Travel time
                                 </Typography>
@@ -2838,7 +2850,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Travel cost
                                 </Typography>
@@ -2888,7 +2900,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                               Departure time
                                 </Typography>
@@ -2938,7 +2950,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Comfort/ convenience
                                 </Typography>
@@ -2988,7 +3000,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Air pollution exposure
                                 </Typography>
@@ -3041,10 +3053,10 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                    Which travel mode would you choose for your trip to primary activities (to work/ school/ college)? 
+                    Which travel mode would you choose for your trip to primary activities (to work/ school/ college)?
                     </Typography>
                     <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Good (0-50)
                                 </Typography>
@@ -3055,7 +3067,7 @@ const useStyles = makeStyles(theme => ({
                          Travel mode
                         </InputLabel>
                           <Select
-                              value={primaryModeGoodAQIAPI} 
+                              value={primaryModeGoodAQIAPI}
                               onChange={handlePrimaryModeGoodAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3081,7 +3093,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Satisfactory (51-100)
                                 </Typography>
@@ -3092,7 +3104,7 @@ const useStyles = makeStyles(theme => ({
                         Travel mode
                         </InputLabel>
                           <Select
-                              value={primaryModeSatisfactoryAQIAPI} 
+                              value={primaryModeSatisfactoryAQIAPI}
                               onChange={handlePrimaryModeSatisfactoryAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3118,7 +3130,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Moderate (101-200)
                                 </Typography>
@@ -3129,7 +3141,7 @@ const useStyles = makeStyles(theme => ({
                         Travel mode
                         </InputLabel>
                           <Select
-                              value={primaryModeModerateAQIAPI} 
+                              value={primaryModeModerateAQIAPI}
                               onChange={handlePrimaryModeModerateAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3154,7 +3166,7 @@ const useStyles = makeStyles(theme => ({
                           </Grid>
                       </Grid>
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Poor (201-300)
                                 </Typography>
@@ -3165,7 +3177,7 @@ const useStyles = makeStyles(theme => ({
                         Travel mode
                         </InputLabel>
                           <Select
-                              value={primaryModePoorAQIAPI} 
+                              value={primaryModePoorAQIAPI}
                               onChange={handlePrimaryModePoorAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3190,7 +3202,7 @@ const useStyles = makeStyles(theme => ({
                           </Grid>
                       </Grid>
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Very poor (301-400)
                                 </Typography>
@@ -3201,7 +3213,7 @@ const useStyles = makeStyles(theme => ({
                         Travel mode
                         </InputLabel>
                           <Select
-                              value={primaryModeVeryPoorAQIAPI} 
+                              value={primaryModeVeryPoorAQIAPI}
                               onChange={handlePrimaryModeVeryPoorAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3226,7 +3238,7 @@ const useStyles = makeStyles(theme => ({
                           </Grid>
                       </Grid>
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Severe (401-500)
                                 </Typography>
@@ -3237,7 +3249,7 @@ const useStyles = makeStyles(theme => ({
                               Travel mode
                         </InputLabel>
                           <Select
-                              value={primaryModeSevereAQIAPI} 
+                              value={primaryModeSevereAQIAPI}
                               onChange={handlePrimaryModeSevereAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3266,10 +3278,10 @@ const useStyles = makeStyles(theme => ({
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
-                  Which travel mode would you choose for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)? 
+                  Which travel mode would you choose for your trip to secondary activities (to gym/ sport/ leisure/ social/ shopping)?
                     </Typography>
                     <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Good (0-50)
                                 </Typography>
@@ -3280,7 +3292,7 @@ const useStyles = makeStyles(theme => ({
                          Travel mode
                         </InputLabel>
                           <Select
-                              value={secondaryModeGoodAQIAPI} 
+                              value={secondaryModeGoodAQIAPI}
                               onChange={handleSecondaryModeGoodAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3306,7 +3318,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Satisfactory (51-100)
                                 </Typography>
@@ -3317,7 +3329,7 @@ const useStyles = makeStyles(theme => ({
                         Travel mode
                         </InputLabel>
                           <Select
-                              value={secondaryModeSatisfactoryAQIAPI} 
+                              value={secondaryModeSatisfactoryAQIAPI}
                               onChange={handleSecondaryModeSatisfactoryAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3343,7 +3355,7 @@ const useStyles = makeStyles(theme => ({
                       </Grid>
 
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Moderate (101-200)
                                 </Typography>
@@ -3354,7 +3366,7 @@ const useStyles = makeStyles(theme => ({
                         Travel mode
                         </InputLabel>
                           <Select
-                              value={secondaryModeModerateAQIAPI} 
+                              value={secondaryModeModerateAQIAPI}
                               onChange={handleSecondaryModeModerateAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3379,7 +3391,7 @@ const useStyles = makeStyles(theme => ({
                           </Grid>
                       </Grid>
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Poor (201-300)
                                 </Typography>
@@ -3390,7 +3402,7 @@ const useStyles = makeStyles(theme => ({
                         Travel mode
                         </InputLabel>
                           <Select
-                              value={secondaryModePoorAQIAPI} 
+                              value={secondaryModePoorAQIAPI}
                               onChange={handleSecondaryModePoorAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3415,7 +3427,7 @@ const useStyles = makeStyles(theme => ({
                           </Grid>
                       </Grid>
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Very poor (301-400)
                                 </Typography>
@@ -3426,7 +3438,7 @@ const useStyles = makeStyles(theme => ({
                         Travel mode
                         </InputLabel>
                           <Select
-                              value={secondaryModeVeryPoorAQIAPI} 
+                              value={secondaryModeVeryPoorAQIAPI}
                               onChange={handleSecondaryModeVeryPoorAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3451,7 +3463,7 @@ const useStyles = makeStyles(theme => ({
                           </Grid>
                       </Grid>
                       <Grid container spacing={1}>
-                          <Grid item xs={3} justify="space-around" alignItems="space-around">
+                          <Grid item xs={3} justify="space-around" alignItems="baseline">
                               <Typography className={classes.paraText}>
                                   Severe (401-500)
                                 </Typography>
@@ -3462,7 +3474,7 @@ const useStyles = makeStyles(theme => ({
                               Travel mode
                         </InputLabel>
                           <Select
-                              value={secondaryModeSevereAQIAPI} 
+                              value={secondaryModeSevereAQIAPI}
                               onChange={handleSecondaryModeSevereAQIAPI}
                               input={
                                   <OutlinedInput
@@ -3490,7 +3502,7 @@ const useStyles = makeStyles(theme => ({
                   </div>
 
 
-                  <Typography   className={classes.formHeader}>
+                  <Typography className={classes.formHeader}>
                       F: Socioeconomic Characteristics
             <hr />
                   </Typography >
