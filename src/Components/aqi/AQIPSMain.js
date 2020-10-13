@@ -33,6 +33,7 @@ import img6 from "../../assets/icons/aqi/form_images/severe.jpg";
 import img7 from "../../assets/icons/aqi/form_images/table_left.png";
 import img8 from "../../assets/icons/aqi/form_images/table_right.png";
 import Divider from '@material-ui/core/Divider';
+import NumberControl from "../NumberControl/NumberControl";
 
 const IMAGES1 =
 [{
@@ -218,6 +219,7 @@ const useStyles = makeStyles(theme => ({
     // (1) define here..
     // Part A
     const [homeTehsil, setHomeTehsil] = React.useState("");
+    const [existingHealthConditions, setExistingHealthConditions] = React.useState("");
     const [airPollutionMajorProb, setAirPollutionMajorProblem] = React.useState("");
     const [airPollutionAdverseHealthEffect, setAirPollutionAdverseHealthEffect] = React.useState("");
     const [aqiUnderstanding, setAqiUnderstanding] = React.useState("");
@@ -226,7 +228,9 @@ const useStyles = makeStyles(theme => ({
     const [fequentlyAirQualityLevel, setFequentlyAirQualityLevel] = React.useState("");
     // Part B
     const [destinationTehsil, setDestinationTehsil] = React.useState("");
-    const[tripsPerDay, setTripsPerDay] = React.useState("");
+    const [tripsPerDay, setTripsPerDay] = React.useState("");
+    const [averageTripLengthPrimary, setAverageTripLengthPrimary] = React.useState("");
+    const [averageTripLengthSecondary, setAverageTripLengthSecondary] = React.useState("");
     const [purposeTrip, setPurposeTrip] = React.useState("");
     const [primaryTrip, setPrimaryTrip] = React.useState("");
     const [secondaryTrip, setSecondaryTrip] = React.useState("");
@@ -246,7 +250,6 @@ const useStyles = makeStyles(theme => ({
     const [secondaryDepartureTimePreference, setSecondaryDepartureTimePreference] = React.useState("");
     const [secondaryComfortPreference, setSecondaryComfortPreference] = React.useState("");
     const [secondaryAQIPreference, setSecondaryAQIPreference] = React.useState("");
-
 
     const [reasonNotToChangeChoices, setReasonNotToChangeChoices] = React.useState("");
     // Part E
@@ -298,6 +301,9 @@ const useStyles = makeStyles(theme => ({
     const [age, setAge] = React.useState();
     const [gender, setGender] = React.useState("");
     const [qualification, setQualification] = React.useState("");
+    const [cars, setCars] = React.useState(0);
+    const [two_wheeler, setTwoWheeler] = React.useState(0);
+    const [bicycle, setBicycle] = React.useState(0);
     const [income, setIncome] = React.useState("");
     const [marStatus, setMaritalStatus] = React.useState("");
     const [profess, setProfession] = React.useState("");
@@ -308,6 +314,10 @@ const useStyles = makeStyles(theme => ({
 
     function handleHomeTehsil(event){
         setHomeTehsil(event.target.value);
+    }
+
+    function handleExistingHealthConditions(event){
+        setExistingHealthConditions(event.target.value);
     }
 
     function handleAirPollutionMajorProblem(event){
@@ -335,7 +345,12 @@ const useStyles = makeStyles(theme => ({
     function handleDestinationTehsil(event){
         setDestinationTehsil(event.target.value);
     }
-
+    function handleAverageTripLengthPrimary(event){
+        setAverageTripLengthPrimary(event.target.value);
+    }
+    function handleAverageTripLengthSecondary(event){
+        setAverageTripLengthSecondary(event.target.value);
+    }
     function handleTripsPerDay(event){
         setTripsPerDay(event.target.value);
     }
@@ -392,7 +407,7 @@ const useStyles = makeStyles(theme => ({
     }
 
     const handleReasonNotToChangeChoices = name => event => {
-        if (healthEffect === "") {
+        if (reasonNotToChangeChoices === "") {
             setReasonNotToChangeChoices(name);
         } else {
             setReasonNotToChangeChoices(reasonNotToChangeChoices.concat("&").concat(name));
@@ -583,6 +598,7 @@ const useStyles = makeStyles(theme => ({
             // (4) post to server
             // Part A
             homeTehsil: homeTehsil,
+            existingHealthConditions: existingHealthConditions,
             airPollutionMajorProb: airPollutionMajorProb,
             airPollutionAdverseHealthEffect: airPollutionAdverseHealthEffect,
             aqiUnderstanding: aqiUnderstanding,
@@ -592,6 +608,8 @@ const useStyles = makeStyles(theme => ({
             // Part B
             destinationTehsil: destinationTehsil,
             tripsPerDay: tripsPerDay,
+            averageTripLengthPrimary: averageTripLengthPrimary,
+            averageTripLengthSecondary: averageTripLengthSecondary,
             purposeTrip: purposeTrip,
             primaryTrip: primaryTrip,
             secondaryTrip: secondaryTrip,
@@ -629,6 +647,9 @@ const useStyles = makeStyles(theme => ({
             age: age,
             gender: gender,
             educationalQualification: qualification,
+            noOfCars: cars,
+            noOfTwoWheelers: two_wheeler,
+            noOfCycles: bicycle,
             monthlyIncome: income,
             maritialStatus: marStatus,
             profession: profess,
@@ -730,7 +751,38 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
-
+                    
+                  <div className={classes.divStyle}>
+                  <Typography className={classes.labelStyle}>
+                  Do you have any pre-existing health issues (like asthma, bronchitis, lungs issues, etc.)?
+              </Typography>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <RadioGroup
+                              aria-label="existingHealthConditions"
+                              name="existingHealthConditions"
+                              className={classes.group}
+                              value={existingHealthConditions}
+                              onChange={handleExistingHealthConditions}
+                          >
+                              <FormControlLabel
+                                  value="yes"
+                                  control={<Radio color="primary" />}
+                                  label="Yes"
+                              />
+                              <FormControlLabel
+                                  value="no"
+                                  control={<Radio color="primary" />}
+                                  label="No"
+                              />
+                              <FormControlLabel
+                                  value="IDontKnow"
+                                  control={<Radio color="primary" />}
+                                  label="I don't know"
+                              />
+                          </RadioGroup>
+                      </FormControl>
+                      <hr />
+                  </div>
 
                   <div className={classes.divStyle}>
                   <Typography className={classes.labelStyle}>
@@ -764,6 +816,7 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
                   <div className={classes.divStyle}>
+
                   <Typography className={classes.labelStyle}>
                           Do you know that air pollution can cause adverse health effects?
               </Typography>
@@ -889,7 +942,7 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                               {/* <MenuItem value="" /> */}
-                              <MenuItem value="websiet">Website</MenuItem>
+                              <MenuItem value="website">Website</MenuItem>
                               <MenuItem value="mobileApp">Mobile App</MenuItem>
                               <MenuItem value="newspaper">Newspaper</MenuItem>
                               <MenuItem value="radio">Radio (FM)</MenuItem>
@@ -965,8 +1018,6 @@ const useStyles = makeStyles(theme => ({
                       <hr />
                   </div>
 
-
-
                   <div className={classes.divStyle}>
                       <Typography className={classes.labelStyle}>What is the purpose of the trip?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
@@ -1003,7 +1054,7 @@ const useStyles = makeStyles(theme => ({
 
 
                   <div className={classes.divStyle}>
-                      <Typography className={classes.labelStyle}>Which main mode of transport do you use for commuting the Primary trip (work or education)?</Typography>
+                      <Typography className={classes.labelStyle}>Which main mode of transport do you use for commuting the primary trip (work or education)?</Typography>
                       <FormControl variant="outlined" className={classes.formControl}>
                           <InputLabel ref={inputLabel} htmlFor="outlined-primaryTrip">
                           Mode for primary trip
@@ -1032,6 +1083,36 @@ const useStyles = makeStyles(theme => ({
                               <MenuItem value="Bicycle">Bicycle / bicycle sharing</MenuItem>
                               <MenuItem value="Walk">Walk</MenuItem>
 
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>What is your average trip length for primary activities (to work or education)?</Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-tripLength">
+                              Average trip length
+                          </InputLabel>
+                          <Select
+                              // native
+                              value={averageTripLengthPrimary}
+                              onChange={handleAverageTripLengthPrimary}
+                              input={
+                                  <OutlinedInput
+                                      name="averageTripLengthPrimary"
+                                      labelWidth={labelWidth}
+                                      id="outlined-averageTripLengthPrimary"
+                                  />
+                              }
+                          >
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="below2">up to 2 Km</MenuItem>
+                              <MenuItem value="2_5">2 - 5 Km</MenuItem>
+                              <MenuItem value="5_10">5 - 10 Km</MenuItem>
+                              <MenuItem value="10_25">10 - 25 Km</MenuItem>
+                              <MenuItem value="Above25">More than 25 Km</MenuItem>
+                              <MenuItem value="IdontTravel">I do not travel</MenuItem>
                           </Select>
                       </FormControl>
                       <hr />
@@ -1106,6 +1187,37 @@ const useStyles = makeStyles(theme => ({
                       </FormControl>
                       <hr />
                   </div>
+
+                  <div className={classes.divStyle}>
+                      <Typography className={classes.labelStyle}>What is your average trip length for secondary activities (to gym/ sport/ leisure/ social/ shopping)?</Typography>
+                      <FormControl variant="outlined" className={classes.formControl}>
+                          <InputLabel ref={inputLabel} htmlFor="outlined-tripLength">
+                              Average trip length
+                          </InputLabel>
+                          <Select
+                              // native
+                              value={averageTripLengthSecondary}
+                              onChange={handleAverageTripLengthSecondary}
+                              input={
+                                  <OutlinedInput
+                                      name="averageTripLengthSecondary"
+                                      labelWidth={labelWidth}
+                                      id="outlined-averageTripLengthSecondary"
+                                  />
+                              }
+                          >
+                               {/* <MenuItem value="" /> */}
+                              <MenuItem value="below2">up to 2 Km</MenuItem>
+                              <MenuItem value="2_5">2 - 5 Km</MenuItem>
+                              <MenuItem value="5_10">5 - 10 Km</MenuItem>
+                              <MenuItem value="10_25">10 - 25 Km</MenuItem>
+                              <MenuItem value="Above25">More than 25 Km</MenuItem>
+                              <MenuItem value="IdontTravel">I do not travel</MenuItem>
+                          </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+
                   <div className={classes.divStyle}>
                    <Typography className={classes.labelStyle}>
                          How is air quality affecting your choices for primary (to work/ school/ college) trip?
@@ -1130,7 +1242,8 @@ const useStyles = makeStyles(theme => ({
                               <MenuItem value="ChangeOfDepartureTime">Change of departure time</MenuItem>
                               <MenuItem value="ChangeOfTravelMode">Change of travel mode</MenuItem>
                               <MenuItem value="ChangeOfTravelRoute">Change of travel route</MenuItem>
-                              <MenuItem value="NotTravelingAtAll">Not traveling</MenuItem>
+                              <MenuItem value="NotTravelingButWRF">Not traveling but working/ styding from home</MenuItem>
+                              <MenuItem value="NotTravelingNoWFH">Not traveling and not working/ studying from home</MenuItem>
                               <MenuItem value="NoEffect">No effect</MenuItem>
                           </Select>
                       </FormControl>
@@ -2260,6 +2373,17 @@ const useStyles = makeStyles(theme => ({
                                   />
                               }
                               label="Uncertainty "
+                          />
+                          <FormControlLabel
+                              control={
+                                  <Checkbox
+                                      checked={psychologyEffect.fatigue}
+                                      onChange={handlePsychologyEffect("Fatigue ")}
+                                      value="Fatigue"
+                                      color="primary"
+                                  />
+                              }
+                              label="Fatigue "
                           />
                              <FormControlLabel
                               control={
@@ -3552,8 +3676,8 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                                 {/* <MenuItem value="" /> */}
-                              <MenuItem value="below4">Below 4 years</MenuItem>
-                              <MenuItem value="4_18">4 - 18 years</MenuItem>
+                              <MenuItem value="below18">Below 18 years</MenuItem>
+                              {/* <MenuItem value="4_18">4 - 18 years</MenuItem> */}
                               <MenuItem value="18_25">18 - 25 years</MenuItem>
                               <MenuItem value="25_40">25 - 40 years</MenuItem>
                               <MenuItem value="40_60">40 - 60 years</MenuItem>
@@ -3648,7 +3772,34 @@ const useStyles = makeStyles(theme => ({
                               <MenuItem value="jobseeker">Jobseeker</MenuItem>
                               <MenuItem value="driver">Driver (taxi/ auto-rickshaw/ goods vehicle, etc.)</MenuItem>
                               <MenuItem value="housewife">House Wife</MenuItem>
+                              <MenuItem value="other">Other</MenuItem>
                           </Select>
+                      </FormControl>
+                      <hr />
+                  </div>
+                  <div className={classes.divStyle}>
+                      <FormControl component="fieldset" className={classes.formControl}>
+                          <Typography className={classes.labelStyle}>
+                              No. of vehicles in household
+                        </Typography>
+                          <NumberControl
+                              label="Cars"
+                              value={cars}
+                              handleDecrease={() => setCars(cars - 1)}
+                              handleIncrease={() => setCars(cars + 1)}
+                          />
+                          <NumberControl
+                              label="Two Wheeler"
+                              value={two_wheeler}
+                              handleDecrease={() => setTwoWheeler(two_wheeler - 1)}
+                              handleIncrease={() => setTwoWheeler(two_wheeler + 1)}
+                          />
+                          <NumberControl
+                              label="Bicycle"
+                              value={bicycle}
+                              handleDecrease={() => setBicycle(bicycle - 1)}
+                              handleIncrease={() => setBicycle(bicycle + 1)}
+                          />
                       </FormControl>
                       <hr />
                   </div>
@@ -3673,6 +3824,7 @@ const useStyles = makeStyles(theme => ({
                               }
                           >
                                {/* <MenuItem value="" /> */}
+                               <MenuItem value="nil">Nil</MenuItem>
                               <MenuItem value="<10000">less than 10,000</MenuItem>
                               <MenuItem value="10000-30000">10,000 - 30,000</MenuItem>
                               <MenuItem value="30000-50000">30,000 - 50,000</MenuItem>
