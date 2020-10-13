@@ -500,12 +500,18 @@ const useStyles = makeStyles(theme => ({
     function handlePerceiveAQIWork(event) {
         setPerceiveAQIWork(event.target.value);
     }
-    const handleHealthEffect = name => event => {
-        if (healthEffect === "") {
-            setHealthEffect(name);
-        } else {
-            setHealthEffect(healthEffect.concat("&").concat(name));
-        }
+    const handleHealthEffect = event => {
+        // if (healthEffect === "") {
+        //     setHealthEffect(name);
+        // } else {
+        //     setHealthEffect(healthEffect.concat("&").concat(name));
+        // }
+        // setHealthEffect(event.target.checked);
+        setHealthEffect({ ...healthEffect, [event.target.name]: event.target.checked })
+        // console.log(healthEffect);
+        // console.log(Object.values(healthEffect));
+        // console.log(Object.keys(healthEffect));
+        // console.log();
     }
     function handleFamilyHealthEffect(event) {
         setFamilyHealthEffect(event.target.value);
@@ -632,7 +638,7 @@ const useStyles = makeStyles(theme => ({
             // Part C
             perceiveAQIHome: perceiveAQIHome,
             perceiveAQIWork: perceiveAQIWork,
-            healthEffect: healthEffect,
+            healthEffect: Object.keys(healthEffect).filter(function(key) { return healthEffect[key]}).toString(),
             familyHealthEffect: familyHealthEffect,
             travelHealthEffect: travelHealthEffect,
             sensitiveGroupEffect: sensitiveGroupEffect,
@@ -656,7 +662,7 @@ const useStyles = makeStyles(theme => ({
             comment: comment
           })
           .then(Response => {
-            console.log(Response);
+            // console.log(Response);
             props.history.push({pathname:"/finishsurvey"});
               var time = parseDate();
               const url = props.match.url;
@@ -1984,8 +1990,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.BreathlessnessHavingMoreDifficultyInBreathing}
-                                      onChange={handleHealthEffect("BreathlessnessHavingMoreDifficultyInBreathing")}
-                                      value="BreathlessnessHavingMoreDifficultyInBreathing"
+                                      onChange={handleHealthEffect}
+                                      name="BreathlessnessHavingMoreDifficultyInBreathing"
                                       color="primary"
                                   />
                               }
@@ -1995,8 +2001,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.DoingLessOutdoorActivities}
-                                      onChange={handleHealthEffect("DoingLessOutdoorActivities")}
-                                      value="DoingLessOutdoorActivities"
+                                      onChange={handleHealthEffect}
+                                      name="DoingLessOutdoorActivities"
                                       color="primary"
                                   />
                               }
@@ -2006,8 +2012,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.DoingMoreToLookAfterMySkin}
-                                      onChange={handleHealthEffect("DoingMoreToLookAfterMySkin")}
-                                      value="DoingMoreToLookAfterMySkin"
+                                      onChange={handleHealthEffect}
+                                      name="DoingMoreToLookAfterMySkin"
                                       color="primary"
                                   />
                               }
@@ -2017,8 +2023,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.DoingMoreToStayHealthy}
-                                      onChange={handleHealthEffect("DoingMoreToStayHealthy")}
-                                      value="DoingMoreToStayHealthy"
+                                      onChange={handleHealthEffect}
+                                      name="DoingMoreToStayHealthy"
                                       color="primary"
                                   />
                               }
@@ -2028,8 +2034,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.irritationToEyes}
-                                      onChange={handleHealthEffect("irritationToEyes")}
-                                      value="irritationToEyes"
+                                      onChange={handleHealthEffect}
+                                      name="irritationToEyes"
                                       color="primary"
                                   />
                               }
@@ -2039,8 +2045,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.SkinProblems}
-                                      onChange={handleHealthEffect("SkinProblems")}
-                                      value="SkinProblems"
+                                      onChange={handleHealthEffect}
+                                      name="SkinProblems"
                                       color="primary"
                                   />
                               }
@@ -2050,8 +2056,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.BodyAllergies}
-                                      onChange={handleHealthEffect("BodyAllergies")}
-                                      value="BodyAllergies"
+                                      onChange={handleHealthEffect}
+                                      name="BodyAllergies"
                                       color="primary"
                                   />
                               }
@@ -2061,8 +2067,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.WantingToMoveToOtherLessPollutedPlaces}
-                                      onChange={handleHealthEffect("WantingToMoveToOtherLessPollutedPlaces")}
-                                      value="WantingToMoveToOtherLessPollutedPlaces"
+                                      onChange={handleHealthEffect}
+                                      name="WantingToMoveToOtherLessPollutedPlaces"
                                       color="primary"
                                   />
                               }
@@ -2072,8 +2078,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.AsthmaIncidences}
-                                      onChange={handleHealthEffect("AsthmaIncidences")}
-                                      value="AsthmaIncidences"
+                                      onChange={handleHealthEffect}
+                                      name="AsthmaIncidences"
                                       color="primary"
                                   />
                               }
@@ -2083,8 +2089,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.PoorVisibility}
-                                      onChange={handleHealthEffect("PoorVisibility")}
-                                      value="PoorVisibility"
+                                      onChange={handleHealthEffect}
+                                      name="PoorVisibility"
                                       color="primary"
                                   />
                               }
@@ -2094,8 +2100,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.WorryingAboutTheLivingEnvironmentForChildren}
-                                      onChange={handleHealthEffect("WorryingAboutTheLivingEnvironmentForChildren")}
-                                      value="WorryingAboutTheLivingEnvironmentForChildren"
+                                      onChange={handleHealthEffect}
+                                      name="WorryingAboutTheLivingEnvironmentForChildren"
                                       color="primary"
                                   />
                               }
@@ -2105,8 +2111,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={healthEffect.NotAffectedAtAll}
-                                      onChange={handleHealthEffect("NotAffectedAtAll")}
-                                      value="NotAffectedAtAll"
+                                      onChange={handleHealthEffect}
+                                      name="NotAffectedAtAll"
                                       color="primary"
                                   />
                               }
