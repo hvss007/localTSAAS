@@ -406,12 +406,8 @@ const useStyles = makeStyles(theme => ({
         setSecondaryAQIPreference(event.target.value);
     }
 
-    const handleReasonNotToChangeChoices = name => event => {
-        if (reasonNotToChangeChoices === "") {
-            setReasonNotToChangeChoices(name);
-        } else {
-            setReasonNotToChangeChoices(reasonNotToChangeChoices.concat("&").concat(name));
-        }
+    const handleReasonNotToChangeChoices = event => {
+        setReasonNotToChangeChoices({ ...reasonNotToChangeChoices, [event.target.name]: event.target.checked })
     }
     // Part E
     function handleInformationRequired(event) {
@@ -501,41 +497,19 @@ const useStyles = makeStyles(theme => ({
         setPerceiveAQIWork(event.target.value);
     }
     const handleHealthEffect = event => {
-        // if (healthEffect === "") {
-        //     setHealthEffect(name);
-        // } else {
-        //     setHealthEffect(healthEffect.concat("&").concat(name));
-        // }
-        // setHealthEffect(event.target.checked);
         setHealthEffect({ ...healthEffect, [event.target.name]: event.target.checked })
-        // console.log(healthEffect);
-        // console.log(Object.values(healthEffect));
-        // console.log(Object.keys(healthEffect));
-        // console.log();
     }
     function handleFamilyHealthEffect(event) {
         setFamilyHealthEffect(event.target.value);
     }
-    const handleTravelHealthEffect = name => event => {
-        if(travelHealthEffect === ""){
-            setTravelHealthEffect(name);
-        } else {
-            setTravelHealthEffect(travelHealthEffect.concat("&").concat(name));
-        }
+    const handleTravelHealthEffect = event => {
+        setTravelHealthEffect({ ...travelHealthEffect, [event.target.name]: event.target.checked })
     }
-    const handleSensitiveGroupEffect = name => event => {
-        if(sensitiveGroupEffect === ""){
-            setSensitiveGroupEffect(name);
-        } else {
-            setSensitiveGroupEffect(sensitiveGroupEffect.concat("&").concat(name));
-        }
+    const handleSensitiveGroupEffect = event => {
+        setSensitiveGroupEffect({ ...sensitiveGroupEffect, [event.target.name]: event.target.checked })
     }
-    const handlePsychologyEffect = name => event => {
-        if (psychologyEffect === "") {
-            setPsychologyEffect(name);
-        } else  {
-            setPsychologyEffect(psychologyEffect.concat("&").concat(name));
-        }
+    const handlePsychologyEffect = event => {
+        setPsychologyEffect({ ...psychologyEffect, [event.target.name]: event.target.checked })
     }
     // Part D
     function handleMaskAirPollution(event) {
@@ -625,7 +599,7 @@ const useStyles = makeStyles(theme => ({
             //grid-pref
             primaryActTripPreference: primaryTravelTimePreference.concat("&").concat(primaryTravelCostPreference).concat("&").concat(primaryDepartureTimePreference).concat("&").concat(primaryComfortPreference).concat("&").concat(primaryAQIPreference),
             secondaryActTripPreference: secondaryTravelTimePreference.concat("&").concat(secondaryTravelCostPreference).concat("&").concat(secondaryDepartureTimePreference).concat("&").concat(secondaryComfortPreference).concat("&").concat(secondaryAQIPreference),
-            reasonNotToChangeChoices: reasonNotToChangeChoices,
+            reasonNotToChangeChoices: Object.keys(reasonNotToChangeChoices).filter(function(key) { return reasonNotToChangeChoices[key]}).toString(),
             // choiceInWinter: choiceInWinter,
             // Part E
             informationRequired: informationRequired,
@@ -640,9 +614,9 @@ const useStyles = makeStyles(theme => ({
             perceiveAQIWork: perceiveAQIWork,
             healthEffect: Object.keys(healthEffect).filter(function(key) { return healthEffect[key]}).toString(),
             familyHealthEffect: familyHealthEffect,
-            travelHealthEffect: travelHealthEffect,
-            sensitiveGroupEffect: sensitiveGroupEffect,
-            psychologyEffect: psychologyEffect,
+            travelHealthEffect: Object.keys(travelHealthEffect).filter(function(key) { return travelHealthEffect[key]}).toString(),
+            sensitiveGroupEffect: Object.keys(sensitiveGroupEffect).filter(function(key) { return sensitiveGroupEffect[key]}).toString(),
+            psychologyEffect: Object.keys(psychologyEffect).filter(function(key) { return psychologyEffect[key]}).toString(),
             // Part D
             maskAirPollution: maskAirPollution,
             airFilter: airFilter,
@@ -1840,8 +1814,8 @@ const useStyles = makeStyles(theme => ({
                                   control={
                                       <Checkbox
                                           checked={reasonNotToChangeChoices.IDontCareAboutAirPollution}
-                                          onChange={handleReasonNotToChangeChoices("IAlreadyChangeChoiceBasedOnAirPollutionExposure")}
-                                          value="IAlreadyChangeChoiceBasedOnAirPollutionExposure"
+                                          onChange={handleReasonNotToChangeChoices}
+                                          name="IAlreadyChangeChoiceBasedOnAirPollutionExposure"
                                           color="primary"
                                       />
                                   }
@@ -1851,8 +1825,8 @@ const useStyles = makeStyles(theme => ({
                                   control={
                                       <Checkbox
                                           checked={reasonNotToChangeChoices.IDoNotKnowAboutHarmfulEffectAirPollution}
-                                          onChange={handleReasonNotToChangeChoices("IDoNotKnowAboutHarmfulEffectAirPollution")}
-                                          value="IDoNotKnowAboutHarmfulEffectAirPollution"
+                                          onChange={handleReasonNotToChangeChoices}
+                                          name="IDoNotKnowAboutHarmfulEffectAirPollution"
                                           color="primary"
                                       />
                                   }
@@ -1863,8 +1837,8 @@ const useStyles = makeStyles(theme => ({
                                   control={
                                       <Checkbox
                                           checked={reasonNotToChangeChoices.IWantToSwitchButIDontKnowHowCanIReduceExposure}
-                                          onChange={handleReasonNotToChangeChoices("IWantToSwitchButIDontKnowHowCanIReduceExposure")}
-                                          value="IWantToSwitchButIDontKnowHowCanIReduceExposure"
+                                          onChange={handleReasonNotToChangeChoices}
+                                          name="IWantToSwitchButIDontKnowHowCanIReduceExposure"
                                           color="primary"
                                       />
                                   }
@@ -1874,8 +1848,8 @@ const useStyles = makeStyles(theme => ({
                                   control={
                                       <Checkbox
                                           checked={reasonNotToChangeChoices.IDidntKnowIfExposureToAirPollutionCanBeReduced}
-                                          onChange={handleReasonNotToChangeChoices("IDidntKnowIfExposureToAirPollutionCanBeReduced")}
-                                          value="IDidntKnowIfExposureToAirPollutionCanBeReduced"
+                                          onChange={handleReasonNotToChangeChoices}
+                                          name="IDidntKnowIfExposureToAirPollutionCanBeReduced"
                                           color="primary"
                                       />
                                   }
@@ -1885,8 +1859,8 @@ const useStyles = makeStyles(theme => ({
                                   control={
                                       <Checkbox
                                           checked={reasonNotToChangeChoices.IDontCareAboutAirPollution}
-                                          onChange={handleReasonNotToChangeChoices("IDontCareAboutAirPollution")}
-                                          value="IDontCareAboutAirPollution"
+                                          onChange={handleReasonNotToChangeChoices}
+                                          name="IDontCareAboutAirPollution"
                                           color="primary"
                                       />
                                   }
@@ -1896,8 +1870,8 @@ const useStyles = makeStyles(theme => ({
                                   control={
                                       <Checkbox
                                           checked={reasonNotToChangeChoices.other}
-                                          onChange={handleReasonNotToChangeChoices("other")}
-                                          value="other"
+                                          onChange={handleReasonNotToChangeChoices}
+                                          name="other"
                                           color="primary"
                                       />
                                   }
@@ -2178,8 +2152,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={travelHealthEffect.Sneezing}
-                                      onChange={handleTravelHealthEffect("Sneezing")}
-                                      value="Sneezing"
+                                      onChange={handleTravelHealthEffect}
+                                      name="Sneezing"
                                       color="primary"
                                   />
                               }
@@ -2189,8 +2163,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={travelHealthEffect.RunnyNose}
-                                      onChange={handleTravelHealthEffect("RunnyNose")}
-                                      value="RunnyNose"
+                                      onChange={handleTravelHealthEffect}
+                                      name="RunnyNose"
                                       color="primary"
                                   />
                               }
@@ -2200,8 +2174,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={travelHealthEffect.EyeIrritation}
-                                      onChange={handleTravelHealthEffect("EyeIrritation")}
-                                      value="EyeIrritation"
+                                      onChange={handleTravelHealthEffect}
+                                      name="EyeIrritation"
                                       color="primary"
                                   />
                               }
@@ -2211,8 +2185,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={travelHealthEffect.ReducedLungFunctioning}
-                                      onChange={handleTravelHealthEffect("ReducedLungFunctioning")}
-                                      value="ReducedLungFunctioning"
+                                      onChange={handleTravelHealthEffect}
+                                      name="ReducedLungFunctioning"
                                       color="primary"
                                   />
                               }
@@ -2222,8 +2196,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={travelHealthEffect.Other}
-                                      onChange={handleTravelHealthEffect("Other")}
-                                      value="Other"
+                                      onChange={handleTravelHealthEffect}
+                                      name="Other"
                                       color="primary"
                                   />
                               }
@@ -2233,8 +2207,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={travelHealthEffect.None}
-                                      onChange={handleTravelHealthEffect("None")}
-                                      value="None"
+                                      onChange={handleTravelHealthEffect}
+                                      name="None"
                                       color="primary"
                                   />
                               }
@@ -2256,8 +2230,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={sensitiveGroupEffect.yesInfant}
-                                      onChange={handleSensitiveGroupEffect("YesInfact")}
-                                      value="YesInfant"
+                                      onChange={handleSensitiveGroupEffect}
+                                      name="YesInfant"
                                       color="primary"
                                   />
                               }
@@ -2269,8 +2243,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={sensitiveGroupEffect.YesSeniorCitizen}
-                                      onChange={handleSensitiveGroupEffect("YesSeniorCitizen")}
-                                      value="YesSeniorCitizen"
+                                      onChange={handleSensitiveGroupEffect}
+                                      name="YesSeniorCitizen"
                                       color="primary"
                                   />
                               }
@@ -2282,8 +2256,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={sensitiveGroupEffect.None}
-                                      onChange={handleSensitiveGroupEffect("None")}
-                                      value="None"
+                                      onChange={handleSensitiveGroupEffect}
+                                      name="None"
                                       color="primary"
                                   />
                               }
@@ -2307,8 +2281,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.aggressiveness}
-                                      onChange={handlePsychologyEffect("aggressiveness")}
-                                      value="aggressiveness"
+                                      onChange={handlePsychologyEffect}
+                                      name="aggressiveness"
                                       color="primary"
                                   />
                               }
@@ -2318,8 +2292,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.anxiety}
-                                      onChange={handlePsychologyEffect("anxiety")}
-                                      value="anxiety"
+                                      onChange={handlePsychologyEffect}
+                                      name="anxiety"
                                       color="primary"
                                   />
                               }
@@ -2329,8 +2303,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.stress}
-                                      onChange={handlePsychologyEffect("stress")}
-                                      value="stress"
+                                      onChange={handlePsychologyEffect}
+                                      name="stress"
                                       color="primary"
                                   />
                               }
@@ -2340,8 +2314,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.frustation}
-                                      onChange={handlePsychologyEffect("frustation")}
-                                      value="frustation"
+                                      onChange={handlePsychologyEffect}
+                                      name="frustation"
                                       color="primary"
                                   />
                               }
@@ -2351,8 +2325,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.angry}
-                                      onChange={handlePsychologyEffect("angry")}
-                                      value="angry"
+                                      onChange={handlePsychologyEffect}
+                                      name="angry"
                                       color="primary"
                                   />
                               }
@@ -2362,8 +2336,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.depression}
-                                      onChange={handlePsychologyEffect("depression")}
-                                      value="depression"
+                                      onChange={handlePsychologyEffect}
+                                      name="depression"
                                       color="primary"
                                   />
                               }
@@ -2373,8 +2347,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.Uncertainty}
-                                      onChange={handlePsychologyEffect("Uncertainty ")}
-                                      value="Uncertainty"
+                                      onChange={handlePsychologyEffect}
+                                      name="Uncertainty"
                                       color="primary"
                                   />
                               }
@@ -2384,8 +2358,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.fatigue}
-                                      onChange={handlePsychologyEffect("Fatigue ")}
-                                      value="Fatigue"
+                                      onChange={handlePsychologyEffect}
+                                      name="Fatigue"
                                       color="primary"
                                   />
                               }
@@ -2395,8 +2369,8 @@ const useStyles = makeStyles(theme => ({
                               control={
                                   <Checkbox
                                       checked={psychologyEffect.None}
-                                      onChange={handlePsychologyEffect("None")}
-                                      value="None"
+                                      onChange={handlePsychologyEffect}
+                                      name="None"
                                       color="primary"
                                   />
                               }
